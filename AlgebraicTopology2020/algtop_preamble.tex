@@ -1,0 +1,69 @@
+% to be `\input` in subfolders,
+% ... therefore the path should be relative to subfolders.
+
+\usepackage[UTF8
+	,heading=false
+	,scheme=plain % English Document
+]{ctex}
+
+\input{../.modules/basics/macros.tex}
+\input{../.modules/preamble_base.tex}
+\input{../.modules/preamble_notes.tex}
+
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\Hom}{\mop{Hom}}
+\newcommand{\Cat}[1]{%
+	\ensuremath{\underline{\mathbf{#1}}}
+}
+
+\newcommand{\tinyhskip}{{\hskip .1em}}
+\newcommand{\mat}[1]{\pqty\Big{
+	\footnotesize
+	\hspace{-.2em}
+		\begin{array}{cc}
+			#1
+		\end{array}
+	\hspace{-.2em}
+}}
+
+% Settings
+\usepackage{tikz-cd}
+\counterwithout{equation}{section}
+\mathtoolsset{showonlyrefs=false}
+%\DeclareTextFontCommand{\textbf}{\sffamily}
+\renewcommand{\midquote}{\quad}
+
+% Spacings
+\geometry{footnotesep=2\baselineskip} % pre footnote split
+\setlength{\parskip}{.5\baselineskip}
+\renewcommand{\baselinestretch}{1.15}
+
+%Title
+	\posttitle{
+		\hfill\Large\ccbyncsajp
+		\par\end{flushleft}%
+		\vspace*{-.7ex}\hrule%
+	}
+	\preauthor{\vspace{-1.5ex}%
+		\flushleft\itshape%
+	}
+	\postauthor{\hfill}
+	\predate{\noindent\ttfamily Compiled @ }
+	\postdate{\vspace{.5ex}}
+
+	\title{Algebraic Topology \textnumero\hwNumber}
+	\author{\signature Bryan}
+	\date{\today}
+
+% List
+	\setlist*{
+		listparindent=\parindent
+		,labelindent=\parindent
+		,parsep=\parskip
+		,itemsep=1.2\parskip
+	}
+	\setlist*[enumerate,1]{
+		align=left
+		,label=\fbox{\textbf{\arabic*}}
+		,itemsep=.5\baselineskip
+	}

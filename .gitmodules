@@ -1,0 +1,3 @@
+[submodule "Templates"]
+	path = Templates
+	url = https://github.com/bryango/Templates.git
