@@ -645,9 +645,9 @@
 	To compute $TT$ OPE, we need the OPE of $b(z)\,c(0)$; this is obtained by examining the following path integral, which is zero since the integrand is a total functional derivative:
 	\begin{equation}
 		0 = \int \mscr{D}b\,\mscr{D}c\,
-			\fdv{\phi}\pqty{e^{-S}\,\phi}
+			\fdv{\phi}\pqty{e^{-S}\,\psi}
 	\end{equation}
-	Taking $\phi=b,c$, this generates operator equations such as $
+	Taking $\phi,\psi=b,c$, this generates operator equations such as $
 		\pdbar b(z)\,c(0)
 		= 2\pi\delta^2(z,\bar{z})
 	$. Note that $
@@ -656,10 +656,12 @@
 	$, which gives:
 	\begin{equation}
 		b(z)\,c(0) \sim c(z)\,b(0)
-		\sim \frac{1}{z}
+		\sim \frac{1}{z},\quad
+		b(z)\,b(0) \sim 0
+		\sim c(z)\,c(0)
 	\end{equation}
 	
-	With the $bc$ OPE in hand, the $TT$ OPE is computed directly with blunt force. This gives:
+	With the $bc$ OPE in hand, the $TT$ OPE is computed directly with brute force, by repeatedly applying Wick's theorem. This gives:
 	\begin{equation}
 		T(z)\,T(0)
 		\sim \frac{
@@ -725,7 +727,7 @@
 	\item[(b)(c)] Combining two $\psi$ expansions gives the mode expansion of $
 		J\id{_i^j}
 		= \normorder{\psi_i(z)\,\psi^j(z)}
-	$:
+	$, namely:
 	\begin{equation}
 		J\id{_i^j}(z)
 		= \sum_{k\in\mbb{Z}}
@@ -747,7 +749,7 @@
 		J\id{_i^j}(z)\,J\id{_k^l}(0)
 		\sim \frac{
 			\delta_i^l\delta_k^j
-		}{z^4} + \frac{
+		}{z^2} + \frac{
 			\delta^j_k J\id{_i^l}(0)
 			- \delta^l_i J\id{_k^j}(0)
 		}{z},\\[1ex]
@@ -764,15 +766,18 @@
 	
 	\item[(d)] Similar to $bc$ CFT, we have:
 	\begin{equation}
-		T(z) = \frac{1}{2} \normorder{\psi_i\,\pd\psi^i}
-			- \normorder{\pd\psi_i\,\psi^i}\,
-		,\quad
+		T(z) = \frac{1}{2}\,\pqty{
+			\normorder{\psi_i\,\pd\psi^i}
+			- \normorder{\pd\psi_i\,\psi^i}
+		},\quad
 		T(z)\,T(w)
 		\sim \frac{n/2}{(z-w)^4}
 			+ \frac{2T(w)}{(z-w)^2}
 			+ \frac{\pd T(w)}{z-w}
 	\end{equation}
-	With each field contributing $\frac{1}{2}$ central charge. 
+	With each (complex) field contributing $\frac{1}{2}\times 2$ central charge\footnote{
+		In fact a complex (Dirac) fermion can be ``treated like'' (\textit{dual to}) a boson; this is \textit{bosonization}. 
+	}. 
 	
 	\item[(e)] For real fermions, there is an additional reality condition:
 	\begin{equation}
@@ -790,7 +795,7 @@
 		\sim \frac{
 			- \delta_{ik}\delta_{jl}
 			+ \delta_{il}\delta_{jk}
-		}{z^4} + \frac{
+		}{z^2} + \frac{
 			- \delta_{ik} J_{jl}(0)
 			+ \delta_{il} J_{jk}(0)
 			+ \delta_{jk} J_{il}(0)
