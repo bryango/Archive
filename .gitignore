@@ -1,4 +1,6 @@
 *.log
+id.tex
+.fuse_hidden*
 
 # tex
 ## Core latex/pdflatex auxiliary files:

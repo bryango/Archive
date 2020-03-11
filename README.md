@@ -1,7 +1,6 @@
 # Homework
 This is a repo for dumping homework, released under CC-BY-NC-SA 4.0. <br/>
-PDF is compiled using `xelatex`. 
+PDF is compiled using `xelatex` & `biber`. 
 
 ## Note to myself
-- Source code is hard linked (`cp -al`) for ease of update. 
 - Sanitize before publishing! 
