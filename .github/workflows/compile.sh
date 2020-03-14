@@ -2,7 +2,7 @@
 
 name: Build with XeLaTeX
 
-# Controls when the action will run. Triggers the workflow on push or pull request 
+# Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
@@ -23,7 +23,20 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Compile LaTeX document
-      uses: xu-cheng/latex-action@master
+      # Reference: <xu-cheng/latex-action>
+      runs:
+        using: docker
+        image: Dockerfile
+
+    - name: Upload to Release
+      id: upload-release-asset
+      uses: softprops/action-gh-release@v1
       with:
-        root_file: '*/*/*.tex'
-        args: -xelatex -file-line-error -interaction=nonstopmode
+        tag_name: v0.1.0-alpha
+        files: |
+          '*/*/*.pdf'
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      if: always()
+
+# vim: ts=2 sw=2
