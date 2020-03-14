@@ -1,15 +1,19 @@
-#!/bin/bash
+#!/bin/sh
+# shellcheck disable=2011
 
-DIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
-cd "$DIR" || exit 1
+DIR=$PWD
+echo "### $DIR"
+ls | xargs
 
 FILES=$(find . \
     -regex "./[^/]+/[^/]+/[^/]+.tex" \
     -not -path "./Templates/*"
 )
+echo "### Files:"
+echo "$FILES"
 
 for file in $FILES; do
-    echo "# Compiling \`$file\` ..."
+    echo "### Compiling \`$file\` ..."
     cd "$(dirname "$file")" || exit 1
 
     latexmk \
