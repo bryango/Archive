@@ -4,4 +4,6 @@ COPY \
   compile.sh \
   /root/
 
-ENTRYPOINT ["/root/compile.sh"]
+RUN apk --no-cache add bash findutils 
+
+ENTRYPOINT /root/compile.sh $PWD

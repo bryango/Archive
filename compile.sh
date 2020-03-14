@@ -1,7 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 # shellcheck disable=2011
 
-DIR=$PWD
+[[ -n $1 ]] \
+    && DIR=$1 \
+    || DIR=$(dirname "$(readlink -f "$0")")
+
 echo "### $DIR"
 ls | xargs
 
