@@ -20,7 +20,7 @@ jobs:
         submodules: 'recursive'
 
     - name: Build
-      uses: ./
+      uses: ./.github/actions/latex-action/
 
     - name: Release
       if: always()

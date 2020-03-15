@@ -1,4 +1,5 @@
 *.log
+*.pdf
 id.tex
 .fuse_hidden*
 
