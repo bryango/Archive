@@ -15,6 +15,12 @@
 \newcommand{\Cat}[1]{%
 	\ensuremath{\underline{\mathbf{#1}}}
 }
+\newcommand{\legacyReference}{{
+	\clearpage\par
+	\quad\clearpage
+	\renewcommand{\midquote}{\textbf{PAST WORK, AS TEMPLATE}}
+	\newparagraph
+}}
 
 \newcommand{\tinyhskip}{{\hskip .1em}}
 \newcommand{\mat}[1]{\pqty\Big{
@@ -32,6 +38,7 @@
 \mathtoolsset{showonlyrefs=false}
 %\DeclareTextFontCommand{\textbf}{\sffamily}
 \renewcommand{\midquote}{\quad}
+\resizegathersetup{equations=false}
 
 % Spacings
 \geometry{footnotesep=2\baselineskip} % pre footnote split

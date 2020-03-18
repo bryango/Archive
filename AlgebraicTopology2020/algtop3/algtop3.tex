@@ -1,0 +1,502 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper,10pt]{article}
+
+\newcommand{\hwNumber}{3 [WIP]}
+
+\input{../algtop_preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+%%% ID: sensitive, do NOT publish!
+%\InputIfFileExists{../id.tex}{}{}
+
+\newcommand{\vset}[1]{\Bqty{\ \begin{gathered}
+	#1
+\end{gathered}\ }}
+\newcommand{\Zpoly}[1]{\mbb{Z}[x]\big/x^{#1}}
+\newcommand{\colim}{\mop{colim}}
+
+\begin{document}
+\maketitle
+\pagestyle{headings}
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+	\begin{enumerate}
+	\item \textbf{Example of limit in \Cat{Vect}:}
+	\begin{equation}
+	\begin{tikzcd}[row sep=-3.5ex,column sep=8ex]
+		& \vset{0 \\ \mbb{R}} \\
+		I = \vset{\bullet \\ \star}
+			\arrow[ur,mapsto,%
+				"F"]
+			\arrow[dr,mapsto,swap,%
+				"\Delta(V)" near end]
+		& \\
+		& \vset{V \\ V}
+	\end{tikzcd}
+		\ \supset\ \Cat{Vect}\colon \text{
+			$\mbb{R}$ vector space
+		},
+	\end{equation}
+	
+	\begin{enumerate}
+	\item By definition, we have:
+	\begin{equation}
+	\begin{tikzcd}[row sep=8.5ex,column sep=7ex]
+		& \Delta(\lim F)
+			\arrow[d,Rightarrow,"\sigma"] \\
+		\Delta(V)
+			\arrow[r,Rightarrow,"\eta"]
+			\arrow[ur,Rightarrow,dashed,%
+				"\exists!\,\Delta(g)"] &
+		F
+	\end{tikzcd}
+	\label{eq:def_limit}
+	\end{equation}
+	Where $g\colon V\to \lim F$. 
+	More intuitively, for the above $F\colon I\to\Cat{Vect}$, this translates to the following diagram in \Cat{Vect}:
+	\begin{equation}
+	\begin{tikzcd}[row sep=2ex,column sep=8ex]
+		&& 0 \\
+		V
+			\arrow[r,dashed,
+				"\exists!\, g"]
+			\arrow[urr,bend left,%
+				"\eta_\bullet"]
+			\arrow[drr,bend right,swap,%
+				"\eta_\star"] &
+		\lim F
+			\arrow[ur,%
+				"\sigma_\bullet"]
+			\arrow[dr,swap,%
+				"\sigma_\star"] & \\
+		&& \mbb{R}
+	\end{tikzcd}
+	\label{eq:lim_in_vect}
+	\end{equation}
+	\end{enumerate}
+	
+	Now we verify that $\lim F = \mbb{R}$, along with the following choice of $\sigma$:
+	\begin{equation}
+		\sigma_\bullet = 0,\quad
+		\sigma_\star = \idty_\mbb{R}
+	\end{equation}
+	In fact, for the above diagram \eqref{eq:lim_in_vect} to be commutative, we must have $g = \eta_\star$. Note that such $g$ is unique once $\sigma$ is chosen; for our choice of $\sigma$, if $g \ne \eta_\star$, then the diagram \textit{cannot} commute. Hence $\lim F = \mbb{R}$, along with the above choice of $
+		\sigma\colon \Delta(\mbb{R})\Rightarrow F
+	$. In other words, we have:
+	\begin{equation}
+	\begin{tikzcd}[row sep=1ex,column sep=2.5em]
+		& \Bqty\big{\ \bullet,\ \star\ }
+			\arrow[ddl,"\Delta(\mbb{R})",swap]
+			\arrow[ddr,"F"]
+		& \\
+		& \xRightarrow{\quad\sigma\quad} & \\
+		\mbb{R} & & \Bqty\big{\ 0,\ \mbb{R}\ }
+	\end{tikzcd}
+	\end{equation}
+	\vspace{-2.25\baselineskip}
+	
+	\qed
+	
+	\item[(b)(c)] From diagram \eqref{eq:def_limit} and discussions in (a), we know that: 
+	\begin{equation}
+		\exists\,!\ \tau = \Delta(g)\colon\ %
+		\Delta(V)\Longrightarrow \Delta(\mbb{R})
+	\end{equation}
+	Here $g\colon V\to\mbb{R}$ is fixed uniquely once $\sigma$ is fixed. However, $\sigma$ may vary up to isomorphism; therefore, a generic choice of $\sigma$ is given by:
+	\begin{equation}
+		\sigma_\bullet = 0,\quad
+		\sigma_\star = k\,\idty_\mbb{R},\quad
+		k\in\mbb{R}
+	\end{equation}
+	
+	For such $g$, by the same arguments in (a), we have:
+	\begin{equation}
+		\exists\,!\,\ %
+			g = \frac{1}{k}\,\eta_\star\,,\ %
+			\tau
+			= \Delta(g)
+			= \frac{1}{k}\,\Delta(\eta_\star),\quad
+		\textsl{s.\,t.\quad
+			\eqref{eq:def_limit},
+			\eqref{eq:lim_in_vect} commutes}
+	\end{equation}
+	Note that $k\in\mbb{R}$, for every $k$ there is a different $g$ and $\tau$; hence there are $
+		\norm{\{k\}} = \norm{\mbb{R}}
+	$ many choices of $\tau$ to make the diagram commute. In particular, for $k = 1$ we recover $
+		\tau = \Delta(\eta_\star)
+	$. \qedfull
+	
+	\item \textbf{Limit and colimit of polynomial ring:}
+	
+	By definition,
+	\begin{equation}
+	\begin{tikzcd}[row sep=7ex,column sep=8ex,baseline=-.8ex]
+		&&[-4ex] Q
+			\arrow[ddll]
+			\arrow[ddl,"\eta_{n+1}" near end,swap]
+			\arrow[ddr,"\eta_{n}" near end]
+			\arrow[ddrr]
+			\arrow[ddrrr]
+			\arrow[d,dotted,"\exists! f" description]
+		&[-4ex] && \\
+		&& \lim F
+			\arrow[dl,"\pi_{n+1}"]
+			\arrow[dr,"\pi_{n}",swap]
+		&&& \\
+		\cdots
+			\arrow[ddrr]
+			\arrow[r,"p_{n+1}"] &
+		\Zpoly{n+1}
+			\arrow[dr,"\sigma_{n+1}"]
+			\arrow[ddr,
+				"\tau_{n+1}\!" near start,swap]
+			\arrow[rr,"p_n"] 
+		&&
+		\Zpoly{n}
+			\arrow[dl,"\sigma_{n}",swap]
+			\arrow[ddl,
+				"\tau_{n}" near start]
+			\arrow[r,"p_{n-1}"] &
+		\cdots
+			\arrow[ddll]
+			\arrow[r,"p_1"] &
+		\Zpoly{1} = \mbb{Z}
+			\arrow[ddlll,
+				"\tau_1" near start] \\
+		&& \colim F
+			\arrow[d,dotted,"\exists! g" description]
+		&&& \\
+		&& R
+		&&&
+	\end{tikzcd}
+	\label{eq:polynomial_ring_tower}
+	\end{equation}
+	Here $p_n\colon\Zpoly{n+1}\to\Zpoly{n}$ is the natural projection. 
+	
+	Intuitively, if such $\lim F$ exists, it shall be the ``smallest'' object that ``contains'' $\Zpoly{n}$ when $n\to\infty$. Note that $\Zpoly{n}$ is naturally a $\mbb{Z}^n$ vector space:
+	\begin{equation}
+		\Zpoly{n}\ \ni\ \sum_{m=0}^{n-1} a_m x^m
+		\ \sim\ \pqty{
+			a_0, a_1, \cdots, a_{n-1}
+		}\ \in\ \mbb{Z}^n
+	\end{equation}
+	While $n\to\infty$, this gives an $\infty$--tuple which corresponds to the \textit{formal power series}\footnote{
+		See \wikiref{https://en.wikipedia.org/wiki/Formal\_power\_series}{Formal power series}. This is in fact the \textit{adic completion} of $\mbb{Z}[x]$. I would like to thank \mbox{\textit{刘逸华}} \& \textit{谢贤进} for this hint. 
+	}: 
+	\begin{equation}
+		\mbb{Z}[[x]] \ \ni\ \sum_{m=0}^\infty
+			a_m x^m
+	\end{equation}
+	
+	The difference between $\mbb{Z}[x]$ and $\mbb{Z}[[x]]$ is that the latter may contain infinite series while the former may not. Now we confirm that, indeed, $\lim F = \mbb{Z}[[x]]$, along with natural projections $
+		\pi_n\colon\mbb{Z}[[x]]\to\Zpoly{n}
+	$. 
+	
+	In fact, the $f\colon R\to \lim F$ in \eqref{eq:polynomial_ring_tower} can be explicitly written down as:
+	\begin{equation}
+	\begin{aligned}
+		f &= \eta_1 + x\,\pqty{
+			\dv{x}\,\eta_2
+		} + x^2\,\pqty{
+			\frac{1}{2}\,\dv{x}\,\eta_3
+		} + \cdots
+		= \sum_{m=0}^\infty x^m\,\Bqty{
+			\frac{1}{m!}\,\dv[m]{x}\,\eta_{m+1}
+		} \\
+		&\sim \pqty\big{
+			\eta_{1,0},\,
+			\eta_{2,1},\,
+			\cdots,\,
+			\eta_{n,n-1},\,
+			\cdots
+		}
+	\end{aligned}
+	\end{equation}
+	Here $\frac{1}{m!}\,\dv[m]{x}$ is used to extract the $a_{n-1}$ coefficient in $\Zpoly{n}$; this is the last component of $\eta_n$, denoted by $\eta_{n,n-1}$. Any other choice of $f$ will break communitativity of \eqref{eq:polynomial_ring_tower}, hence $f$ is fixed uniquely by $\mbb{Z}[[x]]$ and $\pi_n$'s. Therefore, $\lim F = \mbb{Z}[[x]]$. \qed
+	
+	On the other hand, $\colim F$ is the ``largest'' object that any map \textit{out of} $\Zpoly{n}$ must ``passes through''. Also, this should hold for all $n\in\mbb{Z}_+$. Naturally, projections $
+		\sigma_n\colon\Zpoly{n}\to\mbb{Z}
+	$ satisfy the above requirements; we have:
+	\begin{gather}
+		\sigma_n\colon\ x\longmapsto 0,\quad
+			\sum_{m=0}^{n-1} a_m x^m
+			\longmapsto a_0,\\
+		\sigma_{n+1}
+		= p_1\circ p_2\circ\cdots p_n
+	\end{gather}
+	$g\colon \mbb{Z}\to R$ in \eqref{eq:polynomial_ring_tower} is fixed uniquely for such choice of $\sigma_n$; in fact, descend along the $p_n$ tower in \eqref{eq:polynomial_ring_tower}, and we have: $
+		\tau_{n+1}
+		= \tau_n\circ p_n
+		= \tau_{n-1}\circ p_{n-1}\circ p_n
+		= \cdots
+		= \tau_1\circ p_1\circ p_2\circ\cdots p_n
+		= \tau_1\circ \sigma_{n+1},
+		\ \forall\ n\in\mbb{Z}_+
+	$, hence $\exists\,!\ g = \tau_1$. Therefore, $\colim F = \mbb{Z}$. \qed
+	
+	
+	\item 
+	
+	\end{enumerate}
+	
+	\legacyReference
+	
+	\begin{enumerate}
+	\item For $F_i \to E_i \xrightarrow{p_i} B$: coverings in $\mop{Cov}_0(B)$ with $E_i$: connected and $B$: path connected and locally path connected, the following diagram commutes:
+	\begin{center}
+	\begin{tikzcd}[row sep=5ex,column sep=3em]
+		E_1
+			\arrow{rr}{f}
+			\arrow[swap]{dr}{p_1} & &
+		E_2
+			\arrow{dl}{p_2} \\
+		& B &
+	\end{tikzcd}
+	\quad
+	$\begin{gathered}
+%		p_1 = p_2 \circ f,\\
+		e_2 = f(e_1),\\
+		b = p_1(e_1) = p_2(e_2),
+	\end{gathered}$
+	\end{center}
+	To show that $f$ is itself a covering, we need only verify that $f$ is locally trivial with some discrete fiber $F$. 
+	In fact, given any $e_2\in E_2$ and $b = p_2(e_2)$, there exists some neighborhood $U\subset B$ that the following diagram holds (by restriction):
+	\begin{center}
+	\begin{tikzcd}[row sep=5ex,column sep=2.5em]
+		U\times F_1
+			\arrow{rr}{f}
+			\arrow[swap]{dr}{p_1} & &
+		U\times F_2
+			\arrow{dl}{p_2} \\
+		& U &
+	\end{tikzcd}
+	\quad
+	$\begin{aligned}
+		e_1 &= \pqty\big{b,k_1},\\
+		e_2 &= \pqty\big{b,k_2(b,k_1)},
+	\end{aligned}
+	\quad k_i \in F_i
+	$
+	\end{center}
+	
+	Generally, $k_2 = k_2(b,k_1)$ depends on the base point $b \in B$. However, since $B$ is locally path connected, we can restrict $U$ to be path connected, while $k_2\in F_2$: discrete. Since continuous maps preserve path connectedness, $k_2$ is in fact independence of $b$, i.e.\ $k_2 = \varphi(k_1)$. 
+	
+	On the other hand, $\forall\ e_2 = (b,k_2)\in U\times\{k_2\}\subset E_2$, we have its preimage $f^{-1}(e_2) = \{b\}\times\varphi^{-1}(k_2)$. Note that $E_2$ is connected while $\varphi^{-1}(k_2) \in F_1$ is discrete; for the same reasoning as above, $\varphi^{-1}(k_2) = F$ is in fact independent of $k_2$. This is the discrete fiber $F$ we have been looking for. Hence $f$ is also a covering map\footnote{
+		Reference: \https{math.stackexchange.com/a/109774}. 
+	}. \qedfull
+	
+	\item \textbf{Cylinder with ends pinched --- $\pi_1$ and universal cover:}
+	\begin{equation}
+		Y = \flatfrac{(X\times I)}{(X\times \pd I)},
+		\quad I = [0,1]
+	\end{equation}
+	Note that $Y$ is homeomorphic to two cones\footnote{
+		See discussions from Problem Set \textnumero 1. 
+	} $CX_1\coprod CX_2$ with ``bases'' $X_i\subset CX_i$ and ``vertices'' $v_i$~respectively identified: $X_1\sim X_2,\ v_1\sim v_2\equiv v$. $X$ is path connected and so is $Y$, hence we are free to choose $\pi_1(Y) = \pi_1(Y,y_0)$. 
+	
+	First note that paths that do \textit{not} pass through the vertex $v$ are all homotopic, since they are contained in a cone and cones are contractible\footnote{
+		$[\gamma_1]
+		= [\gamma_2\star\gamma_2^{-1}\star\gamma_1]
+		= [\gamma_2]$. 
+	}. Therefore all contributions to $\pi_1(Y)$ are loop classes that \textit{do} pass through the vertex $v$. 
+	In other words, morphisms in $\Pi_1 Y$ are in one-to-one correspondence with morphisms in:
+	\begin{equation}
+		\Pi_1\pqty\big{[0,1]/_{0\sim 1}} = \Pi_1 S^1
+	\end{equation}
+	Therefore, $\pi_1(Y) \cong \pi_1(S^1) = \mbb{Z}$. 
+	\qed
+	
+	The universal cover $\tilde{Y}$ of $Y$ can be constructed by assigning an induced topology to the space of path classes, same as in the general proof of its existence. Since $Y$ is ``degenerate'' at its vertex, this is equivalent to ``cutting open'' $Y$ at its vertex $v$, and joining $\mbb{Z}$ copies them end-to-end. More explicitly, it can be written as:
+	\begin{equation}
+		\tilde{Y} = {(X\times \mbb{R})}\Big/{
+			\sim
+		}\,,\quad
+		(x,n)\sim (x',n),\ \forall\ 
+			x\in X,\,n\in\mbb{Z}
+	\end{equation}
+	While the covering map: $\tilde{Y}\ni[x,t]\mapsto [x,t-\lfloor t\rfloor]\in Y$, here $\lfloor t\rfloor$ is the integer part of $t\in\mbb{R}$. 
+	\qedfull
+	
+	\item \textbf{$\pi_1$ of fiber in fibration:}
+	\label{item:fibration_fundamental}
+	\begin{center}
+	\begin{tikzcd}[row sep=8.5ex,column sep=7ex]
+		X\times\{0\}
+			\arrow[r]
+			\arrow[hook,d] &
+		E
+			\arrow[d,"p"] \\
+		X\times I
+			\arrow[r,"f"]
+			\arrow[ur,dashed,"\exists\,\tilde{f}"] &
+		B
+	\end{tikzcd}
+	\end{center}
+	
+	For $F \to E \xrightarrow{p} B$: fibration, by homotopy lifting property (HLP), any homotopy in $B$ can be uniquely lifted to path class in $E$, provided some \textit{``initial condition''} $X\times\{0\}$. 
+	This leads to the following results:
+	
+	\begin{enumerate}
+	\item For $B$: simply-connected, take any loop class $[\tilde{\gamma}]\in\pi_1(E,e)$ as initial condition; its projection $[p\circ\tilde{\gamma}]\in\pi_1(B,b) = \Bqty\big{[\idty_b]}$ is trivial, i.e.\ $p\circ\tilde{\gamma} \simeq \idty_b$. By HLP, such homotopy can be lifted into $E$, i.e.
+	\begin{equation}
+		p\circ\tilde{\gamma} \simeq \idty_b
+		\quad\xRightarrow{\ \text{lift}\,\ }\quad
+		\tilde{\gamma} \simeq \tilde{\gamma}',\quad
+		p\circ\tilde{\gamma}' = \idty_b
+	\end{equation}
+	In other words, $
+		\tilde{\gamma}
+		\simeq \tilde{\gamma}' \subset p^{-1}(b)
+	$, i.e.\ any loop in $E$ is homotopic to some loop in $p^{-1}(b) \cong F$. This implies a surjective group homomorphism $
+		\pi_1(p^{-1}(b),e)\to \pi_1(E,e)
+	$, i.e.\ an epimorphism. 
+	\qed
+	
+	\item For $E$: simply-connected, take any loop class $[\gamma]\in\pi_1(B,b)$ and consider its lifting $[\tilde{\gamma}]$. Note that in general $\tilde{\gamma}$ is \textit{not} a loop; however, we have $p\circ\tilde{\gamma} = \gamma$, hence $\tilde{\gamma}(0),\tilde{\gamma}(1)\in p^{-1}(b)$. In general, we have:
+	\begin{equation}
+		\gamma \simeq \gamma'
+		\quad\xRightarrow{\ \text{lift}\,\ }\quad
+		\tilde{\gamma} \simeq \tilde{\gamma}',\quad
+		p\circ\tilde{\gamma}^{(\prime)}
+		= \gamma^{(\prime)}
+	\end{equation}
+	By continuity, $\tilde{\gamma}(0),\tilde{\gamma}'(0)\in F_0$: a path component of $p^{-1}(b)$; similarly, $\tilde{\gamma}(1),\tilde{\gamma}'(1)\in F_1$. In other words, the start and end points of $\tilde{\gamma}$ are confined in path components $F_0$ and $F_1$, respectively. Hence a loop class in $\pi_1(B,b)$ maps to \textit{transport} between path components:
+	\begin{equation}
+	\begin{aligned}
+		T_{(\cdot)}(e) \colon\ %
+		\pi_1(B,b)
+		&&&\longto &&
+		\pi_0\pqty\big{p^{-1}(b)}\\[.5ex]
+		[\gamma]
+		&&&\longmapsto &&
+		T_{[\gamma]}(e)
+%		\colon\ %
+%		\pi_0\pqty\big{p^{-1}(b)}
+%		\longto \pi_0\pqty\big{p^{-1}(b)}
+	\end{aligned}
+	\end{equation}
+	
+	As a matter of fact, $T_{(\cdot)}(e)$ is a bijection. For $
+		T_{[\gamma]} = T_{[\gamma']}
+	$, they are characterized by two lifted paths $\tilde{\gamma},\tilde{\gamma}'$; since $E$ is simply connected, they are always homotopic: $
+		\tilde{\gamma}\simeq\tilde{\gamma}'
+	$, hence $
+		[\gamma] = [\gamma']
+	$ by projection $p$. This means that $T$ is injective. Surjectivity also follows from projection $\gamma = p\circ\gamma'$. Therefore, $T_{(\cdot)}(e)$ gives a bijection between $
+		\pi_1(B,b)
+	$ and $
+		\pi_0\pqty\big{p^{-1}(b)}
+	$. \qedfull
+	
+	\end{enumerate}
+	
+	\item \textbf{Pull-back of fibration is fibration:}
+	\begin{center}
+	\begin{tikzcd}[row sep=9ex,column sep=8ex]
+		Y\times\{0\}
+			\arrow[r]
+			\arrow[d,hook] &[-1.2em]
+		f^*(E)
+			\arrow[r]
+			\arrow[d] &
+		E
+			\arrow[d,"p"] \\
+		Y\times I
+			\arrow[r,"G"]
+			\arrow[urr%
+				,"\ \exists\,\tilde{F}\ %
+					\text{(HLP)}"
+				,swap
+				,crossing over
+			]
+			\arrow[ur,dashed%
+				,"\exists\,\tilde{G}"
+			] &
+		X
+			\arrow[r,"f"] &
+		B
+	\end{tikzcd}\\[2ex]
+	$
+		(x,e) \in f^*(E)\subset X\times E,\quad
+		f(x) = p(e)
+	$
+	\end{center}
+	
+	We need only verify that $f^*(E)\to X$ also has HLP, i.e.\ the existence of $\tilde{F}$ in the above diagram\footnote{
+		Notice that $f^*(E)$ is the limit of the diagram, hence this is automatically true by the universal property of $f^*(E)$. I would like to thank \textit{刘逸华} for pointing this out. For now, we will stick to a more traditional proof. 
+	}. By HLP of $
+		E\xrightarrow{p} B,\ %
+		\exists\ \tilde{F}\colon Y\times I \to E
+	$ as shown above. We can use $\tilde{F}$ to construct $\tilde{G}$ explicitly; in fact, first consider:
+	\begin{equation}
+	\begin{aligned}
+		\tilde{G} \colon\ %
+		Y\times I
+		&&&\longto &&
+		X\times E\\
+		(y,t)
+		&&&\longmapsto &&
+		\pqty\big{G(y,t),\tilde{F}(y,t)}
+%		\colon\ %
+%		\pi_0\pqty\big{p^{-1}(b)}
+%		\longto \pi_0\pqty\big{p^{-1}(b)}
+	\end{aligned}
+	\end{equation}
+	Note that $
+		f\circ G = p\circ \tilde{F}
+	$; compared with the definition of $f^*(E)$, this implies that the image of $\tilde{G}$ lies within $
+		f^*(E)\subset X\times E
+	$, hence after restriction of its codomain, $\tilde{G}$ becomes a well-defined lifting of $G$ into $f^*(E)$. Therefore, $f^*(E)\to X$ has HLP, i.e.\ it is also a fibration. \qedfull
+	
+	\item \textbf{More properties of fibration:}
+	
+	\begin{enumerate}
+	
+	\item By HLP, given any initial condition $e\in p^{-1}(b_1)$, lifting of any path $b_1\xrightarrow{\gamma} b_2$ exists. The lifted path with dependence of $e$ can then be written as $F\colon p^{-1}(b_1)\times I\to E$. 
+	This is just a generalization of \ref{item:fibration_fundamental} for non-loop paths. 
+	\qed
+	
+	\item Similarly, transport $T_{[\gamma]}$ defined in \ref{item:fibration_fundamental} can be generalized for non-loop paths. $T_{[\gamma]}$ is well-defined for path class $[\gamma]$, since by HLP homotopic paths can be lifted to homotopy in $E$. Therefore, the transport is fixed up to homotopy, i.e.
+	\begin{equation}
+	\begin{aligned}
+		T \colon\ %
+		\Hom_{\,\Pi_1 B} (b_0,b_1)
+		&&&\longto &&
+		\Hom_{\,\Cat{hTop}} \pqty\big{
+			p^{-1}(b_0),p^{-1}(b_1)
+		}
+		\\[.5ex]
+		[\gamma]
+		&&&\longmapsto &&
+		T_{[\gamma]}
+	\end{aligned}
+	\end{equation}
+	Note that $T$ defined in this way is also independent of the choice of $F$, since $F$ simply specifies the starting point of the lifted path; no matter which $F$ we choose, the lifted paths will always be homotopic in $E$. Hence $T$ is well-defined in the above sense.
+	\qed
+	
+	\item $T$ defined above is a functor: $
+		\Pi_1 B\to \Cat{hTop}
+	$. To verify this, we need only check that it is compatible with composition and maps identity morphisms to identity morphisms. Indeed, $
+		T_{[\idty_b]} = [\idty_{p^{-1}(b)}]
+	$, and $
+		T_{[\gamma']\star[\gamma]}
+		= T_{[\gamma'\star\gamma]}
+		= T_{[\gamma']} \circ T_{[\gamma]}
+	$ by joining two lifted paths (up to homotopy).
+	\qed
+	
+	\item For $B$: path connected, there exists an isomorphism between any two objects in $\Pi_1 B$ (a path connecting any two points in $B$), which is mapped to isomorphisms between fibers $p^{-1}(b)$ in $\Cat{hTop}$. Hence any two fibers of $E\xrightarrow{p} B$ have the same homotopy type. 
+	\qedfull
+	
+	\end{enumerate}
+	\end{enumerate}
+
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}
