@@ -45,7 +45,7 @@
 	\begin{enumerate}
 	\item By definition, we have:
 	\begin{equation}
-	\begin{tikzcd}[row sep=8.5ex,column sep=7ex]
+	\begin{tikzcd}[row sep=8.5ex,column sep=5ex]
 		& \Delta(\lim F)
 			\arrow[d,Rightarrow,"\sigma"] \\
 		\Delta(V)
@@ -236,10 +236,91 @@
 		= \tau_1\circ p_1\circ p_2\circ\cdots p_n
 		= \tau_1\circ \sigma_{n+1},
 		\ \forall\ n\in\mbb{Z}_+
-	$, hence $\exists\,!\ g = \tau_1$. Therefore, $\colim F = \mbb{Z}$. \qed
+	$, hence $\exists\,!\ g = \tau_1$. Therefore, $\colim F = \mbb{Z}$. \qedfull
 	
+	\item \textbf{Example of push-out in \Cat{Groupoid}:}
+	\begin{equation}
+	\begin{tikzcd}[row sep=8.5ex,column sep=6.5ex]
+		\{0,1\}
+			\arrow[r,"f_1"]
+			\arrow[d,"f_2",swap] &
+		\bullet
+			\arrow[d,"\tau_1"]
+			\arrow[ddr,bend left,"\eta_1"] &[1ex] \\
+		\{ 0\leftrightarrow 1 \}
+			\arrow[r,"\tau_2"]
+			\arrow[drr,bend right,"\eta_2"] &
+		P
+			\arrow[dr,dotted
+				,"\!\!\exists!\,g" description]
+		& \\[-2.5ex]
+		&& Q
+	\end{tikzcd}
+	\end{equation}
+	
+	Following the same observation as before, the push-out $P$ is the ``largest'' object that any map out of $\bullet$ and $\{0\leftrightarrow  1\}$ must pass through. By such universal property, $P$ can be no larger than the coproduct: $
+		\{\bullet\} \coprod \{0\leftrightarrow 1\}
+	$. However, we should also consider the equivalence imposed by: 
+	\begin{equation}
+		\bullet
+		\xlongleftarrow{\ f_1\,} \{0,1\}
+		\xlongrightarrow{\ f_2\ }
+		\{0\leftrightarrow 1\}
+	\end{equation}
+	Therefore, we simply have $P = \bullet$, with $\tau_{1,2}$ the natural projection. This can be verified with ease: we have $g = \eta_1$. It is unique since its image is a single point (with identity map to itself) $\star \in Q$, and the point $\star$ is fixed by commutativity. \qedfull
+	
+	\item \textbf{Product and coproduct in \Cat{Ab}:}
+	
+	For $G_\alpha\in\Cat{Ab}\subset\Cat{Group}$, note that we have:
+	\begin{equation}
+		\mop{Free}:
+			\Cat{Set}
+			\xrightleftharpoons{\quad}
+			\Cat{Group}
+		:\mop{Forget}
+	\label{eq:free_forget_adjoint}
+	\end{equation}
+	Therefore, for $F$: some diagram in \Cat{Group}, $
+		\boxed{\lim\,(\mop{Forget}\circ F)
+		= \mop{Forget}\circ\lim F}
+	$ if $\lim F$ exists. 
+	
+	By definition, the product $\prod_\alpha G_\alpha\in \Cat{Group}$ is a limit, hence it is idential (as in $\Cat{Set}\mspace{.2mu}$) to the \textit{direct product}, with additional entry-wise group multiplication. Same applies for the full subcategory: abelian group $\Cat{Ab}\subset\Cat{Group}$. 
+	
+	On the other hand, the disjoint union of $G_\alpha$'s as sets will not necessary be a group, the identities $\idty_\alpha\in G_\alpha$ must be glued together to produce a group structure. Furthermore, free-forgetful adjunction \eqref{eq:free_forget_adjoint} implies that for $F'$: some diagram in \Cat{Set},
+	\begin{equation}
+		\colim\,(\mop{Free}\circ F')
+		= \mop{Free}\circ\colim F',\quad
+	\end{equation}
+	Whenever $\colim F'$ exists; in our case, $\colim F'$ is the disjoint union of sets: $
+		\coprod_\alpha \mop{Forget}(G_\alpha)
+	$. Therefore, we should construct a free object in \Cat{Ab}. 
+	
+	Here we restrict our discussion to \Cat{Ab}, since the coproduct in $\Cat{Ab}$ is \textit{not} the same as in $\Cat{Group}$ --- the free product of abelian group is not necessary abelian. Hence, the coproduct in \Cat{Ab} shall be:
+	\begin{equation}
+		\coprod_\alpha G_\alpha
+		= \bigoplus_\alpha G_\alpha,\quad
+		i_\alpha\colon\, G_\alpha
+			\ \xhookrightarrow{\quad}\ %
+			\bigoplus_\alpha G_\alpha
+	\end{equation}
+	As a set, this is precisely the disjoint union with identities $0_\alpha \in G_\alpha \subset \Cat{Ab}$ glued together. 
+	
+	It is then straight-forward to verify its universal property: for $f_\alpha\colon G_\alpha\to H$,
+	\begin{equation}
+		\exists\,!\ f\colon\,%
+			\bigoplus_\alpha G_\alpha
+			\ \longto\ H,\quad
+		(g_\alpha)_\alpha
+			\ \longmapsto\ %
+			\sum_\alpha f_\alpha(g_\alpha)
+	\end{equation}
+	This is compatible with the abelian group multiplication. Note that for the summation to be well-defined, the coproduct must only contain finitely many components; otherwise it is identical to the product in \Cat{Ab}. 
+	\qedfull
 	
 	\item 
+	
+	
 	
 	\end{enumerate}
 	
