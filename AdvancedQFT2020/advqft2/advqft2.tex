@@ -1,0 +1,618 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper,10pt]{article}
+
+\newcommand{\hwNumber}{2 [WIP]}
+
+\input{../advqft_preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+%%% ID: sensitive, do NOT publish!
+%\InputIfFileExists{../id.tex}{}{}
+
+\begin{document}
+\maketitle
+\pagestyle{headings}
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+\vspace*{-1.5\baselineskip}
+
+\section{Local Transformation}
+	\vspace{-.5\baselineskip}
+	\begin{equation}
+		\var{A^a_\mu}
+		= \pdd{\mu} \lambda^a(x)
+			+ f\id{^a_{bc}} A^b_\mu \lambda^c(x),
+	\label{eq:A_gauge_var}
+	\end{equation}
+	Here $f_{abc}$ is the totally anti-symmetric structure constant for a semi-simple Lie algebra $\mfrak{g}$, with generators $\{T_a\}_a$ and normalized Killing form $\delta_{ab}$. 
+	
+	\begin{itemize}
+	\item The field strength is defined as follows:
+	\begin{equation}
+	\begin{aligned}
+		F_{\mu\nu}
+		\equiv F^a_{\mu\nu} T_a
+		= [D_\mu,D_\nu]
+		&= \bqty\big{
+			\pdd{\mu} + A_\mu,
+			\pdd{\nu} + A_\nu
+		} \\
+		&= \dd{A} + A\wedge A \\
+		&= \pdd{\mu} A_\nu
+			- \pdd{\nu} A_\mu
+			+ f\id{^a_{bc}} A^b_\mu A^c_\nu\,T_a
+	\end{aligned}
+	\end{equation}
+	Adjoint indices $a,b,\cdots$ are sometimes suppressed by contracting with $T_a$'s. By exploiting the anti-symmetric property of $f\id{^a_{bc}}$, along with the Jacobi identity, we get the infinitesimal transformation:
+	\begin{gather}
+	\qquad
+	\begin{aligned}
+		\var{F^a_{\mu\nu}}
+		&= \pdd{\mu} \var{A^a_\nu}
+			- \pdd{\nu} \var{A^a_\mu}
+			+ f\id{^a_{bc}}
+				\var{(A^b_\mu A^c_\nu)} \\[.5ex]
+		&= f\id{^a_{bc}} \pqty\Big{
+			\lambda^c \pqty{
+				\pdd{\mu} A^b_\nu
+				- \pdd{\nu} A^b_\mu
+			} + \pqty{
+				A^b_\nu\,\pdd{\mu} \lambda^c
+				- A^b_\mu\,\pdd{\nu} \lambda^c
+			} + \var{(A^b_\mu A^c_\nu)}
+		} \\
+		&= f\id{^a_{bc}} \pqty\Big{
+			\lambda^c \pqty{
+				F^b_{\mu\nu}
+				- f\id{^b_{de}} A^d_\mu A^e_\nu
+			} + \pqty{
+				A^b_\nu\,\pqty{
+					\smash{\underline{\var{A^c_\mu}}}
+					- f\id{^c_{de}}
+						A^d_\mu\,\lambda^e
+				}
+				- A^b_\mu\,\pqty{
+					\smash{\underline{\var{A^c_\nu}}}
+					- f\id{^c_{de}}
+						A^d_\nu\,\lambda^e
+				}
+			} + \underline{\var{(A^b_\mu A^c_\nu)}}
+		} \\
+		&= {f\id{^a_{bc}}} \pqty\Big{
+			\lambda^c \pqty{
+				F^b_{\mu\nu}
+				- {f\id{^b_{de}}}
+					A^d_\mu A^e_\nu
+			} - \pqty{
+					{f\id{^c_{de}}}
+						A^b_\nu A^d_\mu\,\lambda^e
+					- {f\id{^c_{de}}}
+						A^b_\mu A^d_\nu\,\lambda^e
+			}
+		} \\
+		&= \underline{f\id{^a_{bc}}} \pqty\Big{
+			\lambda^c \pqty{
+				F^b_{\mu\nu}
+				- \underline{f\id{^b_{de}}}
+					A^d_\mu A^e_\nu
+			} - \pqty{
+					\underline{f\id{^c_{de}}}
+						A^b_\nu A^d_\mu\,\lambda^e
+					- \underline{f\id{^c_{de}}}
+						A^b_\mu A^d_\nu\,\lambda^e
+			}
+		} \\
+		&= f\id{^a_{bc}}
+			\lambda^c F^b_{\mu\nu} \\[-4ex]
+	\end{aligned}
+	\quad
+	\end{gather}
+	
+	When contracted with $T_a$, this yields:
+	\begin{gather}
+		\var{F_{\mu\nu}}
+		= \lambda^c F^b_{\mu\nu}\,f\id{^a_{bc}} T_a
+		= \lambda^c F^b_{\mu\nu}\,[T_b,T_c]
+		= F_{\mu\nu}\cdot\lambda
+			- \lambda\cdot F_{\mu\nu},\\[.8ex]
+		\lambda = \lambda^c(x)\, T_c,\quad
+		F_{\mu\nu} = F^b_{\mu\nu}\, T_b,\\[1.2ex]
+		F_{\mu\nu}
+		\ \longmapsto\ %
+			e^{-\Lambda^a(x)\,T_a}\,F_{\mu\nu}\,
+			e^{\Lambda^a(x)\,T_a}
+	\end{gather}
+	The exponentiation is valid even for local $
+		\lambda = \lambda(x)
+	$, since it is produced by integrating along the fiber direction $\lambda\to\Lambda$, not the spacetime direction $x$. This is the finite transformation w.r.t.\ $\Lambda(x)$. 
+	
+	\item For any matter field $\psi$ furnishing a representation of $\mfrak{g}$, we have:
+	\begin{gather}
+		T_a \psi = (T_a)\id{^i_j}\,\psi^j,\quad
+		\var{\psi} = -\lambda^a(x)\,T_a\psi,\\[.5ex]
+		\psi
+			\ \longmapsto\ %
+			e^{-\Lambda^a(x)\,T_a}\,\psi,\\
+		D_\mu \psi
+			\ \longmapsto\ %
+			e^{-\Lambda^a(x)\,T_a}\,D_\mu\psi,
+	\end{gather}
+	In fact, \eqref{eq:A_gauge_var} is chosen to ensure that $D_\mu \psi$ transforms gauge covariantly just like $\psi$. Therefore, 
+	\begin{gather}
+	\begin{aligned}
+		D_{\mu}= \pdd{\mu} + A_\mu
+		\ &\longmapsto\ %
+			e^{-\Lambda^a(x)\,T_a}
+			\circ D_{\mu}\circ
+			e^{\Lambda^a(x)\,T_a} \\
+		&\qquad\quad
+		= e^{-\Lambda} \circ \pqty{
+				\pdd{\mu} + A_\mu
+			} \circ e^\Lambda\\
+		&\qquad\quad
+		= e^{-\Lambda}
+			\circ \pdd{\mu} \circ e^\Lambda
+			+ e^{-\Lambda} A_\mu\,e^\Lambda,\quad
+		\Lambda = \Lambda^a(x)\,T_a,
+	\end{aligned}\\[1ex]
+		A_\mu
+		\ \longmapsto\ %
+			e^{-\Lambda}\,(\pdd{\mu} e^\Lambda)
+			+ e^{-\Lambda} A_\mu\,e^\Lambda
+%		\\
+%		&\qquad\quad
+		= T_a\,\pdd{\mu} \Lambda^a(x)
+			+ e^{-\Lambda} A_\mu\,e^\Lambda
+	\end{gather}
+	
+	\item $F^2\equiv F\wedge F$, we have:
+	\begin{equation}
+	\begin{aligned}
+		F^2
+		&= (\dd{A} + A\wedge A)
+			\wedge (\dd{A} + A\wedge A) \\
+		&= \dd{A} \wedge \dd{A}
+			+ \dd{A} \wedge A \wedge A
+			+ A \wedge A \wedge \dd{A}
+			+ A \wedge A \wedge A \wedge A
+	\end{aligned}
+	\end{equation}
+	The last term is proportional to $
+		\epsilon_{abcd}\,T^a\,T^b\,T^c\,T^d
+	$, hence its trace will vanish; therefore,
+	\begin{gather}
+	\begin{aligned}
+		\tr F^2
+		&= \tr \pqty{
+			\dd{A} \wedge \dd{A}
+			+ \dd{A} \wedge A \wedge A
+			+ A \wedge A \wedge \dd{A}
+		} \\
+		&= \tr \pqty{
+			\dd\pqty{\dd{A} \wedge A}
+			+ \frac{2}{3}\,\dd\pqty{
+				A \wedge A \wedge A
+			}
+		} \\
+		&= \dd \tr \pqty{
+			\dd{A} \wedge A
+			+ \frac{2}{3}\,A \wedge A \wedge A
+		} = \dd{\omega},
+	\end{aligned}\\
+		\omega = \tr \pqty{
+			\dd{A} \wedge A
+			+ \frac{2}{3}\,A \wedge A \wedge A
+		}
+	\end{gather}
+	\vspace{-1.8\baselineskip}
+	\end{itemize}
+	\qedfull
+	\vspace{-1\baselineskip}
+\section{Relativistic Particle}
+	\vspace{-.3\baselineskip}
+	\begin{equation}
+		L = \frac{1}{2e} \pqty{
+			\frac{1}{c}\dv{X}{t}
+		}^2 - \frac{e}{2}\,m^2 c^4
+	\end{equation}
+	\begin{itemize}
+	\item For $t\mapsto t' = t - \xi(t)$, we have $
+		X'(t') = X(t)
+	$, therefore:
+	\begin{equation}
+		\var{X^\mu}
+		= -\var{t} \dv{X^\mu}{t}
+		= \xi(t)\,\dot{X}^\mu,
+	\end{equation}
+	Or more explicitly, $
+		X^\mu(t)
+		\mapsto X^\mu(t) + \xi(t)\,\dot{X}^\mu
+	$. 
+	
+	\item We have:
+	\begin{equation}
+	\begin{aligned}
+		\var{S}
+		= \int\dd{t} \var{\mcal{L}}
+		&= \int\dd{t} \Bqty{
+			\frac{1}{ec^2}\,
+				\dot{X}_\mu
+				\var{\dot{X}^\mu}
+			- \frac{\var{e}}{2}\,
+				\frac{1}{e^2 c^2} \dot{X}^2
+			- \frac{\var{e}}{2}\,m^2 c^4
+		} \\[1ex]
+		&= - \int\dd{t} \Bqty{
+			\dv{t} \pqty{
+				\frac{1}{ec^2}\,
+				\dot{X}_\mu
+			} \var{X^\mu}
+			+ \frac{\var{e}}{2}\,
+				\frac{1}{e^2 c^2} \dot{X}^2
+			+ \frac{\var{e}}{2}\,m^2 c^4
+		} + \int \dd\mspace{.5mu}\pqty{
+			\frac{1}{ec^2}\,
+				\dot{X}_\mu
+				\var{X^\mu}
+		} \\
+	\end{aligned}
+	\end{equation}
+	\end{itemize}
+	
+	
+	
+	
+	
+	
+	
+	\legacyReference
+	
+	\begin{itemize}
+	\item For $
+		\var{X}^\mu
+		= a^\mu + \lambda\id{^\mu_\nu} X^\nu
+	$, the Lagrangian (density) transforms as follows:
+	\begin{equation}
+	\begin{aligned}
+		\var{\mcal{L}}
+		&= -\pd^\alpha X_\mu\,
+			\pd_\alpha \var{X^\mu} \\
+		&= -\pd^\alpha X_\mu\,
+			\pd_\alpha \pqty{
+				a^\mu
+				+ \lambda\id{^\mu_\nu} X^\nu
+			} \\
+		&= -\pd^\alpha X_\mu\,
+			\pqty{
+				\pdd{\alpha} a^\mu
+				+ X^\nu\,
+					\pdd{\alpha} \lambda\id{^\mu_\nu}
+				+ \lambda\id{^\mu_\nu}\,
+					\pdd{\alpha} X^\nu
+			} \\
+		&= -\pd^\alpha X_\mu\,\pdd{\alpha} a^\mu
+		- \pd^\alpha X^\mu\,
+			\pdd{\alpha} X^\nu\,
+			\lambda_{\mu\nu}
+		- X^\nu\,\pd^\alpha X^\mu\,
+			\pdd{\alpha} \lambda_{\mu\nu} \\
+		&= -\pd^\alpha X_\mu\,\pdd{\alpha} a^\mu
+		- \pd^\alpha X^\mu\,
+			\pdd{\alpha} X^\nu\,
+			\lambda_{(\mu\nu)}
+		- X^\nu\,\pd^\alpha X^\mu\,
+			\pdd{\alpha} \lambda_{\mu\nu}
+		\label{eq:lorentz_variation}
+	\end{aligned}
+	\end{equation}
+	Since $a^\mu$ and $\lambda\id{^\mu_\nu}$ are independent, imposing $\var{L} = 0$ yields $\pdd{\alpha} a^\mu = 0,\,a = \mrm{const}$. Furthermore, if $\var{L} = 0$ is to hold for arbitrary $X^\mu$ fields, then $\pdd{\alpha} \lambda_{\mu\nu} = 0,\,\lambda_{(\mu\nu)} = 0$, i.e.\ $\lambda_{\mu\nu}$ is constant and anti-symmetric over its indices. 
+	
+%	\item Variation over any generic $\var{X}$ yields:
+%	\begin{equation}
+%	\begin{aligned}
+%		\var{S} = \int \dd[2]{x}
+%			\var{\mcal{L}}
+%		&= - \int \dd[2]{x}
+%			\pd^\alpha X_\mu\,
+%			\pd_\alpha \var{X^\mu} \\
+%		&= \int \dd[2]{x}
+%			\pqty{\pd^\alpha \pdd{\alpha} X_\mu}
+%			\var{X^\mu}
+%		- \int \dd[2]{x} \pdd{\alpha} \pqty\big{
+%			\pd^\alpha X_\mu\,
+%			\var{X^\mu}
+%		} \\
+%	\end{aligned}
+%	\end{equation}
+%	This gives the equation of motion (EOM) $
+%		\pd^\alpha \pdd{\alpha} X = 0
+%	$. 
+	
+	\item Promote $
+		\var{X}\mapsto \epsilon(x)\var{X}
+		= \epsilon(x)\,\pqty{
+			a^\mu + \lambda\id{^\mu_\nu} X^\nu
+		}
+	$, with $\epsilon(x)$ some localized bump function; using \eqref{eq:lorentz_variation} and considering \textit{on-shell} variation, we have:
+	\begin{equation}
+	\begin{aligned}
+		0 = \var{S}
+		&= - \int \dd[2]{x} \pqty{
+			\pd^\alpha X_\mu\,
+				a^\mu\,
+				\pdd{\alpha}\epsilon
+			+ X^\nu\,\pd^\alpha X^\mu\,
+				\lambda_{\mu\nu}\,
+				\pdd{\alpha}\epsilon
+		} \\
+		&= - \int \dd[2]{x} \pqty{
+			\pd^\alpha X_\mu\,
+				a^\mu\,
+			+ X_{[\nu}\,\pd^\alpha X_{\mu]}\,
+				\lambda^{[\mu\nu]}\,
+		}\,\pdd{\alpha}\epsilon
+	\end{aligned}
+	\end{equation}
+	It is evident (after partial integration) that the following currents are conserved; they are the Noether currents associated with $a^\mu$ and $\lambda^{[\mu\nu]}$:
+	\begin{equation}
+		j^\alpha_\mu
+		= -\pd^\alpha X_\mu,\quad
+		j^\alpha_{\mu\nu}
+		= -X_{[\nu}\,\pd^\alpha X_{\mu]}
+		= \frac{1}{2}\,\pqty{
+			X_\mu\,\pd^\alpha X_\nu
+			- X_\nu\,\pd^\alpha X_\mu
+		}
+	\end{equation}
+	
+	Conserved charge $
+		Q = \int\dd[2]{x} j^0(x)
+	$, we have:
+	\begin{equation}
+		P_\mu = - \int\dd{x^1} \pd^0 X_\mu
+		= \int\dd{x^1} \pd_0 X_\mu,\quad
+		M_{\mu\nu}
+		= \frac{1}{2}\,\int\dd{x^1}\pqty{
+			X_\nu\,\pd_0 X_\mu
+			- X_\mu\,\pd_0 X_\nu
+		}
+	\end{equation}
+	They can be interpreted as spacetime momentum and spacetime angular momentum. 
+	\qedfull
+	\end{itemize}
+\pagebreak[3]
+\subsection{Real Scalar in $(3+1)$\,D}
+	\vspace{-.8\baselineskip}
+	\begin{equation}
+		\mcal{L}
+		= -\frac{1}{2}\,
+			\pd^\mu\phi\,
+			\pdd{\mu}\phi
+		-\frac{1}{2}\,m^2\phi^2
+	\end{equation}
+	\begin{itemize}
+	\item For $\phi$: scalar, under $
+		x' = \lambda\circ x
+	$, $\phi(x)\mapsto \phi'(x)$, while:
+	\begin{equation}
+		\phi'(x') = \phi(x)
+		\ \Longrightarrow\ %
+		\phi'(x) = \phi(\lambda^{-1}\circ x)
+	\end{equation}
+	For $\lambda\sim \lambda\id{^\mu_\nu}$: Lorentz transformation, $
+		\eta_{\mu\nu}
+			\lambda\id{^\mu_\rho}
+			\lambda\id{^\nu_\sigma}
+		= \eta_{\rho\sigma}
+	$, or equivalently, $
+		(\lambda^{-1})\id{^\mu_\nu}
+		= \lambda\id{_\nu^\mu}
+	$. Therefore,
+	\begin{equation}
+		\phi'(x^\mu) = \phi(\lambda^{-1}\circ x^\mu)
+		= \phi(x^\nu\lambda\id{_\nu^\mu})
+	\end{equation}
+\pagebreak[3]
+	
+	\item Under $
+		x'^\mu = \lambda\id{^\mu_\nu} x^\nu,\ %
+		\phi(x)\mapsto\phi'(x)
+	$, we have:
+	\begin{equation}
+	\begin{aligned}
+		\mcal{L}'(x')
+		&= - \frac{1}{2}\,
+			\pd'^\mu\phi'(x')\,
+			\pdd{\mu}'\phi'(x')
+		- \frac{1}{2}\,m^2\phi'^2(x') \\
+		&= - \frac{1}{2}\,
+			\pd'^\mu\phi(x)\,
+			\pdd{\mu}'\phi(x)
+		- \frac{1}{2}\,m^2\phi^2(x) \\
+		&= - \frac{1}{2}\,
+			\eta^{\mu\nu}
+			\pdv{x^\rho}{x'^\mu}\,
+			\pdd{\rho}\phi(x)\,
+			\pdv{x^\sigma}{x'^\nu}\,
+			\pdd{\sigma}\phi(x)
+		- \frac{1}{2}\,m^2\phi^2(x) \\
+		&= - \frac{1}{2}\,
+			\eta^{\rho\sigma}
+			\pdd{\rho}\phi(x)\,
+			\pdd{\sigma}\phi(x)
+		- \frac{1}{2}\,m^2\phi^2(x) \\[.5ex]
+		&= \mcal{L}(x)
+	\end{aligned}
+	\end{equation}
+	Here we've used $
+		\eta^{\mu\nu}
+		\pdv{x^\rho}{x'^\mu}\,
+		\pdv{x^\sigma}{x'^\nu}
+		= \eta^{\mu\nu}
+			\lambda\id{_\mu^\rho}
+			\lambda\id{_\nu^\sigma}
+		= \eta^{\rho\sigma}
+	$. Hence, $\mcal{L}$ is invariant under Lorentz transformation. 
+	
+	\item Consider an infinitesimal Lorentz transformation: $\lambda \sim \idty + \omega$, then $
+		\eta_{\mu\nu}
+			\lambda\id{^\mu_\rho}
+			\lambda\id{^\nu_\sigma}
+		= \eta_{\rho\sigma}
+	$ implies that $\omega_{\mu\nu}$ is anti-symmetric: $
+		\omega_{\mu\nu} + \omega_{\nu\nu} = 0
+	$. For $
+		\var{x}^\mu
+		= \omega\id{^\mu_\nu} x^\nu
+	$, we have:
+	\begin{equation}
+		\var{\phi} = - \pdv{\phi}{x^\mu}
+			\var{x}^\mu
+		= - \omega\id{^\mu_\nu} x^\nu\,
+			\pdd{\mu}\phi
+%		= - \omega_{\rho\sigma} x^\sigma\,
+%			\pd^\rho \phi
+	\end{equation}
+	
+	To obtain the corresponding Noether charges, we can simply repeat the operations done in our previous problem; alternatively, we can try to derive a general recipe\footnote{
+		References: \arxiv{1601.03616} and \textit{Tong:} \url{http://damtp.cam.ac.uk/user/tong/qft.html}
+	}: for $
+		\mcal{L} = \mcal{L}(\phi,\pdd{\mu}\phi)
+	$ and $
+		S = \int \dd[4]{x} \mcal{L}
+	$, we have:
+	\begin{equation}
+	\begin{aligned}
+		\var{S}
+		&= \int\dd[4]{x} \var{\mcal{L}} \\
+		&= \int\dd[4]{x} \pqty{
+			\pdv{\mcal{L}}{\phi} \var{\phi}
+			+ \pdv{\mcal{L}}{(\pdd{\mu}\phi)}
+				\var{\pdd{\mu}\phi}
+		} \\[.5ex]
+		&= \int\dd[4]{x} \pqty{
+				\pdv{\mcal{L}}{\phi}
+				- \pdd{\mu}
+				\pdv{\mcal{L}}{(\pdd{\mu}\phi)}
+			} \var{\phi}
+		+ \int\dd[4]{x}
+			\pdd{\mu} \pqty{
+				\pdv{\mcal{L}}{(\pdd{\mu}\phi)}
+				\var{\phi}
+			}
+	\end{aligned}
+	\end{equation}
+	If we vary $S$ w.r.t.\ a symmetry of the system, we will have $\var{\mcal{L}} = \pdd{\mu} K^\mu$ some total derivative; when on-shell, such variation gives the conserved current with boundary term $K^\mu$:
+	\begin{equation}
+		j^\mu
+		= \pdv{\mcal{L}}{(\pdd{\mu}\phi)}
+			\var{\phi} - K^\mu
+	\end{equation}
+	
+	Back to our Lorentz transformation $
+		\var{\phi}
+		= -\omega\id{^\mu_\nu} x^\nu\pdd{\mu}\phi
+	$, we have symmetry variation:
+	\begin{equation}
+		\var{\mcal{L}}
+		= - \omega\id{^\mu_\nu} x^\nu
+			\pdd{\mu} \mcal{L}
+		= - \pdd{\mu} \pqty{
+			\omega\id{^\mu_\nu} x^\nu
+			\mcal{L}
+		}
+	\end{equation}
+	This gives a boundary term $
+		K^\mu = -\omega\id{^\mu_\nu} x^\nu \mcal{L}
+	$, and the Noether current and its corresponding conserved charge can be calculated as follows:
+	\begin{gather}
+		j^\mu = -\omega\id{^\sigma_\nu} x^\nu
+		\pqty{
+			\pdv{\mcal{L}}{(\pdd{\mu}\phi)}
+				\,\pdd{\sigma} \phi
+			- \delta^\mu_\sigma \mcal{L}
+		},\\[1ex]
+		Q = \int \dd[3]{x} j^0
+		= - \omega\id{^\sigma_\nu} \int \dd[3]{x}
+		x^\nu \pqty{
+			\pdd{0}\phi\,\pdd{\sigma}\phi
+			- \delta^0_\sigma \mcal{L}
+		},
+	\end{gather}
+	
+	Note that $\omega\id{^\mu_\nu}$ is arbitrary, therefore $Q$ can be decomposed into independent charges:
+	\begin{equation}
+		Q = \omega_{\mu\nu} M^{\mu\nu},\quad
+		M^{\mu\nu}
+		= - \int \dd[3]{x}
+		x^{[\mu} \pqty{
+			\pdd{0}\phi\,\pd^{\nu]}\phi
+			- \eta^{\nu] 0} \mcal{L}
+		},
+	\end{equation}
+	The indices of $M^{\mu\nu}$ are anti-symmetrized to match the degrees of freedom in $\omega_{\mu\nu}$. Note that the $\mcal{L}$ term only appears when one of the indices is 0. 
+	
+	Canonical quantization:
+	\begin{gather}
+		\dot{\phi} = \pdd{0}\phi,\quad
+		\Pi = \pdv{\mcal{L}}{\dot{\phi}}
+		= \dot{\phi},\quad
+		[\phi(\vb{x}),\Pi(\vb{y})]
+		= [\phi,\dot{\phi}](\vb{x})
+		= i\delta(\vb{x} - \vb{y})
+	\end{gather}
+	Other equal-time commutators between $\phi,\Pi$ all just vanish. We have:
+	\begin{equation}
+		M^{0i} = -M^{i0}
+		= -\frac{1}{2}\,
+		\int \dd[3]{x} \pqty{
+			\dot{\phi}\,\pqty{
+				x^0 \pd^i
+				- x^i \pd^0
+			}\,\phi
+			+ x^i \mcal{L}
+		},\\
+		M^{ij}
+		= -\frac{1}{2}\,\int \dd[3]{x}
+			\dot{\phi}\,\pqty{
+				x^i \pd^j
+				- x^j \pd^i
+			}\,\phi
+	\end{equation}
+	
+	Notice that $
+		x^{[\mu} \pd^{\nu]}
+		= \frac{1}{2}\,\pqty{
+			x^\mu \pd^\nu - x^\nu \pd^\mu
+		} = \frac{1}{2} D^{ij}
+	$ is the Killing vector fields of $\mbb{R}^{3,1}$, hence they naturally follow the commutation relations of $\mfrak{so}(3,1)$ (up to a constant coefficient)\footnote{
+		I would like to thank \textit{林般} for pointing this out. 
+	}. We have:
+	\begin{equation}
+	\begin{aligned}
+		[M^{ij}, M^{kl}]
+		&= \frac{1}{4}\,\int \dd[3]{x}
+			\int \dd[3]{y} \bqty{
+				\dot{\phi} D^{ij}\phi(x),
+				\dot{\phi} D^{kl}\phi(y)
+			} \\
+		&= \frac{1}{4}\,\int \dd[3]{x}
+			\dot{\phi}\,\bqty{
+				 D^{ij}, D^{kl}
+			}\,\phi
+	\end{aligned}
+	\end{equation}
+	Similar holds for $M^{i0}$. Therefore, $M^{\mu\nu}$'s indeed form the Lie algebra $\mfrak{so}(3,1)$. 
+	\qedfull
+	
+	\end{itemize}
+
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}

@@ -10,11 +10,19 @@
 \input{../.modules/preamble_base.tex}
 \input{../.modules/preamble_notes.tex}
 
+\newcommand{\legacyReference}{{
+	\clearpage\par
+	\quad\clearpage
+	\renewcommand{\midquote}{\textbf{PAST WORK, AS TEMPLATE}}
+	\newparagraph
+}}
+
 % Settings
 \counterwithout{equation}{section}
 \mathtoolsset{showonlyrefs=false}
 %\DeclareTextFontCommand{\textbf}{\sffamily}
 \renewcommand{\midquote}{\quad}
+\resizegathersetup{equations=false}
 
 % Spacing
 \geometry{footnotesep=2\baselineskip} % pre footnote split
