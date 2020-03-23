@@ -4,7 +4,7 @@
 
 \documentclass[a4paper,10pt]{article}
 
-\newcommand{\hwNumber}{2 [WIP]}
+\newcommand{\hwNumber}{2}
 
 \input{../strings_preamble.tex}
 \input{../.modules/basics/biblatex.tex}
@@ -17,7 +17,6 @@
 \newcommand{\sqcosh}{\oppower{\cosh}{2}}
 
 \newcommand{\Vir}{\mathbf{V}\mfrak{ir}}
-\usepackage{cancel}
 
 \begin{document}
 \maketitle
@@ -29,11 +28,12 @@
 %	\noindent\itshape%
 %	本文约定：度规$\eta\sim\pqty{-,+,+,+}$, 指标$\mu,\nu,\dots = 0,1,2,3,\ i,j,\dots = 1,2,3$.
 %}
+
 	\begin{enumerate}
 	\item \textbf{BRST Quantization of Bosonic String}: 
 	\begin{gather}
 		S = S^X + S^{bc},\\
-		S^X = - \frac{1}{2\pi\alpha'} \int\dd[2]{z}
+		S^X = \frac{1}{2\pi\alpha'} \int\dd[2]{z}
 			\pd X^\mu \pdbar X_\mu,\quad
 		S^{bc} = \frac{1}{2\pi} \int\dd[2]{z}
 			\pqty\Big{
@@ -41,8 +41,8 @@
 				+ \tilde{b}\,\pd\tilde{c}
 			}
 	\end{gather}
-	This is the gauge fixed action. The corresponding BRST transformation is listed in \textit{Polchinski}; for each of the subsystems, we have its (classical) energy-momentum:
-	\begin{equation}
+	This is the gauge fixed action. The corresponding BRST transformation is listed in \textit{Polchinski}; for each of the subsystems, we have its energy-momentum:
+	\begin{gather}
 		T^X(z)
 		= - \frac{1}{\alpha'}\,
 			\normorder{\pd X^\mu \pd X_\mu}\,,\quad
@@ -57,7 +57,7 @@
 		} - 2\,\pdbar(\normorder{
 			\tilde{b}\tilde{c}
 		}),
-	\end{equation}
+	\end{gather}
 	
 	\begin{enumerate}
 	\item To get the energy-momentum of $S$, let's visit each of the subsystems respectively; first, BRST transformation of $X$ is given by:
@@ -99,7 +99,7 @@
 	\end{equation}
 	Here we've plugged in $
 		\var{c} = i\epsilon(z,\bar{z})\,c\pd c
-	$, and we have moved $\pdbar\epsilon$ to the beginning of the expression, while respecting the anti-commuting nature of $\epsilon$. With a conventional $i$ coefficent (which agrees with the convention of $j^X$), we have $bc$'s contribution to the conserved current:
+	$, and we have moved $\pdbar\epsilon$ to the beginning of the expression, while respecting the anti-commuting nature of $\epsilon$. With a conventional $i$ coefficient (which agrees with the convention of $j^X$), we have $bc$'s contribution to the conserved current:
 	\begin{equation}
 		j^{bc} = i\,\pqty\big{
 			-ibc\,\pd c
@@ -121,6 +121,9 @@
 			T^X + \frac{1}{2}\,T^{bc}
 		}
 	\end{equation}
+	\vspace*{-1.5\baselineskip}
+	
+	\qed
 	
 	For a quantum version, redefine $j(z)$ with normal ordering, and we have:
 	\begin{gather}
@@ -299,9 +302,11 @@
 			+ \frac{1}{z}\,\pd j^{bc}(0),
 		\label{eq:BRST_Tj_OPE_partIII}\\[2ex]
 		T(z)\,j(0)
-		\sim \eqref{eq:BRST_Tj_OPE_partI}
+		\sim \pqty\big{
+			\eqref{eq:BRST_Tj_OPE_partI}
 			+ \eqref{eq:BRST_Tj_OPE_partII}
 			+ \eqref{eq:BRST_Tj_OPE_partIII}
+		}
 		\sim \frac{D-8}{2z^4}\,c(0)
 			+ \frac{3}{z^3}\,\pd c(0)
 			+ \frac{1}{z^2}\,j(0)
@@ -327,12 +332,13 @@
 			+ \frac{1}{z^2}\,\pd^2 c(0)
 			+ \frac{1}{z}\,\pd^3 c(0),
 	\end{aligned}
+	\label{eq:BRST_Td2c_OPE}
 	\end{equation}
 	Again we've used $Tc$ OPE of the primary $c(w)$. We see that indeed, the $\frac{1}{z^3}\,\pd c(0)$ term can be canceled by shifting $j(z)$:
 	\begin{gather}
 		j(z)\ \longmapsto\ j(z)
 			+ \frac{3}{2}\,\pd^2 c(z),\quad
-		j(z) = j^X + j^{bc}
+		j(z) = cT^X + \normorder{bc\,\pd c}
 			+ \frac{3}{2}\,\pd^2 c,\\[1ex]
 		T(z)\,j(0)
 		\sim \frac{D-26}{2z^4}\,c(0)
@@ -341,7 +347,7 @@
 	\end{gather}
 	
 	We see that $j(z)$ defined in this way is a primary of weight $(1,0)$ in $D = 26$. This is the quantum BRST current. 
-	\qedfull
+	\qed
 	
 %	note that $b,c$ are primaries with weight $(2,0)$ and $(-1,0)$, hence $Tb,Tc$ OPEs take the standard form of a $T\cdot(\text{primary})$ OPE. We have:
 %	\begin{equation}
@@ -388,812 +394,575 @@
 %			}
 %	\end{equation}
 	
-	\item 
+	\item For $jj$ OPE, we have:
+	\begin{gather}
+		j = cT^X + j',\quad
+		j' \equiv j^{bc}
+			+ \frac{3}{2}\,\pd^2 c,\quad
+		j^{bc}
+		= \frac{1}{2}\normorder{cT^{bc}}
+		= \normorder{bc\,\pd c}\,,\\[1ex]
+%		
+%		j = \frac{1}{2}\,cT^X
+%			+ \frac{1}{2}\,\normorder{cT}
+%			+ \frac{3}{2}\,\pd^2 c,\\
+%
+	\begin{aligned}
+		j_z j_0
+		&\sim \normorder{\Bqty{T^X_z T^X_0}\,c_z c_0}
+			+ \normorder{\Bqty{c_z j'_0}\,T^X_z}
+			+ \normorder{\Bqty{j'_z c_0}\,T^X_0}
+			+ {j'_z j'_0} \\[.5ex]
+		&\sim \normorder{\Bqty{T^X_z T^X_0}\,c_z c_0}
+			+ \normorder{\Bqty{c_z j^{bc}_0}\,T^X_z}
+			+ \normorder{\Bqty{j^{bc}_z c_0}\,T^X_0}
+			+ {j'_z j'_0}\,,
+	\end{aligned}
+	\end{gather}
+	From now on, for convenience and clarity, we will use subscripts to denote variable dependence: $c_z = c(z)$. Let's compute this term by term. We have:
+	\begin{align}
+		\normorder{\Bqty{T^X_z T^X_0}\,c_z c_0}
+		&\sim \normorder{\pqty{
+			\frac{D}{2z^4}
+			+ \frac{2}{z^2}\,{T^X_0}
+			+ \frac{1}{z}\,{\pd T^X_0}
+		}\pqty{
+			z\,\pd c_0
+			+ \frac{z^2}{2}\,\pd^2 c_0
+			+ \frac{z^3}{6}\,\pd^3 c_0
+		} c_0} \notag\\
+		&\sim -\pqty{
+			\frac{D}{2z^3}\,c\,\pd c_0
+			+ \frac{D}{4z^2}\,c\,\pd^2 c_0
+			+ \frac{D}{12z}\,c\,\pd^3 c_0
+			+ \frac{2}{z}\,\normorder{T^X c\,\pd c_0}
+		}, 
+		\label{eq:BRST_TTcc_OPE} \\[2ex]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		jc OPE ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		j^{bc}_z c_0
+		&\sim \frac{1}{2}\,
+			\normorder{cT^{bc}}_{\,z}\,c_0
+		\sim \frac{1}{2}\,c_z \Bqty{
+			\normorder{T^{bc}}_{\,z}\,c_0
+		}
+		\sim \frac{1}{2}\,c_z \Bqty{
+			T_z\,c_0
+		} \notag\\
+		&\sim -\frac{1}{2}\,\pqty{
+			\frac{-1}{z^2}\,c_0
+			+ \frac{1}{z}\,\pd c_0
+		}\pqty\big{
+			c_0 + z\,\pd c_0
+		} \sim 0, \\
+		j^{bc}_0 c_z
+		&\sim 0,
+	\end{align}
+	\begin{equation}
+	\begin{aligned}
+		j'_z j'_0
+		&\sim j^{bc}_z j^{bc}_0
+			+ \frac{3}{2}\,j^{bc}_z\,\pd^2 c_0
+			+ \frac{3}{2}\,\pd^2 c_z\,j^{bc}_0 \\
+		&\sim \frac{1}{2}\,
+			\normorder{cT^{bc}}_{\,z}\,j^{bc}_0
+		+ \frac{3}{2}\,\pqty{
+			j^{bc}_z\,\pd^2 c_0
+			+ \pd^2 c_z\,j^{bc}_0
+		},
+	\end{aligned}
+	\end{equation}
+	
+	The task is now reduced to calculating terms in the above $j'j'$ OPE, which can be laboriously computed following a similar procedure as before. Note that there will be a $
+		\frac{1}{z}\,\normorder{cT^{bc}}\,\pd c_0
+	$ term which combines with the $
+		\frac{2}{z}\,\normorder{cT^{X}}\,\pd c_0
+	$ term in \eqref{eq:BRST_TTcc_OPE}. In total, we obtain the final $jj$ OPE:
+	\begin{equation}
+		j_z j_0
+		\sim - \frac{D-18}{2z^3}\,c\,\pd c_0
+			- \frac{D-18}{4z^2}\,c\,\pd^2 c_0
+			- \frac{D-26}{12z}\,c\,\pd^3 c_0
+	\end{equation}
+	
+%	For the first term, we have:
+%	\begin{equation}
+%	\begin{aligned}
+%		\normorder{cT^{bc}}_{\,z}\,j^{bc}_0
+%		&\sim \normorder{\wick{
+%			\c1 c T^{bc}_z \c1 j^{bc}_0
+%		}} + \normorder{\wick{
+%			c \c1 T^{bc}_z \c1 j^{bc}_0
+%		}} + \normorder{\wick{
+%			\bcontraction[1.1ex]{c}{T}{^{bc}_z}{j}
+%			\c1 c T^{bc}_z \c1 j^{bc}_0
+%		}} \\[.5ex]
+%		&\sim \frac{1}{z}\,(+1)\,\normorder{
+%			T^{bc}_z c\,\pd c_0
+%		} + \normorder{c_z \Bqty{
+%			\eqref{eq:BRST_Tj_OPE_partIII}
+%		}} + \frac{1}{z}\,\normorder{\pqty\Big{
+%			\Bqty{T^{bc}_z c_0}\,\pd c_0
+%			+ (+1)\,
+%				c_0\,\Bqty{T^{bc}_z\,\pd c_0}
+%		}} \\
+%		&\sim \frac{1}{z}\,\normorder{
+%			T^{bc} c\,\pd c_0
+%		} + \normorder{c_z \Bqty{
+%			\eqref{eq:BRST_Tj_OPE_partIII}
+%		}} + \frac{1}{z}\,\normorder{\pqty\Big{
+%			\Bqty{T^{bc}_z c_0}\,\pd c_0
+%			+ c_0\,\Bqty{T^{bc}_z\,\pd c_0}
+%		}}
+%	\end{aligned}
+%	\end{equation}
+%	Here we've used the fact that there is only one $b$ in $T^{bc}$, hence all non-singular are accounted for in the above expression. Note again that $c$ is primary; similar to \eqref{eq:BRST_Td2c_OPE}, we have:
+%	\begin{equation}
+%	\begin{aligned}
+%		\normorder{cT^{bc}}_{\,z}\,j^{bc}_0
+%		&\sim \normorder{\pqty{
+%			c_0 + z\,\pd c_0
+%			+ \frac{z^2}{2}\,\pd^2 c_0
+%			+ \frac{z^3}{6}\,\pd^3 c_0
+%		} \pqty{
+%			\frac{-4}{z^4}\,c_0
+%			+ \frac{3}{z^3}\,\pd c_0
+%			+ \frac{1}{z^2}\,j^{bc}_0
+%			+ \frac{1}{z}\,\pd j^{bc}_0,
+%		}} \\
+%		&\qquad + \frac{1}{z}\,\pqty{
+%			\frac{-1}{z^2}\,c\,\pd c_0
+%			+ c_0\cdot\frac{1}{z}\,\pd^2 c_0
+%		} \\
+%		&\sim \frac{3+4-1}{z^3}\,c\,\pd c_0
+%			+ \frac{4/2+1}{z^2}\,c\,\pd^2 c_0
+%			+ \frac{4/6}{z}\,c\,\pd^3 c_0 \\
+%	\end{aligned}
+%	\end{equation}
+%	
+%	
+%	\begin{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		ANOTHER OPE ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		j^{bc}_z\,\pd^2 c_0
+%		&\sim \frac{1}{2}\,c_z\,\Bqty{
+%			T^{bc}_z\,\pd^2 c_0
+%		} \\
+%		\sim\eqref{eq:BRST_Td2c_OPE}
+%		&\sim \frac{1}{2}\,c_z\,\pqty{
+%			\frac{-6}{z^4}\,c_0
+%			+ \frac{-2}{z^3}\,\pd c_0
+%			+ \frac{1}{z^2}\,\pd^2 c_0
+%			+ \frac{1}{z}\,\pd^3 c_0
+%		} \\
+%		\sim (\textsl{Taylor})
+%		&\sim \frac{1}{2}\,\pqty{
+%			\frac{6-2}{z^3}\,
+%				c_0\,\pd c_0
+%			+ \frac{6/2+1}{z^2}\,
+%				c_0\,\pd^2 c_0
+%			+ \frac{6/6+1}{z}\,
+%				c_0\,\pd^3 c_0
+%		} \\
+%		&\sim \frac{1}{2}\,\pqty{
+%			\frac{4}{z^3}\,
+%				c_0\,\pd c_0
+%			+ \frac{4}{z^2}\,
+%				c_0\,\pd^2 c_0
+%			+ \frac{2}{z}\,
+%				c_0\,\pd^3 c_0
+%		} \\[2ex]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%		ANOTHER OPE ...
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		\pd^2 c_z\,j^{bc}_0
+%		&\sim -j^{bc}_0\,\pd^2 c_z \\
+%		&\sim - \frac{1}{2}\,c_0\,\Bqty{
+%			T^{bc}_0\,\pd^2 c_z
+%		} \\
+%		\sim\eqref{eq:BRST_Td2c_OPE}
+%		&\sim -\frac{1}{2}\,c_0\,\pqty{
+%			\frac{-2}{(-z)^3}\,\pd c_z
+%			+ \frac{1}{(-z)^2}\,\pd^2 c_z
+%			+ \frac{1}{-z}\,\pd^3 c_z
+%		} \\
+%		&\sim -\frac{1}{2}\,c_0\,\pqty{
+%			\frac{2}{z^3}\,\pd c_z
+%			+ \frac{1}{z^2}\,\pd^2 c_z
+%			+ \frac{-1}{z}\,\pd^3 c_z
+%		} \\
+%		\sim (\textsl{Taylor})
+%		&\sim -\frac{1}{2}\,\pqty{
+%			\frac{2}{z^3}\,c_0\,\pd c_0
+%			+ \frac{1+2}{z^2}\,c_0\,\pd^2 c_0
+%			+ \frac{-1+1+1}{z}\,c_0\,\pd^3 c_0
+%		} \\
+%		&\sim -\frac{1}{2}\,\pqty{
+%			\frac{2}{z^3}\,c_0\,\pd c_0
+%			+ \frac{3}{z^2}\,c_0\,\pd^2 c_0
+%			+ \frac{1}{z}\,c_0\,\pd^3 c_0
+%		} \\[1ex]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		\frac{3}{2}\,\pqty{
+%			j^{bc}_z\,\pd^2 c_0
+%			+ \pd^2 c_z\,j^{bc}_0
+%		} &\sim \frac{3}{4}\,\pqty{
+%			\frac{2}{z^3}\,c_0\,\pd c_0
+%			+ \frac{1}{z^2}\,c_0\,\pd^2 c_0
+%			+ \frac{1}{z}\,c_0\,\pd^3 c_0
+%		}
+%	\end{align}
+	
+	\item Following the convention of \textit{Polchinski}, expand $X^\mu,b,c$ into modes $\alpha^\mu_n,b_n,c_n$, then a generic level 2 state of an open string can be created as\footnote{
+		Reference: Bram M.~Wouters, \href{https://esc.fnwi.uva.nl/thesis/centraal/files/f1989820784.pdf}{\textit{BRST quantization and string theory spectra}}. 
+	}:
+	\begin{equation}
+	\begin{aligned}
+		\ket{\psi} = \big(
+			&e_{\mu\nu}
+				\alpha^\mu_{-1}
+				\alpha^\nu_{-1}
+			+ \beta_\mu
+				\alpha^\mu_{-1} b_{-1}
+			+ \gamma_\mu
+				\alpha^\mu_{-1} c_{-1}
+			\\ &\qquad
+			+ \eta\,b_{-1} c_{-1}
+			+ e_\mu \alpha^\mu_{-2}
+			+ \beta\,b_{-2}
+			+ \gamma\,c_{-2}
+		\big)\,\ket{k;0}
+	\end{aligned}
+	\end{equation}
+	Here $e_{\mu\nu}$ is chosen to be symmetric since $
+		\alpha^\mu_{-1}
+		\alpha^\nu_{-1}
+	$ commutes. 
+	By acting on $L_0$ (expanded in modes), we find that $
+		m^2 = -k^2 = \frac{1}{\alpha'}
+	$: massive. 
+	
+	The BRST charge $
+		Q = \frac{1}{2\pi i} \oint \pqty{
+			\dd{z} j(z)
+			- \dd{\bar{z}} \tilde{j}(z)
+		}
+	$ can also be expanded in modes; the physical states are firstly, $Q$-closed; i.e.
+	\begin{equation}
+		Q_B \ket{\psi} = 0
+		\ \Longrightarrow\ %
+		k^\mu e_{\mu\nu} = 0,\quad
+		k^\mu e_\mu = 0,\quad
+		\beta_\mu = \beta = 0,
+	\end{equation}
+	This is also the negative-norm states. 
+	
+	On the other hand, $Q$-exact states generate gauge transformations; this gives:
+	\begin{equation}
+		\gamma_\nu
+		\mapsto \gamma_\nu + k^\mu e_{\mu\nu},\quad
+		\gamma
+		\mapsto \gamma + k^\mu e_{\mu},\quad
+		e_{\mu\nu}
+		\mapsto e_{\mu\nu}
+			+ \beta_\mu k_\nu
+			+ \beta_\nu k_\mu,\quad
+		e_\mu
+		\mapsto e_\mu + \beta k_\mu
+	\end{equation}
+	Here $e_{\mu\nu},e_\mu,\beta_\mu,\beta$ are seen as arbitrary gauge parameters. For closed string the result can be obtained by the doubling trick, i.e.\ by introducing anti-holomorphic modes $\tilde{\alpha},\tilde{b},\tilde{c}$ and imposing reality conditions. The result is similar. \qedfull
 	
 	\end{enumerate}
 	
 	\item \textbf{Linear Dilaton CFT:}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	\clearpage
-	
-	\quad
-	\vfill\pagebreak
-	
-	
-	\item \textbf{Spinning Closed String in AdS Space}:
-	
-	For a classical spinning string, we have Nambu--Goto action:
+	For $z\mapsto z + \epsilon(z)$, we have:
 	\begin{equation}
-		S_{NG}
-		= -T \int \dd{\tau} \dd{\sigma}
-			\sqrt{-\det \gamma_{ab}},\quad
-		\gamma_{ab} = G_{\mu\nu}
-			\pdd{a}X^\mu \pdd{b}X^\nu
+		\var{X^\mu}
+		= - \epsilon\pd X^\mu
+			- \bar{\epsilon}\pdbar X^\mu
+			- \frac{\alpha'V^\mu}{2}\,\pqty{
+				\pd\epsilon
+				+ \pdbar\bar{\epsilon}
+			}
 	\end{equation}
-	Here $G_{\mu\nu}$ is the spacetime metric. $\gamma_{ab}$ can be treated as the induced metric on the worldsheet. 
-	
-	In AdS space we have:
-	\begin{equation}
-		ds^2
-		= R^2\pqty{
-			- \sqcosh\rho \dd{t}^2
-			+ \dd{\rho}^2
-			+ \sqsinh\rho \dd{\Omega}^2
-		}
-	\end{equation}
-	Where $\dd{\Omega}^2$ is the metric of a unit $(d-2)$--sphere $S^{d-2}$. For convenience let's define unit $S^{d-2}$ metric $G^1_{ij}$, and raise or lower the $i,j,\cdots$ indices using $G^1_{ij}$ instead of $G_{ij}$, i.e.,
-	\begin{equation}
-		G^1_{ij} = G_{ij} /\,\pqty{
-			R^2 \sqsinh\rho
-		},\quad
-		i,j = 2,\cdots,d-1
-	\end{equation}
-	
-	Furthermore, we consider the special case that the closed string is \textit{folded}, like a rubber band stretched along a line; in this case we can choose the worldsheet parameter $(\tau,\sigma) = (t,\rho)$ while $\Omega = \Omega(t,\rho) = \Omega(\tau,\sigma)$, which leads to the following decomposition:
-	\begin{align}
-		\pdd{a} X^\mu
-		&= \delta^\mu_a + \delta^\mu_i\,
-			\pdd{a}\Omega^i,\quad
-			a = 0,1,\quad
-			i = 2,\cdots,d-1,\\[.5ex]
-		\gamma_{ab}
-		&= G_{\mu\nu}\,
-			\pdd{a}X^\mu \pdd{b}X^\nu
-		\notag\\
-		&= G_{ab} + G_{ij}\,
-			\pdd{a}\Omega^i\,\pdd{b}\Omega^j
-		\notag\\
-		&= G_{ab} + R^2\sqsinh\rho\,G^1_{ij}\,
-			\pdd{a}\Omega^i\,\pdd{b}\Omega^j
-		\notag\\
-		&= R^2\Bqty{\mat{
-			-\sqcosh\rho & \\
-			& 1 \\
-		} + \sqsinh\rho\,\mat{
-			(\pdd{a}\Omega)^2 &
-			\pdd{a}\Omega\cdot\pdd{b}\Omega \\
-			\pdd{b}\Omega\cdot\pdd{a}\Omega &
-			(\pdd{b}\Omega)^2 \\
-		}}
-%		\notag\\
-%		&= R^2\,\sqsinh\rho\,\Bqty{\mat{
-%			-\oppower{\coth}{2}\rho & \\
-%			& \oppower{\csch}{2}\rho \\
-%		} + \,\mat{
-%			(\pdd{a}\Omega)^2 &
-%			\pdd{a}\Omega\cdot\pdd{b}\Omega \\
-%			\pdd{b}\Omega\cdot\pdd{a}\Omega &
-%			(\pdd{b}\Omega)^2 \\
-%		}}
-	\end{align}
-	Here $
-		\pdd{a}\Omega\cdot\pdd{b}\Omega
-		\equiv \pdd{a}\Omega^i\,\pdd{b}\Omega_i
-		\equiv G^1_{ij}\,
-			\pdd{a}\Omega^i\,\pdd{b}\Omega^j
-	$, and we have:
-	\begin{equation}
-	\begin{aligned}
-		\det \gamma_{ab}
-		&= (R^2)^2\,\Big\{
-			\oppower{\sinh}{4}\rho\,
-			\det\,(\pdd{a}\Omega^i\pdd{b}\Omega_i)
-		\\
-		&\qquad\qquad\qquad
-			+ \oppower{\sinh}{2}\rho\,\pqty{
-				(\pdd{a}\Omega)^2
-				- (\pdd{b}\Omega)^2
-				\oppower{\cosh}{2}\rho
-			}
-		\\
-		&\qquad\qquad\qquad
-			- \oppower{\cosh}{2}\rho\,
-		\Big\},\\[.5ex]
-		\sqrt{-\det \gamma_{ab}}
-		&= R^2\,\Big\{
-			\oppower{\cosh}{2}\rho
-			- \oppower{\sinh}{2}\rho\,\pqty{
-				(\pdd{a}\Omega)^2
-				- (\pdd{b}\Omega)^2
-				\oppower{\cosh}{2}\rho
-			}
-		\\[-.5ex]
-		&\qquad\qquad\quad
-			- \oppower{\sinh}{4}\rho\,
-			\det\,(\pdd{a}\Omega^i\pdd{b}\Omega_i)
-		\Big\}^{\!1/2}
-	\end{aligned}
-	\end{equation}
-	
-	Mark the end points of the string with $\rho = r(t)$, then the total length of such closed folded string is $\ell = 4r$. We then have:
-	\begin{equation}
-		S = -4TR^2 \int\dd{t} \int_0^r \dd{\rho}
-		\sqrt{
-			\oppower{\cosh}{2}\rho
-			- \oppower{\sinh}{2}\rho\,\pqty{
-				(\pdd{a}\Omega)^2
-				- (\pdd{b}\Omega)^2
-				\oppower{\cosh}{2}\rho
-			}
-			- \oppower{\sinh}{4}\rho\,
-			\det\,(\pdd{a}\Omega^i\pdd{b}\Omega_i)
-		}
-	\end{equation}
-\pagebreak[3]
-	
-%	Variation of metric determinant $
-%		\gamma \equiv \det\gamma_{ab}
-%	$ is give by the following formula:
-%	\begin{equation}
-%		\var{\sqrt{-\gamma}}
-%		= \frac{1}{2\sqrt{-\gamma}}
-%			\var{(-\gamma)}
-%		= \frac{1}{2\sqrt{-\gamma}}\,
-%			(-\gamma)
-%			\var{\ln\gamma}
-%		= \frac{1}{2} \sqrt{-\gamma}\,
-%			\gamma^{ab} \var{\gamma_{ab}}
-%	\end{equation}
-	
-	Further simplification comes from the fact that, due to rotational symmetry, the string's motion can be restricted in a plane where its position is characterized by some angle $\theta = \Omega^{i_0}\in \{\Omega^i\}_i$. In this case other angle parameters $\Omega^i|_{i\ne i_0} = 0$, and the action is further reduced to:
-	\begin{gather}
-		S = -4TR^2 \int\dd{t} \int_0^r \dd{\rho}
-			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \oppower{\sinh}{2}\rho\,\pqty{
-					(\pdd{a}\theta)^2
-					- (\pdd{b}\theta)^2
-					\oppower{\cosh}{2}\rho
-				}
-			}
-		= \int\dd{t} \int_0^r \dd{\rho} \mcal{L},\\
-		\mcal{L} = -4TR^2
-			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
-			},\quad
-			\omega = \pdd{t}\theta,\,
-			\pdd{\rho}\theta = 0
-	\end{gather}
-	We consider the special solution $\theta = \omega t$, while in general the endpoint $r = r(t)$ could be dynamical; variation of the action w.r.t.\ $r(t)$ gives\footnote{
-		The above reasoning is confirmed in e.g.\ \arxiv{hep-th/0204051}.
-	}:
-	\begin{gather}
-		0 = \var{S} = -4TR^2 \int\dd{t}
-			\int\limits_r^{r+\var{r}} \dd{\rho}
-			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
-			}
-		= -4TR^2 \int\dd{t}
-			\sqrt{
-				\oppower{\cosh}{2}r
-				- \omega^2\oppower{\sinh}{2}r
-			} \var{r},\\
-		\omega^2 = \frac{\sqcosh r}{\sqsinh r}
-		= \oppower{\coth}{2} r
-		\label{eq:string_endpt_constraint}
-	\end{gather}
-	
-	Note that if $\omega$ is constant, then $r$ must be fixed by \eqref{eq:string_endpt_constraint}. 
-	Taking $\theta$ as the only dynamical variable, it is then straight-forward to write the energy $E$ and angular momentum $J$ for such folded closed string:
-	\begin{gather}
-		\omega = \dot{\theta},\quad
-		\Pi = \pdv{\mcal{L}}{\omega}
-		= 4TR^2\,\frac{\omega\sqsinh\rho}{
-			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
-			}
-		},\\
-		J = \int_0^r \dd{\rho} \Pi
-		= 4TR^2 \int_0^r \dd{\rho}
-		\frac{\omega\sqsinh\rho}{
-			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
-			}
-		},\\
-		E = \int_0^r \dd{\rho} \pqty{
-			\Pi\omega - \mcal{L}
-		}
-		= 4TR^2 \int_0^r \dd{\rho}
-		\frac{\sqcosh\rho}{
-			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
-			}
-		},
-	\end{gather}
-	
-	In the large string limit, $r\to\infty,\ \omega = \coth r\to 1$. Expand in terms of $\epsilon = \omega - 1 > 0$, we find that $
-		r = \frac{1}{2} \ln\pqty{
-			1 + \frac{2}{\epsilon}
-		}
-		\sim \frac{1}{2} \ln\frac{2}{\epsilon}
-	$, or alternatively, $e^{2r}\cdot\epsilon\sim 2$. With some help from Mathematica\texttrademark, we get:
-	\begin{equation}
-	\begin{aligned}
-		E - J
-		&= 4TR^2 \int_0^r \dd{\rho}
-		\frac{\sqcosh\rho - \omega\sqsinh\rho}{
-			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
-			}
-		}
-%		\\[.5ex]
-%		&
-		= 4TR^2 \int_0^r \dd{\rho} \pqty\Big{
-			1 + \frac{\epsilon^2}{8}\sinh^2(2\rho)
-			+ \order{\epsilon^3}
-		} \\[1ex]
-		&= 4TR^2 \pqty{
-			r \pqty\Big{
-				1 - \frac{\epsilon^2}{16}
-				+ \order{\epsilon^3}
-			} + \order{1}
-		}
-%		\\[.5ex]
-%		&
-		= \pqty{2TR^2 \ln\frac{2}{\epsilon}}
-		\pqty\Big{
-			1 - \frac{\epsilon^2}{16}
-			+ \order{\epsilon^3}
-		} \\[1ex]
-		&\sim 2TR^2
-			\pqty{\ln\frac{2}{\epsilon}}
-	\end{aligned}
-	\end{equation}
-	Similarly, $
-		J \sim 4TR^2 \mathlarger{\int_0^r}
-			\dd{\rho} \sqsinh \rho
-		\sim TR^2 \pqty{\frac{2}{\epsilon}}
-	$, this gives:
-	\begin{equation}
-		E - J
-		\sim 2TR^2 \ln \frac{J}{TR^2}
-	\end{equation}
-	\qedfull
-\pagebreak[4]
-	
-	\item \textbf{Special Conformal Transformations:}
-	\begin{equation}
-		x^\mu
-		\xmapsto{\ K(a)\ }
-		\tilde{x}^\mu
-		= \frac{x^\mu + x^2 a^\mu}{
-			1 + 2a\cdot x + a^2 x^2
-		}
-	\end{equation}
+	Note that the $\alpha'$ term has no dependence on $X$. 
 	
 	\begin{enumerate}
-	\item Under special conformal transformation $K(a)$, metric $\delta_{\mu\nu}\mapsto g_{\mu\nu}$ while:
-	\begin{equation}
-		g_{\alpha\beta}
-			\dd{\tilde{x}^\alpha}
-			\dd{\tilde{x}^\beta}
-		= \delta_{\mu\nu}
-			\dd{x^\mu}
-			\dd{x^\nu},\quad
-		g_{\alpha\beta}
-		= \delta_{\mu\nu}
-			\pdv{x^\mu}{\tilde{x}^\alpha}
-			\pdv{x^\nu}{\tilde{x}^\beta}
-		\label{eq:metric_transform}
-	\end{equation}
-	To calculate this we have to know the inverse transformation $x = K^{-1}(a)\,\tilde{x}$. First, notice the following decomposition\footnote{
-		See \textit{Di Francesco et al}, and also \https{github.com/davidsd/ph229}. 
-	} of $K(a)$:
-	\begin{equation}
-		\tilde{x}^\mu
-		= \frac{\frac{x^\mu}{x^2} + a^\mu}{
-			\frac{1}{x^2}
-			+ \frac{2a\cdot x}{x^2} + a^2
-		}
-		= \frac{\frac{x^\mu}{x^2} + a^\mu}{
-			\abs{\frac{x^\mu}{x^2} + a^\mu}^2
-		},\\[1ex]
-		\text{i.e.}\quad
-		K(a)\colon\ %
-			x^\mu
-			\ \xmapsto{\ I\ }\ %
-			\frac{x^\mu}{x^2}
-			\ \xmapsto{\ T(a)\ }\ %
-			y^\mu = \frac{x^\mu}{x^2} + a^\mu
-			\ \xmapsto{\ I\ }\ %
-			\tilde{x}^\mu
-			= \frac{y^\mu}{y^2},
-		\label{eq:special_conformal_decomp} \\[.5ex]
-		\text{i.e.}\quad
-		\frac{\tilde{x}^\mu}{\tilde{x}^2}
-			= \flatfrac{
-				\frac{y^\mu}{y^2}
-			}{
-				\frac{1}{y^2}
-			}
-			= y^\mu = \frac{x^\mu}{x^2} + a^\mu
-		\label{eq:special_conformal_simplified}
-	\end{equation}
-	
-	From \eqref{eq:special_conformal_simplified}, we see that the transformation parameter $a^\mu$ composes linearly: $K(b)\,K(a) = K(a+b)$, therefore $K^{-1}(a) = K(-a)$, and we have:
-	\begin{equation}
-		x^\mu = K(-a)\,\tilde{x}^\mu
-		= \frac{\tilde{x}^\mu - \tilde{x}^2 a^\mu}{
-			1 - 2a\cdot \tilde{x} + a^2 \tilde{x}^2
-		}
-		= \frac{\tilde{y}^\mu}{y^2},\\[1.5ex]
-	\begin{aligned}
-		\pdv{x^\mu}{\tilde{x}^\alpha}
-		&= \pdv{x^\mu}{\tilde{y}^\sigma}
-			\pdv{\tilde{y}^\sigma}{\tilde{x}^\alpha}
-		= \pqty{
-			\pdv{\tilde{y}^\sigma}
-			\frac{\tilde{y}^\mu}{\tilde{y}^2}
-		} \pdv{\tilde{x}^\alpha} \pqty{
-			\frac{\tilde{x}^\sigma}{\tilde{x}^2}
-			- a^\sigma\!
-		}
-		= \pqty{
-			\pdv{\tilde{y}^\sigma}
-			\frac{\tilde{y}^\mu}{\tilde{y}^2}
-		} \pqty{
-			\pdv{\tilde{x}^\alpha}
-			\frac{\tilde{x}^\sigma}{\tilde{x}^2}
-		} \\[1ex]
-		&= \pqty{
-			\tilde{y}^2\delta^\mu_\sigma
-			- 2\tilde{y}^\mu \tilde{y}_\sigma
-		} \pqty{
-			\tilde{x}^2\delta^\sigma_\alpha
-			- 2\tilde{x}^\sigma \tilde{x}_\alpha
-		} \Big/ \pqty{\tilde{y}^4 \tilde{x}^4},
-	\end{aligned}\\[1ex]
-	\begin{aligned}
-		g_{\alpha\beta}
-		&\xlongequal{\eqref{eq:metric_transform}}
-		\delta_{\mu\nu} \pqty{
-			\tilde{y}^2\delta^\mu_\sigma
-			- 2\tilde{y}^\mu \tilde{y}_\sigma
-		} \pqty{
-			\tilde{x}^2\delta^\sigma_\alpha
-			- 2\tilde{x}^\sigma \tilde{x}_\alpha
-		} \pqty{
-			\tilde{y}^2\delta^\nu_\rho
-			- 2\tilde{y}^\nu \tilde{y}_\rho
-		} \pqty\big{
-			\tilde{x}^2\delta^\rho_\beta
-			- 2\tilde{x}^\rho \tilde{x}_\beta
-		} \Big/ \pqty{\tilde{y}^8 \tilde{x}^8}\\
-		&\xlongequal{\sum_{\mu,\nu}}
-		\tilde{y}^{-4} \delta_{\sigma\rho} \pqty{
-			\tilde{x}^2\delta^\sigma_\alpha
-			- 2\tilde{x}^\sigma \tilde{x}_\alpha
-		} \pqty\big{
-			\tilde{x}^2\delta^\rho_\beta
-			- 2\tilde{x}^\rho \tilde{x}_\beta
-		} \Big/ \tilde{x}^8 \\
-		&\xlongequal{\sum_{\sigma,\rho}}
-			\tilde{y}^{-4} \tilde{x}^{-4}
-			\delta_{\alpha\beta}
-	\end{aligned}
-	\end{equation}
-	We see that $g_{\alpha\beta} = f(x)\,\delta_{\alpha\beta}$, with coefficient:
-	\begin{equation}
-		f(x) = \tilde{y}^{-4} \tilde{x}^{-4}
-		\xlongequal{%
-			\eqref{eq:special_conformal_decomp}%
-		} \frac{x^4}{\tilde{x}^4}
-		\xlongequal{%
-			\eqref{eq:special_conformal_simplified}%
-		} \pqty{
-			1 + 2a\cdot x + a^2 x^2
-		}^2
-	\end{equation}
-	\qed[(a)]
-	\vspace*{-1\baselineskip}
-	
-%	Note that the transformation depends smoothly on parameter $a$, therefore we can consider infinitesimal transformation generator:
-%	\begin{equation}
-%		k_\nu
-%		= k\id{^\mu_\nu}\pdd{\mu}
-%		= \pdv{\tilde{x}^\mu}{a^\nu}
-%			\bigg|_{a=0} \!\pdd{\mu}
-%		= \pqty{x^2\delta^\mu_\nu
-%			- 2x^\mu x_\nu}\pdd{\mu}
-%	\end{equation}
-	
-	\item In 2D with $z = x^1 + ix^2,\ x^\mu\sim (z,\bar{z})$, we see from \eqref{eq:special_conformal_simplified} that:
-	\begin{equation}
-		\frac{x^\mu}{x^2}
-		\sim \frac{z}{\abs{z}^2}
-		= \frac{1}{\bar{z}}
-		\ \longmapsto\ %
-		\frac{1}{\bar{z}} + a,\quad
-		\text{i.e.}\quad
-		z\ \longmapsto\ 
-		w = \frac{1}{\frac{1}{z} + \bar{a}}
-		= \frac{z}{1 + z\bar{a}}
-	\end{equation}
-	Expand in the $\bar{a}\to 0$ limit, we find that $
-		w = z\,\pqty{
-			1 - z\bar{a} - \cdots
-		} \sim z - z^2 \bar{a}
-	$, i.e.\ it is generated by:
-	\begin{equation}
-		K_{\bar{z}}
-		= -z^2 \pdd{z}
-		= -z^2 \pd,\quad
-		\pd \equiv \pdd{z}
-	\end{equation}
-\pagebreak[3]
-	
-	Note that when considering non-holomorphic functions, we have to consider $(z,\bar{z})$ as \textit{two} independent variables; hence the anti-holomorphic transformation $
-		\bar{z}\mapsto\bar{w}
-		= \frac{\bar{z}}{1 + \bar{z} a}
-		\sim \bar{z} - \bar{z}^2 a
-	$ provides another degree of freedom, namely:
+	\item For simplicity, assume for now $X = X(z)$: holomorphic. Note that the $\alpha'$ term comes from the transformation of \textit{internal} degrees of freedom. We have:
 	\begin{gather}
-		K_\mu\ \sim\ \pqty{
-			K_{\bar{z}} = -z^2 \pd,\ %
-			K_{{z}} = -\bar{z}^2 \pdbar
-		},\\
-		\pd \equiv \pdd{z},\ %
-		\pdbar \equiv \pdd{\bar{z}}\notag
+		X'(z') - X(z)
+		= -\frac{\alpha' V}{2}\,\pd\epsilon
+			+ \order{\epsilon^2},
+%		\simeq -\frac{\alpha' V}{2}\,\pqty{
+%			\dv{z'}{z} - 1
+%		},\\[.5ex]
+%		X'(z') - \frac{\alpha' V}{2}
+%		\simeq X(z) - \frac{\alpha' V}{2}\,
+%			\dv{z'}{z},
+%		\\[1ex]
+%		X'(z')
+%		\simeq X(z) + \frac{\alpha' V}{2}\,\pqty{
+%				1 - \pd w + \order{\pd w}^2
+%			},
+		\label{eq:dilaton_holomorphic}
 	\end{gather}
-	Similarly, for translation $z\mapsto z+a$ and its conjugate, we have $
-		P_\mu\sim
-		\pqty{P_z = \pd, P_{\bar{z}} = \pdbar}
-	$. However, dilation and rotation are both encoded in a complex rescaling $
-		z\mapsto \lambda z,\ %
-		\lambda = re^{i\theta}\in\mbb{C}
-	$; we have:
+	This is a first order approximation of the finite transformation $z\mapsto z' = w(z)$. 
+	
+	To obtain a full expression, notice that for the above transformation to be a \textit{symmetry}, the action should be invariant under $X(z)\mapsto X'(z)$:
 	\begin{equation}
-		z\mapsto \lambda z,\quad
-		\lambda = re^{i\theta}\in\mbb{C},\quad
+		S' = S
+		\propto \int \dd[2]{z}
+			\pd X^\mu \pdbar X_\mu
+		= \int \dd[2]{z'}
+			\pd' X'^\mu \pdbar' X'_\mu
+%		= \int \dd[2]{z'}
+%			\pd' X'^\mu \pdbar' X'_\mu (z',\bar{z}')
+	\end{equation}
+	Restore the anti-holomorphic component and insert \eqref{eq:dilaton_holomorphic}, then we find that in order to cancel the $\order{\epsilon^2}$ terms, we have to fix:
+%	\begin{gather}
+%		X'(z',\bar{z}') - \alpha'V
+%		\simeq X(z,\bar{z})
+%			- \frac{\alpha' V}{2}\,\pqty{
+%				\dv{z'}{z} + \dv{\bar{z}'}{\bar{z}}
+%			},\\[1ex]
+%		X\longmapsto
+%		X'(z,\bar{z})
+%		\simeq X\pqty\Big{
+%				w^{-1}(z),\bar{w}^{-1}(\bar{z})
+%			} + \alpha'V
+%			- \frac{\alpha' V}{2}\,\pqty{
+%				\dv{w}{z} + \dv{\bar{w}}{\bar{z}}
+%			},
+%	\end{gather}
+	\begin{equation}
+		X'(z') - X(z)
+		= -\frac{\alpha' V}{2}\,\pqty{
+			\pd\epsilon
+			- \frac{1}{2}\,(\pd\epsilon)^2
+			+ \order{\epsilon^3}
+		}
+	\end{equation}
+	The above process can be done order by order, in the end we obtain that\footnote{
+		I would like to thank Lucy Smith for helpful discussions. 
+	}:
+	\begin{equation}
 	\begin{aligned}
-		\var{r} \ \longleftrightarrow\ %
-		D &= z\,\pd + \bar{z}\,\pdbar,\\[-.5ex]
-		\var{\theta} \ \longleftrightarrow\ %
-		M &= i\,\pqty{z\,\pd - \bar{z}\,\pdbar},
+		X'(z',\bar{z}') - X(z,\bar{z})
+		&= -\frac{\alpha' V}{2}\,\pqty{
+			\pd\epsilon
+			- \frac{1}{2}\,(\pd\epsilon)^2
+			+ \frac{1}{3}\,(\pd\epsilon)^2
+			- \cdots
+		} + \pqty{\mrm{conjugate}} \\
+		&= -\frac{\alpha' V}{2}\,
+			\ln (1 + \pd\epsilon)
+		+ \pqty{\mrm{conjugate}} \\[.5ex]
+		&= -\frac{\alpha' V}{2}\,
+			\ln \pqty{
+				\dv{z'}{z}
+				\dv{\bar{z}'}{\bar{z}}
+			}
 	\end{aligned}
 	\end{equation}
 	
-	In summary, we have $
-		\mop{span}_\mbb{R}\Bqty{
-			P_\mu, K_\mu, D, M
-		} = \mfrak{so}(3,1)
-	$ generating the ``global'' transformation subgroup of the 2D conformal group; here, the $\mfrak{so}(3,1)$ boost is a linear combination\footnote{
-		See e.g.\ \https{github.com/davidsd/ph229}. 
-	} of $P_\mu$ and $K_\mu$. More specifically, in 2D any holomorphic or anti-holomorphic function gives a conformal transformation, hence the (classical) 2D conformal group is generated by:
+	
+	\item Perform the usual Noether's procedure on the free boson action, and we have:
 	\begin{equation}
-		\ell_m = z^{m+1} \pd,\quad
-		\bar{\ell}_m = \bar{z}^{m+1} \pdbar,\quad
-		m\in\mbb{Z}
+		\var{\mcal{L}}
+		\propto \frac{1}{\alpha'} \pqty{
+				\pd \var{X}^\mu \pdbar X_\mu
+				+ \pd X^\mu \pdbar \var{X}_\mu
+			}
+		\sim \pdbar \epsilon \pqty{
+			V^\mu \pd^2 X^\mu
+			- \frac{1}{\alpha'}
+				\pd X^\mu \pdbar X_\mu
+		}
 	\end{equation}
-	i.e.\ the \textit{Witt algebra} (or Virasoro algbera $\Vir_c$ with $c = 0$). It is clear that a (complexified) $\mfrak{so}(3,1)$ lives inside $\Vir_c$, i.e.,
+	Here we've plugged in the holomorphic part of $\var{X}^\mu$, used integration by parts to move $\pdbar$ before $\epsilon$, and collected the $\pdbar\epsilon$ coefficients. This gives:
+	\begin{equation}
+		T(z) = - \frac{1}{\alpha'}\,\normorder{
+				\pd X^\mu \pdbar X_\mu\!
+			} + V^\mu \pd^2 X^\mu
+	\end{equation}
+	
+	With $
+		X^\mu_z X^\nu_0
+		\sim -\frac{\alpha'}{2}\,\eta^{\mu\nu}
+			\ln \abs{z}^2
+	$ unchanged, the $TT$ OPE can be calculated following the usual procedure, as shown in great detail before. Here we can use the known result from free boson theory to speed up our calculation:
 	\begin{equation}
 	\begin{aligned}
-		\mfrak{so}(3,1)^\mbb{C}
-		&= \mop{span}_\mbb{C}\Bqty{
-			P_\mu, K_\mu, D, M
-		} \\
-		&= \mop{span}_\mbb{C}\Bqty{
-			\ell_m,\bar{\ell}_m
-			\,\big|\, m = 0,\pm 1
-		}
-		= \mfrak{sl}(2,\mbb{R})^\mbb{C}
-			\oplus_\mbb{C}
-			\mfrak{sl}(2,\mbb{R})^\mbb{C}
-		\subset \Vir_{c}
+		T_z T_0
+		&\sim \pqty{
+				V_\mu \pd^2 X^\mu + T'
+			}_{\!z}\,\pqty{
+				V_\mu \pd^2 X^\mu + T'
+			}_{\!0} \\
+		&\sim V_\mu V_\nu\,
+				\pd^2 X^\mu_z\,\pd^2 X^\nu_0
+			+ V_\mu\,\pd^2 X^\mu_z\,T'_0
+			+ V_\mu T'_z\,\pd^2 X^\mu_0
+			+ T'_z\,T'_0
 	\end{aligned}
 	\end{equation}
+	Here $T'$ is the usual free boson stress tensor. Combining all terms yields:
+	\begin{equation}
+		T_z T_0
+		\sim \frac{D + 6\alpha' V^2}{2z^4}
+			+ \frac{2}{z^2}\,T_0
+			+ \frac{1}{z}\,\pd T_0,\quad
+		c = D + 6\alpha' V^2
+	\end{equation}
+	\vspace{-1.8\baselineskip}
 	\end{enumerate}
-	\vspace{-1.2\baselineskip}
-	
 	\qedfull
 	
-	\item \textbf{$bc$ CFT}:
-	\begin{equation}
-		S = \frac{1}{2\pi}
-			\int \dd[2]{z} b\,\pdbar c
-	\end{equation}
+	\item \textbf{Bosonic Strings on $S^3$:}
 	
-	Stress tensor of a theory can be obtained via variation over the metric, or equivalently, over the fields $\phi^i$ with $\var{\phi}$ induced by some \textit{local} spacetime translation $
-		x^\mu\mapsto x^\mu + \var{x}^\mu,\ %
-		\var{x}^\mu = \epsilon(x)\,a^\mu
-	$. Here $\epsilon(x)$ is any compactly supported bump function, centered around some point $x_0$. 
+	For bosonic strings moving on $S^3$ (radius $R$) with background dilaton $\Phi = \mrm{const.}$ and $B$-field:
+	\begin{equation}
+		B = R^2\sin\theta\,\pqty{
+			\psi - \sin\psi \cos\psi
+		}\,\dd{\theta}\wedge \dd{\phi}
+	\end{equation}
+	The corresponding $\beta$-functions and trace anomaly can be computed using the formulae given in \textit{Polchinski}; here $(\psi,\theta,\phi)$ is the usual spherical coordinates on $S^3$. 
+\pagebreak[3]
 	
-	In 2D, we have $\mu = z,\bar{z}$; for $\phi(z,\bar{z})$ with conformal weight $(h,\bar{h})$, consider $
-		z\mapsto z',\,
-		\bar{z}\mapsto \bar{z}'
-	$. For convenience, let's first consider a generic variation $\var{z} = \epsilon(z,\bar{z})$ before restricting to spacetime translation; we have:
+	In fact, field strength:
 	\begin{equation}
-		\phi'(z',\bar{z}')
-		= \pqty\Big{\dv{z'}{z}}^{\!\! -h}
-			\pqty\Big{\dv{\bar{z}'}{\bar{z}}}^{
-				\!\! -\bar{h}
-			}
-			\phi(z,\bar{z}),\\[1ex]
-		\tilde{\delta}\phi
-		= \pqty{
-			- h\,\pd\epsilon
-			- \bar{h}\,\pdbar\bar{\epsilon}\,
-		}\,\phi,\\
-		\var{\phi} 
-		= \tilde{\delta}\phi
-			-\pdv{\phi}{x^\mu} \var{x^\mu}
-		= \pqty{
-			- h\,\pd\epsilon
-			- \bar{h}\,\pdbar\bar{\epsilon}\,
-		}\,\phi
-			- \epsilon\,\pd\phi
-			- \bar{\epsilon}\,\pdbar\phi,
-		\label{eq:var_field_compact_supp}
+		H = \dd{B}
+		= 2R^2 \sin\theta \sin\psi 
+			\dd{\psi}
+			\wedge\dd{\theta}
+			\wedge\dd{\phi}
 	\end{equation}
-	Here we use $\tilde{\delta}\phi$ to denote the ``internal'' variation related to the conformal weights. 
-	
-	Note that $\phi = b,c$ are anti-commuting Grassmann numbers, variation of the action gives:
+	While the spacetime curvature for a maximally symmetric sphere\footnote{
+		I would like to thank \textit{林般} for some very helpful hints. 
+	}: $
+		\mscr{R}_{\mu\nu}
+		= \frac{2}{R^2}\,g_{\mu\nu},\ %
+		\mscr{R} = \frac{6}{R^2}
+	$. Plug in these results, and we have:
 	\begin{equation}
-	\begin{aligned}
-		\var{S}[b,c,\var{b},\var{c}]
-		&= \frac{1}{2\pi} \int \dd[2]{z} \pqty{
-			\var{b}\,\pdbar c
-			+ b\,\pdbar \var{c}
-		} \\
-		&= \frac{1}{2\pi} \int \dd[2]{z} \pqty{
-			- \pdbar c\,\var{b}
-			- \pdbar b\,\var{c}
-		} + \frac{1}{2\pi} \int \dd[2]{z}
-			\pdbar \pqty{b\var{c}}
-	\end{aligned}
-	\label{eq:bc_action_var}
-	\end{equation}
-	For \textit{unknown} $b,c$ and {arbitary} $\var{b},\var{c}$, the second term is reduced to a boundary term at infinity and can be dropped; imposing $\var{S} = 0$ gives the equation of motion (EOM): $\pdbar b = \pdbar c = 0$. 
-	
-	On the other hand, for \textit{on-shell} $b,c$ and compactly supported $\varphi = \var{b},\var{c}$ given in \eqref{eq:var_field_compact_supp}, the first term in \eqref{eq:bc_action_var} vanishes while $\var{S}_0 = 0$ still holds; this gives:
-	\begin{equation}
-	\begin{aligned}
-		0 = \var{S}_0
-		&= \frac{1}{2\pi} \int \dd[2]{z}
-			\pdbar \pqty{b\var{c}}
-		= \frac{1}{2\pi} \int \dd[2]{z}
-			\pdbar\,\pqty\big{
-				- (1-\lambda)\,bc\,\pd\epsilon
-				- b\,\pd c\,\epsilon
-			} \\
-		&= \frac{1}{2\pi} \int \dd[2]{z}
-			\pqty\big{
-				- (1-\lambda)\,bc\,
-					\pdbar\pd\epsilon
-				- b\,\pd c\,\pdbar\epsilon
-			}
-	\end{aligned}
-	\end{equation}
-	Here we've distributed the $\pdbar$ operator and dropped all terms that vanish automatically by EOM. Next we shall collect the $\pd\epsilon,\pdbar\epsilon$ terms; integrating by parts on the first integrand gives:
-	\begin{equation}
-	\begin{aligned}
-		0 = \var{S}_0
-		&= \frac{1}{2\pi} \int \dd[2]{z}
-			\pqty\big{
-				(1-\lambda)\,\pd(bc)\,
-				- b\,\pd c
-			}\,\pdbar\epsilon \\
-		&= \frac{1}{2\pi} \int \dd[2]{z}
-			\pqty\big{
-				(\pd b)\,c
-				- \lambda\,\pd(bc)
-			}\,\pdbar\epsilon \\
-		&= - \frac{1}{2\pi} \int \dd[2]{z}
-			\epsilon(z,\bar{z})\,\pd_{\bar{z}}
-			\pqty\big{
-				(\pd b)\,c
-				- \lambda\,\pd(bc)
-			}
-	\end{aligned}
-	\label{eq:conserved_current}
-	\end{equation}
-	
-	Notice that we have obtained a conserved current using a generic $
-		\var{z}
-		= \epsilon(z,\bar{z}),
-		\var{\bar{z}}
-		= \bar{\epsilon}(z,\bar{z})
-	$; by setting $\epsilon = \epsilon(z)$, we get \textit{a} energy momentum tensor\footnote{
-		Note that the energy momentum tensor obtained in this way is generally \textit{not} unique: it can be off by a boundary term; see Luboš' comment at \https{physics.stackexchange.com/a/96100}, also \arxiv{1601.03616}. However, it is possible to fix this redundancy by considering $Tb$ OPE and match its conformal dimension. I would like to thank \textit{林般} for pointing this out. 
-	}:
-	\begin{equation}
-		T(z)
-		= \normorder{(\pd b)\,c}
-			- \lambda\,\pd(\normorder{bc})
-	\end{equation}
-	Normal ordering is added manually to remove singular terms. 
-	
-	To compute $TT$ OPE, we need the OPE of $b(z)\,c(0)$; this is obtained by examining the following path integral, which is zero since the integrand is a total functional derivative:
-	\begin{equation}
-		0 = \int \mscr{D}b\,\mscr{D}c\,
-			\fdv{\phi}\pqty{e^{-S}\,\psi}
-	\end{equation}
-	Taking $\phi,\psi=b,c$, this generates operator equations such as $
-		\pdbar b(z)\,c(0)
-		= 2\pi\delta^2(z,\bar{z})
-	$. Note that $
-		\pdbar(\frac{1}{z})
-		= 2\pi\delta^2(z,\bar{z})
-	$, which gives:
-	\begin{equation}
-		b(z)\,c(0) \sim c(z)\,b(0)
-		\sim \frac{1}{z},\quad
-		b(z)\,b(0) \sim 0
-		\sim c(z)\,c(0)
-	\end{equation}
-	
-	With the $bc$ OPE in hand, the $TT$ OPE is computed directly with brute force, by repeatedly applying Wick's theorem. This gives:
-	\begin{equation}
-		T(z)\,T(0)
-		\sim \frac{
-			-6\lambda^2 + 6\lambda - 1
-		}{z^4} + \cdots
-	\end{equation}
-	In general we have $
-		-6\lambda^2 + 6\lambda - 1
-		= \frac{c}{2}
-	$; for $\lambda = 2$ this gives $c = -26$. 
-	\qedfull
-	
-	\item \textbf{Free Fermion CFT:}
-	\begin{equation}
-		S = \int \dd[2]{z}
-			\psi_i\,\pdbar\psi^i,\quad
-		\psi^i = \psi_i^*,\quad
-		\psi_i = \psi_i(z)
+		\beta^G = \beta^B = 0,\quad
+		T\id{^a_a}
+		\simeq -\frac{1}{2}\,\beta^{\Phi} \mcal{R}
+		= -\frac{D-26 - \alpha'\mscr{R}}{12}\,
+			\mcal{R}
 	\end{equation}
 	
 	\begin{enumerate}
-	\item Mode expansion of such chiral fermion is given by:
+	\item Compared with the trace anomaly formula of a CFT: $
+		T\id{^a_a} = -\frac{1}{12}\,c\mcal{R}
+	$, where $\mcal{R}$ is the worldsheet Ricci scalar, we see that our theory is indeed conformally invariant with Weyl anomaly. Its central charge is given by:
 	\begin{equation}
-		\psi_i = \sum_{
-			k\in\mbb{Z}+\frac{1}{2}
-		} \frac{b_{ik}}{z^{k+\frac{1}{2}}},\quad
-		b_{ik}
-		= \frac{1}{2\pi i} \oint \dd{z}
-			z^{k-\frac{1}{2}} \psi_i
+		c \simeq D-26 - \alpha'\mscr{R}
+		= 3 - 26 - \frac{6\alpha'}{R^2}
 	\end{equation}
-	Canonical quantization is achieved by simply imposing anti-commutation relations; this is justified by mapping the system onto a cylinder, then $b_{ik}$'s indeed map to modes on the spatial circle\footnote{
-		This can be proven rigorously by considering operator equations like in the $bc$ CFT problem. 
-	}. The only non-zero commutators are:
-	\begin{equation}
-		\Bqty{b_{ik},b^{j\dagger}_q}
-		= \delta_{k+q,0}\,\delta^j_i
-	\end{equation}
-	
-	This gives the only non-zero 2-point functions:
-	\begin{equation}
-	\begin{aligned}
-		\ave{
-			\psi_i(z)\,\psi^j(w)
-		}
-		&= \sum_{k,q\in\mbb{Z}+\frac{1}{2}}
-			\frac{1}{z^{k+\frac{1}{2}}}
-			\frac{1}{w^{q+\frac{1}{2}}}
-			\ave{b_{ik} b^{j\dagger}_q} \\
-		&= \sum_{k,q\in\mbb{Z}+\frac{1}{2}}
-			\frac{1}{z^{k+\frac{1}{2}}}
-			\frac{1}{w^{q+\frac{1}{2}}}
-			\mel{0}{
-				\Bqty{b_{ik},b^{j\dagger}_q}
-			}{0}
-		= \frac{\delta^j_i}{z-w}
-	\end{aligned}
-	\end{equation}
-	Note that $
-		b^i_k\ket{0} = 0,\ %
-		\forall\ k\ge\frac{1}{2}
+	This includes ghost contribution $(-26)$. If we do not gauge the conformal symmetry, then there will not be ghost contribution, and we will have $
+		c \simeq 3 - \frac{6\alpha'}{R^2}
 	$. 
 	
-	\item[(b)(c)] Combining two $\psi$ expansions gives the mode expansion of $
-		J\id{_i^j}
-		= \normorder{\psi_i(z)\,\psi^j(z)}
-	$, namely:
+	\item The background $B$ field given above is not single-valued on the $\psi$ circle. Note that we've encountered such difficulty in electromagnetism with a multi-valued $A^\mu(x)$. In fact, the resolution for this issue is very similar to Dirac's quantization of the magnetic monopole\footnote{
+		Reference: J.~J.~Sakurai, \textit{Modern Quantum Mechanics}. 
+	}: by allowing the action $S$ to be invariant modulo $2\pi$, since $
+		e^{-(S + 2\pi i)} = e^{-S}
+	$. More specifically, for $\psi\mapsto\psi + 2\pi$, we have:
 	\begin{equation}
-		J\id{_i^j}(z)
-		= \sum_{k\in\mbb{Z}}
-			\frac{(J\id{_i^j})_k}{z^{k+1}},\quad
-		(J\id{_i^j})_k
-		= \sum_{q\in\mbb{Z}+\frac{1}{2}}
-			\normorder{
-				b_{iq}\,b^{j\dagger}_{k-q}
-			}
+	\begin{aligned}
+		2\pi i\, n = \Delta S
+		&= \frac{1}{4\pi\alpha'}
+		\int \dd[2]{\sigma}
+			i\epsilon^{ab} 
+			R^2\sin\theta\,\pqty{
+				2\pi - 0
+			}\,\pqty{
+				\pdd{a} \theta\,
+				\pdd{b} \phi
+				- \pdd{a} \phi\,
+				\pdd{b} \theta
+			} \\[.5ex]
+		&= i\,\frac{R^2}{\alpha'}
+		\int \dd[2]{\sigma}
+			\sin\theta\,\epsilon^{ab}\,
+				\pdd{a} \theta\,
+				\pdd{b} \phi
+	\end{aligned}
 	\end{equation}
-	It is in fact more convenient to obtain the $JJ$ OPE first, and then use it to find the  $[J_0,J_0]$ mode commutator\footnote{
-		I would like to thank \textit{谷夏} for providing this hint. 
-	}; note that $
-		{
-			{\psi}_i(z)\,{\psi}^j(w)
-		}
-	$ contraction gives $\frac{\delta^j_i}{z-w}$, we have:
+	Choose $
+		(\sigma^1,\sigma^2) = (\theta,\phi)
+	$ while $
+		\psi = \psi(\theta,\phi)
+	$, then the integral is reduced to $
+		\tilde{A}
+		= \int \dd[2]{\sigma} \sin\theta
+		= 2\pi R\tilde{\ell}
+	$, where $\tilde{\ell}$ is the string length weighted by $\sin\theta$. This leads to the following quantization:
 	\begin{equation}
-		J\id{_i^j}(z)\,J\id{_k^l}(0)
-		\sim \frac{
-			\delta_i^l\delta_k^j
-		}{z^2} + \frac{
-			\delta^j_k J\id{_i^l}(0)
-			- \delta^l_i J\id{_k^j}(0)
-		}{z},\\[1ex]
-		\bqty{
-			(J\id{_i^j})_0, (J\id{_k^l})_0
-		}
-		= \frac{1}{(2\pi i)^2}
-			\oint_0 \dd{w}
-			\oint_w \dd{z}
-				J\id{_i^j}(z)\,J\id{_k^l}(w)
-		= \delta_i^l\,(J\id{_k^j})_0
-			- \delta_k^j\,(J\id{_i^l})_0
+		\frac{R^3 \tilde{\ell}}{\alpha'}
+		= n \in\mbb{Z},\quad
+		R = \pqty\big{
+			{n\alpha'}\big/{\tilde{\ell}}
+			\mspace{3.5mu}
+		}^{1/3}
+		\ge \pqty\big{
+			{\alpha'}\big/{\ell}
+			\mspace{2.5mu}
+		}^{1/3}
 	\end{equation}
-	
-	\item[(d)] Similar to $bc$ CFT, we have:
-	\begin{equation}
-		T(z) = \frac{1}{2}\,\pqty{
-			\normorder{\psi_i\,\pd\psi^i}
-			- \normorder{\pd\psi_i\,\psi^i}
-		},\quad
-		T(z)\,T(w)
-		\sim \frac{n/2}{(z-w)^4}
-			+ \frac{2T(w)}{(z-w)^2}
-			+ \frac{\pd T(w)}{z-w}
-	\end{equation}
-	With each (complex) field contributing $\frac{1}{2}\times 2$ central charge\footnote{
-		In fact a complex (Dirac) fermion can be ``treated like'' (\textit{dual to}) a boson; this is \textit{bosonization}. 
-	}. 
-	
-	\item[(e)] For real fermions, there is an additional reality condition:
-	\begin{equation}
-		\psi^i = \psi^\star_i = \psi_i 
-	\end{equation}
-	The canonical quantization still holds without the extra adjoint, same as the 2-point function:
-	\begin{equation}
-		\ave{\psi_i(z)\,\psi_j(w)}
-		= \frac{\delta_{ij}}{z - w}
-	\end{equation}
-	
-	Similar holds for $J_{ij} = \normorder{\psi_i\psi_j}$ and its OPE, but we no longer need to distinguish upper/lower indices; we have:
-	\begin{equation}
-		J_{ij}(z)\,J_{kl}(0)
-		\sim \frac{
-			- \delta_{ik}\delta_{jl}
-			+ \delta_{il}\delta_{jk}
-		}{z^2} + \frac{
-			- \delta_{ik} J_{jl}(0)
-			+ \delta_{il} J_{jk}(0)
-			+ \delta_{jk} J_{il}(0)
-			- \delta_{jl} J_{ik}(0)
-		}{z}\\[1ex]
-		\bqty{
-			(J_{ij})_0, (J_{kl})_0
-		}
-		= - \delta_{ik} (J_{jl})_0
-			+ \delta_{il} (J_{jk})_0
-			+ \delta_{jk} (J_{il})_0
-			- \delta_{jl} (J_{ik})_0
-	\end{equation}
-	This is precisely the $\mfrak{o}(n)$ algebra. 
+	In particular, in string units: $\alpha' = \ell = 1$, we have $R\ge 1$.
 	\qedfull
-	
 	\end{enumerate}
 	
+	\item \textbf{Anomalous Currents:}
+	
+	\begin{enumerate}
+	\item For a conserved current in flat worldsheet to be anomalous in curved worldsheet, then its deviation from conservation must be proportional to the Ricci scalar:
+	\begin{equation}
+		\cdv{a} j^a = QR,\quad
+		Q = \mrm{const}. 
+	\end{equation}
+	The logic here is similar to the Weyl anomaly\footnote{
+		See \textit{Polchinski} for reference. 
+	}: $\cdv{a} j^a$ is diff- and Poincaré-invariant with dimension~2, because we have preserved these symmetries, and it vanishes in the ﬂat case; this leaves only one possibility --- $
+		\cdv{a} j^a \propto R
+	$: the Ricci scalar. 
+	
+	For conformal transformation $
+		z\mapsto z + \epsilon(z),\ %
+		\bar{z}\mapsto \bar{z}
+			+ \bar{\epsilon}(\bar{z})
+	$, we have:
+	\begin{equation}
+		\delta_\epsilon j(0)
+		= -\operatorname*{Res}\limits_{z\to 0}
+				\epsilon(z)\,
+				T(z)\,j(0)
+			-\operatorname*{Res}\limits_{\bar{z}\to 0}
+				\bar{\epsilon}(\bar{z})\,
+				\tilde{T}(\bar{z})\,j(0)
+	\end{equation}
+	Hence the $z^{-3},\bar{z}^{-3}$ coefficients of the OPE reflect the $
+		\epsilon = z^2,\ %
+		\bar{\epsilon} = \bar{z}^2
+	$ transformation of $j$.  By comparing the Weyl transformations, this yields a total coefficient of $4Q$. 
+	
+	\item For $bc$ CFT with $j = \normorder{cb}\,$, the anomaly can be explicitly calculated using our results in (a), i.e.\ by calculating $Tj$ OPE. Following the standard procedure\footnote{
+		For more detailed discussions, see Blumenhagen et al, \textit{Basic Concepts of String Theory}. 
+	}, we obtain that:
+	\begin{equation}
+		T_z j_0 \sim \frac{1 - 2\lambda}{z^3}
+			+ \order{\frac{1}{z^2}}
+	\end{equation}
+	Note that the anti-holomorphic part is zero, therefore, we have: $
+		Q = \frac{1}{4}\,(1 - 2\lambda)
+	$. \qedfull
+	
+	\end{enumerate}
 	
 	\end{enumerate}
 

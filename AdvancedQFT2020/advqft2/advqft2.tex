@@ -144,7 +144,8 @@
 	In fact, \eqref{eq:A_gauge_var} is chosen to ensure that $D_\mu \psi$ transforms gauge covariantly just like $\psi$. Therefore, 
 	\begin{gather}
 	\begin{aligned}
-		D_{\mu}= \pdd{\mu} + A_\mu
+		D_{\mu}
+= \pdd{\mu} + A_\mu
 		\ &\longmapsto\ %
 			e^{-\Lambda^a(x)\,T_a}
 			\circ D_{\mu}\circ
@@ -233,34 +234,102 @@
 		\mapsto X^\mu(t) + \xi(t)\,\dot{X}^\mu
 	$. 
 	
+%	\item We have:
+%	\begin{align}
+%		\var{S}
+%		= \int\dd{t} \var{{L}}
+%		&= \int\dd{t} \Bqty{
+%			\frac{1}{ec^2}\,
+%				\dot{X}_\mu
+%				\var{\dot{X}^\mu}
+%			- \frac{\var{e}}{2}\,
+%				\frac{1}{e^2 c^2} \dot{X}^2
+%			- \frac{\var{e}}{2}\,m^2 c^4
+%		}
+%		\label{eq:particle_var_generic}\\[1ex]
+%		&= - \int\dd{t} \Bqty{
+%			\dv{t} \pqty{
+%				\frac{1}{ec^2}\,
+%				\dot{X}_\mu
+%			} \var{X^\mu}
+%			+ \frac{\var{e}}{2}\,\pqty{
+%				\frac{1}{e^2 c^2} \dot{X}^2
+%				+ m^2 c^4
+%			}
+%		} \notag\\[.5ex]
+%		&\qquad + \int \dd\mspace{.5mu}\pqty{
+%			\frac{1}{ec^2}\,
+%				\dot{X}_\mu
+%				\var{X^\mu}
+%		}
+%		\label{eq:particle_var_integrated}
+%	\end{align}
+%	This gives the equations of motion (EOMs): $
+%		\dv{t} \pqty\big{
+%			\frac{1}{ec^2}\,
+%			\dot{X}_\mu
+%		} = 0,\ %
+%		\pqty{\frac{1}{c} \dv{X}{t}}^2
+%		= -e^2 m^2 c^4
+%	$. As we can see, the auxiliary field $e(t)$ is not dynamical; Fixing $e = 1$ is equivalent to setting $t = \tau$: the proper time, or affine parametrization for the massless case. 
+	
 	\item We have:
 	\begin{equation}
 	\begin{aligned}
-		\var{S}
-		= \int\dd{t} \var{\mcal{L}}
-		&= \int\dd{t} \Bqty{
-			\frac{1}{ec^2}\,
+		\var{{L}}
+		&= \frac{1}{ec^2}\,
 				\dot{X}_\mu
 				\var{\dot{X}^\mu}
 			- \frac{\var{e}}{2}\,
 				\frac{1}{e^2 c^2} \dot{X}^2
-			- \frac{\var{e}}{2}\,m^2 c^4
-		} \\[1ex]
-		&= - \int\dd{t} \Bqty{
-			\dv{t} \pqty{
-				\frac{1}{ec^2}\,
-				\dot{X}_\mu
-			} \var{X^\mu}
-			+ \frac{\var{e}}{2}\,
+			- \frac{\var{e}}{2}\,m^2 c^4 \\[.5ex]
+		&= \frac{1}{ec^2}\,
+				\xi\dot{X}_\mu\ddot{X}^\mu
+			+ \frac{1}{ec^2}\,
+				\dot{\xi}\dot{X}^2
+			- \frac{\var{e}}{2}\,
 				\frac{1}{e^2 c^2} \dot{X}^2
-			+ \frac{\var{e}}{2}\,m^2 c^4
-		} + \int \dd\mspace{.5mu}\pqty{
-			\frac{1}{ec^2}\,
-				\dot{X}_\mu
-				\var{X^\mu}
-		} \\
+			- \frac{\var{e}}{2}\,m^2 c^4
 	\end{aligned}
 	\end{equation}
+	For $
+		S = \int\dd{t} {{L}}
+	$ to be invariant, $\var{{L}}$ should be reduced to a total derivative, which can then be reduced to some vanishing boundary terms. 
+	
+	Consider $
+		\var{e} = \dv{t}\pqty{e\xi}
+		= \dot{e}\xi + e\dot{\xi}
+	$, and we have:
+	\begin{equation}
+	\begin{aligned}
+		\var{L}
+		&= \frac{1}{ec^2}\,
+				\xi\dot{X}_\mu\ddot{X}^\mu
+			+ \frac{1}{2ec^2}\,
+				\dot{\xi}\dot{X}^2
+			- \frac{\dot{e}}{2e^2 c^2}\,
+				\xi \dot{X}^2
+			- \dv{t}\pqty{
+				\frac{1}{2}\,e\xi\,m^2 c^4
+			} \\[.8ex]
+		&= \dv{t} \Bqty{\pqty{
+			\frac{1}{2ec^2}\dot{X}^2
+			- \frac{e}{2}\,m^2 c^4
+		}\,\xi}
+		= \dv{t} \pqty\big{\xi L}
+	\end{aligned}
+	\end{equation}
+	Indeed we get a total derivative; therefore,
+	\begin{gather}
+		\var{e} = \dv{t}\pqty{e\xi},\quad
+		\var{S} = \int \var{{L}}
+		= \int \dd\mspace{.5mu} \pqty\big{
+			\xi L
+		} = 0
+	\end{gather}
+	
+	\item $e(t)$ can be seen as a gauge field coupled to $X$, which captures the $t$--reparametrization redundancy. A natural gauge choice is fixing $f = e(t) - 1 \equiv 0$, which is equivalent to setting $t = \tau$: the proper time, or affine parametrization for the massless case. 
+	
 	\end{itemize}
 	
 	

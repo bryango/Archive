@@ -14,8 +14,6 @@
 	{\mathopen {:}}{\tinyhskip #1\tinyhskip}{\mathclose {:}}
 }
 
-\usepackage{simpler-wick}
-
 \newcommand{\tinyhskip}{{\hskip .1em}}
 \newcommand{\mat}[1]{\pqty\Big{
 	\footnotesize
@@ -24,6 +22,13 @@
 			#1
 		\end{array}
 	\hspace{-.2em}
+}}
+
+\newcommand{\legacyReference}{{
+	\clearpage\par
+	\quad\clearpage
+	\renewcommand{\midquote}{\textbf{PAST WORK, AS TEMPLATE}}
+	\newparagraph
 }}
 
 % Settings

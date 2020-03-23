@@ -318,7 +318,7 @@
 	To calculate this we have to know the inverse transformation $x = K^{-1}(a)\,\tilde{x}$. First, notice the following decomposition\footnote{
 		See \textit{Di Francesco et al}, and also \https{github.com/davidsd/ph229}. 
 	} of $K(a)$:
-	\begin{equation}
+	\begin{gather}
 		\tilde{x}^\mu
 		= \frac{\frac{x^\mu}{x^2} + a^\mu}{
 			\frac{1}{x^2}
@@ -347,10 +347,10 @@
 			}
 			= y^\mu = \frac{x^\mu}{x^2} + a^\mu
 		\label{eq:special_conformal_simplified}
-	\end{equation}
+	\end{gather}
 	
 	From \eqref{eq:special_conformal_simplified}, we see that the transformation parameter $a^\mu$ composes linearly: $K(b)\,K(a) = K(a+b)$, therefore $K^{-1}(a) = K(-a)$, and we have:
-	\begin{equation}
+	\begin{gather}
 		x^\mu = K(-a)\,\tilde{x}^\mu
 		= \frac{\tilde{x}^\mu - \tilde{x}^2 a^\mu}{
 			1 - 2a\cdot \tilde{x} + a^2 \tilde{x}^2
@@ -410,7 +410,7 @@
 			\tilde{y}^{-4} \tilde{x}^{-4}
 			\delta_{\alpha\beta}
 	\end{aligned}
-	\end{equation}
+	\end{gather}
 	We see that $g_{\alpha\beta} = f(x)\,\delta_{\alpha\beta}$, with coefficient:
 	\begin{equation}
 		f(x) = \tilde{y}^{-4} \tilde{x}^{-4}
@@ -541,7 +541,7 @@
 		z\mapsto z',\,
 		\bar{z}\mapsto \bar{z}'
 	$. For convenience, let's first consider a generic variation $\var{z} = \epsilon(z,\bar{z})$ before restricting to spacetime translation; we have:
-	\begin{equation}
+	\begin{gather}
 		\phi'(z',\bar{z}')
 		= \pqty\Big{\dv{z'}{z}}^{\!\! -h}
 			\pqty\Big{\dv{\bar{z}'}{\bar{z}}}^{
@@ -563,7 +563,7 @@
 			- \epsilon\,\pd\phi
 			- \bar{\epsilon}\,\pdbar\phi,
 		\label{eq:var_field_compact_supp}
-	\end{equation}
+	\end{gather}
 	Here we use $\tilde{\delta}\phi$ to denote the ``internal'' variation related to the conformal weights. 
 	
 	Note that $\phi = b,c$ are anti-commuting Grassmann numbers, variation of the action gives:
@@ -743,7 +743,7 @@
 			{\psi}_i(z)\,{\psi}^j(w)
 		}
 	$ contraction gives $\frac{\delta^j_i}{z-w}$, we have:
-	\begin{equation}
+	\begin{gather}
 		J\id{_i^j}(z)\,J\id{_k^l}(0)
 		\sim \frac{
 			\delta_i^l\delta_k^j
@@ -760,7 +760,7 @@
 				J\id{_i^j}(z)\,J\id{_k^l}(w)
 		= \delta_i^l\,(J\id{_k^j})_0
 			- \delta_k^j\,(J\id{_i^l})_0
-	\end{equation}
+	\end{gather}
 	
 	\item[(d)] Similar to $bc$ CFT, we have:
 	\begin{equation}
@@ -788,7 +788,7 @@
 	\end{equation}
 	
 	Similar holds for $J_{ij} = \normorder{\psi_i\psi_j}$ and its OPE, but we no longer need to distinguish upper/lower indices; we have:
-	\begin{equation}
+	\begin{gather}
 		J_{ij}(z)\,J_{kl}(0)
 		\sim \frac{
 			- \delta_{ik}\delta_{jl}
@@ -806,7 +806,7 @@
 			+ \delta_{il} (J_{jk})_0
 			+ \delta_{jk} (J_{il})_0
 			- \delta_{jl} (J_{ik})_0
-	\end{equation}
+	\end{gather}
 	This is precisely the $\mfrak{o}(n)$ algebra. 
 	\qedfull
 	
