@@ -4,13 +4,13 @@
 
 \documentclass[a4paper,10pt]{article}
 
-\newcommand{\hwNumber}{2 [WIP]}
+\newcommand{\hwNumber}{2}
 
 \input{../advqft_preamble.tex}
 \input{../.modules/basics/biblatex.tex}
 
 %%% ID: sensitive, do NOT publish!
-%\InputIfFileExists{../id.tex}{}{}
+\InputIfFileExists{../id.tex}{}{}
 
 \begin{document}
 \maketitle
@@ -214,12 +214,13 @@
 	\qedfull
 	\vspace{-1\baselineskip}
 \section{Relativistic Particle}
-	\vspace{-.3\baselineskip}
+	\vspace{-.35\baselineskip}
 	\begin{equation}
 		L = \frac{1}{2e} \pqty{
 			\frac{1}{c}\dv{X}{t}
 		}^2 - \frac{e}{2}\,m^2 c^4
 	\end{equation}
+	
 	\begin{itemize}
 	\item For $t\mapsto t' = t - \xi(t)$, we have $
 		X'(t') = X(t)
@@ -237,7 +238,7 @@
 %	\item We have:
 %	\begin{align}
 %		\var{S}
-%		= \int\dd{t} \var{{L}}
+%		= \int\dd{t} \var{L}
 %		&= \int\dd{t} \Bqty{
 %			\frac{1}{ec^2}\,
 %				\dot{X}_\mu
@@ -276,7 +277,7 @@
 	\item We have:
 	\begin{equation}
 	\begin{aligned}
-		\var{{L}}
+		\var{L}
 		&= \frac{1}{ec^2}\,
 				\dot{X}_\mu
 				\var{\dot{X}^\mu}
@@ -293,8 +294,8 @@
 	\end{aligned}
 	\end{equation}
 	For $
-		S = \int\dd{t} {{L}}
-	$ to be invariant, $\var{{L}}$ should be reduced to a total derivative, which can then be reduced to some vanishing boundary terms. 
+		S = \int\dd{t} {L}
+	$ to be invariant, $\var{L}$ should be reduced to a total derivative, which can then be reduced to some vanishing boundary terms. 
 	
 	Consider $
 		\var{e} = \dv{t}\pqty{e\xi}
@@ -321,363 +322,465 @@
 	\end{equation}
 	Indeed we get a total derivative; therefore,
 	\begin{gather}
-		\var{e} = \dv{t}\pqty{e\xi},\quad
-		\var{S} = \int \var{{L}}
+		\var{e} = \dv{t}\pqty\big{e\xi},\quad
+		\var{S} = \int \var{L}
 		= \int \dd\mspace{.5mu} \pqty\big{
 			\xi L
 		} = 0
 	\end{gather}
 	
-	\item $e(t)$ can be seen as a gauge field coupled to $X$, which captures the $t$--reparametrization redundancy. A natural gauge choice is fixing $f = e(t) - 1 \equiv 0$, which is equivalent to setting $t = \tau$: the proper time, or affine parametrization for the massless case. 
+	\item $e(t)$ can be seen as a gauge field coupled to $X$, which captures the $t$--reparametrization redundancy through the gauge transformation parameter $\xi(t)$. A natural gauge choice is fixing $f = e(t) - 1 \equiv 0$, which is equivalent to setting $t = \tau$: the proper time, or affine parametrization for the massless case. 
+\pagebreak[3]
 	
-	\end{itemize}
-	
-	
-	
-	
-	
-	
-	
-	\legacyReference
-	
-	\begin{itemize}
-	\item For $
-		\var{X}^\mu
-		= a^\mu + \lambda\id{^\mu_\nu} X^\nu
-	$, the Lagrangian (density) transforms as follows:
+%	Faddeev--Popov (FP) quantization yields:
+	The gauge invariant path integral is constructed as follows:
 	\begin{equation}
 	\begin{aligned}
-		\var{\mcal{L}}
-		&= -\pd^\alpha X_\mu\,
-			\pd_\alpha \var{X^\mu} \\
-		&= -\pd^\alpha X_\mu\,
-			\pd_\alpha \pqty{
-				a^\mu
-				+ \lambda\id{^\mu_\nu} X^\nu
+		\mcal{Z}
+		&= \frac{1}{\int\!\DD{\xi}\,}
+			\int \DD{X}\,\DD{e}\, e^{iS} \\
+		&= \frac{1}{\int\!\DD{\xi}\,}
+			\int \DD{X}\,\DD{e}\, e^{iS}
+			\int \DD{f}\,\delta\bqty\big{
+				f
 			} \\
-		&= -\pd^\alpha X_\mu\,
+		&= \frac{1}{\int\!\DD{\xi}\,}
+			\int \DD{X}\,\DD{e}\, e^{iS}
+			\int \DD{\xi}\,\delta\bqty\big{
+				f_\xi
+			} \det \fdv{f_\xi}{\xi} \\
+		&= \frac{1}{\int\!\DD{\xi}\,}
+			\int \DD{\xi}
+			\int \DD{X}\,\DD{e}\, e^{iS}\,
+			\delta\bqty\big{
+				f_\xi
+			} \det \fdv{f_\xi}{\xi} \\
+		&= \frac{1}{\int\!\DD{\xi}\,}
+			\int \DD{\xi}
+			\int \DD{X_\xi}\,\DD{e_\xi}\,
+				e^{iS_\xi}\,
+			\delta\bqty\big{
+				f_\xi
+			} \det \fdv{f_\xi}{\xi} \\
+		&= \frac{1}{\int\!\DD{\xi}\,}
+			\int \DD{\xi}
+			\int \DD{X_\xi}\,\DD{e_\xi}\,
+				e^{iS_\xi}\,
+			\delta\bqty\big{
+				f_\xi
+			} \det \fdv{f_\xi}{\xi} \\
+		&= \frac{1}{\int\!\DD{\xi}\,}
+			\int \DD{\xi}
+			\int \DD{X}\,\DD{e}\,
+				e^{iS}\,
+			\delta\bqty\big{f}
+			\det \fdv{f_\xi}{\xi}\,
+			\bigg|_{\,\xi=0} \\
+		&= \int \DD{X}\,\DD{e}\, e^{iS}\,
+			\delta\bqty\big{f}
+			\det \fdv{f_\xi}{\xi}\,
+			\bigg|_{\,\xi=0}
+	\end{aligned}
+	\end{equation}
+	Here the gauge-transformed quantities are marked with a $\xi$ subscript. Note that in the final expression, $f$ is \textit{not} integrated out and can be \textit{any} possible gauge-fixing function, i.e.\ $
+		\pqty{
+			\delta\bqty\big{f}
+			\det \fdv{f_\xi}{\xi}
+		}_{\xi=0}
+	$ is in fact $f$-independent. 
+	
+	The gauge-fixing term $
+		\delta\bqty\big{f}
+	$ can be replaced by a Gaussian packet with width parameter $\zeta$. More rigorously, up to an overall constant coefficient, we have the following equivalence:
+	\begin{gather}
+		\delta\bqty\big{f}
+		\sim \delta\bqty\big{f - f_0}
+		\sim \int \DD{f_0}\,
+			\exp\pqty{
+				-\frac{i}{2\zeta}\int \dd{t} f_0^2
+			}\,\delta\bqty\big{f - f_0}
+		= \exp\pqty{i\int \dd{t} L_{gf}},\\[.5ex]
+		L_{gf}
+		= -\frac{1}{2\zeta} f^2
+		= -\frac{1}{2\zeta} \,(e-1)^2,
+	\end{gather}
+	Here $f_0$ is some gauge-invariant shift of $f$, namely $(f_0)_\xi = f_0$. $f_0$ can be seen as a non-dynamical auxiliary field that enforce the gauge fixing, much similar to a Lagrange multiplier. On the other hand, the determinant can be evaluated using Faddeev--Popov (FP) ghosts $b,c$\,:
+	\begin{gather}
+		\det P \sim \int \DD{b}\,\DD{c}\,
+			\exp \pqty{
+				i\int\dd{t} \int\dd{t'}
+					b(t)\cdot P(t,t')\cdot c(t')
+			},\\[.8ex]
+		\fdv{f_\xi(t)}{\xi(t')}\,
+			\bigg|_{\,\xi=0} \!\!
+		= \fdv{\xi(t')} \,\bigg|_{\,\xi=0}
 			\pqty{
-				\pdd{\alpha} a^\mu
-				+ X^\nu\,
-					\pdd{\alpha} \lambda\id{^\mu_\nu}
-				+ \lambda\id{^\mu_\nu}\,
-					\pdd{\alpha} X^\nu
-			} \\
-		&= -\pd^\alpha X_\mu\,\pdd{\alpha} a^\mu
-		- \pd^\alpha X^\mu\,
-			\pdd{\alpha} X^\nu\,
-			\lambda_{\mu\nu}
-		- X^\nu\,\pd^\alpha X^\mu\,
-			\pdd{\alpha} \lambda_{\mu\nu} \\
-		&= -\pd^\alpha X_\mu\,\pdd{\alpha} a^\mu
-		- \pd^\alpha X^\mu\,
-			\pdd{\alpha} X^\nu\,
-			\lambda_{(\mu\nu)}
-		- X^\nu\,\pd^\alpha X^\mu\,
-			\pdd{\alpha} \lambda_{\mu\nu}
-		\label{eq:lorentz_variation}
-	\end{aligned}
-	\end{equation}
-	Since $a^\mu$ and $\lambda\id{^\mu_\nu}$ are independent, imposing $\var{L} = 0$ yields $\pdd{\alpha} a^\mu = 0,\,a = \mrm{const}$. Furthermore, if $\var{L} = 0$ is to hold for arbitrary $X^\mu$ fields, then $\pdd{\alpha} \lambda_{\mu\nu} = 0,\,\lambda_{(\mu\nu)} = 0$, i.e.\ $\lambda_{\mu\nu}$ is constant and anti-symmetric over its indices. 
-	
-%	\item Variation over any generic $\var{X}$ yields:
-%	\begin{equation}
-%	\begin{aligned}
-%		\var{S} = \int \dd[2]{x}
-%			\var{\mcal{L}}
-%		&= - \int \dd[2]{x}
-%			\pd^\alpha X_\mu\,
-%			\pd_\alpha \var{X^\mu} \\
-%		&= \int \dd[2]{x}
-%			\pqty{\pd^\alpha \pdd{\alpha} X_\mu}
-%			\var{X^\mu}
-%		- \int \dd[2]{x} \pdd{\alpha} \pqty\big{
-%			\pd^\alpha X_\mu\,
-%			\var{X^\mu}
-%		} \\
-%	\end{aligned}
-%	\end{equation}
-%	This gives the equation of motion (EOM) $
-%		\pd^\alpha \pdd{\alpha} X = 0
-%	$. 
-	
-	\item Promote $
-		\var{X}\mapsto \epsilon(x)\var{X}
-		= \epsilon(x)\,\pqty{
-			a^\mu + \lambda\id{^\mu_\nu} X^\nu
-		}
-	$, with $\epsilon(x)$ some localized bump function; using \eqref{eq:lorentz_variation} and considering \textit{on-shell} variation, we have:
-	\begin{equation}
+				e + \dv{t} \pqty\big{e\xi} - 1
+			}_{\!(t)}
+		= \dv{t} \pqty\Big{
+				e(t)\,\delta(t - t')
+			},\\[1.5ex]
 	\begin{aligned}
-		0 = \var{S}
-		&= - \int \dd[2]{x} \pqty{
-			\pd^\alpha X_\mu\,
-				a^\mu\,
-				\pdd{\alpha}\epsilon
-			+ X^\nu\,\pd^\alpha X^\mu\,
-				\lambda_{\mu\nu}\,
-				\pdd{\alpha}\epsilon
-		} \\
-		&= - \int \dd[2]{x} \pqty{
-			\pd^\alpha X_\mu\,
-				a^\mu\,
-			+ X_{[\nu}\,\pd^\alpha X_{\mu]}\,
-				\lambda^{[\mu\nu]}\,
-		}\,\pdd{\alpha}\epsilon
-	\end{aligned}
-	\end{equation}
-	It is evident (after partial integration) that the following currents are conserved; they are the Noether currents associated with $a^\mu$ and $\lambda^{[\mu\nu]}$:
-	\begin{equation}
-		j^\alpha_\mu
-		= -\pd^\alpha X_\mu,\quad
-		j^\alpha_{\mu\nu}
-		= -X_{[\nu}\,\pd^\alpha X_{\mu]}
-		= \frac{1}{2}\,\pqty{
-			X_\mu\,\pd^\alpha X_\nu
-			- X_\nu\,\pd^\alpha X_\mu
-		}
-	\end{equation}
+		\det \fdv{f_\xi(t)}{\xi(t')}\,
+			\bigg|_{\,\xi=0} \!\!
+		&\sim \int \DD{b}\,\DD{c}\,
+			\exp \pqty{
+				i\int\dd{t} \int\dd{t'}
+				b(t)\,\pqty\Big{
+					e(t)\,\delta(t - t')
+				}\,c(t')
+			} \\[-.5ex]
+		&\sim \int \DD{b}\,\DD{c}\,
+			\exp \pqty{
+				-i\int\dd{t} e\dot{b}c
+			},
+	\end{aligned}\\[.8ex]
+		L_{gh} = -e\dot{b}c
+	\end{gather}
 	
-	Conserved charge $
-		Q = \int\dd[2]{x} j^0(x)
-	$, we have:
-	\begin{equation}
-		P_\mu = - \int\dd{x^1} \pd^0 X_\mu
-		= \int\dd{x^1} \pd_0 X_\mu,\quad
-		M_{\mu\nu}
-		= \frac{1}{2}\,\int\dd{x^1}\pqty{
-			X_\nu\,\pd_0 X_\mu
-			- X_\mu\,\pd_0 X_\nu
-		}
-	\end{equation}
-	They can be interpreted as spacetime momentum and spacetime angular momentum. 
+	In summary, we have:
+	\begin{gather}
+		\mcal{Z}
+		= \int \DD{X}\,\DD{e}\,\DD{b}\,\DD{c}\,
+			e^{iS_{q}},\quad
+		S_q = \int \dd{t} L_q,\\
+		L_q
+		= L + L_{gf} + L_{gh}
+		= L - \frac{1}{2\zeta} \,(e-1)^2
+			- e\dot{b}c,
+	\end{gather}
+	$S_q$ is the quantum action under the gauge-fixing condition $f = e(t) - 1 = 0$. 
 	\qedfull
 	\end{itemize}
-\pagebreak[3]
-\subsection{Real Scalar in $(3+1)$\,D}
-	\vspace{-.8\baselineskip}
+\section{2D $\sigma$-Model}
+	\vspace{-.3\baselineskip}
 	\begin{equation}
-		\mcal{L}
+		\mscr{L}
 		= -\frac{1}{2}\,
-			\pd^\mu\phi\,
-			\pdd{\mu}\phi
-		-\frac{1}{2}\,m^2\phi^2
+			\pdd{\alpha} X^\mu\,
+			\pdd{\beta} X_\mu
+			\sqrt{-h}\,h^{\alpha\beta},\quad
+		X\colon \Sigma^{1,1}\to\mbb{R}^{D-1,1}
 	\end{equation}
+	
 	\begin{itemize}
-	\item For $\phi$: scalar, under $
-		x' = \lambda\circ x
-	$, $\phi(x)\mapsto \phi'(x)$, while:
-	\begin{equation}
-		\phi'(x') = \phi(x)
-		\ \Longrightarrow\ %
-		\phi'(x) = \phi(\lambda^{-1}\circ x)
-	\end{equation}
-	For $\lambda\sim \lambda\id{^\mu_\nu}$: Lorentz transformation, $
-		\eta_{\mu\nu}
-			\lambda\id{^\mu_\rho}
-			\lambda\id{^\nu_\sigma}
-		= \eta_{\rho\sigma}
-	$, or equivalently, $
-		(\lambda^{-1})\id{^\mu_\nu}
-		= \lambda\id{_\nu^\mu}
-	$. Therefore,
-	\begin{equation}
-		\phi'(x^\mu) = \phi(\lambda^{-1}\circ x^\mu)
-		= \phi(x^\nu\lambda\id{_\nu^\mu})
-	\end{equation}
-\pagebreak[3]
-	
-	\item Under $
-		x'^\mu = \lambda\id{^\mu_\nu} x^\nu,\ %
-		\phi(x)\mapsto\phi'(x)
+	\item The action is diff-invariant; under $
+		\sigma^\alpha
+		\mapsto \sigma^\alpha + \xi^\alpha
 	$, we have:
+	\begin{equation}
+		\var{X^\alpha}
+		= \ldv{\xi} X^\alpha,\quad
+		\var{h^{\alpha\beta}}
+		= \ldv{\xi} h^{\alpha\beta}
+	\end{equation}
+	$\ldv{\xi}$ is the Lie derivative along $\xi^\alpha$. Note that $
+		0 = \var\pqty{
+			h_{\alpha\beta} h^{\beta\gamma}
+		}
+	$, hence we have:
+	\begin{gather}
+		\var{h_{\alpha\beta}}
+		= -h_{\alpha\alpha'} h_{\beta\beta'}
+			\var{h^{\alpha'\beta'}}
+		= \xi^\gamma \pdd{\gamma} h_{\alpha\beta}
+			+ (\pdd{\alpha} \xi^\gamma)\,
+				h_{\gamma\beta}
+			+ (\pdd{\beta} \xi^\gamma)\,
+				h_{\alpha\gamma}
+		= \ldv{\xi} h_{\alpha\beta},\\[1ex]
+		\var{\sqrt{-h}}
+		= \frac{1}{2} \sqrt{-h}\,
+			h^{\alpha\beta} \var{h_{\alpha\beta}},
+	\end{gather}
+	
+	Furthermore, we have $
+		\ldv{\xi} \dd{X}
+		= \dd (\ldv{\xi} X)
+	$, i.e.\ $
+		\pdd{\alpha} \var{X}
+		= \pdd{\alpha} \ldv{\xi} X
+		= \pdd{\alpha} \pqty\big{
+			\xi^\gamma \pdd{\gamma} X
+		}
+		= \ldv{\xi} \pqty\big{
+			\pdd{\alpha} X
+		}
+	$. Note that due to the $\sqrt{-h}$ factor, $\mscr{L}$ is not a scalar but a \textit{scalar density}. For convenience, define $
+		\mscr{L} = \widetilde{\mscr{L}}\sqrt{-h}
+	$, then $
+		\widetilde{\mscr{L}}
+		= -\frac{1}{2}\,h^{\alpha\beta}\,
+			\pdd{\alpha} X^\mu\,
+			\pdd{\beta} X_\mu
+	$ is a scalar; using chain rule, we obtain:
 	\begin{equation}
 	\begin{aligned}
-		\mcal{L}'(x')
-		&= - \frac{1}{2}\,
-			\pd'^\mu\phi'(x')\,
-			\pdd{\mu}'\phi'(x')
-		- \frac{1}{2}\,m^2\phi'^2(x') \\
-		&= - \frac{1}{2}\,
-			\pd'^\mu\phi(x)\,
-			\pdd{\mu}'\phi(x)
-		- \frac{1}{2}\,m^2\phi^2(x) \\
-		&= - \frac{1}{2}\,
-			\eta^{\mu\nu}
-			\pdv{x^\rho}{x'^\mu}\,
-			\pdd{\rho}\phi(x)\,
-			\pdv{x^\sigma}{x'^\nu}\,
-			\pdd{\sigma}\phi(x)
-		- \frac{1}{2}\,m^2\phi^2(x) \\
-		&= - \frac{1}{2}\,
-			\eta^{\rho\sigma}
-			\pdd{\rho}\phi(x)\,
-			\pdd{\sigma}\phi(x)
-		- \frac{1}{2}\,m^2\phi^2(x) \\[.5ex]
-		&= \mcal{L}(x)
-	\end{aligned}
-	\end{equation}
-	Here we've used $
-		\eta^{\mu\nu}
-		\pdv{x^\rho}{x'^\mu}\,
-		\pdv{x^\sigma}{x'^\nu}
-		= \eta^{\mu\nu}
-			\lambda\id{_\mu^\rho}
-			\lambda\id{_\nu^\sigma}
-		= \eta^{\rho\sigma}
-	$. Hence, $\mcal{L}$ is invariant under Lorentz transformation. 
-	
-	\item Consider an infinitesimal Lorentz transformation: $\lambda \sim \idty + \omega$, then $
-		\eta_{\mu\nu}
-			\lambda\id{^\mu_\rho}
-			\lambda\id{^\nu_\sigma}
-		= \eta_{\rho\sigma}
-	$ implies that $\omega_{\mu\nu}$ is anti-symmetric: $
-		\omega_{\mu\nu} + \omega_{\nu\nu} = 0
-	$. For $
-		\var{x}^\mu
-		= \omega\id{^\mu_\nu} x^\nu
-	$, we have:
-	\begin{equation}
-		\var{\phi} = - \pdv{\phi}{x^\mu}
-			\var{x}^\mu
-		= - \omega\id{^\mu_\nu} x^\nu\,
-			\pdd{\mu}\phi
-%		= - \omega_{\rho\sigma} x^\sigma\,
-%			\pd^\rho \phi
-	\end{equation}
-	
-	To obtain the corresponding Noether charges, we can simply repeat the operations done in our previous problem; alternatively, we can try to derive a general recipe\footnote{
-		References: \arxiv{1601.03616} and \textit{Tong:} \url{http://damtp.cam.ac.uk/user/tong/qft.html}
-	}: for $
-		\mcal{L} = \mcal{L}(\phi,\pdd{\mu}\phi)
-	$ and $
-		S = \int \dd[4]{x} \mcal{L}
-	$, we have:
-	\begin{equation}
-	\begin{aligned}
-		\var{S}
-		&= \int\dd[4]{x} \var{\mcal{L}} \\
-		&= \int\dd[4]{x} \pqty{
-			\pdv{\mcal{L}}{\phi} \var{\phi}
-			+ \pdv{\mcal{L}}{(\pdd{\mu}\phi)}
-				\var{\pdd{\mu}\phi}
-		} \\[.5ex]
-		&= \int\dd[4]{x} \pqty{
-				\pdv{\mcal{L}}{\phi}
-				- \pdd{\mu}
-				\pdv{\mcal{L}}{(\pdd{\mu}\phi)}
-			} \var{\phi}
-		+ \int\dd[4]{x}
-			\pdd{\mu} \pqty{
-				\pdv{\mcal{L}}{(\pdd{\mu}\phi)}
-				\var{\phi}
+		\var{\mscr{L}}
+		&= \sqrt{-h}
+				\var{\widetilde{\mscr{L}}}
+			+ \widetilde{\mscr{L}}
+				\var{\sqrt{-h}} \\
+		&= \sqrt{-h}
+				\ldv{\xi} \widetilde{\mscr{L}}
+			+ \widetilde{\mscr{L}}
+				\var{\sqrt{-h}} \\
+		&= \sqrt{-h}\,
+				\xi^\gamma\pdd{\gamma}
+				\widetilde{\mscr{L}}
+			+ \widetilde{\mscr{L}}
+				\var{\sqrt{-h}} \\
+		&= \pdd{\gamma} \pqty\Big{
+				\xi^\gamma
+				\widetilde{\mscr{L}}
+				\sqrt{-h}
+			} 
+			- \widetilde{\mscr{L}}\,\pqty{
+				\sqrt{-h}\,
+					(\pdd{\gamma} \xi^\gamma)
+				+ \xi^\gamma\,
+					(\pdd{\gamma} \sqrt{-h})
+			}
+			+ \widetilde{\mscr{L}}
+				\var{\sqrt{-h}} \\
+		&= \pdd{\gamma} \pqty\big{
+				\xi^\gamma \mscr{L}
+			} 
+			- \widetilde{\mscr{L}}\,\pqty{
+				\sqrt{-h}\,
+					(\pdd{\gamma} \xi^\gamma)
+				+ \xi^\gamma\,
+					(\pdd{\gamma} \sqrt{-h})
+				- \var{\sqrt{-h}}
+			} \\
+		&= \pdd{\gamma} \pqty\big{
+				\xi^\gamma \mscr{L}
+			} 
+			- \widetilde{\mscr{L}}
+			\sqrt{-h}\,\pqty{
+				\pdd{\gamma} \xi^\gamma
+				+ \frac{1}{2}\,
+					\xi^\gamma\,
+					h^{\alpha\beta}
+					\pdd{\gamma} h_{\alpha\beta}
+				- \frac{1}{2}\,
+					h^{\alpha\beta}
+					\var{h_{\alpha\beta}}
+			} \\
+		&= \pdd{\gamma} \pqty\big{
+				\xi^\gamma \mscr{L}
+			} 
+			- \widetilde{\mscr{L}}
+			\sqrt{-h}\,\pqty{
+				\pdd{\gamma} \xi^\gamma
+				- \frac{1}{2}\,
+				h^{\alpha\beta}\,\pqty\Big{
+					(\pdd{\alpha} \xi^\gamma)\,
+						h_{\gamma\beta}
+					+ (\pdd{\beta} \xi^\gamma)\,
+						h_{\alpha\gamma}
+				}
+			} \\
+		&= \pdd{\gamma} \pqty\big{
+				\xi^\gamma \mscr{L}
+			} 
+			- \widetilde{\mscr{L}}
+			\sqrt{-h}\,\pqty\Big{
+				\pdd{\gamma} \xi^\gamma
+				- \pdd{\gamma} \xi^\gamma
+			} \\
+		&= \pdd{\gamma} \pqty\big{
+				\xi^\gamma \mscr{L}
 			}
 	\end{aligned}
 	\end{equation}
-	If we vary $S$ w.r.t.\ a symmetry of the system, we will have $\var{\mcal{L}} = \pdd{\mu} K^\mu$ some total derivative; when on-shell, such variation gives the conserved current with boundary term $K^\mu$:
-	\begin{equation}
-		j^\mu
-		= \pdv{\mcal{L}}{(\pdd{\mu}\phi)}
-			\var{\phi} - K^\mu
-	\end{equation}
+	We see that $\var{\mscr{L}}$ is a total derivative, hence $
+		\var{S} = \int \dd[2]{\sigma}
+			\var{\mscr{L}}
+		= 0
+	$, i.e.\ the action is diff-invariant. 
 	
-	Back to our Lorentz transformation $
-		\var{\phi}
-		= -\omega\id{^\mu_\nu} x^\nu\pdd{\mu}\phi
-	$, we have symmetry variation:
-	\begin{equation}
-		\var{\mcal{L}}
-		= - \omega\id{^\mu_\nu} x^\nu
-			\pdd{\mu} \mcal{L}
-		= - \pdd{\mu} \pqty{
-			\omega\id{^\mu_\nu} x^\nu
-			\mcal{L}
-		}
-	\end{equation}
-	This gives a boundary term $
-		K^\mu = -\omega\id{^\mu_\nu} x^\nu \mcal{L}
-	$, and the Noether current and its corresponding conserved charge can be calculated as follows:
-	\begin{gather}
-		j^\mu = -\omega\id{^\sigma_\nu} x^\nu
-		\pqty{
-			\pdv{\mcal{L}}{(\pdd{\mu}\phi)}
-				\,\pdd{\sigma} \phi
-			- \delta^\mu_\sigma \mcal{L}
-		},\\[1ex]
-		Q = \int \dd[3]{x} j^0
-		= - \omega\id{^\sigma_\nu} \int \dd[3]{x}
-		x^\nu \pqty{
-			\pdd{0}\phi\,\pdd{\sigma}\phi
-			- \delta^0_\sigma \mcal{L}
-		},
-	\end{gather}
-	
-	Note that $\omega\id{^\mu_\nu}$ is arbitrary, therefore $Q$ can be decomposed into independent charges:
-	\begin{equation}
-		Q = \omega_{\mu\nu} M^{\mu\nu},\quad
-		M^{\mu\nu}
-		= - \int \dd[3]{x}
-		x^{[\mu} \pqty{
-			\pdd{0}\phi\,\pd^{\nu]}\phi
-			- \eta^{\nu] 0} \mcal{L}
-		},
-	\end{equation}
-	The indices of $M^{\mu\nu}$ are anti-symmetrized to match the degrees of freedom in $\omega_{\mu\nu}$. Note that the $\mcal{L}$ term only appears when one of the indices is 0. 
-	
-	Canonical quantization:
-	\begin{gather}
-		\dot{\phi} = \pdd{0}\phi,\quad
-		\Pi = \pdv{\mcal{L}}{\dot{\phi}}
-		= \dot{\phi},\quad
-		[\phi(\vb{x}),\Pi(\vb{y})]
-		= [\phi,\dot{\phi}](\vb{x})
-		= i\delta(\vb{x} - \vb{y})
-	\end{gather}
-	Other equal-time commutators between $\phi,\Pi$ all just vanish. We have:
-	\begin{equation}
-		M^{0i} = -M^{i0}
-		= -\frac{1}{2}\,
-		\int \dd[3]{x} \pqty{
-			\dot{\phi}\,\pqty{
-				x^0 \pd^i
-				- x^i \pd^0
-			}\,\phi
-			+ x^i \mcal{L}
-		},\\
-		M^{ij}
-		= -\frac{1}{2}\,\int \dd[3]{x}
-			\dot{\phi}\,\pqty{
-				x^i \pd^j
-				- x^j \pd^i
-			}\,\phi
-	\end{equation}
-	
-	Notice that $
-		x^{[\mu} \pd^{\nu]}
-		= \frac{1}{2}\,\pqty{
-			x^\mu \pd^\nu - x^\nu \pd^\mu
-		} = \frac{1}{2} D^{ij}
-	$ is the Killing vector fields of $\mbb{R}^{3,1}$, hence they naturally follow the commutation relations of $\mfrak{so}(3,1)$ (up to a constant coefficient)\footnote{
-		I would like to thank \textit{林般} for pointing this out. 
-	}. We have:
+	\item The action is Weyl invariant; with $
+		\var{h^{\alpha\beta}}
+		= -\lambda(\sigma)\,h^{\alpha\beta}
+	$, we have:
 	\begin{equation}
 	\begin{aligned}
-		[M^{ij}, M^{kl}]
-		&= \frac{1}{4}\,\int \dd[3]{x}
-			\int \dd[3]{y} \bqty{
-				\dot{\phi} D^{ij}\phi(x),
-				\dot{\phi} D^{kl}\phi(y)
-			} \\
-		&= \frac{1}{4}\,\int \dd[3]{x}
-			\dot{\phi}\,\bqty{
-				 D^{ij}, D^{kl}
-			}\,\phi
+		\var\pqty{
+			\sqrt{-h}\,h^{\alpha\beta}
+		}
+		&= \sqrt{-h}
+				\var{h^{\alpha\beta}}
+			+ h^{\alpha\beta}
+				\var{\sqrt{-h}} \\
+		&= \sqrt{-h}\,h^{\alpha\beta} \pqty{
+			- \lambda
+			- \frac{1}{2}\,
+				h_{\alpha'\beta'}
+				\var{h^{\alpha'\beta'}}
+		} \\
+		&= \sqrt{-h}\,h^{\alpha\beta} \pqty{
+			- \lambda
+			+ \frac{1}{2}\,\lambda\,
+				h_{\alpha'\beta'}
+				h^{\alpha'\beta'}
+		} \\
+		&= \sqrt{-h}\,h^{\alpha\beta} \pqty{
+			- \lambda
+			+ \frac{2}{2}\,\lambda
+		} \\
+		&= 0
 	\end{aligned}
 	\end{equation}
-	Similar holds for $M^{i0}$. Therefore, $M^{\mu\nu}$'s indeed form the Lie algebra $\mfrak{so}(3,1)$. 
-	\qedfull
+	Here we've used the fact that $
+		h_{\alpha\beta} h^{\alpha\beta}
+		= \delta^\alpha_\alpha
+		= 2
+	$. Therefore, $
+		\var{\mscr{L}}
+		= -\frac{1}{2}\,
+			\pdd{\alpha} X^\mu\,
+			\pdd{\beta} X_\mu
+			\var\pqty{
+				\sqrt{-h}\,h^{\alpha\beta}
+			}
+		= 0
+	$, i.e.\ the action is Weyl invariant. 
 	
+	\item FP quantization of this system follows the same recipe as the point particle case above: 
+	\begin{gather}
+		\mcal{Z}
+		= \int \DD{X}\,\DD{h}\,\DD{b}\,\DD{c}\,
+			e^{iS_{q}},\quad
+		S_q = \int \dd[2]{\sigma} \mscr{L}_q,\\
+		\mscr{L}_q
+		= \mscr{L} + \mscr{L}_{gf} + \mscr{L}_{gh}
+	\end{gather}
+	Given gauge fixing: $
+		f^{\alpha\beta}
+		= h^{\alpha\beta} - h^{\alpha\beta}_{(0)}
+	$\,, we have:
+	\begin{equation}
+		\mscr{L}_{gf}
+		= -\frac{1}{2\zeta}\,
+			f^{\alpha\beta}
+			f_{\alpha\beta} \sqrt{-h}
+		= -\frac{1}{2\zeta}\,\pqty{
+				h^{\alpha\beta}
+				- h^{\alpha\beta}_{(0)}
+			} \pqty{
+				h_{\alpha\beta}
+				- h_{\alpha\beta}^{(0)}
+			} \sqrt{-h}
+	\end{equation}
+	
+%	Alternatively, we can introduce a non-dynamical field $B$ ...
+	
+	The FP ghost term $\mscr{L}_{gh}$ is given by functional determinant; we have:
+	\begin{align}
+		\fdv{f^{\alpha\beta}_\xi(\sigma)}
+			{\xi^\gamma(\sigma')}\,
+			\bigg|_{\,0} \!\!
+		&= \fdv{\xi^\gamma(\sigma')}\,
+			\bigg|_{\,0}
+			\pqty{
+				\ldv{\xi} h^{\alpha\beta}
+				- \lambda h^{\alpha\beta}
+			}_{\!(\sigma)} \\[.5ex]
+		&= \delta(\sigma-\sigma')\,
+				\pdd{\gamma} h^{\alpha\beta}
+			- \delta^\alpha_\gamma\,\pd^\beta
+				\delta(\sigma-\sigma')
+			- \delta^\beta_\gamma\,\pd^\alpha
+				\delta(\sigma-\sigma') \\
+		&= - \delta^\alpha_\gamma\,\nabla^\beta
+				\delta(\sigma-\sigma')
+			- \delta^\beta_\gamma\,\nabla^\alpha
+				\delta(\sigma-\sigma'), \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%		\lambda
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		\fdv{f^{\alpha\beta}_\xi(\sigma)}
+			{\lambda(\sigma')}\,
+			\bigg|_{\,0} \!\!
+		&= - \delta(\sigma-\sigma')\,
+				h^{\alpha\beta},
+	\end{align}
+	Here we've replaced $\pd$ with $\nabla$ which commutes with the metric $h_{\alpha\beta}$. 
+	Define $
+		\Xi^\Gamma
+		= (\xi^\gamma,\lambda)
+	$ to combine all gauge parameters, and use fermionic FP ghosts: $b_{\alpha\beta},\ c^\Gamma = (c^\gamma,c')$ to contract the indices; after some integration by parts, we have:
+	\begin{equation}
+		\det \fdv{f^{\alpha\beta}_\xi(\sigma)}
+			{\Xi^\Gamma(\sigma')}\,
+			\bigg|_{\,0} \!\!
+		\sim \int
+			\DD{b_{\alpha\beta}}\,
+			\DD{c^\gamma}\,\DD{c'}\,
+			\exp \pqty{
+				i\int \dd[2]{\sigma}
+				\sqrt{-h}\,b_{\alpha\beta}\,
+				\pqty\Big{
+					- \nabla^\beta c^\alpha
+					- \nabla^\alpha c^\beta
+					- h^{\alpha\beta} c'
+				}
+			}
+	\end{equation}
+%\pagebreak[4]
+	
+	To simplify the action, it is common\footnote{
+		References: \textit{Tong:} \url{http://damtp.cam.ac.uk/user/tong/string.html}, and also \textit{Polchinski}. 
+	} to integrate $c'$ out, which constrains $b_{\alpha\beta}$ to be symmetric traceless: $
+		b_{\alpha\beta} h^{\alpha\beta}
+		= b^\alpha_\alpha = 0
+	$. The resulting $b_{\alpha\beta}$ has 2 degrees of freedom, same as $c^\gamma$. 
+	
+	In the end, we have:
+	\begin{equation}
+		\det \fdv{f^{\alpha\beta}_\xi(\sigma)}
+			{\Xi^\Gamma(\sigma')}\,
+			\bigg|_{\,0} \!\!
+		\sim \int
+			\DD{b_{\alpha\beta}}\,
+			\DD{c^\gamma}\,
+			\exp \pqty{
+				-2i\int \dd[2]{\sigma}
+				\sqrt{-h}\,
+				b_{\alpha\beta}\,
+				\nabla^\alpha c^\beta
+			}
+	\end{equation}
+	Therefore, FP quantization with $
+		f^{\alpha\beta}
+		= h^{\alpha\beta} - h^{\alpha\beta}_{(0)}
+	$ yields:
+	\begin{gather}
+		\mcal{Z}
+		= \int \DD{X}\,\DD{h^{\alpha\beta}}\,
+			\DD{b_{\alpha\beta}}\,\DD{c^\gamma}\,
+			e^{iS_{q}},\quad
+		S_q = \int \dd[2]{\sigma} \mscr{L}_q,\quad
+		\mscr{L}_q
+		= \mscr{L} + \mscr{L}_{gf} + \mscr{L}_{gh},
+		\\[.5ex]
+		\mscr{L}_{gf}
+		= -\frac{1}{2\zeta}\,
+			f^{\alpha\beta}
+			f_{\alpha\beta} \sqrt{-h}
+		= -\frac{1}{2\zeta}\,\pqty{
+				h^{\alpha\beta}
+				- h^{\alpha\beta}_{(0)}
+			} \pqty{
+				h_{\alpha\beta}
+				- h_{\alpha\beta}^{(0)}
+			} \sqrt{-h},\\[.5ex]
+		\mscr{L}_{gh}
+		= -2b_{\alpha\beta}\,
+			\nabla^\alpha c^\beta \sqrt{-h}
+	\end{gather}
+	\qedfull
 	\end{itemize}
 
 \printbibliography[%

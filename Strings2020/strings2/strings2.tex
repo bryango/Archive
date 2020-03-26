@@ -714,13 +714,15 @@
 	To obtain a full expression, notice that for the above transformation to be a \textit{symmetry}, the action should be invariant under $X(z)\mapsto X'(z)$:
 	\begin{equation}
 		S' = S
-		\propto \int \dd[2]{z}
-			\pd X^\mu \pdbar X_\mu
-		= \int \dd[2]{z'}
-			\pd' X'^\mu \pdbar' X'_\mu
-%		= \int \dd[2]{z'}
-%			\pd' X'^\mu \pdbar' X'_\mu (z',\bar{z}')
+		\ \Longrightarrow\ %
+		\int \dd[2]{z}
+			\pd X'^\mu \pdbar X'_\mu (z,\bar{z})
+		\xlongequal{(*)} \int \dd[2]{z'}
+			\pd' X'^\mu \pdbar' X'_\mu (z',\bar{z}')
+		= \int \dd[2]{z}
+			\pd X^\mu \pdbar X_\mu (z,\bar{z})
 	\end{equation}
+	Here at $(*)$ we use the diff-invariant property of the action. 
 	Restore the anti-holomorphic component and insert \eqref{eq:dilaton_holomorphic}, then we find that in order to cancel the $\order{\epsilon^2}$ terms, we have to fix:
 %	\begin{gather}
 %		X'(z',\bar{z}') - \alpha'V

@@ -182,8 +182,9 @@
 \pagebreak[3]
 	
 	\item Under $
-		x'^\mu = \lambda\id{^\mu_\nu} x^\nu,\ %
-		\phi(x)\mapsto\phi'(x)
+		x'^\mu = \lambda\id{^\mu_\nu} x^\nu
+%		,\ %
+%		\phi(x)\mapsto\phi'(x)
 	$, we have:
 	\begin{equation}
 	\begin{aligned}
@@ -219,7 +220,13 @@
 			\lambda\id{_\mu^\rho}
 			\lambda\id{_\nu^\sigma}
 		= \eta^{\rho\sigma}
-	$. Hence, $\mcal{L}$ is invariant under Lorentz transformation. 
+	$. Furthermore, $
+		S' = \int \dd[4]{x} \mcal{L}'(x)
+		= \int \dd[4]{x'} \mcal{L}'(x')
+		= \int \dd[4]{x'} \mcal{L}(x)
+		= \int \dd[4]{x} \mcal{L}(x)
+		= S
+	$, hence the action is invariant under Lorentz transformation. 
 	
 	\item Consider an infinitesimal Lorentz transformation: $\lambda \sim \idty + \omega$, then $
 		\eta_{\mu\nu}
