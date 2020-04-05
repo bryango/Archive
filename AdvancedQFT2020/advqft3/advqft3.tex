@@ -1,0 +1,509 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper,10pt]{article}
+
+\newcommand{\hwNumber}{3}
+
+\input{../advqft_preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+%%% ID: sensitive, do NOT publish!
+%\InputIfFileExists{../id.tex}{}{}
+\usepackage{cancel}
+
+\begin{document}
+\maketitle
+\pagestyle{headings}
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+\vspace*{-1.5\baselineskip}
+
+\section{BRST Symmetry}
+	The BRST transformation of $c^a$ ghost is:
+	\begin{equation}
+		\var{c^a} = \frac{1}{2}\,
+			f\id{^a_{bc}} c^b c^c \Lambda,\quad
+		\var{c} = \var{c^a} T_a
+		= \frac{1}{2}\,\bqty{c,c\Lambda}
+	\end{equation}
+	$D_\mu = \pdd{\mu} + A^a_\mu\,T_a$, $T_a$ acts on $c^a$ by adjoint representation: $
+		\pqty{T_a}\id{^c_b}\, c^b
+		= f\id{^c_{ab}} c^b
+	$, i.e.\ %
+	\begin{gather}
+		T_a\cdot c
+		= \pqty{T_a}\id{^c_b}\, c^b\, T_c
+		= f\id{^c_{ab}} T_c\,c^b
+		= [T_a, T_b]\,c^b
+		= [T_a, c], \\
+		D_\mu c
+		= \pdd{\mu} c + [A_\mu, c]
+		= [D_\mu, c], \\
+		D_\mu \var{c}
+		= \pdd{\mu} \var{c}
+			+ \bqty\big{
+				A_\mu, \var{c}
+			},\\[1ex]
+	\begin{aligned}
+		(D_\mu \var{c})^a
+		&= \pdd{\mu} \var{c}^a
+			+ \bqty\big{
+				A_\mu, \var{c}
+			}^a \\
+		&= \pdd{\mu} \var{c}^a
+			+ A_\mu^c\,\bqty\big{
+				T_c, T_b
+			}^a \var{c}^b \\
+		&= \pdd{\mu} \var{c}^a
+			+ A_\mu^c\,f\id{^a_{cb}}
+				\var{c}^b \\
+		&= \pdd{\mu} \var{c}^a
+			+ A_\mu^c\,\pqty{T_c}\id{^a_b}
+				\var{c}^b \\
+		&= D_\mu (\var{c}^a),
+	\end{aligned}\\[.5ex]
+	\text{i.e.}\quad
+		(D_\mu \var{c})^a
+		- \frac{1}{2}\,D_\mu \pqty{
+				f\id{^a_{bc}} c^b c^c \Lambda
+			}
+		= (D_\mu \var{c})^a
+		+ \frac{1}{2}\,D_\mu \pqty{
+				f\id{^a_{bc}} c^b \Lambda c^c
+			}
+		= 0
+	\end{gather}
+	
+%	Note that the commutator $[,] \equiv [,]_\circ$ is defined with composition of operators, i.e.\ $
+%		[\pdd{\mu}, c]
+%		= \pdd{\mu}\circ c - c\circ \pdd{\mu}
+%		= (\pdd{\mu} c)
+%	$. By Jacobi identity, we have:
+%	\begin{equation}
+%	\begin{aligned}
+%		D_\mu \var{c}
+%		&= \frac{1}{2}\,\bqty\big{
+%			D_\mu, [c,c\Lambda]
+%		} \\
+%		&= \frac{1}{2}\,\pqty\Big{
+%			\bqty\big{
+%				[D_\mu,c], c\Lambda
+%			}
+%			- \bqty\big{
+%				[D_\mu,c\Lambda], c
+%			}
+%		} \\
+%		&= \bqty\big{
+%				[D_\mu,c], c\Lambda
+%			}
+%		= [D_\mu c,c\Lambda]
+%	\end{aligned}
+%	\end{equation}
+\section{Relativistic Particle}
+	\vspace*{-2\baselineskip}
+	\begin{gather}
+		L_q
+		= L + L_{gf} + L_{gh},\\[1ex]
+		L = \frac{1}{2e} \pqty{
+				\frac{1}{c_0}\dv{X}{t}
+			}^2 - \frac{e}{2}\,m^2 c_0^4,\\
+		L_{gh} = - e\dot{b}c
+	\end{gather}
+	
+	\begin{itemize}
+	\item For $t\mapsto t' = t - \xi(t)$, we have gauge transformation: $
+		\var{X^\mu}
+		= \xi\dot{X}^\mu,\ %
+		\var{e}
+		= \dv{t} \pqty\big{e\xi},\ 
+		\var{L}
+		= \dv{t} \pqty\big{\xi L}
+	$, replace $\xi\mapsto c\Lambda$, and we have BRST transformation:
+	\begin{equation}
+		\var{X^\mu}
+		= c\Lambda\dot{X}^\mu
+		= c\dot{X}^\mu \Lambda,\quad
+		\var{e}
+		= \dv{t} \pqty\big{ec\Lambda}
+		= \dv{t} \pqty\big{ec} \Lambda
+	\end{equation}
+	
+	\item Assume nilpotency, and we have:
+	\begin{gather}
+	\begin{aligned}
+		0 = \var_\Lambda
+			\var_{\Lambda'} X^\mu
+		&= \pqty\big{
+				(\var_\Lambda {c})\,\dot{X}^\mu
+				+ c\,\var_\Lambda \dot{X}^\mu
+			} \Lambda' \\
+		&= \pqty{
+				(\var_\Lambda {c})\,\dot{X}^\mu
+				+ c\,\pqty\big{
+					\dot{c} \dot{X}^\mu
+					+ \cancel{c\ddot{X}^\mu}
+				} \Lambda
+			} \Lambda' \\
+		&= \pqty{
+				\var_\Lambda {c} 
+				+ c\dot{c} \Lambda
+			}\,\dot{X}^\mu \Lambda',
+	\end{aligned}\\[1ex]
+	\allowdisplaybreaks
+	\boxed{
+		\var_\Lambda c
+		= - c\dot{c} \Lambda
+	}\\
+	\begin{aligned}
+		\var_\Lambda
+			\var_{\Lambda'} e
+		&= \dv{t} \pqty\big{
+				(\var_\Lambda e)\, c
+				+ e\,\var_\Lambda c
+			} \Lambda' \\
+		&= \dv{t} \pqty{
+				\dv{t} \pqty\big{ec} \Lambda c
+				- e\,c\dot{c}\Lambda
+			} \Lambda' \\
+		&= \dv{t} \pqty\big{
+				e \dot{c} \Lambda c
+				- e\,c\dot{c}\Lambda
+			} \Lambda' = 0
+	\end{aligned}
+	\end{gather}
+	
+	\item The BRST transformation for $c$ is also nilpotent:
+	\begin{equation}
+	\begin{aligned}
+		\var_\Lambda
+			\var_{\Lambda'} c
+		&= -\pqty\big{
+				(\var_\Lambda c)\,\dot{c}
+				+ c\,\var_\Lambda \dot{c}
+			} \Lambda' \\
+		&= -\pqty\big{
+				- c\dot{c}\Lambda\,\dot{c}
+				- c\,c\dot{c}\Lambda
+			} \Lambda' = 0
+	\end{aligned}
+	\end{equation}
+	
+	\item Gauge fixing $
+		f = e(t) - 1 = 0
+	$ can be imposed by:
+	\begin{gather}
+		\delta\bqty\big{f}
+		\sim \int \DD{d(t)}\,
+			\exp\pqty{
+				i\int \dd{t} d(t)\,f(t)
+			},\\[.5ex]
+		L_{gf}
+		= d(t) f(t)
+		= d(t)\,\pqty\big{
+				e(t) - 1
+			}
+	\end{gather}
+	The quantum action is $
+		S_q = \int \dd{t} L_q,\ %
+		L_q
+		= L[X,e] + L_{gf}[e,d] + L_{gh}[e,b,c]
+	$. We want $S_q$ to be BRST invariant, which will help determine transformation rules for $b,d$; consider: 
+	\begin{equation}
+	\begin{aligned}
+		\var \pqty{
+			L_{gf} + L_{gh}
+		}
+		&= (e-1) \var{d} + d\var{e}
+			- \var \pqty\big{e\dot{b}c} \\
+		&= (e-1) \var{d}
+			+ d(t)\,
+				\dv{t}\pqty\big{ec}\,\Lambda
+			+ \pqty\big{ec} \var{\dot{b}} \\
+		&= (e-1) \var{d}
+			+ \dv{t} \pqty\big{ec}\,\pqty\big{
+				d(t)\,\Lambda
+				- \var{b}
+			}
+			+ \dv{t} \pqty\big{ec \var{b}}
+	\end{aligned}
+	\label{eq:var_aux_fields}
+	\end{equation}
+	We find a natural choice of $
+		\var{b},\var{d}
+	$:
+	\begin{equation}
+		\var{d} = 0,\quad
+		\var{b} = d(t)\,\Lambda,\quad
+		\var \pqty{
+			L_{gf} + L_{gh}
+		} = \dv{t} \pqty\big{ec \var{b}}
+	\end{equation}
+	
+	\item The complete quantum action is BRST invariant, since:
+	\begin{gather}
+		\var{L}
+		= \dv{t} \pqty\big{\xi L}_{
+				\xi\mapsto c\Lambda
+			}
+		= \dv{t} \pqty\big{cL} \Lambda,\quad
+		\var \pqty{L_{gf} + L_{gh}}
+		= \dv{t} \pqty\big{ec \var{b}},\\[.5ex]
+		\var{S_q}
+		= \int \dd{t} \var{L_q}
+		= \int \dd{t} \pqty\Big{
+			\var{L}
+			+ \var \pqty{L_{gf} + L_{gh}}
+		} = 0
+	\end{gather}
+	
+	\item Note that $
+		\fdv{S_q}{d} = 0
+		\ \Rightarrow\ %
+		f = e - 1 = 0
+	$. Moreover, 
+	\begin{gather}
+		\fdv{S_q}{e} = 0
+		\quad\Longrightarrow\quad
+		- \frac{1}{2}\,\pqty{
+				\frac{1}{e^2 c_0^2} \dot{X}^2
+				+ m^2 c_0^4
+			} + d - \dot{b}c = 0,\\[.8ex]
+%		\textsl{On shell:}\quad
+		d = d[X,b,c]
+		= \frac{1}{2}\,\pqty\big{
+				\tfrac{1}{c_0^2} \dot{X}^2
+				+ m^2 c_0^4
+			} + \dot{b}c
+	\end{gather}
+	Therefore, it is convenient to consider the reduced Lagrangian $
+		L_q[X,b,c] = (L_q)_{
+				e=1,\, d=d[X]
+			}
+	$, where $e,d$ are integrated out\footnote{
+		Reference: \textit{Polchinski}. 
+	}. The symmetries are thus reduced to:
+	\begin{gather}
+	\allowdisplaybreaks
+		\var{X^\mu}
+		= c\dot{X}^\mu \Lambda,\quad
+		\var{b}
+		= d[X,b,c] \Lambda,\quad
+		\var{c}
+		= - c\dot{c} \Lambda,
+	\label{eq:reduced_sym} \\
+		\var{L_q}
+		= \dv{t} \pqty\Big{
+				cL\Lambda + ec\,\var{b}
+			}_{\!e=1} \!\!
+		= \dv{t} \pqty{
+				cL_{e=1}
+				+ \frac{c}{2}\,\pqty\big{
+						\tfrac{1}{c_0^2} \dot{X}^2
+						+ m^2 c_0^4
+					}
+			} \Lambda
+		= \dv{t} \pqty{
+				c\,\pqty\big{
+					\tfrac{1}{c_0} \dot{X}
+				}^{\!2\,}
+			} \Lambda,\\[1ex]
+		L_q
+		= \frac{1}{2}\,\pqty\big{
+				\tfrac{1}{c_0} \dot{X}
+			}^{\!2\,}
+			- \frac{1}{2}\,m^2 c_0^4
+			- \dot{b} c
+	\end{gather}
+	
+	On the other hand, the \textit{on-shell} variation is given by:
+	\begin{gather}
+		\var_0{L_q}
+		= \dv{t} \pqty{
+				\pdv{L_q}{\dot{X}^\mu} \var{X^\mu}
+				+ \pdv{L_q}{\dot{b}} \var{b}
+			}
+		= \dv{t} \Bqty{c\,\pqty{
+				\pqty\big{
+					\tfrac{1}{c_0} \dot{X}
+				}^{\!2\,}
+				+ d[X,b,c]
+			}} \Lambda,
+	\end{gather}
+	The $\dot{b}c$ term in $d[X,b,c]$ is killed by the $c$ multiplication: $c\,d[X,b,c] = c\,d[X]$. 
+	Therefore, the canonical BRST charge $Q$ is given by:
+	\begin{gather}
+		0 = \var_0{L_q} - \var{L_q}
+		= \dv{Q}{t} \Lambda
+		= \dv{t} \pqty\big{c\,d[X]} \Lambda,\\[1ex]
+		Q = c\,d[X]
+		= \frac{c}{2}\,\pqty\big{
+				\tfrac{1}{c_0^2} \dot{X}^2
+				+ m^2 c_0^4
+			}
+	\end{gather}
+	
+	\item Note that $
+		L_{gh}
+		= -\dot{b} c
+		= b\dot{c} - \dv{t} \pqty\big{bc}
+		\sim b\dot{c}
+	$; for future convenience, let's replace $
+		(-\dot{b} c)\mapsto b\dot{c}
+	$ in the Lagrangian, and we have:
+	\begin{equation}
+		p_\mu = \pdv{L}{\dot{X}^\mu}
+		= \tfrac{1}{c_0^2} \dot{X}_\mu,\quad
+		p_c = \pdv{L}{\dot{c}}
+		\equiv \pqty\big{b\dot{c}}
+			\lvec{\pdv{\dot{c}}}
+		= b
+	\end{equation}
+	Here we adopt the ``right'' derivative convention, in this case the Hamiltonian:
+	\begin{equation}
+		H = p_\mu \dot{X}^\mu
+			+ p_c\,\dot{c} - L_q
+		= \frac{c_0^2}{2}\,p_\mu p^\mu
+			+ \frac{1}{2}\,m^2 c_0^4
+		= \frac{1}{2}\,\pqty{
+				p^2 c_0^2 + m^2 c_0^4
+			}
+	\end{equation}
+	
+	\item We have:
+	\begin{equation}
+		Q = \frac{c}{2}\,\pqty\big{
+				\tfrac{1}{c_0^2} \dot{X}^2
+				+ m^2 c_0^4
+			}
+		= \frac{c}{2}\,\pqty{
+				p^2 c_0^2 + m^2 c_0^4
+			}
+		= cH
+	\end{equation}
+	After canonical quantization, $p_\mu, p_c$ and $H$ are promoted to Hermitian operators, and:
+	\begin{equation}
+		Q^2 = cH\cdot cH = 0
+	\end{equation}
+	
+	\item
+%	The $bc$ system generates a two-state system: 
+%	\begin{equation}
+%		\newcommand{\spaced}[1]{\ \ #1\ \ }
+%		0
+%		\xleftarrow{\spaced{b}}
+%		\ket{\downarrow}
+%		\xrightleftharpoons[\spaced{b}]{c}
+%		\ket{\uparrow}
+%		\xrightarrow{\spaced{c}}
+%		0
+%	\end{equation}
+%	Therefore, all states are (at least) doubly degenerate. Note that $\ket{\uparrow}$ and $\ket{\downarrow}$ states are isomorphic and orthogonal to each other, hence we need only one set of states, e.g.\ $\ket{\psi} = \ket{\psi,\downarrow}$, to describe physical process\footnote{
+%		Reference: \textit{Polchinski}. 
+%	}; this can be achieved by imposing an additional condition, e.g.\ $b\ket{\psi} = 0$. 
+%\pagebreak[3]
+%	
+%	Furthermore, 
+	Note that:
+	\begin{gather}
+		[p_\mu,X^\nu]
+		= -i\delta^\nu_\mu,\quad
+		[p_\mu,\mcal{F}(X)]
+		= -i\pdd{\mu} \mcal{F}(X),
+%		\\[.5ex]
+%		\frac{c}{2}\,[p^2 c_0^2,X^\mu]
+%		= -c_0^2\,\frac{c}{2}\,[X^\mu,p_\nu p^\nu]
+%		= -c_0^2\,\frac{c}{2}\,\pqty{
+%				i\,2p^\mu
+%			}
+%		= -ic\,(c_0^2\,p^\mu)
+%		= -ic\,\pdd{t} X^\mu,\\
+%		[Q,F(X)]
+%		= c\,\pqty{
+%				-i\pdd{t} + m^2 c_0^4
+%			}\, F(X),
+	\end{gather}
+	i.e.\ $p_\mu$ acts on $\mcal{F}(X)$ by $X$--derivative; from the path integral perspective, we have:
+	\begin{gather}
+		\allowdisplaybreaks
+		\ave[\big]{p_\mu\,\mcal{F}(X)}
+		= \int\DD{p}\,\DD{X}\,\DD{b}\,\DD{c}\,
+			e^{iS[p,X,b,c]}\,
+			p_\mu\,\mcal{F}(X), \\
+		S[p,X,b,c] = \int \dd{t} \pqty{
+				p_\mu \dot{X}^\mu
+				+ \dot{b}c
+				- H[p]
+			},\\
+		\int \dd{t'} \fdv{S}{X^\mu(t')}
+		= \int \dd{t'} \int \dd{t} 
+			p_\mu\,\pdd{t}\,\delta(t-t')
+		\sim -\int \dd{t'} \dot{p}_\mu(t')
+		= -p_\mu,\\
+	\begin{aligned}
+		\ave[\big]{p_\mu\,\mcal{F}(X)}
+		&= \int \dd{t'}
+			\int\DD{p}\,\DD{X}\,\DD{b}\,\DD{c}\,
+			\pqty{
+				i\,\fdv{X^\mu(t')}\,
+				e^{iS[p,X,b,c]}
+			}\,\mcal{F}(X) \\
+		&= \int\DD{p}\,\DD{X}\,\DD{b}\,\DD{c}\,
+			e^{iS[p,X,b,c]}\,
+			\int \dd{t'}
+			\pqty{
+				-i\,\fdv{X^\mu(t')}\,
+			} \mcal{F}(X),
+	\end{aligned}\\
+		p_\mu\,\mcal{F}(X)
+		\sim \int \dd{t'}
+			\pqty{
+				-i\,\fdv{X^\mu(t')}\,
+			}\,\mcal{F}(X)
+		= -i\,\pdv{X^\mu} \mcal{F}(X)
+	\end{gather}
+	
+	For $
+		e^{ik_\mu X^\mu} \ket{0},\ %
+		\mcal{F}(X) = e^{ik_\mu X^\mu}
+	$, it is $Q$--closed iff.\ %
+	\begin{gather}
+	\begin{aligned}
+		0 = Q\,e^{ik_\mu X^\mu} \ket{0}
+%		= [Q,e^{ik_\mu X^\mu}] \ket{0}
+%		= c\,\pqty{
+%				-ik_\nu p^\nu + m^2 c_0^4
+%			} \pqty\big{
+%				e^{k_\mu X^\mu} \ket{0}
+%			} \\
+%		&= c\,\pqty{
+%				-ik_\nu\,(-ik^\nu)
+%				+ m^2 c_0^4
+%			} \pqty\big{
+%				e^{k_\mu X^\mu} \ket{0}
+%			} \\
+		&= \frac{c}{2}\,\pqty{
+				p^2 c_0^2 + m^2 c_0^4
+			} e^{ik_\mu X^\mu} \ket{0} \\
+		&= \frac{c}{2}\,\pqty{
+				k^2 c_0^2 + m^2 c_0^4
+			} \pqty\big{
+				e^{ik_\mu X^\mu} \ket{0}
+			},
+	\end{aligned}\\[1ex]
+		k^2 c_0^2 = k_\mu k^\mu c_0^2
+		= - E^2 + \vb{k}^2 c_0^2
+		= - m^2 c_0^4,
+	\end{gather}
+	Or $
+		E^2 = \vb{k}^2 c_0^2 + m^2 c_0^4
+	$. This is the dispersion relation of a relativistic particle. 
+	\end{itemize}
+
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}
