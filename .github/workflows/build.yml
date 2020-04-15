@@ -22,22 +22,24 @@ jobs:
     - name: Build
       uses: ./.github/actions/latex-action/
 
-    - name: Release
+    - name: Create release
+      run: |
+        mkdir release
+        mv */*/*.pdf release
+        cp README.md LICENSE release
+        git tag --force latest
+        git push --force --tags "https://bryango:${{ secrets.GITHUB_TOKEN }}@github.com/bryango/Homework.git" master
+
+    - name: Publish release
       if: always()
       uses: svenstaro/upload-release-action@v1-release
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
         tag: latest
-        file: '*/*/*.pdf'
+        file: 'release/*'
         file_glob: true
         overwrite: true
     
-    - name: Transfer release
-      run: |
-        mkdir release
-        mv */*/*.pdf release
-        cp README.md LICENSE release
-
     - name: Checkout resources
       uses: actions/checkout@master
       with:

@@ -2,6 +2,7 @@
 *.pdf
 id.tex
 .fuse_hidden*
+release/*
 
 # tex
 ## Core latex/pdflatex auxiliary files:
