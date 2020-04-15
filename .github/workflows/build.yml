@@ -31,5 +31,36 @@ jobs:
         file: '*/*/*.pdf'
         file_glob: true
         overwrite: true
+    
+    - name: Transfer release
+      run: |
+        mkdir release
+        mv */*/*.pdf release
+        cp README.md LICENSE release
+
+    - name: Checkout resources
+      uses: actions/checkout@master
+      with:
+        repository: 'bryango/resources'
+        clean: false
+        path: 'resources'
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Transfer to resources
+      run: mv -f release/* resources/homework/.
+
+    - name: Commit resources
+      run: |
+        cd resources
+        git config --local user.email "workflow@github.com"
+        git config --local user.name "Workflow - Homework"
+        git commit -m "[workflow] Update homework" -a
+
+    - name: Push resources
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.PUSH_SECRET }}
+        repository: 'bryango/resources'
 
 # vim: ts=2 sw=2

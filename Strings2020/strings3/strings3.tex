@@ -522,67 +522,67 @@
 	\item \textbf{SUSY Sigma Models via Superspace:}
 	\begin{gather}
 	\begin{aligned}
-		D_{\bar{\theta}} \vb{X}^\mu
+		D_{\bar{\theta}} \vb{X}^\nu
 		&= \pqty{
 				\pdd{\bar{\theta}}
 				+ \bar{\theta} \pdd{\bar{z}}
 			}
 			\pqty\big{
-				X^\mu
-				+ i\theta\psi^\mu
-				+ i\bar{\theta}\tilde{\psi}^\mu
-				+ \theta\bar{\theta} F^\mu
+				X^\nu
+				+ i\theta\psi^\nu
+				+ i\bar{\theta}\tilde{\psi}^\nu
+				+ \theta\bar{\theta} F^\nu
 			} \\
-		&= i\tilde{\psi}^\mu
-			- \theta F^\mu
+		&= i\tilde{\psi}^\nu
+			- \theta F^\nu
 			+ \bar{\theta}\,
-				\pdbar X^\mu
+				\pdbar X^\nu
 			- i\theta\bar{\theta}\,
-				\pdbar \psi^\mu, \\[.5ex]
-		D_\theta \vb{X}^\nu
-		&= i\psi^\nu
-			+ \bar{\theta} F^\nu
+				\pdbar \psi^\nu, \\[.5ex]
+		D_\theta \vb{X}^\mu
+		&= i\psi^\mu
+			+ \bar{\theta} F^\mu
 			+ \theta\,
-				\pd X^\nu
+				\pd X^\mu
 			+ i\theta\bar{\theta}\,
-				\pd \tilde{\psi}^\nu,
+				\pd \tilde{\psi}^\mu,
 	\end{aligned}
 	\\[1ex]
 	\begin{aligned}
-		D_{\bar{\theta}} \vb{X}^\mu
-		D_\theta \vb{X}^\nu
+		D_{\bar{\theta}} \vb{X}^\nu
+		D_\theta \vb{X}^\mu
 		&= \pqty{
-				i\tilde{\psi}^\mu
-				- \theta F^\mu
+				i\tilde{\psi}^\nu
+				- \theta F^\nu
 				+ \bar{\theta}\,
-					\pdbar X^\mu
+					\pdbar X^\nu
 				- i\theta\bar{\theta}\,
-					\pdbar \psi^\mu
+					\pdbar \psi^\nu
 			}
 			\pqty{
-				i\psi^\nu
-				+ \bar{\theta} F^\nu
+				i\psi^\mu
+				+ \bar{\theta} F^\mu
 				+ \theta\,
-					\pd X^\nu
+					\pd X^\mu
 				+ i\theta\bar{\theta}\,
-					\pd \tilde{\psi}^\nu
+					\pd \tilde{\psi}^\mu
 			} \\
-		&= - \tilde{\psi}^\mu \psi^\nu
+		&= - \tilde{\psi}^\nu \psi^\mu
 			- i\theta \pqty{
-				\tilde{\psi}^\mu \pd X^\nu
-				+ \psi^\nu F^\mu
+				\tilde{\psi}^\nu \pd X^\mu
+				+ \psi^\mu F^\nu
 			}
 			+ i\bar{\theta} \pqty{
-				\psi^\nu \pdbar X^\mu
-				- \tilde{\psi}^\mu F^\nu
+				\psi^\mu \pdbar X^\nu
+				- \tilde{\psi}^\nu F^\mu
 			} \\
 			&\qquad - \theta\bar{\theta} \pqty{
-				\pdbar X^\mu\pd X^\nu
-				+ \tilde{\psi}^\mu
-					\pd \tilde{\psi}^\nu
-				- (\pdbar \psi^\mu)
-					\psi^\nu
-				+ F^\mu F^\nu
+				\pdbar X^\nu\pd X^\mu
+				+ \tilde{\psi}^\nu
+					\pd \tilde{\psi}^\mu
+				- (\pdbar \psi^\nu)
+					\psi^\mu
+				+ F^\nu F^\mu
 			},
 	\end{aligned}
 	\\[1ex]
@@ -627,22 +627,22 @@
 		= \int \dd[2]{z} \dd[2]{\theta}
 			(-\theta\bar{\theta}) \pqty\Big{
 				G_{\mu\nu} \pqty{
-					\pdbar X^\mu\pd X^\nu
+					\pd X^\mu \pdbar X^\nu
 					+ \cdots
 				} + \cdots
 			} \\
 		&= \int \dd[2]{z}
 		\bigg(
 			G_{\mu\nu} \pqty{
-				\pdbar X^\mu\pd X^\nu
-				+ \tilde{\psi}^\mu
-					\pd \tilde{\psi}^\nu
-				- (\pdbar \psi^\mu)
-					\psi^\nu
-				+ F^\mu F^\nu
+				\pd X^\mu \pdbar X^\nu
+				+ \tilde{\psi}^\nu
+					\pd \tilde{\psi}^\mu
+				- (\pdbar \psi^\nu)
+					\psi^\mu
+				+ F^\nu F^\mu
 			}
 			\\ & \hspace{5em}
-			+ \tilde{\psi}^\mu \psi^\nu \pqty{
+			+ \tilde{\psi}^\nu \psi^\mu \pqty{
 				F^\lambda G_{\mu\nu,\lambda}
 				+ \psi^\rho \tilde{\psi}^\sigma
 					G_{\mu\nu,\rho\sigma}
@@ -650,12 +650,12 @@
 			\\ & \hspace{5em}
 			- G_{\mu\nu,\lambda} \pqty{
 				\psi^\lambda \pqty\big{
-					\psi^\nu \pdbar X^\mu
-					- \tilde{\psi}^\mu F^\nu
+					\psi^\mu \pdbar X^\nu
+					- \tilde{\psi}^\nu F^\mu
 				}
 				+ \tilde{\psi}^\lambda \pqty\big{
-					\tilde{\psi}^\mu \pd X^\nu
-					+ \psi^\nu F^\mu
+					\tilde{\psi}^\nu \pd X^\mu
+					+ \psi^\mu F^\nu
 				}
 			}
 		\bigg)
@@ -670,31 +670,31 @@
 		&= \int \dd[2]{z} \pqty{
 				2G_{\mu\nu} F^\mu \var{F^\nu}
 				+ G_{\mu\nu,\lambda} \pqty\big{
-					\tilde{\psi}^\mu
-						\psi^\nu
+					\tilde{\psi}^\nu
+						\psi^\mu
 						\var{F^\lambda}
-					- \tilde{\psi}^\mu
+					- \tilde{\psi}^\nu
 						\psi^\lambda
-						\var{F^\nu}
-					- \tilde{\psi}^\lambda
-						\psi^\nu
 						\var{F^\mu}
+					- \tilde{\psi}^\lambda
+						\psi^\mu
+						\var{F^\nu}
 				}
 			} \\
 		&= \int \dd[2]{z} \pqty{
-				F_\lambda
+				2F_\lambda
 				+ \pqty\big{
 					G_{\mu\nu,\lambda}
 					- G_{\lambda\mu,\nu}
 					- G_{\lambda\nu,\mu}
-				}\, \tilde{\psi}^\mu
-					\psi^\nu
+				}\, \tilde{\psi}^\nu
+					\psi^\mu
 			} \var{F^\lambda} \\
 		&= \int \dd[2]{z} \pqty{
-				F_\lambda
+				2F_\lambda
 				- 2\Gamma_{\lambda\mu\nu}
-					\tilde{\psi}^\mu
-					\psi^\nu
+					\tilde{\psi}^\nu
+					\psi^\mu
 			} \var{F^\lambda}, \\
 		4\pi \var{S_B}
 		&= \int \dd[2]{z} \pqty{
@@ -702,45 +702,45 @@
 					B_{\mu\nu,\lambda}
 					+ B_{\lambda\mu,\nu}
 					+ B_{\nu\lambda,\mu}
-				}\, \tilde{\psi}^\mu
-					\psi^\nu
+				}\, \tilde{\psi}^\nu
+					\psi^\mu
 			} \var{F^\lambda}
 		= \int \dd[2]{z}
 			H_{\lambda\mu\nu}
-				\tilde{\psi}^\mu
-				\psi^\nu
+				\tilde{\psi}^\nu
+				\psi^\mu
 				\var{F^\lambda}, \\
 	\end{aligned}
 	\\
 		F_\lambda
-		= 2\pqty{
+		= \pqty{
 				\Gamma_{\lambda\mu\nu}
 				- \frac{1}{2} H_{\lambda\mu\nu}
-			} \tilde{\psi}^\mu
-				\psi^\nu,\\
+			} \tilde{\psi}^\nu
+				\psi^\mu,\\
 		F^\lambda
-		= 2\pqty{
+		= \pqty{
 				\Gamma^\lambda_{\mu\nu}
 				- \frac{1}{2}
 					H^\lambda_{\mu\nu}
-			} \tilde{\psi}^\mu
-				\psi^\nu,
+			} \tilde{\psi}^\nu
+				\psi^\mu,
 	\end{gather}
-	Here we've used the symmetric property of $G_{\mu\nu}$, and we adopt the convention that the Levi-Civita connection $
+	Here we've used the (anti-)symmetry of $G_{\mu\nu}$ and $B_{\mu\nu}$, and we adopt the convention that the Levi-Civita connection $
 		\Gamma^\lambda_{\mu\nu}
 		= \Gamma\id{^\lambda_{\mu\nu}}
 		= G^{\lambda\lambda'}
 			\Gamma_{\lambda'\mu\nu}
 	$; similar holds for $B_{\mu\nu}$ and $H^\lambda_{\mu\nu}$. 
 	
-	Substitute $F$ into $S$, collect the $\order{\psi^0}, \order{\psi^2}$ and $\order{\psi^4}$ terms respectively, and we have:
+	Substitute $F_\lambda$ into $S$, collect the $\psi^0, \psi^2, \tilde{\psi}^2$ and $\psi^2\tilde{\psi}^2$ terms respectively, and we have:
 	\begin{equation}
 	\begin{aligned}
 		4\pi S
 		&= \int \dd[2]{z}
 		\bigg(
-			\pqty{G_{\mu\nu} + B_{\mu\nu}} 
-				\pdbar X^\mu\pd X^\nu
+			\pqty{G_{\mu\nu} + B_{\mu\nu}}\,
+				\pd X^\mu \pdbar X^\nu
 			\\ & \hspace{5em}
 			+ \pqty{G_{\mu\nu} + \cancel{B_{\mu\nu}}}
 			\pqty{
@@ -750,33 +750,290 @@
 					\psi^\nu
 			}
 			\\ & \hspace{5em}
-			+ G_{\mu\nu} F^\mu F^\nu
-			- 2\pqty{
-					\Gamma_{\lambda\mu\nu}
-					- \frac{1}{2} H_{\lambda\mu\nu}
-				} \tilde{\psi}^\mu \psi^\nu
-				F^\lambda
-			\\ & \hspace{5em}
-			+ \pqty{
-					G_{\mu\nu,\rho\sigma}
-					+ B_{\mu\nu,\rho\sigma}
-				}
-				\tilde{\psi}^\mu \psi^\nu
-				\psi^\rho \tilde{\psi}^\sigma
-			\\ & \hspace{5em}
 			- \pqty{
 				G_{\mu\nu,\lambda}
 				+ B_{\mu\nu,\lambda}
 			} \pqty{
 				\psi^\lambda
-					\psi^\nu \pdbar X^\mu
+					\psi^\mu \pdbar X^\nu
 				+ \tilde{\psi}^\lambda
-					\tilde{\psi}^\mu \pd X^\nu
+					\tilde{\psi}^\nu \pd X^\mu
 			}
-		\bigg)
+			\\ & \hspace{5em}
+			+ G_{\mu\nu} F^\mu F^\nu
+			- 2\pqty{
+					\Gamma_{\lambda\mu\nu}
+					- \frac{1}{2} H_{\lambda\mu\nu}
+				} \tilde{\psi}^\nu \psi^\mu
+				F^\lambda
+			\\ & \hspace{5em}
+			+ \pqty{
+					G_{\mu\nu,\rho\sigma}
+					+ B_{\mu\nu,\rho\sigma}
+				}\,
+				\tilde{\psi}^\nu \psi^\mu
+				\psi^\rho \tilde{\psi}^\sigma
+		\bigg) \\
+		&= \int \dd[2]{z}
+		\bigg(
+			\pqty{G_{\mu\nu} + B_{\mu\nu}}\,
+				\pd X^\mu \pdbar X^\nu
+			\\ & \hspace{5em}
+			+ G_{\mu\nu} \pqty{
+				\tilde{\psi}^\mu
+					\pd \tilde{\psi}^\nu
+				+ \psi^\mu
+					\pdbar \psi^\nu
+			}
+%			\\ & \hspace{5em}
+			- \pqty{
+				G_{\mu\nu,\lambda}
+				+ B_{\mu\nu,\lambda}
+			} \pqty{
+				\psi^\lambda
+					\psi^\mu \pdbar X^\nu
+				+ \tilde{\psi}^\lambda
+					\tilde{\psi}^\nu \pd X^\mu
+			}
+			\\ & \hspace{5em}
+			- F_\lambda F^\lambda
+			+ \pqty{
+					G_{\mu\nu,\rho\sigma}
+					+ B_{\mu\nu,\rho\sigma}
+				}\,
+				\psi^\mu
+				\psi^\rho
+				\tilde{\psi}^\nu
+				\tilde{\psi}^\sigma
+		\bigg) \\
 	\end{aligned}
 	\end{equation}
-	Note that some terms involving $B_{\mu\nu}$ vanish (up to integration by parts) due to anti-symmetricity. 
+	Here we've performed some integration by parts to clean up the result. 
+	Note that some terms involving $B_{\mu\nu}$ vanish conveniently (up to integration by parts) due to anti-symmetricity. 
+	
+	The $\psi^2,\tilde{\psi}^2$ terms in the integrand can be further simplified as follows:
+	\begin{gather}
+	\begin{aligned}
+		\mcal{L}_{\psi^2}
+		&= G_{\mu\nu}
+			\psi^\mu
+			\pdbar \psi^\nu
+		- \pqty{
+			G_{\mu\nu,\lambda}
+			+ B_{\mu\nu,\lambda}
+		} \,
+			\psi^\lambda
+			\psi^\mu \pdbar X^\nu \\
+		&= G_{\mu\nu}
+			\psi^\mu
+			\pdbar \psi^\nu
+		- \pqty{
+			G_{\mu[\nu,\lambda]}
+			+ B_{\mu[\nu,\lambda]}
+		} \,
+			\psi^\lambda
+			\psi^\mu \pdbar X^\nu \\
+		&= G_{\mu\nu}
+			\psi^\mu
+			\pdbar \psi^\nu
+		- \pqty{
+			- \Gamma_{\lambda\mu\nu}
+			+ \frac{1}{2} H_{\lambda\mu\nu}
+		} \,
+			\psi^\lambda
+			\psi^\mu \pdbar X^\nu \\
+		&= G_{\mu\nu} \psi^\mu \pqty{
+				\pdbar \psi^\nu
+				+ \pqty{
+					\Gamma^\nu_{\rho\sigma}
+					- \frac{1}{2} H^\nu_{\rho\sigma}
+				} \,
+				\psi^\rho
+				\pdbar X^\sigma\!
+			} \\
+		&= G_{\mu\nu} \psi^\mu \pqty{
+				\pdbar \psi^\nu
+				+ \pqty{
+					\Gamma^\nu_{\rho\sigma}
+					+ \frac{1}{2} H^\nu_{\rho\sigma}
+				} \,
+				\psi^\sigma
+				\pdbar X^\rho\!
+			}
+		= G_{\mu\nu} \psi^\mu
+			\bar{\mcal{D}} \psi^\nu,
+	\\[1.5ex]
+		\mcal{L}_{\tilde{\psi}^2}
+		&= G_{\mu\nu}
+			\tilde{\psi}^\mu
+			\pd \tilde{\psi}^\nu
+		- \pqty{
+			G_{\mu\nu,\lambda}
+			+ B_{\mu\nu,\lambda}
+		} \,
+			\tilde{\psi}^\lambda
+			\tilde{\psi}^\nu \pd X^\mu \\
+		&= G_{\mu\nu} \tilde{\psi}^\mu \pqty{
+				\pd \tilde{\psi}^\nu
+				+ \pqty{
+					\Gamma^\nu_{\rho\sigma}
+					- \frac{1}{2} H^\nu_{\rho\sigma}
+				} \,
+				\tilde{\psi}^\sigma
+				\pd X^\rho\!
+			}
+		= G_{\mu\nu} \tilde{\psi}^\mu
+			\mcal{D} \tilde{\psi}^\nu,
+	\end{aligned}
+	\end{gather}
+	For the $\psi^2\tilde{\psi}^2$ term, recall that $
+		R_{\mu\nu\rho\sigma}
+		= e_\mu [\cdv{\rho\,},\cdv{\sigma\,}]\,
+			e_\nu,
+		\cdv{\sigma} e_\nu
+		= e_{\lambda}
+			\Gamma^\lambda_{\sigma\nu}
+	$, and we have:
+	\begin{gather}
+	\begin{aligned}
+		\mcal{L}_{\psi^2\tilde{\psi}^2}
+		&= \psi^\mu
+			\psi^\nu
+			\tilde{\psi}^\rho
+			\tilde{\psi}^\sigma
+		\pqty{
+			G_{\mu\rho,\nu\sigma}
+			+ B_{\mu\rho,\nu\sigma}
+			+ \pqty\Big{
+					\Gamma_{\lambda\mu\rho}
+					- \frac{1}{2} H_{\lambda\mu\rho}
+				}
+				\pqty\Big{
+					\Gamma^\lambda_{\nu\sigma}
+					- \frac{1}{2}
+						H^\lambda_{\nu\sigma}
+				}
+		} \\
+		&= \psi^\mu
+			\psi^\nu
+			\tilde{\psi}^\rho
+			\tilde{\psi}^\sigma
+		\pqty{
+			G_{\mu\rho,\nu\sigma}
+				+ \Gamma_{\lambda\mu\rho}
+					\Gamma^\lambda_{\nu\sigma}
+			+ B_{\mu\rho,\nu\sigma}
+			- \frac{1}{2} \pqty\Big{
+					\Gamma^\lambda_{\mu\rho}
+					H_{\lambda\nu\sigma}
+					+ \Gamma^\lambda_{\nu\sigma}
+					H_{\lambda\mu\rho}
+				}
+			+ \frac{1}{4}
+				H^\lambda_{\mu\rho}
+				H_{\lambda\nu\sigma}
+		} \\
+		&= \mcal{L}_G + \mcal{L}_B
+			+ \frac{1}{4}
+				H^\lambda_{\mu\rho}
+				H_{\lambda\nu\sigma}\,
+				\psi^\mu
+				\psi^\nu
+				\tilde{\psi}^\rho
+				\tilde{\psi}^\sigma,
+	\end{aligned}
+	\\[1.5ex]
+	\begin{aligned}
+		\mcal{L}_G
+		&= \psi^\mu
+			\psi^\nu
+			\tilde{\psi}^\rho
+			\tilde{\psi}^\sigma
+		\pqty{
+			G_{\mu\rho,\nu\sigma}
+				+ \Gamma_{\lambda\mu\rho}
+					\Gamma^\lambda_{\nu\sigma}
+		} \\
+		&= \psi^{[\mu}
+			\psi^{\nu]}
+			\tilde{\psi}^{[\rho}
+			\tilde{\psi}^{\sigma]}
+		\pqty{
+			G_{\mu\rho,\nu\sigma}
+				+ \Gamma_{\lambda\mu\rho}
+					\Gamma^\lambda_{\nu\sigma}
+		} \\
+		&= \frac{1}{2}\,
+			\psi^\mu
+			\psi^\nu
+			\tilde{\psi}^\rho
+			\tilde{\psi}^\sigma
+		\Bqty{
+			\pqty{
+				\frac{1}{2}\,\pqty{
+					G_{\mu\rho,\nu\sigma}
+					- G_{\mu\sigma,\nu\rho}
+				}
+				+ \Gamma_{\lambda\mu\rho}
+					\Gamma^\lambda_{\nu\sigma}
+			}
+			- \pqty\Big{\cdots}_{
+				\rho\leftrightarrow\sigma
+			}
+		} \\
+		&= \frac{1}{2}
+			R_{\mu\nu\rho\sigma}\,
+			\psi^\mu
+			\psi^\nu
+			\tilde{\psi}^\rho
+			\tilde{\psi}^\sigma,
+	\\[1.5ex]
+		\mcal{L}_B
+		&= \frac{1}{2}
+			\cdv{\rho} H_{\mu\nu\sigma}\,
+			\psi^\mu
+			\psi^\nu
+			\tilde{\psi}^\rho
+			\tilde{\psi}^\sigma,
+	\end{aligned}
+	\end{gather}
+	Therefore, the total action is:
+	\begin{gather}
+	\begin{aligned}
+		S
+		&= \frac{1}{4\pi} \int \dd[2]{z}
+		\bigg(
+			\pqty{G_{\mu\nu} + B_{\mu\nu}}\,
+				\pd X^\mu \pdbar X^\nu
+			\\ & \hspace{7.5em}
+			+ G_{\mu\nu} \pqty{
+				\tilde{\psi}^\mu
+					\mcal{D} \tilde{\psi}^\nu
+				+ \psi^\mu
+					\bar{\mcal{D}} \psi^\nu
+			}
+			\\ & \hspace{7.5em}
+			+ \pqty{
+					\frac{1}{2}
+						R_{\mu\nu\rho\sigma}
+					+ \frac{1}{2}
+						\cdv{\rho} H_{\mu\nu\sigma}
+					+ \frac{1}{4}
+						H^\lambda_{\mu\rho}
+						H_{\lambda\nu\sigma}\!
+				}\,
+				\psi^\mu
+				\psi^\nu
+				\tilde{\psi}^\rho
+				\tilde{\psi}^\sigma
+		\bigg) \\
+	\end{aligned}
+	\end{gather}
+	
+	
+	
+	
+	
 	
 	\item \textbf{Mixed Anomaly Between Diffeomorphism and Axial $U(1)$ Symmetry:}
 	
