@@ -44,23 +44,23 @@ jobs:
         repository: 'bryango/resources'
         clean: false
         path: 'resources'
+        # See: github-push-action/issues/44
         persist-credentials: false
         fetch-depth: 0
 
     - name: Transfer to resources
       run: mv -f release/* resources/homework/.
 
-    - name: Commit resources
+    - name: Commit & Push resources
       run: |
         cd resources
+        ## See: github-push-action/issues/52
+        # git config -l
+        # git config --local --unset-all "http.https://github.com/.extraheader" || true
         git config --local user.email "workflow@github.com"
         git config --local user.name "Workflow - Homework"
-        git commit -m "[workflow] Update homework" -a
-
-    - name: Push resources
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.PUSH_SECRET }}
-        repository: 'bryango/resources'
+        git add .
+        git commit -m "[workflow] Update homework"
+        git push "https://bryango:${{ secrets.PUSH_SECRET }}@github.com/bryango/resources.git" master
 
 # vim: ts=2 sw=2
