@@ -23,7 +23,7 @@ for file in $FILES; do
 
     # Process magic comment
     tex_program=$(
-        grep "%[ ]*\!TeX[ ]*TS-program[ ]*=[ ]*" "$filename" \
+        grep -E "^[ \t]*%[ ]*\!TeX[ ]*TS-program[ ]*=[ ]*" "$filename" \
         | cut -d '=' -f2 | xargs
     )
 
