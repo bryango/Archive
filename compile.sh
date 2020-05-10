@@ -26,6 +26,7 @@ for file in $FILES; do
         grep -E "^[ \t]*%[ ]*\!TeX[ ]*TS-program[ ]*=[ ]*" "$filename" \
         | cut -d '=' -f2 | xargs
     )
+    [[ -z $tex_program ]] && tex_program=xelatex
 
     if [[ $tex_program == pdflatex ]] \
     || [[ $tex_program == xelatex ]] \
