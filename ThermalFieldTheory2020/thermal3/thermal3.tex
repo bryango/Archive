@@ -1,7 +1,7 @@
 % !TeX encoding = UTF-8
 % !TeX spellcheck = en_US
 % !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
-% !TeX TS-program = xelatex
+%% !TeX TS-program = xelatex
 
 \documentclass[a4paper,10pt]{article}
 
@@ -89,7 +89,7 @@
 	\end{aligned}
 	\end{equation}
 	
-	The (b) term is structually similar to the (a) term; now the amplitude can be written down simply by replacing the propagator $S(k)\mapsto W(k)$ of the ghost, while the vertex is $(g\gamma^\mu T^a)\mapsto (-igk^\nu T^b)$ instead:
+	\textbf{The (b) term} is structually similar to the (a) term; now the amplitude can be written down simply by replacing the propagator $S(k)\mapsto W(k)$ of the ghost, while the vertex is $(g\gamma^\mu T^a)\mapsto (-igk^\nu T^b)$ instead:
 	\begin{equation}
 		\ln \mcal{Z}^{(b)}
 		= \frac{1}{2!}\,\,(-1)^1
@@ -105,7 +105,7 @@
 				\Delta_{\mu\nu}(p - k)
 	\end{equation}
 	The trace now goes over suppressed \textit{adjoint} indices of $W(k)_{ab} = -\delta_{ab} \Delta(k)$ and $(T_a)_{bc} = f_{abc}$, where $f_{abc}$ is the structure constant of $\mrm{SU}(N_c)$. Therefore\footnote{
-		$\Tr \pqty{T^a T^b}_{\mrm{ad}}$ in the adjoint representation is precisely the \textit{Killing form} of the $\mfrak{su}(N_c)$ algebra, which is $2N_c$ times the  $\Tr \pqty{T^a T^b}_0$ in the fundamental representation. 
+		$\Tr \pqty{T^a T^b}_{\mrm{ad}}$ in the adjoint representation is precisely the \textit{Killing form} of the $\mfrak{su}(N_c)$ algebra, which is $2N_c$ times the  $\Tr \pqty{T^a T^b}_0$ in the fundamental representation; see \wikiref{https://en.wikipedia.org/wiki/Killing\_form}{Killing form}. 
 	}, 
 	\begin{equation}
 	\begin{aligned}
@@ -356,7 +356,7 @@
 			\pqty{\frac{T^2}{12}}^{\!\!2},
 	\end{aligned}
 	\end{equation}
-	\begin{equation}
+	\begin{empheq}{equation}
 	\begin{aligned}
 		\ln \mcal{Z}^{(b)}
 		&= - \pqty{
@@ -369,10 +369,42 @@
 			\frac{1}{4}\,g^2
 			\frac{T^4}{144}
 	\end{aligned}
+	\end{empheq}
+	
+	\textbf{The (c) term} is structually similar to the (b) term, but with a symmetrized 3-gluon vertex:
+	\begin{equation}
+		\pqty{\frac{1}{3!}}\,
+			igf_{abc}\,
+			\pqty\big{
+				g_{\mu\nu} (k-p)_\rho
+				+ g_{\nu\rho} (p-q)_\mu
+				+ g_{\rho\mu} (q-k)_\nu
+			}
+		= \pqty{\frac{1}{3!}}\,
+			igf_{abc}\,D_{\mu\nu\rho}(k,p,q)
 	\end{equation}
-	
-	
-	
+	To link the legs of two 3-gluon vertices as shown in (c), there are $3!$ possibilities. Therefore, we have:
+	\begin{equation}
+		\ln \mcal{Z}^{(c)}
+		= \frac{1}{2!}
+			\cdot 3!\cdot \pqty{\frac{1}{3!}}^{\!\!2}\,
+			\frac{T}{V} \sum_k\,
+			\frac{T}{V} \sum_p\,
+				\Tr \pqty\Big{
+					W(k)\,\pqty\big{
+						igf_{abc}
+						D_{\mu\nu\rho}(k, -p, p-k)
+					}\,
+					W(k)\,\pqty\big{
+						igf^{bac}
+						D^{\mu\nu\rho}(p, -k, k-p)
+					}
+				}\,
+				\pqty{
+					\frac{V}{T}
+				}\,\delta_{ab}\,
+				\Delta_{\mu\nu}(p - k)
+	\end{equation}
 	
 	
 	

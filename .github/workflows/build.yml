@@ -24,8 +24,8 @@ jobs:
 
     - name: Create release
       run: |
-        mkdir release
-        mv */*/*.pdf release
+        # mkdir release
+        # mv -v */*/*.pdf release
         cp README.md LICENSE release
         git tag --force latest
         git push --force --tags "https://bryango:${{ secrets.GITHUB_TOKEN }}@github.com/bryango/Homework.git" master

@@ -1,22 +1,25 @@
 #!/bin/bash
 # shellcheck disable=2011
 
+function log { echo "### " "$@"; }
+
 [[ -n $1 ]] \
     && DIR=$1 \
     || DIR=$(dirname "$(readlink -f "$0")")
 
-echo "### $DIR"
+log "$DIR"
 ls | xargs
+mkdir -p release
 
 FILES=$(find . \
     -regex "./[^/]+/[^/]+/[^/]+.tex" \
     -not -path "./Templates/*"
 )
-echo "### Files:"
+log "Files:"
 echo "$FILES"
 
 for file in $FILES; do
-    echo "### Compiling \`$file\` ..."
+    log "Compiling \`$file\` ..."
 
     cd "$(dirname "$file")" || exit 1
     filename=$(basename "$file")
@@ -42,6 +45,10 @@ for file in $FILES; do
             "$filename"
     fi
 
+    log "Check & release PDF:"
+    pdf="$(basename "$filename" .tex).pdf"
+    ls "$pdf" \
+        && mv -v -f "$pdf" "$DIR/release/."
 
     cd "$DIR" || exit 1
 done
