@@ -24,9 +24,7 @@ jobs:
 
     - name: Create release
       run: |
-        # mkdir release
-        # mv -v */*/*.pdf release
-        cp README.md LICENSE release
+        sudo chown -R "$(id -u -n):$(id -g -n)" ./
         git tag --force latest
         git push --force --tags "https://bryango:${{ secrets.GITHUB_TOKEN }}@github.com/bryango/Homework.git" master
 
@@ -51,7 +49,9 @@ jobs:
         fetch-depth: 0
 
     - name: Transfer to resources
-      run: mv -f release/* resources/homework/.
+      run: |
+        rm -rf resources/homework
+        mv -v -f release resources/homework
 
     - name: Commit & Push resources
       run: |

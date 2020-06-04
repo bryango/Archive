@@ -1,7 +1,7 @@
 #!/bin/bash
 # shellcheck disable=2011
 
-function log { echo "### " "$@"; }
+function log { echo "###" "$@"; }
 
 [[ -n $1 ]] \
     && DIR=$1 \
@@ -52,3 +52,6 @@ for file in $FILES; do
 
     cd "$DIR" || exit 1
 done
+
+ls -alF release
+cp README.md LICENSE release
