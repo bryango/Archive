@@ -52,7 +52,7 @@
 	Here the trace goes over spinor, color and flavor indices. 
 	$S(k)$ is the quark propagator, with suppressed spinor, color and flavor indices, while $\delta_{ab}\,\Delta_{\mu\nu}$ is the gluon propagator, where $a, b$ are adjoint indices; each vertex contributes a $(g\gamma^\mu T^a)$ factor. 
 	
-	In our convention, $k = (\omega_n, \vb{k})$ stands for the Euclidean 4-momentum with $\omega_n$: the discrete Matsubara frequency. Each $\sum_k$ comes with a factor $\frac{T}{V}$ while each spacetime delta function comes with an inverse factor: $\frac{V}{T}$; this is due to the fact that:
+	In our convention, $k = (\omega_n, \vb{k})$ stands for the Euclidean 4-momentum with $\omega_n$: the discrete Matsubara frequency. Each $\sum_k$ comes with a factor $\frac{T}{V}$ while each momentum space delta function comes with an inverse factor: $\frac{V}{T}$; this is due to the fact that:
 	\begin{equation}
 		1 = \int \frac{\dd[4]{k}}{(2\pi)^4}\,
 			(2\pi)^4 \delta^4(k - k_0)
@@ -385,497 +385,235 @@
 	\end{equation}
 	To link the legs of two 3-gluon vertices as shown in (c), there are $3!$ possibilities. Therefore, we have:
 	\begin{equation}
+	\begin{aligned}
 		\ln \mcal{Z}^{(c)}
-		= \frac{1}{2!}
+		&= \frac{1}{2!}
 			\cdot 3!\cdot \pqty{\frac{1}{3!}}^{\!\!2}\,
 			\frac{T}{V} \sum_k\,
-			\frac{T}{V} \sum_p\,
-				\Tr \pqty\Big{
-					W(k)\,\pqty\big{
-						igf_{abc}
-						D_{\mu\nu\rho}(k, -p, p-k)
-					}\,
-					W(k)\,\pqty\big{
-						igf^{bac}
-						D^{\mu\nu\rho}(p, -k, k-p)
-					}
-				}\,
+			\frac{T}{V} \sum_p
+				\Delta(k)\,
+				\Delta(p)\,
 				\pqty{
 					\frac{V}{T}
-				}\,\delta_{ab}\,
-				\Delta_{\mu\nu}(p - k)
-	\end{equation}
-	
-	
-	
-	
-	
-	\legacyReference
-	With the metric convention: $
-		g\sim\pqty{
-			\mathop{-}
-			\mathop{+}
-			\mathop{+}
-			\mathop{+}
-	}$, we have:
-	\begin{equation}
-		\mcal{Z}
-		= \int \DD{A^\mu}\,e^{-S}\,
-			\delta\bqty\big{
-				\pdd{\mu} A^\mu - f
-			} \det \bqty{
-				\pd^2 \delta^4(x-y)
-			}
-	\end{equation}
-	Here $S$ is the Euclidean action:
-	\begin{equation}
-		(-S) = \int \dd[4]{x}
-			\mcal{L}_{t = -i\tau},\quad
-		\int \dd[4]{x}
-		= \int_0^\beta \dd{\tau} \int \dd[3]{\vb{x}}
-	\end{equation}
-	
-	For pure QED, we have: 
-	\begin{equation}
-		\mcal{L}_t
-		= -\frac{1}{4}\,F_{\mu\nu} F^{\mu\nu}
-	\end{equation}
-	Setting $t = i\tau$ is equivalent to carrying out a Wick rotation: $x^0\mapsto -ix^0,\ A^0\mapsto -i A^0$, while:
-	\begin{equation}
-		g_{\mu\nu} A^\mu A^\nu
-		= g'_{\mu\nu} A'^\mu A'^\nu
-		\quad\Longrightarrow\quad
-		g_{\mu\nu}
-		\longmapsto g'_{\mu\nu} = \delta_{\mu\nu}
-	\end{equation}
-	
-	Under this convention, the Euclidean action is formally unchanged; same applies for the gauge-fixing and the ghost term:
-	\begin{equation}
-		\mcal{L}_{t=-i\tau}
-		= -\frac{1}{4}\,F_{\mu\nu} F^{\mu\nu},\quad
-		g_{\mu\nu}
-		\longmapsto \delta_{\mu\nu},
-	\end{equation}
-	\vspace*{-1.25\baselineskip}
-	\begin{align}
-		\delta\bqty\big{
-			\pdd{\mu} A^\mu - f
-		}
-		\quad&\Longrightarrow\quad
-		\mcal{L}_{gf}
-		= -\frac{1}{2\rho}\,\pqty{
-				\pdd{\mu} A^\mu
-			}^2,\\
-		\det \bqty{
-			\pd^2 \delta^4(x-y)
-		}
-		\quad&\Longrightarrow\quad
-		\mcal{L}_{gh}
-		\sim (\pd^2\bar{\eta})\,\eta
-		\sim -\pdd{\mu}\bar{\eta}\,\pd^\mu\eta,
-	\end{align}
-	Here we've dropped some total derivative terms in the ghost Lagrangian. The partition function is then reduced to:
-	\begin{equation}
-		\mcal{Z}
-		= \int \DD{A^\mu}\,
-			\DD{\bar{\eta}}\,\DD{\eta}\,
-			e^{-S'}, \quad
-		(-S') = \int \dd[4]{x} \pqty\big{
-				\mcal{L}
-				+ \mcal{L}_{gf}
-				+ \mcal{L}_{gh}
-			}_{t=-i\tau}
-	\end{equation}
-	
-	The action can be further simplified by partial integration and dropping boundary terms:
-	\begin{equation}
-	\begin{aligned}
-		(-S') &= \int \dd[4]{x} \pqty{
-				-\frac{1}{4}\,F_{\mu\nu} F^{\mu\nu}
-				-\frac{1}{2\rho}\,\pqty{
-						\pdd{\mu} A^\mu
-					}^2
-				-\pdd{\mu}\bar{\eta}\,\pd^\mu\eta
-			} \\
-		&= \int \dd[4]{x} \pqty{
-				-\frac{1}{4}\,\pqty{
-						\pdd{\mu} A_\nu
-						- \pdd{\nu} A_\mu
-					} \pqty{
-						\pd^\mu A^\nu
-						- \pd^\nu A^\mu
-					}
-				-\frac{1}{2\rho}\,\pqty{
-						\pdd{\mu} A^\mu
-					}^2
-				-\pdd{\mu}\bar{\eta}\,\pd^\mu\eta
-			} \\
-		&= \int \dd[4]{x} \pqty{
-				-\frac{1}{2}\,\pqty{
-						\pdd{\mu} A_\nu\,
-						\pd^\mu A^\nu
-						- \pdd{\nu} A_\mu\,
-						\pd^\mu A^\nu
-					}
-				-\frac{1}{2\rho}\,\pqty{
-						\pdd{\mu} A^\mu\,
-						\pdd{\nu} A^\nu
-					}
-				-\pdd{\mu}\bar{\eta}\,\pd^\mu\eta
-			} \\
-		&\sim \int \dd[4]{x} \pqty{
-				-\frac{1}{2}\,\pqty{
-						- A_\nu\,
-						\pd^2 A^\nu
-						+ A_\mu\,
-						\pd^\mu \pdd{\nu} A^\nu
-					}
-				+\frac{1}{2\rho}\,\pqty{
-						A^\mu\,
-						\pdd{\mu}\pdd{\nu} A^\nu
-					}
-				+\bar{\eta}\,\pd^2\eta
-			} \\
-		&= \int \dd[4]{x} \pqty{
-				-\frac{1}{2}\,A^\mu\pqty{
-						- \delta_{\mu\nu}\pd^2
-						+ \pdd{\mu}\pdd{\nu}
-						- \tfrac{1}{\rho}\,
-							\pdd{\mu}\pdd{\nu}
-					} A^\nu
-				+\bar{\eta}\,\pd^2\eta
-			} \\
-		&= -\frac{1}{2}
-		\int \dd[4]{x} \pqty{
-				A^\mu\pqty{
-					- \delta_{\mu\nu}\pd^2
-					+ \pqty\big{1 - \tfrac{1}{\rho}}\,
-						\pdd{\mu}\pdd{\nu}
-				} A^\nu
-				- 2\bar{\eta}\,\pd^2\eta
-			}
+				}\,\Delta(p - k)
+			\\ & \qquad
+				\times
+				\pqty\big{
+					igf_{abc}
+					D_{\mu\nu\rho}(k, -p, p-k)
+				}\,
+				\pqty\big{
+					igf^{bac}
+					D^{\nu\mu\rho}(p, -k, k-p)
+				}
+		\\[2ex]
+		&= - \frac{1}{12}
+			\frac{V}{T}\cdot
+			\frac{T}{V} \sum_k\,
+			\frac{T}{V} \sum_p
+				\Delta(k)\,
+				\Delta(p)\,
+				\Delta(p - k)
+			\\ & \qquad
+				\times
+				\pqty{
+					\frac{N^2_c - 1}{2}\,2N_c
+				}\, g^2
+				D_{\mu\nu\rho}(k, -p, p-k)\,
+				D^{\mu\nu\rho}(p, -k, k-p)
+		\\[2ex]
+		&= - \pqty{
+				\frac{N^2_c - 1}{2}\,2N_c
+			}\,
+			\frac{1}{12}\,g^2
+			\frac{V}{T}\cdot
+			\frac{T}{V} \sum_k\,
+			\frac{T}{V} \sum_p
+				\Delta(k)\,
+				\Delta(p)\,
+				\Delta(p - k)
+			\\ & \qquad
+				\times
+				D_{\mu\nu\rho}(k, -p, p-k)\,
+				D^{\mu\nu\rho}(p, -k, k-p),
 	\end{aligned}
 	\end{equation}
-	With $\beta = \frac{1}{T}$, expand $A^\mu,\eta$ into dimensionless Fourier modes, and %the above expressions can be reduced to bilinears in momentum space. More specifically, 
-	we have:
 	\begin{equation}
-		A^\mu
-		= \frac{1}{\sqrt{TV}}
-			\sum_k e^{ik_\nu x^\nu} A^\mu_k,\qquad
-		\sum_k e^{ik_\nu x^\nu}
-		= V \int \frac{\dd[3]{\vb{k}}}{(2\pi)^3}\,
-				e^{i\vb{k}\cdot\vb{x}}
-			\sum_{n\in\mbb{Z}} e^{i\omega_n \tau}
+%	\small
+	\begin{aligned}
+		D_{\mu\nu\rho}(k, -p, p-k)\,
+		D^{\nu\mu\rho}(p, -k, k-p)
+		&= D_{\mu\nu\rho}(k, -p, p-k)\,
+			D^{\mu\nu\rho}(-k, p, k-p) \\
+		&= -D_{\mu\nu\rho}(k, -p, p-k)\,
+			D^{\mu\nu\rho}(k, -p, p-k) \\
+		&= -\,\boxed{g_{\mu\nu} g^{\mu\nu}}\,\pqty{
+				(k + p)^2
+				+ (k - 2p)^2
+				+ (p - 2k)^2
+			}
+			\\ & \qquad
+			- 2\,(k + p)\cdot (k - 2p)
+			\\ & \qquad
+			- 2\,(k - 2p)\cdot (p - 2k)
+			\\ & \qquad
+			- 2\,(p - 2k)\cdot (k + p)
+		\\
+		&= -\,\boxed{d + 1}\cdot 3\,\pqty{
+				k^2 + p^2 + (k - p)^2
+			}
+			\\ & \qquad
+			- 2\,(-\tfrac{3}{2})\,\pqty{
+				k^2 + p^2 + (k - p)^2
+			}
+		\\
+		&= -3d\,\pqty{k^2 + p^2 + (k - p)^2},
+	\end{aligned}
 	\end{equation}
-\pagebreak[3]
-	
 	\begin{equation}
 	\begin{aligned}
-		\sum_{p,k}
-		\int \dd[4]{x} e^{i\,\pqty{p+k}\cdot x}
-		&= \sum_{p,k}
-			(2\pi)^4\,\delta^4(p+k) \\
-		&= V^2 \int
+		\ln \mcal{Z}^{(c)}
+		&= -\pqty{
+				\frac{N^2_c - 1}{2}\,2N_c
+			}\,
+			\frac{1}{12}\,g^2
+			\frac{V}{T}\cdot
+			\frac{T}{V} \sum_k\,
+			\frac{T}{V} \sum_p
+				\frac{
+					-3d\,\pqty{k^2 + p^2 + (k - p)^2}
+				}{k^2 p^2\,(p-k)^2} \\
+		&= \pqty{
+				\frac{N^2_c - 1}{2}\,2N_c
+			}\,
+			\frac{d}{4}\,g^2
+			\frac{V}{T}\cdot
+			\frac{T}{V} \sum_k\,
+			\frac{T}{V} \sum_p
+				\frac{
+					k^2 + p^2 + (k - p)^2
+				}{k^2 p^2\,(p-k)^2},
+	\end{aligned}
+	\end{equation}
+	\begin{equation}
+	\begin{aligned}
+		\frac{T}{V} \sum_k\,
+		\frac{T}{V} \sum_p
 			\frac{
-				\dd[3]{\vb{p}}\dd[3]{\vb{k}}
-			}{(2\pi)^6}\,
-			\sum_{m,n\in\mbb{Z}}
-				\beta\,\delta_{m,-n}\cdot
-				(2\pi)^3\,\delta^3(\vb{p}+\vb{k}) \\
-		&= \beta V\cdot
-			V\int \frac{\dd[3]{\vb{k}}}{(2\pi)^3}\,
-			\sum_{n\in\mbb{Z}}
-				\int \dd[3]{\vb{p}}
-					\delta^3(\vb{p}+\vb{k})
-				\sum_{n\in\mbb{Z}}
-					\delta_{m,-n} \\
-		&= \beta V \sum_k
-				\int \dd[3]{\vb{p}}
-					\delta^3(\vb{p}+\vb{k})
-				\sum_{n\in\mbb{Z}}
-					\delta_{m,-n},
+				k^2 + p^2 + (k - p)^2
+			}{k^2 p^2\,(p-k)^2}
+		&= \frac{T}{V} \sum_k\,
+			\frac{T}{V} \sum_p
+				\pqty{
+					\frac{1}{p^2\,(p-k)^2}
+					+ \frac{1}{k^2\,(p-k)^2}
+					+ \frac{1}{k^2 p^2}
+				} \\
+		&= 3\,\pqty{
+			\frac{T}{V} \sum_k \frac{1}{k^2}
+			}^{\!\!2}
+		= 3\,\pqty{\frac{T^2}{12}}^{\!\!2},
 	\end{aligned}
 	\end{equation}
-	\begin{equation}
+	\begin{empheq}{equation}
 	\begin{aligned}
-		(-S')
-		&= -\frac{1}{2TV}
-		\sum_{p,k}
-		\int \dd[4]{x} e^{i\,\pqty{p+k}\cdot x}
-			\pqty{
-				A^\mu_p \pqty{
-					- \delta_{\mu\nu} (-k^2)
-					+ \pqty\big{
-						1 - \tfrac{1}{\rho}
-					}\,(-k_\mu k_\nu)
-				} A^\nu_k
-				- 2\bar{\eta}_p\,(-k^2)\eta_k
-			} \\
-		&= -\frac{\beta V}{2TV} \sum_k
-			\pqty{
-				A^\mu_{-k} \pqty{
-					k^2 \delta_{\mu\nu}
-					- \pqty\big{
-						1 - \tfrac{1}{\rho}
-					}\,k_\mu k_\nu
-				} A^\nu_k
-				+ 2\bar{\eta}_{-k} k^2\eta_k
-			} \\
-		&= -\frac{\beta^2}{2} \sum_k
-			\pqty{
-				A^{\mu\dagger}_{k}
-					D^{-1}_{\mu\nu}(k)
-					A^\nu_k
-				+ 2\bar{\eta}^\dagger_{k} k^2\eta_k
-			}
+		\ln \mcal{Z}^{(c)}
+		&= \pqty{
+				\frac{N^2_c - 1}{2}\,2N_c
+			}\,
+			\frac{d}{4}\,g^2
+			\frac{V}{T}\cdot
+			3\,\pqty{\frac{T^2}{12}}^{\!\!2}
+		= + \frac{V}{T}\,N_c \pqty{N^2_c - 1}\,
+			\frac{3d}{4}\,g^2
+			\frac{T^4}{144}
 	\end{aligned}
-	\label{eq:soft_gauge_fixed_action}
-	\end{equation}
+	\end{empheq}
+	Here we use $d$ to denote spatial dimensions; for $d = 3$ we have $\frac{3d}{4} = \frac{9}{4}$. 
 	
-	Here we've used the reality condition on $A,\eta$, namely $
-		A^{\mu\dagger}_{k}
-		= A^\mu_{-k}
-%		,\ %
-%		\bar{\eta}^\dagger_{k}
-%		= \eta_{-k}
-	$, and defined the $k$--space inverse propagator $D^{-1}_{\mu\nu}(k)$. 
-%	We see that $D^{-1}_{\mu\nu}(k)$ is ``diagonal'' w.r.t.\ $k$ but not diagonal w.r.t.\ $\mu,\nu$ indices. However, it is symmetric among the $\mu,\nu$ indices, so it can be diagonalized and compared to the neutral scalar propagator. 
-	Similar result applies for $\eta_k$, except that we have to be careful about Grassmann variables. Carry out $
-		\int \DD{A^\mu}\,
-			\DD{\bar{\eta}}\,\DD{\eta}\,
-	$, and we have:
+	\textbf{The (d) term} is built around the symmetrized 4-gluon vertex:
 	\begin{equation}
-	\begin{aligned}
-		\mcal{Z}
-		&\sim \pqty\Big{
-				\det_{\mu,\nu,k}
-				\beta^2 D^{-1}_{\mu\nu}(k)
-			}^{-1/2}\,\pqty\Big{
-				\det_k
-				2\beta^2 k^2
-			}^{+1} \\[.5ex]
-		&= \prod_k \pqty\Big{
-			\beta^{2\times 4\times(-1/2)}
-			\cdot \pqty\Big{
-				\det_{\mu,\nu}
-				D^{-1}_{\mu\nu}(k)
-			}^{-1/2}
-			\cdot 2\beta^2 k^2
-		} \\[-.5ex]
-		&= \prod_k \pqty\Big{
-			\beta^{-4} \pqty\Big{
-				\det_{\mu,\nu}
-				D^{-1}_{\mu\nu}(k)
-			}^{-1/2}
-			\cdot 2\beta^2 k^2
+		\small
+		\pqty{\frac{1}{3!}}
+		\pqty{-\frac{g^2}{4}}
+		\pqty{
+			f\id{_{ad}^\bullet} f_{bc\,\bullet} \pqty{
+				g_{\mu\nu} g_{\rho\sigma}
+				- g_{\mu\rho} g_{\nu\sigma}
+			}
+			+ \boxed{
+				(b,\nu) \leftrightarrow (d,\sigma)
+			}
+			+ \boxed{
+				(b,\nu) \leftrightarrow (c,\rho)
+			}\ %
 		}
-	\end{aligned}
 	\end{equation}
-	The determinant is evaluated as follows\footnote{
-		Reference: \wikiref{https://en.wikipedia.org/wiki/Determinant\#Sylvester's\_determinant\_theorem}{Determinant \texttt{\#} Sylvester's determinant theorem}. 
-	}:
-	\begin{align}
-		\det_{\mu,\nu} D^{-1}_{\mu\nu}
-		&= \det_{\mu,\nu} \pqty{
-			k^2 \delta_{\mu\nu}
-			- \pqty\big{
-				1 - \tfrac{1}{\rho}
-			}\,k_\mu k_\nu
-		} \notag\\
-		&= k^8 \det_{\mu,\nu} \pqty{
-			\delta_{\mu\nu}
-			- \pqty\big{
-				1 - \tfrac{1}{\rho}
-			}\,\tfrac{k_\mu k_\nu}{k^2}
-		} \notag\\
-		&= k^8 \pqty{
-			1
-			- \pqty\big{
-				1 - \tfrac{1}{\rho}
-			}\,\tfrac{k^2}{k^2}
-		} \notag\\[.5ex]
-		&= \tfrac{1}{\rho} k^8, \\[1.5ex]
-		\mcal{Z}
-		&\sim \prod_k 
-			\tfrac{2}{\rho}
-				\beta^{-4} k^{-4}
-				\cdot \beta^{2} k^{2}
-		\sim \prod_k \beta^{-2} k^{-2},
-		\label{eq:partition_func}\\
-		\ln \mcal{Z}
-		&\sim - \sum_k \ln \pqty{\beta^2 k^2}
-	\end{align}
-	
-	We see that $\ln\mcal{Z}$ is simply twice the result of a neutral scalar field, with mass $m\to 0$, i.e.\ %
-	\begin{gather}
-		\ln \mcal{Z}
-		\sim -2\times \frac{1}{2}
-			\sum_k \ln \pqty{\beta^2 k^2}
-		\sim -2\sum_{\vb{k}} \pqty{
-			\frac{1}{2}\,\beta E_k
-			+ \ln \pqty{
-				1 - e^{-\beta E_k}
-			}
-		}, \\
-		\mcal{Z}
-		\sim \prod_{\vb{k}} \Bqty{
-			\exp\pqty{
-				- \frac{1}{2}\,\beta E_k
-				- \ln \pqty{
-					1 - e^{-\beta E_k}
-				}
-			}
-		}^{2}, \\[1ex]
-		\Omega
-		= -T\ln \mcal{Z}
-		= 2\sum_{\vb{k}} \pqty{
-				\frac{1}{2}\,E_k
-				+ T\ln \pqty{
-					1 - e^{-E_k/T}
-				}
-			}, \\[1ex]
-		p = -\frac{\Omega}{V}
-		= -2 \int \frac{\dd[3]{\vb{k}}}{(2\pi)^3}\,
-			\pqty{
-				\frac{1}{2}\,E_k
-				+ T\ln \pqty{
-					1 - e^{-E_k/T}
-				}
-			},
-	\end{gather}
-	Here $E_k = \norm{\vb{k}}$. Ignore the vacuum contribution to $p$, and we have:
+	Here we use \mquote{\bullet} to denote a contracted adjoint index, and use $\tiny\boxed{(\cdots)\leftrightarrow(\cdots)}$ to mark a switch of indices relative to the \textit{previous} term. By contracting 2 pairs of the indices, we obtain the desired diagram (d). There are 3 ways to do this, therefore:
 	\begin{equation}
-		p = -2T 
-		\int \frac{\dd[3]{\vb{k}}}{(2\pi)^3}\,
-			\ln \pqty{
-				1 - e^{-\norm{\vb{k}}/T}
-			}
-		= 2\,\frac{\pi^2}{90}\,T^4
-	\end{equation}
-\subsection*{Summary}
-	\begin{enumerate}[label=\arabic*.,itemsep=1ex]
-	\item We've completed the calculation of pure QED partition function $\mcal{Z}$ and thermodynamic potential $\Omega$ (energy density $p$) by introducing a ``soft'' gauge fix $\mcal{L}_{gf}$. 
-	Alternatively, we can simply impose a ``hard'' Lorenz gauge fix $
-		\delta\bqty\big{\pdd{\mu} A^\mu}
-	$; this can be achieved by taking $\rho\to\infty$ in the Gaussian packet $
-		-\frac{1}{2\rho}\,\pqty{
-			\pdd{\mu} A^\mu
-		}^2
-	$, or by integrating out $A^0$ directly --- similar to \eqref{eq:soft_gauge_fixed_action}, we have:
-	\begin{gather}
 	\begin{aligned}
-		\mcal{Z}
-		&\sim \int \DD{A^\mu}\,
-			\DD{\bar{\eta}}\,\DD{\eta}\,
-			\delta\bqty\big{
-				\pdd{\mu} A^\mu
-			} \exp \pqty{
-				-\frac{\beta^2}{2} \sum_k
-				\pqty{
-					A^{\mu\dagger}_{k} \pqty{
-						k^2 \delta_{\mu\nu}
-						- k_\mu k_\nu
-					} A^\nu_k
-					+ 2\bar{\eta}^\dagger_{k}
-					k^2\eta_k
-				}
-			} \\
-		&\sim \int \DD{A^i}\,
-			\DD{\bar{\eta}}\,\DD{\eta}\,
-			\exp \pqty{
-				-\frac{\beta^2}{2} \sum_k
-				\pqty{
-					A^{\mu\dagger}_{k} \pqty{
-						k^2 \delta_{\mu\nu}
-						- k_\mu k_\nu
-					} A^\nu_k
-					+ 2\bar{\eta}^\dagger_{k}
-					k^2\eta_k
-				}
-			}_{\!\!A^0=A^0[A^i]}
-	\end{aligned}\\
-		A^0[A^i]
-		= -\int \pdd{i} A^i \dd{\tau},\quad
-		k_\mu A^\mu_k = 0,
-		\label{eq:transverse_cond}
-	\end{gather}
-	Here we've omitted a non-dynamical Jacobian $
-		\det \bqty\big{
-			\theta(\tau-\tau')
-		} = \det \int^\tau \dd{\tau''}
-			\delta(\tau''-\tau')
-	$. 
-	The ghost integral gives the same contribution, while the $A^i$ integral yields:
-	\begin{gather}
-		\mcal{Z}_A = \int \DD{A^i}\,
-			\exp \pqty{
-				-\frac{\beta^2}{2} \sum_k
-				\pqty{
-					A^{\mu\dagger}_k \pqty{
-						k^2 \delta_{\mu\nu}
-					} A^\nu_k
-				}
-			}, \\[.5ex]
-	\begin{aligned}
-		A^{\mu\dagger}_k \pqty{
-			k^2 \delta_{\mu\nu}
-		} A^\nu_k
-		&= A^{i\dagger}_k \pqty{
-				k^2 \delta_{ij}
-			} A^j_k
-			+ A^{0\dagger}_k \pqty{
-				k^2
-			} A^0_k
-%		\\ &
-		= A^{i\dagger}_k \pqty{
-				k^2 \delta_{ij}
-			} A^j_k
-			+ \frac{k^2}{\omega^2}\,
-			A^{0\dagger}_k \pqty{
-				\omega^2
-			} A^0_k \\
-		&\smash{
-			\overset{\eqref{eq:transverse_cond}}{=}
-		} A^{i\dagger}_k \pqty{
-				k^2 \delta_{ij}
-			} A^j_k
-			+ \frac{k^2}{\omega^2}\,
-			A^{i\dagger}_k \pqty{
-				k_i k_j
-			} A^0_k
-%		\\ &
-		= A^{i\dagger}_k \,k^2\pqty{
-				\delta_{ij}
-				+ \frac{k_i k_j}{\omega^2}
-			} A^j_k \\
-		&= A^{i\dagger}_k
-			D^{-1}_{ij}(k)
-			A^j_k,
-	\end{aligned}\\[1.2ex]
-	\begin{aligned}
-		\mcal{Z}_A
-		\sim \pqty\Big{
-				\det_{i,j,k}
-				\beta^2 D^{-1}_{ij}(k)
-			}^{\!-1/2}\!\!\!
-		&= \prod_k \beta^{-3} k^{-3}
+		\ln \mcal{Z}^{(d)}
+		&= \frac{1}{1!}
+			\cdot 3\cdot
+			\pqty{\frac{1}{3!}}
+			\pqty{-\frac{g^2}{4}}
 			\pqty{
-				1 + \frac{\vb{k}^2}{\omega^2}
-			}^{\!\!-1/2}\!\!\!\!
-		= \prod_k \pqty{
-				\beta^{-4} k^{-4}
-				\cdot \beta\omega
-			} \\
-		&= \prod_k \beta^{-4} k^{-4}
-			\prod_{\vb{k}} \prod_n 2\pi n
-		\sim \prod_k \beta^{-4} k^{-4}
+				-\frac{N^2_c - 1}{2}\,2N_c
+			}\,
+			\frac{T}{V} \sum_k\,
+			\frac{T}{V} \sum_p
+				\Delta(k)\,
+				\Delta(p)\,
+				\pqty{
+					\frac{V}{T}
+				}\,\delta_{+k-k+p-p}
+			\\ & \qquad
+				\times \pqty{
+					- \pqty\big{
+						(d+1)^2 - (d+1)
+					}
+					+ 0
+					+ \pqty\big{
+						(d+1) - (d+1)^2
+					}
+				}
+		\\[2ex]
 	\end{aligned}
-	\end{gather}
+	\end{equation}
+	One of the three terms in the vertex vanishes after contraction, due to the anti-symmetry of $f_{abc}$. Again, we've used the fact that $
+		g_{\mu\nu} g^{\mu\nu} = d + 1
+	$, where $d$ is the spatial dimension. 
 	
-	We see that the result from a ``hard'' Lorenz gauge fixing is the same as before, up to a non-dynamical overall coefficient. 
+	Note that momentum conservation is automatic at the vertex, which is indicated by the trivial delta function $\delta_{+k-k+p-p} = 1$. In the end, we have:
+	\begin{empheq}{equation}
+	\begin{aligned}
+		\ln \mcal{Z}^{(d)}
+		&= \pqty{-\frac{g^2}{8}}
+			\pqty{
+				\frac{N^2_c - 1}{2}\,2N_c
+			}\,
+			\frac{T}{V} \sum_k\,
+			\frac{T}{V} \sum_p
+				\Delta(k)\,
+				\Delta(p)\,
+				\pqty{
+					\frac{V}{T}
+				}\,2d\,(d+1) \\
+		&= \pqty{-\frac{g^2}{8}}
+			\pqty{
+				\frac{N^2_c - 1}{2}\,2N_c
+			}\,
+			\pqty{
+				\frac{V}{T}
+			}\,2d\,(d+1)
+			\pqty{\frac{T^2}{12}}^{\!\!2} \\[1ex]
+		&= - \frac{V}{T}\,N_c \pqty{N^2_c - 1}\,
+			\frac{d\,(d+1)}{4}\,g^2
+			\frac{T^4}{144}
+	\end{aligned}
+	\end{empheq}
+	For $d = 3$ we have $\frac{d\,(d+1)}{4} = 3$. Combining (a\,\textasciitilde\,d), we have the full $\order{g^2}$ partition function. \qedfull
 	
-	\item In our previous calculations, we notice that after functional integration, $\rho$ is just a non-dynamical overall coefficient in $\mcal{Z}$, hence it can be safely dropped from the final expression; see eq.~\eqref{eq:partition_func}. Therefore, the result is independent of parameter $\rho$. 
-	\end{enumerate}
 
 \printbibliography[%
 %	title = {参考文献} %
