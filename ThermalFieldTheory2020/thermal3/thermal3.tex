@@ -277,7 +277,7 @@
 		&= \int_0^\beta \dd{\tau}
 				e^{-i\omega_n \tau}\,
 			T\sum_m e^{i\omega_m \tau}
-			D(w_n,\vb{k}) \\
+			D(w_m,\vb{k}) \\
 		&= \int_0^\beta \dd{\tau}
 				e^{-i\omega_n \tau}\,
 			\tilde{D}(\tau,\vb{k}),
@@ -287,17 +287,17 @@
 	\begin{aligned}
 		\tilde{D}(\tau,\vb{k})
 		&= T\sum_m e^{i\omega_m \tau}
-			D(w_n,\vb{k}) \\
+			D(w_m,\vb{k}) \\
 		&= T\sum_m e^{i\omega_m \tau}
 			\int \frac{\dd{\omega}}{2\pi}
 				\frac{\rho(\omega,\vb{k})}{
-					\omega + i\omega_0
+					\omega + i\omega_m
 				} \\
 		&= \int \frac{\dd{\omega}}{2\pi}\,
 				\rho(\omega,\vb{k})\,
 			T\sum_m 
 				\frac{e^{i\omega_m \tau}}{
-					\omega + i\omega_0
+					\omega + i\omega_m
 				} \\
 		&= \int \frac{\dd{\omega}}{2\pi}\,
 				\rho(\omega,\vb{k})\,
