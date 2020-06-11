@@ -55,7 +55,7 @@
 					+ \mu n
 				}
 	\end{equation}
-	For a spin-$\frac{1}{2}$ free fermion, $\psi$ is given a 2-component Pauli spinor: $
+	For a spin-$\frac{1}{2}$ free fermion, $\psi$ is given by a 2-component Pauli spinor: $
 		\psi \sim (\psi_+, \psi_-)
 	$, and $\bar{\psi} = \psi^\dagger$ is the conjugate transpose of $\psi$. Relevant observables in the Heisenberg picture are then given by:
 	\begin{gather}
@@ -160,7 +160,7 @@
 						\,\delta_{k,k'}
 					- \beta j_{k-k'}
 				}
-			}^{-1},\quad
+			}^{+1},\quad
 		D_0^{-1}(k)
 		= i\omega
 			+ \tfrac{\vb{k}^2}{2m}
@@ -171,7 +171,7 @@
 						\,\delta_{k,k'}
 					- \beta j_{k-k'}
 				}
-			}^{-2}
+			}^{+2}
 	\end{aligned}
 	\end{equation}
 	Note that the determinant should go over the implicit spinor indices as well, which results in a power of 2 in the final expression. 
@@ -180,16 +180,16 @@
 	\begin{equation}
 	\begin{aligned}
 		W[j] = \ln Z[j]
-		&= -2\ln \det_{k,k'} \pqty{
+		&= 2\ln \det_{k,k'} \pqty{
 				\beta D_0^{-1}(k)\,\delta_{k,k'}
 				- \beta j_{k-k'}
 			} \\
-		&= -2\operatorname*{Tr}\limits_{\,k,k'}
+		&= 2\operatorname*{Tr}\limits_{\,k,k'}
 			\ln \pqty{
 				\beta D_0^{-1}(k)\,\delta_{k,k'}
 				- \beta j_{k-k'}
 			} \\
-		&= -2\operatorname*{Tr}\limits_{\,k,k'}
+		&= 2\operatorname*{Tr}\limits_{\,k,k'}
 			\Bqty\Big{
 				\delta_{k,k'} \ln \pqty\big{
 					\beta D_0^{-1}(k)
@@ -213,11 +213,11 @@
 	\begin{equation}
 	\begin{aligned}
 		W^{(2)}
-		&= -2\operatorname*{Tr}\limits_{\,k,k'}
+		&= 2\operatorname*{Tr}\limits_{\,k,k'}
 			\frac{-1}{2} \pqty\Big{
 				j_{k-k'} D_0(k)
 			}^2_{k,k'} \\
-		&= \operatorname*{Tr}\limits_{\,k,k'}
+		&= -\operatorname*{Tr}\limits_{\,k,k'}
 			\sum_q
 			\pqty\Big{
 				j_{k-q} D_0(k)
@@ -225,13 +225,13 @@
 			\pqty\Big{
 				j_{q-k'} D_0(q)
 			} \\
-		&= \sum_{k,q}
+		&= -\sum_{k,q}
 			j_{k-q} D_0(k)\,
 			j_{q-k} D_0(q) \\
-		&= \sum_k \sum_{q-k}
+		&= -\sum_k \sum_{q-k}
 			j_{k-q} D_0(k)\,
 			j_{q-k} D_0(q-k + k) \\
-		&= \sum_q \sum_k
+		&= -\sum_q \sum_k
 			j_{-q}
 				\pqty\Big{D_0(k)\,D_0(q + k)}
 			j_{q} \\
@@ -242,9 +242,9 @@
 	\begin{equation}
 	\begin{aligned}
 		D_n(k)
-		&= \frac{2}{\beta V}
+		&= -\frac{2}{\beta V}
 			\sum_q D_0(q)\,D_0(k + q) \\
-		&= \frac{2}{\beta V}
+		&= -\frac{2}{\beta V}
 			\sum_q
 				\frac{1}{i\omega_q + E_q}
 				\frac{1}{
@@ -252,7 +252,7 @@
 					+ E_{q + k}
 				},\quad
 			E_q = \frac{\vb{q}^2}{2m} - \mu, \\
-		&= \frac{2}{\beta V}
+		&= -\frac{2}{\beta V}
 			\sum_q \pqty{
 					\frac{1}{i\omega_q + E_q}
 					- \frac{1}{
@@ -264,7 +264,7 @@
 					i\omega_k
 					+ E_{q + k} - E_k
 				} \\
-		&= 2\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
+		&= -2\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
 				\frac{1}{
 					i\omega_k
 					+ E_{q + k} - E_q
@@ -277,7 +277,7 @@
 						+ E_{q + k}
 					}
 				} \\
-		&= 2\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
+		&= -2\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
 				\frac{1}{
 					i\omega_k
 					+ E_{q + k} - E_q
@@ -288,7 +288,7 @@
 					1 - n(E_{q + k} + i\omega_k)
 				}
 			} \\
-		&= 2\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
+		&= -2\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
 				\frac{1}{
 					i\omega_k
 					+ E_{q + k} - E_q
@@ -321,7 +321,7 @@
 				\omega\to i\omega - \epsilon,
 				\vb{k}
 			} \\
-		&= 2\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
+		&= -2\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
 				\frac{1}{
 					\omega + i\epsilon
 					- (E_{q + k} - E_q)
@@ -345,7 +345,7 @@
 			\frac{1}{x \pm i\epsilon}
 			= \mcal{P} \frac{1}{x}
 				\mp i\pi\delta(x) \\
-		&= -4\pi\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
+		&= 4\pi\int \frac{\dd[3]{\vb{q}}}{(2\pi)^3}\,
 				\delta\pqty\Big{
 					\omega
 					- (E_{q + k} - E_q)
@@ -358,7 +358,7 @@
 					e^{\beta E_q} + 1
 				}
 			} \\
-		&= -4\pi\cdot \frac{1}{(2\pi)^3}\cdot 2\pi
+		&= 4\pi\cdot \frac{1}{(2\pi)^3}\cdot 2\pi
 			\int_0^\pi \sin\theta \dd{\theta}
 			\int_0^\infty q^2 \dd{q}\,
 				\delta\pqty\Big{
@@ -373,7 +373,7 @@
 					e^{\beta E_q} + 1
 				}
 			} \\
-		&= - \frac{1}{\pi}
+		&= \frac{1}{\pi}
 			\int_0^\pi \sin\theta \dd{\theta}
 				\frac{m}{k\cos\theta}
 			\int_0^\infty q^2 \dd{q}\,
@@ -392,7 +392,7 @@
 					e^{\beta E_q} + 1
 				}
 			} \\
-		&= - \frac{1}{\pi}
+		&= \frac{1}{\pi}
 		\int_{-1}^1 \dd{x}
 			\frac{m}{kx}\,
 			\pqty{\frac{q_0}{x}}^2
@@ -424,7 +424,7 @@
 	\begin{equation}
 	\begin{aligned}
 		\rho_n
-		&= - \frac{1}{\pi}\,
+		&= \frac{1}{\pi}\,
 			\pqty\big{-\mop{sgn} q_0}
 			\pqty{-\frac{mq_0^2}{2k}}
 		\int_1^\infty \dd{y}
@@ -437,7 +437,7 @@
 				}
 			},
 		\quad y = \frac{1}{x^2}, \\
-		&= \pqty\big{- \mop{sgn} q_0}\, 
+		&= \pqty\big{\mop{sgn} q_0}\, 
 			\frac{mq_0^2}{2\pi k}
 			\cdot \frac{1}{\beta E_0}
 			\Bqty\bigg{
@@ -448,7 +448,7 @@
 					1 + e^{-\beta(E_0 - \mu)}
 				}
 			} \\
-		&= \pqty\big{-\mop{sgn} q_0}\, 
+		&= \pqty\big{\mop{sgn} q_0}\, 
 			\frac{m^2 T}{k\pi}
 			\ln \frac{
 				1 + e^{-\beta(E_0 - \mu)}
@@ -487,7 +487,7 @@
 						\,\delta_{k,k'}
 					- \beta J_{k-k'}^i \sigma_i
 				}
-			}^{-1},\quad
+			}^{+1},\quad
 		D_0^{-1}(k)
 		= i\omega
 			+ \tfrac{\vb{k}^2}{2m}
@@ -498,7 +498,7 @@
 	\begin{gather}
 	\begin{aligned}
 		W^{(2)}
-		&= \frac{1}{2}
+		&= -\frac{1}{2}
 			\operatorname*{Tr}\limits_{k,k',\bullet}\,
 			\sum_q
 			\pqty\Big{
@@ -507,7 +507,7 @@
 			\pqty\Big{
 				J_{q-k'}^j \sigma_j D_0(q)
 			} \\
-		&= \frac{1}{2} \sum_q \sum_k
+		&= -\frac{1}{2} \sum_q \sum_k
 			J_{-q}^i
 				\pqty\Big{
 					\tr (\sigma_i\sigma_j)\,

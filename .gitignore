@@ -1,6 +1,7 @@
 *.log
 *.pdf
 id.tex
+.fdignore
 .fuse_hidden*
 release/*
 
