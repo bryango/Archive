@@ -233,10 +233,12 @@
 			+ e^{2\sigma}\,\pqty{
 				\dd{x^d} + A_\mu \dd{x^\mu}
 			}^2,
+	\label{eq:metric_decomp}
 	\\
 		G^D_{\mu\nu}
 		= G_{\mu\nu} + e^{2\sigma} A_\mu A_\nu,\quad
 		x^d \cong x^d + 2\pi R
+	\label{eq:sub_metric_convention}
 	\end{gather}
 	Where $\mu = 0,1,\cdots,(d-1)$ labels the noncompact directions, and the $x^d$ direction is compactified. $G_{\mu\nu},\sigma$ and $A_\mu$ should depend only on the noncompact coordinates $x^\mu$, $A^\mu = G^{\mu\nu} A_\nu$. 
 	
@@ -575,7 +577,133 @@
 	\begin{equation}
 		R \sim \sqrt{2}\,\frac{\kappa_d}{g_d}
 	\end{equation}
+	
 	\end{enumerate}
+	
+	\item \textbf{Fiberwise T-Duality and the Dilaton}
+	\begin{enumerate}
+	\item For a bosonic string moving in a general background of massless fields in $D = d + 1 = 26$, its worldsheet action is given by:
+	\begin{equation}
+		S = \frac{1}{4\pi\alpha'}
+			\int \dd[2]{\sigma} \sqrt{g}\,
+			\Bqty\Big{
+				\pqty{
+					g^{ab} G_{MN}(X)
+					+ i\epsilon^{ab} B_{MN}(X)
+				}\,
+				\pdd{a} X^M
+				\pdd{b} X^N
+				+ \alpha'\mcal{R}\,\Phi(X)
+			}
+	\end{equation}
+	Where $\Phi$ is the worldsheet Ricci scalar. The $X^{25}$ direction is to be compactified, and the background fields $G_{MN}, B_{MN}$ and $\Phi$ depends only on $X^\mu,\,\mu = 0,1,\cdots,(d-1) = 24$. 
+	
+	$G_{MN}$ can be further split into $G_{\mu\nu},G_{\mu d}$ and $G_{dd}$ with $d = 25$, in a way similar to \eqref{eq:metric_decomp}, but here we are using a simpler convention, with $G^D_{\mu\nu} = G_{\mu\nu}$ instead of \eqref{eq:sub_metric_convention}. Similar goes for $B_{MN}$, with $B_{\mu\nu},B_{\mu d}$, and $B_{dd} = 0$, due to anti-symmetricity. 
+	
+	\item After replacing $\pdd{a} X^d\mapsto \pdd{a} X^d + A_a$ where $A_a$ is an auxilary abelian gauge field on the worldsheet, the $X^d$ related parts in the Lagrangian become:
+	\begin{equation}
+	\small
+	\begin{aligned}
+		\mcal{L}_d[X^d,A_a]
+		&= \frac{\sqrt{g}}{4\pi\alpha'}
+			\Bqty\Big{
+				2\,\pqty{
+					g^{ab} G_{\mu d}
+					+ i\epsilon^{ab} B_{\mu d}
+				}
+					\,(\pdd{a} X^d + A_a)\,
+					\pdd{b} X^\mu
+				+ g^{ab} G_{dd}
+					\,(\pdd{a} X^d + A_a)\,
+					\,(\pdd{b} X^d + A_b)
+			} \\
+	\end{aligned}
+	\end{equation}
+	
+	Consider a translation $
+		X^d\mapsto X^d + \lambda
+	$, where $\lambda$ depends on $X^\mu = X^\mu(\sigma)$ and hence depends on the worldsheet coordinates $\sigma$; it is clear that:
+	\begin{gather}
+		\pdd{a} \pqty{X^d + \lambda}
+			+ \pqty{A_a - \pdd{a}\lambda}
+		= \pdd{a} X^d + A_a,
+	\quad
+		\mcal{L}_d \bqty{
+			\pqty{X^d + \lambda},
+			\pqty{A_a - \pdd{a}\lambda}
+		}
+		= \mcal{L}_d\bqty{
+			X^d, A_a
+		}
+	\end{gather}
+	i.e.\ $X^d$ translation is equivalent to a local gauge transformation $A_a\mapsto A_a - \pdd{a}\lambda$. 
+	
+	In fact, we would like $A_a$ to be ``pure gauge'', capturing only the $X^d$ translational symmetry and nothing more; this can be achieved by adding yet another auxilary field $\phi(\sigma)$ and an extra term:
+	\begin{equation}
+		\mcal{L}_d
+		\longmapsto \mcal{L}_d
+			+ i\epsilon^{ab} F_{ab}\,\phi,
+	\quad
+		F_{ab}
+		= \pdd{a} A_b - \pdd{b} A_a,
+	\quad
+		\int \DD{\phi}\,
+			e^{-i\epsilon^{ab} F_{ab}\,\phi}
+		\sim \delta\bqty{
+				\epsilon^{ab} F_{ab}
+			}
+	\end{equation}
+	Which forces $F_{12} \equiv 0$ in the remaining path integral. Note that the only non-zero independent component of $F_{ab}$ in 2D is $F_{12}$, therefore $F_{12} \equiv 0$ implies that $F_{ab} \equiv 0$, or $
+		F = \dd{A} = 0
+	$. On the plane, this implies that $A = \dd{\lambda}$, i.e.\ it is indeed pure gauge\footnote{
+		However, if there are punctures on the worldsheet, then there is non-trivial cohomology, and $A$ need not be $\dd{\lambda}$. I have not yet understood how this would affect our result; this problem is also acknowledged in \textit{Blumenhagen et al}, Chapter 14, yet it seems to simply ignore such issue. 
+	}. 
+	
+%	\begin{equation}
+%		\int \DD{X}\,\DD{A_a}\,\DD{\phi}\,
+%			e^{-S'}
+%	\end{equation}
+	
+	We can then proceed to integrate out $A_a$. Since $A = \dd{\lambda}$, we can gauge fix $A \equiv 0$, and the action reduces to the original one:
+	\begin{equation}
+		S'\bqty{X,\phi=0,A_a=0}
+		= S\bqty{X}
+	\end{equation}
+	Following the Faddeev--Popov procedure, we find that the path integral also reduces to the original one, up to some additional gauge volume determinant $\Delta_{FP}$, which is independent of $X$. This implies that the theory for the fields $(X,\phi,A_a)$ is, indeed, equivalent to that of the original string theory which has only the $X$ fields.
+	
+	\item Following our discussions in (b), we see that:
+	\begin{equation}
+		\pdd{a} X^d + A_a
+		= 0 + A_a - \pdd{a} \lambda,\quad
+		\lambda = -\pdd{a} X^d,
+%	\\
+%		\int \DD{X^d}\,
+%			e^{-S'[X,\phi,A]}
+%		= \int \DD{\lambda}\,
+%			e^{-S'[X^d\equiv 0,\phi,A_\lambda]},\quad
+%		A_\lambda = A - \dd{\lambda},
+	\end{equation}
+%	i.e.\ integrating over $X^d$ is equivalent to integrating over all the gauge configurations of $A$, labeled by $\lambda$, but with $X^d \equiv 0$. 
+	Before completing the path integral, we perform a gauge transformation $
+		A_a \mapsto A_a - \pdd{a} \lambda
+	$, with $\lambda =  -X^d$. Assuming that there is no anomaly, we can ignore the functional Jacobian of the transformation, and the path integral shall be gauge invariant; in this case, the $\pdd{a} X^d$ term is canceled precisely by the gauge transformation, which is equivalent to setting $X^d = 0$ in the action:
+	\begin{equation}
+		S''\bqty{
+				X^\mu,\phi,A
+			}
+		= S'\bqty{
+				X^\mu,X^d = 0,\phi,A
+			}
+	\end{equation}
+	
+	
+	
+	\end{enumerate}
+	
+	
+	
+	
+	
 	
 	
 	\legacyReference
