@@ -376,8 +376,316 @@
 	Therefore, the string junction is $\frac{8}{32} = \frac{1}{4}$ BPS. 
 
 \item \textbf{Two and Three-Point Functions in AdS/CFT}
+\def\adsFive/{$\mrm{AdS}_5$}
+	
+	Consider a scalar field $\phi(x,z)$ in Poincar\'e \adsFive/ (with radius $R = 1$) satisfying:
+	\begin{equation}
+		\pqty{\laplacian - m^2}\,
+			\phi(x,z) = 0,
+	\quad
+		\phi(x,z) \to
+		\left\lbrace\vbox to 12.5pt {}\right.
+		\begin{aligned}
+			& z^\delta \phi_0(x)\,,
+				&& z\to 0, \\[-.35ex]
+			& \mrm{regular},
+				&& z\to\infty,
+		\end{aligned}
+	\quad
+		\delta = 2 - \sqrt{m^2 + 4}
+	\end{equation}
+	It can be constructed via the boundary-to-bulk propagator $K_\Delta$:
+	\begin{gather}
+		\phi(x,z)
+		= \int \dd[4]{x'}
+			K_\Delta(x,z;x')\,
+			\phi(x'),
+	\\
+		K_\Delta(x,z;x')
+		= \frac{(\Delta - 1)(\Delta - 2)}{\pi^2}
+			\pqty{\frac{z}{
+				z^2 + \norm{x - x'}^2
+			}}^{\!\!\Delta},
+	\quad
+		\Delta = 2 + \sqrt{m^2 + 4}
+	\end{gather}
+	
+	\begin{enumerate}
+	\item To verify this, we first check that the boundary conditions are indeed satisfied by $K_\Delta$; note that $\Delta \ge 2 > 0$, and we have:
+	\begin{equation}
+		z\to 0,\quad l \ne 0,
+	\quad
+		\pqty{\frac{z}{
+			z^2 + l^2
+		}}^{\!\!\Delta} \to 0,
+	\end{equation}
+	i.e.\ the only contribution comes from the $l\to 0$ case, where we have:
+	\begin{equation}
+	\begin{aligned}
+		l = \norm{x - x'} \to 0,
+	\quad
+		\int \dd[4]{x'}
+			K_\Delta(x,z;x')
+		&= \frac{(\Delta - 1)(\Delta - 2)}{\pi^2}
+			\int_0^\infty 2\pi^2 l^3 \dd{l}
+				\pqty{\frac{z}{
+					z^2 + l^2
+				}}^{\!\!\Delta} \\
+		&= \frac{(\Delta - 1)(\Delta - 2)}{\pi^2}\cdot
+			\frac{2\pi^2}{2\,(\Delta - 1)(\Delta - 2)}\,
+			z^{4 - \Delta} \\
+		&= z^\delta
+	\end{aligned}
+	\end{equation}
+	Therefore, we have:
+	\begin{equation}
+		z \to 0,
+	\quad
+		K_\Delta(x,z;x')
+		\to z^\delta \delta^4(x - x'),
+	\quad
+		\phi(x,z)
+		\to z^\delta \phi_0(x),
+	\end{equation}
+	The other boundary condition is convenient to check; we have:
+	\begin{equation}
+		z \to \infty,
+	\quad
+		K_\Delta(x,z;x')
+		\propsim z^{-\Delta} \to 0,
+	\quad
+		\phi(x,z)
+		\,\ \text{regular.}
+	\end{equation}
+	
+	Now we need only check that $K_\Delta$ satisfies the equation of motion; in Poincar\'e \adsFive/ we have:
+	\begin{equation}
+		\laplacian
+		= z^2 \pqty{
+				\pdd{z}^2
+				- \frac{3}{z}\, \pdd{z}
+				+ \pdd{x}^2
+			}
+	\end{equation}
+	With the help of Mathematica\textsuperscript{TM}, it is straightforward to check that $
+		\pqty{\laplacian - m^2}\,
+			\pqty\big{\frac{z}{
+				z^2 + l^2
+			}}^{\Delta}
+		= 0
+	$, therefore $
+		\pqty{\laplacian - m^2}\,
+			\phi(x,z) = 0
+	$. 
+	
+	\newparagraph
+	The AdS/CFT dictionary is given by:
+	\begin{equation}
+		\ave*{
+			e^{
+				\int\dd[4]{x}\,
+					C_O\, \phi_0(x)\, O(x)
+			}
+		}_{\mrm{CFT}}
+		= e^{-S[\phi_0]}
+	\end{equation}
+	Where $S[\phi_0]$ the bulk effective action evaluated on the solution to the equation of motion:
+%	We have taken the classical limit in the RHS, since the AdS/CFT correspondence is a strong/weak duality; for a strongly coupled CFT the bulk theory is weakly coupled, 
+	\begin{equation}
+		S[\phi_0]
+		= \int \dd[4]{x} \dd{z}
+			\sqrt{-G}\,\Bqty{
+				\frac{1}{2}\,\pqty{\pdd{\mu}\phi}^2
+				+ \frac{1}{2}\,m^2 \phi^2
+				+ \frac{1}{3}\,g \phi^3
+				+ \cdots
+			}
+	\end{equation}
+	
+	\item The CFT 2-point function $
+		\ave{O(x)\,O(y)}
+	$ can be computed with the above dictionary, using the usual effective formalism, but with the bulk action instead of the boundary action:
+	\begin{equation}
+		\ave{O(x)\,O(y)}
+		= \frac{1}{C_O^2}
+			\eval{
+				\frac{\var[2]}{
+					\var{\phi_0(x)} \var{\phi_0(y)}
+				}\, e^{-S[\phi_0]}
+			}_{\phi_0=0}\!\!
+	\end{equation}
+	For 2-point function, we only need terms $\sim\order{\phi^2}$; note that:
+	\begin{equation}
+		\fdv{\phi(x,z)}{\phi_0(x')}
+		= K_\Delta(x,z;x'),
+	\end{equation}
+	\vspace{-.5\baselineskip}
+	\begin{equation}
+	\begin{aligned}
+		\var{S}[\phi_0]
+		&\sim \int \dd[4]{x} \dd{z} \sqrt{-G}\,
+				\pqty{-\laplacian + m^2}\,\phi \var{\phi}
+			+ \int_{z\to 0} \dd[4]{x} \sqrt{-G}\,
+				\pd^{z} \phi \var{\phi} \\
+		&= 0 - \int_{z\to 0} \dd[4]{x}
+				z^{-5} z^2
+				\pdd{z} \phi \var{\phi}
+		= -\int_{z\to 0} \dd[4]{x}
+				z^{-3}
+				\pdd{z} \phi \var{\phi},
+	\end{aligned}
+	\end{equation}
+	\begin{equation}
+	\begin{aligned}
+		\therefore\quad
+		\ave{O(x)\,O(y)}
+		&= +\frac{1}{C_O^2}
+			\eval{
+				\frac{\var}{
+					\var{\phi_0(x)}
+				}\, e^{-S[\phi_0]}
+				\int_{z\to 0} \dd[4]{x'} z^{-3}
+					\pdd{z} \phi(x',z)\,
+					K_\Delta(x',z;y)\,
+			}_{\phi_0=0}\!\! \\
+		&= \frac{1}{C_O^2}
+				\int_{z\to 0} \dd[4]{x'} z^{-3}
+					\pdd{z} K_\Delta(x',z;x)\,
+					K_\Delta(x',z;y) \\
+		&= \frac{1}{C_O^2}
+				\int_{z\to 0} \dd[4]{x'} z^{-3}
+					\pdd{z} K_\Delta(x',z;x)\,
+					z^\delta \delta^4(x' - y) \\
+		&= \frac{z^{\delta - 3}}{C_O^2}\,
+			\pdd{z} K_\Delta(x,z;y) \\
+		&\sim \frac{z^{\delta-3}}{C_O^2}\,
+			\frac{(\Delta - 1)(\Delta - 2)}{\pi^2}
+			\frac{
+				\Delta z^{\Delta-1}
+			}{\norm{x - y}^{2\Delta}} \\
+		&= \frac{1}{C_O^2}\,
+			\frac{\Delta(\Delta - 1)(\Delta - 2)}{\pi^2}
+			\frac{1}{\norm{x - y}^{2\Delta}} \\
+	\end{aligned}
+	\end{equation}
+	
+	Therefore, if we want $
+		\ave{O(x)\,O(y)}
+		= \frac{1}{\norm{x - y}^{2\Delta}}
+	$, then we have\footnote{
+		Reference: \arxiv{hep-th/9804058}. Again I would like to thank Lucy Smith for hints with this problem. 
+	}:
+	\begin{equation}
+		C_O
+		= \frac{1}{\pi} \sqrt{
+				\Delta(\Delta - 1)(\Delta - 2)
+			}
+	\end{equation}
+	Here $z\to 0$ is a cutoff parameter. 
+	
+	\item Similarly, we can use the dictionary to compute 3-point functions; we have\footnote{
+		Reference: \arxiv{hep-th/9905111}, and \arxiv{hep-th/9804058}. 
+	}:
+	\begin{equation}
+		\ave{O(x_1)\,O(x_2)\,O(x_3)}
+		= \frac{1}{C_O^3}\,
+			\pqty{-\frac{g}{3}}
+			\int \dd[4]{x} \dd{z} \sqrt{-G}\,
+				K_\Delta(x,z;x_1)\,
+				K_\Delta(x,z;x_2)\,
+				K_\Delta(x,z;x_3)
+	\end{equation}
+	This is a difficult integral; as is suggested by \arxiv{hep-th/9804058}, we can use an important symmetry of AdS/CFT --- the inversion $
+		\vec{x}\mapsto \frac{\vec{x}}{x^2}
+	$, to complete the integration. 
+	
+	By conformal symmetry, we know that the 3-point function is of the form:
+	\begin{equation}
+		\ave{O(x_1)\,O(x_2)\,O(x_3)}
+		= A(x_1,x_2,x_3)
+		= \frac{C_{OOO}}{
+				\abs{x_{12}}^\Delta
+				\abs{x_{23}}^\Delta
+				\abs{x_{31}}^\Delta
+			},\quad x_{ij} = x_i - x_j
+	\end{equation}
+	First set $x_3 = 0$, then perform inversion on all other points:
+	\begin{gather}
+		x_i = \frac{x'_i}{x'^2_i}, \quad
+		(x,z) = \frac{(x',z')}{\,r'^2},
+	\quad
+		r^2 = x^2 + z^2,\quad
+		r^2 r'^2 = 1 = x_i^2 x_i'^2,
+	\\
+		\frac{\dd[4]{x} \dd{z}}{z^5}
+		= \frac{\dd[4]{x'} \dd{z'}}{z'^5},
+	\\
+	\begin{aligned}
+		\frac{z}{z^2 + \norm{x - x_i}^2}
+		&= \frac{z}{r^2 + x_i^2 - 2x\cdot x_i}
+		= \frac{z'/r'^2}{
+				1/r'^2 + 1/x'^2_i
+				- 2x'\cdot x'_i/\pqty{r'^2 x'^2_i}
+			} \\
+		&= \frac{z'}{r'^2 + x'^2_i - 2x'\cdot x'_i}
+			\,x'^2_i
+		= \frac{z'}{z'^2 + \norm{x' - x'_i}^2}
+			\,x'^2_i,
+	\end{aligned}
+	\\[1ex]
+		K_\Delta(x,z;x_i)
+		= K_\Delta(x',z';x'_i)\,\abs{x'_i}^{2\Delta}
+		= \frac{1}{\abs{x_i}^{2\Delta}}\,
+			K_\Delta(x',z';x'_i),
+	\end{gather}
+	With these in mind, we find that:
+	\begin{equation}
+		A(x_1,x_2,0)
+		= -\frac{g}{3C_O^3}\,
+			\frac{1}{\abs{x_1}^{2\Delta}}
+			\frac{1}{\abs{x_2}^{2\Delta}}
+			\frac{(\Delta - 1)(\Delta - 2)}{\pi^2}
+		\int \frac{\dd[4]{x'} \dd{z'}}{z'^5}
+			K_\Delta(x',z';x'_1)\,
+			K_\Delta(x',z';x'_2)\,
+			z'^\Delta
+	\end{equation}
+	The integral can then be completed using Feynman parameters; in the end we obtain:
+	\begin{gather}
+		A(x_1,x_2,0)
+		\propto
+			\frac{1}{\abs{x_1}^{2\Delta}}
+			\frac{1}{\abs{x_2}^{2\Delta}}
+			\frac{1}{\abs{x'_1 - x'_2}^{2\Delta}}
+		= \frac{1}{
+				\abs{x_1}^{\Delta}
+				\abs{x_2}^{\Delta}
+				\abs{x_1 - x_2}^{\Delta}
+			},
+	\\[1ex]
+		C_{OOO}
+		= -\frac{g}{3C_O^3}\,
+			\frac{1}{2\pi^4}
+			\pqty{
+				\frac{\Gamma(\tfrac{\Delta}{2})}{
+					\Gamma(\Delta - 2)
+				}
+			}^{\!\!3}
+			\Gamma\pqty{
+				\frac{3\Delta - 4}{2}
+			}
+	\end{gather}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	\end{enumerate}
 	
 	
 	
