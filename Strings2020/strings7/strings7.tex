@@ -1,0 +1,400 @@
+% !TeX document-id = {39d24ce0-844d-44a8-943b-2a9698211621}
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+% !TeX TS-program = xelatex
+%%% LuaLaTeX is required for `tikz-feynman`
+
+\documentclass[a4paper,10pt]{article}
+
+\newcommand{\hwNumber}{7 [WIP]}
+
+\input{../strings_preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+%%% ID: sensitive, do NOT publish!
+\InputIfFileExists{../id.tex}{}{}
+
+\newcommand{\oppower}[2]{\mop{{#1}^{#2}}\!}
+\newcommand{\sqsinh}{\oppower{\sinh}{2}}
+\newcommand{\sqcosh}{\oppower{\cosh}{2}}
+
+\newcommand{\Vir}{\mathbf{V}\mfrak{ir}}
+\newcommand{\zbar}{\bar{z}}
+%\usepackage{tikz-feynman,cancel}
+
+% NS & R with spacing
+\newcommand{\NS}{\ensuremath{\mspace{2mu}\mrm{NS}}}
+\newcommand{\R}{\ensuremath{\mspace{2mu}\mrm{R}}}
+
+% representations
+\newcommand{\mbf}[1]{\mathbf{#1}}
+
+%\addbibresource{strings6.bib}
+
+\begin{document}
+\maketitle
+\pagestyle{headings}
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+%{
+%	\noindent\itshape%
+%	本文约定：度规$\eta\sim\pqty{-,+,+,+}$, 指标$\mu,\nu,\dots = 0,1,2,3,\ i,j,\dots = 1,2,3$.
+%}
+
+\begin{enumerate}
+
+\item \textbf{T-duality of Heterotic Strings}\footnote{
+		I would like to thank Lucy Smith for help with this problem. 
+	}
+	
+	We use $d \le 10$ to denote the number of noncompact dimensions; the remaining $m \ge d$ dimensions are compactified. For heterotic strings, the $I\ge 10$ dimensions of the left-moving sector are already compactified on a lattice $\Gamma_{16}$ or $\Gamma_8\times \Gamma_8$. Here we use the label $I$ to index the 16 internal dimensions. 
+	
+	\begin{enumerate}
+	\item Generally, if we compactify an open string on the $x^m$ direction: $x^m \cong x^m + 2\pi R$ with constant backgrounds $A_m$, then its zero mode spectrum, \textit{with winding $w = 0$}, can be obtained from canonical quantization of the effective point particle action, with an additional gauge action term in the form of a Wilson line\footnote{
+		Reference: \textit{Polchinski}, Chapter 8. 
+	}:
+	\begin{equation}
+		-W_q
+		= -iq \int \dd{x^m} A_m
+		\sim -iq \int \dd{\tau} A_m \dot{X}^m
+	\end{equation}
+	By imposing that the canonical momentum to be periodic along $x^m$, we find that:
+	\begin{equation}
+		k_m = \frac{n_m}{R} - q A_m
+	\label{eq:effective_momentum}
+	\end{equation}
+	
+	To obtain the winding states, we have to reproduce the above action from the world-sheet description. For heterotic strings with $m < 10 \le I \le 26$, this can be achieved by adding the following term to the usual world-sheet action\footnote{
+		Reference: \textit{Blumenhagen et al}, Basic Concepts of String Theory. 
+	}:
+	\begin{equation}
+		S_A \propto \int \dd[2]{\sigma}
+			\epsilon^{ab} A^I_\mu
+			\,\pdd{a} X^\mu
+			\,\pdd{b} X_I
+	\end{equation}
+	With proper normalizations to match the result in \eqref{eq:effective_momentum}. 
+	
+	Canonical quantization then produces\footnote{
+		Reference: \textit{Polchinski}, Chapter 11. 
+	}:
+	\begin{gather}
+		k_m
+		= \frac{n_m}{R}
+			\pm \frac{w_m R}{\alpha'}
+			- q_I A^I_m
+			- \frac{w_n R}{2} A^n_I A_m^I,
+	\\
+		k^I_L
+		= \sqrt{\frac{2}{\alpha'}}\,
+			\pqty{
+				q^I + w^m R A^I_m
+			},
+	\end{gather}
+	The \mquote{\pm} signs in $k_m$ correspond to the left and right-moving sector, respectively. Only the left-moving sector has an additional 16 dimensional internal torus, therefore $k^I$ is labeled with an $\mquote{L}$. 
+	
+	Note that the charge $q^I$ now takes value on the $\Gamma_{16}$ or $\Gamma_8\times \Gamma_8$ lattice, and:
+	\begin{equation}
+		l\circ l'
+		= \frac{\alpha'}{2} \pqty{
+				k^I_L\, k'_{L,I}
+				+ k^m_L\, k'_{L,m}
+				- k^m_R\, k'_{R,m}
+			}
+		= q^I q'_I
+			+ 2nw
+	\end{equation}
+	We can then see that the new ``extended'' lattice indeed satisfies the even and self-dual conditions, which follows from the even and self-dual properties of $\Gamma_{16}$ or $\Gamma_8\times \Gamma_8$. 
+	
+	\item With $m = 9$ and $G_{dd} = 1$, we have:
+	\begin{equation}
+		W_q = \exp \pqty{-iq_I\theta^I},
+	\quad
+		A^I_9 = - \frac{\theta^I}{2\pi R}
+	\end{equation}
+	Note that $W_q$ captures the phase change of the paths that wind around $x^9$; the extra phase from a non-trivial Wilson line might affect the boundary condition of some states while leaving others intact, thus breaking the original gauge symmetry. Our discussions here closely follow \textit{Polchinski}, Chapter 11. 
+	
+	For the SO(32) theory with:
+	\begin{equation}
+		RA^I_9
+		= \mop{diag} \pqty{
+				(\tfrac{1}{2})^8,
+				0^8
+			}
+	\end{equation}
+	Adjoint states are labeled by a pair of indices valued in $1,\cdots,32$; those with one index from $1 \le A \le 16$ and one from $17 \le A \le 32$ are antiperiodic due to the additional phase $e^{i\pi} = -1$ from the Wilson line, so the gauge symmetry is reduced to $\mrm{SO}(16) \times \mrm{SO}(16)$. 
+	
+	Similarly, for the $E_8 \times E_8$ theory with:
+	\begin{equation}
+		R' A^I_9
+		= \mop{diag} \pqty{
+				1,0^7,
+				1,0^7
+			}
+	\end{equation}
+	Note that $\Gamma_8$, the root lattice of $E_8$, is basically the root lattice union an additional spinor weight lattice of SO(16). With the above Wilson line, the integer-charged states from the SO(16) root lattice in each $E_8$ remain periodic, while the half-integer charged states from the SO(16) spinor lattices become antiperiodic, due to the additional phase $e^{i\frac{1}{2}\cdot 2\pi} = -1$. Again the gauge symmetry is broken down to SO(16) × SO(16). 
+	
+	In summary, with the above Wilson line, the SO(32) and $E_8 \times E_8$ theory shares a unbroken gauge of SO(16) × SO(16). Consider he spectrum of the SO(16) × SO(16) \textit{neutral states}, i.e.\ those with internal momentum:
+	\begin{equation}
+		k^I_L
+		= \sqrt{\frac{2}{\alpha'}}\,
+			\pqty{
+				q^I + w R A^I_9
+			}
+		= 0
+	\end{equation}
+	For the $\mrm{SO}(32)$ theory, since $q^I \in \Gamma_{16}$
+%	or $\Gamma_8\times \Gamma_8$ 
+%	and adjoint states in  are integer-charged 
+	while $
+		RA^I_9
+		= \mop{diag} \pqty{
+				(\tfrac{1}{2})^8,
+				0^8
+			}
+	$, we must have $w = 2m$ for this to hold. The same goes for the $E_8 \times E_8$ theory;
+	therefore, we have:
+	\begin{gather}
+		k_{L,R} = \frac{\tilde{n}}{R}
+			\pm \frac{2mR}{\alpha'},
+	\quad
+		k'_{L,R} = \frac{\tilde{n}'}{R'}
+			\pm \frac{2m'R'}{\alpha'},
+	\\
+		\tilde{n} = n + 2m,\quad
+		\tilde{n}' = n' + 2m'
+	\end{gather}
+	
+	\item If the two theories are related by T-duality, then we should expect:
+	\begin{equation}
+		(k_L, k_R) \longleftrightarrow (k'_L, −k'_R),
+	\end{equation}
+	Under suitable mapping of parameters. Indeed, it is straightforward to verify that $
+		(\tilde{n},m)\leftrightarrow (m',\tilde{n}')
+	$ realizes this, along with $
+		RR' = \alpha'/2
+	$. The above arguments can then be generalized to higher levels, by acting on fermionized left-moving fields $\lambda^A$ and carefully organizing representations. We see that the two heterotic string theories are equivalent under T-duality.
+	\end{enumerate}
+
+\item \textbf{String Junction}\footnote{
+		Reference: \arxiv{0812.4408}. 
+	}
+%	\begin{figure}[!ht]
+%	\centering
+%	\includegraphics[width=.2\linewidth]{FD_bound.png}
+%	\caption{String Junction}
+%	\label{fig:string_junction}
+%	\end{figure}
+	
+	\nopagebreak
+	For a string junction to be mechanically stable, the tension force exerted on the junction must cancel each other; this is a Newtonian mechanics problem, but with $(p,q)$-string tension given by the BPS bound:
+	\begin{equation}
+		\tau_{(p,q)}
+		= \frac{\sqrt{p^2 + q^2/g^2}}{2\pi\alpha'}
+	\end{equation}
+	Stabibility of the system implies that the BPS bound should be saturated. 
+	
+	From Newtonian mechanics, we know that three forces cannot cancel each other unless they are co-planar. Therefore, a 3-string junction must be co-planar in order to be stable. Suppose they lie in the $(X^1,X^2)$ plane, then the tension exerted on the junction can expressed as:
+	\begin{equation}
+		\vec{T}_i = \tau_{(p_i,q_i)}\,\pqty{
+				\cos\theta_i,
+				\sin\theta_i
+			},
+	\quad i = 1,2,3,
+	\end{equation}
+	$\sum_i \vec{T}_i = 0$ gives two equations, and we have two independent unknowns (the angle between two pairs of strings); therefore if a solution exists, it should be unique up to rotations and reflections. 
+	
+	In fact, a solution can be found by simple observations:
+	\begin{equation}
+		\cos\theta_i
+		= \frac{p_i}{\sqrt{p^2 + q^2/g^2}},
+	\quad
+		\sin\theta_i
+		= \frac{q_i/g}{\sqrt{p^2 + q^2/g^2}},
+	\end{equation}
+	It satisfies $\sum_i \vec{T}_i = 0$ since that total $(p,q)$ vanishes at each junction. 
+	
+	To find the remaining supersymmetries of this system, we start from the original supersymmetries of a $(p,q)$ string (which saturates the BPS bound) extended along the $\hat{X} = (\cos\theta,\sin\theta)$ direction:
+	\begin{gather}
+		\frac{1}{2L\tau_{(p,q)}} \Bqty{
+			\bqty{\mqty{
+				Q_\alpha \\
+				\tilde{Q}_\alpha
+			}},
+			\bqty{
+				Q^\dagger_\beta
+				\ \tilde{Q}^\dagger_\beta}
+		}
+		= \delta_{\alpha\beta}
+				\bmqty{
+					1 & 0 \\
+					0 & 1 \\
+				}
+			+ (\Gamma^0 \Gamma^\theta)_{\alpha\beta}
+				\bmqty{
+					\cos\theta & \sin\theta \\
+					\sin\theta & -\cos\theta \\
+				},
+	\\
+		\Gamma^\theta
+		= \hat{X}\cdot \vec{\Gamma}
+		= \Gamma^1\cos\theta + \Gamma^2\sin\theta
+	\end{gather}
+	We see that the algebra depends on $\theta$, i.e.\ it is different for strings in different directions. However, if we can find a (maximal) subalgebra that is independent of $\theta$, then we would have found the remaining supersymmetries of the full system\footnote{
+		The $\tau_{(p,q)}$ factor can be absorbed by rescaling generators, hence does not matter in our discussions. 
+	}. 
+	
+	We begin with diagonalizing the matrix on the RHS with:
+	\begin{gather}
+		U(\tfrac{\theta}{2}) = \bmqty{
+				\cos\frac{\theta}{2} &
+				-\sin\frac{\theta}{2} \\
+				\sin\frac{\theta}{2} &
+				\cos\frac{\theta}{2} \\
+			},
+	\\[1ex]
+		\frac{1}{2L\tau_{(p,q)}} \Bqty{
+			U^{\mrm{T}}
+			\bqty{\mqty{
+				Q_\alpha \\
+				\tilde{Q}_\alpha
+			}},
+			\bqty{
+				Q^\dagger_\beta
+				\ \tilde{Q}^\dagger_\beta
+			}
+			U
+		}
+		= \bmqty{
+			(\idty + \Gamma^0\Gamma^\theta)_{\alpha\beta} &
+			0 \\
+			0 &
+			(\idty - \Gamma^0\Gamma^\theta)_{\alpha\beta} \\
+		},
+	\end{gather}
+	Note that $
+		(\idty + \Gamma^0\Gamma^\theta)
+		(\idty - \Gamma^0\Gamma^\theta)
+		= 0
+	$ and $
+		(\idty + \Gamma^0\Gamma^\theta)
+		+ (\idty - \Gamma^0\Gamma^\theta)
+		= 2\idty
+	$, i.e.\ they are orthogonal to each other; acting $
+		(\idty \pm \Gamma^0\Gamma^\theta)
+	$ on both sides, we find the following combinations, which gives the 16 SUSYs of a $(p,q)$ string:
+	\begin{equation}
+		(\idty - \Gamma^0\Gamma^\theta)
+		\pqty{
+			\cos\tfrac{\theta}{2}\, Q
+			+ \sin\tfrac{\theta}{2}\, \tilde{Q}
+		}_\alpha
+		= 0 =
+		(\idty + \Gamma^0\Gamma^\theta)
+		\pqty{
+			- \sin\tfrac{\theta}{2}\, Q
+			+ \cos\tfrac{\theta}{2}\, \tilde{Q}
+		}_\beta
+	\label{eq:pq_string_susy}
+	\end{equation}
+	
+\pagebreak[4]
+	
+	For further simplification, we can isolate the $\theta$ dependence in $\Gamma^\theta$ by working in a specific representation of the Clifford algebra, e.g.\ the Dirac representation given by \textit{Polchinski}. Then $\alpha$ is given by 10\,D spinor components: $
+		\alpha = (s_0,s_1,s_2,s_3,s_4),\ %
+		s_i = \pm
+	$, with additional chirality constraints from both $Q$ and $\tilde{Q}$: $
+		\prod_i s_i = +
+	$. In the end, we have 16 independent components as expected. 
+	
+	Details of the expansion is given in \arxiv{0812.4408}. When the dust settles, we find that the 16 SUSYs in \eqref{eq:pq_string_susy} is given by:
+	\begin{subequations}
+	\begin{gather}
+		\sin\tfrac{\theta}{2}\,
+		\pqty{
+			\cos\tfrac{\theta}{2}\, Q
+			+ \sin\tfrac{\theta}{2}\, \tilde{Q}
+		}_{(++s)}
+		+ \cos\tfrac{\theta}{2}\,
+		\pqty{
+			\cos\tfrac{\theta}{2}\, Q
+			+ \sin\tfrac{\theta}{2}\, \tilde{Q}
+		}_{(--s)},
+	\\
+		\sin\tfrac{\theta}{2}\,
+		\pqty{
+			\cos\tfrac{\theta}{2}\, Q
+			+ \sin\tfrac{\theta}{2}\, \tilde{Q}
+		}_{(+-s)}
+		- \cos\tfrac{\theta}{2}\,
+		\pqty{
+			\cos\tfrac{\theta}{2}\, Q
+			+ \sin\tfrac{\theta}{2}\, \tilde{Q}
+		}_{(-+s)},
+	\\
+		\cos\tfrac{\theta}{2}\,
+		\pqty{
+			- \sin\tfrac{\theta}{2}\, Q
+			+ \cos\tfrac{\theta}{2}\, \tilde{Q}
+		}_{(++s)}
+		- \sin\tfrac{\theta}{2}\,
+		\pqty{
+			- \sin\tfrac{\theta}{2}\, Q
+			+ \cos\tfrac{\theta}{2}\, \tilde{Q}
+		}_{(--s)},
+	\\
+		\cos\tfrac{\theta}{2}\,
+		\pqty{
+			- \sin\tfrac{\theta}{2}\, Q
+			+ \cos\tfrac{\theta}{2}\, \tilde{Q}
+		}_{(+-s)}
+		+ \sin\tfrac{\theta}{2}\,
+		\pqty{
+			- \sin\tfrac{\theta}{2}\, Q
+			+ \cos\tfrac{\theta}{2}\, \tilde{Q}
+		}_{(-+s)},
+	\end{gather}
+	\end{subequations}
+	\vspace{-.8\baselineskip}
+	\begin{equation}
+		s = (s_2 s_3 s_4),\quad
+		\prod_i s_i = +
+	\end{equation}
+	
+	By trial and error, we can find the 8 linear combinations that are independent of $\theta$; they are:
+	\begin{gather}
+		(a) + (c)
+		\quad\Longrightarrow\quad
+		\tilde{Q}_{(++s)} + Q_{(--s)},
+	\\
+		(b) + (d)
+		\quad\Longrightarrow\quad
+		\tilde{Q}_{(+-s)} - Q_{(-+s)},
+	\end{gather}
+	Therefore, the string junction is $\frac{8}{32} = \frac{1}{4}$ BPS. 
+
+\item \textbf{Two and Three-Point Functions in AdS/CFT}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+\end{enumerate}
+
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}
