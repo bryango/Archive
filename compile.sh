@@ -11,6 +11,7 @@ log "$DIR"
 ls | xargs
 mkdir -p release
 
+# naming: $project/$sub_project/$main.tex
 FILES=$(find . \
     -regex "./[^/]+/[^/]+/[^/]+.tex" \
     -not -path "./Templates/*"
@@ -21,8 +22,10 @@ echo "$FILES"
 for file in $FILES; do
     log "Compiling \`$file\` ..."
 
-    cd "$(dirname "$file")" || exit 1
+    pathname=$(dirname "$file")
     filename=$(basename "$file")
+
+    cd "$pathname" || exit 1
 
     # Process magic comment
     tex_program=$(
@@ -47,8 +50,17 @@ for file in $FILES; do
 
     log "Check & release PDF:"
     pdf="$(basename "$filename" .tex).pdf"
-    ls "$pdf" \
-        && mv -v -f "$pdf" "$DIR/release/."
+    if ls "$pdf"; then
+
+        # shortened name: $project/$sub_project.tex
+        target="$DIR/release/$(dirname "$pathname")"
+        mkdir -p "$target"
+
+        # shellcheck disable=2015
+        [[ $USER == bryan ]] \
+            && cp -a -v -f "$pdf" "$target/." \
+            || mv -v -f "$pdf" "$target/."
+    fi
 
     cd "$DIR" || exit 1
 done
