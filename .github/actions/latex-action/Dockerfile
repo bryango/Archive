@@ -1,4 +1,4 @@
-FROM xucheng/texlive-full:20200401
+FROM xucheng/texlive-full:20200526
 
 RUN apk --no-cache add bash findutils 
 
