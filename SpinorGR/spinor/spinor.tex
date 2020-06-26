@@ -1,0 +1,981 @@
+% !TeX document-id = {17e347e4-2d27-4494-abb3-36b9e7f18795}
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper,11pt]{article}
+\input{../preamble.tex}
+\addbibresource{spinor.bib}
+%\ctexset{fontset = ubuntu}
+
+%Title
+	\title{Positive Energy Theorem\\[.5ex]
+		\& Spin Structure
+%		\vspace*{-.2ex}\newline\large\{\textsl{based on \textit{Straumann}} \cite{Straumann:2013spu}\}%
+	}
+	\author{
+		{\signature Bryan}, %
+		\sf%
+		X.~J.~Xie, %
+		H.~Q.~Wu
+	}
+	\date{}
+
+\begin{document}
+\maketitle
+\pagenumbering{arabic}
+\pagestyle{headings}
+\thispagestyle{empty}
+
+\vspace{.2\baselineskip}
+
+\setlength{\parskip}{.1\baselineskip}
+\tableofcontents
+\setlength{\parskip}{\parskipnorm}
+
+\vspace{1\baselineskip}
+
+\section{Introduction}
+	Relativity and quantum mechanics are the two cornerstones of modern physics. Attempted unions of these two theories have produced some highly non-trivial results in theoretical physics. Most surprisingly, by considering \textit{classical limits} of quantum effects in general relativity, we can reveal some new structures of classical spacetime. 
+	Witten's proof of the positive energy theorem \cite{Witten:1981mf} is a major example of such treatment. 
+	
+	In general relativity, matter curves spacetime, and its effects are captured by Einstein's equations. \textsc{The positive energy conjecture} claims that ``regular'' matter\footnote{
+		In theory, there \textit{can} be ``exotic'' matter, however unlikely in reality. For example, matter with negative mass can be used to create traversable wormhole. 
+	} should give rise to spacetime with a positive energy, and the energy of spacetime is zero iff.~it is flat \cite{Straumann:2013spu}. 
+	
+	This is a statement about purely classical general relativity. It feels natural in physics, but is extremely hard to prove in a rigorous way. The first complete proof is given by Schon and Yau \cite{Schon:1979rg} using techniques from geometric analysis. Witten's proof, on the other hand, relies heavily on the existence of \textit{spinor fields} on a given spacetime. Although it is inspired by ideas from quantum mechanics and even supersymmetry, the proof by itself is still fully contained in general relativity. 
+	
+	Spinor field is a natural consequence of quantum field theory, and can be treated {semi-classically} by introducing additional \textit{spin structure} on the spacetime $\mcal{M}$. This will be the focus of our following discussions. 
+	
+	As an introductory review, we try to illustrate the geometric aspects of spin structure and its role in Witten's proof of the positive energy theorem. To avoid technicalities of spinor analysis, we will only sketch some main ideas of the proof. For a more detailed treatment, see \cite{Witten:1981mf,Straumann:2013spu} for physicists and \cite{Parker:1981uy,jost2011riemannian} for mathematicians. 
+\subsection{Review of General Relativity and Conventions}
+	General relativity is formulated on a \textit{pseudo}-Riemannian (Lorentzian) manifold $(\mcal{M},g)$. $\mcal{M}$ is locally identical to $\mbb{R}^{3,1}$, here $\mbb{R}^{3,1} \approxeq \mbb{R\times}\mbb{R}^3$ with the {first} component being the {time} coordinate. From now on we will use the symbol ``$\approxeq$'' to denote diffeomorphism, or \textit{diffeo} for short. However, when there is extra structure involved (e.g.~group product), ``$\cong$'' will stand for \textit{isomorphism}, and we will use ``$\approxeq$'' for mere diffeo. 
+	
+	Metric tensor can then be pointwise diagonalized:
+	\begin{equation}
+		g_{\mu\nu}
+		= \eta_{ab}\,e\id{^a_\mu} e\id{^b_\nu}
+			+ \order{x^2},\quad
+		\eta_{ab} \sim \mop{diag}(-1,1,1,1)
+			\sim\text{flat}
+	\end{equation}
+	Here $\mu,\nu, \cdots = 0,1,2,3$ denotes tensor components w.r.t.~local coordinates, while $a,b,\cdots = 0,1,2,3$ denotes components w.r.t.~a \textit{orthonormal frame field}\footnote{
+		This is basically Cartan's \textit{moving frame} formalism. 
+	} or \textit{vierbein}:
+	\begin{equation}
+		\Bqty\Big{
+			\theta^a(x)
+			= e\id{^a_\mu}(x) \dd{x^\mu}
+		}_{a=0,1,2,3}
+		\ \longleftrightarrow\ %
+		\Bqty{
+			e_a(x)
+			= e\id{_a^\mu}(x)\,\pdv{x^\mu}
+		}_{a=0,1,2,3}
+		\label{eq:orthonormal_frame}
+	\end{equation}
+	
+	It is often helpful to think of $\mcal{M}$ as the \textit{foliation / time-evolution} of a spacelike (Riemannian) codimension-1 hypersurface $\Sigma$ along a time direction\footnote{%
+		In fact, global existence of such time slice $\Sigma$ (so-called \textit{Cauchy slice}) as an initial value surface is \textit{not} automatically guaranteed, but relies on the causal structure of $\mcal{M}$, see \cite{Wald:1984rg}; but locally we can always assume such structure. 
+	}. 
+	
+	Coordinates on $\Sigma$ is indexed with $i,j,\cdots = 1,2,3$. In fact, we assume that:
+	\begin{equation}
+		\mcal{M}_{(t_1,t_2)}
+		\cong (t_1,t_2) \times \Sigma
+		\cong \mbb{R} \times \Sigma
+		\label{eq:local_decomp}
+	\end{equation}
+	Where $t\in (t_1,t_2)$ is some \textit{global time} coordinate restricted in an interval. 
+	
+	Following the usual approach of Riemannian geometry, we can similarly define Riemann curvature $R\id{^\lambda_{\rho\mu\nu}}$, Ricci tensor $R_{\mu\nu}$ and scalar curvature $R$. Einstein's equations of relativity is then neatly organized into the following covariant tensorial expression\footnote{
+		Here we have set Newton's constant $G_N = 1$ and cosmological constant $\Lambda = 0$. Proof of the Positive Energy Theorem with $\Lambda\ne 0$ is still incomplete to this day, and still an important field of research; see e.g.~\cite{Zhang:2015iua}. 
+	}:
+	\begin{equation}
+		R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R
+		= 8\pi T_{\mu\nu}
+		\label{eq:einstein}
+	\end{equation}
+	The left-hand side (LHS) of the equation is purely geometric, while the right-hand side (RHS) is proportional to the symmetric \textit{energy--momentum stress tensor} $T_{\mu\nu}$, which describes matter distribution in spacetime. In general, we expect natural matter on the RHS will lead to well-behaved spacetime on the LHS; positive energy theorem is one exact case of such observation. 
+\section{Positive Energy Theorem}
+	Although Witten's proof relies on insights from quantum mechanics, the statement of positive energy theorem is purely \textit{classical} (in the sense that it does \textit{not} depend on quantum mechanics)\footnote{
+		There are some variations between statements in the literature; here we will follow {Straumann}'s simplified version \cite{Straumann:2013spu} and {Witten}'s original work \cite{Witten:1981mf}, with mathematical supplements from Parker \textit{et al} \cite{Parker:1981uy}. 
+	}. Here we summarize the main components of the theorem. 
+\subsection{Constraints on Manifold and Total Energy}
+\label{subsect:adm_energy}
+	As is illustrated in \eqref{eq:local_decomp}, the main object to study can be reduced to a usual Riemannian manifold $\Sigma$. To make things easier, we shall further assume that $\Sigma$ is \textit{asymptotically flat}, i.e.~$\Sigma$ has finitely many non-compact asymptotic \textit{ends}\footnote{
+		It might be helpful to visualize this as the spatial ``end'' of the world, \textit{世界尽头}。This poetic translation is due to X.~J.~Xie. 
+	} $\Sigma_\ell \subset \Sigma$. Asymptotic flatness is then captured by the asymptotic behavior the metric: $g_{ij}\sim \delta_{ij}$. 
+	
+	\begin{definition*}[Asymptotic Flatness]
+		A Riemannian 3--fold $\Sigma\subset\mcal{M}$ as a hyperspace in spacetime is \textit{asymptotically flat} when it has the following decomposition:
+		\begin{equation}
+			\Sigma
+			\cong \Sigma_0
+			\cup \coprod_{\ell\ne 0} \Sigma_\ell
+		\end{equation}%
+\pagebreak[4]\\
+		Where $\{\ell\}$: finite indices, and:
+		\begin{itemize}[noitemsep,topsep=.3\baselineskip]
+		\item $\Sigma_0$: compact;
+		\item $\{\Sigma_\ell\}_\ell$: asymptotic ends, each diffeo to the complement of a contractible compact set in $\mbb{R}^3$; 
+		\item Under such diffeo $\Sigma_\ell\to\mbb{R}^3$, the metric $g$ of every end $\Sigma_\ell\subset\mcal{M}$ is asymptotically flat, i.e.
+		\begin{equation}
+		\begin{gathered}
+			g_{ij} = \delta_{ij} + h_{ij},\\[.5ex]
+			h_{ij}
+				\sim \order{\tfrac{1}{r}},\quad
+			\pdd{k} h_{ij}
+				\sim \order{\tfrac{1}{r^2}},\quad
+			\pdd{l}\pdd{k} h_{ij}
+				\sim \order{\tfrac{1}{r^3}}
+		\end{gathered}
+		\end{equation}
+		\item The second fundamental form $K$ of $\Sigma_\ell\subset\mcal{M}$ is also constrained:
+		\begin{equation}
+			K_{ij}
+				\sim \order{\tfrac{1}{r^2}},\quad
+			\pdd{k} K_{ij}
+				\sim \order{\tfrac{1}{r^3}}
+		\end{equation}
+		\end{itemize}
+	\end{definition*}
+	
+	In general, it is quite difficult to define a total energy for some arbitrary spacetime $\mcal{M}$. However, when asymptotic flatness is imposed, it can be treated as a \textit{symmetry} of the ends $\Sigma_\ell$. Energy of the spacetime\footnote{
+		This includes contributions from gravitational field and matter field.
+	} can then be defined as the \textit{conserved charge} corresponding to the time translation Killing vector field $\xi = \pdd{t}$, or more explicitly, by integrating the \textit{Noether current} of such symmetry on $\Sigma_\ell$, as is done in \textit{Noether's theorem}. See \cite{Banados:2016zim} for a comprehensive review; for a covariant treatment, see \cite{crnkovic1987covariant,Harlow:2019yfa}. 
+	
+	In fact, the Noether current can be further shown to be exact: $\dd{Q}_\xi$, then by Stokes' theorem, energy as a conserved charge can be further reduced to some integral along the ``asymptotic boundaries'' (plus some extra boundary terms, shown below in ``$\cdots$'') \cite{Iyer:1994ys,Harlow:2019yfa}:
+	\begin{equation}
+	\begin{gathered}
+		E_\ell = P^0(\Sigma_\ell)
+		= \int_{\Sigma_\ell} \dd{Q_\xi}
+			+ \int_{S^2_\ell} (\cdots)
+		= \int_{S^2_\ell} \pqty\big{
+			Q_\xi + \cdots
+		},\\[.5ex]
+		S^2_\ell = \mquote{\,\partial\Sigma_\ell}
+		\subset\Sigma_\ell
+		\subset\mbb{R}^3,\quad
+		\xi = \pdd{t}
+	\end{gathered}
+	\end{equation}
+	Here $S^2_\ell$ is a sphere with radius $R\to\infty$\,\footnote{
+		Discussions here are clearly not mathematically exact (hence the quotation marks), but can be made rigorous by taking a cutoff geometry $\mcal{M}'$ with (true) boundary $\partial\mcal{M}' = \coprod_{\ell\ne 0} S_\ell$, and then prove that the end result is in fact cutoff independent. 
+	}. This is the so-called \textit{ADM energy} \cite{Arnowitt:1962hi}. In fact, we can take $\xi = \pdd{\mu},\mu=0,1,2,3$ and obtain the ADM 4--momentum \cite{Straumann:2013spu}:
+	\begin{equation}
+		P^\mu_\ell \equiv P^\mu(\Sigma_\ell)
+		\simeq -\frac{1}{16\pi} \int_{S^2_\ell}
+			\sqrt{\abs{g}}\,
+			\omega_{\rho\sigma} \wedge
+			\hodgedual \pqty\big{
+				\dd{x^\rho}\wedge
+				\dd{x^\sigma}\wedge
+				\dd{x^\mu}
+			},\\[.5ex]
+		\omega_{\rho\sigma}
+		= \Gamma_{\rho\mu\sigma} \dd{x^\mu}
+		= g_{\rho\lambda}
+			\Gamma\id{^{\lambda}_{\mu\sigma}}
+			\dd{x^\mu}
+	\end{equation}
+	Where $\omega_{\rho\sigma}$ is the Levi-Civita connection form. This can be further expanded in induced metric (\nth{1} fundamental form) $g_{ij}$ and \nth{2} fundamental form $K_{ij}$ when $R\to\infty$, which gives the explicit expressions below.
+	
+	\begin{definition*}[ADM Energy--Momentum]
+		Total ADM energy--momentum $P^\mu_\ell$ of an asymptotically flat end $\Sigma_\ell \subset \Sigma \subset \mcal{M}$ is defined in the following explicit form\footnote{
+			Note that the $E_\ell$ given in \cite{Parker:1981uy} has a typo. Check \cite{Witten:1981mf,Wald:1984rg} for the correct expression. 
+		}:
+		\begin{equation}
+		\begin{aligned}
+			E_\ell \equiv P^0_\ell
+			&= \lim\limits_{R \to \infty}
+				\frac{1}{16\pi} \int_{S^2_\ell}
+				\pqty{
+					\pdd{j} g_{ij}
+					- \pdd{i} g_{jj}
+				} \dd{\Omega^i},\\[.5ex]
+			P^k_\ell
+			&= \lim\limits_{R \to \infty}
+				\frac{1}{16\pi} \int_{S^2_\ell}
+				2\,\pqty{
+					K_{ik} - \delta_{ik} K_{jj}
+				} \dd{\Omega^i},
+		\end{aligned}
+		\label{eq:adm_energy}
+		\end{equation}
+		Where $R$ is the radius of 2--sphere $S^2_\ell \subset \Sigma_\ell \cong \mbb{R}^3$, 
+		\begin{itemize}[noitemsep,topsep=.3\baselineskip]
+		\item $g_{ij}$ is the induced metric (\nth{1} fundamental form),
+		\item $K_{ij}$ is the \nth{2} fundamental form on $\Sigma_\ell \cong \mbb{R}^3$, 
+		\end{itemize}
+		and repeated indices are summed over. 
+		\vspace*{1ex}
+	\end{definition*}
+\subsection{Energy Conditions}
+	On the other hand, there are physical constraints on the stress tensor $T_{\mu\nu}$, which describes \textit{local} energy--momentum density. Physical constraints on $T_{\mu\nu}$ are called \textit{energy conditions} (EC), see \textit{Wald} \cite{Wald:1984rg} or \cite{Curiel:2014zba} for some detailed discussions. Here we assume the \textit{dominant} EC (DEC), which requires that mass / energy can never be observed to be flowing faster than light. 
+	
+	Specifically, a non-rotating observer moving along some path $x(\tau)\in\mcal{M}$ is characterized by a local velocity 4--vector $v^\mu = x'(\tau) = \mrm{T}_x \mcal{M}$. The observed energy--momentum flow $p^\mu$ and energy density $\rho$ w.r.t.~$v^\mu$ is obtained by the contraction\footnote{
+		Minus signs in \eqref{eq:energy_flow_stress_tensor} is due to the $\eta_{ab}\sim\pqty{-1,+1,+1,+1}$ metric convention, in this case $v^a\sim\pqty{1,0,0,0}\mapsto v_a\sim\pqty{-1,0,0,0}$, therefore we need an extra sign flip to get the correct sign of energy. 
+	}:
+	\begin{equation}
+		\begin{aligned}
+			p^\mu &= - v_\nu T^{\mu\nu},\\[-.2ex]
+			\rho &= - v_\nu p^\nu,
+		\end{aligned}\quad%
+		v^\nu\colon\ \text{timelike, i.e.}\ \ %
+		v^\nu v_\nu
+		= g_{\mu\nu} v^\mu v^\nu
+		< 0
+		\label{eq:energy_flow_stress_tensor}
+	\end{equation}
+	$p^\mu$ should be a \textit{timelike} or \textit{lightlike} (non-spacelike) 4--vector, i.e.~$p^\mu p_\mu \le 0,\,\forall\,v^\mu\colon\text{timelike}$. Also, matter density should always be non-negative\footnote{
+		The condition $\rho\ge 0$ by itself is also a common energy condition, called the weak EC (WEC). 
+	}, i.e.~$\rho \ge 0$. These two constraints can be equivalently captured by simple restrictions of $T_{\mu\nu}$ components \cite{Straumann:2013spu}, shown below. 
+\pagebreak[3]
+	
+	\begin{definition*}[Dominant Energy Condition]
+		The symmetric stress tensor $T_{\mu\nu}$ satisfies the dominant energy condition (DEC), iff.
+		\begin{equation}
+			T^{00} \ge \abs{T^{\mu\nu}},\quad
+			T^{00} \ge \sqrt{-T_{0i} T^{0i}}
+			\label{eq:DEC}
+		\end{equation}
+		Which is equivalent to $\rho \ge 0,\,p^\mu p_\mu \le 0$, where $\rho,p^\mu$ is defined in \eqref{eq:energy_flow_stress_tensor}. 
+	\end{definition*}
+\subsection{Statement of the Theorem}
+	With the above preparation, we can now state the positive energy theorem in a mathematically precise manner.
+	
+	\begin{theorem*}[Positive Energy Theorem]
+		For a spacelike hypersurface $\Sigma\subset\mcal{M}$ that:
+		\begin{itemize}[noitemsep,topsep=.3\baselineskip]
+		\item is asymptotically flat, $
+			\Sigma \cong \Sigma_0
+			\cup \coprod_{\ell\ne 0} \Sigma_\ell
+		$, and
+		\item the dominant energy condition holds; 
+		\end{itemize}
+		Then the total energy-momentum $P^\mu_\ell$ is a future directed timelike or lightlike (non-spacelike) vector on each end $\Sigma_\ell$, i.e.~
+		\begin{equation}
+			E_\ell - \abs{P_\ell}
+			\equiv E_\ell
+				- \sqrt{P_{\ell,i} P^i_\ell}
+			\ge 0
+		\end{equation}
+		Furthermore, if $E_\ell = 0$ for some $\ell$ then ${\Sigma}$ has only one end and $\mcal{M}$ is flat along $\Sigma$, i.e.~$\mcal{M}$ is flat in a neighborhood of $\Sigma$, as is described in \eqref{eq:local_decomp}. 
+	\end{theorem*}
+	
+	The proof of the positive energy theorem and its various generalizations has been the pursuit of many mathematicians and physicists, as is described in \cite{Witten:1981mf}. Witten's proof provides an attracting alternative to the first proof \cite{Schon:1979rg}, and is much more approachable for physicists. 
+	
+	As is mentioned before, Witten's proof is based on the assumption that there is matter described by some \textit{spinor field} $\psi$ on the manifold $\mcal{M}$. This is not so surprising to physicists, as spinors are the mathematical descriptions of \textit{fermions} (incl.~electrons, protons, and basically all ``matter'' in the usual sense). 
+	
+	The use of spinor is also suggested by considerations involving \textit{supersymmetry} (SUSY)\,\footnote{
+		Basically, SUSY is a new spacetime symmetry that relates spinor with their vector partners, and tries to describe them in a single framework. This simple idea has generated numerous developments in both math and physics. 
+	}, as is discussed by Witten \cite{Witten:1981mf}. In supersymmetric gravity (\textit{supergravity}, SUGRA), the energy is \textit{formally} written as the sum of squares of Hermitian supercharges $H = \frac{1}{\hbar}\sum_\alpha Q_\alpha^2$, which is \textit{formally} positive. Witten's proof is then found by designing a \textit{classical limit} of SUGRA. 
+	
+	Besides physical considerations, spinors are also fascinating objects in geometry. In the following part of our review we will focus the physical and geometric properties of spinor and spin structure, and give a very brief sketch of Witten's proof at the end of this review. 
+\section[Spinor from Quantization]{%
+Spinor from Quantization\footnote{%
+	This section is far too physical, therefore inappropriate in a report for differential manifold, and deserves to be dumped into an appendix. However, some necessary concepts are introduced in this section, so we will leave it here for now. 
+}}
+	This section serves as a non-technical introduction to spinor for a general audience. We follow \textit{Weinberg} \cite{Weinberg:1995mt} for this informal discussion about quantization. 
+	
+	Particles have \textit{spin}. Classically, spin is described by a local 3-\textit{vector} $s^i \in \mrm{T}_x \Sigma$. This vector can be na\"ively promoted to a 4-\textit{vector} in its rest frame\footnote{
+		In this review particles are always assumed to move slower than light, for simplicity. Therefore, it is possible to change the coordinates to follow a particle in its comoving rest frame. Most of our arguments here can be generalized to particles moving at the speed of light, but with considerable amount of subtleties.
+	}:
+	\begin{equation}
+		s^i
+		\quad\longrightarrow\quad
+		s^\mu \sim (0, s^i),\quad
+		\tup{rest frame}
+	\end{equation}
+	In quantum mechanics, particle ceases to be a localized entity; rather, it is described by a \textit{wave function} spread across the spacetime. Furthermore, in field theory, a particle is considered as an \textit{excitation} of some \textit{field}, just like a ripple in the pond. Therefore, instead of localized vectors, we should consider \textit{vector fields}, i.e.~sections of the tangent bundle:
+	\begin{equation}
+		s^\mu \in \mrm{T}_x\mcal{M}
+		\quad\longrightarrow\quad
+		\phi^\mu
+		\in \Gamma(\mcal{M},\mrm{T}\mcal{M})
+		\,\colon\ 
+		\mcal{M}\to\mrm{T}\mcal{M}
+		\label{eq:vector_bundle}
+	\end{equation}
+	
+	Another feature of the wave function description is that there is always a \textit{Hilbert space} $\mcal{H}$ of wave functions corresponding to the actual spacetime manifold $\mcal{M}$. Quantum mechanical evolution of a system is in fact formulated in its Hilbert space, rather than its spacetime manifold. Symmetries of spacetime $\mcal{M}$ lead to symmetries on the Hilbert space; in fact, the Hilbert space $\mcal{H}$ can be seen as a \textit{representation} of the spacetime symmetries. 
+	
+	For a flat spacetime, 4--momentum $p_\mu$ and (relativistic) angular momentum tensor $j_{\mu\nu}$ are symmetry generators, i.e.~Killing vector fields of the spacetime; with the standard orthonormal bases of $\mbb{R}^{3,1}$, we have:
+	\begin{equation}
+		p_\mu = \pdd{\mu},\quad
+		j_{\mu\nu} = x_\mu \pdd{\nu} - x_\nu \pdd{\mu}
+	\end{equation}
+	Killing vector fields as derivations form a closed Lie algebra; for $\mbb{R}^{3,1}$ this is the so called \textit{Poincar\'e} algebra, here denoted as the Lie algebra $\mathfrak{iso}(3,1)$ of Lie group $\mrm{ISO}^+(3,1)$,  where ``\,$\mrm{I}$\," stands for inhomogeneous, i.e.~with translations, and ``\,$+$\," denotes its identity component. The finite transformation generated by $p_\mu, j_{\mu\nu}$ is exactly the Lorentz transformation. This shows that a (local) change of coordinates is interpreted in physics as switching between reference frames. 
+	
+	Quantum mechanically, $p_\mu, j_{\mu\nu}$ is \textit{represented} (literally and mathematically) as linear operators $P_\mu, J_{\mu\nu}$ on Hilbert space $\mcal{H}$,
+	\begin{equation}
+		p_\mu\ \longrightarrow\ P_\mu,\quad
+		j_{\mu\nu}\ \longrightarrow\ J_{\mu\nu}
+	\end{equation}
+	Intuitively, particles are characterized with its energy\footnote{
+		Conventionally, $H = P^0$ serves as the energy operator, i.e.~\textit{Hamiltonian}, while $E$ denotes its eigenvalue. 
+	} $H = P^0$, momentum $\vb{P}^i = P^i$ and their relations: $H = H(\vb{P})$. Conveniently, $P_\mu$'s commute with each other; therefore in field theory, particles are \textit{defined} by simultaneous eigenstates of $P_\mu$'s. 
+	
+	For a given Lie algebra and its representation, we can construct \textit{Casimir invariants} which commute with all generators, therefore are invariant (or \textit{conserved}) under symmetry transformation. Naturally, we expect them to describe \textit{intrinsic properties} of a particle, which is not affected by a change of coordinates. 
+	
+	For Poincar\'e algebra in $(3+1)$ dimensions, there are exactly two linearly independent Casimirs\footnote{
+		For Poincar\'e algebra in higher dimensions, i.e.~$\mathfrak{iso}(d,1)$ with $d\ge 4$, there are more Casimirs, see e.g.~\cite{Bekaert:2006py}. Unfortunately, we (i.e.~authors of this review) haven't found any reference about the physical interpretation of these higher order Casimirs. 
+	}:
+	\begin{equation}
+		M^2 = -P_\mu P^\mu,\quad
+		W^2 = W_\mu W^\mu,\quad
+		W_\lambda = -\frac{1}{2}\,
+			\epsilon_{\lambda\mu\nu\rho}
+			J^{\mu\nu} P^\rho
+	\end{equation}
+	Here $\epsilon_{\lambda\mu\nu\rho}$ is the totally anti-symmetric Levi-Civita symbol, and the minus signs are merely conventional. $W_\lambda$ is the \textit{Pauli–Lubanski pseudovector}. 
+	
+	Physical states are required\footnote{
+		By one of the fundamental postulates of relativity, there is no faster-than-light travel, which implies $m^2 = -p_\mu p^\mu \ge 0$. This is represented in the Hilbert space as $M^2 = -P_\mu P^\mu \ge 0$. 
+	} to have $M^2 > 0$, and states of the same eigenvalue $M = m \ge 0$ form a sub-representation (\textit{submodule}) of $\mrm{ISO}^+(3,1)$ acting on $\mcal{H}$. Different species of particles are therefore distinguished by different values of $M = m$. Physically, $m$ is naturally interpreted as the \textit{mass} of a particle. Similarly, $W^2$ should characterize another intrinsic property of a particle; let's further define sub-species of particle labeled by different eigenvalues of $W^2$. Assume $m > 0$ for simplicity, then in the rest frame of some particle with constant eigenvalue $W^2$, we have $P^\mu = p^\mu \sim (p^0,0) = (m,0)$,
+	\begin{gather}
+		W_\lambda = - \frac{1}{2}\,
+			\epsilon_{\lambda\mu\nu\rho}
+			J^{\mu\nu} P^\rho
+		= - \frac{1}{2}\,
+			\epsilon_{\lambda\mu\nu 0}
+			J^{\mu\nu} m
+		\sim (0,W_k),\ \,\textsl{rest frame},\\
+		W_k	= \frac{1}{2}\,m\,\epsilon_{ijk} J^{ij}
+		= mJ_k = ms_k
+	\end{gather}
+	Where $J_k = \frac{1}{2}\,\epsilon_{ijk} J^{ij}$ is the \textit{angular momentum} operator, which is the Hilbert space representation of rotation generator: $
+		j_{ij} = x_i\pdd{j} - x_j\pdd{i}
+		= \pdv{\theta^k}
+	$, here $\theta^k$ parameterizes rotation angle around the $k$--th axis. Physically, \textit{spin} is exactly the intrinsic angular momentum of a particle: $J_k = s_k$, therefore the spin 4--vector shall be rigorously defined as the eigenvalue of Pauli–Lubanski pseudovector. 
+	
+	To sum up, assuming that there is no extra symmetry beyond Poincar\'e $\mathfrak{iso}(3,1)$, particles can be completely reduced and classified by representations of $\mathfrak{iso}(3,1)$ on $\mcal{H}$. We have:
+	\begin{equation}
+		P^\mu{} \ket{p^\mu,s^\mu}
+		= p^\mu \ket{p^\mu,s^\mu},\quad
+		J^\mu \ket{p^\mu,s^\mu}
+		\approx s^\mu \ket{p^\mu,s^\mu},\quad
+		J^\mu = \frac{W^\mu}{m}
+		\label{eq:momentum_eigenstates}
+	\end{equation}
+	Here $\ket{p^\mu,s^\mu}\in\mcal{H}$ denotes a particle state in the Hilbert space. 
+	
+	However, the above notation is \textit{not} quite exact (as is indicated by the ``\,$\approx$\," sign). Note that $W_\mu$'s do \textit{not} commute, hence it is impossible to find simultaneous eigenstates for all four $W_\mu$'s. The best we can manage is to pick a special $W_\mu$, say $\mu = z$ in the rest frame, and then index the eigenstates with eigenvalues of $J_z = \frac{W_z}{m}$. \eqref{eq:momentum_eigenstates} is then modified to be:
+	\begin{equation}
+		P^\mu{} \ket{p^\mu,s_z}
+		= p^\mu \ket{p^\mu,s_z},\quad
+		J_z \ket{p^\mu,s_z}
+		= s_z \ket{p^\mu,s_z}
+	\end{equation}
+	
+	The action of $W^\mu$ on a resting particle is the representation of stabilizer subgroup\footnote{
+		In physics literature this is the so-called Wigner's \textit{little group}.
+	} $\mrm{SO}(3)\subset\mrm{ISO}^+(3,1)$, which keeps $p^\mu \sim (m,0)$ fixed. Since $\mrm{SO}(3)$ is a compact Lie group, according to Peter--Weyl theorem, its irreducible representations (\textit{irrep}s) are finite dimensional. It is natural to define \textit{elementary} particles as irreps, since they cannot be decomposed further (physically or mathematically); hence $s^\mu$ for an elementary particle can only take on discrete values. 
+	
+	Therefore, the rigorous label of a particle state should be:
+	\begin{equation}
+	\begin{gathered}
+		\mcal{H}\supset\mcal{H}_{m,j}
+			\ni\ket{m,p^\mu;j,s_z}
+		\equiv\ket{p^\mu,s_z},\\
+		p_\mu p^\mu = -m^2,\quad
+		s_z = -j, -j+1,\cdots, +j,\quad
+		j \in\mbb{Z}_+
+	\end{gathered}
+	\label{eq:particle_repr}
+	\end{equation}
+	Here $m,j$ labels the representation $\mcal{H}_{m,j}$, which stays invariant under Poincar\'e transformations, while $p,s_z$ labels the state in such irrep. The allowed values of $s_z$ come from the representation of $\mrm{SO}(3)$. 
+	
+	Now we are finally prepared to embrace another quirk from quantum mechanics --- \textit{projective representation}, which leads directly to the existence of spinors. 
+\subsection{Projective Representation and Spinor}
+	As mentioned before, in quantum mechanics the state and dynamics of a system is described with a $\mbb{C}$--valued \textit{wave function} $\Psi(\xi)$, or equivalently an abstract \textit{state} $\ket{\Psi}$ in Hilbert space $\mcal{H}$. The variable $\xi$ labels simultaneous eigenstate $\ket{\xi}$ of some Hermitian \textit{observables}, e.g.~momentum $P^\mu$ and spin-$z$ component $W^z$. The set of all such eigenstates $\{\ket{\xi}\}$ forms an orthonormal\footnote{
+		Although mathematically imprecise, it is common in physics to treat \textit{distributions} such as Fourier basis $\{e^{ikx}\}_{k\in\mbb{R}}$ as ``orthonormal", with the modified orthonormal relations $\frac{1}{2\pi} \int\dd{x} e^{-ik'x}e^{ikx} = \delta(k-k')$, where $\delta$ is the Dirac delta distribution. This can be made mathematically rigorous in functional analysis, hence there is no need to worry. 
+	} basis of $\mcal{H}$. 
+	
+	Wave function $\Psi(\xi)$ can be regarded as the projection of state $\Psi$ onto the orthonormal basis $\ket{\xi}$, i.e.~$\Psi(\xi) = \braket{\xi}{\Psi}$, where $\braket{\cdot}{\cdot}$ is the Hermitian inner product. Here we adopt the physics convention that $\braket{\cdot}{\cdot}$ is $\mbb{C}$ linear in its \textit{second} entry, while conjugate-linear in its first entry. 
+\pagebreak[4]
+	
+	Projective representation arises from Born's \textit{statistical interpretation} of the wave function, which relates the probability of observed outcome with its wave function, namely,
+	\begin{equation}
+		\abs{\braket{\xi}{\Psi}}^2
+		\ \sim\ \pqty\Big{\tup{
+			Probability of observing state $\ket{\Psi}$ in eigenstate $\ket{\xi}$
+		}}
+	\end{equation}
+	This means that states differ by an overall phase $e^{i\alpha}$ represents the same physical state, i.e.~$e^{i\alpha}\ket{\Psi} \sim \ket{\Psi}$. Mathematically speaking, the physical Hilbert space is actually the projective space $\mrm{P}\mcal{H}$. 
+	
+	The projective nature of physical Hilbert space has two direct consequences. First, representations of symmetries in Hilbert space should be \textit{unitary} to preserve probability $\abs{\braket{\cdot}{\cdot}}^2$, i.e.,
+	\begin{equation}
+		\mscr{U}\colon G\to\mrm{U}(\mcal{H})
+		\subset\mrm{GL}(\mcal{H})
+	\end{equation}
+	Here $\mscr{U}$ and $U(\cdot)$ stands for unitary representation and unitary group, respectively. Second, since we do not require invariance of $\braket{\cdot}{\cdot}$ but only its norm $\abs{\braket{\cdot}{\cdot}}$, $\mscr{U}$ need not be an ``exact" representation, but can differ by a phase; this is a so-called \textit{projective representation}:
+	\begin{equation}
+		\mscr{U}(\Lambda')\,\mscr{U}(\Lambda)
+		= e^{i\alpha}\,\mscr{U}(\Lambda'\Lambda),\quad
+		\Lambda\in G
+	\end{equation}
+	
+	At first, it seems that the extra phase adds great complexity to possible representations. Fortunately, projective representations have been well understood in mathematics (even before its quantum mechanical origin, e.g.~by Schur \cite{schur1911darstellung} in 1911 for finite groups). In fact, a projective representation can always be \textit{lifted} to an ordinary representation, see e.g.~\cite{Weinberg:1995mt,Schottenloher:2008zz}. Generally, we have:
+	
+	\begin{theorem*}[Lifting Projective Representations]
+		A unitary representation of group $G$ on projective Hilbert space $\mscr{U}\colon G\to\mrm{U}(\mrm{P}\mcal{H})$ can always be lifted to a unitary representation of its \textit{central extension} $\tilde{G}$ on linear Hilbert space $\tilde{\mscr{U}}\colon \tilde{G}\to\mrm{U}(\mcal{H})$, i.e.~the following diagram commutes:
+		\begin{center}
+		\begin{tikzcd}[row sep=2.5em,column sep=2em]
+		\tilde{G}
+			\arrow{r}{\pi}
+			\arrow[swap]{d}{\tilde{\mscr{U}}} & 
+		G
+			\arrow{d}{\mscr{U}} \\
+		\mrm{U}(\mcal{H})
+			\arrow{r}{} &
+		\mrm{U}(\mrm{P}\mcal{H})
+		\end{tikzcd}
+		\end{center}
+		Moreover, central extension $\tilde{G}$ of Lie group $G$ can be constructed as follows:
+		\begin{enumerate}[topsep=.5\baselineskip]
+		\item Extension by discrete $\mbb{Z}_n$, in this case $\tilde{G}$ is the covering group of $G$; the maximal extension of this kind is naturally the \textit{universal covering} of $G$, with $\mbb{Z}_n = \pi_1(G)$ its fundamental group. This kind of extension is \textit{topological} and does not change the corresponding Lie algebra, i.e.~$\mathfrak{g} = \mop{Lie}G = \mop{Lie}\tilde{G}$. 
+		\item Extension by continuous $\mrm{U}(1)$, which descends into a non-trivial central extension of its Lie algebra:
+		\begin{equation}
+			\dd{\pi}\colon\ %
+			\tilde{\mathfrak{g}} = \mop{Lie}\tilde{G}
+			\ \longrightarrow\ %
+			\mathfrak{g} = \mop{Lie}G
+		\end{equation}
+		$\tilde{\mathfrak{g}},\tilde{G}$ therefore has an extra dimension generated by such $\mrm{U}(1)$ subgroup. 
+		\end{enumerate}
+	\end{theorem*}
+	
+	For Poincar\'e symmetry, there is no need to consider central extension of the Lie algebra $\mathfrak{iso}(3,1)$; in fact, representation of such Lie algebra central extension is always equivalent of some representation of the original $\mathfrak{iso}(3,1)$, by a redefinition of basis\footnote{
+		See \cite{Weinberg:1995mt,Schottenloher:2008zz}. A general criterion is given by Bargmann's Theorem \cite{Bargmann:1954gh}; it states that \textit{every projective representation of a connected, simply connected, finite-dimensional Lie group $\tilde{G}$ with Lie algebra second cohomology $H^2(\mop{Lie}\tilde{G},\mbb{R}) = 0$ can be simply lifted as a unitary representation}, i.e.~such $\tilde{G}$ is the ``maximal" extension. 
+	}. However, $\mrm{ISO}^+(3,1)$ has non-trivial $\pi_1$ due to its rotation subgroup $\mrm{SO}(3)$; topologically,
+	\begin{equation}
+	\begin{gathered}
+		\mrm{ISO}^+(3,1)
+		\cong \mbb{R}^4\rtimes\mrm{SO}^+(3,1)
+		\approxeq
+			\mbb{R}^4\times\mbb{R}^3\times\mrm{SO}(3)
+		\approxeq
+			\mbb{R}^4\times\mbb{R}^3\times \pqty{S^3/\mbb{Z}_2},\\[.5ex]
+		\cong\colon\text{isomorphic as groups},\quad
+		\approxeq\colon\text{diffeo as manifolds}
+	\end{gathered}
+	\end{equation}
+	Where $\mbb{R}^4$, $\mbb{R}^3$ and $\mrm{SO}(3)$ corresponds to translations $P^\mu$, Lorentz boosts $J^{0i} = -J^{i0}$ and spatial rotations $J_k = \frac{1}{2}\,\epsilon_{ijk} J^{ij}$. Therefore, $\mrm{ISO}^+(3,1)$ can be centrally extended by $\mbb{Z}_2 = \pi_1\pqty\big{\mrm{ISO}^+(3)}$. 
+	
+	Generally, We define \textit{spin group} $\mrm{Spin}(p,q)$ as the $\mbb{Z}_2$ extension (double cover) of $\mrm{SO}(p,q)$\footnote{
+		More concretely, it can be explicitly constructed via Clifford algebra $\cliff(p,q)$. 
+	}. Note that $\mrm{Spin}(p,q)$ is \textit{not} always connected, and its identity component $\mrm{Spin}^+(p,q)$ is \textit{not} always simply connected\footnote{
+		For example, $\pi_1\pqty\big{\mrm{Spin}(2,1)} = \mbb{Z}$ infinite cyclic, this gives rise to fractional spin $s\in\mbb{Q}_+$ (\textit{anyons}) in $(2+1)$ dimensions \cite{Wilczek:1982wy}. If we consider central extension of Lie algebra, then particle spin can even take arbitrary $s\in\mbb{R}_+$ values. 
+	}. However, for $p>2>q\ge 0$, $\mrm{Spin}^+(p,q)$ is indeed simply connected, therefore it's the universal cover of $\mrm{SO}^+(p,q)$. For $(3+1)$ dimensional spacetime $\mbb{R}^{3,1}$, we have the following diagram:
+	\begin{center}
+	\begin{tikzcd}[row sep=2.5em,column sep=3em]
+	\mrm{Spin}(3,1)
+		\arrow[r]
+		\arrow[d,"\tilde{\pi}"',"/\mbb{Z}_2"] & 
+	\mrm{Spin}^+(3,1)\cong\mrm{SL}(2,\mbb{C})
+		\arrow{r}{}
+		\arrow[d,"/\mbb{Z}_2"] &[-1em] 
+	\mrm{Spin}(3)\cong\mrm{SU}(2)
+		\arrow[d,"\pi"',"/\mbb{Z}_2"] \\
+	\mrm{SO}(3,1)
+		\arrow{r}{} &
+	\mrm{SO}^+(3,1)
+		\arrow{r}{} &
+	\mrm{SO}(3)
+	\end{tikzcd}
+	\end{center}
+	All arrows in this diagram are homomorphic projections: the vertical downwards arrows are $\mbb{Z}_2$ covering maps, while the horizontal right arrows are projections onto subgroups. 
+\pagebreak[4]
+	
+	For $(3+1)$ dimensions, we have accidental isomorphisms: 
+	\begin{gather}
+		\mrm{Spin}^+(3,1)
+			\cong\mrm{SL}(2,\mbb{C})
+			\approxeq
+				\mbb{R}^3\times S^3 \\
+		\mrm{Spin}(3)
+			\cong\mrm{SU}(2)
+			\approxeq S^3
+	\end{gather}
+	Where $\mrm{SL}(2,\mbb{C}),\,\mrm{SU}(2)$ are classical $\mbb{R}$--Lie groups. 
+	
+	Back to physics, an elementary particle in $(3+1)$ dimensional spacetime is therefore a unitary irrep of $\mrm{Spin}^+(3,1)$, which is, furthermore\footnote{
+		For more discussion about the irreducibility of such induced representation, see \cite{tung1985group}. 
+	}, an induced representation from the irrep of $\mrm{Spin}(3)\cong\mrm{SU}(2)$. 
+\subsection{Vector and Spinor Representations}
+\label{subsect:repr}
+	As is evidenced before, we shall only consider irreps of $\mrm{Spin}(3)\cong\mrm{SU}(2)$; general representations of spin group is then closely related (induced by or composed of) $\mrm{SU}(2)$ irreps. Here we list some key facts about irreps of $\mrm{Spin}(3)\cong\mrm{SU}(2)$. 
+	\begin{itemize}
+	\item Recall $\mrm{SO}(3)$ irreps mentioned in \eqref{eq:particle_repr}; they are basically spin-$z$ eigenstates: 
+	\begin{equation}
+		\ket{s_z},\quad
+		s_z = -j, -j+1,\cdots, +j,\quad
+		j\in\mbb{Z}_{\ge 0}
+	\end{equation}
+	Here $p^\mu$ label is suppressed for sake of simplicity. All $\mrm{SO}(3)$ irreps can always be lifted as a $\mrm{Spin}(3)\cong\mrm{SU}(2)$ irrep, by allowing its $\mbb{Z}_2$ center to act trivially. In this way, we obtain the \textit{tensor representations} of $\mrm{SU}(2)$.
+	\item Since $\mrm{SU}(2)$ is simply connected, to obtain \textit{all} of its $\mbb{R}$-irreps, we need only consider irreps of Lie algebra $\mfrak{spin}(3)\cong\mfrak{su}(2)$. It turns out they are structurally identical to $\mrm{SO}(3)$ irreps (naturally, since $\mfrak{so}(3)\cong\mfrak{su}(2)$ are identical Lie algebras), but with allowed $j$ values extended to include half integers: $j\in\mbb{Z}/2$. Irreps of $\mrm{SU}(2)$ that are \textit{not} irreps of $\mrm{SO}(3)$ are called \textit{spinor representations}. 
+	\item Therefore, all of $\mrm{Spin}(3)\cong\mrm{SU}(2)$ irreps, and equivalently $\mfrak{so}(3)\cong\mfrak{su}(2)$ irreps, are of the following form:
+	\begin{gather}
+		\ket{s_z},\quad
+		s_z = -j, -j+1,\cdots, +j,\\[1ex]
+		j \in \Bqty{
+			0,\tfrac{1}{2},1,\tfrac{3}{2},2,\cdots
+		} = \bigg\lbrace
+		\begin{aligned}
+			\ %
+			&\mbb{Z}_{\ge 0},
+				&&\textsl{tensor repr.}\\
+			&\mbb{Z}_{\ge 0} + \tfrac{1}{2},
+				&&\textsl{spinor repr.}
+		\end{aligned}
+	\end{gather}
+	The set of all tensor irreps of $\mrm{SU}(2)$ descends to the full irreps of $\mrm{SO}(3)$, while spinor irreps are only irreps of $\mrm{SU}(2)$, not irreps of $\mrm{SO}(3)$. However, they are indeed projective representations of $\mrm{SO}(3)$. 
+\pagebreak[4]
+	
+	\item Note that the dimension of irrep is given by:
+	\begin{equation}
+		\dim_\mbb{C}%
+		\mop{span}_\mbb{C}%
+			\{\ket{s_z}\} = 2j+1
+	\end{equation}
+	\textit{Weyl spinor} is then defined to be the fundamental representation $V$ with $j = \frac{1}{2}$, which is simply the defining module $\mrm{SU}(2)$:
+	\begin{equation}
+		V = \mop{span}_\mbb{C} \Bqty{
+			\ket{s_z = +\tfrac{1}{2}},
+			\ket{s_z = -\tfrac{1}{2}}
+		} \equiv \mop{span}_\mbb{C} \Bqty{
+			\ket{\uparrow}_z,\ket{\downarrow}_z
+		}
+	\end{equation}
+	\item Rotation generators $J_k = \frac{1}{2}\,\epsilon_{ijk} J^{ij}$ is represented on $V$ by Pauli matrices:
+	\begin{equation}
+		\newcommand{\mat}[1]{\pqty\Big{
+			\footnotesize
+			\hspace{-.2em}
+				\begin{array}{cc}
+					#1
+				\end{array}
+			\hspace{-.2em}
+		}}
+		J_k = \frac{1}{2}\,\sigma_k,\quad
+		\sigma_x = \mat{
+			0 & 1 \\
+			1 & 0
+		},\quad
+		\sigma_y = \mat{
+			0 & -i \\
+			i & 0
+		},\quad
+		\sigma_z = \mat{
+			1 & 0 \\
+			0 & -1
+		}
+		\label{eq:pauli_mat}
+	\end{equation}
+	Notice how $2\pi$ rotation is not $+\idty$ but $-\idty$, which again confirms that $V$ is an irrep for $\mrm{SU}(2)$, but only a projective representation for $\mrm{SO}(3)$:
+	\begin{equation}
+		e^{-i J_{z} \theta}
+		= e^{-i\sigma_{z}
+			\frac{\theta}{2}}
+		\xlongequal{\theta = 2\pi}
+		-\idty
+	\end{equation}
+	In physics we would like $J_k$ to be Hermitian or self-adjoint, hence the $-i$ coefficient in the exponential map $e^{-i J_{z} \theta}$. This is one key feature of spinor: $2\pi$ rotation action is not identity $\idty$, but will produce a minus sign on the spinor! In some sense we can think of spinor as the $\mbb{C}\text{omplex}$ ``square root'' of a vector \cite{AlvarezGaume:1986es}. 
+	
+	\item In general, transformation of operators (e.g.~Pauli--Lubanski $W_\mu$) in Hilbert space is related to its transformation as a tensor in spacetime. If we neglect projective representation for now, we have:
+	\begin{equation}
+		\mscr{U}^\dagger\,
+			W_\mu
+		\mscr{U}
+		= \Lambda\id{^\nu_\mu} W_\nu,\quad
+		\mscr{U}\colon
+			\Lambda\in\mrm{SO}(3,1)
+			\to
+			\mrm{U}(\mcal{H}),\quad
+		(\textsl{without projective repr.})
+	\end{equation}
+	This is a direct consequence of $\mscr{U}$ being a unitary representation, i.e.~preserving group multiplication and having $\mscr{U}^\dagger = \mscr{U}^{-1}$. 
+	
+	\item However, due to the projective nature of the Hilbert space, $\mscr{U}(\Lambda)$ in the LHS should be lifted to $\tilde{\mscr{U}}(\tilde{\Lambda})$, while the $\Lambda$ in the RHS remains unchanged, i.e.,
+	\begin{equation}
+		\tilde{\mscr{U}}^\dagger\,
+			W_\mu
+		\tilde{\mscr{U}}
+		= \Lambda\id{^\nu_\mu} W_\nu,\quad
+		\tilde{\mscr{U}}
+		= \tilde{\mscr{U}}(\tilde{\Lambda}),\quad
+		\tilde{\Lambda}\in\mrm{SL}(2,\mbb{C})
+		\label{eq:proj_repr_pauli_lubanski}
+	\end{equation}
+	
+	\item The natural lift from $\Lambda$ to $\tilde{\Lambda}$ while preserving Lie group structure is by considering homotopic paths from $\idty$ to $\Lambda$. As is discussed before, we need only consider the doubly connected rotation subgroup $\mrm{SO}(3)\subset\mrm{SO}(3,1)$. Consider axis--angle parametrization of $\mrm{SO}(3)$, we have:
+	\begin{equation}
+		\Lambda
+		= e^{iJ_k\theta^k}
+		\longmapsto
+		(\theta^k)
+		= (\theta^x,\theta^y,\theta^z),\quad
+		\theta^k\in [0,2\pi)
+	\end{equation}
+	Here $iJ_k\in\mfrak{so}(3)$ belongs to the defining module, then parametrization of $\mrm{SU}(2)$ can be easily achieved by extending the range of $\theta^k$, i.e., we have $\tilde{J}_k\in\mfrak{su}(2)$ defining module and:
+	\begin{equation}
+		\tilde{\Lambda}
+		= e^{i\tilde{J}_k\theta^k}
+		\longmapsto
+		(\theta^k)
+		= (\theta^x,\theta^y,\theta^z),\quad
+		\theta^k\in [0,4\pi)
+	\end{equation}
+	
+	\item $\tilde{\Lambda}$ is related to unit quartenions $
+		S^3 \subset \mbb{H}
+		= \mop{span}_\mbb{R} \Bqty{
+			\mathbf{1},
+			\mathbf{i},
+			\mathbf{j},
+			\mathbf{k}
+		}
+	$ by the following identity, which is a direct analog of Euler's identity $
+		e^{i\theta}
+		= \cos\theta + i\sin\theta
+	$:
+	\begin{equation}
+	\begin{gathered}
+		\tilde{\Lambda}
+		= e^{i\tilde{J}_k\theta^k}
+		\sim
+			\cos\frac{\abs{\theta}}{2}
+			+ \hat{\theta}
+			\sin\frac{\abs{\theta}}{2},\\[1ex]
+		\abs{\theta} = \sqrt{\theta_k\theta^k}
+		= \sqrt{
+			\theta_x^2 + \theta_y^2 + \theta_z^2
+		},\qquad
+		\hat{\theta}
+		= \pqty\big{\mathbf{i}\,\theta_x
+			+ \mathbf{j}\,\theta_y
+			+ \mathbf{k}\,\theta_z
+		} \big/ \abs{\theta}
+	\end{gathered}
+	\end{equation}
+	$\theta$ is the rotation angle, while $\hat{\theta}$ describes the rotation axis, hence axis--angle parametrization. Replace $\tilde{\Lambda}$ in \eqref{eq:proj_repr_pauli_lubanski} with $(\theta^k)$, and we have:
+	\begin{equation}
+		\tilde{\mscr{U}}^\dagger\,
+			W_\mu
+		\tilde{\mscr{U}}
+		= \Lambda\id{^\nu_\mu} W_\nu,\quad
+		\tilde{\mscr{U}}
+		= \tilde{\mscr{U}}(\theta),\quad
+		\theta = (\theta^k),\quad
+		\theta_k\in[0,4\pi)
+	\end{equation}
+	\end{itemize}
+\section{Spin Structure and Spinor Field}
+	From our previous discussions, we have established that in quantum mechanics, an elementary particle $\ket{p^\mu,s_z}\in\mcal{H}$ is something that lives in a unitary irrep of extended Poincar\'e group $\mbb{R}^4\rtimes\mrm{Spin}^+(3,1)$. By definition, particles become eigenstates in the Hilbert space $\mcal{H}$ of wave functions, which is often de-localized in spacetime. 
+	
+	On the other hand, in field theory, a particle should be an excitation of some local field $\phi(x)$, like a ripple in the pond. Is it possible to relate these two pictures? 
+	
+	The answer is yes, and the idea behind this relation is in fact quite basic. Roughly speaking, $\ket{p^\mu,s_z}$ serves as \textit{Fourier modes} of field $\phi(x)$. Details of this correspondence in quantum field theory are give in \textit{Weinberg}'s chapter: \textit{Quantum Fields and Antiparticles} \cite{Weinberg:1995mt}, but similar holds for ordinary quantum mechanics. The end result is that similar to an elementary particle $\ket{p^\mu,s_z}$, elementary fields $\phi(x)$ also becomes a representation of the Poincar\'e symmetry, where not only the symmetry acts on coordinates $x$ in the regular way:
+	\begin{equation}
+		\phi(x)
+		\quad\longmapsto\quad
+		\phi(x-\var{x})
+	\end{equation}
+	but also the Lorentz symmetry $\mrm{Spin}^+(3,1) \cong \mrm{SL}(2,\mbb{C})$ gets represented pointwise on the \textit{fiber} $\phi(x_0)$. This naturally leads us to consider \textit{fiber bundles} based on $\mcal{M}$. 
+\subsection{Introduction to Principal Bundle}
+	To introduce spin structure in a natural way, we follow the discussions of \cite{figueroa2010spin,Nakahara:2003nw,AlvarezGaume:1986es,Wernli:2019hpf}. For a mathematically rigorous understanding of spin geometry, see \cite{lawson2016spin,bourguignon2015spinorial,jost2011riemannian}. Our notation will mostly conform to \textit{Lee} \cite{lee2012introduction}. We shall use the language of fiber bundles, introduced in \cite{Nakahara:2003nw,lee2012introduction}. 
+\pagebreak[4]
+	
+	To simplify the situation, we will again work on hypersurface $\Sigma\subset\mcal{M}$. It is illuminating to first consider the classical situation, then we have a natural poinwise fundamental representation of $\mrm{SO}(3)$ --- the tangent space $T_x\Sigma$. Union of tangent spaces at each point gives the tangent bundle:
+	\begin{equation}
+		T\Sigma = \coprod_{p\in\Sigma} T_p\Sigma
+	\end{equation}
+	$\mrm{SO}(3)$ action is reflected in the transformation $T_p\Sigma$ under isometric coordinate transformations, or equivalently, isometric \textit{transition function} between charts $\Bqty{(U_\alpha,\Phi_\alpha)}_\alpha$:
+	\begin{equation}
+		\Phi_\alpha\circ\Phi_\beta^{\smash{-1}}
+			\big|_p
+		= \tau_{\alpha\beta} (p),\quad
+		\tau_{\alpha\beta} \in \mrm{SO}(3)
+			\subset \mrm{GL}(3,\mbb{R})
+	\end{equation}
+	Where $\Phi_\alpha$ is the local trivialization on $U_\alpha$. In other words, $\mrm{SO}(3)$ is hence the \textit{structure group} of tangent bundle, when the transitions between charts is restricted to isometries defined by the metric. 
+	
+	However, there is one subtlety that needs to be addressed: the refinement of $\mrm{GL}(3,\mbb{R})$ transition to $\mrm{SO}(3)$ is locally feasible, but might fail if we consider \textit{global} transition around a manifold that is not orientable. To see this, we first observe that transition functions should always satisfy such \textit{cocycle condition} (\textit{Lee} \cite{lee2012introduction}, Problem 10-5):
+	\begin{equation}
+		\tau_{UV}\circ\tau_{VW}\circ\tau_{WU} = \idty
+	\end{equation}
+	For a Möbius strip however, this is impossible if we restrict $\tau\in\mrm{SO}(3)$. It is not hard to see that $
+		\tau_{UV}\circ\tau_{VW}\circ\tau_{WU} = -\idty
+	$, if we only allow $\tau\in\mrm{SO}(3)$. In fact, given a metric, we can only guarantee the refinement of $\mrm{GL}(3,\mbb{R})\supset\mrm{O}(3)$. 
+	
+	From now on we shall assume that our manifold $\Sigma\in\mcal{M}$ is orientable, therefore the tangent bundle becomes a natural realization of the local $\mrm{SO}(3)$ isometry w.r.t.~the metric. In fact, any representation of $\mrm{SO}(3)$ can be expressed as tensor products and direct sums of the fundamental representations, therefore the \textit{tensor fields} realize all possible $\mrm{SO}(3)$ representations:
+	\begin{equation}
+		\phi\id{
+			^{\mu_1\mu_2\cdots\mu_k}
+			_{\nu_1\nu_2\cdots\nu_l}
+		}
+		\in \Gamma(\Sigma,T^{(k,l)}\Sigma)
+		\,\colon\ 
+		\Sigma\to T^{(k,l)}\Sigma
+	\end{equation}
+	If we require only local $\mrm{SO}(3)$ symmetry, then the job is done; everything is naturally provided by the tensor bundle. However, after quantization the symmetry must be extended to $\mrm{Spin}(3)$, therefore our job is to somehow \textit{lift} the tensor bundle to a \textit{spinor bundle}, in a natural manner that is compatible to the $\mbb{Z}_2$ covering:
+	\begin{equation}
+		\pi\colon
+		\mrm{Spin}(3)\cong\mrm{SU}(2)
+		\to
+		\mrm{SO}(3)
+	\end{equation}
+	
+	In order to obtain a compatible spinor bundle, it is helpful to re-examine the common structure of all tensor bundles --- the $\mrm{SO}(3)$ transition between charts. In general, it is possible to remove all unnecessary data of a fiber bundle, leaving only the information of how it transitions between charts. This gives the so-called \textit{principal bundle}. 
+	
+	\begin{definition*}[Principal $G$--Bundle]
+		A principal $G$--bundle $P_G\to\Sigma$ is a fiber bundle whose model fiber is a manifold diffeo to the structure group $G$. 
+	\end{definition*}
+	
+	For tensor bundles transforming under $\mrm{SO}(3)$ isometry, they correspond to the same principal $\mrm{SO}(3)$ bundle $P_{\mrm{SO}(3)}$. In fact, it can be explicitly constructed by considering the orthonormal frames fields on the tangent bundle, i.e.~the \textit{frame bundle}. 
+	
+	Since its fiber is diffeo to the structure group itself, principal bundle has a natural \textit{left and right} group action, defined by the usual group multiplication on $G$. This two-sided group action corresponds to the action on the contra-variant and covariant component of a tensor. 
+	
+	In the physics community, we often say that \textit{a tensor is something that transform like a tensor}. Now we can see that this saying is not without its merits, since indeed the essence of a tensor is its transformation property, captured by the principal bundle.
+	
+	Even better, given a principal $G$--bundle and a $G$--module $F$ as the model fiber, it is possible to reconstruct the \textit{associated fiber bundle} up to equivalence. This is precisely the \textsc{vector bundle construction theorem} given in \textit{Lee} \cite{lee2012introduction}, Problem 10-6, and we will not restate it here. We need only these two conditions:
+	\begin{itemize}[noitemsep]
+	\item Transition function is a $G$ representation on $F$: 
+	\begin{equation}
+		\tau_{UV}(p)
+%		= \rho\circ \Lambda_{UV}(p),\quad
+%		\rho\colon G\to\mop{End}(F),\quad
+%		\Lambda\in G
+		\in G \subset \mop{End} F
+	\end{equation}
+	\item Cocycle condition:
+	\begin{equation}
+		\tau_{UV}\circ\tau_{VW}\circ\tau_{WU} = \idty
+	\end{equation}
+	\end{itemize}
+	With the idea of principal bundle and construction theorem of associated bundle, our task of defining a spinor field can now be decomposed into the following two steps:
+	\begin{itemize}[leftmargin=*]
+	\item Find a natural and compatible lift of $P_{\mrm{SO}(3)}$ to some principal $\mrm{Spin(3)}$--bundle $P_{\mrm{Spin}(3)}$; this is called the \textit{spin structure} on $\Sigma$;
+	\item Construct a spinor bundle associated with $P_{\mrm{Spin}(3)}$, then its section is precisely the spinor field we want to obtain. 
+	\end{itemize}
+\subsection{Spin Structure}
+	What kind of lift of $P_{\mrm{SO}(3)}$ to $P_{\mrm{Spin}(3)}$ is considered natural? This is characterized by the definition of spin structure. We follow closely the discussions in \cite{figueroa2010spin,Nakahara:2003nw}. 
+\pagebreak[4]
+	
+	\begin{definition*}[Spin Structure]
+		A spin structure is a principal $\mrm{Spin}(p,q)$--bundle $P_{\mrm{Spin}}$ together with a bundle morphism:
+		\begin{center}
+		\begin{tikzcd}[row sep=5ex,column sep=1.0em]
+			P_{\mrm{Spin}}
+				\arrow[dr]
+				\arrow[rr,"\displaystyle\tilde{\pi}"] &
+			& P_{\mrm{SO}(p,q)} \arrow[dl] \\
+			& \mcal{M} & 
+		\end{tikzcd}
+		\end{center}
+		Which restricts fiber-wise to the $\mbb{Z}_2$ covering homomorphism $
+			\pi\colon
+			\mrm{Spin}(p,q)
+			\to
+			\mrm{SO}(p,q)
+		$. 
+	\end{definition*}
+	
+	Spin structures need not exist and even if they do they need not be unique. We shall see the obstruction to such lifting by explicit construction. 
+	
+	Again, we choose to work on the hypersurface $\Sigma$. Starting from the $\mrm{SO}(3)$ structure, transition function $\tau \in \mrm{SO}(3)$ satisfies the cocycle condition:
+	\begin{equation}
+		\tau_{UV}\circ
+		\tau_{VW}\circ
+		\tau_{WU} = \idty,\quad
+		\tau\in \mrm{SO}(3)
+	\end{equation}
+	The lifting of $\tau\in\mrm{SO}(3)$ to $\tilde{\tau}\in\mrm{Spin}(3)$ always exists locally. First, we simply choose one of the pre-images of the $\mbb{Z}_2$ covering at some point $p\in\Sigma$, i.e.~
+	\begin{equation}
+		\pi\pqty\big{\tilde{\tau}(p)}
+		= \tau(p),\quad
+		\pi\colon \mrm{Spin}(3) \to \mrm{SO}(3),\quad
+		p\in\Sigma
+	\end{equation}
+	Then we need to extend such choice of $\tilde{\tau}$ smoothly around the manifold. There will be no obstruction of such extension around a small neighborhood of $p\in U \subset\Sigma$, but it may fail globally if two different ``paths'' of extension yields incompatible results. In the end, we can only guarantee that:
+	\begin{gather}
+		\pi\pqty\big{
+			\tilde{\tau}_{UV}\circ
+			\tilde{\tau}_{VW}\circ
+			\tilde{\tau}_{WU}
+		} = \idty,\\[.5ex]
+		\tilde{\tau}_{UV}\circ
+		\tilde{\tau}_{VW}\circ
+		\tilde{\tau}_{WU}
+		= f_{UVW}
+		= \pm\idty
+		\in \ker \pi
+		= \mbb{Z}_2
+	\end{gather}
+	But for a spin structure $P_{\mrm{Spin}}\to P_{\mrm{SO}(3)}$,  $\tau\in\mrm{SO}(3)$ and $\tilde{\tau}\in\mrm{Spin}(3)$ should both satisfy the cocycle condition. This is possible iff.~$f_{UVW} = 1$. It turns out that $f_{UVW}$ as a function of charts is in fact independent of the choice of local frames; it is completely fixed by the manifold $\Sigma$, i.e.~$f_{UVW} = f(\Sigma)$ is a \textit{characteristic class} of $\Sigma$. 
+	
+	Notice that our discussions about spin structure greatly resemble those in the last section, about the existence of $\mrm{SO}(3)$ transition. Note that the $\mrm{GL}(3,\mbb{R})\to\mrm{O}(3)\to\mrm{SO}(3)$ refinement is also locally trivial, but obstruction occurs in the form of (\textit{non-})\,orientability when we try to extend it globally on the whole manifold. The situation with spin structure is quite similar, with the obstruction given by $f(\Sigma)$. 
+	
+	In fact, these two things can be described in a unifying way by \textit{Stiefel–Whitney class} $w_n$ and \textit{\v{C}ech cohomology} $H^n(\Sigma,\mbb{Z}_2)$. $f_{UVW} = f(\Sigma)$ defined above is precisely the \nth{2} Stiefel–Whitney class $w_2(T\Sigma)$. 
+\pagebreak[3]
+	
+	We will not dive too deep into this subject; for further discussions, see \cite{Nakahara:2003nw,lawson2016spin}. Rather, we simply summarize some relevant results below:
+	\begin{itemize}[noitemsep]
+	\item Given any bundle $E\to\Sigma$, $w_n(E)\in H^n(\Sigma,\mbb{Z}_2)$; 
+	\item $\Sigma$ orientable iff.~$w_1(T\Sigma)$ is trivial; 
+	\item $\Sigma$ has spin structures iff.~$w_2(T\Sigma)$ is trivial; furthermore, if this is the case, then the spin structures on $\Sigma$ are in one-to-one correspondence with elements of $H^1(\Sigma,\mbb{Z}_2)$. 
+	\item $H^1(\Sigma,\mbb{Z}_2)\cong \mop{Hom}(\pi_1(\Sigma),\mbb{Z}_2)$, i.e.~ways of assigning $(\pm)$ signs to non-contractible loops ($S^1$) in $\Sigma$; here $\pi_1(\Sigma)$ is the fundamental group. 
+	\end{itemize}
+	In general, the refinement and lifting of structure group happens in the following steps:
+	\begin{itemize}[noitemsep]
+	\item We start with a $C^\infty$ manifold $\Sigma$ with $\tau\in\mrm{GL}(n,\mbb{R})$;
+	\item With Riemannian metric $g_{ij}$, by restricting to isometries, $\tau\in\mrm{O}(n)\subset\mrm{GL}(n,\mbb{R})$;
+	\item With orientability we can further restrict $\tau\in\mrm{SO}(n)\subset\mrm{O}(n)$;
+	\item With spin structure, we can lift $\tau\in\mrm{SO}(n)$ to $\tilde{\tau}\in\mrm{Spin}(n)$. 
+	\end{itemize}
+	
+	To better understand spin structure, we shall look at the most basic example $\Sigma = S^1$ with unit radius the usual flat metric. Note that $S^1$ is an oriented 1--fold, $w_1(\mrm{T}S^1) = \idty$, and its tangent bundle is just the trivial line bundle:
+	\begin{equation}
+		\mrm{T}S^1 \cong S^1\times \mbb{R}
+		\label{eq:trivial_S1_bundle}
+	\end{equation}
+	whose isometric transition function is trivial $\tau\equiv\idty = \mrm{SO}(1)$, so the frame bundle is just $S^1\times\{\idty\}\cong S^1$. The spin group, however, is non-trivial: $\mrm{Spin}(1)\cong\mbb{Z}_2$, hence there might be non-trivial liftings to $P_{\mrm{Spin}}$. 
+	
+	Indeed, $w_2(\mrm{T}S^1) = \idty$, but $H^1(\Sigma,\mbb{Z}_2)\cong \mop{Hom}(\pi_1(\Sigma),\mbb{Z}_2) = {\pm\idty}$, and we have two inequivalent spin structures on $S^1$. It is more intuitive to look at their associated line bundles. One of them is simply $S^1\times\mbb{R}$, but the other one consists of a non-trivial \textit{twist} on the fiber:
+	\begin{equation}
+	\begin{gathered}
+		E = S^1\times_{\mbb{Z}_2} \mbb{R},\quad
+		\psi\in \Gamma(\Sigma,E)
+			\,\colon\,
+			\Sigma\to E,\\[.5ex]
+		\psi(\theta + 2\pi) = -\psi(\theta)
+	\end{gathered}
+	\end{equation}
+	This is precisely the \textit{M\"obius bundle} studied extensively in \textit{Lee} \cite{lee2012introduction}. In fact, the lifting of $\tau\equiv\idty$ to $\tilde{\tau}\in\mbb{Z}_2$ is explicitly given in \textit{Lee} \cite{lee2012introduction}, Problem 10-13. By introducing the $\mbb{C}$omplex label $z = e^{i\theta} \in {S}^1$ and two charts $U_{\pm} = S^1\setminus\{\pm 1\}$, we have:
+	\begin{equation}
+		\tilde{\tau}_{+,-}(z)
+		= \bigg\lbrace
+		\begin{aligned}
+			\ %
+			& {+\idty}, && \Im z > 0,\\[-.3ex]
+			& {-\idty}, && \Im z < 0,
+		\end{aligned}\quad
+		z = e^{i\theta} \in S^1
+	\end{equation}
+	
+	In summary, $S^1$ has two distinct spin structures, and their associated $\mbb{R}$ line bundles are respectively, $S^1 \times\mbb{R}$ and $S^1\times_{\mbb{Z}_2} \mbb{R}$, which also correspond to periodic and anti-periodic boundary conditions on $\theta\in[0,2\pi]$. 
+	
+	In some literature (incl.~most physics texts), these two spin structures are affectionally named \textit{Neveu--Schwarz} (NS) and \textit{Ramond} (R). In general, a genus $g$ Riemann surface has $2g$ distinct periods, which give rise to $2^{2g}$ inequivalent spin structures. 
+\subsection{Dirac Operator and Spin Connection}
+	Back to Witten's proof of the positive energy theorem, we have an asymptotic flat 3--fold $\Sigma\subset\mcal{M}$, and indeed $w_{1,2}(T\mcal{M}) = w_{1,2}(T\Sigma) = \idty$ are all trivial, so the existence of spin structure is guaranteed \cite{Parker:1981uy}. 
+	
+	With a spin structure, we can construct associated \textit{spinor bundles} just like the $S^1$ case. However, the model fiber $F$ of a spinor bundle is generally some $\mbb{C}$ vector space, since the related Hilbert space on $\Sigma$ is a $\mbb{C}$ linear space. 
+	
+	In general, the model fiber $F$ can be any spin representation. In Witten's original proof, the (complexified) Clifford $\cliff(3,1)^{\mbb{C}}$ module is chosen, with $F\cong
+	\mbb{C}^4$ as a vector space. This is in fact the defining module of $\mrm{Spin}(3,1)$, and corresponds to the famous \textit{Dirac spinor}. Dirac spinor bundle is then pulled back to the hypersurface $\Sigma\subset\mcal{M}$ and treated as a $\mrm{Spin}(3)$ spinor bundle. 
+	
+	Dirac spinor first arose in the effort of finding a wave equation compatible with relativity. Dirac noted that relativistic wave equation for an electron should be \nth{1} order in time dependence, so that it behaves nicely as an initial value problem \cite{dirac1981principles}. This leads to the need of taking a ``square root'' of the d'Alembert operator $\partial^a\pdd{a}$, i.e.~finding some scalar operator $i\slashed{\partial}$ so that:
+	\begin{equation}
+		\pqty{\smash{
+			i\slashed{\partial}
+		}}^2 = \partial^a \pdd{a}
+		\label{eq:dirac_square}
+	\end{equation}
+	Here $i$ is introduced to ensure that $i\slashed{\partial}$ is self-adjoint, much like $\partial^a \pdd{a}$ itself. Dirac discovered that such $i\slashed{\partial}$ could be realized using $\gamma^a \in \cliff(3,1)$, namely,
+	\begin{gather}
+		\slashed{\partial}
+		= \gamma^a \pdd{a},\quad
+		\slashed{\partial}^2 = -\idty\,\partial^a \pdd{a},\\[.5ex]
+		\idty,\gamma^a \in \cliff(3,1),\\[.5ex]
+		\tfrac{1}{2} \Bqty\big{\gamma^a,\gamma^b}
+		= \tfrac{1}{2} \pqty\big{
+			\gamma^a\gamma^b
+			+ \gamma^a\gamma^b
+		} = -\eta^{ab}
+	\end{gather}
+	$\slashed{\partial}$ is the so-called \textit{Dirac operator}. $\cliff(3,1)$ is faithfully represented by $4\times 4$ $\mbb{C}$omplex matrices, and the field $\psi$ it acts on shall be a column vector $\psi\in F \cong\mbb{C}^4$. This is the Dirac spinor. 
+	
+	Dirac operator and Clifford $\gamma^a$ can then be generalized in curved spacetime; we have:
+	\begin{equation}
+		\slashed{\nabla} = \gamma^a \cdv{a}
+		\equiv \theta^a.\cdv{a}
+	\end{equation}
+	Where $\theta^a$ is the orthonormal coframe defined in \eqref{eq:orthonormal_frame}, and ``$.$'' denotes some Clifford multiplication. Without referencing $\gamma^a$, the latter expression can then be generalized to arbitrary fiber $F$, as long as $F$ is some spin representation. \textit{Dirac's equation} in curved spacetime can then be expressed in the following form\footnote{
+		There are numerous conventions for $\cliff(3,1)$ and $\slashed{\nabla}$. We have chosen a convention that is compatible with Witten's proof \cite{Witten:1981mf,Parker:1981uy}. Note that this differs from Weinberg's convention \cite{Weinberg:1995mt}. 
+	}:
+	\begin{equation}
+		\pqty{i\slashed{\nabla} - m}\,\psi(x) = 0
+	\end{equation}
+	
+	In Witten's proof, since we are only working on 3--fold $\Sigma\in\mcal{M}$, this is further truncated to the \textit{hypersurface Dirac operator}:
+	\begin{equation}
+		\mscr{D} = \theta^i.\cdv{i}
+		= \sum_{i=1}^{3} \theta^i.\cdv{i}
+		\label{eq:hypersurface_dirac}
+	\end{equation}
+	In fact, on such 3--fold $\Sigma$, Witten's proof can actually be simplified using basic $\mrm{Spin}(3)$ representations, i.e.~\textit{Weyl spinors} introduced in Section \ref{subsect:repr}. Then, the $\theta^i$ multiplications can be expressed with Pauli matrices $\sigma^i$, defined in \eqref{eq:pauli_mat}, and the fiber is thus reduced to $F = V\cong \mbb{C}^2$. See \cite{Straumann:2013spu} for this simplified version of Witten's proof. 
+	
+	Note that we haven't addressed the nature of covariant derivative $\nabla$. Since we are no longer working on a tensor bundle, this could not be the usual Levi-Civita connection. In fact, the lifting of $P_{\mrm{SO}(3)}$ to $P_{\mrm{Spin}}$ naturally induces a lifting of the usual Levi-Civita connection; this is the so-called \textit{spin connection}. See \cite{figueroa2010spin,Wernli:2019hpf} for further discussions. 
+	
+	Generally, for $\Sigma\subset\mcal{M}$, $\nabla$: spin connection on $\mcal{M}$, $\mscr{D}$: hypersurface Dirac operator, \eqref{eq:dirac_square} is modified to be the \textit{Lichnerowicz–Weitzenböck formula}:
+	\begin{equation}
+		\mscr{D}^\dagger\mscr{D}
+		= D^2 = \nabla^\dagger \nabla + \mscr{R}
+		\label{eq:fancy_math_formula}
+	\end{equation}
+	Where ``$\dagger$'' denotes $\mbb{C}$--adjoint w.r.t.~the standard Hermitian form on $F\cong\mbb{C}^n$, and $\mscr{R}$ is some curvature corrections \cite{Parker:1981uy}. 
+\section{Sketch of the Proof}
+	With previous preparations, we are finally ready to sketch the main ideas of Witten's proof, following \cite{Witten:1981mf,Parker:1981uy,Straumann:2013spu}. 
+	\begin{itemize}[leftmargin=*]
+	\item First, assume there is matter described by {spinor field} $\psi$ on the manifold $\mcal{M}$. 
+	
+	The motivation and validity of this assumption is the main content of this review. It is indeed the essence of Witten's proof; following steps, though technically difficult, are conceptually simple compared to this first step. 
+	\item The dynamics of spinor field respects spacetime symmetries, and $\psi(x)$ transforms as a \textit{spinor representation} on its fiber, specified in section \ref{subsect:repr}. Just as is discussed in section \ref{subsect:adm_energy}, we can construct a conserved Noether current of $\psi$:
+	\begin{equation}
+		j^\mu = \psi^\dagger.\theta^0.\theta^\mu.\psi
+	\end{equation}
+	This is a null (lightlike) vector near the asymptotic boundary, hence the contraction of $j^\mu$ with the ADM energy \eqref{eq:adm_energy} yields:
+	\begin{equation}
+		j^\mu P_\mu \propto E - \abs{P}
+	\end{equation}
+	\item On the other hand, by definition, $j^\mu P_\mu$ can be expanded with curvature $R_{\mu\nu}$ and field $\psi$. Using Einstein's equations, $R_{\mu\nu}$ can be further expressed in local energy--momentum $T_{\mu\nu}$ in the following form:
+	\begin{equation}
+		j^\mu P_\mu
+		= \int_\Sigma
+			\pqty\big{-T_{0\nu} j^\nu + \cdots}
+			\dd{\textit{Vol}}
+		\label{eq:contracted_adm}
+	\end{equation}
+	Where the $(\cdots)$ part contains only $\cdv{\mu}\psi$ terms. This can be seen as the integral form of the Lichnerowicz–Weitzenböck formula \eqref{eq:fancy_math_formula}, where $\mscr{R}$ is replaced by $T_{\mu\nu}$. 
+	
+	Calculations from now on relies heavily on tricks from spinor analysis, including extensive use of \eqref{eq:fancy_math_formula} and \textit{Bochner formula}, which is well-reviewed in math texts such as \cite{jost2011riemannian,bourguignon2015spinorial}. Witten, on the other hand, refers to supergravity for inspirations \cite{Witten:1981mf}. 
+	
+	\item $T_{\mu\nu}$ satisfies the dominant energy condition (DEC) \eqref{eq:DEC}, so the first term of \eqref{eq:contracted_adm} is positive. There are also spinor bilinear $\norm{\nabla\psi}^2$ in \eqref{eq:contracted_adm}, which are also automatically positive. The only remaining part is proportional to $\mscr{D}\psi$. If we can choose some non-zero $\psi$ so that:
+	\begin{equation}
+		\mscr{D}\psi = 0
+		\label{eq:dirac_witten}
+	\end{equation}
+	Then the proof is done. 
+	\item \eqref{eq:dirac_witten} is called the \textit{Dirac--Witten} equation. Proof of the theorem now comes down to analyzing this PDE. In fact, on asymptotically flat $\Sigma\subset\mcal{M}$, if $\psi$ vanishes at infinity \textit{fast enough} ($\sim \frac{1}{r^{1-\epsilon}}$), then it has to be zero $\psi = 0$. This gives $E = 0$ and $\mcal{M}$ flat. 
+	
+	Furthermore, if $\psi$ is asymptotically constant, then the right-hand side of \eqref{eq:contracted_adm} is positive, since it contains spinor bilinear $\norm{\nabla\psi}^2$. 
+	
+	These results are the so-called \textit{Witten's vanishing theorem} \cite{Parker:1981uy}. It can be proven rigorously using Green's function of operator $\mscr{D}$, as is proved and well-reviewed in \cite{Witten:1981mf,Parker:1981uy}. This concludes Witten's proof of the positive energy theorem. 
+	\end{itemize}
+	
+	\hfill\qedsymbol
+\section{Acknowledgements}
+	We thank Dr.~Luis Apolo for his extensive proof-reading and valuable suggestions for this review. We thank Prof.~Mauricio Romo, fellow student Yuan Zhong and Kai Xu for many inspiring discussions. We thank Prof.~Hui Ma for her great teachings in the \textit{Smooth Manifolds} class. 
+
+
+\renewcommand*{\bibfont}{%
+	\linespread{1.}\selectfont
+}
+\raggedright
+\printbibliography[%
+	title = {References} %
+	,heading = bibintoc
+]
+\end{document}

@@ -1,0 +1,30 @@
+% template based on:
+% 828cf8712a450a9fa7bce9d2cd3c200ea61bed53
+
+% to be `\input` in subfolders,
+% ... therefore the path should be relative to subfolders.
+
+\usepackage[UTF8
+	,heading=false
+	,scheme=plain % English Document
+]{ctex}
+\usepackage{indentfirst}
+
+\input{../modules/basics/macros.tex}
+\input{../modules/preamble_base.tex}
+\input{../modules/preamble_notes.tex}
+\input{../modules/basics/theorem.tex}
+\input{../modules/basics/biblatex.tex}
+
+\mathtoolsset{showonlyrefs=false}
+\DeclareTextFontCommand{\textbf}{\sffamily}
+\renewcommand{\midquote}{\quad}
+\usepackage{tikz-cd}
+
+% Spacing
+\setlength{\parskip}{.35\baselineskip}
+\renewcommand{\baselinestretch}{1.05}
+
+% Misc
+\newcommand{\cliff}{\mrm{C\ell}}
+\newcommand{\slot}{{\,\bullet}}
