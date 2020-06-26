@@ -14,23 +14,13 @@
 %%% ID: sensitive, do NOT publish!
 %\InputIfFileExists{../id.tex}{}{}
 
-\newcommand{\oppower}[2]{\mop{{#1}^{#2}}\!}
-\newcommand{\sqsinh}{\oppower{\sinh}{2}}
-\newcommand{\sqcosh}{\oppower{\cosh}{2}}
-
-\newcommand{\Vir}{\mathbf{V}\mfrak{ir}}
-\usepackage{tikz-feynman,cancel}
+\usepackage{cancel}
 
 \begin{document}
 \maketitle
 \pagestyle{headings}
 \pagenumbering{arabic}
 \thispagestyle{empty}
-
-%{
-%	\noindent\itshape%
-%	本文约定：度规$\eta\sim\pqty{-,+,+,+}$, 指标$\mu,\nu,\dots = 0,1,2,3,\ i,j,\dots = 1,2,3$.
-%}
 
 	\begin{enumerate}
 	\item \textbf{Stringy Physics!}
@@ -1271,7 +1261,7 @@
 				\normorder{
 					c^y_2
 					e^{ik_2\cdot X_2}
-				}
+				}\,
 				\normorder{
 					c^y_3
 					e^{ik_2\cdot X_2}

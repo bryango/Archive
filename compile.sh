@@ -39,7 +39,7 @@ for file in $FILES; do
     || [[ $tex_program == lualatex ]]; then
         latexmk \
             "-$tex_program" \
-            -synctex=1 \
+            -synctex=15 \
             -interaction=nonstopmode \
             -shell-escape \
             "$filename"

@@ -1,3 +1,5 @@
+% Templates: 82ccb576e4df24e5eac4194b76230be360b4f733
+
 % to be `\input` in subfolders,
 % ... therefore the path should be relative to subfolders.
 
@@ -22,23 +24,12 @@
 	\newparagraph
 }}
 
-\newcommand{\tinyhskip}{{\hskip .1em}}
-\newcommand{\mat}[1]{\pqty\Big{
-	\footnotesize
-	\hspace{-.2em}
-		\begin{array}{cc}
-			#1
-		\end{array}
-	\hspace{-.2em}
-}}
-
 % Settings
 \usepackage{tikz-cd}
 \counterwithout{equation}{section}
 \mathtoolsset{showonlyrefs=false}
 %\DeclareTextFontCommand{\textbf}{\sffamily}
 \renewcommand{\midquote}{\quad}
-\resizegathersetup{equations=false}
 
 % Spacings
 \geometry{footnotesep=2\baselineskip} % pre footnote split

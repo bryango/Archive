@@ -1,3 +1,5 @@
+% Templates: 82ccb576e4df24e5eac4194b76230be360b4f733
+
 % to be `\input` in subfolders,
 % ... therefore the path should be relative to subfolders.
 
@@ -9,20 +11,6 @@
 \input{../.modules/basics/macros.tex}
 \input{../.modules/preamble_base.tex}
 \input{../.modules/preamble_notes.tex}
-
-\newcommand{\normorder}[1]{
-	{\mathopen {:}}{\tinyhskip #1\tinyhskip}{\mathclose {:}}
-}
-
-\newcommand{\tinyhskip}{{\hskip .1em}}
-\newcommand{\mat}[1]{\pqty\Big{
-	\footnotesize
-	\hspace{-.2em}
-		\begin{array}{cc}
-			#1
-		\end{array}
-	\hspace{-.2em}
-}}
 
 \newcommand{\legacyReference}{{
 	\clearpage\par

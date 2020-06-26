@@ -12,22 +12,11 @@
 %%% ID: sensitive, do NOT publish!
 %\InputIfFileExists{../id.tex}{}{}
 
-\newcommand{\oppower}[2]{\mop{{#1}^{#2}}\!}
-\newcommand{\sqsinh}{\oppower{\sinh}{2}}
-\newcommand{\sqcosh}{\oppower{\cosh}{2}}
-
-\newcommand{\Vir}{\mathbf{V}\mfrak{ir}}
-
 \begin{document}
 \maketitle
 \pagestyle{headings}
 \pagenumbering{arabic}
 \thispagestyle{empty}
-
-%{
-%	\noindent\itshape%
-%	本文约定：度规$\eta\sim\pqty{-,+,+,+}$, 指标$\mu,\nu,\dots = 0,1,2,3,\ i,j,\dots = 1,2,3$.
-%}
 
 	\begin{enumerate}
 	\item \textbf{BRST Quantization of Bosonic String}: 
@@ -127,7 +116,7 @@
 	
 	For a quantum version, redefine $j(z)$ with normal ordering\footnote{
 		Normal ordering between $\ge 3$ operators is in fact \textit{not} associative; this directly leads to the ambiguity we are about to discover. See \textit{Di Francesco et al} for more detailed discussions. 
-		Na\"ively, $\normorder{bc\,\pd c}_{\,(0)}$ is \textit{defined} as $b(0)\,c(z_1)\,\pd c(z_2)$ while $z_1,z_2\to 0$, with singular terms subtracted; however, different ways of taking the limit might lead to different results. For example, we can first take $z_1\to 0$ then $z_2\to 0$, or we can first take $z_1\to z_2$ then $z_2\to 0$. This two procedures will differ by $
+		Na\"ively, $\normorder{bc\,\pd c}_{(0)}$ is \textit{defined} as $b(0)\,c(z_1)\,\pd c(z_2)$ while $z_1,z_2\to 0$, with singular terms subtracted; however, different ways of taking the limit might lead to different results. For example, we can first take $z_1\to 0$ then $z_2\to 0$, or we can first take $z_1\to z_2$ then $z_2\to 0$. This two procedures will differ by $
 			\frac{3}{2}\,\pd^2 c(z)
 		$, which is precisely the correction we are about to find out. \sidenote{\textit{I suppose this is somehow related to topology, e.g.\ braid group?}}
 	}, and we have:
@@ -136,7 +125,7 @@
 		\sim T^X(z)\,T^X(0)\,c(0)
 			+ T^{bc}(z)\,cT^X(0)
 			+ T^{bc}(z)\,
-				\normorder{bc\,\pd c}_{\,(0)},
+				\normorder{bc\,\pd c}_{(0)},
 		\label{eq:BRST_Tj_OPE}\\
 		\text{where}\quad
 		T^X(z)\,T^X(0)\,c(0)
@@ -161,16 +150,16 @@
 	\end{equation}
 	The last term in \eqref{eq:BRST_Tj_OPE} can be brute-forced as follows:
 	\begin{equation}
-		T^{bc}(z)\,\normorder{bc\,\pd c}_{\,(0)}
+		T^{bc}(z)\,\normorder{bc\,\pd c}_{(0)}
 		= \pqty\big{
 			\normorder{(\pd b)\,c}
 			- 2\,\pd(\normorder{bc})
-		}_{(z)}\,\normorder{bc\,\pd c}_{\,(0)}\,,
+		}_{(z)}\,\normorder{bc\,\pd c}_{(0)}\,,
 	\end{equation}
 	\vspace{-1\baselineskip}
 	\begin{align}
-		\normorder{(\pd b)\,c}_{\,(z)}\,
-		\normorder{bc\,\pd c}_{\,(0)}
+		\normorder{(\pd b)\,c}_{(z)}\,
+		\normorder{bc\,\pd c}_{(0)}
 		&\sim \normorder{
 			\wick{
 				(\pd \c b)\,c_{(z)}\,
@@ -215,13 +204,13 @@
 			z\,j^{bc}(0)
 			+ \frac{z^2}{2}\,\normorder{
 				bc\,\pd^2 c
-			}_{\,(0)}
+			}_{(0)}
 			+ \order*{z^3}
 		} \notag\\[-.3ex]
 		&\qquad + \frac{1}{z}\,\pqty\big{
 			\normorder{
 				(\pd b)\,c\,\pd c
-			}_{\,(0)} + \order{z}
+			}_{(0)} + \order{z}
 		} + \frac{-1}{z^3}\,\pd c(0)
 			+ \frac{2}{z^4}\,c(0) \notag\\[.7ex]
 		&\sim \frac{4}{2z^4}\,c(0)
@@ -230,7 +219,7 @@
 			+ \frac{1}{z}\,\normorder{\pqty{
 				bc\,\pd^2 c
 				+ (\pd b)\,c\,\pd c
-			}}_{\,(0)}\,, \notag\\[1ex]
+			}}_{(0)}\,, \notag\\[1ex]
 		&\sim \frac{4}{2z^4}\,c(0)
 			+ \frac{-1}{z^3}\,\pd c(0)
 			+ \frac{3}{z^2}\,j^{bc}(0)
@@ -239,8 +228,8 @@
 %		THIS IS INSANE!
 %		ANOTHER OPE ...
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-		\normorder{bc}_{\,(z)}\,
-		\normorder{bc\,\pd c}_{\,(0)}
+		\normorder{bc}_{(z)}\,
+		\normorder{bc\,\pd c}_{(0)}
 		&\sim \normorder{
 			\wick{
 				\c1 b c_{(z)}\,
@@ -279,8 +268,8 @@
 			(+1)\,\pd c(0)
 		+ \frac{1}{z^2}\cdot\frac{1}{z}\,
 			(-1)\,c(0) \notag\\[1ex]
-		\normorder{bc}_{\,(z)}\,
-		\normorder{bc\,\pd c}_{\,(0)}
+		\normorder{bc}_{(z)}\,
+		\normorder{bc\,\pd c}_{(0)}
 		&\sim \frac{1}{z}\,\pqty\big{
 			-j^{bc}(0)
 		} + \frac{-1}{z^2}\,\pqty\big{
@@ -296,13 +285,13 @@
 %		DERIVATIVE
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		\pd (\normorder{bc})_{(z)}\,
-		\normorder{bc\,\pd c}_{\,(0)}
+		\normorder{bc\,\pd c}_{(0)}
 		&\sim \frac{6}{2z^4}\,c(0)
 			+ \frac{-2}{z^3}\,\pd c(0)
 			+ \frac{1}{z^2}\,j^{bc}(0),
 	\end{align}
 	\begin{gather}
-		T^{bc}(z)\,\normorder{bc\,\pd c}_{\,(0)}
+		T^{bc}(z)\,\normorder{bc\,\pd c}_{(0)}
 		\sim \frac{-8}{2z^4}\,c(0)
 			+ \frac{3}{z^3}\,\pd c(0)
 			+ \frac{1}{z^2}\,j^{bc}(0)
@@ -359,7 +348,7 @@
 %	note that $b,c$ are primaries with weight $(2,0)$ and $(-1,0)$, hence $Tb,Tc$ OPEs take the standard form of a $T\cdot(\text{primary})$ OPE. We have:
 %	\begin{equation}
 %	\begin{aligned}
-%		T^{bc}(z)\,\normorder{bc\,\pd c}_{\,(0)}
+%		T^{bc}(z)\,\normorder{bc\,\pd c}_{(0)}
 %		&\sim \pqty{
 %				\frac{2}{z^2}\,
 %					\normorder{bc\,\pd c}
@@ -450,9 +439,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 		j^{bc}_z c_0
 		&\sim \frac{1}{2}\,
-			\normorder{cT^{bc}}_{\,z}\,c_0
+			\normorder{cT^{bc}}_{z}\,c_0
 		\sim \frac{1}{2}\,c_z \Bqty{
-			\normorder{T^{bc}}_{\,z}\,c_0
+			\normorder{T^{bc}}_{z}\,c_0
 		}
 		\sim \frac{1}{2}\,c_z \Bqty{
 			T_z\,c_0
@@ -473,7 +462,7 @@
 			+ \frac{3}{2}\,j^{bc}_z\,\pd^2 c_0
 			+ \frac{3}{2}\,\pd^2 c_z\,j^{bc}_0 \\
 		&\sim \frac{1}{2}\,
-			\normorder{cT^{bc}}_{\,z}\,j^{bc}_0
+			\normorder{cT^{bc}}_{z}\,j^{bc}_0
 		+ \frac{3}{2}\,\pqty{
 			j^{bc}_z\,\pd^2 c_0
 			+ \pd^2 c_z\,j^{bc}_0
@@ -496,7 +485,7 @@
 %	For the first term, we have:
 %	\begin{equation}
 %	\begin{aligned}
-%		\normorder{cT^{bc}}_{\,z}\,j^{bc}_0
+%		\normorder{cT^{bc}}_{z}\,j^{bc}_0
 %		&\sim \normorder{\wick{
 %			\c1 c T^{bc}_z \c1 j^{bc}_0
 %		}} + \normorder{\wick{
@@ -527,7 +516,7 @@
 %	Here we've used the fact that there is only one $b$ in $T^{bc}$, hence all non-singular are accounted for in the above expression. Note again that $c$ is primary; similar to \eqref{eq:BRST_Td2c_OPE}, we have:
 %	\begin{equation}
 %	\begin{aligned}
-%		\normorder{cT^{bc}}_{\,z}\,j^{bc}_0
+%		\normorder{cT^{bc}}_{z}\,j^{bc}_0
 %		&\sim \normorder{\pqty{
 %			c_0 + z\,\pd c_0
 %			+ \frac{z^2}{2}\,\pd^2 c_0

@@ -12,9 +12,8 @@
 %%% ID: sensitive, do NOT publish!
 %\InputIfFileExists{../id.tex}{}{}
 
-\newcommand{\oppower}[2]{\mop{{#1}^{#2}}\!}
-\newcommand{\sqsinh}{\oppower{\sinh}{2}}
-\newcommand{\sqcosh}{\oppower{\cosh}{2}}
+\newcommand{\sqsinh}{\moppower{\sinh}{2}}
+\newcommand{\sqcosh}{\moppower{\cosh}{2}}
 
 \newcommand{\Vir}{\mathbf{V}\mfrak{ir}}
 
@@ -24,10 +23,6 @@
 \pagenumbering{arabic}
 \thispagestyle{empty}
 
-%{
-%	\noindent\itshape%
-%	本文约定：度规$\eta\sim\pqty{-,+,+,+}$, 指标$\mu,\nu,\dots = 0,1,2,3,\ i,j,\dots = 1,2,3$.
-%}
 	\begin{enumerate}
 	\item \textbf{Read \textit{Polchinski} Sections 1.3 and 1.4}: 
 	
@@ -63,6 +58,15 @@
 	\end{equation}
 	
 	Furthermore, we consider the special case that the closed string is \textit{folded}, like a rubber band stretched along a line; in this case we can choose the worldsheet parameter $(\tau,\sigma) = (t,\rho)$ while $\Omega = \Omega(t,\rho) = \Omega(\tau,\sigma)$, which leads to the following decomposition:
+	{
+	\newcommand{\mat}[1]{\pqty\Big{
+		\footnotesize
+		\hspace{-.2em}
+			\begin{array}{cc}
+				#1
+			\end{array}
+		\hspace{-.2em}
+	}}
 	\begin{align}
 		\pdd{a} X^\mu
 		&= \delta^\mu_a + \delta^\mu_i\,
@@ -90,8 +94,8 @@
 		}}
 %		\notag\\
 %		&= R^2\,\sqsinh\rho\,\Bqty{\mat{
-%			-\oppower{\coth}{2}\rho & \\
-%			& \oppower{\csch}{2}\rho \\
+%			-\moppower{\coth}{2}\rho & \\
+%			& \moppower{\csch}{2}\rho \\
 %		} + \,\mat{
 %			(\pdd{a}\Omega)^2 &
 %			\pdd{a}\Omega\cdot\pdd{b}\Omega \\
@@ -99,6 +103,7 @@
 %			(\pdd{b}\Omega)^2 \\
 %		}}
 	\end{align}
+	}%
 	Here $
 		\pdd{a}\Omega\cdot\pdd{b}\Omega
 		\equiv \pdd{a}\Omega^i\,\pdd{b}\Omega_i
@@ -109,30 +114,30 @@
 	\begin{aligned}
 		\det \gamma_{ab}
 		&= (R^2)^2\,\Big\{
-			\oppower{\sinh}{4}\rho\,
+			\moppower{\sinh}{4}\rho\,
 			\det\,(\pdd{a}\Omega^i\pdd{b}\Omega_i)
 		\\
 		&\qquad\qquad\qquad
-			+ \oppower{\sinh}{2}\rho\,\pqty{
+			+ \sqsinh\rho\,\pqty{
 				(\pdd{a}\Omega)^2
 				- (\pdd{b}\Omega)^2
-				\oppower{\cosh}{2}\rho
+				\sqcosh\rho
 			}
 		\\
 		&\qquad\qquad\qquad
-			- \oppower{\cosh}{2}\rho\,
+			- \sqcosh\rho\,
 		\Big\},\\[.5ex]
 		\sqrt{-\det \gamma_{ab}}
 		&= R^2\,\Big\{
-			\oppower{\cosh}{2}\rho
-			- \oppower{\sinh}{2}\rho\,\pqty{
+			\sqcosh\rho
+			- \sqsinh\rho\,\pqty{
 				(\pdd{a}\Omega)^2
 				- (\pdd{b}\Omega)^2
-				\oppower{\cosh}{2}\rho
+				\sqcosh\rho
 			}
 		\\[-.5ex]
 		&\qquad\qquad\quad
-			- \oppower{\sinh}{4}\rho\,
+			- \moppower{\sinh}{4}\rho\,
 			\det\,(\pdd{a}\Omega^i\pdd{b}\Omega_i)
 		\Big\}^{\!1/2}
 	\end{aligned}
@@ -142,13 +147,13 @@
 	\begin{equation}
 		S = -4TR^2 \int\dd{t} \int_0^r \dd{\rho}
 		\sqrt{
-			\oppower{\cosh}{2}\rho
-			- \oppower{\sinh}{2}\rho\,\pqty{
+			\sqcosh\rho
+			- \sqsinh\rho\,\pqty{
 				(\pdd{a}\Omega)^2
 				- (\pdd{b}\Omega)^2
-				\oppower{\cosh}{2}\rho
+				\sqcosh\rho
 			}
-			- \oppower{\sinh}{4}\rho\,
+			- \moppower{\sinh}{4}\rho\,
 			\det\,(\pdd{a}\Omega^i\pdd{b}\Omega_i)
 		}
 	\end{equation}
@@ -172,18 +177,18 @@
 	\begin{gather}
 		S = -4TR^2 \int\dd{t} \int_0^r \dd{\rho}
 			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \oppower{\sinh}{2}\rho\,\pqty{
+				\sqcosh\rho
+				- \sqsinh\rho\,\pqty{
 					(\pdd{a}\theta)^2
 					- (\pdd{b}\theta)^2
-					\oppower{\cosh}{2}\rho
+					\sqcosh\rho
 				}
 			}
 		= \int\dd{t} \int_0^r \dd{\rho} \mcal{L},\\
 		\mcal{L} = -4TR^2
 			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
+				\sqcosh\rho
+				- \omega^2\sqsinh\rho
 			},\quad
 			\omega = \pdd{t}\theta,\,
 			\pdd{\rho}\theta = 0
@@ -195,16 +200,16 @@
 		0 = \var{S} = -4TR^2 \int\dd{t}
 			\int\limits_r^{r+\var{r}} \dd{\rho}
 			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
+				\sqcosh\rho
+				- \omega^2\sqsinh\rho
 			}
 		= -4TR^2 \int\dd{t}
 			\sqrt{
-				\oppower{\cosh}{2}r
-				- \omega^2\oppower{\sinh}{2}r
+				\sqcosh r
+				- \omega^2\sqsinh r
 			} \var{r},\\
 		\omega^2 = \frac{\sqcosh r}{\sqsinh r}
-		= \oppower{\coth}{2} r
+		= \moppower{\coth}{2} r
 		\label{eq:string_endpt_constraint}
 	\end{gather}
 	
@@ -215,16 +220,16 @@
 		\Pi = \pdv{\mcal{L}}{\omega}
 		= 4TR^2\,\frac{\omega\sqsinh\rho}{
 			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
+				\sqcosh\rho
+				- \omega^2\sqsinh\rho
 			}
 		},\\
 		J = \int_0^r \dd{\rho} \Pi
 		= 4TR^2 \int_0^r \dd{\rho}
 		\frac{\omega\sqsinh\rho}{
 			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
+				\sqcosh\rho
+				- \omega^2\sqsinh\rho
 			}
 		},\\
 		E = \int_0^r \dd{\rho} \pqty{
@@ -233,8 +238,8 @@
 		= 4TR^2 \int_0^r \dd{\rho}
 		\frac{\sqcosh\rho}{
 			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
+				\sqcosh\rho
+				- \omega^2\sqsinh\rho
 			}
 		},
 	\end{gather}
@@ -251,8 +256,8 @@
 		&= 4TR^2 \int_0^r \dd{\rho}
 		\frac{\sqcosh\rho - \omega\sqsinh\rho}{
 			\sqrt{
-				\oppower{\cosh}{2}\rho
-				- \omega^2\oppower{\sinh}{2}\rho
+				\sqcosh\rho
+				- \omega^2\sqsinh\rho
 			}
 		}
 %		\\[.5ex]
