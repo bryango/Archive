@@ -67,7 +67,7 @@ jobs:
         git config --local user.email "workflow@github.com"
         git config --local user.name "Workflow - Homework"
         git add .
-        git commit -m "[workflow] Update homework"
+        git commit -m "[workflow] Update homework [$(cat release/TIMESTAMP)]"
         git push "https://bryango:${{ secrets.PUSH_SECRET }}@github.com/bryango/resources.git" master
 
 # vim: ts=2 sw=2
