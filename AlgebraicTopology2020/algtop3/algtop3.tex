@@ -59,14 +59,14 @@
 	Where $g\colon V\to \lim F$. 
 	More intuitively, for the above $F\colon I\to\Cat{Vect}$, this translates to the following diagram in \Cat{Vect}:
 	\begin{equation}
-	\begin{tikzcd}[row sep=2ex,column sep=8ex]
+	\begin{tikzcd}[row sep=1.5ex,column sep=8ex]
 		&& 0 \\
 		V
 			\arrow[r,dashed,
 				"\exists!\, g"]
-			\arrow[urr,bend left,%
+			\arrow[urr,bend left=25,%
 				"\eta_\bullet"]
-			\arrow[drr,bend right,swap,%
+			\arrow[drr,bend right=25,swap,%
 				"\eta_\star"] &
 		\lim F
 			\arrow[ur,%
@@ -318,8 +318,45 @@
 	This is compatible with the abelian group multiplication. Note that for the summation to be well-defined, the coproduct must only contain finitely many components; otherwise it is identical to the product in \Cat{Ab}. 
 	\qedfull
 	
-	\item 
+	\item \textbf{Composition of pull-backs:}
+	\begin{equation}
+	\begin{tikzcd}[row sep=7.5ex,column sep=7.5ex]
+		Q
+			\arrow[ddr,bend right,"g_1",swap]
+			\arrow[dr,"f_1"]
+			\arrow[drr,"f_2",bend left=12]
+			\arrow[drrr,"f_3",bend left=20]
+		&[1ex] && \\[-1ex]
+		& A_1
+			\arrow[rr,"\phi'" description
+				,bend left,swap
+				,crossing over]
+			\arrow[r,dashed]
+			\arrow[d] &
+		A_2
+			\arrow[d]
+			\arrow[r,"\phi"] &
+		A_3
+			\arrow[d] \\
+		& B_1
+			\arrow[rr,"\psi'" description
+				,bend right=25,swap]
+			\arrow[r,"\psi",swap,dashed] &
+		B_2
+			\arrow[from=uull,"g_2",swap
+				,bend right=20
+				,crossing over]
+			\arrow[r] &
+		B_3
+	\end{tikzcd}
+	\end{equation}
 	
+	\begin{enumerate}
+	\item If $A_1$ is the pull-back of $A_2$ and $A_2$ is the pull-back of $A_3$, then given $Q$ with $f_3,g_1$, we have $g_2 = \psi\circ g_1$, and $f_2$ is fixed uniquely by universal property of $A_2$, while $f_1$ is fixed uniquely by universal property of $A_1$. Hence, $A_1$ is the pull-back of $A_3$. 
+	
+	\item If $A_1,A_2$ are pull-backs of $A_3$, then given $Q$ with $f_2,g_1$, we have $f_3 = \phi\circ f_2$, and $f_2$ is fixed uniquely by universal property of $A_2$, and $f_1$ is fixed uniquely by universal property of $A_1$. Hence, $A_1$ is the pull-back of $A_3$. 
+	
+	\end{enumerate}
 	
 	
 	\end{enumerate}

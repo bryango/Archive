@@ -68,4 +68,4 @@ done
 ls -alF release
 cp README.md LICENSE release
 
-TZ='Asia/Shanghai' date +'%F %R UTC+8' > release/TIMESTAMP
+TZ='Asia/Shanghai' date +'%F %R UTC+8' > release/TIMESTAMP.txt
