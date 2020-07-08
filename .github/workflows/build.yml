@@ -25,13 +25,13 @@ jobs:
       with:
         run: |
           apk --no-cache add findutils
-          ./compile.sh
+          ./build.sh
 
     - name: Create release
       run: |
         sudo chown -R "$(id -u -n):$(id -g -n)" ./
         git tag --force latest
-        git push --force --tags "https://bryango:${{ secrets.GITHUB_TOKEN }}@github.com/bryango/Homework.git" master
+        git push --force --tags "https://bryango:${{ secrets.GITHUB_TOKEN }}@github.com/bryango/Archive.git" master
 
     - name: Publish release
       if: always()
@@ -55,8 +55,8 @@ jobs:
 
     - name: Transfer to resources
       run: |
-        rm -rf resources/homework
-        mv -v -f release resources/homework
+        rm -rf resources/archive
+        mv -v -f release resources/archive
 
     - name: Commit & Push resources
       run: |
@@ -65,9 +65,9 @@ jobs:
         # git config -l
         # git config --local --unset-all "http.https://github.com/.extraheader" || true
         git config --local user.email "workflow@github.com"
-        git config --local user.name "Workflow - Homework"
+        git config --local user.name "Workflow - Archive"
         git add .
-        git commit -m "[workflow] Update homework [$(cat release/TIMESTAMP)]"
+        git commit -m "[workflow] Update Archive [$(cat release/TIMESTAMP.txt)]"
         git push "https://bryango:${{ secrets.PUSH_SECRET }}@github.com/bryango/resources.git" master
 
 # vim: ts=2 sw=2
