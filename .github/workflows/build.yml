@@ -67,7 +67,7 @@ jobs:
         git config --local user.email "workflow@github.com"
         git config --local user.name "Workflow - Archive"
         git add .
-        git commit -m "[workflow] Update Archive [$(cat release/TIMESTAMP.txt)]"
+        git commit -m "[workflow] Update Archive [$(cat archive/TIMESTAMP.txt)]"
         git push "https://bryango:${{ secrets.PUSH_SECRET }}@github.com/bryango/resources.git" master
 
 # vim: ts=2 sw=2
