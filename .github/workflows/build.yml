@@ -47,6 +47,7 @@ jobs:
       uses: actions/checkout@master
       with:
         repository: 'bryango/resources'
+        ref: 'gh-pages'
         clean: false
         path: 'resources'
         # See: github-push-action/issues/44
@@ -68,6 +69,6 @@ jobs:
         git config --local user.name "Workflow - Archive"
         git add .
         git commit -m "[workflow] Update Archive [$(cat archive/TIMESTAMP.txt)]"
-        git push "https://bryango:${{ secrets.PUSH_SECRET }}@github.com/bryango/resources.git" master
+        git push "https://bryango:${{ secrets.PUSH_SECRET }}@github.com/bryango/resources.git" gh-pages
 
 # vim: ts=2 sw=2
