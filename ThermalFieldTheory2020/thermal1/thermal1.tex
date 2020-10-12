@@ -1,0 +1,192 @@
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper,10pt]{article}
+
+\newcommand{\hwNumber}{1}
+
+\input{../thermal_preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+%%% ID: sensitive, do NOT publish!
+\InputIfFileExists{../id.tex}{}{}
+
+\begin{document}
+\maketitle
+\pagestyle{headings}
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+\vspace*{-1.5\baselineskip}
+
+\section*{Thermal propagator for harmonic oscilators}
+\vspace*{-.8\baselineskip}
+	\begin{equation}
+		G(\tau)
+		= \frac{1}{Z}
+			\Tr \pqty{
+				e^{-\beta H}
+				x(\tau)\,
+				x(0)
+			}
+	\end{equation}
+
+\noindent
+	The Hamiltonian is $
+		H = \omega\pqty{
+			a^\dagger a + \frac{1}{2}
+		}
+	$, while $
+		x = \frac{1}{\sqrt{2m\omega}}\pqty{
+			a + a^\dagger
+		}
+	$. 
+\subsection*{Operator formalism}
+	Mode expansion of Lorentzian operator in the Heisenberg picture:
+	\begin{equation}
+		x(t)
+		= e^{iHt} \,x(0)\, e^{-iHt}
+		= \frac{1}{\sqrt{2m\omega}} \pqty\Big{
+				a\,e^{-i\omega t}
+				+ a^\dagger e^{i\omega t}
+			}
+	\end{equation}
+	This follows from the commutation relation between $a^{(\dagger)}$ and $H$, or from the quantum EOM in the Heisenberg picture. Wick-rotation to Euclidean signature: $\tau = it,\ t = -i\tau$, and we have:
+	\begin{equation}
+		x(\tau)
+		= e^{H\tau} \,x(0)\, e^{-H\tau}
+		= \frac{1}{\sqrt{2m\omega}} \pqty\Big{
+				a\,e^{-\omega\tau}
+				+ a^\dagger e^{\omega\tau}
+			}
+	\end{equation}
+	
+	Insert $x(\tau)\,x(0)$ into the definition of $G(\tau)$, and note that only $aa^\dagger$ and $a^\dagger a$ contribute to non-zero amplitudes, then we have:
+	\begin{equation}
+	\begin{aligned}
+		G(\tau)
+		&= \frac{1}{Z} \sum_{n=0}^\infty
+			\mel**{n}{
+				e^{-\beta\omega(n + \frac{1}{2})}\,
+				\frac{
+					aa^\dagger e^{-\omega\tau}
+					+ a^\dagger a\, e^{\omega\tau}
+				}{2m\omega}
+			}{n} \\
+		&= \frac{1}{Z} \sum_{n=0}^\infty
+			\mel**{n}{
+				e^{-\beta\omega(n + \frac{1}{2})}\,
+				\frac{
+					(n+1)\, e^{-\omega\tau}
+					+ n\, e^{\omega\tau}
+				}{2m\omega}
+			}{n} \\
+	\end{aligned}
+	\end{equation}
+	
+	Note that:
+	\begin{equation}
+		\sum_{n=0}^\infty
+			n\,e^{-\beta\omega n}
+		= -\frac{1}{\beta} \pdv{\omega}
+		\sum_{n=0}^\infty
+			e^{-\beta\omega n}
+	\label{eq:generatingTrick}
+	\end{equation}
+	The summations in $G(\tau)$ can be completed, and we get:
+	\begin{equation}
+		G(\tau)
+		= \frac{1}{2m\omega}
+			\frac{
+				\cos \pqty\big{
+					\pqty*{\frac{\beta}{2}-\tau} \omega
+				}
+			}{
+				\sin \pqty\big{\frac{\beta\omega}{2}}
+			}
+	\end{equation}
+\subsection*{Path Integral}
+	The mathematical trick in \eqref{eq:generatingTrick} is crucial in our path integral derivation of $G(\tau)$. We have:
+	\begin{gather}
+		G(\tau)
+		= \ave[\big]{x(\tau)\,x(0)}
+		= \frac{1}{Z} \int \DD{x} e^{-S}
+			x(\tau)\,x(0),\\
+		S
+		= \int_0^\beta \dd{t} \mcal{L}_E,
+	\quad
+		\mcal{L}_E
+		= \frac{1}{2}\, m\dot{x}^2_{(\tau)}
+			+ \frac{1}{2}\, m\omega^2 x^2_{(\tau)}
+	\end{gather}
+	Note that the path integral of a total derivative vanishes: $0 = \int \DD{x} \fdv{x}$ (see \textit{Polchinski}), we have:
+	\begin{equation}
+	\begin{aligned}
+		0 &= \int \DD{x} \fdv{x(\tau)} \Bqty\Big{
+				e^{-S} x(\tau')
+			}
+%		\\ &
+		= \int \DD{x} e^{-S}\,\Bqty{
+				- \fdv{S}{x(\tau)}\,x(\tau')
+				+ \delta(\tau - \tau')
+			}
+	\end{aligned}
+	\end{equation}
+%\pagebreak[3]
+	
+	$\fdv{S}{x(\tau)}$ yields precisely the quantum EOM:
+	\begin{equation}
+		\fdv{S}{x(\tau)}
+		= m\,\pqty{
+				-\pdv[2]{}{\tau}
+				+ \omega^2
+			}\,x(\tau)
+	\end{equation}
+	After some re-organization, we get the quantum equation for the Green function (which, for such a free theory, is identical to the classical one):
+	\begin{equation}
+		m\,\pqty{
+			-\pdv[2]{}{\tau}
+			+ \omega^2
+		} \int \DD{x} e^{-S}
+			x(\tau)\,x(\tau')
+		= \delta(\tau - \tau')
+			\int \DD{x} e^{-S},
+	\end{equation}
+	\vspace{-.5\baselineskip}
+	\begin{equation}
+		\pqty{
+			-\pdv[2]{}{\tau}
+			+ \omega^2
+		}\, G(\tau,\tau')
+		= \frac{1}{m}\, \delta(\tau - \tau'),
+	\quad
+		G(\tau) = G(\tau,0)
+	\end{equation}
+	
+	Note that $\tau \in [0,\beta]$ and $x(\tau)$ satisfies the periodic boundary condition: $x(\beta) = x(0)$, hence also $G(\beta) = G(0)$; we can extend the domain so that $x(\tau)$ is a function with period $\beta$, defined for $\tau\in\mbb{R}$. Furthermore, note that by definition $G(\tau,\tau') = G(\tau',\tau)$; this is the Feynman propagator! Integrating around $\tau = \tau'$ then setting $\tau' = 0$ gives:
+	\begin{equation}
+		G'(\beta^-) - G'(0^+)
+		= \frac{1}{m}
+	\end{equation}
+	While $G(\tau)$ away from $\tau = 0$ grows (or decays) exponentially: $
+		G(\tau)
+		\propto e^{\omega\tau} + e^{\omega(\beta - \tau)}
+	$. This fixes $G(\tau)$ uniquely:
+	\begin{equation}
+		G(\tau)
+		= \frac{1}{2m\omega}
+			\frac{
+				\cos \pqty\big{
+					\pqty*{\frac{\beta}{2}-\tau} \omega
+				}
+			}{
+				\sin \pqty\big{\frac{\beta\omega}{2}}
+			}
+	\end{equation}
+
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}

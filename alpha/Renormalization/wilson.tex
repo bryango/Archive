@@ -132,7 +132,7 @@
 	      e^{iS[\phi + \chi]} \\
 	\end{equation}
 	$\phi = \phi_\Lambda$ is treated as constant when doing
-	$\int \DD \chi$. Perturbatively, we integrate over loops with $\chi$ propagators as internal lines
+	$\int \DD \chi$. Perturbatively, we integrate over loops with $\chi$ propagators as internal lines.
 	\begin{equation}
 	\begin{aligned}
 	  \mcal{L}[\phi + \chi]
@@ -278,7 +278,7 @@
 	
 	\begin{figure}[!h]
 	\centering
-	\includegraphics[width=.35\linewidth]{img/RG-flow.png}
+	\includegraphics[width=.45\linewidth]{img/RG-flow.png}
 	\end{figure}
 \subsection{Physical Scales vs the Cutoff}
 	LSZ reduction (with the ``mostly plus'' metric convention, see \textit{Srednicki}):
@@ -338,10 +338,12 @@
 		\mcal{M} \pqty\big{\mu; g(\Lambda)}
 		= \mcal{M} \pqty\big{\mu/s; g(s\Lambda)},
 	\\[1ex]
+		\pdv{s}
+		\ \To\ %
 		\mu\,\pdv{\mcal{M}}{\mu}
-		= \pdv{M}{g}\,\pqty{
-				\Lambda\,\pdv{g}{\Lambda}
-			}
+		= \Lambda\,\pdv{g}{\Lambda}
+			\pdv{M}{g}
+		= \beta(g) \pdv{M}{g}
 	\end{gather}
 \section{Perturbative Renormalization}
 	However, in naïve perturbation theory, we wish to complete the entire
