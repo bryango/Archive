@@ -1,0 +1,505 @@
+% !TeX document-id = {b5392a94-51a3-49d1-9ba5-698bc09f9d35}
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+% !TeX TS-program = lualatex
+%%% LuaLaTeX is required for `tikz-feynman`
+
+\documentclass[a4paper
+	,10pt
+%	,twoside
+]{article}
+
+\input{../preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+\title{Qualifying Exam\phantom{:}%
+	\,\normalsize Physics 2020 @ YMSC, Tsinghua%
+}
+%\addbibresource{.bib}
+
+%%% ID: sensitive, do NOT publish!
+%\InputIfFileExists{id.tex}{}{}
+
+\renewcommand{\ccbyncsajp}{}
+
+\usepackage{cancel}
+\usepackage{tikz-feynman}
+\usepackage{filecontents}
+\begin{filecontents}{\jobname.bib}
+	@book{Peskin:1995ev,
+	    author = "Peskin, Michael E. and Schroeder, Daniel V.",
+	    title = "{An Introduction to Quantum Field Theory}",
+	    isbn = "978-0-201-50397-5",
+	    publisher = "Addison-Wesley",
+	    address = "Reading, USA",
+	    year = "1995"
+	}
+\end{filecontents}
+\addbibresource{\jobname.bib}
+
+\begin{document}
+\maketitle
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+\section{Gravity}
+	\vspace{-1.5\baselineskip}
+	\begin{equation}
+		\dd{s^2}
+		= - f(r) \dd{t^2}
+			+ \frac{1}{f(r)} \dd{r^2}
+			+ r^2 \dd{\Omega^2}
+	\end{equation}
+	\vspace{-.3\baselineskip}
+	\begin{equation}
+		\ f(r)
+		= 1 - \frac{GM}{r} + \frac{Q^2}{r^2}
+		= \frac{(r - r_+)(r - r_-)}{r^2}
+	\end{equation}
+	
+\begin{enumerate}
+\item Event horizon(s): $f(r) = 0$, we have:
+	\begin{enumerate}
+	\item $M > \abs{Q}$, $r_\pm = M \pm \sqrt{M^2 - Q^2}$, 2 event horizons;
+	\item $M = \abs{Q}$, $r_\pm = M$, 1 event horizons;
+	\item $M < \abs{Q}$, no event horizons! ``Naked'' singularity.
+	\end{enumerate}
+	
+\item New coordinate: $v = t + r^*$,
+	\begin{equation}
+		r^* = r
+			+ \frac{1}{2k_+}
+				\ln \frac{\abs{r - r_+}}{r_+}
+			+ \frac{1}{2k_-}
+				\ln \frac{\abs{r - r_-}}{r_-},
+	\quad
+		k_\pm
+		= \frac{r_\pm - r_\mp}{2r_\pm^2}
+	\label{eq:def_coord}
+	\end{equation}
+	We have:
+	\begin{align}
+		\dd{t}
+		= \dd{v} - \dd{r^*}
+		&= \dd{v} - \pqty{
+				1 + \frac{1}{2k_+} \frac{1}{r - r_+}
+				+ \frac{1}{2k_-} \frac{1}{r - r_-}
+			} \dd{r}
+		\label{eq:diff_coord}
+		\\
+		&= \dd{v} - \pqty{
+				1 + \frac{1}{r^2 f(r)}
+				\frac{
+					r_+^2 (r - r_-)
+					- r_-^2 (r - r_+)
+				}{r_+ - r_-}
+			} \dd{r} \notag\\
+		&= \dd{v} - \pqty{
+				1 + \frac{1}{r^2 f(r)}\,
+				\pqty\Big{
+					(r_+ + r_-)\,r
+					- r_+ r_-
+				}
+			} \dd{r} \notag\\
+		&= \dd{v} - \frac{1}{f(r)} \dd{r}
+		\label{eq:diff_coord_goal}
+	\end{align}
+	
+	Therefore,
+	\begin{enumerate}[parsep=\parskip]
+	\item The new metric:
+	\begin{align}
+		\dd{s^2}
+		&= - f(r) \pqty{
+				\dd{v}
+				- \frac{1}{f(r)} \dd{r}
+			}^{\!\!2}
+			+ \frac{1}{f(r)} \dd{r^2}
+			+ r^2 \dd{\Omega^2} \\
+		&= - f(r) \dd{v^2}
+			+ 2 \dd{v} \dd{r}
+			+ r^2 \dd{\Omega^2} \notag
+	\end{align}
+	It is only singular at $r = 0$.
+	
+	\begin{quote}
+	\textbf{Note:} during the exam I panicked when I saw \eqref{eq:def_coord}, and I made a very stupid mistake in step \eqref{eq:diff_coord}. However, I knew what this new coordinate is trying to achieve --- it's aiming to eliminate the coordinate singularities in $\frac{1}{f} \dd{r^2}$ by absorbing it into $\dd{v^2}$, so I guessed the result \eqref{eq:diff_coord_goal} correctly and carried on. I hope they gave me some points for getting the right answer, despite with some wrong process (>\_<).
+	\end{quote}
+	
+	\item $\pdv{v}$ is a Killing vector field, for the metric components are all $v$-independent. More precisely, since $\pdv{v}$ itself is a coordinate basis, we have the Lie derivative:
+	\begin{equation}
+		\ldv{\pdv{v}} g_{\mu\nu}
+		= \pdd{v} g_{\mu\nu}
+		= 0
+	\end{equation}
+	
+	\item $
+		\norm{\pdv{v}}^2
+		= g_{\mu\nu} \delta^\mu_v \delta^\nu_v
+		= g_{vv}
+		= -f(r)
+	$, therefore, for $M > \abs{Q}$ we have:
+	\begin{itemize}[topsep=.3\baselineskip]
+	\item $\pdv{v}$ timelike: $r > r_+$ and $r < r_-$
+	\item spacelike: $r_- < r < r_+$
+	\item null: $r = r_+$ and $r = r_-$
+	\end{itemize}
+	
+	\end{enumerate}
+\end{enumerate}
+\section{QFT}
+We shall restore the reasonable convention: $
+	\eta_{\mu\nu}
+	\sim \pqty{-,+,+,+}
+$. 
+\begin{enumerate}
+\item 1PI: diagrammatic contribution to the (1-particle) propagator that cannot be split into 2 disconnected parts by cutting one line; e.g.\,%
+	\raisebox{-.4\baselineskip}{
+		\feynmandiagram[
+			scale=.4
+			,small
+			,layered layout
+			,horizontal=a to d
+		]{
+			a -- b[{small,dot}] -- c[{small,dot}] -- d,
+			b -- [half left,looseness=1.5]
+			c -- [half left,looseness=1.5]
+			b,
+		};
+	}
+\item Consider the following Lagrangian:
+	\begin{equation}
+		\mcal{L}
+		= -\frac{1}{2} Z(\pd\phi_r)^2
+			-\frac{1}{2} m^2 Z\phi_r^2
+			-\frac{\lambda}{4!} \phi_r^4
+		-\frac{1}{2} \delta_Z(\pd\phi_r)^2
+			-\frac{1}{2} \delta_m \phi_r^2
+			-\frac{\delta_\lambda}{4!} \phi_r^4
+	\label{eq:lagrangian}
+	\end{equation}
+	The convention here is rather bizarre; normally we write down the UV Lagrangian $\mcal{L}_{\mrm{UV}}$ and split it into 2 parts, one is the effective IR Lagrangian $\mcal{L}_{\mrm{IR}}$ and the other one is the counterterm:
+	\begin{equation}
+	\begin{aligned}
+		\mcal{L}_{\mrm{UV}}
+		&= -\frac{1}{2} Z(\pd\phi_r)^2
+			-\frac{1}{2} m^2 Z\phi_r^2
+			-\frac{\lambda}{4!} \phi_r^4 \\
+		&= \pqty{
+			-\frac{1}{2} (\pd\phi_r)^2
+			-\frac{1}{2} m_p^2 \phi_r^2
+			-\frac{\lambda_p}{4!} \phi_r^4
+		}
+		- \pqty{
+			-\frac{1}{2} \delta_Z(\pd\phi_r)^2
+			-\frac{1}{2} \delta_m \phi_r^2
+			-\frac{\delta_\lambda}{4!} \phi_r^4
+		} \\
+		&= \mcal{L}_{\mrm{IR}}
+			+ \mcal{L}_{\mrm{ct}}
+	\end{aligned}
+	\end{equation}
+	
+	Normally, we use $\mcal{L}$ to denote the UV Lagrangian $\mcal{L}_{\mrm{UV}}$; this is the convention adopted by numerous standard textbooks, incl.~\textit{Peskin \& Schroeder} \cite{Peskin:1995ev}, \textit{Weinberg}, and also \textit{Srednicki}. However, the Lagrangian in \eqref{eq:lagrangian} seems to be $\mcal{L}_{\mrm{IR}}$ instead of $\mcal{L}_{\mrm{UV}}$. Anyway, we have:
+	\begin{equation}
+		Z + \delta_Z = 1,
+	\quad
+		m^2 Z + \delta_m = m_p^2,
+	\quad
+		\lambda + \delta_\lambda = \lambda_p
+	\end{equation}
+	Where $m_p,\lambda_p$ is the physical IR couplings, fixed by the renormalization scheme. The convention here is really confusing and somewhat inconsistent; e.g.\ if we choose to write the UV mass term as $
+		-\frac{1}{2} m^2 Z \phi_r^2
+	$, then the corresponding UV interaction term should look like $
+		-\frac{\lambda}{4!} Z^2 \phi_r^4
+	$, but here we do not have the $Z^2$ factor. Also, we usually use $m_0,\lambda_0$ to denote bare couplings, but here it seems that they are denoted by $m,\lambda$.
+	
+	We can write down the renormalized Feynman rules nonetheless, despite some sign issues due to the conventions; to avoid further confusion, we will adopt the usual notation: $m_0,\lambda_0$ for bare couplings, and $m = m_p, \lambda = \lambda_p$ for physical couplings. We have:
+	\begin{itemize}[noitemsep]
+	\item Renormalized propagator: $
+			\frac{-i}{p^2 + m^2 - i\epsilon}
+		$
+	\item Renormalized vertex: $-i\lambda$
+	\item Counterterm $\phi^2$ vertex: $+i\pqty{\delta_Z (-p^2) + \delta_m}$,
+		\raisebox{0.\baselineskip}{
+			\feynmandiagram[
+				scale=.4
+				,small
+				,layered layout
+				,horizontal=a to c
+			]{
+				a -- b[{small,crossed dot}] -- c,
+			};
+		}
+	\item Counterterm $\phi^4$ vertex: $+i\delta_\lambda$
+	\end{itemize}
+\pagebreak
+	
+\item The sum of all two point 1PI diagrams (no propagator on external legs) is given by:
+	\begin{equation}
+		-iM(p^2)
+		= \raisebox{-.3\height}{
+			\feynmandiagram[
+				scale=.7
+				,small
+				,layered layout
+			]{
+				b[blob],
+			};
+		}
+	\end{equation}
+	The full propagator is thus:
+	\begin{equation}
+	\begin{aligned}
+		G(p^2)
+		&= \raisebox{+.15\baselineskip}{
+			\feynmandiagram[
+				scale=.7
+				,small
+				,layered layout
+				,horizontal=a to b
+			]{
+				a -- b,
+			};
+		}
+		+ \raisebox{-.3\height}{
+			\feynmandiagram[
+				scale=.7
+				,small
+				,layered layout
+				,horizontal=a to c
+			]{
+				a -- b[blob] -- c,
+			};
+		}
+		+ \raisebox{-.3\height}{
+			\feynmandiagram[
+				scale=.7
+				,small
+				,layered layout
+				,horizontal=a to d
+			]{
+				a -- b[blob] -- c[blob] -- d,
+			};
+		}
+		+ \cdots \\
+		&= \tfrac{-i}{p^2 + m^2}
+			+ \tfrac{-i}{p^2 + m^2}
+				(-iM) \tfrac{-i}{p^2 + m^2}
+			+ \tfrac{-i}{p^2 + m^2}
+				(-iM) \tfrac{-i}{p^2 + m^2}
+				(-iM) \tfrac{-i}{p^2 + m^2}
+			+ \cdots
+	\end{aligned}
+	\end{equation}
+%\pagebreak[4]
+	
+	With $\sum_{n=0}^\infty q^n = \frac{1}{1 - q}$, we get:
+	\begin{equation}
+		G(p^2)
+		= \frac{-i}{p^2 + m^2} \cdot
+			\frac{1}{1 - (-iM) \tfrac{-i}{p^2 + m^2}}
+		= \frac{-i}{p^2 + m^2 + M(p^2)}
+	\end{equation}
+	Here we've suppressed the $(-i\epsilon)$ prescription in the above expressions, but it's presence is always implied.
+	
+	\item On-shell renormalization scheme --- the full propagator:
+	\begin{equation}
+		G(p^2)
+		= \frac{-i}{p^2 + m^2 + M(p^2) - i\epsilon}
+		\xrightarrow{\ p^2\to -m^2}
+		\frac{-i}{p^2 + m^2 - i\epsilon}
+	\end{equation}
+	This means that $
+		M(p^2 = -m^2) = 0
+	$. Furthermore, $M(p^2) \sim \#\,(p^2 + m^2) + \order{p^4}$, to ensure that the residue is 1 at the pole, we should have $\# \sim 0$, i.e.
+	\begin{equation}
+		M(p^2)\big|_{p^2 = -m^2}
+		= 0,
+	\quad
+		\pdv{(p^2)} M(p^2)\big|_{p^2 = -m^2}
+		= 0
+	\label{eq:renorm_cond}
+	\end{equation}
+	
+	\item At 1-loop $\order{\lambda}$, if we do not include counterterm contributions, then there is only one diagram contributing to $M(p^2)$:
+	\begin{equation}
+	%% ref: <https://tex.stackexchange.com/q/387810/193356>
+		\raisebox{-.2\height}{
+			\feynmandiagram[
+				scale=.7
+				,small
+				,layered layout
+				,horizontal=a to b
+			]{
+				a -- b [dot]
+				-- [out=135, in=45, loop
+					,min distance=3.5\baselineskip
+					] b
+				-- c
+			};
+		}
+		= (-i\lambda)\cdot\frac{1}{2}
+			\int \frac{\dd[D]{k}}{(2\pi)^D}
+				\frac{-i}{k^2 + m^2 - i\epsilon}
+	\end{equation}
+	Here $\frac{1}{2}$ is the symmetry factor of the diagram; alternative, we can count the distinct ways of connection the 4 legs of the $\phi^4$ vertex and divide it by $4!$, which is indeed $
+		\frac{4\times 3}{4!} = \frac{1}{2}
+	$. 
+	
+	The $p^0$ integral has poles at $p_0^2 = \vb{p}^2 + m^2 - i\epsilon$, i.e.\ $p^0 = \pm\sqrt{\vb{p}^2 + m^2} \mp i\epsilon$, and it's regular everywhere else; we can thus compute the $p^0$ integral on the $\mbb{C}$ plane using a right-tilted 8-shaped contour, which does not enclose the poles. Effectively, we've performed a Wick rotation $p^0 \mapsto ip^0$ so that the integral happens in Euclidean $p$ space:
+	\begin{equation}
+		\frac{-i\lambda}{2}
+			\int \frac{\dd[D]{k}}{(2\pi)^D}
+				\frac{1}{k^2 + m^2}
+		= \frac{-i\lambda}{2}\,
+			\frac{A(S^d)}{(2\pi)^D}
+			\int \frac{k^d \dd{k}}{k^2 + m^2}
+	\end{equation}
+	Here $D = d + 1$, $d$ is the spatial dimension. There are many ways to regularize this integral; if we continue to work in general $D = d + 1$ dimensions, then dimensional regularization is automatically implied. We have:
+	\begin{equation}
+		A(S^d) = \frac{2\pi^{D/2}}{\Gamma(D/2)},
+	\quad
+		\int \frac{k^d \dd{k}}{k^2 + m^2}
+		= \frac{m^D}{m^2}
+			\int \frac{t^d \dd{t}}{1 + t^2}
+	\end{equation}
+\pagebreak[4]
+	
+	The $t$-integral is related to Beta functions; consider $t\mapsto \frac{t^2}{1 + t^2}$, and we have:
+	\begin{equation}
+		\int_0^\infty \frac{t^d \dd{t}}{1 + t^2}
+		= \frac{1}{2}
+		\int_0^1 t^{\frac{D}{2} - 1}
+			(1-t)^{-\frac{D}{2}} \dd{t}
+		= \frac{
+				\Gamma(\tfrac{D}{2})\,
+				\Gamma(1 - \tfrac{D}{2})
+			}{2\Gamma(1)}
+		= \frac{1}{2} \Gamma(\tfrac{D}{2})\,
+			\Gamma(1 - \tfrac{D}{2})
+		= \frac{\pi}{2\sin \frac{\pi D}{2}}
+	\end{equation}
+	The last line is the \textit{Euler's reflection formula}, but here we actually don't need that since the $\Gamma(\tfrac{D}{2})$ factor is canceled by $A(S^d)$. In the end we have:
+	\begin{equation}
+		\int \frac{\dd[D]{k}}{(2\pi)^D}
+			\frac{1}{k^2 + m^2}
+		= \frac{\pi^{D/2}}{(2\pi)^D}
+			\Gamma(1 - \tfrac{D}{2})\,m^{D-2}
+		= \frac{1}{(4\pi)^{D/2}}
+			\Gamma(1 - \tfrac{D}{2})\,m^{D-2},
+	\end{equation}
+	\vspace{-.5\baselineskip}
+	\begin{equation}
+	%% ref: <https://tex.stackexchange.com/q/387810/193356>
+		\raisebox{-.2\height}{
+			\feynmandiagram[
+				scale=.7
+				,small
+				,layered layout
+				,horizontal=a to b
+			]{
+				a -- b [dot]
+				-- [out=135, in=45, loop
+					,min distance=3.5\baselineskip
+					] b
+				-- c
+			};
+		}
+		= \frac{-i\lambda}{2} \frac{1}{(4\pi)^{D/2}}
+			\Gamma(1 - \tfrac{D}{2})\,m^{D-2}
+	\end{equation}
+	
+	We then have to include counterterm contributions so that the renormalization condition \eqref{eq:renorm_cond} is satisfies; we have:
+	\begin{equation}
+	%% ref: <https://tex.stackexchange.com/q/387810/193356>
+	\begin{aligned}
+		-iM(p^2)
+		&\sim \hspace{-1em}
+		\raisebox{-.2\height}{
+			\feynmandiagram[
+				scale=.7
+				,small
+				,layered layout
+				,horizontal=a to b
+			]{
+				a -- b [dot]
+				-- [out=135, in=45, loop
+					,min distance=3.5\baselineskip
+					] b
+				-- c
+			};
+		}\hspace{-1em}
+		+ \raisebox{0.\baselineskip}{
+			\feynmandiagram[
+				scale=.7
+				,small
+				,layered layout
+				,horizontal=a to c
+			]{
+				a -- b[{small,crossed dot}] -- c,
+			};
+		}
+		= \frac{-i\lambda}{2} \frac{1}{(4\pi)^{D/2}}
+				\Gamma(1 - \tfrac{D}{2})\,m^{D-2}
+			+ i\pqty{\delta_Z (-p^2) + \delta_m} \\
+		&\sim 0
+			+ 0\cdot (p^2 + m^2)
+			+ \order{p^4}
+	\end{aligned}
+	\end{equation}
+	Therefore,
+	\begin{equation}
+		\delta_Z = 0,
+	\quad
+		\delta_m
+		= \frac{\lambda}{2} \frac{1}{(4\pi)^{D/2}}
+			\Gamma(1 - \tfrac{D}{2})\,m^{D-2}
+	\end{equation}
+	
+	Alternatively, if we are working in $D = 4 = 3 + 1$ dimensions, it's easier to impose a naïve cutoff $\Lambda$, which gives:
+	\begin{equation}
+	\begin{aligned}
+		\int^\Lambda \frac{k^d \dd{k}}{k^2 + m^2}
+		&\sim \int^\Lambda k^{d-2} \dd{k}
+			+ \int^\Lambda k^d \dd{k}
+				\pqty{
+					\frac{1}{k^2 + m^2}
+					- \frac{1}{k^2}
+				} \\
+		&= \int^\Lambda k^{d-2} \dd{k}
+			- m^2 \int^\Lambda 
+				\frac{k^{d-2} \dd{k}}{k^2 + m^2},
+		\quad d = D - 1 = 3 \\
+		&= \frac{\Lambda^2}{2}
+			- \frac{m^2}{2} \ln \pqty{
+				1 + \frac{\Lambda^2}{m^2}
+			},
+	\end{aligned}
+	\end{equation}
+	Similarly, with $A(S^3) = 2\pi^2$, we have:
+	\begin{equation}
+	\begin{aligned}
+		\delta_Z = 0,
+	\quad
+		\delta_m
+		&= \frac{\lambda}{2}
+			\frac{2\pi^2}{(2\pi)^4} \Bqty{
+				\frac{\Lambda^2}{2}
+				- \frac{m^2}{2} \ln \pqty{
+					1 + \frac{\Lambda^2}{m^2}
+				}
+			} \\
+		&= \frac{\lambda}{32\pi^2} \Bqty{
+				\frac{\Lambda^2}{2}
+				- \frac{m^2}{2} \ln \pqty{
+					1 + \frac{\Lambda^2}{m^2}
+				}
+			}
+	\end{aligned}
+	\end{equation}
+	
+\end{enumerate}
+\printbibliography
+\end{document}
