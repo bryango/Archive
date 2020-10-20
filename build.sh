@@ -13,8 +13,8 @@ mkdir -p release
 
 # naming: $project/$sub_project/$main.tex
 FILES=$(find . \
-    -regex "./[^/]+/[^/]+/[^/]+.tex" \
-    -not -path "./Templates/*"
+    -regex "./[^/]+/[^/]+/[^/]+\.tex" \
+    -not -path "./TeXplates/*"
 )
 log "Files:"
 echo "$FILES"
