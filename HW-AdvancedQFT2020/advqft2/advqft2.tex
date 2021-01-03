@@ -1,3 +1,4 @@
+% !TeX document-id = {dcff3c7d-6b8b-4238-98c6-67a1f1289604}
 % !TeX encoding = UTF-8
 % !TeX spellcheck = en_US
 % !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
@@ -332,32 +333,31 @@
 	\item $e(t)$ can be seen as a gauge field coupled to $X$, which captures the $t$--reparametrization redundancy through the gauge transformation parameter $\xi(t)$. A natural gauge choice is fixing $f = e(t) - 1 \equiv 0$, which is equivalent to setting $t = \tau$: the proper time, or affine parametrization for the massless case. 
 \pagebreak[3]
 	
-%	Faddeev--Popov (FP) quantization yields:
 	The gauge invariant path integral is constructed as follows:
 	\begin{equation}
 	\begin{aligned}
 		\mcal{Z}
 		&= \frac{1}{\int\!\DD{\xi}\,}
-			\int \DD{X}\,\DD{e}\, e^{iS} \\
+			\int \DD{X} \DD{e}  e^{iS} \\
 		&= \frac{1}{\int\!\DD{\xi}\,}
-			\int \DD{X}\,\DD{e}\, e^{iS}
-			\int \DD{f}\,\delta\bqty\big{
+			\int \DD{X} \DD{e}  e^{iS}
+			\int \DD{f} \delta\bqty\big{
 				f
 			} \\
 		&= \frac{1}{\int\!\DD{\xi}\,}
-			\int \DD{X}\,\DD{e}\, e^{iS}
-			\int \DD{\xi}\,\delta\bqty\big{
+			\int \DD{X} \DD{e}  e^{iS}
+			\int \DD{\xi} \delta\bqty\big{
 				f_\xi
 			} \det \fdv{f_\xi}{\xi} \\
 		&= \frac{1}{\int\!\DD{\xi}\,}
 			\int \DD{\xi}
-			\int \DD{X}\,\DD{e}\, e^{iS}\,
+			\int \DD{X} \DD{e}  e^{iS}\,
 			\delta\bqty\big{
 				f_\xi
 			} \det \fdv{f_\xi}{\xi} \\
 		&= \frac{1}{\int\!\DD{\xi}\,}
 			\int \DD{\xi}
-			\int \DD{X_\xi}\,\DD{e_\xi}\,
+			\int \DD{X_\xi} \DD{e_\xi}
 				e^{iS_\xi}\,
 			\delta\bqty\big{
 				f_\xi
@@ -365,23 +365,34 @@
 			\bigg|_{e_\xi} \\
 		&= \frac{1}{\int\!\DD{\xi}\,}
 			\int \DD{\xi}
-			\int \DD{X}\,\DD{e}\,
+			\int \DD{X} \DD{e}
 				e^{iS}\,
 			\delta\bqty\big{f}
-			\det \fdv{f_\xi}{\xi}\,
+			\det \fdv{f_\xi}{\xi}
 			\bigg|_{\,\xi=0} \\
-		&= \int \DD{X}\,\DD{e}\, e^{iS}\,
+		&= \int \DD{X} \DD{e}  e^{iS}\,
 			\delta\bqty\big{f}
-			\det \fdv{f_\xi}{\xi}\,
+			\det \fdv{f_\xi}{\xi}
 			\bigg|_{\,\xi=0}
 	\end{aligned}
 	\end{equation}
+	
 	Here the gauge-transformed quantities are marked with a $\xi$ subscript. Note that in the final expression, $f$ is \textit{not} integrated out and can be \textit{any} possible gauge-fixing function, i.e.\ $
 		\pqty{
 			\delta\bqty\big{f}
 			\det \fdv{f_\xi}{\xi}
-		}_{\xi=0}
+		}_{\!\xi=0}
 	$ is in fact $f$-independent. 
+	
+	These are the first steps of the Faddeev--Popov (FP) procedure; it achieves several things at once: first it imposes a gauge-fixing $f = 0$, and then it removes the gauge redundancy with the help of FP determinant $
+		\pqty\big{
+			\det \fdv{f_\xi}{\xi}
+		}_{\!\xi=0}
+	$, while implicitly imposing the constraints resulted from the gauge-fixing process. The constraints implemented by $
+		\pqty\big{
+			\det \fdv{f_\xi}{\xi}
+		}_{\!\xi=0}
+	$ can be made explicit with the help of BRST formalism.
 	
 	The gauge-fixing term $
 		\delta\bqty\big{f}
@@ -398,7 +409,8 @@
 		= -\frac{1}{2\zeta} f^2
 		= -\frac{1}{2\zeta} \,(e-1)^2,
 	\end{gather}
-	Here $f_0$ is some gauge-invariant shift of $f$, namely $(f_0)_\xi = f_0$. $f_0$ can be seen as a non-dynamical auxiliary field that enforce the gauge fixing, much similar to a Lagrange multiplier. On the other hand, the determinant can be evaluated using Faddeev--Popov (FP) ghosts $b,c$\,:
+	Here $f_0$ is some gauge-invariant shift of $f$, namely $(f_0)_\xi = f_0$. $f_0$ can be seen as a non-dynamical auxiliary field that enforce the gauge fixing, much similar to a Lagrange multiplier.
+	On the other hand, the determinant can be evaluated using Faddeev--Popov (FP) ghosts $b,c$\,:
 	\begin{gather}
 		\det P \sim \int \DD{b}\,\DD{c}\,
 			\exp \pqty{
@@ -508,6 +520,7 @@
 			\pdd{\alpha} X^\mu\,
 			\pdd{\beta} X_\mu
 	$ is a scalar; using chain rule, we obtain:
+\pagebreak[3]
 	\begin{equation}
 	\begin{aligned}
 		\var{\mscr{L}}
@@ -671,6 +684,8 @@
 %	Alternatively, we can introduce a non-dynamical field $B$ ...
 	
 	The FP ghost term $\mscr{L}_{gh}$ is given by functional determinant; we have:
+	\begingroup
+	\allowdisplaybreaks[0]
 	\begin{align}
 		\fdv{f^{\alpha\beta}_\xi(\sigma)}
 			{\xi^\gamma(\sigma')}\,
@@ -700,6 +715,7 @@
 		&= - \delta(\sigma-\sigma')\,
 				h^{\alpha\beta},
 	\end{align}
+	\endgroup
 	Here we've replaced $\pd$ with $\nabla$ which commutes with the metric $h_{\alpha\beta}$. 
 	Define $
 		\Xi^\Gamma

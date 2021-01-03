@@ -147,7 +147,7 @@
 	They can be interpreted as spacetime momentum and spacetime angular momentum. 
 	\qedfull
 	\end{itemize}
-\pagebreak[3]
+%\pagebreak[3]
 \subsection{Real Scalar in $(3+1)$\,D}
 	\vspace{-.8\baselineskip}
 	\begin{equation}
@@ -179,7 +179,7 @@
 		\phi'(x^\mu) = \phi(\lambda^{-1}\circ x^\mu)
 		= \phi(x^\nu\lambda\id{_\nu^\mu})
 	\end{equation}
-\pagebreak[3]
+%\pagebreak[3]
 	
 	\item Under $
 		x'^\mu = \lambda\id{^\mu_\nu} x^\nu
@@ -296,6 +296,7 @@
 			\mcal{L}
 		}
 	\end{equation}
+	We can write this down without explicit calculations, since we know $\mcal{L}$ itself is a Lorentz scalar, and that's how scalar transforms under Lorentz transformations. \\
 	This gives a boundary term $
 		K^\mu = -\omega\id{^\mu_\nu} x^\nu \mcal{L}
 	$, and the Noether current and its corresponding conserved charge can be calculated as follows:
@@ -316,63 +317,191 @@
 	
 	Note that $\omega\id{^\mu_\nu}$ is arbitrary, therefore $Q$ can be decomposed into independent charges:
 	\begin{equation}
-		Q = \omega_{\mu\nu} M^{\mu\nu},\quad
+		Q
+		= \frac{1}{2}\,
+			\omega_{\mu\nu} M^{\mu\nu},\quad
 		M^{\mu\nu}
 		= - \int \dd[3]{x}
-		x^{[\mu} \pqty{
-			\pdd{0}\phi\,\pd^{\nu]}\phi
-			- \eta^{\nu] 0} \mcal{L}
-		},
+			2x^{[[\mu} \pqty{
+				\pdd{0}\phi\,\pd^{\nu]}\phi
+				- \eta^{\nu] 0} \mcal{L}
+			},
 	\end{equation}
 	The indices of $M^{\mu\nu}$ are anti-symmetrized to match the degrees of freedom in $\omega_{\mu\nu}$. Note that the $\mcal{L}$ term only appears when one of the indices is 0. 
 	
-	Canonical quantization:
-	\begin{gather}
-		\dot{\phi} = \pdd{0}\phi,\quad
-		\Pi = \pdv{\mcal{L}}{\dot{\phi}}
-		= \dot{\phi},\quad
-		[\phi(\vb{x}),\Pi(\vb{y})]
-		= [\phi,\dot{\phi}](\vb{x})
-		= i\delta(\vb{x} - \vb{y})
-	\end{gather}
-	Other equal-time commutators between $\phi,\Pi$ all just vanish. We have:
+	Note that the canonical momentum:
 	\begin{equation}
+		\varpi
+		= \pdv{\mcal{L}}{\dot{\phi}}
+		= \dot{\phi}
+		= \pd_0\phi
+	\end{equation}
+	It is thus natural to re-organize $M^{0i}$ in the following way:
+	\begin{equation}
+	\begin{aligned}
 		M^{0i} = -M^{i0}
-		= -\frac{1}{2}\,
-		\int \dd[3]{x} \pqty{
-			\dot{\phi}\,\pqty{
+		&= - \int \dd[3]{x} \pqty{
+			\varpi\,\pqty{
 				x^0 \pd^i
 				- x^i \pd^0
 			}\,\phi
-			+ x^i \mcal{L}
-		},\\
+			- x^i \mcal{L}
+		} \\
+		&= - \int \dd[3]{x} \pqty{
+			x^0 \varpi\,\pd^i \phi
+			+ x^i \pqty\big{
+				\varpi\dot{\phi} - \mcal{L}
+			}
+		} \\
+		&= - \int \dd[3]{x} \pqty{
+			x^0 \varpi\,\pd^i \phi
+			+ x^i \mcal{H}
+		} \\
+	\end{aligned}
+	\end{equation}
+	
+	We've obtained an interesting result: the expression for the boost generator $M^{i0}$ contains the Hamiltonian density $\mcal{H}$, weighted by the radial distance $x^i$. This is natural since a boost does indeed contains time evolution for states away from the origin. It's an important result utilized by the so-called \textit{Rindler decomposition}; in fact, $M^{i0}$ becomes the Hamiltonian for an accelerated observer in the Rindler patch\footnote{
+		See the lecture notes of Tom Hartman: \http{hartmanhep.net/topics2015/gravity-lectures.pdf} or Daniel Harlow \arxiv{1409.1231}. 
+	}. 
+	
+	For $M^{ij}$, we have:
+	\begin{equation}
 		M^{ij}
-		= -\frac{1}{2}\,\int \dd[3]{x}
+		= - \int \dd[3]{x}
 			\dot{\phi}\,\pqty{
 				x^i \pd^j
 				- x^j \pd^i
 			}\,\phi
 	\end{equation}
+	This is interpreted as the angular momentum of the field $\phi$. Suppose $\phi$ is a wave packet localized around $\vb{x}$ with momentum $\approx \vb{p}$, then we have the classical angular momentum up to some factor:
+	\begin{equation}
+		M^{ij}
+		\sim \pqty{
+				x^i p^j
+				- x^j p^i
+			} \int \dd[3]{x}
+				E \phi^2,
+	\quad
+		E = \sqrt{\vb{p}^2 + m^2}
+	\end{equation}
+	
+	The $
+		\int \dd[3]{x} E \phi^2
+	$ factor in the above expression is an $\order{1}$ normalization constant for a particle-like wave packet; to see this, note that $\phi\in\mbb{R}$ has a phase factor $
+		\phi
+		\sim a\,e^{+ik\cdot x} + a^\dagger e^{-ik\cdot x}
+		\sim \cos\,(k\cdot x)
+	$,
+	\begin{gather}
+	\small
+		E = \int \dd[3]{x} \mcal{H}
+		= \int \dd[3]{x} \pqty{
+				\frac{1}{2} \dot{\phi}^2
+				+ \frac{1}{2} (\grad{\phi})^2
+				+ \frac{1}{2} m^2 \phi^2
+				+ \cdots
+			}
+		\sim \pqty{E^2 + \vb{p^2} + m^2 + \cdots}
+			\int \dd[3]{x} \frac{1}{2}\,\phi^2,
+	\end{gather}
+	\vspace{-.7\baselineskip}
+	\begin{equation}
+		E\int \dd[3]{x} \phi^2 \sim 1,
+	\end{equation}
+	Indeed, we have: $
+		M^{ij}
+		\sim \pqty{
+				x^i p^j
+				- x^j p^i
+			}
+	$. 
+	
+	Canonical quantization:
+	\begin{gather}
+		[\phi(\vb{x}),\varpi(\vb{y})]
+		= [\phi(\vb{x}),\dot{\phi}(\vb{y})]
+		= i\delta(\vb{x} - \vb{y})
+	\end{gather}
+	Other equal-time commutators between $\phi,\varpi$ all just vanish. Operator products are then regularized by normal ordering: $M\mapsto \normorder{M}$, which can be explicitly implemented by normal ordering of the oscilator modes:
+	\begin{equation}
+		\phi(x)
+		= \int \frac{\dd[3]{k}}{(2\pi)^3}
+			\frac{1}{\sqrt{2E_k}}
+			\pqty{
+				a_{\vb{k}} e^{ik\cdot x}
+				+ a^\dagger_{\vb{k}'} e^{-ik\cdot x}
+			},
+	\quad
+		[a_{\vb{k}}, a^\dagger_{\vb{k}'}]
+		= (2\pi)^3 \delta(\vb{k} - \vb{k}')
+	\end{equation}
+	
+	For example, the first term in $M^{0i} = -M^{i0}$ can be expanded as:
+	\begin{equation}
+	\begin{aligned}
+		- x^0 \int \dd[3]{x}
+			\varpi\,\pd^i \phi
+		= x^0 \int \frac{\dd[3]{k}}{(2\pi)^3}\,
+				k^i a^\dagger_k a_k
+		= x^0 P^i
+	\end{aligned}
+	\end{equation}
+	Here $P^\mu$ is the momentum operator on the Hilbert space, promoted from the classical $-i\pd^\mu$. $M^{0i}$ is thus further reduced to:
+	\begin{equation}
+		M^{0i} = -M^{i0}
+		= x^0 P^i - \int \dd[3]{x}
+			x^i \mcal{H}
+	\end{equation}
+	
+	We note that this result is almost the classical $
+		x^0 P^i - x^i P^0
+	$, but here $x^i P^0$ is replaced with the integral over energy density $\mcal{H}$. The result can be nicely re-written with the stress tensor $T^{\mu\nu}$; just run the Noether's procedure with $\var{x^\mu} = \epsilon^\mu$, then we shall obtain:
+	\begin{equation}
+	\begin{gathered}
+		j'^\mu
+		= \epsilon_\nu T^{\mu\nu},
+	\quad
+		T^{\mu\nu}
+		= \pd^\mu\phi\,\pd^\nu\phi
+			+ \eta^{\mu\nu} \mcal{L},
+	\\
+		Q' = \epsilon_\mu P^\mu,
+	\quad
+		P^\mu
+		= \int \dd[3]{x} T^{\mu 0}
+		= \int \dd[3]{x} \pqty{
+			\pd^0\phi\,\pd^\mu\phi
+			+ \eta^{0\mu} \mcal{L}
+		}
+	\\
+		M^{\mu\nu}
+		= \int \dd[3]{x}
+			2x^{[\mu} T^{\nu]0}
+	\end{gathered}
+	\end{equation}
+	The quantization $M\mapsto \normorder{M}$ is thus reduced to the quantization of $T_{0\nu}$. 
+	
+	\sidenote{TODO: Detailed analysis! HINT: Ward identity!}
 	
 	Notice that $
 		x^{[\mu} \pd^{\nu]}
 		= \frac{1}{2}\,\pqty{
 			x^\mu \pd^\nu - x^\nu \pd^\mu
-		} = \frac{1}{2} D^{ij}
-	$ is the Killing vector fields of $\mbb{R}^{3,1}$, hence they naturally follow the commutation relations of $\mfrak{so}(3,1)$ (up to a constant coefficient)\footnote{
+		} = \frac{1}{2} D^{\mu\nu}
+	$ is the Killing vector fields of $\mbb{R}^{3,1}$, hence they naturally follow the commutation relations of $\mfrak{so}(3,1)$ (up to a constant coefficient, or an isomorphism)\footnote{
 		I would like to thank \textit{林般} for pointing this out. 
 	}. We have:
 	\begin{equation}
 	\begin{aligned}
-		[M^{ij}, M^{kl}]
-		&= \frac{1}{4}\,\int \dd[3]{x}
+		[M^{\mu\nu}, M^{\rho\sigma}]
+		&= \int \dd[3]{x}
 			\int \dd[3]{y} \bqty{
-				\dot{\phi} D^{ij}\phi(x),
-				\dot{\phi} D^{kl}\phi(y)
+				\dot{\phi} D^{\mu\nu}\phi(x),
+				\dot{\phi} D^{\rho\sigma}\phi(y)
 			} \\
-		&= \frac{1}{4}\,\int \dd[3]{x}
+		&= \int \dd[3]{x}
 			\dot{\phi}\,\bqty{
-				 D^{ij}, D^{kl}
+				 D^{\mu\nu}, D^{\rho\sigma}
 			}\,\phi
 	\end{aligned}
 	\end{equation}
