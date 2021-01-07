@@ -11,517 +11,229 @@
 \input{../preamble.tex}
 \input{../.modules/basics/biblatex.tex}
 
-\title{2D Yang--Mills \& Cohomological Field Theory}
-%\addbibresource{.bib}
+\title{2D Yang--Mills \\ \& Cohomological Field Theory}
+\addbibresource{ym2d.bib}
 
 %%% ID: sensitive, do NOT publish!
 %\InputIfFileExists{../id.tex}{}{}
 
-\usepackage{cancel}
+%\usepackage{cancel}
+\usepackage{xspace}
+\newcommand{\YM}{{\ensuremath{\mrm{YM}_2}}\xspace}
 
 \begin{document}
 \maketitle
 \pagenumbering{arabic}
 \thispagestyle{empty}
 
-\vspace*{-.5\baselineskip}
-	\textbf{Reason:} The continuum limit $\Lambda\to\infty$ is \textbf{not} well-defined.
-	Renormalization provides a way to \emph{define} the theory when
-	$\Lambda\to\infty$.
-	
-	\textbf{My belief:} The only way to fully understand renormalization is
-	through Wilson's arguments; all other ``interpretations'' of
-	renormalization are only \emph{heuristic}.
-
-	\textbf{Keywords:}
-	\begin{itemize}[nosep,topsep=-.5\parskip]
-	\item Renormalization group
-	\item Counterterms
-	\item Regularization and cutoff
-	\end{itemize}
-
+%\vspace*{-.5\baselineskip}
 
 \setlength{\parskip}{.1\baselineskip}
 \tableofcontents
 \setlength{\parskip}{\parskipnorm}
 
 \addtocounter{section}{-1}
-\section{References}
-
-%\noindent \textsl{Ranked by importance:}
-
-	\begin{itemize}[parsep=0pt,itemsep=.5\parskip,labelindent=.1\parindent]
-	\item David Skinner's note:
-	  \begin{itemize}[nosep]
-	  \item \url{https://www.damtp.cam.ac.uk/user/dbs26/AQFT.html}
-	    \begin{itemize}[nosep]
-	    \item \url{https://www.damtp.cam.ac.uk/user/dbs26/AQFT/Wilsonchap.pdf}
-	    \item \url{https://www.damtp.cam.ac.uk/user/dbs26/AQFT/chap5.pdf}
-	    \end{itemize}
-	  \end{itemize}
-	\item Schwartz, Chapter 15
-	\item Peskin \& Schroeder, Chapter 10 \& 12
-	\item Hollowood's book:
-	  \begin{itemize}[nosep]
-	  \item \url{https://arxiv.org/abs/0909.0859}
-	  \item \url{https://link.springer.com/book/10.1007/978-3-642-36312-2}
-	  \end{itemize}
-	\end{itemize}
-
-\section{Wilson's picture}
-	Seed theory parameters (i.e.\ \emph{bare parameters}):
-	$(Z_\phi,g,\Lambda)_0$, where $g = (m,\lambda,\cdots)$ is the collection of all possible couplings. $Z_\phi$ is the coefficient of the kinetic term.
-	
+\section{Main References}
+	This review is almost entirely based on the following references:
+	\begin{enumerate}[
+		noitemsep
+		,labelindent=\parindent
+		,align=left
+		,leftmargin=*
+	]
+	\item[\cite{Cordes:1994fc}] \textit{Cordes, Moore, Ramgoolam}, \arxiv{hep-th/9411210}
+	\item[\cite{Witten:1991we}] Witten, \textit{On Quantum Gauge Theories in Two Dimensions}, 1991
+	\end{enumerate}
+	It is basically a condensed, more pedagocial version of \cite{Cordes:1994fc}. Many basic facts in this review are therefore uncited to avoid repeated citations of \cite{Cordes:1994fc}. All uncited claims, unless otherwise specified, can be traced back to \cite{Cordes:1994fc}. 
+\section{Introduction}
+	We start by writing down the usual Yang--Mills action in 2D (\YM), in Euclidean signature:
 	\begin{equation}
-	\begin{aligned}
-	  \phi_{\Lambda_0}(x)
-	  \sim \int^{\Lambda_0} \dd{p}
-	    e^{ip\cdot x}
-	    \tilde{\phi}(p)
-	  &= \int^{\Lambda} \dd{p}
-	    e^{ip\cdot x}
-	    \tilde{\phi}(p)
-	    + \int_{\Lambda}^{\Lambda_0} \dd{p}
-	    e^{ip\cdot x}
-	    \tilde{\phi}(p) \\
-	  &=\colon \phi_{\Lambda}(x) + \chi(x)
-	\end{aligned}
-	\end{equation}
-	
-	\begin{equation}
-	\begin{aligned}
-	  \DD\phi_{\Lambda_0}(x)
-	  \sim \prod_{\norm{p} < \Lambda_0}
-	    \dd{\tilde{\phi}(p)}
-	  &= \prod_{\norm{p} < \Lambda}
-	    \dd{\tilde{\phi}(p)}
-	    \prod_{\Lambda < \norm{p} < \Lambda_0}
-	    \dd{\tilde{\phi}(p)} \\
-	  &\sim
-	    \DD\phi_{\Lambda}(x)\,
-	    \DD\chi(x)
-	\end{aligned}
-	\end{equation}
-	
-	\begin{equation}
-	\begin{aligned}
-	  \mcal{Z} (g_0,\Lambda_0)
-	  &= \int \DD\phi_{\Lambda_0}
-	      e^{iS[\phi_{\Lambda_0}]} \\
-	  &= \int \DD\phi_{\Lambda}
-	    \int \DD\chi
-	      e^{iS[\phi_\Lambda + \chi]} \\
-	  &=: \int \DD\phi_{\Lambda}
-	      e^{iS_{\mathrm{eff}} [\phi_\Lambda]}
-	  =: \mcal{Z}\pqty{g(\Lambda),\Lambda}
-	\end{aligned}
-	\end{equation}
-	Coarse-grained parameters: $(Z_\phi,g,\Lambda)$.
-	
-	\textbf{Subtlety:} the notation above is only schematic; in practice we
-	first Wick-rotate to Euclidean signature, so that the momentum cutoff is
-	easily imposed: $\norm{p} = \sqrt{p_0^2 + \vb{p}^2} < \Lambda$. In
-	Lorentzian signature, it's hard to define a covariant cutoff since
-	$p_\mu p^\mu = - p_0^2 + \vb{p}^2$. This process can be made rigorous;
-	just think of the 8-shaped contour in loop integrals.
-	
-	\textbf{Effective action:}
-	\begin{equation}
-	  S_{\mathrm{eff}}[\phi]
-	  = -i \ln \int \DD \chi
-	      e^{iS[\phi + \chi]} \\
-	\end{equation}
-	$\phi = \phi_\Lambda$ is treated as constant when doing
-	$\int \DD \chi$. Perturbatively, we integrate over loops with $\chi$ propagators as internal lines.
-	\begin{equation}
-	\begin{aligned}
-	  \mcal{L}[\phi + \chi]
-	  &= - \frac{Z_\phi}{2}\,
-	      \partial_\mu (\phi + \chi)\,
-	      \partial^\mu (\phi + \chi)
-	    - \frac{1}{2}\, m^2
-	      (\phi + \chi)^2
-	    - \frac{1}{4!}\, \lambda\,
-	      (\phi + \chi)^4\\
-	  &= \cdots \\
-	  &= \mcal{L}[\phi]
-	    + \Delta\mcal{L} [\phi,\chi]
-	\end{aligned}
-	\end{equation}
-	
-	\begin{equation}
-	  S_{\mathrm{eff}}[\phi_\Lambda]
-	  = S[\phi_\Lambda]
-	    - i \ln \int \DD \chi
-	      e^{i\,\Delta S[\phi_\Lambda + \chi]} \\
-	\end{equation}
-	
-	If $\Lambda \lesssim \Lambda_0$, then $S_{\mathrm{eff}}$ is almost
-	the same as the original $S$, with minor corrections from the
-	$\int \DD\chi$ term. Note that in such regularization scheme there will be no \textit{quadratic} cross terms $\sim \phi\chi,\, \pd\phi\,\pd\chi$ in the effective action, since they have orthogonal Fourier modes. However, there will be non-vanishing \textit{quartic} cross terms $\sim \phi^2\chi^2,\, \phi^3\chi$. After we integrate out $\chi$, the $\phi^2\chi^2$ term will cause a shift in $m^2$, while the $\phi^3\chi$ will generate a new $\phi^6$ vertex (by a $\chi\chi$ contraction).
-	
-	Note that $\mcal{Z}$ clearly does not depend on the intermediate scale $\Lambda$, and we have:
-	\begin{equation}
-	  0
-	  = \Lambda \dv{}{\Lambda}\,
-	    \mcal{Z}\pqty{g(\Lambda),\Lambda}
-	  = \pqty{
-	      \Lambda \pdv{}{\Lambda}
-	      + \Lambda \pdv{g^{(i)}}{\Lambda}
-	        \pdv{}{g^{(i)}}
-	    }\,
-	    \mcal{Z}\pqty{g(\Lambda),\Lambda}
-	\end{equation}
-	This is an example of a \textbf{RG Equation}.
-\subsection{Free theory \& CFT}
-	We first observe that a massless free theory with $
-		\mcal{L}[\phi]
-		\sim \int \dd[d]{x} (\pd\phi)^2
-	$ is ``not renormalized'' when we integrate out high energy modes. Roughly speaking, we have:
-	\begin{equation}
-	\begin{aligned}
-	  \mcal{Z}
-	  &= \int \DD\phi_{\Lambda_0}
-	      e^{iS[\phi_0]} \\
-	  &= \int \DD\phi_{\Lambda}
-	    \int \DD\chi
-	      e^{iS[\phi + \chi]} \\
-	  &\sim \int \DD\phi_{\Lambda}
-	      e^{iS[\phi]}
-	      \sqrt{Z_\phi^\#}
-	\end{aligned}
-	\label{eq:PI_free}
-	\end{equation}
-	Integrating over $\Lambda = s\Lambda_0 \le \abs{p} \le \Lambda_0$ produces the $Z_\phi$ factor, where $\#$ is the total number of modes in this range. One can give an explicit expression of $\#$ with some IR cutoff $L$.
-	
-	On the other hand, we can restore $\Lambda = s\Lambda_0$ back to $\Lambda_0$ by rescaling. This is easy to understand when we think of a lattice theory: to probe the IR behavor, we first ``coarse-grain'' by grouping points together, effectively lowering $\Lambda$; then we ``zoom out'' to see the bigger picture. Rescaling $\Lambda = s\Lambda_0$ back to $\Lambda_0$ is precisely the ``zooming-out'' process. 
-	
-	When taking $\Lambda\mapsto \Lambda_0 = \Lambda / s$, first note that the kinetic term $\int \dd[d]{x} (\pd\phi)^2$ is scale-invariant if we rescale $\phi$ accordingly:
-	\begin{equation}
-		\Lambda\mapsto \Lambda_0 = \Lambda / s,
+		I_{\YM}
+		= +\frac{1}{8e^2}
+			\int_{\Sigma_T} \dd[2]{x}
+			\sqrt{G}
+			\,\Tr \pqty{F_{ij} F^{ij}},
 	\quad
-		x\mapsto x' = sx,
-	\quad
-		\phi(x) \mapsto
-		\phi'(x') = s^{1 - \frac{d}{2}} \phi(x)
+		\sqrt{G} = \sqrt{\det G_{ij}}
 	\end{equation}
-	The $s^{1 - \frac{d}{2}}$ factor is consistent with the mass dimension of $\phi$, and we have $S'[\phi'] = S[\phi]$ invariant under rescaling. 
+	Here we will try follow the convention of \cite{Cordes:1994fc}, despite the fact that it is, unfortunately, not quite self-consistent. $\Sigma_T$ stands for the 2D \textit{target}; \sidenote{as we shall see,} in the large $N$ limit, it is possible to realize 2D Yang--Mills as a string theory with worldsheet $\Sigma_W$, as is proposed by D.~Gross and W.~Taylor, among others \cite{Gross:1992tu,Gross:1993hu,Gross:1993yt}. 
 	
-	The path integral measure, however, is \textit{not} scale-invariant; we have to add back some Fourier modes in between to return the path integral back to $\Lambda_0$. Luckily, the additional modes happen to cancels out the $Z_\phi$ factor in \eqref{eq:PI_free}:
+	Note that in 2D, the $\mfrak{g}$-valued curvature form $F = F^a_{ij}\,T_a \dd{x^i} \wedge \dd{x^j}$ is a \textit{top form}; here $T_a$ is the generator of Lie algebra $\mfrak{g} = \mop{Lie} G$, and $G$ is the compact gauge group, e.g.~$G = \mrm{SU}(N)$. This means that in 2D, we have:
+	\begin{gather}
+		F = f\mu,\quad f = \hodgedual F,
+	\\
+		\mu = \sqrt{G} \dd[2]{x},\quad
+		F^a_{ij} = \sqrt{G}\,\epsilon_{ij} f^a
+	\end{gather}
+	Here $\mu$ is the volume form on $\Sigma_T$, and $f$ is some $\mfrak{g}$-valued 0-form. The original \YM action can thus be rewritten as:
 	\begin{equation}
-		\sqrt{Z_\phi^\#} \DD\phi_{\Lambda}
-		\sim \sqrt{Z_\phi^\#}
-			\prod_{\norm{p} < \Lambda = s\Lambda_0}
-			\dd{\tilde{\phi}(p)}
-		= \prod_{\norm{p'} < \Lambda_0}
-			\dd{\tilde{\phi}'(p')}
-		\sim \DD\phi'_{\Lambda_0}
-	\end{equation}
-	Therefore the complete path integral is invariant under RG flow \& rescaling; $Z_\phi$ is also unchanged during this process. Therefore we can simply set $Z_\phi \equiv 1$ by an appropriate \textit{normalization} of $\phi$.
-	
-	One can see how this process might fail in a curved background: in flat space the Fourier modes are equally spaced, and rescaling $\DD\phi_{\Lambda}$ can be achived by simply adding back a total of $\#$ modes. However, in a curved background the Fourier modes are complicated (e.g.\ think of spherical harmonics) and we generally do not expect the Jacobian of $\DD\phi_{\Lambda} \mapsto \DD\phi'_{\Lambda_0}$ to cancel out the $Z_\phi$ factor precisely. This is a hint of \textit{Weyl anomaly} in curved backgrounds. For a concrete discussion with path integral, see \textit{Di Francesco et al}, 5.A. 
-\pagebreak[4]
-	
-	Generally, $Z_\phi$ \textit{will} change after rescaling:
-	\begin{equation}
-		Z_\phi \sim \Lambda^{-2\gamma_\phi},
-	\quad
-		\gamma_\phi
-		\mathbin{:=}
-		-\frac{1}{2}\,\Lambda \pdv{\ln Z_\phi}{\Lambda}
-	\end{equation}
-	The scaling of $Z_\phi$ can be absorbed by \textit{field strength renormalization} (or ``wave function'' renormalization); i.e.\ if we \textit{demand} $\phi$ to retain the canonical normalization such that $Z_\phi \equiv 1$, then $\phi$ must scale with an \textit{anomalous dimension} $\gamma_\phi$:
-	\begin{equation}
-		\phi(x) 
-		\ \longmapsto\ %
-		\phi'(x') = s^{1 - \frac{d}{2} - \gamma_\phi} \phi(x)
-	\end{equation}
-	In practice we don't actually redefine the scaling of $\phi$, just simplify keep track of it using the $Z_\phi$ factor; but we should know that due to quantum corrections, the mass dimension of $\phi$ is, effectively,
-	\begin{equation}
-		\Delta_\phi
-		= \frac{d}{2} - 1 + \gamma_\phi
+		I_{\YM}
+		= \frac{1}{4e^2}
+			\int_{\Sigma_T} \dd[2]{x}
+			\sqrt{G}
+			\,\Tr\,(f^2)
+		= \frac{1}{4e^2}
+			\int_{\Sigma_T} \mu \Tr\,(f^2)
 	\end{equation}
 	
-	In summary, we've argued that the classical \& quantum theory of a massless free boson on flat space is \textit{scale-invariant}; $\gamma_\phi = 0$. In fact, this is a first example of free CFTs. 
-	CFTs are the \textit{fixed points} of RG flow.
-\subsection{Massive theory \& the space of theories}
-	What about \textit{massive} free theories? We do know that they don't receive loop corrections, therefore ``invariant'' under coarse-graining; however, mass \textit{do} flow when we zoom out. This is very natural; as we zoom out the energy-momentum of all modes are enhanced by a factor of $s^{-1}$, and we have $m\mapsto m/s$. Therefore $m$ is a \textit{relevant} parameter as we flow towards IR; it grows and flows away from the massless free CFT. For an explicitly path integral calculation (along with $\phi^{2n}$ interactions), see \textit{Hollowood}, 2.1. 
-	
-	Generally, for small $g$ we can think of the theory $(g,\Lambda)$ as a \textit{deformation} away from the massless free CFT. A neat trick to stop worrying about rescaling is to re-define $g$ as dimensionless couplings:
+	First we would like to examine the $e^2 \to 0$ limit of this theory. This can be achieved by a \textit{Hubbard--Stratonovich transformation}\footnote{
+		See \wikiref{https://en.wikipedia.org/wiki/Hubbard\%E2\%80\%93Stratonovich\_transformation}{Hubbard–Stratonovich transformation}. 
+	}; namely, we introduce an additional $\mfrak{g}$-valued field $\phi$ that serves as a Lagrangian multiplier; consider:
 	\begin{equation}
-		g(\Lambda) = \pqty{
-			g^{(2)} = \frac{m^2_{(\Lambda)}}{\Lambda^2},
-			\ g^{(4)} = \lambda,
-			\ g^{(6)} = \cdots
+		I[\phi,A] = \frac{1}{2} \int \mu\,\pqty{
+				i \Tr\,(\phi f)
+				+ \frac{1}{2}\, e^2 \Tr\,(\phi^2)
+			}
+	\end{equation}
+	Using the functional version of the integral identity: $
+		\int \frac{\dd{x}}{\sqrt{2\pi}}
+			e^{
+				-\frac{1}{2} \pqty\big{
+					\frac{e^2}{2} x^2
+					+ ixy
+				}
+			}
+		= e^{-y^2/(4e^2)}
+	$, it is straightforward to verify that\footnote{
+		See \cite{Witten:1991we} for a more detailed explanation. With $e\mapsto \sqrt{2}\,e,\ y\mapsto 2y$, we recover the original formula in \cite{Witten:1991we}.
+	}:
+	\begin{equation}
+		\int \DD{\phi} e^{-I[\phi,A]}
+		= e^{-I_\YM[A]}
+	\end{equation}
+	
+	The advantage of this formulation is that the $e^2 \to 0$ limit becomes non-singular; in fact, now we can simply set $e^2 = 0$, and get:
+	\begin{equation}
+		I[\phi,A]
+		\longto I_0[\phi,A]
+		= \frac{1}{2} \int i \Tr\,(\phi F)
+	\end{equation}
+	This action is in fact \textit{topological}; there is no explicit metric dependence in the action. Integrating out $\phi$ fixes $F = 0$, i.e.~we need only sum over the moduli of \textit{flat connections}. For a principal $G$ bundle $P\to\Sigma_T$, this is given by:
+	\begin{gather}
+		\mcal{M}_0
+		= \mcal{M}\pqty{F = 0, P\to\Sigma_T}
+		= \Bqty{
+				A\in \mcal{A}(P)
+				\,\Big|\,
+				F(A) = 0
+			} \Big/ \mcal{G}(P)
+		\ \subset\ %
+		\mcal{A}(P) \Big/ \mcal{G}(P)
+	\\[1ex]
+%	\begin{aligned}
+		\mcal{A}(P)
+%		&
+		= \Bqty\Big{
+			\text{all possible connections $A$ on $P$}
+		} \notag\\
+		\mcal{G}(P)
+%		&
+		= \Bqty\Big{
+			\text{all possible gauge transformations on $P$}
+		} \notag
+%		\\
+%	\end{aligned}\notag
+	\end{gather}
+	
+	The moduli space $\mcal{M}_0$ is far from trivial. Flatness implies that all contractible loops correspond to trivial holonomy; only non-trivial circles, i.e.~elements of the homotopy group $\pi_1(\Sigma_T)$, may have non-trivial holonomy. Furthermore, holonomies that differ by a global gauge transformation are by definition, equivalent. In fact, we have \cite{michiels2013moduli}:
+	\begin{equation}
+		\mcal{M}_0 = \Hom \pqty\big{
+				\pi_1(\Sigma_T), G
+			} \big/ G
+	\end{equation}
+	Note that this only identifies the topology of $\mcal{M}_0$; to compute the path integral, we need to derive the measure on $\mcal{M}_0$ following the Faddeev--Popov procedure, which is implemented in \cite{Witten:1991we}.
+	
+	For $e^2 \ne 0$, the action $I[\phi,A]$ is metric dependent. Somewhat surprisingly, the path integral still contains information about the topology of $\mcal{M}$. This is an example of a so-called \textit{cohomological field theory}. 
+	The idea of \cite{Cordes:1994fc} is to start from 2D Yang--Mills as a concrete example, and then use its results to motivate a thorough study of {cohomological field theory}.
+	
+	As is summarized in \cite{Cordes:1994fc}, topological field theories (TFT's), largely introduced by E.~Witten, may be grouped into two classes: \textit{Schwarz type} and \textit{cohomological type}\footnote{
+		Cohomological type TFT's are also called \textit{Witten type} TFT's, e.g.~in \cite{Birmingham:1991ty}. However, \cite{Cordes:1994fc} chooses to call them \textit{cohomological}, probably to avoid confusion, since Witten has done wonderful work on both types of the theories.
+	}. 
+	Cohomological field theories, including 2D Yang--Mills with coupling $e^2 \ne 0$, are \textit{not} manifestly metric independent; however, they have a Grassmann-odd nilpotent BRST operator $Q$, and physical observables are $Q$-cohomology classes; amplitudes involving these observables are metric independent, thus they are indeed \textit{topological}. 
+%	because of decoupling of BRST trivial degrees of freedom.
+	
+	On the other hand, \textit{Schwarz type} theories have Lagrangians which are metric independent and hence, formally, the quantum theory is expected to be topological. 
+	Examples of such theories include the $e^2 = 0$ \YM described above, and also the Chern--Simons theory in 3D. Also, there is a 4D analog of the action $I[\phi,A]$, given by:
+	\begin{equation}
+		\int \pqty\Big{
+			\Tr\,(BF)
+			+ e^2 \Tr\,(B\wedge\hodgedual B)
 		}
 	\end{equation}
-	Here we use $m^2_{(\Lambda)}$ to denote the mass \textit{after} coarse-graining but \textit{before} rescaling. The mass term is then given by $
-		\sim \int \dd[d]{x} m^2 \phi^2
-		= \int \dd[d]{x} g^{(2)} \Lambda^2 \phi^2
-	$. $g$ is thus invariant under rescaling, as the rescaling factor is absorbed by the $\Lambda$ factor. We also don't have to worry about the anomalous path integral measure, as it's captured by the $Z_\phi$ factor. 
+	The first term with $BF$ is also manifestly topological, similar to $e^2 = 0$ \YM; therefore Schwarz type theories are also called $BF$ type theories.
 	
-	After rescaling $\Lambda \mapsto \Lambda_0$, the dimensionful mass is given by:
+	Following \cite{Cordes:1994fc}, we will first review the exact solution of \YM, and then try to generalize some aspects for a generic cohomological field theory.
+%	
+%	In chapter 4 we relate the Hilbert space of class functions to some simple conformal field theories. The main goal is to show how bosonization leads to a natural interpretation of the Hilbert space in terms of string states.
+%	
+%	4.7
+%	
+\section{Exact Solution of 2D Yang Mills}
+\subsection{Canonical Quantization on the Cylinder}
+	One can perform the usual canonical quantization with $I_\YM$ on the cylinder, with coordinates $(x^0,x^1) = (t,x) \in \mbb{R}^1\times S^1$. We shall make full use of the gauge redundancies in 2D; recall that a generic gauge transformation can be written as:
 	\begin{equation}
-		m'^2_{(\Lambda)}
-		= g^{(2)}_{(\Lambda)} \Lambda_0^2
-		= m^2_{(\Lambda)}
-			\pqty{\frac{\Lambda_0}{\Lambda}}^2
-	\end{equation}
-	In general, the rescaled, dimensional coupling is simply the dimensionless coupling times some factors of the \textit{initial} cutoff $\Lambda_0$. Therefore its $\Lambda$ dependence is identical to that of the dimensionless coupling. On the other hand, the coarse-grained, dimensionful couplings \textit{before} rescaling is given by $g_{\Lambda}$ times some power of $\Lambda$ (instead of $\Lambda_0$); e.g.
-	\begin{equation}
-		m^2_{(\Lambda)}
-		= g^{(2)}_{(\Lambda)} \Lambda^2
-		\xrightarrow{\ \text{free}\ }
-		m_0^2
-	\end{equation}
-	i.e.\ it is constant for a free theory. Intuitively, this is because low \& high energy modes are completely decoupled in a free theory.
-	
-	\begin{figure}[!h]
-	\centering
-%	\includegraphics[width=.45\linewidth]{img/RG-flow.png}
-	\end{figure}
-\subsection{Physical Scales vs the Cutoff}
-	LSZ reduction (with the ``mostly plus'' metric convention, see \textit{Srednicki}):
-	\begin{equation}
-		\int \dd[d]{x} e^{-ip\cdot x}
-		\int \dd[d]{y} e^{+ik\cdot y}
-		\ave[\big]{\phi(x)\,\phi(y)}
-	\xmapsto{\ p,k\ \text{on-shell}\ }
-		\frac{-i\sqrt{Z_\phi}}{p^2 + m^2 - i\epsilon}
-		\frac{-i\sqrt{Z_\phi}}{k^2 + m^2 - i\epsilon}
-		\mel{p}{S}{k}
-	\end{equation}
-	\begin{equation}
-		\ave[\big]{\phi(x)\,\phi(y)}
-		= \frac{1}{\mcal{Z}}
-			\int \DD{\phi_\Lambda} e^{iS_\Lambda[\phi]}\,
-			\phi(x)\,\phi(y)
-	\end{equation}
-	$S \sim \idty + i\mcal{M}(\mu)$, physical amplitude $\mcal{M}(\mu)$ scale with energy $\mu$, but is cutoff-independent. 
-	
-	How to relate $\mcal{M}(\mu)$ to $g(\Lambda)$? Note that the canonical Green function \textit{does} scale with $\Lambda$! With the help of Poincar\'e invariance, we have:
-	\begin{equation}
-		Z_\Lambda \ave[\big]{\phi(x)\,\phi(y)}
-		\mathbin{=:} G_\Lambda\pqty\big{x,y; g(\Lambda)}
-		= G_\Lambda\pqty\big{l; g(\Lambda)},
+		A'_\mu
+		= g A_\mu g^{-1}
+			+ g\,\pdd{\mu} (g^{-1}),
 	\quad
-		Z_\lambda := (Z_\phi)_\Lambda
+		A_\mu = A^a_\mu(t,x),
+	\quad
+		g = e^{-\lambda^a(t,x)\,T_a}
 	\end{equation}
-	Physical scale: $l = \abs{x_1 - x_2}$, or center of mass momentum $\mu$ in amplitudes; $l\cdot \mu \sim 1$. $\Lambda$-dependence enters through $Z_\phi$. For general $n$-pt function, RG flow:
+	It is thus possible to choose the \textit{temporal gauge} $A_0 = 0$, by simply solving a first order ODE of the gauge parameters $\lambda^a(t,x)$, with respect to the variable $x^0 = t$. 
+	
+	We can further reduce $A_1(t,x)$ with remaining gauge redundancies; with some $t$-independent, but $x$-dependent $g = g(x)$, we can preserve $A_0 = 0$, while reducing $A_1(t,x) = A_1(t)$. This is basically the \textit{Coulomb gauge} in 2D, i.e.~we have $\pdd{1} A_1 = 0$. 
+	
+	We can further simplify the results by working in the \textit{Schr\"odinger picture}. A nice treatment of QED from this ``novel'' perspective can be found in \cite{Hatfield:234595}. In conventional formulations of QFT, we are used to work in the \textit{Heisenberg} or \textit{interactive picture}, where the fields evolve in time: $A_1 = A_1(t)$ and satisfy some operator equations of motion (EOM's), which for free theories look identical to the classical EOM's. Alternatively, we can take the quantum mechanical approach, and decompose the fields at each time slice $t = t_0$ to a set of time-independent energy eigenstates; in the case of \YM, we have $A_1 = \mrm{const}$. 
+	The time evolution is then tracked by the \textit{wave functional} $\Psi_t[A_1]$. Since the gauge-fixed $A_1$ has no spacetime dependence, we've actually obtained a equivalent 0-dimensional field theory, i.e.~a quantum mechanical system. 
+	
+	There are still remaining gauge redundancies; with another spacetime independent, \textit{global} gauge transformation, we can rotate $
+		A_1 = A_1^a\,T_a \in \mfrak{g}
+	$ to the \textit{Cartan subalgebra}, i.e.~the maximal abelian subalgebra of $\mfrak{g}$. Finally, we demand that $A_1$ is invariant under the \textit{Weyl group}, which is the symmetry of the Cartan subalgebra. Therefore, the \textit{physical} Hilbert space of \YM consists of states given by:
 	\begin{equation}
-	\begin{aligned}
-		\ave[\big]{\phi^n(\cdots)}
-		= \frac{1}{\mcal{Z}}
-			\int \DD{\phi_\Lambda} e^{iS_\Lambda[\phi]}\,
-			\phi^n(\cdots)
-		&= Z^{-n/2}_\Lambda
-			G_\Lambda \pqty\big{l; g(\Lambda)} \\
-		&= Z^{-n/2}_{s\Lambda}
-			G_{\Lambda} \pqty\big{sl; g(s\Lambda)}\,
-			\pqty{s^{1 - \frac{d}{2}}}^{-n}
-	\end{aligned}
+		\Psi[A_1],\quad
+		A_1
+		= A_1^a\,T_a
+		\in \textsl{Cartan} \,\Big/ \textsl{Weyl}
 	\end{equation}
 	
-	This is a key result! We have:
-	\begin{equation}
-		G_\Lambda \pqty\big{l; g(\Lambda)}
-		= G_{\Lambda} \pqty\big{sl; g(s\Lambda)}
-			\pqty{
-				s^{1 - \frac{d}{2}}
-				\sqrt{\frac{Z_\Lambda}{Z_{s\Lambda}}}
-			}^n
-		\simeq G_{\Lambda} \pqty\big{sl; g(s\Lambda)}
-			\,s^{n\Delta_\phi}
-	\end{equation}
-	Or in terms of energy scale $\mu$,
+	Alternatively, we can also work with a partial gauge fixing, e.g.~we only impose the temporal gauge $A_0 = 0$, and try to solve for $\Psi_t[A_1(x)]$ by looking at the ``Maxwell's equation" in 2D. The time evolution is taken care of by the Schr\"odinger equation for $\Psi_t$; for now we need only look at the spatial constraints. We have:
 	\begin{gather}
-		\mcal{M} \pqty\big{\mu; g(\Lambda)}
-		= \mcal{M} \pqty\big{\mu/s; g(s\Lambda)},
-	\\[1ex]
-		\pdv{s}
-		\ \To\ %
-		\mu\,\pdv{\mcal{M}}{\mu}
-		= \Lambda\,\pdv{g}{\Lambda}
-			\pdv{M}{g}
-		= \beta(g) \pdv{M}{g}
+		D_1 F_{10} = 0
+	\label{eq:gauss_law_constraint}
+	\\[.5ex]
+		D_\mu = \pdd{\mu} + A^a_\mu\,T_a,
+	\quad
+		F_{\mu\nu} = [D_\mu,D_\nu]
 	\end{gather}
-\section{Perturbative Renormalization}
-	However, in naïve perturbation theory, we wish to complete the entire
-	path integral $\mcal{Z} (g_0,\Lambda_0)$. We can think of this as
-	integrating out more and more high energy modes, until we reach the IR
-	scale $\Lambda \to 0$.
+	This is simply the \YM version of the \textit{Gauss's law} $\vec{\nabla}\cdot\vec{E} = 0$. 
 	
-	When $\Lambda \ll \Lambda_0$, we have no reason to believe the
-	renormalized couplings $g(\Lambda)$ are close to the original
-	couplings $g_0$ at $\Lambda_0$. In fact, they may differ by a large
-	(but finite) renormalization factor $Z$: $g_0 = Zg$.
+	One can think of the Gauss's law constraint as the result of integrating out $A_0$, which imposes it's EOM $\fdv{I_\YM}{A_0} = 0$, which is precisely \eqref{eq:gauss_law_constraint}. 
+	However, for a gauged system, there are subtleties that we need to look out for. One should account for the gauge volume, which can be treated properly with Faddeev--Popov path integral; and the proper way to implement the constraints is through BRST quantization. 
 	
-\subsection{Counterterms}
-	In the above analysis, the theory flows from UV to IR. However, in
-	reality, the IR results are known from experiments, and we are trying to
-	\emph{extrapolates} from IR to UV.
-	
-	We achieve this by \emph{tuning} the bare parameters $(g_0,\Lambda_0)$
-	so that after RG flow, the IR results fit our experimental observations.
-	If the IR couplings $g(\Lambda)$ are finite and small, then since
-	$\Lambda \ll \Lambda_0$, we expect $g_0$ to be very large.
-	
-	We often \emph{split} $g_0$ into 2 parts for convenience:
+	Fortunately, the Gauss's law constraint \textit{does} work in this example. In fact, if we solve the Gauss's law constraint as an operator equation of $A_1$, we will get further gauge-fixing \cite{Hatfield:234595}. 
+	Alternatively, if we ignore the constraint and proceed with canonical quantization, which might be more convenient in some cases, we would expect \textit{unphysical} degrees of freedom like \textit{null states} to show up, due to the unfixed gauge redundancies. The constraint can then be utilized to identify \textit{physical} degrees of freedom, by demanding that it annilates physical states:
 	\begin{equation}
-	  g_0 = g + \var{g}
-	  = g + (Z - 1)\,g
+		D_1 F_{10} \ket{\Psi} = 0
+	\label{eq:gauss_law_constraint_state}
 	\end{equation}
-	$\var{g}$ is the so-called \emph{counterterm}; intuitively, it's the
-	(large) correction that gets integrated out when we go from
-	$\Lambda_0$ all the way to IR.
-	
-	Basically, we have the following procedure:
-	
-	\begin{figure}[!h]
-	\centering
-%	\includegraphics[width=.5\linewidth]{img/RG-process.png}
-	\end{figure}
-	
-	\begin{enumerate}[noitemsep,midpenalty=100]
-	\setcounter{enumi}{-1}
-	
-	\item
-	  Select some UV parameters $(g_0,\Lambda_0)$
-	\item
-	  Perform the RG flow: $(g_0,\Lambda_0)\to (g,\Lambda)$
-	\item
-	  Tune (redefine) $g_0$ so that $(g,\Lambda)$ matches with
-	  experiments
-	\item
-	  Use the tuned data to predicts phenomena at a different scale
-	  $(g',\Lambda')$
-	\end{enumerate}
-	
-	Note that the tuning of UV parameters $g_0$ is \emph{far from unique!}
-	This is easy to understand: many UV theories might flow to the same IR
-	theory. For this reason, some would say that RG is a \emph{semi-group}.
-	
-	However, for a \emph{renormalizable} theory, we can restrict the tuning
-	to a \emph{finite} dimensional subspace formed by the \emph{relevant}
-	couplings, since most other parameters $g^{(i)}$ are \emph{irrelevant}
-	and get suppressed by $\Lambda/\Lambda_0$ in the IR. We shall see this in more details later. After such
-	restriction to a relevant subspace, the RG flow is a group, and we can
-	reverse the flow to \emph{extrapolate} towards UV.
-	
-	\begin{quote}
-	\textbf{Subtlety:} the tuning process described above might encounter some serious
-	obstruction: the tuned $g_0$ could blow up at some finite
-	$\Lambda_{\mathrm{UV}}$; this is the so-called \emph{Landau pole}.
-	This tells us that the theory only works under some
-	$\Lambda_{\mathrm{UV}}$, i.e.~it is not \emph{UV complete}; it's only
-	an \emph{effective} theory. One have to ``embed'' this Lagrangian into a
-	bigger theory that works beyond $\Lambda_{\mathrm{UV}}$; this is the
-	non-trivial \emph{UV completion} of an effective theory.
-	\end{quote}
-	
-\subsection{Perturbation}
-	The above results are non-perturbative and should always hold.
-	Perturbation theory is only a way to calculate the RG flow from UV to
-	IR; it is reliable only if the IR coupling $g$ is sufficiently small.
-	In this case we can tune $(g_0,\Lambda_0)$ with the following
-	recursive / iterative algorithm:
-	
-	\begin{enumerate}[noitemsep]
-	\item
-	  Perturbative calculation of RG flow:
-	  $(g_0,\Lambda_0)\to (g,\Lambda)$ at $\order{g^n}$
-	\item
-	  Tune (redefine) $(g_0,\Lambda_0)$ by adding counterterms, so that
-	  $(g,\Lambda)$ matches with experiments
-	\item
-	  Increase order $n$ and go to step 1
-	\end{enumerate}
-	
-	The (non-)renormalizability of a theory is evident in the perturbative
-	expansion, by counting the \textbf{superficial degrees of divergence}
-	$D$ of the Feynman diagrams. Basically,
-	
-	\begin{itemize}
-	\item
-	  Interaction vertices create loops, and loops create UV divergences.
-	  Higher order interaction vertices create more loops, which lead to
-	  more divergences.
-	\item
-	  External lines suppress UV divergences by factors like
-	  $\frac{1}{\cancel{p}}$ or $\frac{1}{p^2}$.
-	\end{itemize}
-	
-	For a renormalizable theory, there will be no divergence for diagrams
-	with a sufficient number $E$ of external legs; for a
-	non-renormalizable theory, however, there will always be divergences, no
-	matter how large $E$ is.
-	
-\subsection{Renormalization Schemes}
-	
-	There is a subtlety in the above procedure: how do we actually relate IR
-	parameters $(g,\Lambda)$ with actual physical quantities,
-	e.g.~amplitudes $\mcal{M}(\mu)$?
-	
-	In fact, we've assumed that $(g,\Lambda)_{\Lambda\to 0}$ gives the
-	physical couplings that we are familiar with, e.g.~mass, electric charge
-	and so on. This is not quite true, since physical quantities are
-	actually defined with scattering amplitudes. There are different choices
-	of relating $g$ with physical observables; this lead to various
-	renormalization schemes:
-	
-	\begin{itemize}[nosep]
-	
-	\item
-	  On-shell / pole-mass scheme
-	\item
-	  Minimal subtraction ($\mathrm{MS}$) \& modified MS
-	  ($\overline{\mathrm{MS}}$)
-	\end{itemize}
-	
-\section{Renormalizability}
-	As we've mentioned before, most parameters $g^{(i)} \in g$ are, in fact, \emph{irrelevant} --- such terms in the Lagrangian get suppressed by $\Lambda/\Lambda_0$ in IR. We shall see how this arise from dimensional anlaysis.
-	
-	
-	
-	If the IR theory has only \emph{relevant} couplings, then one should be
-	able to recover their physical values by tuning a finite amount of
-	relevant couplings in the UV, and usually the tuning is unique. This is
-	the defining characteristic of a \textbf{renormalizable} theory.
-	Basically, this means that we can naturally obtain a UV theory by
-	extrapolation.
-	
-	On the other hand, a theory is \textbf{non-renormalizable} if it
-	contains irrelevant couplings in the IR. In this case the IR parameters
-	$g$ depend sensitively on small perturbations of the UV parameters
-	$g_0$, and one has to tune infinitely many bare parameters to obtain
-	the physical IR values. Such theory is hardly \emph{fundamental}, since
-	it depends on infinitely many parameters; but it's a good
-	\emph{effective theory} nonetheless.
-	
-\section{Effective Action}
-	After $\phi_\Lambda$ is completely integrated out, we
-	have:
-	
+	Note that this idea is very much similar to \textit{old covariant quantization} and the \textit{Virasoro constraint} in string theory \cite{Polchinski:1998rq}. Again, for a more rigorous treatment, we should turn to the BRST cohomology, but for now this is sufficient. In fact, we can actually proved \eqref{eq:gauss_law_constraint_state} by demanding the wave functional $\Psi[A_1(x)]$ to be gauge-invariant under the remaining gauge transformations \cite{Hatfield:234595}:
 	\begin{equation}
-	  S_{\mathrm{eff}}[\phi] \to W,\quad
-	  Z(g_0,\Lambda_0) = e^{iW}
-	\end{equation}
-	Note that $W$ no longer has any $\phi$ dependence, but it is a
-	function of $(g_0,\Lambda_0)$, which in turn is tuned by physical
-	$(g,\Lambda)$. $W$ in fact contains all information about the seed
-	theory, labeled by $(g_0,\Lambda_0)$. To extract this information, we
-	usually perturb the original action $S[\phi]$ with a source term; then
-	we have:
-	
-	\begin{equation}
-	  S[\phi,J]
-	  = S[\phi] + \int \dd{x}\,J(x)\,\phi(x),\quad
-	  W \to W[J]
+		0 = \var{\Psi[A_1(x)]}
+		= \sidenote{...}
 	\end{equation}
 	
-	Expand $W[J]$ in terms of $J$-modes, and its coefficient gives us
-	physical coupling constants in the IR. More precisely, we can define the Legendre-transformed $\Gamma[\varphi]$.
-
+	To actually solve \eqref{eq:gauss_law_constraint_state}, we shall work in the $A_1(x)$ basis, with $\Psi[A_1(x)] = \braket{A_1(x)}{\Psi}$. The canonical momentum operator is then given by:
+	\begin{equation}
+		E = \fdv{A_1},
+	\quad
+		\bqty{
+			E(x), A_1(x')
+		} = \delta(x - x')
+	\end{equation}
+	Just like the usual quantum mechanical $P = - i\pdv{X}$; the $(-i)$ factor is gone since we are working in Euclidean signature. \sidenote{Just like Schr\"odinger, but with path-ordering...}
+	
+\raggedright
 
 \printbibliography[%
 %	title = {参考文献} %
