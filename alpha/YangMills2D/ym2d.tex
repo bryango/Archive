@@ -15,7 +15,7 @@
 \addbibresource{ym2d.bib}
 
 %%% ID: sensitive, do NOT publish!
-%\InputIfFileExists{../id.tex}{}{}
+\InputIfFileExists{id.tex}{}{}
 
 %\usepackage{cancel}
 \usepackage{xspace}
@@ -32,8 +32,8 @@
 \tableofcontents
 \setlength{\parskip}{\parskipnorm}
 
-\addtocounter{section}{-1}
-\section{Main References}
+%\addtocounter{section}{-1}
+\section*{Main References}
 	This review is almost entirely based on the following references:
 	\begin{enumerate}[
 		noitemsep
@@ -44,72 +44,71 @@
 	\item[\cite{Cordes:1994fc}] \textit{Cordes, Moore, Ramgoolam}, \arxiv{hep-th/9411210}
 	\item[\cite{Witten:1991we}] Witten, \textit{On Quantum Gauge Theories in Two Dimensions}, 1991
 	\end{enumerate}
-	It is basically a condensed, more pedagocial version of \cite{Cordes:1994fc}. Many basic facts in this review are therefore uncited to avoid repeated citations of \cite{Cordes:1994fc}. All uncited claims, unless otherwise specified, can be traced back to \cite{Cordes:1994fc}. 
+	It is basically a condensed, more pedagocial version of \cite{Cordes:1994fc}. Many basic facts in this review are therefore uncited to avoid repeated citations of \cite{Cordes:1994fc}. All uncited claims, unless otherwise specified, can be traced back to \cite{Cordes:1994fc}. However, it is highly possible that I, in my infinite stupidity, misunderstood some ideas from \cite{Cordes:1994fc}; so please feel free to point out my mistakes.
 \section{Introduction}
 	We start by writing down the usual Yang--Mills action in 2D (\YM), in Euclidean signature:
 	\begin{equation}
 		I_{\YM}
-		= +\frac{1}{8e^2}
+		= +\frac{1}{4e^2}
 			\int_{\Sigma_T} \dd[2]{x}
 			\sqrt{G}
-			\,\Tr \pqty{F_{ij} F^{ij}},
+			\,\Tr \pqty{F_{\mu\nu} F^{\mu\nu}},
 	\quad
-		\sqrt{G} = \sqrt{\det G_{ij}}
+		\sqrt{G} = \sqrt{\det G_{\mu\nu}}
 	\end{equation}
-	Here we will try follow the convention of \cite{Cordes:1994fc}, despite the fact that it is, unfortunately, not quite self-consistent. $\Sigma_T$ stands for the 2D \textit{target}; \sidenote{as we shall see,} in the large $N$ limit, it is possible to realize 2D Yang--Mills as a string theory with worldsheet $\Sigma_W$, as is proposed by D.~Gross and W.~Taylor, among others \cite{Gross:1992tu,Gross:1993hu,Gross:1993yt}. 
+	Here we will try follow the convention of \cite{Cordes:1994fc}, despite the fact that it is, unfortunately, not quite self-consistent. $\Sigma_T$ stands for the 2D \textit{target}; in the large $N$ limit, it is possible to realize \YM as a string theory with worldsheet $\Sigma_W$, as is proposed by D.~Gross and W.~Taylor, among others \cite{Gross:1992tu,Gross:1993hu,Gross:1993yt}. 
 	
-	Note that in 2D, the $\mfrak{g}$-valued curvature form $F = F^a_{ij}\,T_a \dd{x^i} \wedge \dd{x^j}$ is a \textit{top form}; here $T_a$ is the generator of Lie algebra $\mfrak{g} = \mop{Lie} G$, and $G$ is the compact gauge group, e.g.~$G = \mrm{SU}(N)$. This means that in 2D, we have:
+	Note that in 2D, the $\mfrak{g}$-valued curvature form $F = F^a_{\mu\nu}\,T_a \dd{x^\mu} \wedge \dd{x^\nu}$ is a \textit{top form}; here $T_a$ is the generator of Lie algebra $\mfrak{g} = \mop{Lie} G$, and $G$ is the compact gauge group, e.g.~$G = \mrm{SU}(N)$. This means that in 2D, we have:
 	\begin{gather}
 		F = f\mu,\quad f = \hodgedual F,
 	\\
 		\mu = \sqrt{G} \dd[2]{x},\quad
-		F^a_{ij} = \sqrt{G}\,\epsilon_{ij} f^a
+		F^a_{\mu\nu} = \sqrt{G}\,\epsilon_{\mu\nu} f^a
 	\end{gather}
 	Here $\mu$ is the volume form on $\Sigma_T$, and $f$ is some $\mfrak{g}$-valued 0-form. The original \YM action can thus be rewritten as:
 	\begin{equation}
 		I_{\YM}
-		= \frac{1}{4e^2}
+		= \frac{1}{2e^2}
 			\int_{\Sigma_T} \dd[2]{x}
 			\sqrt{G}
 			\,\Tr\,(f^2)
-		= \frac{1}{4e^2}
+		= \frac{1}{2e^2}
 			\int_{\Sigma_T} \mu \Tr\,(f^2)
+	\label{eq:scalar_action}
 	\end{equation}
 	
 	First we would like to examine the $e^2 \to 0$ limit of this theory. This can be achieved by a \textit{Hubbard--Stratonovich transformation}\footnote{
 		See \wikiref{https://en.wikipedia.org/wiki/Hubbard\%E2\%80\%93Stratonovich\_transformation}{Hubbard–Stratonovich transformation}. 
 	}; namely, we introduce an additional $\mfrak{g}$-valued field $\phi$ that serves as a Lagrangian multiplier; consider:
 	\begin{equation}
-		I[\phi,A] = \frac{1}{2} \int \mu\,\pqty{
-				i \Tr\,(\phi f)
-				+ \frac{1}{2}\, e^2 \Tr\,(\phi^2)
+		I[\phi,A] = \int \pqty{
+				i \Tr\,(\phi F)
+				+ \frac{1}{2}\, e^2\mu \Tr\,(\phi^2)
 			}
+	\label{eq:convenient_action}
 	\end{equation}
 	Using the functional version of the integral identity: $
-		\int \frac{\dd{x}}{\sqrt{2\pi}}
+		\int \dd{x}
 			e^{
-				-\frac{1}{2} \pqty\big{
-					\frac{e^2}{2} x^2
-					+ ixy
-				}
+				- \frac{e^2}{2} x^2
+				- ixy
 			}
-		= e^{-y^2/(4e^2)}
-	$, it is straightforward to verify that\footnote{
-		See \cite{Witten:1991we} for a more detailed explanation. With $e\mapsto \sqrt{2}\,e,\ y\mapsto 2y$, we recover the original formula in \cite{Witten:1991we}.
-	}:
+		\sim e^{-y^2/(2e^2)}
+	$, it is straightforward to verify that \cite{Witten:1991we}, up to an overall coefficient,
 	\begin{equation}
 		\int \DD{\phi} e^{-I[\phi,A]}
-		= e^{-I_\YM[A]}
+		\sim e^{-I_\YM[A]}
 	\end{equation}
 	
 	The advantage of this formulation is that the $e^2 \to 0$ limit becomes non-singular; in fact, now we can simply set $e^2 = 0$, and get:
 	\begin{equation}
 		I[\phi,A]
 		\longto I_0[\phi,A]
-		= \frac{1}{2} \int i \Tr\,(\phi F)
+		= \int i \Tr\,(\phi F)
+	\label{eq:top_action}
 	\end{equation}
-	This action is in fact \textit{topological}; there is no explicit metric dependence in the action. Integrating out $\phi$ fixes $F = 0$, i.e.~we need only sum over the moduli of \textit{flat connections}. For a principal $G$ bundle $P\to\Sigma_T$, this is given by:
-	\begin{gather}
+	This action is in fact \textit{topological}; there is no explicit metric dependence in the action. The measure $\mu$ comes with $e^2$ in the $I[\phi,A]$ action; setting $e^2 \to 0$ eliminates the metric dependence. Integrating out $\phi$ fixes $F = 0$, i.e.~we need only sum over the moduli of \textit{flat connections}. For a principal $G$ bundle $P\to\Sigma_T$, this is given by:
+	\begin{equation}
 		\mcal{M}_0
 		= \mcal{M}\pqty{F = 0, P\to\Sigma_T}
 		= \Bqty{
@@ -119,13 +118,16 @@
 			} \Big/ \mcal{G}(P)
 		\ \subset\ %
 		\mcal{A}(P) \Big/ \mcal{G}(P)
-	\\[1ex]
+	\end{equation}
+	\vspace{-1.2\baselineskip}
+	\begin{gather}
 %	\begin{aligned}
 		\mcal{A}(P)
 %		&
 		= \Bqty\Big{
 			\text{all possible connections $A$ on $P$}
-		} \notag\\
+		} \notag
+	\\
 		\mcal{G}(P)
 %		&
 		= \Bqty\Big{
@@ -146,10 +148,10 @@
 	For $e^2 \ne 0$, the action $I[\phi,A]$ is metric dependent. Somewhat surprisingly, the path integral still contains information about the topology of $\mcal{M}$. This is an example of a so-called \textit{cohomological field theory}. 
 	The idea of \cite{Cordes:1994fc} is to start from 2D Yang--Mills as a concrete example, and then use its results to motivate a thorough study of {cohomological field theory}.
 	
-	As is summarized in \cite{Cordes:1994fc}, topological field theories (TFT's), largely introduced by E.~Witten, may be grouped into two classes: \textit{Schwarz type} and \textit{cohomological type}\footnote{
+	As is summarized in \cite{Cordes:1994fc}, \textit{topological field theories} (TFT's), largely introduced by E.~Witten, may be grouped into two classes: \textit{Schwarz type} and \textit{cohomological type}\footnote{
 		Cohomological type TFT's are also called \textit{Witten type} TFT's, e.g.~in \cite{Birmingham:1991ty}. However, \cite{Cordes:1994fc} chooses to call them \textit{cohomological}, probably to avoid confusion, since Witten has done wonderful work on both types of the theories.
 	}. 
-	Cohomological field theories, including 2D Yang--Mills with coupling $e^2 \ne 0$, are \textit{not} manifestly metric independent; however, they have a Grassmann-odd nilpotent BRST operator $Q$, and physical observables are $Q$-cohomology classes; amplitudes involving these observables are metric independent, thus they are indeed \textit{topological}. 
+	Cohomological field theories, including 2D Yang--Mills with coupling $e^2 \ne 0$, are \textit{not} manifestly metric independent; however, they have a Grassmann-odd nilpotent BRST operator $Q$, and physical observables are $Q$-cohomology classes; amplitudes involving these observables are metric independent, thus they are indeed \textit{topological}. Generally speaking, a TFT need \textit{not} be metric independent; the important thing is that it computes \textit{topological invariants}. 
 %	because of decoupling of BRST trivial degrees of freedom.
 	
 	On the other hand, \textit{Schwarz type} theories have Lagrangians which are metric independent and hence, formally, the quantum theory is expected to be topological. 
@@ -172,19 +174,34 @@
 \subsection{Canonical Quantization on the Cylinder}
 	One can perform the usual canonical quantization with $I_\YM$ on the cylinder, with coordinates $(x^0,x^1) = (t,x) \in \mbb{R}^1\times S^1$. We shall make full use of the gauge redundancies in 2D; recall that a generic gauge transformation can be written as:
 	\begin{equation}
+	\begin{aligned}
 		A'_\mu
-		= g A_\mu g^{-1}
-			+ g\,\pdd{\mu} (g^{-1}),
-	\quad
+		&= g A_\mu g^{-1}
+			+ g\,\pdd{\mu} (g^{-1}) \\
+		&\simeq A_\mu
+			+ D_\mu\circ\lambda,
+	\end{aligned}
+	\qquad
 		A_\mu = A^a_\mu(t,x),
 	\quad
-		g = e^{-\lambda^a(t,x)\,T_a}
+		g = e^{-\lambda^a(t,x)\,T_a},
 	\end{equation}
-	It is thus possible to choose the \textit{temporal gauge} $A_0 = 0$, by simply solving a first order ODE of the gauge parameters $\lambda^a(t,x)$, with respect to the variable $x^0 = t$. 
+	\vspace{-1.2\baselineskip}
+	\begin{gather}
+		D_\mu = \pdd{\mu} + A_\mu^a\,T_a,
+	\\[1ex]
+		\pqty{D_\mu\circ\lambda}^a
+		= \pdd{\mu} \lambda^a
+			+ A_\mu^b\,f\id{^a_{bc}} \lambda^c,
+	\quad
+		(T_b)\id{^a_c} = f\id{^a_{bc}}
+	\end{gather}
+	Here $D_\mu$ is the $\mfrak{g}$-valued covariant derivative; it acts on the $\mfrak{g}$-valued gauge parameters $\lambda^a(t,x)$ by the adjoint representation $(T_b)\id{^a_c} = f\id{^a_{bc}}$. 
+	It is thus possible to choose the \textit{temporal gauge} $A_0 = 0$, by simply solving a first order ODE of $\lambda^a(t,x)$, with respect to the variable $x^0 = t$. 
 	
 	We can further reduce $A_1(t,x)$ with remaining gauge redundancies; with some $t$-independent, but $x$-dependent $g = g(x)$, we can preserve $A_0 = 0$, while reducing $A_1(t,x) = A_1(t)$. This is basically the \textit{Coulomb gauge} in 2D, i.e.~we have $\pdd{1} A_1 = 0$. 
 	
-	We can further simplify the results by working in the \textit{Schr\"odinger picture}. A nice treatment of QED from this ``novel'' perspective can be found in \cite{Hatfield:234595}. In conventional formulations of QFT, we are used to work in the \textit{Heisenberg} or \textit{interactive picture}, where the fields evolve in time: $A_1 = A_1(t)$ and satisfy some operator equations of motion (EOM's), which for free theories look identical to the classical EOM's. Alternatively, we can take the quantum mechanical approach, and decompose the fields at each time slice $t = t_0$ to a set of time-independent energy eigenstates; in the case of \YM, we have $A_1 = \mrm{const}$. 
+	Further simplifications can be achieved by working in the \textit{Schr\"odinger picture}, or \textit{Schr\"odinger representation}. A nice treatment of 4D Yang--Mills from this ``novel'' perspective can be found in \cite{Hatfield:234595}. In conventional formulations of QFT, we are used to work in the \textit{Heisenberg} or \textit{interactive picture}, where the fields evolve in time: $A_1 = A_1(t)$ and satisfy some operator equations of motion (EOM's), which for free theories look identical to the classical EOM's. Alternatively, we can take the quantum mechanical approach, and decompose the fields at each time slice $t = t_0$ to a set of time-independent energy eigenstates; in the case of \YM, we have $A_1 = \mrm{const}$. 
 	The time evolution is then tracked by the \textit{wave functional} $\Psi_t[A_1]$. Since the gauge-fixed $A_1$ has no spacetime dependence, we've actually obtained a equivalent 0-dimensional field theory, i.e.~a quantum mechanical system. 
 	
 	There are still remaining gauge redundancies; with another spacetime independent, \textit{global} gauge transformation, we can rotate $
@@ -195,35 +212,35 @@
 		A_1
 		= A_1^a\,T_a
 		\in \textsl{Cartan} \,\Big/ \textsl{Weyl}
+	\label{eq:hilbert_space}
 	\end{equation}
 	
 	Alternatively, we can also work with a partial gauge fixing, e.g.~we only impose the temporal gauge $A_0 = 0$, and try to solve for $\Psi_t[A_1(x)]$ by looking at the ``Maxwell's equation" in 2D. The time evolution is taken care of by the Schr\"odinger equation for $\Psi_t$; for now we need only look at the spatial constraints. We have:
-	\begin{gather}
-		D_1 F_{10} = 0
-	\label{eq:gauss_law_constraint}
-	\\[.5ex]
-		D_\mu = \pdd{\mu} + A^a_\mu\,T_a,
+	\begin{equation}
+		D_1 F_{10} = 0,
 	\quad
 		F_{\mu\nu} = [D_\mu,D_\nu]
-	\end{gather}
-	This is simply the \YM version of the \textit{Gauss's law} $\vec{\nabla}\cdot\vec{E} = 0$. 
+	\label{eq:gauss_law_constraint}
+	\end{equation}
+	This is simply the \YM version of the \textit{Gauss's law} $\vec{\nabla}\cdot\vec{E} = 0$. In \YM, we have only one $\mfrak{g}$-valued component of the field strength:
+	\begin{equation}
+		E = E^a T_a = F_{10}
+	\end{equation} 
 	
 	One can think of the Gauss's law constraint as the result of integrating out $A_0$, which imposes it's EOM $\fdv{I_\YM}{A_0} = 0$, which is precisely \eqref{eq:gauss_law_constraint}. 
-	However, for a gauged system, there are subtleties that we need to look out for. One should account for the gauge volume, which can be treated properly with Faddeev--Popov path integral; and the proper way to implement the constraints is through BRST quantization. 
+	However, for a gauged system, there are subtleties that we need to look out for. One should account for the gauge volume, which can be treated properly with Faddeev--Popov path integral, and the proper way to implement the constraints is through BRST quantization. 
 	
-	Fortunately, the Gauss's law constraint \textit{does} work in this example. In fact, if we solve the Gauss's law constraint as an operator equation of $A_1$, we will get further gauge-fixing \cite{Hatfield:234595}. 
+	Fortunately, the na\"ive Gauss's law constraint \textit{does} work in this example. In fact, if we solve the Gauss's law constraint as an operator equation of $A_1$, we will get further gauge-fixing \cite{Hatfield:234595}. 
 	Alternatively, if we ignore the constraint and proceed with canonical quantization, which might be more convenient in some cases, we would expect \textit{unphysical} degrees of freedom like \textit{null states} to show up, due to the unfixed gauge redundancies. The constraint can then be utilized to identify \textit{physical} degrees of freedom, by demanding that it annilates physical states:
 	\begin{equation}
-		D_1 F_{10} \ket{\Psi} = 0
+		D_1 \circ E \ket{\Psi} = 0,
+	\quad E = F_{10}
 	\label{eq:gauss_law_constraint_state}
 	\end{equation}
-	Note that this idea is very much similar to \textit{old covariant quantization} and the \textit{Virasoro constraint} in string theory \cite{Polchinski:1998rq}. Again, for a more rigorous treatment, we should turn to the BRST cohomology, but for now this is sufficient. In fact, we can actually proved \eqref{eq:gauss_law_constraint_state} by demanding the wave functional $\Psi[A_1(x)]$ to be gauge-invariant under the remaining gauge transformations \cite{Hatfield:234595}:
-	\begin{equation}
-		0 = \var{\Psi[A_1(x)]}
-		= \sidenote{...}
-	\end{equation}
+	Note that this idea is very much similar to \textit{old covariant quantization} and the \textit{Virasoro constraint} in string theory \cite{Polchinski:1998rq}. Again, for a more rigorous treatment, we should turn to the BRST cohomology, but for now this is sufficient. 
 	
-	To actually solve \eqref{eq:gauss_law_constraint_state}, we shall work in the $A_1(x)$ basis, with $\Psi[A_1(x)] = \braket{A_1(x)}{\Psi}$. The canonical momentum operator is then given by:
+	In fact, we can actually proved \eqref{eq:gauss_law_constraint_state} by demanding the wave functional $\Psi[A_1(x)]$ to be gauge-invariant \cite{Hatfield:234595}; we shall work in the $A_1(x)$ basis, with $\Psi[A_1(x)] = \braket{A_1(x)}{\Psi}$. 
+	The canonical momentum operator is then given by:
 	\begin{equation}
 		E = \fdv{A_1},
 	\quad
@@ -231,7 +248,169 @@
 			E(x), A_1(x')
 		} = \delta(x - x')
 	\end{equation}
-	Just like the usual quantum mechanical $P = - i\pdv{X}$; the $(-i)$ factor is gone since we are working in Euclidean signature. \sidenote{Just like Schr\"odinger, but with path-ordering...}
+	Just like the usual quantum mechanical $P = - i\pdv{X}$; the $(-i)$ factor is gone since we are working in Euclidean signature. 
+	
+	We demand that $\Psi[A_1(x)]$ is gauge-invariant under the \textit{remaining} $t$-independent gauge transformations, $\lambda = \lambda(x)$:
+	\begin{equation}
+	\begin{aligned}
+		0 = \var{\Psi[A_1(x)]}
+		&= \int \dd{x}
+			\fdv{\Psi}{A_1(x)} \var{A_1(x)},
+		\quad \var{A_1(x)} = D_1 \circ \lambda(x) \\
+		&= -\int \dd{x}
+			\lambda(x)\,
+			\pqty{D_1 \circ \fdv{A_1(x)}}
+			\Psi[A_1(x)],
+		\quad E = \fdv{A_1(x)} \\
+		&= -\int \dd{x}
+			\lambda(x)\,
+			\pqty{D_1 \circ E}\,
+			\Psi[A_1(x)],
+		\quad \forall\ \lambda(x)
+	\end{aligned}
+	\end{equation}
+	Indeed this is \eqref{eq:gauss_law_constraint_state} in the $A_1(x)$ basis. The formal solution of \eqref{eq:gauss_law_constraint_state} is quite similar to the Schr\"odinger equation, but with path-ordering instead of time-ordering \cite{Minahan:1993np}:
+	\begin{equation}
+		\Psi = \Psi[W],
+	\quad
+		W = \mcal{P} \exp \int_0^L A_1(x)
+	\label{eq:gauss_law_solution}
+	\end{equation}
+	
+	From \eqref{eq:gauss_law_solution} we see that in fact there is no direct dependence of $A_1(x)$ in $\Psi[A_1(x)]$; it only depends on the holonomy $W$ around the $S^1$ circle. Note that $W$ is similar to the \textit{Wilson loop} operator, but not quite, due to the lack of a trace $\Tr$. Such $W$ is not exactly gauge-invariant, but in fact gauge-covariant with respect to the base point:
+	\begin{equation}
+		W' = g_0 W g_0^{-1},
+	\quad
+		g_0 = g(x = 0)
+	\end{equation}
+	Hence further demanding invariance under global gauge transformations requires that $\Psi$ only depends on the \textit{conjugacy class} of $W$. Again we recover \eqref{eq:hilbert_space}, namely,
+	\begin{empheq}{equation}
+		\textbf{
+			The Hilbert space of \YM is the space of \textit{class functions} on $G$
+		}
+	\end{empheq}
+	
+	By the Peter--Weyl theorem for$G$ compact we can decompose the Hilbert space by the unitary irreduciblerepresentations (\textit{irreps}) $\{R\}$ of $G$. 
+	Consequently, a natural basis for the Hilbert space is provided by the \textit{characters} $\{\chi_R\}$ of the irreps; thus we have, relative to the $W$ basis,
+	\begin{equation}
+		\braket{W}{R}
+		= \chi_R (W)
+		= \Tr_R (W)
+	\end{equation}
+	This is the wave function of the $R$ basis.
+	Here $\Tr_R$ denotes trace with respect to the irrep $R$; recall that $W$ is $\mfrak{g}$-valued and do not have a well-defined trace until we specify a irrep, in this case $R$. This is the gauge-invariant Wilson loop operator. Note that we are considering pure \YM without matter; the irrep $R$ is not some \textit{a priori} matter representation, but arises naturally as we consider class functions on $G$. \sidenote{This is kind of mysterious; does it has a physical interpretation, e.g.~like sum over possible matter representations?}
+\subsection{Hamiltonian and the Dynamics}
+	Let us now find the Hamiltonian for this theory. We are familiar with the the Hamiltonian density in 4D: $
+		\frac{e^2}{2} \pqty\big{
+			\vec{E}^2 + \vec{B}^2
+		}
+	$; here in 2D, we do not have the magnetic field $\vec{B}$, just a one component $\mfrak{g}$-valued $E = E^a T_a = F_{10}$. Therefore,
+	\begin{gather}
+		H = \frac{e^2}{2} \int \dd{x} \Tr E^2
+		= \frac{e^2}{2} \int \dd{x}
+			\delta^{ab}
+			\fdv{A_1^a(x)}
+			\fdv{A_1^b(x)}
+		\to \frac{1}{2}\,e^2 L
+			\Tr \pqty{W \pdv{W}}^2,
+	\\[1ex]
+		E_a = \fdv{A^a_1(x)}
+		\to T_a W \pdv{W},
+	\quad
+		\Tr\,(T_a T_b) = \delta_{ab}
+	\end{gather}
+	Note that we've followed a more convenient trace convention. 
+	In the last step we've restricted to the physical Hilbert space with $\Psi = \Psi(W)$. Consider $H$ action on the basis $
+		\braket{W}{R}
+		= \chi_R (W)
+		= \Tr_R (W)
+	$, we have:
+	\begin{equation}
+		E_a\, \chi_R (W)
+		= E_a \Tr_R (W)
+		= \Tr_R (T_a W),
+	\end{equation}
+	\vspace{-.9\baselineskip}
+	\begin{equation}
+	\begin{aligned}
+		H\, \chi_R (W)
+		&= \frac{1}{2}\,e^2 L
+			\Tr_R \pqty\big{\delta^{ab} T_a T_b W} \\
+		&= \frac{1}{2}\,e^2 L\,
+			\pqty\big{\delta^{ab} T_a T_b}_R
+			\Tr_R (W) \\
+		&= \frac{1}{2}\,e^2 L
+			C_2(R)\,\chi_R (W),
+	\end{aligned}
+	\end{equation}
+	\vspace{-.3\baselineskip}
+	\begin{equation}
+		C_2(R)
+		= \pqty\big{\delta^{ab} T_a T_b}_R
+	\end{equation}
+	Here $C_2(R)$ is the\textit{quadratic Casimir} of the irrep $R$; it is proportional to $\idty_R$, or can be treated as a $c$-number when restricted to the irrep. We find out that:
+	\begin{empheq}{equation}
+		\textbf{The Hamiltonian $H$ is diagonalized in the $R$ basis and $\propto C_2$}
+	\end{empheq}
+	\vspace{-.3\baselineskip}
+	\begin{equation}
+		H = \frac{1}{2}\,e^2 L C_2
+	\end{equation}
+\subsection{Basic Amplitudes}
+	Having diagonalized the Hamiltonian, we can immediately write down the $W$ basis propagator by summing over the $R$ basis; we have:
+	\begin{gather}
+	\begin{aligned}
+		\mel*{W_1}{e^{-HT}}{W_2}
+		&= \sum_R
+			\braket{W_1}{R\,}
+			e^{-H(R)\,T}
+			\braket{R}{W_2} \\
+		&= \sum_R
+			\chi_R(W_1)\,
+			\chi_R(W_2^\dagger)\,
+			e^{-\frac{1}{2}\,e^2 a\,C_2(R)}
+		= Z(W_1,W_2;a),
+	\end{aligned}
+	\\[.3ex]
+		a = LT,
+	\quad
+		\chi_R^\dagger(W)
+		= \pqty{\Tr_R W}^\dagger
+		= \Tr_R (W^\dagger)
+		= \chi_R(W^\dagger)
+	\end{gather}
+	This is the \textbf{cylinder amplitude}. 
+	Note that the combination$\frac{1}{2} e^2 a$ enterstogether, where $a = LT$ is the area of the cylinder; this is evident from the action $I[\phi,A]$ in \eqref{eq:convenient_action}, where $e^2 \mu$ comes together as a parameter. The area dependence is also evident from the scalar action \eqref{eq:scalar_action}, where we that the theory is invariant under \textit{area preserving diffeomorphism}, $\mop{SDiff}(\Sigma_T)$. From now on we will absorb $\frac{e^2}{2}$ into $a$, and it will be the only dimensionful parameter of the theory.
+	
+	By the orthogonality relations of characters, it is straightforward to verify that the propagator satisfy the \textit{gluing property}:
+	\begin{equation}
+		\int \dd{W}
+			Z(W_1,W;T_1)\,Z(W,W_2;T_2)
+		= Z(W_1,W_2;T_1 + T_2)
+	\end{equation}
+	We see that \YM has very similar properties as those from the categorical approach of CFT and TFT, given by Segal and Atiyah \cite{Segal1988,Atiyah1988}. 
+	
+	With the gluing property, we can see what happens when one end of the cylinder shrinks to zero size; this is achieved by gluing one cylinder with finite size $a$, with another one that has $a'\to 0$. As $a'\to 0$, the corresponding amplitude should be well approximated by the topological action $I_0[\phi,A]$ given in \eqref{eq:top_action}; as we've mentioned before, integrating out $\phi$ sets $F = 0$, which in turn forces the holonomy $W \equiv \idty$. The wave function is then given by a Dirac delta function:
+	\begin{equation}
+		\Psi(W) = \delta(W - \idty)
+	\end{equation}
+	This is, up to an overall coefficient, the delta function with respect to the bi-invariant \textit{Haar measure} on the compact $G$. Here \textit{bi-invariance} means that the measure is invariant under left and right group multiplication, hence also invariant under conjugacy; therefore it is also a well-defined measure on $G$ classes, where $W$ actually belongs. Gluing the cylinder $a$ with the infinitesimal cylinder $a'\to 0$, we find the \textbf{disk (cap) amplitude}:
+	\begin{equation}
+		Z(W,\idty;a)
+		= \sum_R \chi_R(W)\,
+			\pqty{\Tr_R \idty}\,
+			e^{-aC_2(R)}
+		= \sum_R (\dim R)\, \chi_R(W)\,
+			e^{-aC_2(R)}
+	\end{equation}
+	
+	By now it is clear that the theory is indeed \textit{topological}; there are no $x$-dependent, propagating degrees of freedom. To see degrees of freedom, we must investigate the theory on spacetimes ofnontrivial topology\footnote{\sidenote{
+		Then isn't this, in some sense, a theory of Euclidean ``gravity'', or at least a ``string theory'' by itself? As it includes a sum over topologies.
+	}}. In fact, we can compute the amplitudes for more complicated surfaces by standard gluingtechniques familiar from axiomatic TFT. 
+	
+	
+	
+	
 	
 \raggedright
 
