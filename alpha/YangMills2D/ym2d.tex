@@ -44,7 +44,7 @@
 	\item[\cite{Cordes:1994fc}] \textit{Cordes, Moore, Ramgoolam}, \arxiv{hep-th/9411210}
 	\item[\cite{Witten:1991we}] Witten, \textit{On Quantum Gauge Theories in Two Dimensions}, 1991
 	\end{enumerate}
-	It is basically a condensed, more pedagocial version of \cite{Cordes:1994fc}. Many basic facts in this review are therefore uncited to avoid repeated citations of \cite{Cordes:1994fc}. All uncited claims, unless otherwise specified, can be traced back to \cite{Cordes:1994fc}. However, it is highly possible that I, in my infinite stupidity, misunderstood some ideas from \cite{Cordes:1994fc}; so please feel free to point out my mistakes.
+	It is basically a miniaturized, reorganized, pedagocial subset of \cite{Cordes:1994fc}, focusing on its section 3, with brief summary of its section 9, 10 and 14. Many basic facts in this review are therefore uncited to avoid repeated citations of \cite{Cordes:1994fc}. All uncited claims, unless otherwise specified, can be traced back to~\cite{Cordes:1994fc}. However, it is highly possible that I, in my infinite stupidity, misunderstood some ideas from~\cite{Cordes:1994fc}; so please feel free to point out my mistakes.
 \section{Introduction}
 	We start by writing down the usual Yang--Mills action in 2D (\YM), in Euclidean signature:
 	\begin{equation}
@@ -118,6 +118,7 @@
 			} \Big/ \mcal{G}(P)
 		\ \subset\ %
 		\mcal{A}(P) \Big/ \mcal{G}(P)
+	\label{eq:flat_moduli}
 	\end{equation}
 	\vspace{-1.2\baselineskip}
 	\begin{gather}
@@ -166,12 +167,12 @@
 	
 	Following \cite{Cordes:1994fc}, we will first review the exact solution of \YM, and then try to generalize some aspects for a generic cohomological field theory.
 %	
-%	In chapter 4 we relate the Hilbert space of class functions to some simple conformal field theories. The main goal is to show how bosonization leads to a natural interpretation of the Hilbert space in terms of string states.
+%	The abstract discussion concludes in section 14.6 where we give a unified description of an arbitrary cohomological field theory.
 %	
-%	4.7
-%	
-\section{Exact Solution of 2D Yang Mills}
-\subsection{Canonical Quantization on the Cylinder}
+%	The principles of chapter 14 are illustrated in a standard example in chapters 15, on topological Yang-Mills. 
+
+\section{Exact solution of 2D Yang--Mills}
+\subsection{Canonical quantization on the cylinder}
 	One can perform the usual canonical quantization with $I_\YM$ on the cylinder, with coordinates $(x^0,x^1) = (t,x) \in \mbb{R}^1\times S^1$. We shall make full use of the gauge redundancies in 2D; recall that a generic gauge transformation can be written as:
 	\begin{equation}
 	\begin{aligned}
@@ -290,7 +291,7 @@
 		}
 	\end{empheq}
 	
-	By the Peter--Weyl theorem for$G$ compact we can decompose the Hilbert space by the unitary irreduciblerepresentations (\textit{irreps}) $\{R\}$ of $G$. 
+	By the Peter--Weyl theorem for $G$ compact we can decompose the Hilbert space by the unitary irreducible representations (\textit{irreps}) $\{R\}$ of $G$. 
 	Consequently, a natural basis for the Hilbert space is provided by the \textit{characters} $\{\chi_R\}$ of the irreps; thus we have, relative to the $W$ basis,
 	\begin{equation}
 		\braket{W}{R}
@@ -299,7 +300,7 @@
 	\end{equation}
 	This is the wave function of the $R$ basis.
 	Here $\Tr_R$ denotes trace with respect to the irrep $R$; recall that $W$ is $\mfrak{g}$-valued and do not have a well-defined trace until we specify a irrep, in this case $R$. This is the gauge-invariant Wilson loop operator. Note that we are considering pure \YM without matter; the irrep $R$ is not some \textit{a priori} matter representation, but arises naturally as we consider class functions on $G$. \sidenote{This is kind of mysterious; does it has a physical interpretation, e.g.~like sum over possible matter representations?}
-\subsection{Hamiltonian and the Dynamics}
+\subsection{Hamiltonian and time evolution}
 	Let us now find the Hamiltonian for this theory. We are familiar with the the Hamiltonian density in 4D: $
 		\frac{e^2}{2} \pqty\big{
 			\vec{E}^2 + \vec{B}^2
@@ -348,7 +349,7 @@
 		C_2(R)
 		= \pqty\big{\delta^{ab} T_a T_b}_R
 	\end{equation}
-	Here $C_2(R)$ is the\textit{quadratic Casimir} of the irrep $R$; it is proportional to $\idty_R$, or can be treated as a $c$-number when restricted to the irrep. We find out that:
+	Here $C_2(R)$ is the \textit{quadratic Casimir} of the irrep $R$; it is proportional to $\idty_R$, or can be treated as a $c$-number when restricted to the irrep. We find out that:
 	\begin{empheq}{equation}
 		\textbf{The Hamiltonian $H$ is diagonalized in the $R$ basis and $\propto C_2$}
 	\end{empheq}
@@ -356,7 +357,7 @@
 	\begin{equation}
 		H = \frac{1}{2}\,e^2 L C_2
 	\end{equation}
-\subsection{Basic Amplitudes}
+\subsection{Basic amplitudes}
 	Having diagonalized the Hamiltonian, we can immediately write down the $W$ basis propagator by summing over the $R$ basis; we have:
 	\begin{gather}
 	\begin{aligned}
@@ -380,7 +381,7 @@
 		= \chi_R(W^\dagger)
 	\end{gather}
 	This is the \textbf{cylinder amplitude}. 
-	Note that the combination$\frac{1}{2} e^2 a$ enterstogether, where $a = LT$ is the area of the cylinder; this is evident from the action $I[\phi,A]$ in \eqref{eq:convenient_action}, where $e^2 \mu$ comes together as a parameter. The area dependence is also evident from the scalar action \eqref{eq:scalar_action}, where we that the theory is invariant under \textit{area preserving diffeomorphism}, $\mop{SDiff}(\Sigma_T)$. From now on we will absorb $\frac{e^2}{2}$ into $a$, and it will be the only dimensionful parameter of the theory.
+	Note that the combination $\frac{1}{2} e^2 a$ enters together, where $a = LT$ is the area of the cylinder; this is evident from the action $I[\phi,A]$ in \eqref{eq:convenient_action}, where $e^2 \mu$ comes together as a parameter. The area dependence is also evident from the scalar action \eqref{eq:scalar_action}, where we that the theory is invariant under \textit{area preserving diffeomorphism}, $\mop{SDiff}(\Sigma_T)$. From now on we will absorb $\frac{e^2}{2}$ into $a$, and it will be the only dimensionful parameter of the theory.
 	
 	By the orthogonality relations of characters, it is straightforward to verify that the propagator satisfy the \textit{gluing property}:
 	\begin{equation}
@@ -404,10 +405,55 @@
 			e^{-aC_2(R)}
 	\end{equation}
 	
-	By now it is clear that the theory is indeed \textit{topological}; there are no $x$-dependent, propagating degrees of freedom. To see degrees of freedom, we must investigate the theory on spacetimes ofnontrivial topology\footnote{\sidenote{
+	By now it is clear that the theory is indeed \textit{topological}; there are no $x$-dependent, propagating degrees of freedom. To see degrees of freedom, we must investigate the theory on spacetimes of nontrivial topology\footnote{\sidenote{
 		Then isn't this, in some sense, a theory of Euclidean ``gravity'', or at least a ``string theory'' by itself? As it includes a sum over topologies.
-	}}. In fact, we can compute the amplitudes for more complicated surfaces by standard gluingtechniques familiar from axiomatic TFT. 
+	}}. In fact, we can compute the amplitudes for more complicated surfaces by standard gluing techniques familiar from axiomatic TFT. 
+
+\section{From \YM to general cohomological theory}
+	We've learned quite a few things from our study of \YM; for example, we see that a topological theory need not be manifestly metric independent. Also, it is possible, and sometimes more elegant, to solve the theory without a complete gauge fixing. These ideas can all be utilized for the study of a general cohomological field theory.
 	
+	From a mathematical point of view, topological field theory is the study of \textit{intersection theory} on moduli spaces using physical methods \cite{Cordes:1994fc,Witten:1990bs}. In the physical framework these moduli spaces are presented in the general form:
+	\begin{equation}
+		\mcal{M}
+		= \Bqty{
+				A\in \mcal{A}
+				\,\Big|\,
+				DA = 0
+			} \Big/ \mcal{G}
+	\end{equation}
+	We've seen an example of this, from \eqref{eq:flat_moduli}. 
+	
+	Note that the usual Faddeev--Popov procedure and coventional BRST cohomology requires gauge-fixing. Now we would like to develop an alternative method which does not rely on a specific gauge choice. In \YM, postponing the gauge fixing leads us to the class functions on $G$, which is more convenient to work with than the gauge-fixed $\textsl{Cartan} \,\big/ \textsl{Weyl}$. More generally, we can directly work on the space of fields $\mcal{A}$ before gauge fixing, and consider \textit{$\mcal{G}$-equivariant} quantities on $\mcal{A}$. Here $\mcal{G}$ is generally an infinite-dimensional Lie group, the group of all possible gauge transformations. This is the idea of \textit{equivariant cohomology}. 
+\subsection{Differential complex from ``supersymmetry''}
+	Here we will briefly illustrate the construction of a differential complex, which will be a model for equivariant cohomology. We want something that is ``BRST-like'', without going through the Faddeev--Popov gauge-fixing process. The idea is to mimic the BRST field contents by introducing \textit{ghosts}, which can be systematically constructed using differential graded algebra (DGA); the grading is the \textit{ghost number}. 
+	
+	One can then think of these fields as coordinates of some \textit{superspace}, and write down actions of the \textit{superfield} \cite{Cordes:1994fc,Horne:1988yn}.  It turns out that the \textit{usual} Lie algebra cohomology of this \textit{supersymmetrized} Lie algebra $\mfrak{g}^S$ is the same as the equivariant cohomology of the original Lie algebra $\mfrak{g}$ \cite{Cordes:1994fc,Witten:1990bs}. 
+	
+	
+	
+	Example $\mcal{N} = (2,2)$
+	
+	
+	
+	
+	
+	
+\subsection{Localization}
+	
+	
+	
+	
+	
+	
+	
+	
+	2. Fields: When we study equivariant cohomology we must choose a model for the
+	cohomology. A choice of differential complex amounts to a choice of fields.
+	3. Equations: Mathematically, the ultimate objects of study are intersection numbers.
+	The equations are used to isolate interesting subspaces of C. One writes Poincaré duals to these subspaces using MQ representatives of Thom forms (thus introducing further fields). The equations are viewed as the vanishing of a section of a vector bundle: s = 0 where s(φ) = Dφ is the section of a vector bundle we will call the
+	localization bundle: s ∈ Γ[E localization → C].
+	
+	:
 	
 	
 	
