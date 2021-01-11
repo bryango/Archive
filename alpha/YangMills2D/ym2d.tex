@@ -20,6 +20,7 @@
 %\usepackage{cancel}
 \usepackage{xspace}
 \newcommand{\YM}{{\ensuremath{\mrm{YM}_2}}\xspace}
+\newcommand{\Vir}{\mathbf{V}\mfrak{ir}}
 
 \begin{document}
 \maketitle
@@ -44,7 +45,7 @@
 	\item[\cite{Cordes:1994fc}] \textit{Cordes, Moore, Ramgoolam}, \arxiv{hep-th/9411210}
 	\item[\cite{Witten:1991we}] Witten, \textit{On Quantum Gauge Theories in Two Dimensions}, 1991
 	\end{enumerate}
-	It is basically a miniaturized, reorganized, pedagocial subset of \cite{Cordes:1994fc}, focusing on its section 3, with brief summary of its section 9, 10 and 14. Many basic facts in this review are therefore uncited to avoid repeated citations of \cite{Cordes:1994fc}. All uncited claims, unless otherwise specified, can be traced back to~\cite{Cordes:1994fc}. However, it is highly possible that I, in my infinite stupidity, misunderstood some ideas from~\cite{Cordes:1994fc}; so please feel free to point out my mistakes.
+	It is basically a miniaturized, reorganized, pedagocial subset of \cite{Cordes:1994fc}, focusing on its section 3, with brief summary of its section 9, 10, 14 and 15. Many basic facts in this review are therefore uncited to avoid repeated citations of \cite{Cordes:1994fc}. All uncited claims, unless otherwise specified, can be traced back to~\cite{Cordes:1994fc}. However, it is highly possible that I, in my infinite stupidity, misunderstood some ideas from~\cite{Cordes:1994fc}; so please feel free to point out my mistakes.
 \section{Introduction}
 	We start by writing down the usual Yang--Mills action in 2D (\YM), in Euclidean signature:
 	\begin{equation}
@@ -424,39 +425,58 @@
 	We've seen an example of this, from \eqref{eq:flat_moduli}. 
 	
 	Note that the usual Faddeev--Popov procedure and coventional BRST cohomology requires gauge-fixing. Now we would like to develop an alternative method which does not rely on a specific gauge choice. In \YM, postponing the gauge fixing leads us to the class functions on $G$, which is more convenient to work with than the gauge-fixed $\textsl{Cartan} \,\big/ \textsl{Weyl}$. More generally, we can directly work on the space of fields $\mcal{A}$ before gauge fixing, and consider \textit{$\mcal{G}$-equivariant} quantities on $\mcal{A}$. Here $\mcal{G}$ is generally an infinite-dimensional Lie group, the group of all possible gauge transformations. This is the idea of \textit{equivariant cohomology}. 
-\subsection{Differential complex from ``supersymmetry''}
+\subsection{Equivariant cohomology from ``supersymmetry''}
 	Here we will briefly illustrate the construction of a differential complex, which will be a model for equivariant cohomology. We want something that is ``BRST-like'', without going through the Faddeev--Popov gauge-fixing process. The idea is to mimic the BRST field contents by introducing \textit{ghosts}, which can be systematically constructed using differential graded algebra (DGA); the grading is the \textit{ghost number}. 
 	
-	One can then think of these fields as coordinates of some \textit{superspace}, and write down actions of the \textit{superfield} \cite{Cordes:1994fc,Horne:1988yn}.  It turns out that the \textit{usual} Lie algebra cohomology of this \textit{supersymmetrized} Lie algebra $\mfrak{g}^S$ is the same as the equivariant cohomology of the original Lie algebra $\mfrak{g}$ \cite{Cordes:1994fc,Witten:1990bs}. 
+	Note that ``physical'' fields such as $A^a_\mu$ and matter fields are form a $\mscr{g}$-module, where $\mscr{g} = \mop{Lie} \mcal{G}$; to include ghost fields, we basically add an additional grading and work with the $\mscr{g}[\epsilon]$-module. Here $\epsilon$ is a Grassmann-odd parameter with $\deg\epsilon = -1$, and:
+	\begin{equation}
+		\mscr{g}[\epsilon]
+		= \pqty{\mscr{g} \otimes 1}
+			\oplus \pqty{\mscr{g} \otimes \epsilon}
+	\end{equation}
+%	One can then think of these fields as coordinates of some \textit{superspace}, and write down actions of the \textit{superfield} \cite{Cordes:1994fc,Horne:1988yn}.  
+	It turns out that the \textit{usual} Lie algebra cohomology of this \textit{supersymmetrized} Lie algebra $\mscr{g}[\epsilon]$ is the same as the equivariant cohomology of the original Lie algebra $\mscr{g}$ \cite{Cordes:1994fc}. 
 	
+	In fact, the Lie (super)algebra cohomology for $\mscr{g}[\epsilon]$ is precisely the BRST cohomology with $b,c,\beta,\gamma$ ghosts, known from superstring theory \cite{Polchinski:1998rr,Cordes:1994fc}. 
+	Hence it's possible to relate equivariant cohomology with familiar Lie superalgebra cohomology. 
+	An example of this is $\mcal{G} = \mrm{U}(1)$, whose equivariant cohomology is given by the Lie algebra cohomology of the \textit{twisted} $\mcal{N} = 2$ supersymmetry algebra in 2D \cite{Cordes:1994fc}. The twisted algebra is obtained from the original algebra by a \textit{topological twist}, which redefines the energy-momentum tensor and makes it $Q$-exact, thus rendering the theory topological \cite{Witten:1991zz,MauricioStuff}. From the level of the algebra, we have:
+	\begin{equation}
+		L_0 = \{G_0, Q_0\}
+	\end{equation}
+	Where $L_0$ is the zero mode of the energy momentum. 
+	There is a beautiful generalization of this by considering $\mcal{G} = \mop{Diff}(S^1)$, whose corresponding Lie algebra is given by the \textit{Witt algebra}, or \textit{Virasoro algebra} $\Vir_c$ with central charge $c=0$. The $\mcal{G} = \mrm{U}(1)$ we've considered is just the \textit{global} part of the local symmetry group $\mcal{G} = \mop{Diff}(S^1)$. Similarly, the $\mop{Diff}(S^1)$-equivariant cohomology is precisely the Lie algebra cohomology of the twisted $\mcal{N} = 2$ \textit{superconformal algebra}.
 	
-	
-	Example $\mcal{N} = (2,2)$
-	
-	
-	
-	
-	
+	For a more concrete example, let's go back to Yang--Mills, and consider the $\mcal{G}$-equivariant cohomology of the space of connections $\mcal{A}$. Again, fields are simply $\mscr{g}[\epsilon]$-modules; to compute equivariant cohomology we must construct a differential complex, which is achieved by adding ghosts. A choice of differential complex amounts to a choice of ghosts. One of the simpliest choice is given by the \textit{Cartan model} \cite{Witten:1990bs,Cordes:1994fc}; we have:
+	\begin{itemize}[noitemsep]
+	\item Degree 0: $A^a_\mu(x)$, Yang--Mills
+	\item Degree 1: $\psi^a_\mu(x)$, 1-form ghosts
+	\item Degree 2: $\phi^a(x)$, commuting 0-form
+	\end{itemize}
+	The BRST-like symmetry $\delta = [Q,-]_\pm$ is given by:
+	\begin{equation}
+		\var{A_\mu} = \psi_\mu,
+	\quad
+		\var{\psi_\mu} = -D_\mu \phi,
+	\quad
+		\var{\phi} = 0
+	\end{equation}
+	On the other hand, the conventional BRST symmetry from Faddeev--Popov is given by:
+	\begin{equation}
+		\tilde{\delta}{A_\mu} = -D_\mu c,
+	\quad
+		\tilde{\delta}{c} = \frac{1}{2}\,[c,c]
+	\end{equation}
 	
 \subsection{Localization}
 	
+	p121 11.12.3
 	
+	p195 15.12
 	
+	nonabelian localization theorem
 	
-	
-	
-	
-	
-	2. Fields: When we study equivariant cohomology we must choose a model for the
-	cohomology. A choice of differential complex amounts to a choice of fields.
-	3. Equations: Mathematically, the ultimate objects of study are intersection numbers.
-	The equations are used to isolate interesting subspaces of C. One writes Poincaré duals to these subspaces using MQ representatives of Thom forms (thus introducing further fields). The equations are viewed as the vanishing of a section of a vector bundle: s = 0 where s(φ) = Dφ is the section of a vector bundle we will call the
-	localization bundle: s ∈ Γ[E localization → C].
-	
-	:
-	
-	
-	
+	Mathematically, the ultimate objects of study are intersection numbers.
+
 	
 \raggedright
 
