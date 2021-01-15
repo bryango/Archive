@@ -44,8 +44,9 @@
 	]
 	\item[\cite{Cordes:1994fc}] \textit{Cordes, Moore, Ramgoolam}, \arxiv{hep-th/9411210}
 	\item[\cite{Witten:1991we}] Witten, \textit{On Quantum Gauge Theories in Two Dimensions}, 1991
+	\item[\cite{Witten:1992xu}] Witten, \textit{Two Dimensional Gauge Theories Revisited}, 1992
 	\end{enumerate}
-	It is basically a miniaturized, reorganized, pedagocial subset of \cite{Cordes:1994fc}, focusing on its section 3, with brief summary of its section 9, 10, 14 and 15. Many basic facts in this review are therefore uncited to avoid repeated citations of \cite{Cordes:1994fc}. All uncited claims, unless otherwise specified, can be traced back to~\cite{Cordes:1994fc}. However, it is highly possible that I, in my infinite stupidity, misunderstood some ideas from~\cite{Cordes:1994fc}; so please feel free to point out my mistakes.
+	It is basically a miniaturized, reorganized, pedagogical subset of \cite{Cordes:1994fc}, focusing on its section 3, with brief summary of its section 9, 10, 14 and 15. Many basic facts in this review are therefore uncited to avoid repeated citations of \cite{Cordes:1994fc}. All uncited claims, unless otherwise specified, can be traced back to~\cite{Cordes:1994fc}. However, it is highly possible that I, in my infinite stupidity, misunderstood some ideas from~\cite{Cordes:1994fc}; so please feel free to point out my mistakes.
 \section{Introduction}
 	We start by writing down the usual Yang--Mills action in 2D (\YM), in Euclidean signature:
 	\begin{equation}
@@ -57,7 +58,7 @@
 	\quad
 		\sqrt{G} = \sqrt{\det G_{\mu\nu}}
 	\end{equation}
-	Here we will try follow the convention of \cite{Cordes:1994fc}, despite the fact that it is, unfortunately, not quite self-consistent. $\Sigma_T$ stands for the 2D \textit{target}; in the large $N$ limit, it is possible to realize \YM as a string theory with worldsheet $\Sigma_W$, as is proposed by D.~Gross and W.~Taylor, among others \cite{Gross:1992tu,Gross:1993hu,Gross:1993yt}. 
+	Here we will try to follow the convention of \cite{Cordes:1994fc}, despite the fact that it is, unfortunately, not quite self-consistent. $\Sigma_T$ stands for the 2D \textit{target}; in the large $N$ limit, it is possible to realize \YM as a string theory with worldsheet $\Sigma_W$, as is proposed by D.~Gross and W.~Taylor, among others \cite{Gross:1992tu,Gross:1993hu,Gross:1993yt}. 
 	
 	Note that in 2D, the $\mfrak{g}$-valued curvature form $F = F^a_{\mu\nu}\,T_a \dd{x^\mu} \wedge \dd{x^\nu}$ is a \textit{top form}; here $T_a$ is the generator of Lie algebra $\mfrak{g} = \mop{Lie} G$, and $G$ is the compact gauge group, e.g.~$G = \mrm{SU}(N)$. This means that in 2D, we have:
 	\begin{gather}
@@ -145,15 +146,18 @@
 				\pi_1(\Sigma_T), G
 			} \big/ G
 	\end{equation}
-	Note that this only identifies the topology of $\mcal{M}_0$; to compute the path integral, we need to derive the measure on $\mcal{M}_0$ following the Faddeev--Popov procedure, which is implemented in \cite{Witten:1991we}.
+	Note that this only identifies the topology of $\mcal{M}_0$; to compute the path integral, we need to derive the measure on $\mcal{M}_0$ following e.g.~the Faddeev--Popov procedure, which is implemented in \cite{Witten:1991we}.
 	
-	For $e^2 \ne 0$, the action $I[\phi,A]$ is metric dependent. Somewhat surprisingly, the path integral still contains information about the topology of $\mcal{M}$. This is an example of a so-called \textit{cohomological field theory}. 
+	For $e^2 \ne 0$, the action $I[\phi,A]$ is metric dependent. Naturally, as $e^2 \to 0$, the path integral will be well approximated by the topological theory, and it still contains information about the topology of $\mcal{M}$. This is closely related to \textit{cohomological field theory}. 
+	
 	The idea of \cite{Cordes:1994fc} is to start from 2D Yang--Mills as a concrete example, and then use its results to motivate a thorough study of {cohomological field theory}.
 	
 	As is summarized in \cite{Cordes:1994fc}, \textit{topological field theories} (TFT's), largely introduced by E.~Witten, may be grouped into two classes: \textit{Schwarz type} and \textit{cohomological type}\footnote{
-		Cohomological type TFT's are also called \textit{Witten type} TFT's, e.g.~in \cite{Birmingham:1991ty}. However, \cite{Cordes:1994fc} chooses to call them \textit{cohomological}, probably to avoid confusion, since Witten has done wonderful work on both types of the theories.
+		Cohomological type TFT's are also called \textit{Witten type} TFT's, e.g.~in \cite{Birmingham:1991ty}. However, \cite{Cordes:1994fc} chooses to call them \textit{cohomological}, probably to avoid confusion, since Witten has done wonderful work on both types of the theories. 
 	}. 
-	Cohomological field theories, including 2D Yang--Mills with coupling $e^2 \ne 0$, are \textit{not} manifestly metric independent; however, they have a Grassmann-odd nilpotent BRST operator $Q$, and physical observables are $Q$-cohomology classes; amplitudes involving these observables are metric independent, thus they are indeed \textit{topological}. Generally speaking, a TFT need \textit{not} be metric independent; the important thing is that it computes \textit{topological invariants}. 
+	Cohomological field theories
+%	, including 2D Yang--Mills with coupling $e^2 \ne 0$, 
+	are \textit{not} manifestly metric independent; however, they have a Grassmann-odd nilpotent BRST-like operator $Q$, and physical observables are $Q$-cohomology classes; amplitudes involving these observables are metric independent, thus they are indeed \textit{topological}. Generally speaking, a TFT need \textit{not} be metric independent; the important thing is that it computes \textit{topological invariants}. 
 %	because of decoupling of BRST trivial degrees of freedom.
 	
 	On the other hand, \textit{Schwarz type} theories have Lagrangians which are metric independent and hence, formally, the quantum theory is expected to be topological. 
@@ -166,7 +170,7 @@
 	\end{equation}
 	The first term with $BF$ is also manifestly topological, similar to $e^2 = 0$ \YM; therefore Schwarz type theories are also called $BF$ type theories.
 	
-	Following \cite{Cordes:1994fc}, we will first review the exact solution of \YM, and then try to generalize some aspects for a generic cohomological field theory.
+	Following \cite{Cordes:1994fc}, we will first review the exact solution of \YM, and then try to generalize some aspects of \YM for a generic cohomological field theory.
 %	
 %	The abstract discussion concludes in section 14.6 where we give a unified description of an arbitrary cohomological field theory.
 %	
@@ -200,15 +204,15 @@
 	\end{gather}
 	Here $D_\mu$ is the $\mfrak{g}$-valued covariant derivative; it acts on the $\mfrak{g}$-valued gauge parameters $\lambda^a(t,x)$ by the adjoint representation $(T_b)\id{^a_c} = f\id{^a_{bc}}$. 
 	It is thus possible to choose the \textit{temporal gauge} $A_0 = 0$, by simply solving a first order ODE of $\lambda^a(t,x)$, with respect to the variable $x^0 = t$. 
-	
+\subsubsection{Complete gauge fixing}
 	We can further reduce $A_1(t,x)$ with remaining gauge redundancies; with some $t$-independent, but $x$-dependent $g = g(x)$, we can preserve $A_0 = 0$, while reducing $A_1(t,x) = A_1(t)$. This is basically the \textit{Coulomb gauge} in 2D, i.e.~we have $\pdd{1} A_1 = 0$. 
 	
-	Further simplifications can be achieved by working in the \textit{Schr\"odinger picture}, or \textit{Schr\"odinger representation}. A nice treatment of 4D Yang--Mills from this ``novel'' perspective can be found in \cite{Hatfield:234595}. In conventional formulations of QFT, we are used to work in the \textit{Heisenberg} or \textit{interactive picture}, where the fields evolve in time: $A_1 = A_1(t)$ and satisfy some operator equations of motion (EOM's), which for free theories look identical to the classical EOM's. Alternatively, we can take the quantum mechanical approach, and decompose the fields at each time slice $t = t_0$ to a set of time-independent energy eigenstates; in the case of \YM, we have $A_1 = \mrm{const}$. 
+	Further simplifications can be achieved by working in the \textit{Schr\"odinger picture}, or \textit{Schr\"odinger representation}. A nice treatment of 4D Yang--Mills from this ``novel'' perspective can be found in \cite{Hatfield:234595}. In conventional formulations of QFT, we are used to working in the \textit{Heisenberg} or \textit{interactive picture}, where the fields evolve in time: $A_1 = A_1(t)$ and satisfy some operator equations of motion (EOM's), which for free theories look identical to the classical EOM's. Alternatively, we can take the quantum mechanical approach, and decompose the fields at each time slice $t = t_0$ to a set of time-independent energy eigenstates; in the case of \YM, we have $A_1 = \mrm{const}$. 
 	The time evolution is then tracked by the \textit{wave functional} $\Psi_t[A_1]$. Since the gauge-fixed $A_1$ has no spacetime dependence, we've actually obtained a equivalent 0-dimensional field theory, i.e.~a quantum mechanical system. 
 	
 	There are still remaining gauge redundancies; with another spacetime independent, \textit{global} gauge transformation, we can rotate $
 		A_1 = A_1^a\,T_a \in \mfrak{g}
-	$ to the \textit{Cartan subalgebra}, i.e.~the maximal abelian subalgebra of $\mfrak{g}$. Finally, we demand that $A_1$ is invariant under the \textit{Weyl group}, which is the symmetry of the Cartan subalgebra. Therefore, the \textit{physical} Hilbert space of \YM consists of states given by:
+	$ to the \textit{Cartan subalgebra}, i.e.~the maximal abelian subalgebra of $\mfrak{g}$. Finally, we quotient $A_1$ by the action of the \textit{Weyl group}, which is the symmetry of the Cartan subalgebra. Therefore, the \textit{physical} Hilbert space of \YM consists of states given by:
 	\begin{equation}
 		\Psi[A_1],\quad
 		A_1
@@ -216,8 +220,8 @@
 		\in \textsl{Cartan} \,\Big/ \textsl{Weyl}
 	\label{eq:hilbert_space}
 	\end{equation}
-	
-	Alternatively, we can also work with a partial gauge fixing, e.g.~we only impose the temporal gauge $A_0 = 0$, and try to solve for $\Psi_t[A_1(x)]$ by looking at the ``Maxwell's equation" in 2D. The time evolution is taken care of by the Schr\"odinger equation for $\Psi_t$; for now we need only look at the spatial constraints. We have:
+\subsubsection{Partial gauge fixing}
+	Alternatively, we can also work with a partial gauge fixing, e.g.~we only impose the temporal gauge $A_0 = 0$, and try to solve for $\Psi_t[A_1(x)]$ by looking at the ``Maxwell's equation'' in 2D. The time evolution is taken care of by the Schr\"odinger equation for $\Psi_t$; for now we need only look at the spatial constraints. We have:
 	\begin{equation}
 		D_1 F_{10} = 0,
 	\quad
@@ -229,11 +233,11 @@
 		E = E^a T_a = F_{10}
 	\end{equation} 
 	
-	One can think of the Gauss's law constraint as the result of integrating out $A_0$, which imposes it's EOM $\fdv{I_\YM}{A_0} = 0$, which is precisely \eqref{eq:gauss_law_constraint}. 
+	One can think of the Gauss's law constraint as the result of integrating out $A_0$, which imposes its EOM $\fdv{I_\YM}{A_0} = 0$, which is precisely \eqref{eq:gauss_law_constraint}. 
 	However, for a gauged system, there are subtleties that we need to look out for. One should account for the gauge volume, which can be treated properly with Faddeev--Popov path integral, and the proper way to implement the constraints is through BRST quantization. 
 	
 	Fortunately, the na\"ive Gauss's law constraint \textit{does} work in this example. In fact, if we solve the Gauss's law constraint as an operator equation of $A_1$, we will get further gauge-fixing \cite{Hatfield:234595}. 
-	Alternatively, if we ignore the constraint and proceed with canonical quantization, which might be more convenient in some cases, we would expect \textit{unphysical} degrees of freedom like \textit{null states} to show up, due to the unfixed gauge redundancies. The constraint can then be utilized to identify \textit{physical} degrees of freedom, by demanding that it annilates physical states:
+	Alternatively, if we ignore the constraint and proceed with canonical quantization, which might be more convenient in many cases, we would expect \textit{unphysical} degrees of freedom like \textit{null states} to show up, due to the unfixed gauge redundancies. The constraint can then be utilized to identify \textit{physical} degrees of freedom, by demanding that it annihilates physical states:
 	\begin{equation}
 		D_1 \circ E \ket{\Psi} = 0,
 	\quad E = F_{10}
@@ -241,7 +245,7 @@
 	\end{equation}
 	Note that this idea is very much similar to \textit{old covariant quantization} and the \textit{Virasoro constraint} in string theory \cite{Polchinski:1998rq}. Again, for a more rigorous treatment, we should turn to the BRST cohomology, but for now this is sufficient. 
 	
-	In fact, we can actually proved \eqref{eq:gauss_law_constraint_state} by demanding the wave functional $\Psi[A_1(x)]$ to be gauge-invariant \cite{Hatfield:234595}; we shall work in the $A_1(x)$ basis, with $\Psi[A_1(x)] = \braket{A_1(x)}{\Psi}$. 
+	In fact, we can actually prove \eqref{eq:gauss_law_constraint_state} by demanding the wave functional $\Psi[A_1(x)]$ to be gauge-invariant \cite{Hatfield:234595}; we shall work in the $A_1(x)$ basis, with $\Psi[A_1(x)] = \braket{A_1(x)}{\Psi}$. 
 	The canonical momentum operator is then given by:
 	\begin{equation}
 		E = \fdv{A_1},
@@ -300,9 +304,11 @@
 		= \Tr_R (W)
 	\end{equation}
 	This is the wave function of the $R$ basis.
-	Here $\Tr_R$ denotes trace with respect to the irrep $R$; recall that $W$ is $\mfrak{g}$-valued and do not have a well-defined trace until we specify a irrep, in this case $R$. This is the gauge-invariant Wilson loop operator. Note that we are considering pure \YM without matter; the irrep $R$ is not some \textit{a priori} matter representation, but arises naturally as we consider class functions on $G$. \sidenote{This is kind of mysterious; does it has a physical interpretation, e.g.~like sum over possible matter representations?}
+	Here $\Tr_R$ denotes trace with respect to the irrep $R$; recall that $W$ is $\mfrak{g}$-valued and do not have a well-defined trace until we specify an irrep, in this case $R$. This is the gauge-invariant Wilson loop operator. Note that we are considering pure \YM without matter; the irrep $R$ is not some \textit{a priori} matter representation, but arises naturally\footnote{
+		This result is somewhat mysterious to me; does the sum over irreps $R$ has a physical interpretation, e.g.~like integrating out all possible matter representations?
+	} as we consider class functions on $G$.
 \subsection{Hamiltonian and time evolution}
-	Let us now find the Hamiltonian for this theory. We are familiar with the the Hamiltonian density in 4D: $
+	Let us now find the Hamiltonian for this theory. We are familiar with the Hamiltonian density in 4D: $
 		\frac{e^2}{2} \pqty\big{
 			\vec{E}^2 + \vec{B}^2
 		}
@@ -382,7 +388,7 @@
 		= \chi_R(W^\dagger)
 	\end{gather}
 	This is the \textbf{cylinder amplitude}. 
-	Note that the combination $\frac{1}{2} e^2 a$ enters together, where $a = LT$ is the area of the cylinder; this is evident from the action $I[\phi,A]$ in \eqref{eq:convenient_action}, where $e^2 \mu$ comes together as a parameter. The area dependence is also evident from the scalar action \eqref{eq:scalar_action}, where we that the theory is invariant under \textit{area preserving diffeomorphism}, $\mop{SDiff}(\Sigma_T)$. From now on we will absorb $\frac{e^2}{2}$ into $a$, and it will be the only dimensionful parameter of the theory.
+	Note that the combination $\frac{1}{2} e^2 a$ enters together, where $a = LT$ is the area of the cylinder; this is evident from the action $I[\phi,A]$ in \eqref{eq:convenient_action}, where $e^2 \mu$ comes together as a parameter. The area dependence is also evident from the scalar action \eqref{eq:scalar_action}, where we've noticed that the theory is invariant under \textit{area preserving diffeomorphism}, $\mop{SDiff}(\Sigma_T)$. From now on we will absorb $\frac{e^2}{2}$ into $a$, and it will be the only dimensionful parameter of the theory.
 	
 	By the orthogonality relations of characters, it is straightforward to verify that the propagator satisfy the \textit{gluing property}:
 	\begin{equation}
@@ -396,7 +402,7 @@
 	\begin{equation}
 		\Psi(W) = \delta(W - \idty)
 	\end{equation}
-	This is, up to an overall coefficient, the delta function with respect to the bi-invariant \textit{Haar measure} on the compact $G$. Here \textit{bi-invariance} means that the measure is invariant under left and right group multiplication, hence also invariant under conjugacy; therefore it is also a well-defined measure on $G$ classes, where $W$ actually belongs. Gluing the cylinder $a$ with the infinitesimal cylinder $a'\to 0$, we find the \textbf{disk (cap) amplitude}:
+	This is, up to an overall coefficient, the delta function with respect to the bi-invariant \textit{Haar measure} on the compact $G$. Here \textit{bi-invariance} means that the measure is invariant under left and right group multiplication, hence also invariant under conjugacy; therefore it is also a well-defined measure on $G$ classes, where $W$ actually belongs. Gluing the cylinder $a$ with the infinitesimal cylinder $a'\to 0$, we find the \textbf{cap (disk) amplitude}:
 	\begin{equation}
 		Z(W,\idty;a)
 		= \sum_R \chi_R(W)\,
@@ -406,12 +412,16 @@
 			e^{-aC_2(R)}
 	\end{equation}
 	
-	By now it is clear that the theory is indeed \textit{topological}; there are no $x$-dependent, propagating degrees of freedom. To see degrees of freedom, we must investigate the theory on spacetimes of nontrivial topology\footnote{\sidenote{
-		Then isn't this, in some sense, a theory of Euclidean ``gravity'', or at least a ``string theory'' by itself? As it includes a sum over topologies.
-	}}. In fact, we can compute the amplitudes for more complicated surfaces by standard gluing techniques familiar from axiomatic TFT. 
+	By now it is clear that the theory is indeed \textit{topological}; there are no $x$-dependent, propagating degrees of freedom. To see degrees of freedom, we must investigate the theory with Wilson loops \cite{Cordes:1994fc} or place it on spacetimes of nontrivial topology. 
+	In fact, we can compute the amplitudes for more complicated surfaces by standard gluing techniques familiar from axiomatic TFT; then the theory in a sense becomes a theory of Euclidean ``gravity'', as it includes a sum over topologies \cite{Cordes:1994fc}.
 
 \section{From \YM to general cohomological theory}
-	We've learned quite a few things from our study of \YM; for example, we see that a topological theory need not be manifestly metric independent. Also, it is possible, and sometimes more elegant, to solve the theory without a complete gauge fixing. These ideas can all be utilized for the study of a general cohomological field theory.
+	We've learned quite a few things from our study of \YM; for example, 
+	\begin{itemize}[noitemsep,leftmargin=*]
+	\item A topological theory need not be manifestly metric independent;
+	\item It is possible, and sometimes more elegant, to solve the theory without a complete gauge fixing;
+	\end{itemize}
+	These ideas can all be utilized for the study of a general cohomological field theory.
 	
 	From a mathematical point of view, topological field theory is the study of \textit{intersection theory} on moduli spaces using physical methods \cite{Cordes:1994fc,Witten:1990bs}. In the physical framework these moduli spaces are presented in the general form:
 	\begin{equation}
@@ -424,11 +434,13 @@
 	\end{equation}
 	We've seen an example of this, from \eqref{eq:flat_moduli}. 
 	
-	Note that the usual Faddeev--Popov procedure and coventional BRST cohomology requires gauge-fixing. Now we would like to develop an alternative method which does not rely on a specific gauge choice. In \YM, postponing the gauge fixing leads us to the class functions on $G$, which is more convenient to work with than the gauge-fixed $\textsl{Cartan} \,\big/ \textsl{Weyl}$. More generally, we can directly work on the space of fields $\mcal{A}$ before gauge fixing, and consider \textit{$\mcal{G}$-equivariant} quantities on $\mcal{A}$. Here $\mcal{G}$ is generally an infinite-dimensional Lie group, the group of all possible gauge transformations. This is the idea of \textit{equivariant cohomology}. 
-\subsection{Equivariant cohomology from ``supersymmetry''}
-	Here we will briefly illustrate the construction of a differential complex, which will be a model for equivariant cohomology. We want something that is ``BRST-like'', without going through the Faddeev--Popov gauge-fixing process. The idea is to mimic the BRST field contents by introducing \textit{ghosts}, which can be systematically constructed using differential graded algebra (DGA); the grading is the \textit{ghost number}. 
+	Note that the usual Faddeev--Popov procedure and conventional BRST cohomology requires gauge-fixing. Now we would like to develop an alternative method which does not rely on a specific gauge choice. In \YM, postponing the gauge fixing leads us to the class functions on $G$, which is more convenient to work with than the gauge-fixed $\textsl{Cartan} \,\big/ \textsl{Weyl}$. 
 	
-	Note that ``physical'' fields such as $A^a_\mu$ and matter fields are form a $\mscr{g}$-module, where $\mscr{g} = \mop{Lie} \mcal{G}$; to include ghost fields, we basically add an additional grading and work with the $\mscr{g}[\epsilon]$-module. Here $\epsilon$ is a Grassmann-odd parameter with $\deg\epsilon = -1$, and:
+	More generally, we can directly work on the space of fields $\mcal{A}$ before gauge fixing, and consider \textit{$\mcal{G}$-equivariant} quantities on $\mcal{A}$. Here $\mcal{G}$ is generally an infinite-dimensional Lie group, the group of all possible gauge transformations. This is the idea of \textit{equivariant cohomology}. 
+\subsection{Equivariant cohomology from ``supersymmetry''}
+	Here we will briefly illustrate the construction of a differential complex, which will be the \textit{model} for $\mcal{G}$-equivariant cohomology. We want something that is ``BRST-like'', without going through the Faddeev--Popov gauge-fixing process. The idea is to mimic the BRST field contents by introducing \textit{ghosts}, which can be systematically constructed using differential graded algebra (DGA); the grading is the \textit{ghost number}. 
+	
+	Note that ``physical'' fields such as $A^a_\mu$ and matter fields are form a $\mscr{g}$-module, where $\mscr{g} = \mop{Lie} \mcal{G}$; to include ghost fields, we basically introduce an additional \textit{grading} and work with the $\mscr{g}[\epsilon]$-module. Here $\epsilon$ is a Grassmann-odd parameter with $\deg\epsilon = -1$, and:
 	\begin{equation}
 		\mscr{g}[\epsilon]
 		= \pqty{\mscr{g} \otimes 1}
@@ -438,15 +450,16 @@
 	It turns out that the \textit{usual} Lie algebra cohomology of this \textit{supersymmetrized} Lie algebra $\mscr{g}[\epsilon]$ is the same as the equivariant cohomology of the original Lie algebra $\mscr{g}$ \cite{Cordes:1994fc}. 
 	
 	In fact, the Lie (super)algebra cohomology for $\mscr{g}[\epsilon]$ is precisely the BRST cohomology with $b,c,\beta,\gamma$ ghosts, known from superstring theory \cite{Polchinski:1998rr,Cordes:1994fc}. 
-	Hence it's possible to relate equivariant cohomology with familiar Lie superalgebra cohomology. 
+	Hence it's possible to relate equivariant cohomology with familiar Lie superalgebras. 
 	An example of this is $\mcal{G} = \mrm{U}(1)$, whose equivariant cohomology is given by the Lie algebra cohomology of the \textit{twisted} $\mcal{N} = 2$ supersymmetry algebra in 2D \cite{Cordes:1994fc}. The twisted algebra is obtained from the original algebra by a \textit{topological twist}, which redefines the energy-momentum tensor and makes it $Q$-exact, thus rendering the theory topological \cite{Witten:1991zz,MauricioStuff}. From the level of the algebra, we have:
 	\begin{equation}
 		L_0 = \{G_0, Q_0\}
 	\end{equation}
 	Where $L_0$ is the zero mode of the energy momentum. 
-	There is a beautiful generalization of this by considering $\mcal{G} = \mop{Diff}(S^1)$, whose corresponding Lie algebra is given by the \textit{Witt algebra}, or \textit{Virasoro algebra} $\Vir_c$ with central charge $c=0$. The $\mcal{G} = \mrm{U}(1)$ we've considered is just the \textit{global} part of the local symmetry group $\mcal{G} = \mop{Diff}(S^1)$. Similarly, the $\mop{Diff}(S^1)$-equivariant cohomology is precisely the Lie algebra cohomology of the twisted $\mcal{N} = 2$ \textit{superconformal algebra}.
 	
-	For a more concrete example, let's go back to Yang--Mills, and consider the $\mcal{G}$-equivariant cohomology of the space of connections $\mcal{A}$. Again, fields are simply $\mscr{g}[\epsilon]$-modules; to compute equivariant cohomology we must construct a differential complex, which is achieved by adding ghosts. A choice of differential complex amounts to a choice of ghosts. One of the simpliest choice is given by the \textit{Cartan model} \cite{Witten:1990bs,Cordes:1994fc}; we have:
+	There is a beautiful generalization of this by considering $\mcal{G} = \mop{Diff}(S^1)$, whose corresponding Lie algebra is given by the \textit{Witt algebra}, or \textit{Virasoro algebra} $\Vir_c$ with central charge $c=0$. The $\mcal{G} = \mrm{U}(1)$ we've considered is just the \textit{global} part of the local symmetry group $\mcal{G} = \mop{Diff}(S^1)$. Similarly, the $\mop{Diff}(S^1)$-equivariant cohomology is precisely the Lie algebra cohomology of the twisted $\mcal{N} = 2$ \textit{superconformal algebra}.
+\subsection{Cohomological \YM}
+	For a more concrete example, let's go back to Yang--Mills, and consider the $\mcal{G}$-equivariant cohomology of the space of connections $\mcal{A}$. Again, fields are simply $\mscr{g}[\epsilon]$-modules; to compute equivariant cohomology we must construct a differential complex, which is achieved by adding ghosts. A choice of differential complex amounts to a choice of ghosts. One of the simplest choice is given by the \textit{Cartan model} \cite{Witten:1990bs,Cordes:1994fc}; we have:
 	\begin{itemize}[noitemsep]
 	\item Degree 0: $A^a_\mu(x)$, Yang--Mills
 	\item Degree 1: $\psi^a_\mu(x)$, 1-form ghosts
@@ -460,24 +473,58 @@
 	\quad
 		\var{\phi} = 0
 	\end{equation}
-	On the other hand, the conventional BRST symmetry from Faddeev--Popov is given by:
+	
+	The idea is that the BRST-like symmetry $\delta$ acts like a ``square-root'' of the gauge transformation, and the $\phi$ field acts like a gauge parameter; we have:
+	\begin{equation}
+		\delta^2 A_\mu = -D_\mu \phi
+	\end{equation}
+	On the other hand, the conventional BRST symmetry $\tilde{\delta}$ from Faddeev--Popov acts like a gauge transformation parametrized by a ghost; it is given by:
 	\begin{equation}
 		\tilde{\delta}{A_\mu} = -D_\mu c,
 	\quad
 		\tilde{\delta}{c} = \frac{1}{2}\,[c,c]
 	\end{equation}
 	
-\subsection{Localization}
+	One can then write down a gauge-invariant action with ghosts. For \YM, this is given by \cite{Cordes:1994fc,Witten:1992xu}:
+	\begin{equation}
+		I[A,\psi,\phi]
+		= \int \pqty{
+				i \Tr\,(\phi F - \tfrac{1}{2}\psi\wedge\psi)
+				+ \frac{1}{2}\, e^2\mu \Tr\,(\phi^2)
+			}
+	\label{eq:cartan_action}
+	\end{equation}
+	We immediately notice that this is almost identical to the $I[\phi,A]$ in \eqref{eq:convenient_action}, just with an additional $\psi$ term, which is actually decoupled from the other fields and can be simply integrated out. Therefore, the theory in this form is indeed equivalent with the original $I_\YM$. 
 	
-	p121 11.12.3
+	The $\psi$ field, however, is far from useless. The main difficulty of computing the path integral for a gauge field $A$ is that we should treat the measure $\DD{A}$ with great care. But now we have a fermionic $\psi$ field; note that although there is no natural measure for $A$ or $\psi$ separately, there is a natural measure $\DD{A} \DD{\psi}$, since the Jacobian in a change of variables would cancel between bosons and fermions \cite{Witten:1992xu}. 
 	
-	p195 15.12
+	In fact, the $\psi$ term gives precisely the \textit{symplectic volume element} on the space of connections $\mcal{A}$, up to some normalization:
+	\begin{equation}
+		\DD{A} \DD{\psi}
+			\exp \pqty{
+				\frac{i}{4\pi^2}
+				\int \Tr (\tfrac{1}{2} \psi\wedge\psi)
+			}
+	\end{equation}
+	The action $I[A,\psi,\phi]$ thus provides a nice expression of the path integral at $e^2 = 0$, by specifying a measure of the flat moduli $\mcal{M}_0$ in \eqref{eq:flat_moduli}, which coincides with the result from Faddeev--Popov quantization \cite{Witten:1991we}. On the other hand, $\DD{\phi}$ provides a natural measure on the group of gauge transformations $\mcal{G}$. The path integral is thus automatically gauge-invariant. 
 	
-	nonabelian localization theorem
+	Furthermore, to write down the Lagrangian for a ``standard'' \textit{cohomological field theory}, one need to include additional \textit{anti-ghosts}, and then construct a functional $V$ such that the Lagrangian \cite{Witten:1992xu}:
+	\begin{equation}
+		\mcal{L} = -i\,\{Q,V\}
+	\label{eq:coh_action}
+	\end{equation}
+	i.e.~$\mcal{L}$ is manifestly $Q$-exact, which in turn leads to a $Q$-exact energy momentum tensor \cite{Cordes:1994fc}. We wish also to pick $V$ so that all fields will have a non-degenerate kinetic energy. A suitable choice of $V$ will then lead us to the 2D analog of \textit{Donaldson theory} \cite{Witten:1992xu}. 
 	
-	Mathematically, the ultimate objects of study are intersection numbers.
+	The \textit{cohomological \YM} constructed in this way is a ``fully topological'' theory of the cohomological type; however, it is \textit{not} equivalent to the \textit{physical \YM}, given by actions such as $I_\YM$, $I[\phi,A]$ or $I[A,\psi,\phi]$, found in \eqref{eq:scalar_action}, \eqref{eq:convenient_action}, and \eqref{eq:cartan_action}. The physical theory does have \textit{some} degrees of freedom beyond the topology, as evidenced by the $e^2 a$ dependence. 
+	
+	On the other hand, it is possible to relate the cohomological \YM with the physical \YM, as is explained by Witten in \cite{Witten:1992xu}, with \textit{equivariant localization}. This is precisely analogous to \textit{supersymmetric localization}; as we've learned before, the algebraic structures associated with equivariant cohomology is closely related to supersymmetry. For more on this, see 11.12.3 and 15.12 of \cite{Cordes:1994fc}, and 3.2 of \cite{Witten:1992xu}. 
 
-	
+%\subsection{Localization}
+%	When deriving the {cap amplitude} in \YM, we use the fact that as $e^2 a\to 0$, the theory gets reduced to a ``fully topological'' theory of the Schwarz type. 
+%	We can think of this as taking a \textit{semi-classical} limit of the path integral, since $e^2$ in $I_\YM$ is like an $\hbar$ parameter. 
+%	The accuracy of such approximation is closely related to the general phenomenon of \textit{localization} \cite{Pestun:2016zxk}. 
+
+
 \raggedright
 
 \printbibliography[%
