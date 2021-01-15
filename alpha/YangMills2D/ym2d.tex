@@ -525,7 +525,14 @@
 %	The accuracy of such approximation is closely related to the general phenomenon of \textit{localization} \cite{Pestun:2016zxk}. 
 
 
+\vspace{1.2\baselineskip}
 \raggedright
+% 按学校要求设定参考文献列表中的条目之内及之间的距离
+\setlength{\bibitemsep}{6bp}
+% linespread 值的计算过程可以参考 pkuthss.cls
+\renewcommand*{\bibfont}{\linespread{1.12}\selectfont}
+\patchcmd{\bibsetup}{\interlinepenalty=5000}{\interlinepenalty=10000}{}{}
+
 
 \printbibliography[%
 %	title = {参考文献} %
