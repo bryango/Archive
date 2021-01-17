@@ -14,7 +14,7 @@ mkdir -p release
 # naming: $project/$sub_project/$main.tex
 FILES=$(find . \
     -regex "./[^/]+/[^/]+/[^/]+\.tex" \
-    -not -path "./TeXplates/*"
+    -not -path "./TeXplates/*" | sort
 )
 log "Files:"
 echo "$FILES"
@@ -34,37 +34,42 @@ for file in $FILES; do
     )
     [[ -z $tex_program ]] && tex_program=xelatex
 
-    if [[ $tex_program == pdflatex ]] \
-    || [[ $tex_program == xelatex ]] \
-    || [[ $tex_program == lualatex ]]; then
-        latexmk \
-            "-$tex_program" \
-            -synctex=15 \
-            -interaction=nonstopmode \
-            -shell-escape \
-            "$filename"
-    else
-        eval "$tex_program" \
-            "$filename"
-    fi
+    {
+        if [[ $tex_program == pdflatex ]] \
+        || [[ $tex_program == xelatex ]] \
+        || [[ $tex_program == lualatex ]]; then
+            latexmk \
+                "-$tex_program" \
+                -synctex=15 \
+                -interaction=nonstopmode \
+                -shell-escape \
+                "$filename" \
+                1>/dev/null
+        else
+            eval "$tex_program" \
+                "$filename" \
+                1>/dev/null
+        fi
 
-    log "Check & release PDF:"
-    pdf="$(basename "$filename" .tex).pdf"
-    if ls "$pdf"; then
+        log "Check & release PDF:"
+        pdf="$(basename "$filename" .tex).pdf"
+        if ls "$pdf"; then
 
-        # shortened name: $project/$sub_project.tex
-        target="$DIR/release/$(dirname "$pathname")"
-        mkdir -p "$target"
+            # shortened name: $project/$sub_project.tex
+            target="$DIR/release/$(dirname "$pathname")"
+            mkdir -p "$target"
 
-        # shellcheck disable=2015
-        [[ $USER == bryan ]] \
-            && cp -a -v -f "$pdf" "$target/." \
-            || mv -v -f "$pdf" "$target/."
-    fi
+            # shellcheck disable=2015
+            [[ $USER == bryan ]] \
+                && cp -a -v -f "$pdf" "$target/." \
+                || mv -v -f "$pdf" "$target/."
+        fi
+    } &
 
     cd "$DIR" || exit 1
 done
 
+wait
 ls -alF release
 cp README.md LICENSE release
 
