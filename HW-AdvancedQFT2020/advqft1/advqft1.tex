@@ -120,7 +120,7 @@
 		}\,\pdd{\alpha}\epsilon
 	\end{aligned}
 	\end{equation}
-	It is evident (after partial integration) that the following currents are conserved; they are the Noether currents associated with $a^\mu$ and $\lambda^{[\mu\nu]}$:
+	It is then evident (after partial integration) that the following currents are conserved; they are the Noether currents associated with $a^\mu$ and $\lambda^{[\mu\nu]}$:
 	\begin{equation}
 		j^\alpha_\mu
 		= -\pd^\alpha X_\mu,\quad
@@ -360,7 +360,7 @@
 	\end{aligned}
 	\end{equation}
 	
-	We've obtained an interesting result: the expression for the boost generator $M^{i0}$ contains the Hamiltonian density $\mcal{H}$, weighted by the radial distance $x^i$. This is natural since a boost does indeed contains time evolution for states away from the origin. It's an important result utilized by the so-called \textit{Rindler decomposition}; in fact, $M^{i0}$ becomes the Hamiltonian for an accelerated observer in the Rindler patch\footnote{
+	We've obtained an interesting result: the expression for the boost generator $M^{i0}$ contains the Hamiltonian density $\mcal{H}$, weighted by the radial distance $x^i$. This is natural since a boost does indeed contains time evolution for excitations away from the origin. It's an important result utilized by the so-called \textit{Rindler decomposition}; in fact, $M^{i0}$ becomes the Hamiltonian for an accelerated observer in the Rindler patch\footnote{
 		See the lecture notes of Tom Hartman: \http{hartmanhep.net/topics2015/gravity-lectures.pdf} or Daniel Harlow \arxiv{1409.1231}. 
 	}. 
 	
@@ -373,16 +373,16 @@
 				- x^j \pd^i
 			}\,\phi
 	\end{equation}
-	This is interpreted as the angular momentum of the field $\phi$. Suppose $\phi$ is a wave packet localized around $\vb{x}$ with momentum $\approx \vb{p}$, then we have the classical angular momentum up to some factor:
+	This is interpreted as the angular momentum of the field $\phi$. Suppose $\phi$ is a wave packet localized around $\vb{x}$ with momentum $\approx \vb{k}$, then we have the classical angular momentum up to some factor:
 	\begin{equation}
 		M^{ij}
 		\sim \pqty{
-				x^i p^j
-				- x^j p^i
+				x^i k^j
+				- x^j k^i
 			} \int \dd[3]{x}
 				E \phi^2,
 	\quad
-		E = \sqrt{\vb{p}^2 + m^2}
+		E = \sqrt{\vb{k}^2 + m^2}
 	\end{equation}
 	
 	The $
@@ -401,7 +401,7 @@
 				+ \frac{1}{2} m^2 \phi^2
 				+ \cdots
 			}
-		\sim \pqty{E^2 + \vb{p^2} + m^2 + \cdots}
+		\sim \pqty{E^2 + \vb{k^2} + m^2 + \cdots}
 			\int \dd[3]{x} \frac{1}{2}\,\phi^2,
 	\end{gather}
 	\vspace{-.7\baselineskip}
@@ -411,8 +411,8 @@
 	Indeed, we have: $
 		M^{ij}
 		\sim \pqty{
-				x^i p^j
-				- x^j p^i
+				x^i k^j
+				- x^j k^i
 			}
 	$. 
 	
@@ -428,13 +428,14 @@
 		= \int \frac{\dd[3]{k}}{(2\pi)^3}
 			\frac{1}{\sqrt{2E_k}}
 			\pqty{
-				a_{\vb{k}} e^{ik\cdot x}
-				+ a^\dagger_{\vb{k}'} e^{-ik\cdot x}
+				a_{k} e^{ik\cdot x}
+				+ a^\dagger_{k} e^{-ik\cdot x}
 			},
 	\quad
-		[a_{\vb{k}}, a^\dagger_{\vb{k}'}]
+		[a_{k}, a^\dagger_{k'}]
 		= (2\pi)^3 \delta(\vb{k} - \vb{k}')
 	\end{equation}
+	The $k$ dependence in $a_k, E_k$ is, in fact, only a $\vb{k}$ dependence; we've dropped the boldface in the subscripts simply for convenience.
 	
 	For example, the first term in $M^{0i} = -M^{i0}$ can be expanded as:
 	\begin{equation}
@@ -479,7 +480,62 @@
 			2x^{[\mu} T^{\nu]0}
 	\end{gathered}
 	\end{equation}
-	The quantization $M\mapsto \normorder{M}$ is thus reduced to the quantization of $T_{0\nu}$. 
+	The quantization $M\mapsto \normorder{M}$ is thus reduced to the quantization of $T^{\nu 0}$, weighted by a $x^\mu$ factor. 
+	
+	First let's look at $T^{00} = \mcal{H}$; note that:
+	\begin{equation}
+		\int \dd[3]{x}
+			x^i e^{i\vb{k}\cdot\vb{x}}
+		= (2\pi)^3 \pqty{
+				-i\,\pdv{k_i}
+			} \delta(\vb{k})
+	\end{equation}
+	One can then check explicitly with mode expansion that, up to normal ordering, we have\footnote{
+		See a similar result in \url{https://physics.stackexchange.com/q/27906}. Moreover, the charge can be computed at arbitrary time slice $t$, but the $t$-dependence ($\sim e^{\pm iEt}$) drops out in the final result, due to the on-shell condition $E_k^2 = \vb{k}^2 + m^2$ and symmetries, e.g.\ $\int \dd[3]{k} k^i = 0$. Note that $\pdv{E_k}{k_i} = \frac{k^i}{E_k}$. 
+	}:
+	\begin{gather}
+		H = \int \dd[3]{x} \mcal{H}
+		= \int \frac{\dd[3]{k}}{(2\pi)^3}\,
+			E_k\, a^\dagger_k a_k,
+	\\
+		\mcal{O}^i = \int \dd[3]{x} x^i \mcal{H}
+		= \int \frac{\dd[3]{k}}{(2\pi)^3}\,
+			E_k\, a^\dagger_k
+				\pqty{+i\,\pdv{k_i}}
+			a_k,
+	\end{gather}
+	
+%\pagebreak[3]
+	At first glance, derivative of $a_k = a_{\vb{k}}$ with respect to $k^i$ seems puzzling; however, note that $\pqty\big{+i\,\pdv{k_i}}$ is precisely the $x^i$ operator in ``momentum-space'', and one can make sense of it by considering a generic $n$-particle state:
+	\begin{equation}
+		\ket{\Psi}
+		= \int \dd[3]{k_1}\cdots \dd[3]{k_n}
+			\Psi(\vb{k}_1,\cdots,\vb{k}_n)
+			\,a^\dagger_{k_1}
+			\cdots a^\dagger_{k_n} \ket{0}
+	\end{equation}
+	Where $\Psi(\vb{k}_1,\cdots,\vb{k}_n)$ is the $n$-particle wave function; using $
+		a_k a^\dagger_{k'}
+		= a^\dagger_{k'} a_k
+			+ (2\pi)^3\delta(\vb{k} - \vb{k'})
+	$ recursively, we get in the end that:
+	\begin{equation}
+		\mcal{O}_i \ket{\Psi}
+		= \int \dd[3]{k_1}\cdots \dd[3]{k_n}
+			\Bqty{
+				\sum_{m = 1}^n
+				E_{k_m}
+				\pqty{+i\,\pdv{k^i_m}}\,
+				\Psi(\vb{k}_1,\cdots,\vb{k}_n)
+			}
+			\,a^\dagger_{k_1}
+			\cdots a^\dagger_{k_n} \ket{0}
+	\end{equation}
+	
+	We see that indeed $\mcal{O}_i$ acts as $
+		E_k \pqty{+i\,\pdv{k^i}}
+	$ on the momentum-space $n$-particle wave function, consistent with the result of ordinary quantum mechanics; ...
+	
 	
 	\sidenote{TODO: Detailed analysis! HINT: Ward identity!}
 	
