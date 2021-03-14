@@ -274,6 +274,118 @@
 	\end{aligned}
 	\end{equation}
 
+\section{Einbein Action}
+	The einbein action of a point particle is given by:
+	\begin{equation}
+		S[\eta,X] = \frac{1}{2} \int \dd{\tau} \pqty{
+				\eta^{-1} \dot{X}_\mu \dot{X}^\mu
+				- \eta m^2
+			}
+	\end{equation}
+	Under worldline reparametrization: $\tau \mapsto \tau' = f(\tau)$, we have $X'(\tau') = X(\tau)$, i.e.~$X^\mu$ transforms like a \textbf{scalar} under worldline diffeomorphism; $
+		X(\tau)
+		\mapsto X'(\tau)
+		= X\pqty{f^{-1}(\tau)}
+	$. 
+	
+	On the other hand, $\eta$ should be treated like an einbein: $\eta = \sqrt{-\gamma}$, here $\gamma = \gamma_{\tau\tau}$ is the worldline metric; $\gamma < 0$ due to the Lorentzian signature. We have:
+	\begin{gather}
+		\eta = \sqrt{-\gamma}
+		\longmapsto \eta' = \eta\,
+			\det \pdv{\tau}{\tau'}
+		= \eta \pdv{\tau}{\tau'},
+	\\[1ex]
+		\eta^{-1}
+		= - \sqrt{-\gamma}\,\gamma^{-1}
+		\longmapsto (\eta')^{-1} = \eta^{-1}
+			\pqty{\pdv{\tau}{\tau'}}
+			\pqty{
+				\pdv{\tau'}{\tau}
+				\pdv{\tau'}{\tau}
+			}
+		= \eta^{-1} \pdv{\tau'}{\tau}
+	\end{gather}
+	It is clear that the action is invariant under the transformation:
+	\begin{equation}
+	\begin{aligned}
+		S'
+		&= \frac{1}{2} \int \dd{\tau'} \pqty\Big{
+				(\eta')^{-1}
+					\pdd{\tau'} X_\mu
+					\pdd{\tau'} X^\mu
+				- (\eta') m^2
+			} \\
+		&= \frac{1}{2} \int \dd{\tau}
+			\pdv{\tau'}{\tau}\,
+			\pqty{
+				\eta^{-1}
+					\pdv{\tau'}{\tau}
+					\cdot
+					\pdv{\tau}{\tau'}
+					\pdd{\tau} X_\mu
+					\cdot
+					\pdv{\tau}{\tau'}
+					\pdd{\tau} X^\mu
+				- \eta\,\pdv{\tau}{\tau'}\,m^2
+			} = S
+	\end{aligned}
+	\end{equation}
+	
+	We can eliminate $\eta$ classically by placing it on shell:
+	\begin{equation}
+		0 = \fdv{S}{\eta}
+		= - \eta^{-2} \dot{X}_\mu \dot{X}^\mu
+			- m^2,
+	\quad
+		\eta[X] = \frac{1}{m}
+			\sqrt{-\dot{X}_\mu \dot{X}^\mu}
+	\end{equation}
+	Substitute this back to the action, and we have:
+	\begin{equation}
+	\begin{aligned}
+		S[X] = S[\eta = \eta[X], X]
+		&= \frac{1}{2} \int \dd{\tau} \pqty{
+				m\,(
+					-\dot{X}_\mu \dot{X}^\mu
+				)^{-\frac{1}{2}}
+				\dot{X}_\mu \dot{X}^\mu
+				- m\,(
+					-\dot{X}_\mu \dot{X}^\mu
+				)^{+\frac{1}{2}}
+			} \\
+		&= -m \int \dd{\tau}
+			\sqrt{-\dot{X}_\mu \dot{X}^\mu}
+	\end{aligned}
+	\end{equation}
+
+\section{Ricci Tensor for Static Spherical Metric}
+	Consider the metric:
+	\begin{equation}
+	\begin{aligned}
+		\dd{s}^2
+		= - f(r) \dd{t}^2
+			+ h(r) \dd{r}^2
+			+ r^2 \pqty{
+				\dd{\theta}^2
+				+ \sin^2\theta \dd{\phi}^2
+			}
+		= \eta_{ab}\, e^a e^b
+	\end{aligned}
+	\end{equation}
+	Here we've defined the following vierbein:
+	\begin{equation}
+	\begin{aligned}
+		e^t &= \sqrt{f(r)} \dd{t} \\
+		e^r &= \sqrt{h(r)} \dd{r} \\
+		e^\theta &= r \dd{\theta} \\
+		e^\phi   &= r \sin\theta \dd{\phi} \\
+	\end{aligned}
+	\end{equation}
+	
+	
+	
+	
+	
 \appendix
 
 \section{Derivation of the special conformal transformations}
