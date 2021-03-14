@@ -1,0 +1,57 @@
+% !TeX document-id = {b5392a94-51a3-49d1-9ba5-698bc09f9d35}
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper
+	,10pt
+%	,twoside
+]{article}
+
+\input{../preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+\title{Notes on Gravitational Entropy}
+\addbibresource{entropy.bib}
+
+%%% ID: sensitive, do NOT publish!
+\InputIfFileExists{id.tex}{}{}
+
+\begin{document}
+\maketitle
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+%\vspace*{-.5\baselineskip}
+
+\setlength{\parskip}{.1\baselineskip}
+\tableofcontents
+\setlength{\parskip}{\parskipnorm}
+
+%\addtocounter{section}{-1}
+\section{Entanglement Entropy}
+	Ref: \textcite{Apolo:2020qjm}.
+	
+	A boundary interval $\mcal{A} \Leftrightarrow \rho_\mcal{A} = e^{-\mcal{H}_\mcal{A}}$. $\mcal{H}_\mcal{A}$ is generically nonlocal, but in a highly symmetric background (e.g.~vaccuum) it might be geometrically realized and corresponds to a symmetry of the underlying quantum field theory.
+	In this case there is a generalized Rindler transformation $f$ that maps the casual $\mcal{D} \to \{(\tau,\tilde{x})\}$ in some noncompact generalized Rindler spacetime, with $\pdd{\tau}$ an isometry of the spacetime. Then we have:
+	\begin{equation}
+		\zeta = 2\pi \pdd{\tau}
+		= 2\pi a^i H_i,
+	\quad
+		\tau \sim \tau + 2\pi i
+	\end{equation}
+	$H_i$: symmetry generators. Vaccuum$|_\mcal{D}\to$ some thermal state with well-defined temperature $2\pi$. 
+	
+	
+\section{Entropy as Noether Charge}
+	Ref: \textcite{Wald:1993nt,Lewkowycz:2013nqa,Faulkner:2013ana}. 
+	
+	
+
+\vspace{1.2\baselineskip}
+\raggedright
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}
