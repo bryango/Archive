@@ -27,9 +27,9 @@ jobs:
           apk --no-cache add findutils
           ./build.sh
 
-#     - name: Create release
-#       run: |
-#         sudo chown -R "$(id -u -n):$(id -g -n)" ./
+    - name: Create release
+      run: |
+        sudo chown -R "$(id -u -n):$(id -g -n)" ./
 #         git tag --force latest
 #         git push --force --tags "https://bryango:${{ secrets.GITHUB_TOKEN }}@github.com/bryango/Archive.git" master
 
