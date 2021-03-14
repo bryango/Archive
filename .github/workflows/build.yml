@@ -30,18 +30,18 @@ jobs:
     - name: Create release
       run: |
         sudo chown -R "$(id -u -n):$(id -g -n)" ./
-        git tag --force latest
-        git push --force --tags "https://bryango:${{ secrets.GITHUB_TOKEN }}@github.com/bryango/Archive.git" master
+#         git tag --force latest
+#         git push --force --tags "https://bryango:${{ secrets.GITHUB_TOKEN }}@github.com/bryango/Archive.git" master
 
-    - name: Publish release
-      if: always()
-      uses: svenstaro/upload-release-action@v1-release
-      with:
-        repo_token: ${{ secrets.GITHUB_TOKEN }}
-        tag: latest
-        file: 'release/*'
-        file_glob: true
-        overwrite: true
+#     - name: Publish release
+#       if: always()
+#       uses: svenstaro/upload-release-action@v1-release
+#       with:
+#         repo_token: ${{ secrets.GITHUB_TOKEN }}
+#         tag: latest
+#         file: 'release/*'
+#         file_glob: true
+#         overwrite: true
     
     - name: Checkout resources
       uses: actions/checkout@master
