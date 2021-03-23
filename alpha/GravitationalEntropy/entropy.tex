@@ -28,24 +28,328 @@
 \tableofcontents
 \setlength{\parskip}{\parskipnorm}
 
-%\addtocounter{section}{-1}
-\section{Entanglement Entropy}
+\addtocounter{section}{-1}
+\section{Conventions}
+	We try to follow the conventions of the TsT paper: \textcite{Apolo:2019zai}. 
+	\begin{itemize}
+	\item Lightcone coordinates: $u,v = x\pm t$, following \cite{Apolo:2019zai} (except that in \cite{Apolo:2019zai} the $x$ direction is compactified into the $\varphi$ circle). Constant $t$ slice is therefore given by $u = v$.
+	
+	\item Poincar\'e $\mrm{AdS}_3$ coordinates: $
+			X^I \sim (x^\mu,z) \sim (t,x,z) \sim (u,v,z)
+		$, metric: $
+			\dd{s}^2 = \frac{+\dd{u} \dd{v} + \dd{z}^2}{z^2}
+		$. Note the \mquote{+} before $\dd{u} \dd{v}$. 
+	\end{itemize}
+\section{Entanglement Entropy as Thermal Entropy}
 	Ref: \textcite{Apolo:2020qjm}.
 	
 	A boundary interval $\mcal{A} \Leftrightarrow \rho_\mcal{A} = e^{-\mcal{H}_\mcal{A}}$. $\mcal{H}_\mcal{A}$ is generically nonlocal, but in a highly symmetric background (e.g.~vaccuum) it might be geometrically realized and corresponds to a symmetry of the underlying quantum field theory.
 	In this case there is a generalized Rindler transformation $f$ that maps the casual $\mcal{D} \to \{(\tau,\tilde{x})\}$ in some noncompact generalized Rindler spacetime, with $\pdd{\tau}$ an isometry of the spacetime. Then we have:
 	\begin{equation}
-		\zeta = 2\pi \pdd{\tau}
+		\xi = 2\pi \pdd{\tau}
 		= 2\pi a^i H_i,
 	\quad
 		\tau \sim \tau + 2\pi i
 	\end{equation}
-	$H_i$: symmetry generators. Vaccuum$|_\mcal{D}\to$ some thermal state with well-defined temperature $2\pi$. 
+	$H_i$: symmetry generators. Vaccuum$|_\mcal{D}\to$ some thermal state with normalized inverse temperature $2\pi$. Here we choose to absorb such $2\pi$ into the definition of $\xi$, so the Euclidean periodicity w.r.t.~$\xi$ is simply $\beta = 1 = \frac{1}{T}$, which means the surface gravity along the horizon is given by $\kappa = 2\pi T = 2\pi$. 
+\subsection{Exercise: Poincar\'e $\mrm{AdS}_3/\mrm{CFT}_2$}
+	We illustrate the above ideas in Poincar\'e $\mrm{AdS}_3$ vaccuum, which is the simplest situation and can be easily compared with the results of \textcite{Lewkowycz:2019xse}. 
+\subsubsection{Bulk / boundary Killings}
+	In Poincar\'e $\mrm{AdS}_3/\mrm{CFT}_2$, the $H_i$'s are given by $L_n,\bar{L}_n$ with $n=0,\pm 1$. At $z\to 0$ we recover the usual global $\mfrak{sl}(2,\mbb{R})$ generators:
+	\begin{equation}
+		z\to 0,
+	\quad
+		      L_n \to -u^{n+1} \pdd{u},\quad
+		\bar{L}_n \to -v^{n+1} \pdd{v}
+	\end{equation}
+	Q: Why we only include the global generators on the field theory side? A: These are the symmetries of the Poincar\'e vaccuum. 
 	
+	One could argue that $L_{n>1}$ still annihilates the vaccuum $\ket{0}$, however we should actually consider all possible correlations w.r.t.~$\ket{0}$, and require that they remain unchanged under variation of $\ket{0}$. This translates to:
+	\begin{equation}
+		0 = \bqty{\rho,L_n}
+		= \bqty\Big{\dyad{0},L_n}
+	\end{equation}
+	Note that $L^\dagger_n = L_{-n}$, we thus have the restriction that $n = 0,\pm 1$. 
+	
+	To extend it to the bulk, think of the corresponding bulk isometries: translations, rotations, dilations and special conformal transformations:
+	\begin{equation}
+	\begin{aligned}
+		P_\mu
+		&= \pdd{\mu},\\
+		m_{uv}
+		&= x_\mu \pdd{\nu} - x_\nu \pdd{\mu}
+		= u\pdd{u} - v\pdd{v},\\
+		\Delta
+		&= X^I \pdd{I}
+		= u\pdd{u} + v\pdd{v} + z\pdd{z},\\
+		K_\mu
+		&= (z^2 + uv)\,\pdd{\mu}
+			- 2\eta_{\mu\nu} x^\nu \Delta,
+	\end{aligned}
+	\end{equation}
+	\begin{equation}
+		K_u = (z^2 + uv)\,\pdd{u} - v \Delta,
+	\quad
+		K_v = (z^2 + uv)\,\pdd{v} - u \Delta
+	\end{equation}
+	By requiring that a linear combination of these generators reduce to the boundary $L_n$'s, one can uniquely extend the $L_n,\bar{L}_n$'s into the bulk; see \texttt{modFlowCheck.nb}. The result for $L_n$ is listed below; for $\bar{L}_n$ one need only exchange all $u\leftrightarrow v$.
+	\begin{equation}
+		L_{-1} = -\pdd{u},
+	\quad
+		L_0 = -u\,\pdd{u} - \frac{z}{2}\,\pdd{z},
+	\quad
+		L_1 = -u^2\pdd{u} + z^2 \pdd{v}
+			- uz\,\pdd{z}
+	\end{equation}
+\subsubsection{Bulk modular flow}
+	RT surface (spacelike geodesic of Poincar\'e AdS with both ends attached to the boundary) is parametrized in terms of its end points $(t,x)_\pm$; its the intersection of a ``sphere'' (hyperboloid) and a plane through its center:
+	\begin{equation}
+	\text{``sphere'':}\quad
+		z^2
+		+ \pqty{x - \frac{x_+ + x_-}{2}}^{\!\!2}
+		- \pqty{t - \frac{t_+ + t_-}{2}}^{\!\!2}
+		= \pqty{\frac{L}{2}}^{\!\!2}
+		= \pqty{\frac{x_+ - x_-}{2}}^{\!\!2}
+		- \pqty{\frac{t_+ - t_-}{2}}^{\!\!2}
+	\end{equation}
+	\begin{equation}
+		L^2
+		= \pqty{x_+ - x_-}^2
+			- \pqty{t_+ - t_-}^2
+		= (u_+ - u_-)(v_+ - v_-)
+	\end{equation}
+	\begin{equation}
+	\text{plane:}\quad
+		\frac{x - \frac{1}{2} (x_+ + x_-)}{x_+ - x_-}
+		= \frac{t - \frac{1}{2} (t_+ + t_-)}{t_+ - t_-}
+	\end{equation}
+	See \href{https://bryango.github.io/resources/archive/HW-Gravity/gravity1.pdf}{\underline{this homework}} for a detailed derivation. 
+	Alternatively, it can be more compactly rewritten with $x^\mu \sim (t,x)$ or $(u,v)$; mind the various $\pm$ signs in the above expressions: 
+	\begin{equation}
+	\begin{aligned}
+		0 &= z^2
+			+ \eta_{\mu\nu} (x - x_+)^\mu (x - x_-)^\nu \\
+		& = z^2
+			+ (x - x_+)(x - x_-)
+			- (t - t_+)(t - t_-) \\
+		&= z^2 + \frac{
+				(u - u_+)(v - v_-)
+				+ (v - v_+)(u - u_-)
+			}{2}
+	\end{aligned}
+	\end{equation}
+	
+	Bulk modular generator vanishes along the RT surface, i.e.~RT surface is the fixed point of the modular flow; with this condition we can fix the coefficients of the modular generator, up to an overall coefficient\footnote{
+		One can compare this with similar results in the literature such as \cite{Lashkari:2016idm,Czech:2019vih,Apolo:2020qjm}. 
+	}:
+	\begin{equation}
+		\xi = 2\pi \sum_{n=0,\pm 1} \pqty{
+				s_n L_n - \bar{s}_n \bar{L}_n
+			},
+	\end{equation}
+	\begin{equation}
+		s_{-1} = \frac{u_+ u_-}{u_+ - u_-},\quad
+		s_0 = - \frac{u_+ + u_-}{u_+ - u_-},\quad
+		s_{+1} = \frac{1}{u_+ - u_-}
+	\end{equation}
+	One need only exchange all $u\leftrightarrow v$ to obtain $\bar{s}_n$. The overall coefficient of $\xi$ (in this case, $2\pi$) is fixed by normalizing the temperature of the horizon, namely we demand that the surface gravity is $2\pi$ along the RT surface:
+	\begin{equation}
+		T = \frac{\kappa}{2\pi} = 1,
+	\quad
+		\kappa^2
+		= (2\pi)^2
+		= -\frac{1}{2}\,
+			(\nabla_{\mu} \xi_{\nu})
+			(\nabla^{\mu} \xi^{\nu})
+	\end{equation}
+	
+\subsubsection{Modular flow at the cutoff surface}
+	We now restrict to an interval centered at the origin: $
+		u_\pm v_\pm
+		= x^2_\pm - t^2_\pm
+		= (\frac{L}{2})^2
+	$, $x_\pm = -x_\mp$, and same for $t_\pm, u_\pm, v_\pm$. 
+	We then introduce the \textit{rapidity} variable $\theta$ to nicely parametrized the boosted interval; for a constant time slice, we have $\theta = 0$. For a general boosted interval, we have:
+	\begin{equation}
+		x_\pm = \pm \frac{L}{2} \cosh \theta,
+	\quad
+		t_\pm = \pm \frac{L}{2} \sinh \theta,
+	\end{equation}
+	For now the coordinates $u_\pm, v_\pm, x_\pm, t_\pm$ are all specified at $z\to 0$, i.e.~at the \textbf{asymptotic boundary}. Note that the RT surface lies on the plane $
+		t_\pm / x_\pm = \tanh \theta
+	$, namely $\theta$ is constant along the RT surface. 
+	We have:
+	\begin{gather}
+	\begin{aligned}
+		\xi &= \frac{2\pi}{L} \bigg\{
+			\pqty\Big{
+				\pqty{
+					(\tfrac{L}{2})^2 - z^2
+					- (t^2 + x^2)
+				} \cosh\theta
+				+ 2tx \sinh\theta
+			} \,\pdd{t}
+		\\ &\qquad\qquad 
+			+ \pqty\Big{
+				\pqty{
+					(\tfrac{L}{2})^2 - z^2
+					+ (t^2 + x^2)
+				} \sinh\theta
+				- 2tx \cosh\theta
+			} \,\pdd{x}
+		\\ &\qquad\qquad 
+			+ \pqty\big{
+				x\sinh\theta
+				- t\cosh\theta
+			} \,2z\pdd{z}
+		\bigg\}
+	\end{aligned}
+	\end{gather}
+	
+	We see that the $\pdd{z}$ term vanishes in the following two cases:
+	\begin{itemize}[noitemsep]
+	\item as $z\to 0$, i.e.~near the asymptotic boundary;
+	\item within the plane $
+			x\sinh\theta
+			= t\cosh\theta
+		$ where the RT surface lies. 
+	\end{itemize}
+	Now we'd like to study $\xi$ not at the asymptotic boundary, but at some \textbf{constant finite cutoff} $z = z_c$. 
+	Note that is the size (coordinate length) of the interval at the {asymptotic boundary}; the coordinate length of the \textbf{cutoff interval $l$}, on the other hand, is given by:
+	\begin{equation}
+		\pqty{\frac{l}{2}}^{\!\!2}
+		= \pqty{\frac{L}{2}}^{\!\!2} - z_c^2,
+	\quad
+		x_\pm^c
+		= \pm \frac{l}{2}
+	\end{equation}
+	\begin{equation}
+	\begin{aligned}
+%		\xi_c \equiv
+		\xi|_{z=z_c, \pdd{z}\to 0}
+		= \frac{2\pi}{\sqrt{
+				l^2 + (2z_c)^2
+			}}
+		& \bigg\{
+			\pqty\Big{
+				\pqty{
+					(\tfrac{l}{2})^2
+					- (t^2 + x^2)
+				} \cosh\theta
+				+ 2tx \sinh\theta
+			} \,\pdd{t}
+		\\[-.5ex] &\quad 
+			+ \pqty\Big{
+				\pqty{
+					(\tfrac{l}{2})^2
+					+ (t^2 + x^2)
+				} \sinh\theta
+				- 2tx \cosh\theta
+			} \,\pdd{x}
+		\\ &\quad 
+			+ \pqty\big{
+				x\sinh\theta
+				- t\cosh\theta
+			} \,2z_c\pdd{z}
+		\bigg\}
+	\end{aligned}
+	\end{equation}
+	
+\pagebreak[3]
+	This seems nice and all but there is a subtlety for finite cutoff $z = z_c$. 
+	In the bulk the constant surface gravity $
+		\xi^\nu \cdv{\nu} \xi^\mu
+		= \kappa \xi^\mu
+		= 2\pi \xi^\mu
+	$ guarantees that after Wick rotation, the Euclidean periodicity around the horizon is normalized to $\beta = 1$. However, if we restrict to the field theory living at $z = z_c$, which corresponds to a $T\bar{T}$ deformed theory, since it has no knowledge of the $\pdd{z}$ component of $\xi$, we should project the $z$ component out, which leaves us:
+	\begin{equation}
+	\begin{aligned}
+		\xi^{\mrm{FT}}_c
+		\equiv \proj{z_c} \xi|_{z_c}
+		= \frac{2\pi}{\sqrt{
+				l^2 + (2z_c)^2
+			}}
+		& \bigg\{
+			\pqty\Big{
+				\pqty{
+					(\tfrac{l}{2})^2
+					- (t^2 + x^2)
+				} \cosh\theta
+				+ 2tx \sinh\theta
+			} \,\pdd{t}
+		\\[-2ex] &\quad 
+			+ \pqty\Big{
+				\pqty{
+					(\tfrac{l}{2})^2
+					+ (t^2 + x^2)
+				} \sinh\theta
+				- 2tx \cosh\theta
+			} \,\pdd{x}
+		\bigg\}
+	\end{aligned}
+	\end{equation}
+	Which no longer has normalized $\beta$ if $z_c \ne 0$. In fact, compared to the $z_c \to 0$ situation which \textit{does} have $\beta = 1$, $\xi^{\mrm{FT}}_c$ is rescaled by a factor of $\frac{l}{L}$, which means that:
+	\begin{equation}
+		\beta^{\mrm{FT}}_c
+		= \sqrt{1 + (2z_c/l)^2}
+		\sim 1 + 2z_c^2 / l^2
+	\end{equation}
+	
+	How should we understand this?
+	\begin{itemize}
+	\item $T\bar{T}$ deformation might somehow correspond to a variation of temperature at the cutoff; instead of $\rho = e^{-\mcal{H}}$, we now have:
+	\begin{equation}
+		\rho = e^{-\beta\mcal{H}},
+	\quad \beta \sim 1 + \frac{1}{l^2} \order{\mu}
+	\end{equation}
+	Where $\mu$ is the deformation parameter (see \cite{Apolo:2019zai} for the convention we follow). Q: how do we make this precise?
+	
+	\item The non-local nature of $T\bar{T}$ deformation creates some $\order{z_c}$ ``fuzziness'' in the cutoff theory at $z = z_c$; $\beta \sim 1$ holds, but only up to some coarse-graining of points. Q: again, how do we make this precise?
+	
+	\item Instead of projecting out the $\pdd{z}$ component of $\xi$, maybe we could \textit{define} the evolution of the cutoff interval by following the flow of $\xi$ starting from the RT surface at $z = z_c$. Now there is no longer a projection of $\xi$; we are always following it along the boundary, so the periodicity is preserved: $\beta = 1$. But now this is no longer a \textit{constant} cutoff away from $z = z_c$. In particular, the forward and backward evolved interval will approach the upper and lower endpoints of the diamond at $z \to 0$. Q: does this make sense? Will it be compatible with \textcite{McGough:2016lol}?
+	\end{itemize}
+	
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.8\linewidth]{img/modFlowXsection.pdf}
+	\hspace{2em}
+	\vspace{-2ex}
+	\caption{Modular flow at constant $x$ slices}
+	\end{figure}
 	
 \section{Entropy as Noether Charge}
-	Ref: \textcite{Wald:1993nt,Lewkowycz:2013nqa,Faulkner:2013ana}. 
+	Ref: \textcite{Wald:1993nt,Iyer:1994ys,Iyer:1995kg}.
+	 
+	Ref: \textcite{Lewkowycz:2013nqa,Faulkner:2013ana}. 
 	
+	Gravitational entropy is the Noether charge $Q_\xi$ associated with some horizon generator $\xi$. In the case of entanglement entropy between a simple interval and its complement, we've found its corresponding modular flow in the bulk, which is precisely the horizon generator of the Rindler patch. We then aim to compute the charge variation using the covariant formula:
+	\begin{equation}
+		\var{Q}_{\xi} [\var{g}, g]
+		= \frac{1}{16 \pi G}
+			\int_{\pd\Sigma}
+			\sqrt{|g|} \dd{x}^{\alpha}
+				\varepsilon_{\alpha\mu\nu}\,
+				k_\xi^{\mu\nu} [\var{g}, g]
+	\end{equation}
+	However, to compute $\var{Q}$ we need to consider a particular metric variation $\var{g}_{\mu\nu}$ in the phase space of solutions. There is no free parameter in Poincar\'e $\mrm{AdS}_3$, unless we turn on temperature; this leads to the BTZ geometry. 
+	
+	We thus have to repeat the calculations above to get the geodesic $\gamma$ and modular generators $\xi^\mu$ in the new backgrounds. However, it is convenient to remember that all BTZ black holes are locally equivalent to the pure $\mrm{AdS}_3$; we can map Poincar\'e $(u,v,z)$ to BTZ $(t,r,\phi)$ by \cite{Hubeny:2007xt}:
+	\begin{equation}
+		u,v = \sqrt{\frac{r^2 - r_+^2}{r^2 - r_-^2}}\,
+			e^{(\phi\pm t)\,2T_{u,v}},
+	\quad
+		z = \sqrt{\frac{r_+^2 - r_-^2}{r^2 - r_-^2}}\,
+			e^{\phi r_+ + t r_-},
+	\end{equation}
+	\begin{gather}
+		r_\pm = T_u \pm T_v,
+	\quad
+		8GM = r_+^2 + r_-^2
+		= 2\,(T_u^2 + T_v^2),
+	\quad
+		4GJ = r_+ r_-
+		= T_u^2 - T_v^2,
+	\end{gather}
 	
 
 \vspace{1.2\baselineskip}
