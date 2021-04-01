@@ -1,0 +1,337 @@
+% !TeX document-id = {b5392a94-51a3-49d1-9ba5-698bc09f9d35}
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper
+	,10pt
+%	,twoside
+]{article}
+
+\input{../preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+\title{A First Look at Celestial Holography}
+\addbibresource{celestial.bib}
+
+%%% ID: sensitive, do NOT publish!
+\InputIfFileExists{id.tex}{}{}
+
+\makeatletter
+\newcommand{\nobeginpar}{\@beginparpenalty=10000}
+\makeatother
+
+\begin{document}
+\maketitle
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+%\vspace*{-.5\baselineskip}
+
+\setlength{\parskip}{.1\baselineskip}
+\tableofcontents
+\setlength{\parskip}{\parskipnorm}
+
+\addtocounter{section}{-1}
+\section{References}
+	\begin{itemize}
+	\item \textbf{Primary reference:} \fullcite{Strominger:2017zoo}. 
+	\item \textbf{Secondary:} \fullcite{Ball:2019atb}. 
+	
+	See also \fullcite{deBoer:2003vf}. 
+	\item \textbf{Also:} \fullcite{Pate:2019mfs}
+	\end{itemize}
+	
+	\noindent
+	Talks by the authors:
+	\begin{itemize}[noitemsep]
+	\item Andy Strominger: \url{https://www.youtube.com/watch?v=By9hFSvl9MA}
+	\item Monica Pate: \url{https://www.youtube.com/watch?v=4M4iZ8Hnc4Q}
+	\item Andy Strominger, recent progress: \url{https://www.youtube.com/watch?v=wNLNIL81T_s}
+	
+	\vspace{.5\baselineskip}
+	
+	\item[**] Not very relevant, but there is an very recent, very interesting, very physical talk by Susskind at IAS on dS holography: \url{https://www.youtube.com/watch?v=4GKjr-y5MY0}
+	\end{itemize}
+
+\pagebreak
+
+\section{Basics}
+\subsection{\textsl{What} is the celestial sphere?}
+	The celestial sphere, \textit{天球}, is a basic concept in astronomy. According to \href{https://en.wikipedia.org/wiki/Celestial_sphere}{\textsl{Wikipedia}}, the celestial sphere is an abstract sphere that has an arbitrarily large radius and is concentric to the observer. All objects in the sky can be conceived as being projected upon the inner surface of the celestial sphere. 
+	
+	The idea of celestial sphere in celestial holography is almost precisely the same as that in usual astronomy. Suppose we, the observers, are at the origin of a \textbf{asymptotically flat} universe; the stars we see in the sky are null rays coming from somewhere closed to the past null infinity $\mscr{I}^-$, i.e.~what we see in the night sky is precisely the celestial sphere $CS^-$ closed to $\mscr{I}^-$. Similarly, there is another celestial sphere $CS^+$ located near $\mscr{I}^+$. 
+	
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.85\linewidth]{img/bond.pdf}
+	\caption[Penrose diamond of Minkowski spacetime]{
+		\textbf{Penrose \textsl{diamond}} of Minkowski spacetime, from \cite{Strominger:2017zoo}. Compared to the standard Penrose diagram, we can see the celestial sphere more clearly in this kind of diamond diagrams. Roughly speaking, we have $\mscr{I}^\pm = \mbb{R}^\pm \times CS^\pm$, where $\mbb{R}^\pm$ stands for the $u,v$ coordinates.
+	}
+	\end{figure}
+	
+	\textsl{We will primarily work in \textbf{4D}, where the celestial spheres are \textbf{2-spheres}}, $CS^\pm \ni (z,\bar{z})$. 
+	\begin{equation}
+		\dd{s}^2
+		= - \dd{u}^2 - 2\dd{u} \dd{r}
+			+ r^2 \dd{\Omega}^2,
+	\quad
+		u = t - r,
+	\end{equation}
+	\vspace{-.8\baselineskip}
+	\begin{equation}
+		\dd{\Omega}^2
+		= 2\gamma_{z\bar{z}} \dd{z} \dd{\bar{z}},
+	\quad
+		\gamma_{z\bar{z}}
+		= \frac{2}{(1 + z\bar{z})^2}
+	\label{eq:metric_null_plus}
+	\end{equation}
+	$u$: \textbf{retarded time}. 
+	These coordinates work well near $\mscr{I}^+$ where $t,r\to\infty$ but $u = t - r$ stays finite. It's no good around $\mscr{I}^-$ where $u\to -\infty$; instead we need \textbf{advanced coordinates}:
+	\begin{equation}
+		\dd{s}^2
+		= - \dd{v}^2
+			\mathbin{\sidenote{+}} 2\dd{v} \dd{r}
+			+ r^2 \dd{\Omega}^2,
+	\quad
+		v = t + r,
+	\end{equation}
+%	\meaning\sidenote
+	
+\pagebreak[4]
+	Note that the $(z,\bar{z})$ in $CS^\pm$ are not na\"ively identical, but identified with the \textbf{antipodal map}:
+	\begin{equation}
+		z \mapsto -\frac{1}{\bar{z}},
+	\quad
+		\text{i.e.}\,\ %
+		z_+ = - \frac{1}{\bar{z}_-},
+	\ %
+		z_- = - \frac{1}{\bar{z}_+},
+	\end{equation}
+	This is actually the more natural choice: a ``free'' light ray starting from $z_- = z$ ends at $z_+ = z$. This in fact binds $\mcal{I}^+$ with $\mcal{I}^-$. 
+	This gives the natural antipodal matching condition for fields around $i^0$:
+	\begin{equation}
+		F(u,z,\bar{z})|_{\mscr{I}^+\to i^0}
+		= F(v,z,\bar{z})|_{\mscr{I}^-\to i^0}
+	\end{equation}
+\subsection{\textsl{Why} do we want to study that?}
+	\begin{enumerate}
+	\item As an approach to \textbf{flat holography}. Another interesting observation: one can do some sort of a ``double holography'' by \textit{uplifting} $\mrm{AdS}_3/\mrm{CFT}_2$; this discussed in e.g.~\cite{deBoer:2003vf,Ball:2019atb}. 
+	
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.5\linewidth]{img/hyperbolicslicing.pdf}
+	\caption[Hyperbolic slicing of Minkowski]{
+		Hyperbolic slicing of Minkowski, taken from \cite{Strominger:2017zoo}.
+		
+		One can implement the \textbf{Euclidean holography} $\mrm{EAdS}_3/\mrm{CFT}_2$ in the red patch, along \textbf{a specific time slice} of the causal future \cite{deBoer:2003vf,Ball:2019atb}. 
+		On the other hand, in the blue Rindler patches we can apply Lorentzian $\mrm{dS}_3/\mrm{CFT}_2$. 
+		
+		Note that in the $\mrm{dS}_3/\mrm{CFT}_2$ here, although the bulk $\mrm{dS}_3$ is Lorentzian, the dual $\mrm{CFT}_2$ is again a \textbf{Euclidean theory} living at $\mscr{I}^\pm$, very different from the usual global $\mrm{AdS}_3/\mrm{CFT}_2$, where the $\mrm{CFT}_2$ is a Lorentzian theory living at $i^0$. 
+	}
+	\end{figure}
+	
+\pagebreak[4]
+	For more on of $\mrm{dS}/\mrm{CFT}$, see\footnote{
+		We can read these papers in future journal clubs. Fun facts: just before \citefield{Strominger:2001pn}[eprint:arxivid]{eprint}, we have \arxiv{hep-th/0106112} which is the famous AdS two-sided black hole paper by Maldacena. 
+	}:
+	\begin{itemize}[noitemsep]
+	\item The $\mrm{dS}/\mrm{CFT}$ paper by \textcite{Strominger:2001pn},
+	\item Also \textcite{Witten:2001kn},
+	\item And Maldacena's comments \textcite{Maldacena:2002vr}. 
+	\end{itemize}
+	This flavor of $\mrm{dS}/\mrm{CFT}$ is far more ambiguous than the usual $\mrm{AdS}/\mrm{CFT}$ and somewhat ``suspicious''; see Maldacena's comments in \cite{Maldacena:2002vr} and Susskind's recent talk at IAS. 
+	
+%\pagebreak[4]
+	
+	\item As part of the universal \textbf{IR structure}. 
+	
+	\begin{itemize}[noitemsep]
+	\item IR: Integrate out massive modes $\to$ massless particles;
+	
+	\item Enhanced symmetries in the IR: asymptotic conformal-like symmetries (e.g.~BMS);
+	
+	\item IR physics largely ``regulated'' by symmetries.
+	
+	\end{itemize}
+	
+	There is a sense of \textbf{IR universality}: similar structures appear in all kinds of gauge theory, including gravity. 
+	
+	
+	\end{enumerate}
+	
+\section{Massless Scattering}
+	
+	IR divergences in QED: Every time we breathe, an infinite number of soft photons and gravitons are produced. Usual resolution in QFT: cutoff \& resummation of diagrams, but it's hard to understand why it works; the reason: symmetries!
+	\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.7\linewidth]{img/Resum.png}
+	\caption[Resummation cures IR divergences]{
+		Resummation cures IR divergences; this is an illustration of the amplitude for Bhabha scattering, taken from \cite{Strominger:2017zoo}. 
+	}
+	\end{figure}
+	
+	Antipodal identification $\to \infty$ amount of conserved charge (in the IR limit). Consider any function $\epsilon$ on Minkowski space such that:
+	\begin{equation}
+		\epsilon(u,z,\bar{z})|_{\mscr{I}^+}
+		= \epsilon(z,\bar{z})
+		= \epsilon(v,z,\bar{z})|_{\mscr{I}^-}
+	\end{equation}
+	In particular, it obeys the boundary condition near $i^0$:
+	\begin{equation}
+		\epsilon(u,z,\bar{z})|_{\mscr{I}^+\to i^0}
+		= \epsilon(z,\bar{z})
+		= \epsilon(v,z,\bar{z})|_{\mscr{I}^-\to i^0}
+	\end{equation}
+	
+	With such $\epsilon(z,\bar{z})$, charge conservation is almost tautological, as both $\epsilon$ and the field $F$ obey the antipodal identification; for example, in QED we have:
+	\begin{equation}
+	\begin{aligned}
+		Q_\epsilon^+
+		:=& \int_{\mscr{I}^+} \Bqty\Big{
+				\epsilon(z,\bar{z})\,
+					(\hodgedual j)
+				+ \dd{\epsilon}
+					\wedge \hodgedual F(u,z,\bar{z})
+			}\\
+		=& \int_{\mscr{I}^+}
+			\dd{\Bqty\Big{
+				\epsilon\,
+				(\hodgedual F)
+			}}
+		= \int_{CS_{\mscr{I}^+\to i^0}}
+			\hodgedual F(u,z,\bar{z})\,
+			\epsilon(z,\bar{z})
+		= \int_{CS_{\mscr{I}^-\to i^0}}
+			\hodgedual F(v,z,\bar{z})\,
+			\epsilon(z,\bar{z})
+		= Q_\epsilon^-
+	\end{aligned}
+	\end{equation}
+	Here we've used Gauss law (Stokes' theorem), and we've assumed no massive flux passes through the $i^\pm$ endpoints. With $\epsilon = \mrm{const.}$ we recover charge conservation; with general $\epsilon(z,\bar{z})$ we can construct $\infty$ many conserved charges.
+	
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.5\linewidth]{img/minkowskipenrose.pdf}
+	\caption[Worldlines of massive and massless particles]{
+		Worldlines of massive and massless particles traveling through the Penrose diamond, taken from \cite{Strominger:2017zoo}.
+	}
+	\end{figure}
+	
+	Incoming / outgoing asymptotic states are organized by asymptotic symmetries. If we restrict to massless scattering, $\mscr{I}^\pm$ are nice ``Cauchy surfaces''. 
+	After understanding massless scattering, we can then extend the results carefully to include massive particles, which travels from $i^-$ to $i^+$. The $\mrm{EAdS}$ slicing mentioned above is a nice way to ``regularize'' the singular behavior around $i^\pm$. They correspond to operators that are \textit{smeared} on $CS$. 
+	
+\subsection{Soft theorem \& memory effect}
+	Ward identity:
+	\begin{equation}
+		0
+		= \mel{\textsl{out}}{
+				\bqty\big{Q_\epsilon, \mcal{S}}
+			}{\textsl{in}}
+	\end{equation}
+	When expanded, gives constraints to the $\mcal{S}$ matrix elements; this gives precisely the \textit{soft theorem}. In fact the $
+%		\displaystyle
+		\int_{\mscr{I}^+} \Bqty\big{
+			\dd{\epsilon}
+			\wedge \hodgedual F(u,z,\bar{z})
+		}
+	$ term creates \textbf{zero energy soft photons} with polarization $\pdd{\alpha} \epsilon$, namely it shifts the \textbf{$\infty$-ly degenerate vacuum}. 
+	
+	The same mechanism leads to the \textbf{memory effect}; one can think of them as same equations for scattering but one in momentum space and the other one in position space. 
+	
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.45\linewidth]{img/memdet.pdf}
+	\caption[Gravitational memory effect]{
+		Gravitational memory effect, taken from \cite{Strominger:2017zoo}. Amazingly memory effect are very realistic physics and there has been many proposals to measure this in real experiments, both for gravitational memory and other memory effects.
+	}
+	\end{figure}
+\subsection{Asymptotic symmetries}
+	
+	Boundary conditions: suitable choice of asymptotic falloffs and gauge conditions; 
+	\begin{equation}
+		\mrm{ASG}
+		= \frac{
+			\textsl{allowed gauge symmetries: repect boundary conditions}
+		}{
+			\textsl{trivial gauge symmetries: act trivially on boundary data (charges)}
+		}
+	\end{equation}
+	e.g.~$\mop{ASG}\,(\textsl{asymptotically flat}_4) = \mrm{BMS}_4 \supset \mrm{Poincar\'e}$, i.e.~it is $\infty$-ly \textbf{larger} than the isometry of Minkowski! According to \cite{Strominger:2017zoo}, this is not the full story yet; BMS is ``both too big and too small''. In fact, analyses of ASG are ``more of an art than a science'', in part because of ambiguities in the choice of boundary conditions, which are often only a posteriori justified \cite{Strominger:2017zoo}. 
+	
+	More specifically, we fix Bondi gauge, which is just \eqref{eq:metric_null_plus} plus small fluctuations, and then solve the Killing equation:
+	\begin{equation}
+		\ldv{\zeta} g = 0
+	\end{equation}
+	Naturally $\zeta \in \mfrak{SO}(3,1)$ is part of the solutions, i.e~the 6 Lorentz generators; these are large $\order{r}$ Killing vectors around $\mscr{I}^\pm$. 
+	We then consider small transformations around $\mscr{I}^+$, by imposing that the vector field is $\order{1}$ at large $r$ in an orthonormal frame. 
+	\begin{equation}
+		\zeta^u,\zeta^r
+		\sim \order{1},
+	\quad
+		\zeta^z,\zeta^{\bar{z}}
+		\sim \order{\frac{1}{r}}
+	\end{equation}
+	
+	The solution of the Killing equation is then given by an $\infty$-ly generated \textbf{supertranslations} parametrized by $\epsilon = \epsilon(z,\bar{z})$,
+	\begin{equation}
+		\zeta
+		= \epsilon\,\pdd{u}
+		- \frac{1}{r} \pqty{
+			(\nabla^z \epsilon)\,\pdd{z}
+			+ (\nabla^{\bar{z}} \epsilon)\,\pdd{\bar{z}}
+		} + (\nabla^2 \epsilon)\,\pdd{r},
+	\quad
+		\epsilon = \epsilon(z,\bar{z})
+	\end{equation}
+	$\mrm{BMS}^+ = \mrm{Supertranslations}^+ * \mrm{Lorentz}$. Similar for $\mrm{BMS}^-$. 
+	
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.45\linewidth]{img/supertranslation.pdf}
+	\caption[Supertranslations on $\mscr{I}^+$]{
+		Supertranslations on $\mscr{I}^+$, taken from \cite{Strominger:2017zoo}.
+	}
+	\end{figure}
+	
+\subsection{Scattering on the celestial sphere}
+	
+	Usually we use 4-\textbf{energy momentum} $P_\mu$ to label asymptotic states, but for massless particles it's more natural to use \textbf{boosts}: note that a boost along $\vec{p}$ of a null $p^\mu = (\abs{\vec{p}},\vec{p})$ only rescales its magnitude: $p^\mu\mapsto \lambda p^\mu$. This corresponds to \textbf{dilations} on the celestial CFT. 
+	\begin{equation}
+		T\sim \pdd{x},
+	\quad
+		\tilde{f}(p)
+		\sim \int \dd{x} e^{-ipx} f(x)
+	\end{equation}
+	\vspace{-.5\baselineskip}
+	\begin{equation}
+		B\sim \omega\,\pdd{\omega},
+	\quad
+		\tilde{f}(\Delta)
+		\sim \int \frac{\dd{\omega}}{\omega}\,
+				\omega^\Delta f(\omega),
+	\quad
+		p^\mu = \epsilon\,\omega\, q^\mu(z,\bar{z})
+	\end{equation}
+	$q^\mu = \pqty{
+		1 + z\bar{z},
+		z + \bar{z},
+		-i(z - \bar{z}),
+		1 - z\bar{z}
+	}$ is a standard 4-momentum constructed only with the celestial direction $(z,\bar{z})$. $\omega$ is the energy (frequency), and $\epsilon = \pm 1$ (for outgoing and ingoing particles respectively. 
+	This is a so-called Mellin transform, with boost weight: $\Delta$. When combined with spin, we can similarly define $(h,\bar{h})$ for the 2D celestial sphere, $\Delta = h + \bar{h}$; \textit{Conformally soft}: $h\to 0$ or $\bar{h}\to 0$. Soft theorem $\to$ conformal soft theorem; see \cite{Pate:2019mfs}. 
+	
+	
+
+	
+	
+	
+
+\vspace{1.2\baselineskip}
+\raggedright
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}
