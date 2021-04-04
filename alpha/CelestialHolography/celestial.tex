@@ -51,7 +51,7 @@
 	
 	\vspace{.5\baselineskip}
 	
-	\item[**] Not very relevant, but there is an very recent, very interesting, very physical talk by Susskind at IAS on dS holography: \url{https://www.youtube.com/watch?v=4GKjr-y5MY0}
+	\item[**] Not very relevant, but there is a very recent, very interesting, very physical talk by Susskind at IAS on de Sitter holography: \url{https://www.youtube.com/watch?v=4GKjr-y5MY0}
 	\end{itemize}
 
 \pagebreak
@@ -100,7 +100,7 @@
 %	\meaning\sidenote
 	
 \pagebreak[4]
-	Note that the $(z,\bar{z})$ in $CS^\pm$ are not na\"ively identical, but identified with the \textbf{antipodal map}:
+	Note that the $(z,\bar{z})$ in $CS^\pm$ are actually \textbf{not the same coordinates}, but are related to each other by the \textbf{antipodal map}:
 	\begin{equation}
 		z \mapsto -\frac{1}{\bar{z}},
 	\quad
@@ -110,11 +110,17 @@
 		z_- = - \frac{1}{\bar{z}_+},
 	\end{equation}
 	This is actually the more natural choice: a ``free'' light ray starting from $z_- = z$ ends at $z_+ = z$. This in fact binds $\mcal{I}^+$ with $\mcal{I}^-$. 
-	This gives the natural antipodal matching condition for fields around $i^0$:
+	
+	Now consider a scattering process happening ``around $i^0$'', from $\mscr{I}^-$ to $\mscr{I}^+$; this is ``far away'' from the ``center'' where all the interactions take place, so the scattering process is almost trivial. 
+	This gives the natural \textbf{antipodal matching condition} for fields around $i^0$:
 	\begin{equation}
 		F(u,z,\bar{z})|_{\mscr{I}^+\to i^0}
+		= F(u\to -\infty,z,\bar{z})
+		\equiv F(z,\bar{z})
+		= F(v\to +\infty,z,\bar{z})
 		= F(v,z,\bar{z})|_{\mscr{I}^-\to i^0}
 	\end{equation}
+	Note that this antipodal matching condition will prove crucial to our discussions later on. 
 \subsection{\textsl{Why} do we want to study that?}
 	\begin{enumerate}
 	\item As an approach to \textbf{flat holography}. Another interesting observation: one can do some sort of a ``double holography'' by \textit{uplifting} $\mrm{AdS}_3/\mrm{CFT}_2$; this discussed in e.g.~\cite{deBoer:2003vf,Ball:2019atb}. 
@@ -128,7 +134,7 @@
 		One can implement the \textbf{Euclidean holography} $\mrm{EAdS}_3/\mrm{CFT}_2$ in the red patch, along \textbf{a specific time slice} of the causal future \cite{deBoer:2003vf,Ball:2019atb}. 
 		On the other hand, in the blue Rindler patches we can apply Lorentzian $\mrm{dS}_3/\mrm{CFT}_2$. 
 		
-		Note that in the $\mrm{dS}_3/\mrm{CFT}_2$ here, although the bulk $\mrm{dS}_3$ is Lorentzian, the dual $\mrm{CFT}_2$ is again a \textbf{Euclidean theory} living at $\mscr{I}^\pm$, very different from the usual global $\mrm{AdS}_3/\mrm{CFT}_2$, where the $\mrm{CFT}_2$ is a Lorentzian theory living at $i^0$. 
+		Note that in the $\mrm{dS}_3/\mrm{CFT}_2$ here, although the bulk $\mrm{dS}_3$ is Lorentzian, the dual $\mrm{CFT}_2$ is again a \textbf{Euclidean theory} living at $\mscr{I}^\pm$, which is very different from the usual global $\mrm{AdS}_3/\mrm{CFT}_2$, where the $\mrm{CFT}_2$ is a Lorentzian theory living at $i^0$. 
 	}
 	\end{figure}
 	
@@ -158,6 +164,13 @@
 	
 	There is a sense of \textbf{IR universality}: similar structures appear in all kinds of gauge theory, including gravity. 
 	
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.7\linewidth]{img/IRtriangle.pdf}
+	\caption[The universal IR triangle]{
+		The universal IR triangle, modeled after the one in \cite{Strominger:2017zoo}. 
+	}
+	\end{figure}
 	
 	\end{enumerate}
 	
@@ -168,14 +181,16 @@
 	\centering
 	\includegraphics[width=.7\linewidth]{img/Resum.png}
 	\caption[Resummation cures IR divergences]{
-		Resummation cures IR divergences; this is an illustration of the amplitude for Bhabha scattering, taken from \cite{Strominger:2017zoo}. 
+		Resummation cures IR divergences in the usual diagrammatic analysis of QFT; this is an illustration of the amplitude for Bhabha scattering, taken from \cite{Strominger:2017zoo}. 
+		
+		Such infinite sum of infinites doesn't make sense mathematically, but this procedure can be made more rigorous with the help with \textit{renormalization}, as we add counterterms to suppress each divergence. 
 	}
 	\end{figure}
 	
 	Antipodal identification $\to \infty$ amount of conserved charge (in the IR limit). Consider any function $\epsilon$ on Minkowski space such that:
 	\begin{equation}
-		\epsilon(u,z,\bar{z})|_{\mscr{I}^+}
-		= \epsilon(z,\bar{z})
+		\epsilon
+		= \epsilon(u,z,\bar{z})|_{\mscr{I}^+}
 		= \epsilon(v,z,\bar{z})|_{\mscr{I}^-}
 	\end{equation}
 	In particular, it obeys the boundary condition near $i^0$:
@@ -187,41 +202,79 @@
 	
 	With such $\epsilon(z,\bar{z})$, charge conservation is almost tautological, as both $\epsilon$ and the field $F$ obey the antipodal identification; for example, in QED we have:
 	\begin{equation}
-	\begin{aligned}
-		Q_\epsilon^+
-		:=& \int_{\mscr{I}^+} \Bqty\Big{
-				\epsilon(z,\bar{z})\,
+	\begin{alignedat}{2}
+		Q_\epsilon^-
+		:=& \mathrlap{
+			\int_{\mscr{I}^-} \Big\{
+				\epsilon(v,z,\bar{z})\,
 					(\hodgedual j)
 				+ \dd{\epsilon}
-					\wedge \hodgedual F(u,z,\bar{z})
-			}\\
-		=& \int_{\mscr{I}^+}
+					\wedge \hodgedual F(v,z,\bar{z})
+			\Big\}
+		} \\
+		=& \int_{\mscr{I}^-}
 			\dd{\Bqty\Big{
 				\epsilon\,
 				(\hodgedual F)
 			}}
-		= \int_{CS_{\mscr{I}^+\to i^0}}
-			\hodgedual F(u,z,\bar{z})\,
-			\epsilon(z,\bar{z})
-		= \int_{CS_{\mscr{I}^-\to i^0}}
-			\hodgedual F(v,z,\bar{z})\,
-			\epsilon(z,\bar{z})
-		= Q_\epsilon^-
-	\end{aligned}
+		&{}=& \int_{CS_{\mscr{I}^-\to i^0}}
+			(\hodgedual F)(v,z,\bar{z})\,
+			\epsilon(v,z,\bar{z})\big|_{
+				v\to +\infty
+			} \\
+		&&=& \int_{CS_{\mscr{I}^-\to i^0}}
+			(\hodgedual F)(z,\bar{z})\,
+			\epsilon(z,\bar{z}) \\
+		&&=& \int_{CS_{\mscr{I}^+\to i^0}}
+			(\hodgedual F)(u,z,\bar{z})\,
+			\epsilon(u,z,\bar{z})\big|_{
+				u\to -\infty
+			}
+		= Q_\epsilon^+
+	\end{alignedat}
 	\end{equation}
-	Here we've used Gauss law (Stokes' theorem), and we've assumed no massive flux passes through the $i^\pm$ endpoints. With $\epsilon = \mrm{const.}$ we recover charge conservation; with general $\epsilon(z,\bar{z})$ we can construct $\infty$ many conserved charges.
+	Here we've used Gauss law (Stokes' theorem), and we've assumed no flux due to massive particles passes through the $i^\pm$ endpoints. With $\epsilon = \mrm{const.}$ we recover charge conservation; with general $\epsilon(z,\bar{z})$ we can construct $\infty$ many conserved charges.
+	
+	In the above derivation we've taken a general $\epsilon(u,z,\bar{z})$ and $\epsilon(v,z,\bar{z})$ defined near $\mscr{I}^\pm$, but note that as the charge reduced to a codim-2 integral on the $CS$ closed to $i^0$, only the angular dependence $\epsilon = \epsilon(z,\bar{z})$ survived; this function actually corresponds to the \textbf{asymptotic symmetries} of QED. 
+	
+	Our derivation here is similar to some popular treatment of conformal symmetries (see e.g.\ \textit{Polchinski} \cite{Polchinski:1998rq}, section 2.4): we first formally construct a conserved current, in this case:
+	\begin{equation}
+		\hodgedual J
+		= \epsilon(v,z,\bar{z})\,
+				(\hodgedual j)
+			+ \dd{\epsilon}
+				\wedge \hodgedual F(v,z,\bar{z})
+		= \dd{(\hodgedual k)},
+	\quad
+		(\hodgedual k) = \epsilon\,(\hodgedual F)
+	\end{equation}
+	This conserved current actually gets reduced to the conserved 2-form $\hodgedual k$, and the charge is integrated at a codim-2 surface. This is a common feature of gauge fields. And then, we try to find the corresponding asymptotic symmetries; this is like running the Noether's procedure backwards. After promoting $Q_\epsilon$ to an operator, we see that the asymptotic gauge symmetries are indeed generated by $\epsilon(z,\bar{z})$, and the $u,v$-dependence drops out:
+	\begin{equation}
+		r\to\infty,
+	\quad
+		i\var_\epsilon A_\mu
+		\equiv \bqty{
+			Q_\epsilon, A_\mu
+		}
+		= i \pdd{\mu} \epsilon,
+	\quad \epsilon = \epsilon(z,\bar{z})
+	\end{equation}
+	
 	
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=.5\linewidth]{img/minkowskipenrose.pdf}
 	\caption[Worldlines of massive and massless particles]{
-		Worldlines of massive and massless particles traveling through the Penrose diamond, taken from \cite{Strominger:2017zoo}.
+		Worldlines of massive and massless particles traveling through the Penrose diamond, taken from \cite{Strominger:2017zoo}. Note that the worldlines of massive always pass through $i^\pm$. 
 	}
 	\end{figure}
 	
-	Incoming / outgoing asymptotic states are organized by asymptotic symmetries. If we restrict to massless scattering, $\mscr{I}^\pm$ are nice ``Cauchy surfaces''. 
+	Incoming / outgoing asymptotic states are then organized by asymptotic symmetries. If we restrict to massless scattering, $\mscr{I}^\pm$ are nice ``Cauchy surfaces''. 
+	The asymptotic states can then be reduced to operator insertions on a celestial sphere $CS$. 
+	
 	After understanding massless scattering, we can then extend the results carefully to include massive particles, which travels from $i^-$ to $i^+$. The $\mrm{EAdS}$ slicing mentioned above is a nice way to ``regularize'' the singular behavior around $i^\pm$. They correspond to operators that are \textit{smeared} on $CS$. 
 	
+%\pagebreak[4]
 \subsection{Soft theorem \& memory effect}
 	Ward identity:
 	\begin{equation}
@@ -236,7 +289,7 @@
 			\dd{\epsilon}
 			\wedge \hodgedual F(u,z,\bar{z})
 		}
-	$ term creates \textbf{zero energy soft photons} with polarization $\pdd{\alpha} \epsilon$, namely it shifts the \textbf{$\infty$-ly degenerate vacuum}. 
+	$ term creates \textbf{zero energy ``soft'' photons} with transverse polarization $\pdd{\alpha} \epsilon$, $\alpha = z,\bar{z}$, namely it shifts the \textbf{$\infty$-ly degenerate vacuum}. 
 	
 	The same mechanism leads to the \textbf{memory effect}; one can think of them as same equations for scattering but one in momentum space and the other one in position space. 
 	
@@ -244,10 +297,10 @@
 	\centering
 	\includegraphics[width=.45\linewidth]{img/memdet.pdf}
 	\caption[Gravitational memory effect]{
-		Gravitational memory effect, taken from \cite{Strominger:2017zoo}. Amazingly memory effect are very realistic physics and there has been many proposals to measure this in real experiments, both for gravitational memory and other memory effects.
+		Gravitational memory effect, taken from \cite{Strominger:2017zoo}. Amazingly memory effects are very realistic physics and there has been many proposals to measure this in real experiments, both for gravitational memory and other memory effects.
 	}
 	\end{figure}
-\subsection{Asymptotic symmetries}
+\subsection{More on asymptotic symmetries}
 	
 	Boundary conditions: suitable choice of asymptotic falloffs and gauge conditions; 
 	\begin{equation}
@@ -258,14 +311,18 @@
 			\textsl{trivial gauge symmetries: act trivially on boundary data (charges)}
 		}
 	\end{equation}
-	e.g.~$\mop{ASG}\,(\textsl{asymptotically flat}_4) = \mrm{BMS}_4 \supset \mrm{Poincar\'e}$, i.e.~it is $\infty$-ly \textbf{larger} than the isometry of Minkowski! According to \cite{Strominger:2017zoo}, this is not the full story yet; BMS is ``both too big and too small''. In fact, analyses of ASG are ``more of an art than a science'', in part because of ambiguities in the choice of boundary conditions, which are often only a posteriori justified \cite{Strominger:2017zoo}. 
+	e.g.~In asymptotically flat 4D gravity, if we restrict to Lorentz plus ``small translations'', we obtain $\mrm{BMS}_4 = \mrm{BMS}^+ \times \mrm{BMS}^- \supset \mrm{Poincar\'e}$, i.e.~it is \textbf{$\infty$-ly larger} than the isometry of Minkowski!
 	
-	More specifically, we fix Bondi gauge, which is just \eqref{eq:metric_null_plus} plus small fluctuations, and then solve the Killing equation:
+	However, this is not the full story yet; the conventional BMS is ``both too big and too small'' \cite{Strominger:2017zoo}: ``too big'' because $\mrm{BMS}^+$ and $\mrm{BMS}^-$ should in fact be bound together by the antipodal map; what remains is only the diagonal subgroup; ``too small'' because we can generalize Lorentz transformations to \textit{superrotations}, just like we generalize translations in Poincar\'e to \textit{supertranslations} in BMS. 
+	
+	Note that according to \cite{Strominger:2017zoo}, analyses of ASG are ``more of an art than a science'', in part because of ambiguities in the choice of boundary conditions, which are often only a posteriori justified. 
+	
+	Let's first see in detail how we find $\mrm{BMS}^+$. We fix Bondi gauge, which is just \eqref{eq:metric_null_plus} plus small fluctuations with desired falloffs, and then solve the Killing equation:
 	\begin{equation}
 		\ldv{\zeta} g = 0
 	\end{equation}
-	Naturally $\zeta \in \mfrak{SO}(3,1)$ is part of the solutions, i.e~the 6 Lorentz generators; these are large $\order{r}$ Killing vectors around $\mscr{I}^\pm$. 
-	We then consider small transformations around $\mscr{I}^+$, by imposing that the vector field is $\order{1}$ at large $r$ in an orthonormal frame. 
+	Naturally $\zeta \in \mfrak{so}(3,1)$ is part of the solutions, i.e~the 6 Lorentz generators; these are large $\order{r}$ Killing vectors around $\mscr{I}^\pm$. 
+	We then consider \textbf{small transformations} around $\mscr{I}^+$, by imposing that the vector field is $\order{1}$ at large $r$ in an orthonormal frame. 
 	\begin{equation}
 		\zeta^u,\zeta^r
 		\sim \order{1},
@@ -285,9 +342,18 @@
 	\quad
 		\epsilon = \epsilon(z,\bar{z})
 	\end{equation}
-	$\mrm{BMS}^+ = \mrm{Supertranslations}^+ * \mrm{Lorentz}$. Similar for $\mrm{BMS}^-$. 
+	We have $\mrm{BMS}^+ = \mrm{Supertranslations}^+ * \mrm{Lorentz}$. Similar result holds for $\mrm{BMS}^-$. If we relax the ``small'' restrictions for $\zeta$, we find that the Lorentz part gets enhanced to \textbf{superrotations}:
+	\begin{equation}
+		\zeta
+		= Y^z \pdd{z}
+			+ \frac{u}{2}\,(\nabla_z Y^z)\,\pdd{u}
+			+ (\textsl{complex conjugates}),
+	\quad
+		Y^z = Y^z(z),\ %
+		Y^{\bar{z}} = Y^{\bar{z}}(\bar{z})
+	\end{equation}
 	
-	\begin{figure}[!h]
+	\begin{figure}[!t]
 	\centering
 	\includegraphics[width=.45\linewidth]{img/supertranslation.pdf}
 	\caption[Supertranslations on $\mscr{I}^+$]{
@@ -295,9 +361,20 @@
 	}
 	\end{figure}
 	
+%\pagebreak[4]
 \subsection{Scattering on the celestial sphere}
 	
-	Usually we use 4-\textbf{energy momentum} $P_\mu$ to label asymptotic states, but for massless particles it's more natural to use \textbf{boosts}: note that a boost along $\vec{p}$ of a null $p^\mu = (\abs{\vec{p}},\vec{p})$ only rescales its magnitude: $p^\mu\mapsto \lambda p^\mu$. This corresponds to \textbf{dilations} on the celestial CFT. 
+	\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.7\linewidth]{img/celestialsphere.pdf}
+	\caption[Scattering on the celestial sphere]{
+		Scattering reduced onto the celestial sphere, taken from \cite{Strominger:2017zoo}.
+	}
+	\end{figure}
+	
+\pagebreak[3]
+	
+	Usually we use 4-\textbf{energy momentum} $P_\mu$ to label asymptotic states, but for massless particles it's more natural to use \textbf{boosts} \cite{Pasterski:2017kqt,Pate:2019mfs}: note that a boost along $\vec{p}$ of a null $p^\mu = (\abs{\vec{p}},\vec{p})$ only rescales its magnitude: $p^\mu\mapsto \lambda p^\mu$. This corresponds to \textbf{dilations} on the celestial CFT. 
 	\begin{equation}
 		T\sim \pdd{x},
 	\quad
@@ -320,12 +397,15 @@
 		-i(z - \bar{z}),
 		1 - z\bar{z}
 	}$ is a standard 4-momentum constructed only with the celestial direction $(z,\bar{z})$. $\omega$ is the energy (frequency), and $\epsilon = \pm 1$ (for outgoing and ingoing particles respectively. 
-	This is a so-called Mellin transform, with boost weight: $\Delta$. When combined with spin, we can similarly define $(h,\bar{h})$ for the 2D celestial sphere, $\Delta = h + \bar{h}$; \textit{Conformally soft}: $h\to 0$ or $\bar{h}\to 0$. Soft theorem $\to$ conformal soft theorem; see \cite{Pate:2019mfs}. 
+	This is a so-called \textbf{Mellin transform}, with boost weight: $\Delta$. 
 	
+	When combined with spin, we can similarly define $(h,\bar{h})$ for the 2D celestial sphere, $\Delta = h + \bar{h}$; \textit{Conformally soft}: $h\to 0$ or $\bar{h}\to 0$. Soft theorem $\to$ conformal soft theorem; see \cite{Pate:2019mfs}. 
 	
-
-	
-	
+\appendix
+\section{Symmetries of asymptotically flat spacetime}
+	\begin{center}
+	\includegraphics[width=.8\linewidth]{img/ASGflat.pdf}
+	\end{center}
 	
 
 \vspace{1.2\baselineskip}
