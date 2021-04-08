@@ -17,6 +17,10 @@
 %%% ID: sensitive, do NOT publish!
 \InputIfFileExists{id.tex}{}{}
 
+\makeatletter
+\newcommand{\nobeginpar}{\@beginparpenalty=10000}
+\makeatother
+
 \begin{document}
 \maketitle
 \pagenumbering{arabic}
@@ -32,7 +36,12 @@
 \section{Conventions}
 	We try to follow the conventions of the TsT paper: \textcite{Apolo:2019zai}. 
 	\begin{itemize}
-	\item Lightcone coordinates: $u,v = x\pm t$, following \cite{Apolo:2019zai} (except that in \cite{Apolo:2019zai} the $x$ direction is compactified into the $\varphi$ circle). Constant $t$ slice is therefore given by $u = v$.
+	\item Lightcone coordinates: $u,v = x\pm t$, similar to \cite{Apolo:2019zai}. This convention has the following features:
+	
+		\begin{itemize}
+		\item The constant $t$ slice is given by $u = v$;
+		\item It preserves the orientation as we go from $(t,x)$ to $(u,v)$. Note that the ordering of coordinates matters here.
+		\end{itemize}
 	
 	\item Poincar\'e $\mrm{AdS}_3$ coordinates: $
 			X^I \sim (x^\mu,z) \sim (t,x,z) \sim (u,v,z)
@@ -40,6 +49,8 @@
 			\dd{s}^2 = \frac{+\dd{u} \dd{v} + \dd{z}^2}{z^2}
 		$. Note the \mquote{+} before $\dd{u} \dd{v}$. 
 	\end{itemize}
+	
+\pagebreak[4]
 \section{Entanglement Entropy as Thermal Entropy}
 	Ref: \textcite{Apolo:2020qjm}.
 	
@@ -51,7 +62,7 @@
 	\quad
 		\tau \sim \tau + 2\pi i
 	\end{equation}
-	$H_i$: symmetry generators. The causal domain of dependence $\mcal{D}\to$ some thermal state with normalized inverse temperature $2\pi$. Here we choose to absorb such $2\pi$ into the definition of $\xi$, so the Euclidean periodicity w.r.t.~$\xi$ is simply $\beta = 1 = \frac{1}{T}$, which means the surface gravity along the horizon is given by $\kappa = 2\pi T = 2\pi$. 
+	$H_i$: symmetry generators. The causal domain of dependence $\mcal{D}\to$ some thermal state with normalized inverse temperature $2\pi$. Here we choose to absorb such $2\pi$ into the definition of $\xi$, so the Euclidean periodicity w.r.t.~$\xi$ is simply $\beta_\xi = 1 = \frac{1}{T_\xi}$, which means the surface gravity along the horizon is given by $\kappa_\xi = 2\pi T_\xi = 2\pi$. 
 \subsection{Exercise: Poincar\'e $\mrm{AdS}_3/\mrm{CFT}_2$}
 	We illustrate the above ideas in Poincar\'e $\mrm{AdS}_3$ vacuum, which is the simplest situation and can be easily compared with the results of \textcite{Lewkowycz:2019xse}. 
 \subsubsection{Bulk / boundary Killings}
@@ -124,7 +135,9 @@
 		\frac{x - \frac{1}{2} (x_+ + x_-)}{x_+ - x_-}
 		= \frac{t - \frac{1}{2} (t_+ + t_-)}{t_+ - t_-}
 	\end{equation}
-	See \href{https://bryango.github.io/resources/archive/HW-Gravity/gravity1.pdf}{\underline{this homework}} for a detailed derivation. 
+	See \href{https://bryango.github.io/resources/archive/HW-Gravity/gravity1.pdf}{\textsl{this homework}}\footnote{
+		URL: \https{bryango.github.io/resources/archive/HW-Gravity/gravity1.pdf}. 
+	} for a detailed derivation. 
 	Alternatively, it can be more compactly rewritten with $x^\mu \sim (t,x)$ or $(u,v)$; mind the various $\pm$ signs in the above expressions: 
 	\begin{equation}
 	\begin{aligned}
@@ -155,9 +168,9 @@
 	\end{equation}
 	One need only exchange all $u\leftrightarrow v$ to obtain $\bar{s}_n$. The overall coefficient of $\xi$ (in this case, $2\pi$) is fixed by normalizing the temperature of the horizon, namely we demand that the surface gravity is $2\pi$ along the RT surface:
 	\begin{equation}
-		T = \frac{\kappa}{2\pi} = 1,
+		T_\xi = \frac{\kappa_\xi}{2\pi} = 1,
 	\quad
-		\kappa^2
+		\kappa_\xi^2
 		= (2\pi)^2
 		= -\frac{1}{2}\,
 			(\nabla_{\mu} \xi_{\nu})
@@ -225,13 +238,14 @@
 		x_\pm^c
 		= \pm \frac{L}{2}
 	\end{equation}
+	
+	We then consider $\xi$ evaluated at the {constant finite cutoff} $z = z_c$,
 	\begin{equation}
 	\begin{aligned}
-%		\xi_c \equiv
-		\xi|_{z=z_c, \pdd{z}\to 0}
-		= \frac{2\pi}{\sqrt{
-				L^2 + (2z_c)^2
-			}}
+		\xi|_{z=z_c}
+		= \frac{2\pi}{
+				L\sqrt{1 + (2z_c/L)^2}
+			}
 		& \bigg\{
 			\pqty\Big{
 				\pqty{
@@ -256,21 +270,31 @@
 		\bigg\}
 	\end{aligned}
 	\end{equation}
+	Note that the $\pdd{z}$ component is generally non-zero, i.e.~$\xi|_{z=z_c}$ is not entirely contained in the $z = z_c$ plane. 
+	We observe the factor $
+		\sqrt{1 + (2z_c/L)^2}
+	$ which is featured prominently in the $T\bar{T}$ deformed $C(L)$ function, given in \cite{Lewkowycz:2019xse}:
+	\begin{equation}
+		C(L) = L\,\pdd{L} S(L)
+		= \frac{c}{3} 
+			\frac{1}{
+				\sqrt{1 + (2z_c/L)^2}
+			}
+	\end{equation}
 	
-\pagebreak[3]
 	This seems nice and all but there is a subtlety for finite cutoff $z = z_c$. 
 	In the bulk the constant surface gravity $
 		\xi^\nu \cdv{\nu} \xi^\mu
-		= \kappa \xi^\mu
+		= \kappa_\xi \xi^\mu
 		= 2\pi \xi^\mu
-	$ guarantees that after Wick rotation, the Euclidean periodicity around the horizon is normalized to $\beta = 1$. However, if we restrict to the field theory living at $z = z_c$, which corresponds to a $T\bar{T}$ deformed theory, since it has no knowledge of the $\pdd{z}$ component of $\xi$, we should project the $z$ component out, which leaves us:
+	$ guarantees that after Wick rotation, the Euclidean periodicity around the horizon is normalized to $\beta = 1$. However, if we restrict to the field theory living at $z = z_c$, which corresponds to a $T\bar{T}$ deformed theory, since it has no knowledge of the $\pdd{z}$ component of $\xi$, we should reduce it to a modular flow within the $z = z_c$ plane by, e.g.~projecting the $z$ component out, which leaves us:
 	\begin{equation}
 	\begin{aligned}
 		\xi^{\mrm{FT}}_c
-		\equiv \proj{z_c} \xi|_{z_c}
-		= \frac{2\pi}{\sqrt{
-				L^2 + (2z_c)^2
-			}}
+		\equiv \proj{\sslash} \xi|_{z_c}
+		= \frac{2\pi}{
+				\sqrt{1 + (2z_c/L)^2}
+			}
 		& \bigg\{
 			\pqty\Big{
 				\pqty{
@@ -290,13 +314,17 @@
 		\bigg\}
 	\end{aligned}
 	\end{equation}
-	Which no longer has normalized $\beta$ if $z_c \ne 0$. In fact, compared to the $z_c \to 0$ situation which \textit{does} have $\beta = 1$, $\xi^{\mrm{FT}}_c$ is rescaled by a factor of $\frac{L}{L_\infty}$, which means that:
+	Which no longer has normalized $\beta$ if $z_c \ne 0$. In fact, compared to the $z_c \to 0$ situation which \textit{does} have $\beta = 1$, $\xi^{\mrm{FT}}_c$ is rescaled by a factor of $
+		\frac{L}{L_\infty}
+		= 1/\sqrt{1 + (2z_c/L)^2}
+	$, which means that:
 	\begin{equation}
 		\beta^{\mrm{FT}}_c
 		= \sqrt{1 + (2z_c/L)^2}
 		\sim 1 + 2z_c^2 / L^2
 	\end{equation}
 	
+{\nobeginpar
 	How should we understand this?
 	\begin{itemize}
 	\item The $T\bar{T}$ deformation might somehow correspond to a variation of temperature at the cutoff; instead of $\rho = e^{-\mcal{H}}$, we now have:
@@ -312,8 +340,10 @@
 	
 	But now this is no longer a \textit{constant} cutoff away from $z = z_c$. In particular, the forward and backward evolved interval will approach the upper and lower endpoints of the diamond at $z \to 0$. Q: does this make sense? Will it be compatible with \textcite{McGough:2016lol}?
 	\end{itemize}
+}
 	
 	\begin{figure}[!ht]
+	\vspace{-1.5ex}
 	\centering
 	\includegraphics[width=.8\linewidth]{img/modFlowXsection.pdf}
 	\hspace{2em}
@@ -323,11 +353,177 @@
 	
 	\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=.35\linewidth]{img/modFlowCutoff.pdf}
+%	\includegraphics[width=.35\linewidth]{img/modFlowCutoff.pdf}
+	\includegraphics[width=.35\linewidth]{img/modFlowAnalytic.pdf}
 %	\hspace{2em}
 %	\vspace{-2ex}
-	\caption{Integral surface of the modular flow starting from $t = 0,\ z = z_c$. Here we've chosen $\frac{L}{2} = 1$ while $z_c = 0.35$.}
+	\caption{Integral surface of the modular flow starting from $t = 0,\ z = z_c$. Here we've chosen $\frac{L_\infty}{2} = 1$ while $z_c = 0.4$.}
 	\end{figure}
+	
+\subsubsection{Flow from constant cutoff}
+	For an interval lying on a constant time slice $t_\pm = 0$, i.e.~$\theta = 0$, we can actually solve the flow of $\xi$ by hand without much difficulty.
+	
+	Consider the flow starting from $(t,x,z) = (0,x_c,z_c)$, we note that $
+		\dd{x}/\dd{z}
+		= {\dv{x}{\lambda}}/{\dv{z}{\lambda}}
+		= {x}/{z}
+	$, which implies that ${x}/{x_c} = {z}/{z_c}$ along the flow lines. Intuitively, the flow when restricted in $x$-$z$ plane points towards / away froms $x = z = 0$, which is the upper / lower tip of the entanglement wedge. 
+	
+	We can further replace the flow parameter $\lambda$ with time coordinate $t$ by considering $
+		\dd{z}/\dd{t}
+		= {\dv{z}{\lambda}}/{\dv{t}{\lambda}}
+	$, which leads to the following equations:
+	\begin{equation}
+		\dv{z}{t}
+		= \frac{2tz}{\alpha z^2 + t^2 - (L_\infty/2)^2},
+	\quad
+		\alpha = 1 + \frac{x_c^2}{z_c^2},
+	\quad
+		\frac{x}{x_c} = \frac{z}{z_c}
+	\end{equation}
+	The solution is then given by:
+	\begin{equation}
+		z = z(t;x_c,z_c)
+		= \frac{
+				(L_\infty/2)^2 + \alpha z_c^2
+				- \sqrt{
+					\pqty\big{(L_\infty/2)^2 - \alpha z_c^2}^2
+					+ 4t^2 \alpha z_c^2
+				}
+			}{2\alpha z_c}
+	\end{equation}
+	
+	
+	
+%\subsubsection{Map to the Rindler coordinates}
+	To gain more understanding of the modular flow of the cutoff theory, we can look at the map to the Rindler coordinates. In the Poincar\'e $\mrm{AdS}_3$ case this is explicitly given in Appendix B by \textcite{Song:2016gtd}; the Poincar\'e $(t,x,z)$ is mapped to BTZ $(u,v,\rho)$:
+	\begin{equation}
+	\begin{aligned}
+		t &= \frac{L_\infty}{2} \frac{
+				\pqty{\rho - T_u T_v}
+				\,\sinh\,(T_u u - T_v v)
+			}{
+				\sqrt{\rho^2 - T_u^2 T_v^2}
+					\,\cosh\,(T_u u + T_v v)
+				+ \pqty{\rho - T_u T_v}
+					\,\cosh\,(T_u u - T_v v)
+			},
+	\\
+		x &= \frac{L_\infty}{2} \frac{
+				\sqrt{\rho^2 - T_u^2 T_v^2}
+				\,\sinh\,(T_u u + T_v v)
+			}{
+				\sqrt{\rho^2 - T_u^2 T_v^2}
+					\,\cosh\,(T_u u + T_v v)
+				+ \pqty{\rho - T_u T_v}
+					\,\cosh\,(T_u u - T_v v)
+			},
+	\\
+		z &= \frac{L_\infty}{2} \frac{
+				\sqrt{2T_u T_v}
+				\sqrt{\rho - T_u T_v}
+			}{
+				\sqrt{\rho^2 - T_u^2 T_v^2}
+					\,\cosh\,(T_u u + T_v v)
+				+ \pqty{\rho - T_u T_v}
+					\,\cosh\,(T_u u - T_v v)
+			},
+	\end{aligned}
+	\label{eq:poincare2btz}
+	\end{equation}
+	\begin{equation}
+		\dd{s}^2
+		= \frac{\dd{\rho}^2}{4\,(\rho^2 - T_u^2 T_v^2)}
+			+ T_u^2 \dd{u}^2
+			+ T_v^2 \dd{v}^2
+			+ 2\rho \dd{u} \dd{v},
+	\end{equation}
+	Here we've reused the variable names $(u,v)$ for the BTZ coordinates, and we've tweaked the expressions in \cite{Song:2016gtd} to be more symmetric in $(u,v)$. 
+	
+	TO CHECK: At the boundary this reduces to the result of \textcite{Casini:2011kv}, which is used by \textcite{Lewkowycz:2019xse}.
+	
+	We note that $T_{u,v}$ is \textit{not exactly} the physical (Hawking) temperature of the spacetime; the physical temperature, on the other hand, is given by (see e.g.~\cite{Compere:2018aar}):
+	\begin{equation}
+		T_\tau = \frac{\kappa_\tau}{2\pi}
+		= \frac{1}{\pi}\,
+			\frac{2}{T_u^{-1} + T_v^{-1}},
+	\quad
+		\tau = \frac{u - v}{2}
+	\end{equation}
+	For $T_u = T_v = T$, we have $T_\tau = \frac{T}{\pi}$, i.e.~the Hawking temperature differs from $T_u = T_v = T$ by a factor of $\frac{1}{\pi}$. In this case, the temperature can also be found easily by Euclidean expansion around the horizon $\rho = T_u T_v \cosh r$,
+	\begin{gather}
+		\dd{s}^2|_{\rho,\tau}
+		\sim \frac{1}{4} \dd{r}^2
+			+ 2T^2 \pqty{\cosh r - 1}
+				\dd{\tau}^2
+		\sim \frac{1}{4}\,\pqty{
+				\dd{r}^2
+				+ (2T)^2\,r^2 \dd{\tau}^2
+			},
+	\\[1ex]
+		2T\beta_\tau = 2\pi,
+	\quad
+		T_\tau = \frac{1}{\beta_\tau} = \frac{T}{\pi}
+	\end{gather}
+	
+	To achieve our normalization convention $\xi = 2\pi \pdd{\tau}$ as before, we simply set:
+	\begin{equation}
+		\beta_\tau = 2\pi,
+	\quad
+		T_u = T_v = T = \frac{1}{2}
+	\end{equation}
+	We can then verify using the coordinate transformation \eqref{eq:poincare2btz} that the modular generator in these coordinates is indeed what we are expecting:
+	\begin{equation}
+		\xi
+		= 2\pi\,(\pdd{u} - \pdd{v})
+		= 2\pi\pdd{\tau}
+	\end{equation}
+	
+	With these BTZ coordinates, the flow of $\xi = 2\pi\pdd{\tau}$ is almost trivial; we need only identify the initial conditions, which is given by $z = z_c$ and $t = 0$ in Poincar\'e coordinates. The integral surface is thus given by:
+	\begin{equation}
+		z_c = \frac{L_\infty}{2} \frac{
+				\sqrt{2}\,T
+				\sqrt{\rho - T^2}
+			}{
+				\sqrt{\rho^2 - T^4}
+					\,\cosh\,(2T\phi)
+				+ \pqty{\rho - T^2}
+			},
+	\quad
+		T_u = T_v = T = \frac{1}{2}
+	\end{equation}
+	This is a surface in the BTZ coordinates that parallels $\pdd{\tau}$ and intersects the horizon. 
+	With some basic algebraic manipulation, this can be solved in terms of $\rho(\phi)$:
+	\begin{equation}
+		\rho(\phi;z_c)
+		= T^2 \pqty{
+			1 + \frac{1}{2} \pqty{
+				\frac{
+					\cosh\,(2T\phi) \sqrt{
+						1 - (\frac{2z_c}{L_\infty})^2 \sinh^2 (2T\phi)
+					} - 1
+				}{z_c\sinh^2 (2T\phi)}
+			}^{\!\!\!\!2\ }
+		},\quad
+		T = \frac{1}{2}
+	\end{equation}
+	
+	We note that there is also a mysterious square root structure here: $
+		\sqrt{
+			1 - (\frac{2z_c}{L_\infty})^2 \sinh^2 (2T\phi)
+		}
+	$, which resembles the familiar $
+		\sqrt{1 + (\frac{2z_c}{L})^2}
+	$ but has a minus sign, and the $\frac{2z_c}{L}$ factor is weighted by $\sinh\,(2T\phi)$.
+	
+	\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.7\linewidth]{img/modFlowCutoff2BTZ.pdf}
+%	\hspace{2em}
+%	\vspace{-2ex}
+	\caption{Integral surface of the modular flow when mapped to the BTZ coordinates, starting from $t = 0,\ z = z_c$. Here we've chosen $\frac{L_\infty}{2} = 1$ while $z_c = 0.1,\,0.2,\,\cdots,\,0.9$. Also we've taken $T_u = T_v = T = \frac{1}{2}$ as discussed before, and the horizon is at $T^2 = \frac{1}{4}$. }
+	\end{figure}
+	
 	
 \section{Entropy as Noether Charge}
 	Ref: \textcite{Wald:1993nt,Iyer:1994ys,Iyer:1995kg}.
@@ -361,7 +557,7 @@
 	\end{equation}
 	However, to compute $\var{Q}$ we need to consider a particular metric variation $\var{g}_{\mu\nu}$ in the phase space of solutions. There is no free parameter in Poincar\'e $\mrm{AdS}_3$, unless we turn on temperature; this leads to the BTZ geometry. 
 	
-	We thus have to repeat the calculations above to get the geodesic $\gamma$ and modular generators $\xi^\mu$ in the new backgrounds. However, it is convenient to remember that all BTZ black holes are locally equivalent to the pure $\mrm{AdS}_3$; we can then map Poincar\'e $(u,v,z)$ to BTZ $(t,r,\phi)$ by \cite{Hubeny:2007xt}:
+	We thus have to repeat the calculations above to get the geodesic $\gamma$ and modular generators $\xi^\mu$ in the new backgrounds. However, it is convenient to remember that all BTZ black holes are locally equivalent to the pure $\mrm{AdS}_3$; we can then map Poincar\'e $(u,v,z)$ to BTZ Schwarzschild $(t,r,\phi)$ by \cite{Hubeny:2007xt}:
 	\begin{equation}
 		u,v = \sqrt{\frac{r^2 - r_+^2}{r^2 - r_-^2}}\,
 			e^{(\phi\pm t)\,2T_{u,v}},
@@ -390,7 +586,9 @@
 	\end{equation}
 	$\gamma$ and $\xi^\mu$ in BTZ coordinates both follow from this map. 
 	
-	We now restrict to $t_\pm = 0, \phi_- = -\phi_+$ and set $T_u = T_v = T$ for convenience; in this case the RT surface is given by \cite{Rangamani:2016dms}:
+	What's the difference between this map and \eqref{eq:poincare2btz}? First, the coordinates are different: in \eqref{eq:poincare2btz} we have $(u,v,\rho)$ and here we have Schwarzschild $(t,r,\phi)$; but that's not essential. What's crucial is that here, we map \textbf{the \textsl{whole} of Poincar\'e into BTZ with a \textsl{compact} $\phi$ circle}, while before in \eqref{eq:poincare2btz} we map a \textbf{$L_\infty$-sized wedge in Poincar\'e into BTZ with a \textsl{non-compact} $\phi$ line}. 
+	
+	We now restrict to $t_\pm = 0, \phi_- = -\phi_+$ and again set $T_u = T_v = T$ for convenience; in this case the RT surface is given by \textcite{Rangamani:2016dms} (section 6.1.2):
 	\begin{equation}
 		r(\phi) = \frac{2T\cosh TL}{
 				\sqrt{\cosh^2 TL - \cosh^2 2T\phi}
@@ -398,8 +596,8 @@
 	\end{equation}
 	The charge variation has a nice form under the above simplifications; in this case we have $
 		\var{Q}_{\xi}
-		= \int \dd{\phi} (\chi_\xi)_\phi
-	$, where:
+		= \int \dd{x^\mu} (\chi_\xi)_\mu
+	$, wher e.g.
 	\begin{equation}
 		(\chi_\xi)_\phi
 		= \frac{\var{T} \coth (LT)}{2G}
@@ -409,7 +607,8 @@
 			}
 	\end{equation}
 	
-	The $\int_\gamma \dd{\phi}$ integration can be done at the asymptotic infinity $r\to\infty$ instead, due to Stokes' theorem; this gives the following result:
+	By definition the $\int_\gamma$ integration goes along the RT surface; we should be careful in the calculations and include the contributions from the $(\chi_\xi)_r \dd{r}$ component. 
+	Alternatively, using Stokes' theorem, it can be done at the asymptotic infinity $r\to\infty$ instead; in this case we need only the $\phi$ component. These two integration contours give the same result:
 	\begin{equation}
 		\var{Q}_\xi
 		= \frac{\var{T}}{2G} \pqty{
@@ -422,9 +621,9 @@
 	\end{equation}
 	
 \subsection{With constant cutoff}
-	Now we consider constant cutoff at $r = r_c$. Again we need to trade $L_\infty$ above with the coordinate length of the interval $L$ at the cutoff $r_c$. The relation can be solved by looking at the geodesic equation, which is slightly non-trivial this time:
+	Now we consider constant cutoff at $r = r_c$. Again we need to trade the $L_\infty$ above with the coordinate length of the interval $L$ at the cutoff $r_c$. The relation can be solved by looking at the geodesic equation, which is slightly non-trivial this time:
 	\begin{equation}
-		\frac{\cosh (L_\infty T)}{\cosh (LT)}
+		\frac{\cosh L_\infty T}{\cosh LT}
 		= \frac{r_c}{\sqrt{r_c^2 - 4T^2}}
 	\end{equation}
 	\begin{equation}
@@ -438,7 +637,7 @@
 	\begin{equation}
 		\var{Q}_\xi
 		= \frac{\var{T}}{2G} \pqty{
-				L \coth (LT) - \frac{1}{T}
+				L \coth LT - \frac{1}{T}
 			}
 			\frac{1}{\sqrt{
 				1 + \frac{4T^2}{r_c^2 \sinh^2 LT}
@@ -465,14 +664,15 @@
 		= \frac{1}{2G}
 			\frac{LT \coth LT}{\sqrt{
 				1 + \frac{4T^2}{r_c^2 \sinh^2 LT}
-			}}
-	\qquad\text{(up to const.)}
+			}},
+	\quad\textsl{up to const.}
 	\end{equation}
 	
 	Note that we have \textit{not} been very careful about the possible $L,T$ dependent integration constants. If we then do the $L$ integration from the above $L \pdv{L}\,Q_\xi$, we then find the charge up to some $L,T$ dependent integration constants:
 	\begin{equation}
+	\begin{aligned}
 		Q_\xi
-		= \frac{1}{2G} \mop{arctanh}
+		&= \frac{1}{2G} \mop{arctanh}
 			\frac{1}{\sqrt{
 				1 + \frac{4T^2}{r_c^2 \sinh^2 LT}
 			}}
@@ -485,19 +685,18 @@
 				\sqrt{
 					1 + \frac{4T^2}{r_c^2 \sinh^2 LT}
 				} - 1
-			}
-	\qquad\text{(up to const.)}
+			},
+	\quad\textsl{up to const.} \\
+		&= \frac{1}{2G} \mop{arcsinh}
+			\frac{r_c \sinh LT}{2T}
+	\end{aligned}
 	\end{equation}
+	Although we haven't been careful about integration constants, this result happens to agree with the entropy in \cite{Lewkowycz:2019xse}. 
 	
 	
 	
-	
-	
-	
-	
-	
-
 \vspace{1.2\baselineskip}
+\pagebreak[4]
 \raggedright
 \printbibliography[%
 %	title = {参考文献} %
