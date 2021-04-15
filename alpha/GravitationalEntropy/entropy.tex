@@ -48,6 +48,8 @@
 		$, metric: $
 			\dd{s}^2 = \frac{+\dd{u} \dd{v} + \dd{z}^2}{z^2}
 		$. Note the \mquote{+} before $\dd{u} \dd{v}$. 
+	
+	\item The $T\bar{T}$ deformation is parametrized by the deformation parameter $\mu$, defined in \cite{Apolo:2019zai}; for the single-trace situation, it is more convenient to use the \textit{worldsheet} deformation parameter $\lambda = \mu/\ell_s^2$, where $\ell_s$ is the string length. See \cite{Apolo:2019zai} section 2.3 and its (2.43). 
 	\end{itemize}
 	
 \pagebreak[4]
@@ -63,7 +65,7 @@
 		\tau \sim \tau + 2\pi i
 	\end{equation}
 	$H_i$: symmetry generators. The causal domain of dependence $\mcal{D}\to$ some thermal state with normalized inverse temperature $2\pi$. Here we choose to absorb such $2\pi$ into the definition of $\xi$, so the Euclidean periodicity w.r.t.~$\xi$ is simply $\beta_\xi = 1 = \frac{1}{T_\xi}$, which means the surface gravity along the horizon is given by $\kappa_\xi = 2\pi T_\xi = 2\pi$. 
-\subsection{Exercise: Poincar\'e $\mrm{AdS}_3/\mrm{CFT}_2$}
+\subsection{Case study: Poincar\'e $\mrm{AdS}_3/\mrm{CFT}_2$}
 	We illustrate the above ideas in Poincar\'e $\mrm{AdS}_3$ vacuum, which is the simplest situation and can be easily compared with the results of \textcite{Lewkowycz:2019xse}. 
 \subsubsection{Bulk / boundary Killings}
 	In Poincar\'e $\mrm{AdS}_3/\mrm{CFT}_2$, the $H_i$'s are given by $L_n,\bar{L}_n$ with $n=0,\pm 1$. At $z\to 0$ we recover the usual global $\mfrak{sl}(2,\mbb{R})$ generators:
@@ -237,6 +239,7 @@
 	\quad
 		x_\pm^c
 		= \pm \frac{L}{2}
+	\label{eq:length_relations}
 	\end{equation}
 	
 	We then consider $\xi$ evaluated at the {constant finite cutoff} $z = z_c$,
@@ -396,7 +399,7 @@
 	
 	
 %\subsubsection{Map to the Rindler coordinates}
-	To gain more understanding of the modular flow of the cutoff theory, we can look at the map to the Rindler coordinates. In the Poincar\'e $\mrm{AdS}_3$ case this is explicitly given in Appendix B by \textcite{Song:2016gtd}; the Poincar\'e $(t,x,z)$ is mapped to BTZ $(u,v,\rho)$:
+	To gain more understanding of the modular flow of the cutoff theory, we can look at the map to the Rindler coordinates. In the Poincar\'e $\mrm{AdS}_3$ case this is explicitly given in Appendix B by \textcite{Song:2016gtd}; the entanglement wedge in Poincar\'e $(t,x,z)$ is mapped to the planar BTZ $(u,v,\rho)$:
 	\begin{equation}
 	\begin{aligned}
 		t &= \frac{L_\infty}{2} \frac{
@@ -438,7 +441,9 @@
 			+ T_v^2 \dd{v}^2
 			+ 2\rho \dd{u} \dd{v},
 	\end{equation}
-	Here we've reused the variable names $(u,v)$ for the BTZ coordinates, and we've tweaked the expressions in \cite{Song:2016gtd} to be more symmetric in $(u,v)$. 
+	This is a BTZ \textit{black string} with \textit{non-compact} $\phi$ direction. 
+	One can check that the $(u,v,\rho)$ coordinates indeed cover the $L_\infty$-sized entanglement wedge specified by $\xi$. 
+	Here we've reused the variable names $(u,v)$ for the planar BTZ coordinates, and we've tweaked the expressions in \cite{Song:2016gtd} to be more symmetric in $(u,v)$. 
 	
 	TO CHECK: At the boundary this reduces to the result of \textcite{Casini:2011kv}, which is used by \textcite{Lewkowycz:2019xse}.
 	
@@ -479,7 +484,7 @@
 		= 2\pi\pdd{\tau}
 	\end{equation}
 	
-	With these BTZ coordinates, the flow of $\xi = 2\pi\pdd{\tau}$ is almost trivial; we need only identify the initial conditions, which is given by $z = z_c$ and $t = 0$ in Poincar\'e coordinates. The integral surface is thus given by:
+	With these planar BTZ coordinates, the flow of $\xi = 2\pi\pdd{\tau}$ is almost trivial; we need only identify the initial conditions, which is given by $z = z_c$ and $t = 0$ in Poincar\'e coordinates. The integral surface is thus given by:
 	\begin{equation}
 		z_c = \frac{L_\infty}{2} \frac{
 				\sqrt{2}\,T
@@ -492,7 +497,7 @@
 	\quad
 		T_u = T_v = T = \frac{1}{2}
 	\end{equation}
-	This is a surface in the BTZ coordinates that parallels $\pdd{\tau}$ and intersects the horizon. 
+	This is a surface in the planar BTZ coordinates that parallels $\pdd{\tau}$ and intersects the horizon. The horizon length, which is ``cut off'' by this surface, gives the finite entanglement entropy of the cutoff interval.
 	With some basic algebraic manipulation, this can be solved in terms of $\rho(\phi)$:
 	\begin{equation}
 		\rho(\phi;z_c)
@@ -514,21 +519,44 @@
 		}
 	$, which resembles the familiar $
 		\sqrt{1 + (\frac{2z_c}{L})^2}
-	$ but has a minus sign, and the $\frac{2z_c}{L}$ factor is weighted by $\sinh\,(2T\phi)$.
+	$ but has a minus sign, and the $\frac{2z_c}{L}$ factor is weighted by $\sinh\,(2T\phi)$. 
 	
 	\begin{figure}[!ht]
 	\centering
-	\includegraphics[width=.7\linewidth]{img/modFlowCutoff2BTZ.pdf}
+	\includegraphics[width=.6\linewidth]{img/modFlowCutoff2BTZ.pdf}
 %	\hspace{2em}
 %	\vspace{-2ex}
-	\caption{Integral surface of the modular flow when mapped to the BTZ coordinates, starting from $t = 0,\ z = z_c$. Here we've chosen $\frac{L_\infty}{2} = 1$ while $z_c = 0.1,\,0.2,\,\cdots,\,0.9$. Also we've taken $T_u = T_v = T = \frac{1}{2}$ as discussed before, and the horizon is at $T^2 = \frac{1}{4}$. }
+	\caption[Integral surface of the modular flow when mapped to the planar BTZ coordinates]{%
+		Integral surface of the modular flow when mapped to the planar BTZ coordinates. Note that the $\rho$ axis is logarithmic. 
+		
+		The flow starts from $t = 0,\ z = z_c$, and here we've chosen $\frac{L_\infty}{2} = 1$ while $z_c = 0.1,\,0.2,\,\cdots,\,0.9$. 
+		Also we've taken $T_u = T_v = T = \frac{1}{2}$ as discussed before, and the horizon is at $\rho = T_u T_v = T^2$. 
+	}
 	\end{figure}
+\subsection{The cutoff field theory perspective}
+	From the field theory's perspective, the above calculations seem to suggest that the modular flow \underline{for an $L$-sized interval in the cutoff theory} is given by the modular flow \underline{of a CFT for an $L_\infty$ interval}; we denote this modular flow by $\xi = \xi(L_\infty)$. 
 	
+	One natural question is that whether this observation holds for a generic $T\bar{T}$ deformation, e.g.~the single-trace deformation of the opposite sign, which is dual to the TsT black string solution in the bulk, described by \textcite{Apolo:2019zai}. This will be explored in the later sections. The idea is:
 	
+	\begin{enumerate}
+	\item There is a flow $f(\mu)$ from the undeformed $\mrm{AdS}/\mrm{CFT}$ to the deformed geometry, parametrized by $\mu$, that maps $L_\mrm{CFT}\mapsto L$. 
+	In the cutoff picture, $f(\mu)$ moves the boundary into the bulk, and we have $L_\mrm{CFT} = L_\infty\mapsto L$. 
+	
+	Note that $f(\mu)$ is generally \textit{not} a diffeomorphism, otherwise the geometries will be equivalent; therefore, the action of $f(\mu)$ on quantities e.g.~the metric needs to be specified, and cannot be na\"ively induced from the map of coordinates. 
+	
+	\item The modular flow in the deformed theory is the ``push-forward'' of the CFT modular flow, namely $\xi_\mrm{CFT} \mapsto \xi = f^* \circ \xi_\mrm{CFT}$. However, such ``push-forward'' remains ambiguous, since $f(\mu)$ is \textit{not} a diffeomorphism, and we need an explicit prescription of this procedure.
+	
+	\item We then compute the entropy w.r.t.~the push-forward modular flow $\xi$, which is then reduced to the area of an RT surface in the deformed geometry. 
+	
+	\sidenote{The end result \textit{might} simply be a flow of the RT surface, induced by the flow $f(\mu)$ of the coordinates. Its area, on the other hand, depends on the flow of the metric.}
+	\end{enumerate}
+	This program echoes the idea advocated by \textcite{Guica:2019nzm}. 
 \section{Entropy as Noether Charge}
+	
 	Ref: \textcite{Wald:1993nt,Iyer:1994ys,Iyer:1995kg}.
 	
-	Ref: \textcite{Lewkowycz:2013nqa,Faulkner:2013ana}. 
+	Ref: \textcite{Lewkowycz:2013nqa}, \\
+	\hspace*{4em} and \textcite{Faulkner:2013ana}.
 	
 	Gravitational entropy is the Noether charge $Q_\xi$ associated with some horizon generator $\xi$. In the case of entanglement entropy between a simple interval and its complement, we've found its corresponding modular flow in the bulk, which is precisely the horizon generator of the Rindler patch. We then aim to compute the charge variation using the covariant formula:
 	\begin{equation}
@@ -556,8 +584,8 @@
 	\label{kdef}
 	\end{equation}
 	However, to compute $\var{Q}$ we need to consider a particular metric variation $\var{g}_{\mu\nu}$ in the phase space of solutions. There is no free parameter in Poincar\'e $\mrm{AdS}_3$, unless we turn on temperature; this leads to the BTZ geometry. 
-	
-	We thus have to repeat the calculations above to get the geodesic $\gamma$ and modular generators $\xi^\mu$ in the new backgrounds. However, it is convenient to remember that all BTZ black holes are locally equivalent to the pure $\mrm{AdS}_3$; we can then map Poincar\'e $(u,v,z)$ to BTZ Schwarzschild $(t,r,\phi)$ by \cite{Hubeny:2007xt}:
+\subsection{Case study: BTZ}
+	We thus have to repeat the calculations above to get the geodesic $\gamma$ and modular generators $\xi^\mu$ in the new BTZ backgrounds. However, it is convenient to remember that all BTZ black holes are locally equivalent to the pure $\mrm{AdS}_3$; we can then map Poincar\'e $(u,v,z)$ to BTZ Schwarzschild $(t,r,\phi)$ by \cite{Hubeny:2007xt}:
 	\begin{equation}
 		u,v = \sqrt{\frac{r^2 - r_+^2}{r^2 - r_-^2}}\,
 			e^{(\phi\pm t)\,2T_{u,v}},
@@ -597,13 +625,13 @@
 	The charge variation has a nice form under the above simplifications; in this case we have $
 		\var{Q}_{\xi}
 		= \int \dd{x^\mu} (\chi_\xi)_\mu
-	$, wher e.g.
+	$, where e.g.
 	\begin{equation}
 		(\chi_\xi)_\phi
-		= \frac{\var{T} \coth (LT)}{2G}
+		= \frac{\var{T} \coth LT}{2G}
 			\pqty{
 				1 - {\frac{r}{\sqrt{r^2 - 4T^2}}}
-				\frac{\cosh (2T\phi)}{\cosh (TL)}
+				\frac{\cosh 2T\phi}{\cosh TL}
 			}
 	\end{equation}
 	
@@ -612,15 +640,15 @@
 	\begin{equation}
 		\var{Q}_\xi
 		= \frac{\var{T}}{2G} \pqty{
-				L \coth (LT) - \frac{1}{T}
+				L \coth LT - \frac{1}{T}
 			}
 	\end{equation}
 	With a final integration w.r.t.~$\var{T}$ in the phase phase, we recover the resulting charge, which agrees with the entanglement entropy in \cite{Rangamani:2016dms} up to an overall constant shift:
 	\begin{equation}
-		Q_\xi = \frac{1}{2G} \log \frac{\sinh (LT)}{T}
+		Q_\xi = \frac{1}{2G} \log \frac{\sinh LT}{T}
 	\end{equation}
 	
-\subsection{With constant cutoff}
+\subsubsection{With constant cutoff}
 	Now we consider constant cutoff at $r = r_c$. Again we need to trade the $L_\infty$ above with the coordinate length of the interval $L$ at the cutoff $r_c$. The relation can be solved by looking at the geodesic equation, which is slightly non-trivial this time:
 	\begin{equation}
 		\frac{\cosh L_\infty T}{\cosh LT}
@@ -692,8 +720,195 @@
 	\end{aligned}
 	\end{equation}
 	Although we haven't been careful about integration constants, this result happens to agree with the entropy in \cite{Lewkowycz:2019xse}. 
+\section{Entanglement in the TsT Background}
+	We are interested in the holographic entanglement entropy of the single-trace $T\bar{T}$ deformed theory, and we are considering the case where the deformation parameter carries a sign different from the cutoff picture. The setup is described by e.g.~\textcite{Apolo:2019zai,Chakraborty:2018kpr}. 
 	
+	Namely, we are considering a flow towards UV, instead of the flow towards IR studied by e.g.~\cite{McGough:2016lol,Lewkowycz:2019xse}. 
+	The field theory side calculation of entanglement entropy \cite{Donnelly:2018bef,Lewkowycz:2019xse} seems to survive through the sign flip; when dualed to the bulk it suggests that:
+	\begin{equation}
+		S = \frac{1}{2G} \mop{arccosh}
+			\frac{L}{L_0},
+	\quad
+		C(L) = L \pdv{L}\,S
+		= \frac{1}{2G} \frac{1}{
+				\sqrt{1 - (\frac{L_0}{L})^2}
+			}
+	\label{eq:tst_ft_ee}
+	\end{equation}
+	There is a length scale $L_0$ here which is the minimal length of the entanglement interval; for $L < L_0$ the entropy becomes complex, thus unphysical. This can be interpreted as a UV length scale arised from the deformation. In terms of the worldsheet deformation parameter $\lambda$ and w.r.t.~to the TsT metric given in \cite{Apolo:2019zai}, we have:
+	\begin{equation}
+		L_0 = \sqrt{8\lambda}
+	\end{equation}
 	
+	Although we've expressed everything in terms of the bulk parameters and the worldsheet deformation parameter $\lambda$, we'd like to emphasize that the above results comes from purely field theoretical calculations, and they are mapped to the bulk using the holographic dictionary. Our goal is to reproduce them as gravitational entropy, from bulk calculations. 
+\subsection{Case study: Ramond vacuum $T_u = T_v = 0$}
+	For simplicity, we first look at the \textsl{Ramond vacuum}, i.e.~the TsT background with $T_u = T_v = 0$. In this case the string frame metric and dilaton is given by:
+	\begin{equation}
+		\dd{s}^2
+		= \frac{\dd{z}^2}{z^2}
+			+ \frac{\dd{u}\dd{v}}{z^2 + 2\lambda},
+	\quad
+		e^{2\Phi}
+		= \frac{k}{p}
+			\frac{z^2}{z^2 + 2\lambda}\,
+			e^{-2\phi_0},
+		\label{eq:staticMetricPoincare}
+	\end{equation}
+	To avoid confusion with the dilaton, we denote the angular direction with the curvy $\varphi = \frac{u + v}{2}$. 
+	This is derived from (3.13) of \cite{Apolo:2019zai}, with $r = \frac{1}{z^2}$; we've set the AdS radius $\ell_{\mrm{AdS}} = 1$ for now and neglected the $B$ field. For more simplifications, we further set:
+	\begin{equation}
+		p = k = 1
+	\end{equation}
+\subsubsection{RT surface}
+	The Einstein frame metric $G_{\mu\nu}$ is related to the string frame metric $g_{\mu\nu}$ by:
+	\begin{equation}
+		G_{\mu\nu} = e^{-4\Phi} g_{\mu\nu}
+	\end{equation}
+	Now consider a spacelike geodesic in Einstein frame within the time slice $t = 0$; we can nicely parametrize it  with its peak $z_0$ at $\varphi = 0$. The $\pdd{\varphi}$ symmetry implies that along the geodesic $\gamma$,
+	\begin{equation}
+		\pqty{\dv{z}{\varphi}}_{\!\gamma}^{\!2}
+		= \frac{z_0^2}{z^2}
+				\frac{z_0^2}{z_0^2 + 2\lambda}
+			- \frac{z^2}{z^2 + 2\lambda}
+	\end{equation}
+	
+	The coordinate length $L$ at the boundary is given by:
+	\begin{equation}
+	\begin{aligned}
+	  L = L(z_0;\mu)
+	  &= \int \dd{\varphi}
+	  = 2\int_0^{z_0}
+	      \abs{\dv{\varphi}{z}}
+	      \dd{z} \\
+	  &= 2\int_0^{z_0}
+	      \frac{1}{\sqrt{
+	          \frac{z_0^2}{z^2}
+	          \frac{z_0^2}{z_0^2 + 2\lambda}
+	          - \frac{z^2}{z^2 + 2\lambda}
+	      }}
+	      \dd{z}
+	\end{aligned}
+	\label{eq:length_function}
+	\end{equation}
+	
+\pagebreak\noindent
+	Note that:
+	\begin{itemize}
+	\item $\mu\to 0,\, L(z_0;\mu) \to 2z_0$, we recover the AdS result: in this case the geodesic $\gamma$ is a semi-circle with radius $z_0$.
+	
+	\item $z_0\to 0,\,
+		L(z_0;\mu) \to \sqrt{\frac{\pi^2}{2} \lambda}
+	$, we see that $L$ is bounded from below by:
+	\begin{equation}
+		L_{\min} (\mu)
+		= \sqrt{\frac{\pi^2}{2} \lambda}
+	\end{equation}
+	This feature is very similar to the lower bound $L_0$ of entanglement length, but they do \textit{not} agree; in fact,
+	\begin{equation}
+		L_{\min} / L_0 = \pi / 4
+	\end{equation}
+	\end{itemize}
+	
+	The entanglement entropy, as proposed by RT, is given by:
+	\begin{equation}
+	\begin{aligned}
+	  S_\mrm{RT}
+	  &= \frac{1}{4G} \int_\gamma
+	    \frac{z^2 + 2\lambda}{z^2}
+	    \sqrt{
+	        \frac{\dd{z}^2}{z^2}
+	        + \frac{\dd{\varphi}^2}{z^2 + 2\lambda}
+	    } \\
+	  &= \frac{1}{2G} \int_0^{z_0} \dd{z}
+	    \frac{z^2 + 2\lambda}{z^2}
+	      \sqrt{
+	          \frac{1}{z^2}
+	          + \frac{1}{z^2 + 2\lambda}
+	          \Big/
+	          \pqty{\dv{z}{\varphi}}^{\!\!2}
+	      } \\
+	  &= \frac{1}{2G} \int_0^{z_0} \dd{z}
+	    \frac{z^2 + 2\lambda}{z^2}
+	      \sqrt{
+	          \frac{1}{z^2}
+	          + \frac{1}{z^2 + 2\lambda}
+	          \Big/
+	          \pqty{
+					\frac{z_0^2}{z^2}
+					\frac{z_0^2}{z_0^2 + 2\lambda}
+					- \frac{z^2}{z^2 + 2\lambda}
+	          }
+	      }
+	\end{aligned}
+	\end{equation}
+	We don't have an explicit analytic result for the above integral, but numerical calculations suggest that it does not agree with \eqref{eq:tst_ft_ee}. 
+	As is inspired by the cutoff picture, we would like to tweak it such that it matches with \eqref{eq:tst_ft_ee}. 
+	
+	We have the following observations: 
+	\begin{itemize}
+	\item If we denote $L_{\mrm{CFT}} = 2z_0$, and instead of using \eqref{eq:length_function}, we use:
+	\begin{equation}
+		L' = 2\sqrt{z_0^2 + 2\lambda},
+	\quad\text{i.e.}\quad
+		\pqty{\frac{L'}{2}}^{\!\!2}
+		= \pqty{\frac{L_\mrm{CFT}}{2}}^{\!\!2} + 2\lambda,
+	\end{equation}
+	Which mimic the relation \eqref{eq:length_relations}, then the $C(L)$ from the field theory calculations can be re-written as:
+	\begin{equation}
+		C(L')
+		= \frac{L'}{L_{\mrm{CFT}}}
+		= \frac{1}{\sqrt{1 - (\frac{L_0}{L'})^2}},
+	\quad L_0 = \sqrt{8\lambda}
+	\end{equation}
+	Where the relation $C(L') = \frac{L'}{L_{\mrm{CFT}}}$ is completely analogous to the double-trace situation; in that case we have $L_\mrm{CFT} = L_\infty$. 
+	
+	\item With quite a bit of numeric experimentations, we find that:
+	\begin{equation}
+		L_\mrm{CFT}\,\pdv{L_\mrm{CFT}}\,S_\mrm{RT}
+		= z_0\,\pdv{z_0}\,S_\mrm{RT}
+		\sim \frac{1}{2G}
+	\label{eq:RT_entropy_derivative}
+	\end{equation}
+	In fact the result seems to be $\lambda$ independent; but we know that:
+	\begin{equation}
+		S_{\lambda = 0}
+		= \frac{1}{2G}
+			\log \frac{L_\mrm{CFT}}{\epsilon}
+		= \frac{1}{2G}
+			\log \frac{2z_0}{\epsilon}
+	\end{equation}
+	Namely $
+		z_0\,\pdv{z_0}\,S_{\lambda = 0}
+		= \frac{1}{2G}
+	$ exactly. Combined with the numerical results, this hints at the fact that \eqref{eq:RT_entropy_derivative} holds exactly with no $\lambda$ dependence. 
+	
+	\item Therefore, we have:
+	\begin{equation}
+		L' \pdv{S_\mrm{RT}}{L'}
+		= L_\mrm{CFT} \pdv{S_\mrm{RT}}{L_\mrm{CFT}}
+			\pdv{L_\mrm{CFT}}{L'}
+			\frac{L'}{L_\mrm{CFT}}
+		\sim \frac{1}{2G}
+			\pqty{\frac{L'}{L_\mrm{CFT}}}^{\!\!2}
+		= C(L')^2
+	\end{equation}
+	We find that \textit{numerically}, this does hold very well. Unfortunately this is not what we expected. How should we interpret this?
+	\end{itemize}
+	
+	\begin{figure}[!ht]
+	\centering
+	\includegraphics[width=.7\linewidth]{img/cFunctionGame.pdf}
+%	\hspace{2em}
+%	\vspace{-2ex}
+	\caption[Numerical construction of the $C(L)$ function]{%
+		Numerical construction of the $C(L)$ function from $S_\mrm{RT}$ by considering $
+			\sqrt{
+				\frac{1}{2G}
+				L' \pdv{S}{L'}
+			}
+		$. What's happening? I have no idea.
+	}
+	\end{figure}
 	
 \vspace{1.2\baselineskip}
 \pagebreak[4]
