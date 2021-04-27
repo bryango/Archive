@@ -1,0 +1,359 @@
+% !TeX document-id = {b5392a94-51a3-49d1-9ba5-698bc09f9d35}
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper
+	,10pt
+%	,twoside
+]{article}
+
+\input{../preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+\title{Finding finite transformations}
+\addbibresource{schwarzian.bib}
+
+%%% ID: sensitive, do NOT publish!
+\InputIfFileExists{id.tex}{}{}
+
+\makeatletter
+\newcommand{\nobeginpar}{\@beginparpenalty=10000}
+\makeatother
+
+\usepackage{cancel}
+%\counterwithout{equation}{section}
+
+\begin{document}
+\maketitle
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+\vspace*{-.5\baselineskip}
+
+	Sometimes we encounter infinitesimal transformations and we'd like to integrate them to some finite transformations. The trick of doing this is to use the fact that transformations should \textbf{compose nicely}; this idea is well introduced in classical texts of group theory such as \textcite{wybourne1993classical}; here we shall use it to construct the finite transformations\footnote{
+		I'd like to thank \cjk[gkai]{\textit{孙悠然}} for re-inventing this method and explaining it to me. Another good reference for this is \url{http://personalpages.to.infn.it/~billo/didatt/gruppi/gruppi.html}, or more specifically, \url{http://personalpages.to.infn.it/~billo/didatt/gruppi/liegroups.pdf}. 
+	}. 
+	
+\section{Stress Tensor and the Schwarzian Derivative}
+	We will work with a well-known example: the transformation of the stress tensor $T(z)$ in a 2D CFT. We know that the $TT$ OPE takes the following form:
+	\begin{equation}
+		T(z)\,T(0)
+		\sim \frac{c/2}{z^4}
+			+ \frac{h\,T(0)}{z^2}
+			+ \frac{\pd T(0)}{z},
+	\quad h = 2
+	\end{equation}
+	This is related to the algebra of its modes, namely the Virasoro algebra with central charge $c$. Using Ward identity, we can further relate this to the infinitesimal transformation of $T$, under the conformal map $z\mapsto z+\epsilon$:
+	\begin{equation}
+		\var_\epsilon {T(z)}
+		= - \operatorname*{Res}_{z'\to z}
+				\epsilon(z')\,T(z')\,T(z)
+		= - \epsilon\,\pd T
+			- h\,\pd\epsilon\,T
+			- \frac{c}{12}\,\pd^3 \epsilon,
+	\quad h = 2
+	\end{equation}
+	
+	We see that $T(z) = T_{zz}(z)$ is almost like a tensor: the first two terms in the infinitesimal transformation are from translations and rotations, as expected, but there is a third \textit{anomalous} term which is \textbf{independent of $T$}. Thus the integrated, finite transformation of this term should be a \textbf{functional of $w(z)$} that is independent of $T$, i.e.
+	\begin{equation}
+		- \frac{c}{12}\,\pd^3 \epsilon
+	\longrightarrow
+		- \frac{c}{12}\, S[w]_{(z)}
+		\equiv - \frac{c}{12} \Bqty{w,z},
+	\quad
+		S[w]_{(z)} = S[w,\pd_z w,\cdots]
+	\end{equation}
+	The full integrated transformation of $T$ can then be written as:
+	\begin{equation}
+		T_{zz}(z)
+		= T_{ww}(w) \pqty{\pdv{w}{z}}^{\!2}
+			+ \frac{c}{12} \Bqty{w,z},
+	\end{equation}
+	\vspace{-.6\baselineskip}
+	\begin{equation}
+		T_{ww}(w) \dd{w}^2
+		= T_{zz}(z) \dd{z}^2
+			- \frac{c}{12} \Bqty{w,z} \dd{z}^2
+	\end{equation}
+	
+	To find $S = S[w]$, consider \textbf{two successive transformations:}
+	\begin{equation}
+		z \xmapsto{\ w\ } w \xmapsto{\ v\ } v
+	\end{equation}
+	Here we've abused the symbols $w,v$ to label both the transformations and their images: $w\colon z\mapsto w(z)$, $v\colon w\mapsto v = v(w) = v(w(z))$. 
+	To say that \textbf{$S[w]_{(z)}$ compose nicely} under successive transformations is to say that $S[w]_{(z)} = \Bqty{w,z}$ satisfies the following \textbf{chain rule:}
+	\begin{equation}
+		\Bqty{v,z} \dd{z}^2
+		= \Bqty{v,w} \dd{w}^2
+		+ \Bqty{w,z} \dd{z}^2
+	\end{equation}
+\pagebreak
+	
+	Generally, we can think of the chain rules as \textit{representations} of the transformation group; in this case the group product is given by the composition $v\circ w$. For example, the usual chain rule is a representation on the cotangent bundle by the pullback $
+		(v\circ w)^*
+		= w^* \circ v^*
+	$; we have:
+	\begin{equation}
+		(v\circ w)^* \dd{v}
+		= \dv{v}{z} \dd{z}
+		= \dv{v}{w} \dv{w}{z} \dd{z}
+		= w^* \circ v^* \dd{v}
+	\end{equation}
+	The Schwarzian derivative is just another representation of the chain rule, on the bundle of symmetric 2-differentials $\dd{z}^2$. 
+	
+	To actually solve for the functional dependence $S = S[w]_{(z)}$, we consider the special case:
+	\begin{equation}
+		v = w + \var{w},
+	\quad \var{w} = \epsilon
+	\end{equation}
+	Going back to the chain rule, we then have:
+	\begin{equation}
+		\pqty{S[w + \epsilon] - S[w]}_{(z)} \dd{z}^2
+		= S[w + \epsilon]_{(w)} \dd{w}^2
+		= \pd_w^3 \epsilon \dd{w}^2
+	\end{equation}
+	\vspace{-.8\baselineskip}
+	\begin{equation}
+		\var{S}
+		= \pqty{\pdv[3]{w} \var{w}} (\pd_z w)^2
+	\label{eq:functional_eq}
+	\end{equation}
+	
+	We see that the chain rule can be re-written as functional differentials; in this form it has \textbf{no explicit dependence of $z$, and it's a functional equation for $
+		S[w]_{(z)} = S[w,\pd_z w,\cdots]
+	$}. This reveals the nature of the above 2-step transformation $z\mapsto w\mapsto v$: with $z\mapsto w$ we construct the function $w(z)$, while with $w\mapsto v = w + \var{w}$ we consider the variation of $S[w]_{(z)}$ w.r.t.~$w(z)$. 
+	
+	\newparagraph
+	Now suppose that $w(z)$ is constructed by composing infinitesimal transformations $z\mapsto z + \epsilon$; namely, $w = w_t(z)$ is the integral curve of a series of infinitesimal transformations along $\epsilon$, starting from $z$. From the perspective of differential geometry, \textbf{$w = w_t(z)$ is the flow of vector field $\epsilon$}, and $t$ is the flow parameter. This is precisely the \textbf{exponential map} that brings $t\epsilon$ in the Lie algebra to $w_t(z)$ in the Lie group. 
+	
+	The crucial observation is that \textbf{the functional equation \eqref{eq:functional_eq} should hold for any $w = w_t(z)$}. Along the flow, we have:
+	\begin{equation}
+		\var{w_t} = \var{t} \pdd{t} w_t
+	\end{equation}
+	We then have:
+	\begin{equation}
+		\pdd{t} S
+		= (\pd_z w_t)^2
+			\pdv[3]{w_t}\,\pdd{t} w_t
+	\end{equation}
+	
+	To solve the above equation, we try to complete the right-hand side into a total $t$-differential: $
+		\pdd{t} S = \pdd{t} ({\cdots})
+	$. Note that:
+	\begin{equation}
+		\pdv{w} = \frac{1}{\pd w}\pdv{z},
+	\quad
+		\pdv[3]{w}
+		= \frac{1}{(\pd w)^3} \pd^3
+			- 3 \frac{\pd^2 w}{(\pd w)^4} \pd^2
+			+ \pqty{
+				3\frac{(\pd^2 w)^2}{(\pd w)^5}
+				- \frac{\pd^3 w}{(\pd w)^4}
+			} \pd
+	\end{equation}
+	Namely, we can trade the functional derivative w.r.t.~$w$ to regular derivative $\pd = \pdd{z}$, with a $\frac{1}{\pd w}$ factor. 
+	From now on we shall drop the subscript $t$ for $w = w_t$, but the $t$-dependence is not forgotten. We thus have:
+	\begin{equation}
+	\begin{aligned}
+		\pdd{t} S
+		&= \frac{1}{\pd w}
+				\pd_t \pd^3 w
+			- 3 \frac{\pd^2 w}{(\pd w)^2}
+				\pd_t \pd^2 w
+			+ \pqty{
+				3\frac{(\pd^2 w)^2}{(\pd w)^3}
+				- \frac{\pd^3 w}{(\pd w)^2}
+			} \pd_t \pd w \\
+		&= \pdd{t} \frac{\pd^3 w}{\pd w}
+			- 3 \frac{\pd^2 w}{(\pd w)^2}
+				\pd_t \pd^2 w
+			+ 3\frac{(\pd^2 w)^2}{(\pd w)^3}
+				\pd_t \pd w \\
+		&= \pdd{t} \frac{\pd^3 w}{\pd w}
+			- \frac{3}{2}\,\pdd{t} 
+				\pqty{\frac{\pd^2 w}{\pd w}}^{\!\!2} \\
+	\end{aligned}
+	\end{equation}
+	
+	Indeed, the right-hand side can be arranged into a total $t$-derivative; we have:
+	\begin{equation}
+		S[w](z)
+		\equiv \Bqty{w,z}
+		= \frac{\pd^3 w}{\pd w}
+			- \frac{3}{2}
+			\pqty{\frac{\pd^2 w}{\pd w}}^{\!\!2}
+	\end{equation}
+	This is the \textit{Schwarzian derivative}. The $t$-integration constant is fixed by requiring that $\Bqty{z,z} = 0$. We see that to find the finite transformation, instead of explicit integrating $\var_\epsilon T$, we can \textbf{assume that there is a flow $S[w]_{(z)}$ where $w = w_t(z)$; by completing the total derivative $\pdd{t} S$ along $w_t(z)$ with arbitrary $t$, we can recover the functional dependence $S = S[w]$}. 
+	
+\section{Linear Dilaton}
+	Let's look at another example: the linear dilaton $X$ with infinitesimal transformation:
+	\begin{equation}
+		\var{X}
+		= - \epsilon\,\pd X
+			- \bar{\epsilon}\,\pdbar X
+			- \frac{\alpha'V}{2}\,\pqty{
+				\pd\epsilon
+				+ \pdbar\bar{\epsilon}
+			}
+	\label{eq:dilaton_transformation}
+	\end{equation}
+	Here we've dropped the spacetime index $X^\mu \leadsto X$. We see that it is again in the form of translation plus a shift, and the shift is independent of the field $X$. 
+	
+	To understand this infinitesimal transformation, first recall that $
+		\pqty{
+			\pd\epsilon
+			+ \pdbar\bar{\epsilon}
+		}
+	$ is precisely the contribution of Weyl rescaling in the conformal symmetry; we have:
+	\begin{equation}
+		0 = \var{g_{ab}}
+		= \pqty{2\var{\omega} - \mcal{L}_\epsilon}\,
+			g_{ab}
+		= 2\,\pqty{
+				\var{\omega} g_{ab}
+				- \nabla_{[a} \epsilon_{b]}
+			},
+	\quad
+		2\var{\omega}
+		= \frac{2}{d}\,\nabla\cdot\epsilon,
+	\label{eq:conformal_Killing}
+	\end{equation}
+	This is in fact the \textit{conformal Killing equation}; the generators of conformal symmetry $\epsilon$ is the solution to this equation, which holds for general dimension $d$. 
+	Here we have $d = 2$, and conformal generators are given by $\epsilon(z), \bar{\epsilon}(\bar{z})$. If we further restrict to flat metric, then we have $
+		2\var{\omega}
+		= \pd\epsilon
+			+ \pdbar\bar{\epsilon}
+	$. 
+	
+	Therefore, the infinitesimal transformation is saying that $X$ transforms in a non-trivial manner under Weyl rescaling:
+	\begin{equation}
+		\var_\omega g_{ab} = 2\var{\omega} g_{ab},
+	\quad
+		\var_\omega X
+		= - \frac{\alpha' V}{2}\, 2\var{\omega}
+	\end{equation}
+	Actually, we have a similar result for the stress tensor transformation discussed above, which is associated with Weyl anomaly:
+	\begin{equation}
+		\var_\omega T(z)
+		= - \frac{c}{12}\,\pd^2 (2\var{\omega})
+	\end{equation}
+	
+	In fact, from $\var_\omega {X}$ we can already integrate over $\omega$ and recover the finite transformation for $\var_\omega {X}$, using the finite version of $
+		2\var{\omega}
+		= \pd\epsilon
+			+ \pdbar\bar{\epsilon}
+	$, namely the conformal Killing equation \eqref{eq:conformal_Killing}:
+	\begin{equation}
+		g'_{ab}
+		= g_{ab}
+		= e^{2\omega} \pdv{\sigma^c}{\sigma'^a}
+			\pdv{\sigma^d}{\sigma'^b}\,g_{cd},
+	\quad
+		e^{-2\omega}
+		= \frac{1}{d}\,
+			g^{ab}
+			\pdv{\sigma^c}{\sigma'^a}
+			\pdv{\sigma^d}{\sigma'^b}
+			\,g_{cd}
+	\end{equation}
+	For $d = 2$, note that $g_{z\bar{z}} = g_{\bar{z}z} = 2$, after carefully summing over indices, we have:
+	\begin{equation}
+		e^{-2\omega}
+		= \frac{1}{2}\, g^{w\bar{w}}
+			\pdv{z}{w}
+			\pdv{\bar{z}}{\bar{w}}\,
+			g_{z\bar{z}} \cdot 2
+		= \pdv{z}{w} \pdv{\bar{z}}{\bar{w}},
+	\quad
+		e^{2\omega}
+		= \pdv{w}{z} \pdv{\bar{w}}{\bar{z}}
+		= \abs{\pd w}^2,
+	\end{equation}
+	\vspace{-.5\baselineskip}
+	\begin{equation}
+		X'(w)
+		= X(z) - \frac{\alpha' V}{2}\, 2\omega
+		= X(z) - \frac{\alpha' V}{2}\, \ln e^{2\omega}
+		= X(z) - \frac{\alpha' V}{2}\, \ln \abs{\pd w}^2
+	\end{equation}
+\subsection{Worldsheet Dilaton Action}
+	We see that under Weyl rescaling, $X$ gets a $X$-independent shift, proportional to the Weyl exponent. What does this mean physically? In fact, this is a ``remnant'' of the worldsheet dilaton term in bosonic string theory \cite{Polchinski:1998rq}:
+	\begin{equation}
+		S^\Phi = \frac{1}{4\pi\alpha'}
+			\int \dd[2]{\sigma} \sqrt{g}\,
+				\alpha' R\,\Phi(X)
+	\end{equation}
+	Although this term vanishes in the flat limit $R \to 0$, its effects persist in the stress tensor, since the stress tensor depends on the functional derivative of $g^{ab}$, and this does not vanish when $R \to 0$ \cite{Tong:2009np}:
+	\begin{equation}
+		T^\Phi_{ab}
+		= -4\pi \frac{1}{\sqrt{g}} \fdv{S^\Phi}{g^{ab}}
+		= \pqty{
+				\cdv{a} \cdv{b} {}
+				- g_{ab} \nabla^c \nabla_c
+			}\,\Phi
+		\xrightarrow{\ g_{ab} = \delta_{ab}\ }
+		\pqty{
+				\pd_a \pd_b
+				- \delta_{ab}\, \pd^c \pd_c
+			}\,\Phi
+	\end{equation}
+	
+	Note that $T_{ab}$ is not traceless, namely the dilaton coupling $S^\Phi$ is generally \textbf{not Weyl invariant} at the classical level, unless $\pd^c \pd_c \Phi = 0$, or $\Phi(X) \equiv \Phi_0$ constant. 
+	However, note that $R\,\Phi(X)$ comes with an $\alpha'$ in the Lagrangian; therefore, it's contribution mixes with $\order{\alpha'}$ loop corrections from the other terms, and it's possible that the \textbf{total combined Weyl anomaly cancels} in the presence of a non-trivial $\Phi(X)$, thus restoring Weyl invariance. 
+	
+	In fact, the full theory is Weyl invariant if the \textit{dilaton profile} $\Phi(X)$, the spacetime metric $G_{\mu\nu}(X)$ and gauge field $B_{\mu\nu}(X)$ all have vanishing beta functions:
+	\begin{equation}
+		\beta^G_{\mu\nu}
+		= \beta^B_{\mu\nu}
+		= \beta^\Phi = 0
+	\label{eq:beta_constraints}
+	\end{equation}
+	Which gives the spacetime equations of motion for $G_{\mu\nu}(X), B_{\mu\nu}(X)$ and $\Phi(X)$. 
+	Suppose $B_{\mu\nu}(X) \equiv 0$; at 1-loop, we have:
+	\begin{equation}
+		0 = \beta^\Phi
+		= \frac{D - 26}{6}
+			- \frac{\alpha'}{2} \nabla^\mu \cdv{\mu} \Phi
+			+ \alpha' \nabla^\mu \Phi \cdv{\mu} \Phi
+			+ \order{\alpha'^2},
+	\quad
+		B_{\mu\nu}(X) \equiv 0
+	\end{equation}
+	We see that it's actually possible to move away from the critical dimension $D = 26$ by turning on a large gradient of $\Phi$, while keeping the theory consistent. In particular, the \textit{linear dilaton theory} is an \textit{exact} solution of \eqref{eq:beta_constraints} to \textit{all loops} given by:
+	\begin{equation}
+		G_{\mu\nu}(X) = \eta_{\mu\nu},
+	\quad
+		B_{\mu\nu}(X) = 0,
+	\quad
+		\Phi(X) = V_\mu X^\mu,
+	\quad
+		V^2 = \frac{26 - D}{6\alpha'}
+	\end{equation}
+	\vspace{-.5\baselineskip}
+	\begin{equation}
+		T(z)
+		= T^X + T^\Phi
+		= -\frac{1}{\alpha'}\, \normorder{\pd X \pd X}
+			+ V \pd^2 X
+	\end{equation}
+	
+	Finally, by computing $TX$ OPE and applying Ward identity, we can recover the transformation rule \eqref{eq:dilaton_transformation}. 
+	
+	
+	
+	
+%	TODO: repeat integration program
+%	restrict to the holomorphic part of the transformation. 
+	
+	
+%\nocite{Polchinski:1998rq}
+	
+\vspace{1.2\baselineskip}
+%\pagebreak[4]
+\raggedright
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}
