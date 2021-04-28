@@ -3,10 +3,13 @@
 % to be `\input` in subfolders,
 % ... therefore the path should be relative to subfolders.
 
-\usepackage[UTF8
-	,heading=false
-	,scheme=plain % English Document
-]{ctex}
+\usepackage{iftex}
+\ifXeTeX
+	\usepackage[UTF8
+		,heading=false
+		,scheme=plain % English Document
+	]{ctex}
+\fi
 \usepackage{indentfirst}
 
 \input{../.modules/basics/macros.tex}

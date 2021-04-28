@@ -29,12 +29,14 @@
 \pagenumbering{arabic}
 \thispagestyle{empty}
 
-\vspace*{-.5\baselineskip}
-
 	Sometimes we encounter infinitesimal transformations and we'd like to integrate them to some finite transformations. The trick of doing this is to use the fact that transformations should \textbf{compose nicely}; this idea is well introduced in classical texts of group theory such as \textcite{wybourne1993classical}; here we shall use it to construct the finite transformations\footnote{
 		I'd like to thank \cjk[gkai]{\textit{孙悠然}} for re-inventing this method and explaining it to me. Another good reference for this is \url{http://personalpages.to.infn.it/~billo/didatt/gruppi/gruppi.html}, or more specifically, \url{http://personalpages.to.infn.it/~billo/didatt/gruppi/liegroups.pdf}. 
 	}. 
-	
+
+\setlength{\parskip}{.1\baselineskip}
+\tableofcontents
+\setlength{\parskip}{\parskipnorm}
+
 \section{Stress Tensor and the Schwarzian Derivative}
 	We will work with a well-known example: the transformation of the stress tensor $T(z)$ in a 2D CFT. We know that the $TT$ OPE takes the following form:
 	\begin{equation}
@@ -87,8 +89,9 @@
 		\Bqty{v,z} \dd{z}^2
 		= \Bqty{v,w} \dd{w}^2
 		+ \Bqty{w,z} \dd{z}^2
+	\label{eq:schwarzian_chain}
 	\end{equation}
-\pagebreak
+%\pagebreak
 	
 	Generally, we can think of the chain rules as \textit{representations} of the transformation group; in this case the group product is given by the composition $v\circ w$. For example, the usual chain rule is a representation on the cotangent bundle by the pullback $
 		(v\circ w)^*
@@ -233,7 +236,7 @@
 		\var_\omega X
 		= - \frac{\alpha' V}{2}\, 2\var{\omega}
 	\end{equation}
-	Actually, we have a similar result for the stress tensor transformation discussed above, which is associated with Weyl anomaly:
+	Actually, we have a similar result for the stress tensor transformation discussed above, which is associated with \textbf{Weyl anomaly}:
 	\begin{equation}
 		\var_\omega T(z)
 		= - \frac{c}{12}\,\pd^2 (2\var{\omega})
@@ -276,9 +279,10 @@
 		= X(z) - \frac{\alpha' V}{2}\, 2\omega
 		= X(z) - \frac{\alpha' V}{2}\, \ln e^{2\omega}
 		= X(z) - \frac{\alpha' V}{2}\, \ln \abs{\pd w}^2
+	\label{eq:finite_Weyl}
 	\end{equation}
 \subsection{Worldsheet Dilaton Action}
-	We see that under Weyl rescaling, $X$ gets a $X$-independent shift, proportional to the Weyl exponent. What does this mean physically? In fact, this is a ``remnant'' of the worldsheet dilaton term in bosonic string theory \cite{Polchinski:1998rq}:
+	We see that under Weyl rescaling, $X$ gets an $X$-independent shift, proportional to the Weyl exponent. What does this mean physically? In fact, this is a ``remnant'' of the worldsheet dilaton term in bosonic string theory \cite{Polchinski:1998rq}:
 	\begin{equation}
 		S^\Phi = \frac{1}{4\pi\alpha'}
 			\int \dd[2]{\sigma} \sqrt{g}\,
@@ -300,7 +304,7 @@
 	\end{equation}
 	
 	Note that $T_{ab}$ is not traceless, namely the dilaton coupling $S^\Phi$ is generally \textbf{not Weyl invariant} at the classical level, unless $\pd^c \pd_c \Phi = 0$, or $\Phi(X) \equiv \Phi_0$ constant. 
-	However, note that $R\,\Phi(X)$ comes with an $\alpha'$ in the Lagrangian; therefore, it's contribution mixes with $\order{\alpha'}$ loop corrections from the other terms, and it's possible that the \textbf{total combined Weyl anomaly cancels} in the presence of a non-trivial $\Phi(X)$, thus restoring Weyl invariance. 
+	However, note that $R\,\Phi(X)$ comes with an $\alpha'$ in the Lagrangian; therefore, its contribution mixes with $\order{\alpha'}$ loop corrections from the other terms, and it's possible that the \textbf{total combined Weyl anomaly cancels} in the presence of a non-trivial $\Phi(X)$, thus restoring Weyl invariance. 
 	
 	In fact, the full theory is Weyl invariant if the \textit{dilaton profile} $\Phi(X)$, the spacetime metric $G_{\mu\nu}(X)$ and gauge field $B_{\mu\nu}(X)$ all have vanishing beta functions:
 	\begin{equation}
@@ -320,7 +324,9 @@
 	\quad
 		B_{\mu\nu}(X) \equiv 0
 	\end{equation}
-	We see that it's actually possible to move away from the critical dimension $D = 26$ by turning on a large gradient of $\Phi$, while keeping the theory consistent. In particular, the \textit{linear dilaton theory} is an \textit{exact} solution of \eqref{eq:beta_constraints} to \textit{all loops} given by:
+	We see that it's actually possible to move away from the critical dimension $D = 26$ by turning on a large gradient of $\Phi$, while keeping the theory consistent. 
+	
+	In particular, the \textit{linear dilaton theory} is an \textit{exact} solution of \eqref{eq:beta_constraints} to \textit{all loops} given by:
 	\begin{equation}
 		G_{\mu\nu}(X) = \eta_{\mu\nu},
 	\quad
@@ -333,23 +339,48 @@
 	\vspace{-.5\baselineskip}
 	\begin{equation}
 		T(z)
-		= T^X + T^\Phi
-		= -\frac{1}{\alpha'}\, \normorder{\pd X \pd X}
+		= T^X_{zz} + T^\Phi_{zz}
+		= -\frac{1}{\alpha'}\,\normorder{\,\pd X \pd X}
 			+ V \pd^2 X
 	\end{equation}
+	The reason that this holds to \textit{all loops} is that we can \textit{define} an exact CFT with this action and stress tensor $T(z)$. Although $T^\Phi_{ab}$ is generally not traceless, in this case its trace vanishes on-shell: $\pd \pdbar X = 0$, so indeed we have conformal invariance. 
 	
-	Finally, by computing $TX$ OPE and applying Ward identity, we can recover the transformation rule \eqref{eq:dilaton_transformation}. 
+	Finally, by computing $TX$ OPE and applying Ward identity, we \textbf{basically \textit{impose} the transformation rule \eqref{eq:dilaton_transformation} on the field $X$}. One can thus interpret $\var_\omega X$ as some sort of \textbf{anomalous quantum ``dimension'' of $X$}; in this case it is not a rescaling of $X$ like what we usually encounter, but is instead a \textit{shift}, introduced to preserve Weyl (conformal) invariance in the quantum theory. 
 	
+\subsection{Finite Transformation of Linear Dilaton}
+	Although we've already obtained the finite transformation \eqref{eq:finite_Weyl} by viewing it as a Weyl rescaling, we would like to repeat the same program for finding finite transformations, just like what we've done for the Schwarzian derivative, and then confirm the above results. 
 	
+	In the case of linear dilaton, there are no indices of worldsheet coordinates in $X$, so the composition of finite transformations $F[w]_{(z)}$ simply gives the following ``chain rule'':
+	\begin{equation}
+		F[v]_{(z)} = F[v]_{(w)} + F[w]_{(z)}
+	\end{equation}
+	There is no extra $\dd{z}^2$ factors like the ones in the Schwarzian chain rule \eqref{eq:schwarzian_chain}. 
 	
-	
-%	TODO: repeat integration program
-%	restrict to the holomorphic part of the transformation. 
-	
+	For simplicity, we shall restrict to the \textbf{holomorphic part} of the transformation.
+	We note that $F$ converts the product in the usual chain rule $
+		\dv{v}{z}
+		= \dv{v}{w} \dv{w}{z} 
+	$ into a sum. This in fact implies that $F$ must be proportional to $\log \pd w$. But let's be patient and again consider the flow $w_t(z)$ as in the Schwarzian case; we now have:
+	\begin{equation}
+		\pdd{t} F
+		= - \frac{\alpha'V}{2}
+				\pdv{w_t} \pdd{t} w_t
+		= - \frac{\alpha'V}{2}
+				\frac{1}{\pd w_t} \pdd{t} \pd w_t
+		= - \frac{\alpha'V}{2}
+				\pdd{t} \ln \pd w_t
+	\end{equation}
+	Indeed we have $
+		F = - \frac{\alpha'V}{2} \ln \pd w
+	$, as expected. If we include the anti-holomorphic part, we recover the finite transformation \eqref{eq:finite_Weyl}:
+	\begin{equation}
+		X'(w)
+		= X(z) - \frac{\alpha' V}{2}\, \ln \abs{\pd w}^2
+	\end{equation}
 	
 %\nocite{Polchinski:1998rq}
 	
-\vspace{1.2\baselineskip}
+%\vspace{1.2\baselineskip}
 %\pagebreak[4]
 \raggedright
 \printbibliography[%
