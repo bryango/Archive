@@ -4,7 +4,8 @@
 % ... therefore the path should be relative to subfolders.
 
 \usepackage{iftex}
-\ifXeTeX
+\ifPDFTeX
+\else
 	\usepackage[UTF8
 		,heading=false
 		,scheme=plain % English Document

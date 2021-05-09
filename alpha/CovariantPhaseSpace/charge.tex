@@ -1,0 +1,1257 @@
+% !TeX document-id = {b5392a94-51a3-49d1-9ba5-698bc09f9d35}
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper
+	,10pt
+%	,twoside
+]{article}
+
+\input{../preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+\title{Covariant Phase Space\\\large\it A Pedagogical Introduction}
+\addbibresource{charge.bib}
+
+%%% ID: sensitive, do NOT publish!
+\InputIfFileExists{id.tex}{}{}
+
+\makeatletter
+\newcommand{\nobeginpar}{\@beginparpenalty=10000}
+\makeatother
+
+\usepackage{cancel}
+
+\begin{document}
+\maketitle
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+%\vspace*{-.5\baselineskip}
+
+\setlength{\parskip}{.1\baselineskip}
+\tableofcontents
+\setlength{\parskip}{\parskipnorm}
+
+\addtocounter{section}{-1}
+\section{Conventions}
+	We follow Prof.~Wei Song's lecture notes on $\mrm{AdS}_3/\mrm{CFT}_2$, which include a very nice introduction to the covariant formalism and its application. 
+	When it comes to notations, we try to follow the conventions of \textcite{Harlow:2019yfa}, with the following exceptions and extensions: 
+	
+	\begin{itemize}
+	\item $\mcal{F}$ denotes the field space including \textbf{off-shell} configurations; the variation $\delta$ is assumed to be off-shell unless otherwise specified.
+	
+	\item $\tilde{\mcal{P}}$ denotes the field space including \textbf{on-shell} configurations only; one can then define a symplectic form $\omega$ on $\tilde{\mcal{P}}$, but it might be degenerate due to gauge redundancies;
+	
+	\item $\mcal{P}$ denotes the \textbf{physical phase space}, with a nice, non-degenerate sympletic structure. 
+	
+	\end{itemize}
+\smallskip
+\textit{Differential geometry:}
+	
+	\begin{itemize}
+	\item Contraction between a (poly-)vector $V$ with the \textbf{first few indices} of a form $\omega$ is denoted as:
+	\begin{equation}
+		V\cdot \omega = \iota_V \omega
+	\end{equation}
+	In differential geometry, this is more commonly referred to as the \textit{interior product} (or interior derivative, interior multiplication, etc), but there is no need for such fancy notion as it's just simple contraction. 
+	
+	\item Raising and lowering indices are denoted by $\sharp$ and $\flat$ respectively; these are given the cool name of \textit{musical isomorphisms}. 
+	
+	\item The Levi-Civita \textbf{symbol} is denoted as $\epsilon_{\cdots}$ with \textbf{no} $\sqrt{\abs{g}}$ factor; we will try to keep the $\sqrt{\abs{g}}$ explicit. Therefore, the Levi-Civita \textbf{tensor}, i.e.~the standard volume form, is given by:
+	\begin{equation}
+	\begin{aligned}
+		\mrm{Vol}_M
+		= \sqrt{\abs{g}} \dd[D]{x}
+		&= \sqrt{\abs{g}}\, \epsilon_{\cdots}
+			\dd{x^\bullet} \otimes
+			\dd{x^\bullet} \otimes
+			\cdots \otimes
+			\dd{x^\bullet}
+		= \sqrt{\abs{g}} \dd{x^1} \wedge
+			\cdots \wedge \dd{x^D} \\
+		&= \sqrt{\abs{g}}
+			\ \frac{1}{D!}\,
+			\epsilon_{\cdots}
+			\dd{x^\bullet} \wedge
+			\dd{x^\bullet} \wedge
+			\cdots \otimes
+			\dd{x^\bullet}
+	\end{aligned}
+	\end{equation}
+	We see here that our $\mquote{\wedge}$ is defined by anti-symmetrizing $\mquote{\otimes}$ \textit{without} averaging with a $\frac{1}{D!}$ factor; the $\frac{1}{D!}$ in the second line is to cancel an \textit{additional} contraction with the $\epsilon_{\cdots}$ symbol. 
+	If we raise its indices, we get:
+	\begin{equation}
+		(\sqrt{\abs{g}} \dd[D]{x})^{\sharp,\cdots}
+		= \frac{(-1)^s}{\sqrt{\abs{g}}}\,
+			\epsilon^{\cdots}
+	\end{equation}
+	Here $\epsilon^{\cdots}$ is still the Levi-Civita \textbf{symbol} without $\sqrt{\abs{g}}$ factor, and we have $\epsilon_{\cdots} \epsilon^{\cdots} = D!$. The $(-1)^s$ comes from signature of the metric; for $
+		\eta_{ab} \sim \mop{diag}(-1,1,1,\cdots)
+	$ we have $s = 1$. By the way we adopt the \textit{mostly plus} convention for Lorentzian metric, as any sane person should do; through Wick rotation it gets mapped to an \textit{all plus} Euclidean metric. 
+	
+	\item Hodge dual of a $p$-form $\omega$ is defined as contraction with the volume form:
+	\begin{equation}
+		\hstar\omega
+		= \frac{1}{p!}\,
+			\omega^\sharp \cdot \mrm{Vol}_M
+	\quad\Longleftrightarrow\quad
+		\eta\wedge \hstar\omega
+		= \aqty{\eta,\omega} \,\mrm{Vol}_M
+	\end{equation}
+	$\aqty{\cdot,\cdot}$ is the induced inner product on the space of $p$-forms. 
+	The $\frac{1}{p!}$ factor is necessary to guarentee that $\hstar\hstar\omega = (-1)^s\cdot(-1)^{p(D-p)} \omega$. Again the $(-1)^s$ comes from signature of the metric. In particular, for a scalar $f$ and a vector $V$, we have:
+	\begin{equation}
+		\hstar f
+		= f\sqrt{\abs{g}} \dd[D]{x},
+	\quad
+		\hstar\,(f\sqrt{\abs{g}} \dd[D]{x})
+		= (-1)^s f,
+	\quad
+		\hstar V^\flat
+		= V\cdot \sqrt{\abs{g}} \dd[D]{x}
+	\end{equation}
+	A particular useful relation is:
+	\begin{equation}
+		\dd{\hstar V^\flat}
+		= \hstar\,(\cdv{\mu} V^\mu)
+	\end{equation}
+	This is derived around \eqref{eq:divergence_form}. The inner product $\aqty{\cdot,\cdot}$ is particularly convenient for 1-forms; in this case we have:
+	\begin{equation}
+		n \wedge\hstar j^\flat
+		= n_\mu j^\mu \,\mrm{Vol}_M
+	\end{equation}
+	
+	\end{itemize}
+%\smallskip
+\textit{Diffeomorphism and stress tensor:}
+	
+	\begin{itemize}
+	\item A infinitesimal diffeomorphism (diffeo) generated by vector field $\xi$ is given by:
+	\begin{equation}
+		x\mapsto x - \xi = x + \var_\xi {x},
+	\quad
+		\var_\xi {x}
+		= -\xi,
+	\quad
+		\var_\xi \phi
+		= X_\xi \cdot \var{\phi}
+		= +\ldv{\xi} \phi,
+	\end{equation}
+	Here the sign convention is chose such that $\var_\xi \phi$ corresponds to a positive Lie derivative along $\xi$. Note that \cite{Banados:2016zim} chose a unconventional Lie derivative which contains a minus sign in its definition; we are \textit{not} going to follow that. In this convention the usual current for spacetime translation is given by:
+	\begin{equation}
+		\xi = -\pdd{\sigma},
+	\quad
+		j^\mu_\xi = j^\mu_{-\pdd{\sigma}}
+		= T^{\mu\nu} \eta_{\nu\sigma}
+		= T^{\mu\nu} (\pdd{\sigma})_\nu
+	\label{eq:Noether_stress_convention}
+	\end{equation}
+	Where $T^{\mu\nu}$ is the Noether stress tensor. 
+	
+	\item Wick rotation between Lorentzian and Euclidean signatures is defined such that:
+	\begin{equation}
+		\tau = it,
+	\quad
+		V^0_E = iV^0_L,
+	\quad
+		(\dd[D]{x})_E
+		= i\,(\dd[D]{x})_L,
+	\quad
+		e^{iS_L} = e^{-S_E},
+	\quad
+		\mcal{L}_E
+		= -\mcal{L}_L
+	\label{eq:Wick_rotation}
+	\end{equation}
+	Where $
+		S = \int \dd[D]{x} \sqrt{\abs{g}}\,\mcal{L}
+	$ in both cases, and $V^0$ is the 0-th component of some $V^\mu$. Other scalar quantities, such as $
+		g_{\mu\nu} V^\mu W^\nu
+	$, are left invariant. This is the convention introduced in \textcite{Polchinski:1998rq}, Appendix A. 
+	
+	For example, the Einstein-Hilbert action is given by:
+	\begin{equation}
+		S_L = \frac{1}{16\pi G_N}
+			\int \sqrt{-g} \dd[D]{x} R,
+	\quad
+		S_E = -\frac{1}{16\pi G_N}
+			\int \sqrt{g} \dd[D]{x} R
+	\end{equation}
+	For a closed Riemann surface in 2D, by Gauss--Bonnet theorem, we see that the Euclidean action is proportional to genus of the surface:
+	\begin{equation}
+		S_E = -\frac{1}{16\pi G_N}\,
+			4\pi \chi(M)
+		= -\frac{1}{4G_N}\,\chi(M),
+	\quad
+		\chi(M) = 2 - 2g,
+	\quad
+		e^{-S_E}
+		\propto e^{-\frac{1}{2G_N} g}
+	\end{equation}
+	Note that in \textcite{Polchinski:1998rq}, the dilaton term in the Euclidean worldsheet action  goes like $+R\,\Phi(X)$, namely it's missing the minus sign; this is due to the convention for the dilaton $\Phi$: in the perturbative regime we have $\ave{\Phi} = \lambda < 0$, and thus $
+		e^{-S_E} \sim e^{-\lambda \chi}
+		\sim (g_c^2)^g
+	$, where $
+		g_c \sim e^\lambda < 1
+	$ is the closed string coupling. 
+	
+	In 2D, $z,\bar{z} = x \pm i\tau = x \mp t = -u, v$, where $(u,v)$ are the lightcone coordinates. Following \textcite{Polchinski:1998rq}, the Euclidean volume form is then given by:
+	\begin{equation}
+		\dd{\tau} \wedge \dd{x}
+		= \frac{1}{2i} \dd{z} \wedge \dd{\bar{z}}
+		= \frac{1}{2} \dd[2]{z},
+	\quad
+		\dd[2]{z} = 2 \dd{\tau} \wedge \dd{x}
+		= -i \dd{z} \wedge \dd{\bar{z}}
+	\end{equation}
+	The divergence theorem in complex coordinates can then be expanded as:
+	\begin{equation}
+		\int_R \dd[2]{z} \pdd{a} V^a
+		= (-1) \oint_{\pd R}
+			\dd{\ell} n_a V^a
+		= (-1) \oint_{\pd R}
+			V \cdot \dd[2]{z}
+		= (-1)(-i) \oint_{\pd R} \pqty{
+				V^z \dd{\bar{z}}
+				- V^{\bar{z}} \dd{z}
+			}
+	\end{equation}
+	The $(-1)$ factor comes from the conventional counter-clockwise contour integral $\oint_{\pd R}$ in complex \mbox{analysis}, which differs from the $\dd{\tau} \wedge \dd{x}$ orientation chosen here. 
+	
+	\item The Hilbert stress tensor is defined with the Lorentzian action:
+	\begin{equation}
+		T_{\mu\nu}(x)
+		= - \frac{2}{\sqrt{-g}}
+			\fdv{S_L}{g^{\mu\nu}(x)},
+	\quad
+		T^{\mu\nu}(x)
+		= + \frac{2}{\sqrt{-g}}
+			\fdv{S_L}{g_{\mu\nu}(x)}
+	\end{equation}\\[-1.25\baselineskip]
+	\begin{equation}
+		\var{S_L}
+		= \int \sqrt{-g} \dd[D]{x} 
+			\pqty{
+				-\frac{1}{2}\, T_{\mu\nu}
+				\var{g^{\mu\nu}}
+				+ \cdots
+			}
+		= \int \sqrt{-g} \dd[D]{x} 
+			\pqty{
+				+\frac{1}{2}\, T^{\mu\nu}
+				\var{g_{\mu\nu}}
+				+ \cdots
+			}
+	\end{equation}
+	To understand the variational derivative here, we note that in the space of fields it's convenient to think of $x$ as an index to be contracted; the contraction is implemented by $
+		\int \dd[D]{x}
+	$, without the $\sqrt{\abs{g}}$ factor. 
+	
+	An action can thus be thought of as the contraction between some fields and some operators with multiple $x$ ``indices'': $\Box_{x,x',\cdots}$. For example, we might have some bi-local operator $\Box_{x,x'}$ connecting $\phi(x)$ and $\phi(x')$. 
+	In a \textit{local} action all these operators should be \textit{diagonal} in $x$, i.e.~$
+		\Box_{x,x'} = \delta^D(x - x')\,\Box_x
+	$. 
+	
+	The above definition of stress tensor agrees with \cite{Harlow:2019yfa,Compere:2018aar} and differs from \textcite{Polchinski:1998rq} (the conventional string normalization) by a factor of $(-2\pi)$. We shall see that this definition agrees with \eqref{eq:Noether_stress_convention} up to a total derivative. 
+	
+	We would like the functional dependence of $
+		T_{\mu\nu}
+		= T_{\mu\nu}[\phi,\cdv{\mu} \phi,\cdots]
+	$ to persist under Wick rotation, just like any other tensorial quantities; therefore we have to add an additional minus sign to the stress tensor computed with the Euclidean action $S_E$, due to our convention \eqref{eq:Wick_rotation}:
+	\begin{equation}
+		T_{\mu\nu}
+		= + \frac{2}{\sqrt{g}}
+			\fdv{S_E}{g^{\mu\nu}},
+	\quad
+		T^{\mu\nu}
+		= - \frac{2}{\sqrt{g}}
+			\fdv{S_E}{g_{\mu\nu}}
+	\end{equation}
+	For a gravitational theory (with dynamical $g_{\mu\nu}$), the \textit{total} Hilbert stress tensor is the left-hand side of the EoM, thus it vanishes on-shell. Therefore, we usually use $T_{\mu\nu}$ to denote the non-vanishing \textit{matter} stress tensor. 
+	
+	\end{itemize}
+	
+\pagebreak[4]
+\section{Covariant formalism and Noether's theorem}
+	The phase space is understood as the space of \textit{all solutions} of the equations of motion (EoMs), satisfying the boundary conditions; alternatively, we can think of it as a collection of all possible \textit{initial configurations} of the system, and the additional \textit{symplectic structure} specifies their evolutions. This idea is best explained by \textcite{Crnkovic:1986ex}. 
+	
+	Traditionally we construct the phase space variables $(\pi,\phi)$ as follows: we first pick a special time coordinate $t$, and then introduce the canonical momentum:
+	\begin{equation}
+		\pi = \pdv{\mcal{L}}{\dot{\phi}},
+	\quad
+		\dot{\phi} = \pdd{t} \phi
+	\end{equation}
+	Unfortunately, this procedure breaks general covariance. We would like to find a construction of phase space that respects general covariance. 
+	
+	The inspiration comes from the Lagrangian treatment of field theory, where we work with:
+	\begin{equation}
+		\pi^\mu = \pdv{\mcal{L}}{(\pd_\mu\phi)}
+	\end{equation}
+	Which preserves general covariance. But $(\pi_\mu,\phi)$ is not a set of independent coordinates; they are constrained by the equations of motion (EoMs). The rough idea is that we start with $(\pi_\mu,\phi)$, and then reduce it to the independent variables $(\pi,\phi)$ by imposing the EoMs, and possibly, additional constraints due to gauge redundancy. 
+\subsection{Off-shell variation on the field space}
+	\noindent
+	Let's start by considering a general action with boundary terms \cite{Harlow:2019yfa}:
+	\begin{equation}
+		S = \int_M L + \int_{\pd M} l,
+	\quad
+		L = \dd[D]{x} \sqrt{\abs{g}}\,\mcal{L}
+	\end{equation}
+	
+	Variation $\var$ is now treated as an \textit{exterior derivative} on the space of fields. We can think of it as an \textit{enlarged} space with \textit{redundant variables} $(\pi_\mu,\phi)_I$, where $I$ labels all fields in the system. We have:
+	\begin{equation}
+		\var{S}
+		= \int_M \var{L}
+			+ \int_{\pd M} \var{l}
+		= \int_M E_I \var{\phi^I}
+			+ \int_{\pd M} \pqty{\Theta + \var{l}},
+	\end{equation}
+%	We've promoted $\phi^\mu$ to $\phi^I$ to include all fields, e.g.~the metric $g_{\mu\nu}$. 
+	We've defined $\Theta$ which comes from the total derivative terms of the bulk $M$ variation, and we've performed an integration by parts and reduced $\int_M \dd{\Theta} = \int_{\pd M} \Theta$. Basically,
+	\begin{empheq}{equation}
+		\var{L}
+		= E_I \var{\phi^I} + \dd{\Theta}
+	\end{empheq}
+	\vspace{-.3\baselineskip}
+	\begin{equation}
+		({\cdots})_I \var{(\dd{\phi^I})}
+		= ({\cdots})_I \dd{(\var{\phi^I})}
+		\sim \dd{(\cdots \var{\phi})}
+		= \dd{\Theta},
+	\quad
+		\Theta \sim ({\cdots})_I \var{\phi^I}
+	\end{equation}
+	
+	Here we haven't imposed the EoMs, thus $\var$ is understood as an \textbf{off-shell variation} on the space of fields. We will hence refers to the whole space including off-shell configurations as the \textbf{field space $\mcal{F}$}, and use \textbf{phase space $\mcal{P}$} for \textbf{on-shell configurations only}. 
+	
+	Note that $\mcal{F}$ \textbf{includes possible ``background'' fields $\phi^B$} such as the fixed metric $g^{\mu\nu}$ for a field theory defined on a curved spacetime. These fields are fixed on-shell and therefore are absent in $\tilde{\mcal{P}}$. 
+	
+	Also, we will \textit{not} distinguish phase space with $(\pi,\phi) $ coordinates and the so-called \textit{configuration space} with $(\phi,\dot{\phi})$ coordinates; though they are indeed different, they are dual to each other and related by Legendre transforms. 
+	
+	What we've done here is simply a rewrite of the usual variation procedure; we just re-think it as a differential in the field space. To get to the physical phase space, we \textbf{suppress the variation of ``background'' fields $\phi^B$}, and then require the action to be \textbf{stationary, up to terms in the future / past boundary $\Sigma^\pm$:}
+	\begin{empheq}{equation}
+		\var{\phi^B}|_{\tilde{\mcal{P}}}
+		= 0,
+	\quad
+		\var{S}|_{\tilde{\mcal{P}}}
+		= \int_{\Sigma^+} ({\cdots})
+			- \int_{\Sigma^-} ({\cdots})
+		= \int_{\Sigma^\pm} ({\cdots})
+	\end{empheq}
+%\pagebreak[4]
+	
+	This differs slightly from what we are used to in most physics literature, where we simply set $\var{S} = 0$ to find the EoMs. The reason is that in physics, we usually impose the initial \& final conditions, or in other words, in \& out states, and the variation at $\Sigma^\pm$ is \textit{required} to vanish: $\var{\phi}|_{\Sigma^\pm} = 0$. Consider the simplest example: the (0+1)\,D worldline action of a point particle; we have:
+	\begin{equation}
+		S = \int L = \int \dd{t} \mcal{L},
+	\quad
+		\var{S}
+		= \int E_I(t) \var{q^I(t)}
+			+ \Theta\Big|^{\Sigma^+}_{\Sigma^-}
+	\end{equation}
+	\vspace{-.5\baselineskip}
+	\begin{equation}
+		E_I = \pqty{
+			\pdv{\mcal{L}}{q^I}
+			- \dv{t} \pdv{\mcal{L}}{\dot{q}^I}
+		} \dd{t},
+	\quad
+		\Theta
+		= \pdv{\mcal{L}}{\dot{q}^I} \var{q^I}
+		= p_I \var{q^I},
+	\quad
+		p_I = \pdv{\mcal{L}}{\dot{q}^I}
+	\end{equation}
+	Traditionally, we impose $\var{q^I}|_{\Sigma^\pm} = 0$ as we fix the in \& out states, and then we find the EoMs $E_I = 0$. 
+	However, this is slightly clumsy to implement in our new language, since $\var{\phi}$ is now a differential form in the phase space. We thus simply require that $\var{S}|_{\tilde{\mcal{P}}}$ vanish up to boundary terms at $\Sigma^\pm$, which achieve the same result. 
+	
+	Generally, we have:
+	\begin{equation}
+		\var{\phi^B}|_{\tilde{\mcal{P}}}
+		= 0,
+	\quad
+		\var{S}|_{\tilde{\mcal{P}}}
+		= \int_{\Sigma^\pm} ({\cdots})
+	\quad\Longrightarrow\quad
+		E_{I\ne B}|_{\tilde{\mcal{P}}} = 0,
+	\quad
+		\int_N \pqty{\Theta + \var{l}}_{\tilde{\mcal{P}}}
+		= \int_{\Sigma^\pm} ({\cdots}),
+	\end{equation}
+	\vspace{-.8\baselineskip}
+	\begin{equation}
+		\pd M = N \cup \Sigma^+ \cup (-\Sigma^-),
+	\end{equation}
+	Here $N$ is the spatial boundary. 
+	In this way we've obtained the subspace (submanifold) $\tilde{\mcal{P}}$ of solutions constrained by the EoMs. We are one step closer to the physical phase space; in fact this \textit{is} the physical phase space if there are no gauge redundancies in the fields. 
+	
+	Besides the EoMs, the boundary integral at $N$ should also vanish; this means that \textbf{not all boundary conditions are consistent with the theory}. 
+	In fact, $N$ is where the dual theory lives for many holographic systems, so one would imagine that it's highly non-trivial. Generally \cite{Harlow:2019yfa},
+	\begin{equation}
+		(\Theta + \var{l})_{\tilde{\mcal{P}},N}
+		= \dd{C},
+	\quad
+		\dd{C}\colon\ %
+		\text{some 1-form on $N \subset \pd M$},
+	\label{eq:boundary_cond}
+	\end{equation}
+	\vspace{-.8\baselineskip}
+	\begin{equation}
+%	\Longrightarrow\ %
+		\int_{N} (\Theta + \var{l})_{\tilde{\mcal{P}}}
+		= \int_{\pd M} \dd{C}
+			+ ({\cdots})
+		= \int_{\pd \pd M = \varnothing} C
+			+ ({\cdots})
+		= 0
+			+ \int_{\Sigma^\pm} ({\cdots})
+	\end{equation}
+	
+	\eqref{eq:boundary_cond} gives the allowed boundary conditions for the fields at $N$. A prominent example of this is the worldsheet Polyakov action for an open string with $l = 0$. Explicit calculation shows that:
+	\begin{equation}
+		\Theta = - \dd{\tau} \sqrt{-\gamma}\,
+			\pd^\sigma X \var{X}
+	\end{equation}
+	up to some overall coefficients; see e.g.~\textsl{\citeauthor{Polchinski:1998rq}} \cite{Polchinski:1998rq}. Here $\phi = X$ is the field, $(\tau,\sigma)$ is the worldsheet coordinates, and $\gamma$ is the worldsheet metric. The allowed boundary conditions are given by $\var{X} = 0$ or $\pd^\sigma X = 0$, which both corresponds to $C = 0$; examples given in \cite{Harlow:2019yfa} shows that a non-trivial $C$ arises for higher derivative theories and gravity. 
+	
+	By restricting to $\tilde{\mcal{P}}$, the variation $\delta|_{\tilde{\mcal{P}}}$ is understood as \textbf{on-shell}, since we've imposed the EoMs and the boundary conditions. Also, $\tilde{\mcal{P}}$ is where we actually define our symplectic structure. However, we will always try to first work with the \textbf{off-shell variation $\delta$ in the off-shell field space $\mcal{F}$}, keep the EoMs explicit, and then impose them at the very end. 
+	
+	We shall see that this formalism will help us avoid confusions with boundary terms, which is best explained by \textcite{Banados:2016zim}. Also, off-shell variation will be quite useful if we want to quantize our theory, where we have to integrate over off-shell configurations as well. 
+	
+%\pagebreak
+\subsection{Symmetry variation and the Noether current}
+	To get back to the familiar Noether's procedure, we need only plug in (contract with) a vector field $X_\xi$ in the field space $\mcal{F}$, labeled by the symmetry $\xi$:
+	\begin{equation}
+		\var_\xi
+		= X_\xi \cdot \var
+		= \iota_{X_\xi} \var
+	\colon\ \Omega^0_\delta(\mcal{F})
+		\to \Omega^0_\delta(\mcal{F})
+	\end{equation}
+	$\xi\mapsto X_\xi$ is the representation of $\xi$ in the field space, and $\Omega^0_\delta(\mcal{F})$ denotes 0-forms, i.e.~functions on $\mcal{F}$. 
+	As an example, for diffeomorphism (diffeo), the induced variation is given by:
+	\begin{equation}
+		x\mapsto x - \xi,
+	\quad
+		\var_\xi \phi
+		= X_\xi \cdot \var{\phi}
+		= \ldv{\xi} \phi,
+	\quad
+		X_\xi
+		= \int_M \dd[D]{x}
+			\pqty\big{\ldv{\xi} \phi^I(x)}
+			\fdv{\phi^I(x)}
+	\label{eq:symmetry_var_field}
+	\end{equation}
+	
+	We've hence defined symmetry variation $\var_\xi$ as some sort of \textit{directional derivative} on $\mcal{F}$, acting on $\Omega^0(\mcal{F})$. For its action on generic $n$-forms $\Omega^\bullet(\mcal{F})$, the more natural definition is the Lie derivative $\mscr{L}$ on the field space, along the flow of $X_\xi$:
+	\begin{equation}
+		\var_\xi
+		= \mscr{L}_{X_\xi}
+		= \iota_{X_\xi} \var + \var\circ\iota_{X_\xi}
+		= X_\xi \cdot \var + \var\circ\iota_{X_\xi}
+	\end{equation}
+	Here we've used \textit{Cartan's magic formula} for the Lie derivative. Note that $\mscr{L}_{X_\xi}$ is the Lie derivative on the field space $\mcal{F}$, which generally differs from the Lie derivative $\ldv{\xi}$ on the spacetime $M$. 
+	
+	By now we've written down the above expressions \eqref{eq:symmetry_var_field} covariantly on the off-shell field space $\mcal{F}$, in terms of the redundant coordinates $\phi^I$. However, we can still interpret it as a variation on $\tilde{\mcal{P}}$, by simple restriction. 
+\pagebreak
+	
+	In fact, by the definition of a \textit{symmetry} $\xi$, we have the \textbf{off-shell symmetry variation}:
+	\begin{empheq}{equation}
+		\var_\xi {\phi^B}
+		= 0,
+	\quad
+		\var_\xi S = X_\xi \cdot \var{S}
+		= \int_{\Sigma^\pm} ({\cdots})
+	\end{empheq}
+	In other words, symmetries should act trivially on the background fields $\phi^B$, and its action in the field space is characterized by the kernel, or \textit{zero modes} (0-modes) of $\var{S}$, \textbf{again up to boundary terms at $\Sigma^\pm$}. 
+	
+	The reasoning for keeping the boundary terms here is, however, different from the on-shell case, where physically we require $\var{\phi}|_{\Sigma^\pm} = 0$. Here the reason is that we generally \textbf{do allow symmetries to act no-trivially on the in and out states.} For example, time translation evolves the states at $\Sigma^\pm$, so it is natural to assume that it will lead to a boundary term at $\Sigma^\pm$. We shall see that this is indeed the case.
+	
+	Compared to the definition of $\tilde{\mcal{P}}$, namely $\var{S}|_{\tilde{\mcal{P}}}$ vanishes up to $\Sigma^\pm$ terms, we see that for a symmetry $\xi$, $X_\xi$ is always tangent to $\tilde{\mcal{P}}$, so that the restriction of the off-shell $\var_\xi \phi$ to on-shell $\tilde{\mcal{P}}$ is well-defined, as expected. 
+	
+	To finally arrive at Noether's theorem, we note that:
+	\begin{equation}
+		\var_\xi S|_{\tilde{\mcal{P}}}
+		= (X_\xi \cdot \var{S})\big|_{\tilde{\mcal{P}}}
+		= X_\xi \cdot (\var{S}|_{\tilde{\mcal{P}}})
+		= \int_{\Sigma^\pm} ({\cdots})
+	\end{equation}
+	Namely, the \textbf{on-shell symmetry variation}, which is generally \textbf{non-zero} but vanishes up to $\Sigma^\pm$ terms, can be obtained in two ways: by first computing the off-shell symmetry variation $\var_\xi S$ and then restricting it on shell, or by first computing the on-shell variation $\var{S}|_{\tilde{\mcal{P}}}$ and then inserting the symmetry. We should get the same result either way, which means that:
+	\begin{equation}
+		0 = X_\xi \cdot (\var{S}|_{\tilde{\mcal{P}}})
+		- (X_\xi \cdot \var{S})\big|_{\tilde{\mcal{P}}}
+		= \int_{\Sigma^\pm} ({\cdots})
+		= \pqty{
+				\int_{\Sigma^+} - \int_{\Sigma^-}
+			}\, ({\cdots})
+		= H_\xi^+ - H_\xi^-
+	\label{eq:charge_conserve_schematic}
+	\end{equation}
+	
+	We've thus obtained the conserved charge $H_\xi$ associated with $\xi$. The above arguments are a bit schematic; now let's write down the $({\cdots})$ explicitly. Let's assume that the off-shell symmetry variation is given by:
+	\begin{empheq}{equation}
+		\var_\xi S
+		= X_\xi \cdot \var{S}
+		= \int_M \dd{K_\xi}
+		= \int_{\pd M} K_\xi
+		= \int_{\Sigma^\pm} K_\xi,
+	\quad
+		\dd{K_\xi}
+		= \var_\xi{L} + \dd{(\var_\xi l)}
+	\label{eq:symmetry_var_action}
+	\end{empheq}
+	Given $\xi$, such $K_\xi$ can be explicitly computed; see \cite{Banados:2016zim,Harlow:2019yfa} for examples. The fact that we can reduce $\var_\xi S$ to an integral on $\Sigma^\pm$ means that the \textbf{symmetry $\xi$ must respect the boundary $N$; this actually leads to constraints on $\xi$} \cite{Harlow:2019yfa}. For example, not all na\"ive diffeo will keep the boundary $N$ invariant. Only those that respect the boundary will be true symmetries. 
+	On the other hand, from on-shell variation, we have:
+	\begin{equation}
+		X_\xi \cdot (\var{S}|_{\tilde{\mcal{P}}})
+		= \int_M E_I|_{\tilde{\mcal{P}}} \,\var_\xi {\phi^I}
+			+ \int_{\pd M} \pqty{
+				X_\xi \cdot \Theta + \var_\xi {l}
+			}_{\tilde{\mcal{P}}}
+		= 0 + \int_{\Sigma^\pm} \pqty{
+				X_\xi \cdot \Theta + \var_\xi {l}
+			},
+	\end{equation}
+	
+\pagebreak[3]
+	
+	We can then define the Noether current (form) by:
+	\begin{empheq}{equation}
+		J_\xi = X_\xi \cdot \Theta
+			+ \var_\xi {l} - K_\xi
+	\end{empheq}
+	With this we can re-write \eqref{eq:charge_conserve_schematic} explicitly as:
+	\begin{empheq}{equation}
+		0 = X_\xi \cdot (\var{S}|_{\tilde{\mcal{P}}})
+		- (X_\xi \cdot \var{S})\big|_{\tilde{\mcal{P}}}
+		= \int_{\Sigma^\pm} J_\xi
+		= \pqty{
+				\int_{\Sigma^+} - \int_{\Sigma^-}
+			}\, J_\xi
+		= H_\xi^+ - H_\xi^-
+	\label{eq:charge_conserve_global}
+	\end{empheq}
+	
+	The above derivation is a proof of the \textit{global} version of Noether's theorem, namely charge conservation from $\Sigma_-$ to $\Sigma_+$. However, there is also a \textit{local} version, namely current conservation. 
+	
+	To see this, we note that we can always choose $\var_\xi \phi(x)$ to be compactly supported around some point $x_0$, by weighting it with some arbitrary, localized bump function. We can then shrink $M$ to surround the support of $\var_\xi \phi(x)$. This means that \eqref{eq:charge_conserve_global} actually holds around any point $x_0$, which further implies that $\dd{J_\xi} = 0$. This can be proven rigorously via explicit calculation; first we have:
+	\begin{equation}
+		\dd{J_\xi}
+		= X_\xi\cdot \dd{\Theta}
+			+ \dd (\var_\xi l - K_\xi)
+	\label{eq:current_differential}
+	\end{equation}
+	$\mquote{\dd}$ does not act on $X_\xi$, since $X_\xi$ is a vector in the field space $\mcal{F}$ and the spacetime coordinate $x$ in $X_\xi$ are like contracted indices, so there is actually no spacetime dependence; see e.g.~\eqref{eq:symmetry_var_field}. To make this more explicit, we can write:
+	\begin{equation}
+		\Theta = \Theta[\phi,\var{\phi}],
+	\quad
+		\Theta_\xi
+		= X_\xi \cdot \Theta
+		= \Theta[\phi,\var_\xi \phi],
+	\quad
+		\dd{\Theta_\xi}
+		= \dd{(X_\xi \cdot \Theta)}
+		= X_\xi \cdot \dd{\Theta}
+		= \dd{\Theta[\phi,\var_\xi \phi]}
+	\end{equation}
+	
+	On the other hand, $\mquote{\dd}$ \textit{does} act on $\Theta$, since $\Theta$ is not only a field space 1-form but also a spacetime 1-form; we have $
+		\dd{\Theta}
+		= \var{L} - E_I \var{\phi^I}
+	$ by definition. Therefore,
+	\begin{empheq}{equation}
+	\begin{aligned}
+		\dd{J_\xi}
+		&= X_\xi\cdot \dd{\Theta}
+			+ \dd (\var_\xi l - K_\xi) \\
+		&= \var_\xi {L} - E_I \,\var_\xi{\phi^I}
+			+ \dd (\var_\xi l - K_\xi) \\
+		&= - E_I \,\var_\xi{\phi^I}
+			+ \pqty\big{
+				\var_\xi {L} 
+				+ \dd (\var_\xi l - K_\xi)
+			} \\
+		&= - E_I \,\var_\xi{\phi^I},
+	\,\ \textsl{\footnotesize by \eqref{eq:symmetry_var_field}}
+	\end{aligned}
+	\end{empheq}
+	
+	We've finally arrived at the current conservation $\dd{J_\xi}|_{\tilde{\mcal{P}}} = 0$, which only holds \textbf{on-shell}. Note that the boundary term $K_\xi$ is crucial in all of the above derivations, so it cannot be dropped casually. Let's go back to the point particle example, and consider time translation $\xi = \pdd{t}$; we have:
+	\begin{equation}
+		\var_\xi {q^I} = \dot{q}^I,
+	\quad
+		X_\xi\cdot\Theta
+		= p_I \,\var_\xi{q^I}
+		= p_I \dot{q}^I,
+	\quad
+		\dd{K_\xi}
+		= \var_\xi{L}
+		= \dd{t}\,\var_\xi \mcal{L}
+		= \dd{\mcal{L}},
+	\quad
+		K_\xi
+		= \mcal{L}
+	\end{equation}
+	We see that $K_\xi$ does \textit{not} vanish, and we have precisely $K_\xi = \mcal{L}$. This leads to the conserved current (and charge) associated with $\pdd{t}$, which is precisely the \textbf{Hamiltonian:}
+	\begin{equation}
+		H = J_\xi
+		= X_\xi \cdot \Theta - K_\xi
+		= p_I \dot{q}^I - \mcal{L}
+	\end{equation}
+\subsection{Diffeomorphism in scalar field theory}
+	A generalization of the above point particle results is to consider \textit{field theory}; we have:
+	\begin{equation}
+	\begin{aligned}
+		\var{L}
+		&= \dd[D]{x} \var{(\sqrt{\abs{g}}\,\mcal{L})} \\
+		&= \dd[D]{x} \pqty{
+				\sqrt{\abs{g}} \var{\mcal{L}}
+				+ \var{(\sqrt{\abs{g}})} \mcal{L}
+			} \\
+		&= \dd[D]{x} \sqrt{\abs{g}}\,\pqty{
+				\var{\mcal{L}}
+				- \frac{1}{2}\,
+					g_{\mu\nu} \mcal{L}
+					\var{g^{\mu\nu}} \!
+			} \\
+	\end{aligned}
+	\label{eq:Lagrangian_form_to_density}
+	\end{equation}
+	Here we've used the fact that $
+		\var{\sqrt{\abs{g}}}
+		= \sqrt{\abs{g}}\,\pqty{
+			- \frac{1}{2} g_{\mu\nu} \var{g^{\mu\nu}}
+		}
+	$, which has the same structure as the second term in the Einstein tensor: $
+		G_{\mu\nu}
+		= R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R
+	$. More explicitly, the measure variation can be computed with the Jacobi's formula\footnote{
+		See \wikiref{https://en.wikipedia.org/wiki/Jacobi\%27s\_formula}{Jacobi's formula}. 
+	}; note the minus sign when we switch from $\var{g_{\mu\nu}}$ to $\var{g^{\mu\nu}}$:
+	\begin{equation}
+		\var{\det g}
+		= \pqty{\det g}\,g^{\mu\nu} \var{g_{\mu\nu}},
+	\quad
+		\var{\abs{g}}
+		= \abs{g}\,g^{\mu\nu} \var{g_{\mu\nu}}
+		= - \abs{g}\,g_{\mu\nu} \var{g^{\mu\nu}}
+	\label{eq:measure_variation}
+	\end{equation}
+	
+	Let's now restrict to scalar field $\phi$, where we have:
+	\begin{equation}
+		\var{\mcal{L}}
+		= \pdv{\mcal{L}}{\phi} \var{\phi}
+			+ \pdv{\mcal{L}}{(\cdv{\mu} \phi)}
+				\var{\cdv{\mu}\phi}
+	\end{equation}
+	We now use the covariant derivative since it commutes with the metric, which will soon prove to be convenient. We now perform the integration by parts:
+	\begin{equation}
+		\pdv{\mcal{L}}{(\cdv{\mu} \phi)}
+			\var{\cdv{\mu}\phi}
+		= \cdv{\mu} \pqty{
+				\pdv{\mcal{L}}{(\cdv{\mu} \phi)}
+				\var{\phi}
+			}
+		- \pqty{
+				\cdv{\mu}
+				\pdv{\mcal{L}}{(\cdv{\mu} \phi)}
+			} \var{\phi}
+	\label{eq:integrate_by_parts}
+	\end{equation}
+	
+	To convert the divergence into differential forms, we note that the $\mquote{\dd}$ action on the coefficents can be realized by \textbf{any torsion-free derivatives}, including the covariant derivative:
+	\begin{equation}
+	\begin{aligned}
+		\dd{(V\cdot \sqrt{\abs{g}} \dd[D]{x})}
+		&= \dd{\pqty{
+			V^\mu \sqrt{\abs{g}}
+			\ \frac{1}{d!}\,
+			\epsilon_{\mu\mu_1\cdots\mu_d}
+			\dd{x^{\mu_1}} \wedge
+			\cdots \wedge \dd{x^{\mu_d}}
+		}},
+	\quad d = D-1 \\
+		&= \cdv{\sigma} V^\mu \sqrt{\abs{g}}
+			\ \frac{1}{d!}\,
+			\epsilon_{\mu\mu_1\cdots\mu_d}
+			\dd{x^\sigma} \wedge
+			\dd{x^{\mu_1}} \wedge
+			\cdots \wedge \dd{x^{\mu_d}} \\
+		&= \cdv{\sigma} V^\mu \sqrt{\abs{g}}\,
+			\delta^\sigma_\mu \dd[D]{x} \\
+		&= \cdv{\mu} V^\mu
+			\sqrt{\abs{g}} \dd[D]{x}
+	\end{aligned}
+	\label{eq:divergence_form}
+	\end{equation}
+	Here $\cdv{\sigma}$ does not act on $\sqrt{\abs{g}}$ due to metric compatibility. This fact can be conveniently re-written with Hodge dual:
+	\begin{equation}
+		\star \dd{(V\cdot \sqrt{\abs{g}} \dd[D]{x})}
+		= \star \dd{\hstar V^\flat}
+		= \sidenote{(-1)^s}\cdv{\mu} V^\mu
+	\end{equation}
+	
+	With $V^\mu = \pi^\mu \var{\phi}$, $
+		\pi^\mu = \pdv{\mcal{L}}{(\cdv{\mu} \phi)}
+	$, we can now rephrase our familiar identity \eqref{eq:integrate_by_parts} with the new language of differential forms:
+	\begin{equation}
+		\sqrt{\abs{g}} \dd[D]{x} \pqty{
+			\pi \cdot \var{\dd{\phi}}
+		}
+		= \dd \pqty\big{
+				\var{\phi}
+				(\hstar \pi^\flat)
+			}
+		- \var{\phi} \pqty\big{
+				\dd{(\hstar \pi^\flat)}
+			}
+	\label{eq:integrate_by_parts_forms}
+	\end{equation}
+	In this form, the identity can be proven directly by noting that the right hand side (RHS) is simply $
+		(\dd{\var{\phi}}) \wedge
+		(\pi\cdot \sqrt{\abs{g}} \dd[D]{x})
+	$ by Leibnitz's rule, and the left hand side (LHS) and RHS are identical since $\sqrt{\abs{g}} \dd[D]{x}$ is a top form, and thus $
+		\pi \cdot \pqty{
+			(\dd{\var{\phi}}) \wedge
+			(\sqrt{\abs{g}} \dd[D]{x})
+		}
+		= \pi\cdot 0
+		= 0
+	$. 
+	
+	Finally, we are ready to deploy Stokes' theorem for differential forms. We have:
+	\begin{equation}
+		E = \hstar \pdv{\mcal{L}}{\phi}
+			- \dd{(\star \pi^\flat)}
+		= \hstar \pqty{
+				\pdv{\mcal{L}}{\phi}
+				- (-1)^s \hstar \dd{\star \pi^\flat}
+			}
+		= \hstar \pqty{
+				\pdv{\mcal{L}}{\phi}
+				- \cdv{\mu}
+				\pdv{\mcal{L}}{(\cdv{\mu} \phi)}
+			},
+	\end{equation}
+	\vspace*{-.3\baselineskip}
+	\begin{equation}
+		\Theta = (\hstar \pi^\flat) \var{\phi}
+		= \pi \var{\phi}
+			\cdot \sqrt{\abs{g}} \dd[D]{x}
+		= \var{\phi} \pdv{\mcal{L}}{(\nabla \phi)}
+			\cdot \sqrt{\abs{g}} \dd[D]{x}
+		= \theta \cdot \sqrt{\abs{g}} \dd[D]{x}
+		= \hstar \theta
+	\end{equation}
+	As we've seen before, $\Theta$ is to be integrated along $\pd M$, so we mostly care about its projection $\Theta_{\pd M}$ along the induced volume form $\mrm{Vol}_{\pd M}$. We have\footnote{
+		We've been cavaliar about the index of $n$, by treating $n$ both as a vector and as a co-vector, without raising or lowering indices using musical isomorphisms. Whether it should be a vector or a co-vector can be inferred from the context. 
+	}:
+	\begin{equation}
+		\mrm{Vol}_{\pd M}
+		= \hstar n
+		= n \cdot \mrm{Vol}_M,
+	\quad
+		\mrm{Vol}_M
+		= n\wedge \hstar n,
+%		= n\wedge \mrm{Vol}_{\pd M}
+%		= n\wedge (n^\sharp\cdot \mrm{Vol}_M)
+	\quad
+		n^2 = 1
+	\end{equation}
+	\vspace*{-1.2\baselineskip}
+	\begin{equation}
+		\Theta_{\pd M}
+		= \theta\cdot n\,\mrm{Vol}_{\pd M}
+		= n_\mu \theta^\mu\,
+			(n\cdot \sqrt{\abs{g}} \dd[D]{x})
+	\end{equation}
+	
+	Now let's consider diffeo $x\mapsto x-\xi$. We then have:
+	\begin{equation}
+		\var_\xi {\phi} = \xi \cdot \dd{\phi},
+	\quad
+		\Theta_\xi
+		= X_\xi\cdot\Theta
+		= \hstar \pi \,\var_\xi{\phi},
+	\end{equation}
+	There are various ways to compute $K_\xi$; the ``modern'' way is to work with $L$ directly, which gives:
+	\begin{empheq}{equation}
+		\dd{K_\xi}
+		= \var_\xi{L}
+		= \ldv{\xi} L
+		= \dd{(\xi\cdot L)},
+	\quad
+		K_\xi
+		= \xi\cdot L
+		= \mcal{L}\,(\hstar \xi)
+	\label{eq:diffeo_boundary_term}
+	\end{empheq}
+	
+	We then repeat the same calculation with the ``traditional'' language, namely by plugging $\xi$ into \eqref{eq:Lagrangian_form_to_density}; using the same techniques for \eqref{eq:integrate_by_parts_forms}, we demonstrate that it indeed gives the same result:
+	\begin{equation}
+	\begin{aligned}
+%	\textsl{\small And then,}\ \,
+		\dd{K_\xi}
+		&= \dd[D]{x} \sqrt{\abs{g}}\,\pqty{
+				\var_\xi {\mcal{L}}
+				- \frac{1}{2}\,
+					g_{\mu\nu} \mcal{L}
+					\,\var_\xi {g^{\mu\nu}} \!
+			} \\
+		&= \dd[D]{x} \sqrt{\abs{g}}\,\pqty\big{
+				\xi \cdot \dd{\mcal{L}}
+				+ \mcal{L} \cdv{\mu} \xi^\mu
+			} \\
+		&= \hstar \pqty{\xi \cdot \dd{\mcal{L}}}
+			+ \mcal{L} \dd{\hstar \xi} \\
+		&= \hstar \pqty{\xi \cdot \dd{\mcal{L}}}
+			+ \dd{\pqty\big{
+				\mcal{L}\,(\hstar \xi)
+			}} - \dd{\mcal{L}} \wedge \hstar \xi \\
+		&= \dd{\pqty\big{
+				\mcal{L}\,(\hstar \xi)
+			}}
+			+ \xi \cdot \cancel{
+				(\dd{\mcal{L}} \wedge \mrm{Vol}_M)
+			} \\
+		&= \dd{\pqty\big{
+				\mcal{L}\,(\hstar \xi)
+			}},
+	\,\ \textsl{\small indeed}\ \,
+		K_\xi = \mcal{L}\,(\hstar \xi) = \xi\cdot L
+	\end{aligned}
+	\end{equation}
+	Here we see explicitly that \textbf{the $\var_\xi {g^{\mu\nu}}$ contribution combines with $\var_\xi {\mcal{L}}$ to give a total derivative.} This is a hint of the \textbf{diff-invariance} of the theory: if we turn on dynamical $g^{\mu\nu}$, then \textbf{any arbitrary $\xi$} (compatible with the boundary condition) is a ``symmetry'' generator of the theory\footnote{
+		More precisely, only some of them generate ``true'' symmetry, while others just generate diffeo redundancies. We will come back to this in the future.
+	}. 
+	
+\pagebreak[4]
+	
+	On the other hand, if $g^{\mu\nu}$ is a fixed background field, then we have additional \textbf{constraints on $\xi$}, namely $\var_\xi {g^{\mu\nu}} = 0$ since $\var{g^{\mu\nu}}|_{\tilde{\mcal{P}}} \equiv 0$. 
+	This is precisely the \textit{Killing equation}; $\xi$ has to be a \textit{Killing vector}, which generates some \textit{isometry} instead of arbitrary diffeo:
+	\begin{equation}
+		\var_\xi {g^{\mu\nu}}
+		= \ldv{\xi} {g^{\mu\nu}}
+		= 0
+	\end{equation}
+	
+	Finally, the conserved current for diffeo in scalar field theory is given by:
+	\begin{equation}
+		J_\xi = \hstar \pi\,(\xi\cdot \dd{\phi})
+			- \xi\cdot L
+		= \hstar \pqty{
+				\pi\,(\xi\cdot \dd{\phi})
+				- \xi \mcal{L}
+			}
+		= \hstar j_\xi,
+	\quad
+		j_\xi^\mu = \pi^\mu\,(\xi\cdot \dd{\phi})
+			- \xi^\mu \mcal{L}
+	\end{equation}
+	We now consider flat spacetime; the energy-momentum \textit{stress tensor} $T^{\mu\nu}$ is then found by plugging in $\xi^\mu = \sidenote{-}\delta^\mu_\nu$, i.e.~the generator of translations; note that we've included \textbf{an extra minus sign} in the definition of $T^{\mu\nu}$ for future convenience:
+	\begin{equation}
+		\xi = -\pdd{\sigma},
+	\quad
+		x^\mu \mapsto x^\mu - \xi^\mu
+		= x^\mu + \delta^\mu_\sigma,
+	\end{equation}
+	\begin{empheq}{equation}
+		T\id{^\mu_\sigma}
+		\equiv j^\mu_{\sidenote{-}\pdd{\sigma}},
+	\quad
+		j^\mu_{-\pdd{\sigma}}
+		= T^{\mu\nu} \eta_{\nu\sigma}
+		= T^{\mu\nu} (\pdd{\sigma})_\nu,
+	\quad
+		T^{\mu\nu}
+		= -\pi^\mu \pd^\nu\phi + \eta^{\mu\nu} \mcal{L}
+	\label{eq:Noether_stress_tensor}
+	\end{empheq}
+	
+	Note that for now $T^{\mu\nu}$ is generally \textit{not} symmetric as $\mu\leftrightarrow \nu$, and only $\mu$ is the index for $j^\mu$, while $\nu$ is an index labeling the $D$ translations. 
+	
+	More explicitly, consider free scalar field in Lorentzian signature, then we have:
+	\begin{equation}
+		\mcal{L}
+		= -\frac{1}{2}
+			\cdv{\mu} \phi
+			\nabla^\mu \phi,
+	\quad
+		T_{\mu\nu}
+		= +\cdv{\mu} \phi \cdv{\nu} \phi
+			+ g_{\mu\nu} \mcal{L}
+	\end{equation}
+	We've lowered the indices and restored the metric $g_{\mu\nu}$ for future convenience. In this case the stress tensor is symmetric by accident, but this is generally not true; one counter-example is the Noether stress tensor for QED; see e.g.~\cite{Banados:2016zim}. 
+\subsection{More on charge conservation}
+	\vspace{-1\baselineskip}
+	\begin{empheq}{equation*}
+		\textsl{\textbf{Note:} for simplicity, quantities in this sub-section are taken to be \textbf{on-shell} by default. }
+	\end{empheq}
+	
+	We now define the charge on a general codim-1 $\Sigma$ by integrating the \textbf{on-shell} current:
+	\begin{equation}
+		H_\xi(\Sigma)
+		= \int_\Sigma J_\xi,
+	\quad
+		J_\xi = J_\xi|_{\tilde{\mcal{P}}}
+	\end{equation}
+	Charge conservation is then formulated as follows: we consider a deformation of $\Sigma$ along the flow of $\alpha$, and examine its effects $\Delta_{\alpha} H_\xi(\Sigma)$; we have:
+	\begin{equation}
+	\begin{aligned}
+		\Delta_{\alpha} H_\xi(\Sigma)
+		&= \int_\Sigma
+			\ldv{\alpha} J_\xi,
+	\quad
+		\ldv{\alpha} J_\xi
+		= \dd{\pqty\big{
+				\alpha \cdot J_\xi
+			}}
+			+ \alpha \cdot \cancel{\dd{J_\xi}}, \\
+		&= \int_{\pd\Sigma}
+			\alpha \cdot J_\xi,
+	\quad J_\xi = \hstar j_\xi, \\
+		&= \int_{\pd\Sigma}
+			\alpha \cdot \pqty{\mspace{2mu}
+				j_\xi \cdot \mrm{Vol}_M
+			},
+	\quad
+		\iota_\alpha \iota_{j_\xi}
+		= -\iota_{j_\xi} \iota_\alpha, \\
+		&= - \int_{\pd\Sigma}
+			j_\xi \cdot \pqty{\mspace{2mu}
+				\alpha \cdot \mrm{Vol}_M
+			},
+	\end{aligned}
+	\end{equation}
+	\begin{empheq}{equation}
+		\Delta_{\alpha} H_\xi(\Sigma)
+		= - \int_{\pd\Sigma}
+			j_\xi \cdot \pqty{\mspace{2mu}
+				\alpha \cdot \mrm{Vol}_M
+			}
+	\end{empheq}
+	
+	This result is very intuitive: the change of charge $H_\xi$ on the codim-1 slice $\Sigma$ is given by the flux entering the codim-2 boundary surface $\pd\Sigma$. 
+	To see this more explicitly, consider a non-vanishing $\alpha$ normal to $\Sigma$; we can then decompose the volume form along $\pd\Sigma$:
+	\begin{equation}
+		\alpha^2 \mrm{Vol}_M|_{\pd\Sigma}
+		= \alpha\wedge n_{(\pd\Sigma)}
+			\wedge \pqty{
+				n_{(\pd\Sigma)}
+				\cdot \alpha
+				\cdot \mrm{Vol}_M
+			}
+		= \alpha\wedge n_{(\pd\Sigma)}
+			\wedge \abs{\alpha}\,\mrm{Vol}_{\pd\Sigma},
+	\quad
+		n_{(\pd\Sigma)} \perp \alpha
+		\perp \Sigma
+	\end{equation}
+	Here we do not demand that $\alpha$ has unit norm; this leads to the modified volume form $\abs{\alpha}\,\mrm{Vol}_{\pd\Sigma}$ on $\pd\Sigma$. 
+%	On the other hand, for convenience, we can always choose $n_{(\pd\Sigma)}$ such that it's orthogonal to $\alpha$ along $\pd \Sigma$. 
+	With such decomposition,
+	\begin{equation}
+	\begin{aligned}
+		\Delta_{\alpha} H_\xi(\Sigma)
+		&= - \int_{\pd\Sigma}
+			j_\xi \cdot \pqty{\mspace{2mu}
+				\alpha \cdot \mrm{Vol}_M
+			} \\
+		&= - \int_{\pd\Sigma}
+			j_\xi \cdot \pqty{
+				n_{(\pd\Sigma)} \wedge 
+				\abs{\alpha}\,\mrm{Vol}_{\pd\Sigma}
+			} \\
+		&= - \int_{\pd\Sigma} \abs{\alpha}\,
+			j_\xi \cdot n_{(\pd\Sigma)}
+			\mrm{Vol}_{\pd\Sigma}
+	\end{aligned}
+	\end{equation}
+	
+	In particular, if $\Sigma$ is a constant time slice orthogonal to $\alpha = \pdd{t}$, then:
+	\begin{equation}
+		\pdd{t} \perp \Sigma,
+	\quad
+		\dv{t} H_\xi
+		= \int_\Sigma \dv{t} J_\xi
+		= - \int_\Sigma
+			\pqty{\cdv{i}\,j^i_\xi}\,
+			\pqty{\mspace{2mu}
+				\pdd{t} \cdot \mrm{Vol}_M
+			}
+		= - \int_{\pd\Sigma} \abs{\pdd{t}}\,
+			j_\xi \cdot n_{(\pd\Sigma)}
+			\mrm{Vol}_{\pd\Sigma}
+	\end{equation}
+	On the other hand, if $\pd\Sigma = \varnothing$, then $\Delta_{\alpha} H_\xi(\Sigma) \equiv 0$ for any choice of $\alpha$. This means that $H_\xi(\Sigma)$ is insensitive to small deformations, i.e.~it's a codim-1 \textbf{topological operator}. 
+	
+	For the free scalar field theory in flat sapcetime, with $\xi^\mu = -\delta^\mu_\nu$, we have:
+	\begin{equation}
+		P_\nu \equiv H_{\pd_\nu}
+		= \int_\Sigma \dd[d]{x} T\id{^0_\nu},
+	\quad
+		T\id{^0_\nu}
+		= T^{0\mu} \eta_{\mu\nu}
+	\end{equation}
+	The minus sign we've introduced in \eqref{eq:Noether_stress_tensor} guarantees that \textbf{the conserved charge with upper indices is the usual energy-momentum 4-vector, and $T^{0\nu}$ is precisely the energy momentum density:}
+	\begin{equation}
+		P^\nu = \int_\Sigma \dd[d]{x} T^{0\nu}
+	\end{equation}
+	
+	
+%	It is generally safe to assume that the integrand decays fast enough when it approaches $\Sigma^\pm$, so we can drop the contribution from $\Sigma^\pm$. 
+	
+	
+%	We can then safely assume the boundary integral vanishes at $\Sigma^\pm$, thus:
+%	\begin{equation}
+%		0 = \int_N \pqty{
+%				X_\xi \cdot \Theta + \var_\xi {l}
+%			},
+%	\end{equation}
+	
+\subsection{Improvement of the stress tensor}
+	We've noted above that the stress tensor obtained from the standard Noether's procedure is generally \textit{not} symmetric. In general, we can \textit{improve} the stress tensor by making use of an \textbf{ambiguity in the definition of the Noether current $J_\xi$}; note that:
+	\begin{equation}
+		\Theta \mapsto \Theta + \dd{Y},
+	\quad
+		J_\xi \mapsto J_\xi + X_\xi \cdot \dd{Y}
+		= J_\xi + \dd{Y_\xi},
+	\quad
+		\dd{\pqty{
+			J_\xi + \dd{Y_\xi}
+		}} = \dd{J_\xi} = 0
+	\end{equation}
+	Here we've commuted $\mquote{\dd}$ past $X_\xi$, using the same arguments as in \eqref{eq:current_differential}. 
+	We see that current conservation still holds if we add an arbitrary total derivative to $J_\xi$. 
+	As we shall see later, this $Y$-ambiguity actually has non-trivial effects in the phase space; picking the ``canonical'' $Y$ then becomes a delicate issue. 
+	
+	However, for the stress tensor $T_{\mu\nu}$ in a \textbf{diff-invariant theory}, there is a natural improvement for the current; here the \textbf{diff-invariance of a theory is \textit{defined} through \eqref{eq:diffeo_boundary_term}}: given an arbitrary vector field $\xi$, the theory is said to be diff-invariant iff.~\cite{Harlow:2019yfa,Compere:2018aar}:
+	\begin{empheq}{equation}
+		\var_\xi \phi^I
+		= \ldv{\xi} \phi^I,
+	\quad
+		\var_\xi L
+		= \dd{K_\xi},
+	\quad
+		K_\xi
+		= \xi \cdot L
+	\end{empheq}
+	Technically we should also require that $\xi$ generates a diffeomorphism that respects the boundary conditions \cite{Harlow:2019yfa}, but we will ignore this subtlety for now. 
+	
+	For a diff-invariant theory, one can then define the \textit{Hilbert stress tensor} by varying the action w.r.t.~the metric $g_{\mu\nu}$, or equivalently, the metric inverse $g^{\mu\nu}$:
+	\begin{empheq}{equation}
+		T_{\mu\nu}
+		= - \frac{2}{\sqrt{-g}}
+			\fdv{S_L}{g^{\mu\nu}},
+	\quad
+		\var{S_L}
+		= \int \sqrt{-g} \dd[D]{x} 
+			\pqty{
+				-\frac{1}{2}\, T_{\mu\nu}
+				\var{g^{\mu\nu}}
+				+ \cdots
+			}
+	\end{empheq}
+	Again this has the same structure as the second term in the Einstein tensor: $
+		G_{\mu\nu}
+		= R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R
+	$. 
+	Similar to \eqref{eq:measure_variation}, we have:
+	\begin{empheq}{equation}
+		- \frac{1}{2}\, T_{\mu\nu}
+			\var{g^{\mu\nu}}
+		= + \frac{1}{2}\, T^{\mu\nu}
+			\var{g_{\mu\nu}},
+	\quad
+		T^{\mu\nu}
+		= + \frac{2}{\sqrt{-g}}
+			\fdv{S_L}{g_{\mu\nu}}
+	\end{empheq}
+	
+	We see an immediate consequence of this definition: if the metric $g_{\mu\nu}$ in a theory is dynamical, then the EoM for $g_{\mu\nu}$ is precisely given by:
+	\begin{equation}
+		T_{\mu\nu} = 0
+	\end{equation}
+	Namely, the \textbf{\textit{total} stress tensor} must vanish. This is what happens in gravity; examples include string theory, where $T_{ab} = 0$ is the so-called \textit{Virasoro constraint} on the worldsheet, and Einstein gravity, where we have the Einstein equations:
+	\begin{equation}
+		0 = T_{\mu\nu}
+		= T^M_{\mu\nu}
+			- \frac{1}{8\pi G_N}\,G_{\mu\nu}
+	\end{equation}
+	Here $T^M_{\mu\nu}$ is the \textit{matter} stress tensor. We now have a new puzzle: since $T_{\mu\nu} = 0$ in gravity, how should we define the stress tensor for the gravitational field itself? As we shall see later, the covariant formalism provides a neat solution for this problem. \textbf{Also, from now on we will use $T_{\mu\nu} = T^M_{\mu\nu}$ to denote the non-vanishing \textit{matter} stress tensor.} 
+	
+	\newparagraph
+	On the other hand, given a fixed background $\hat{g}_{\mu\nu}$, we have another subtlety in the above definition: there could be various ways to promote $
+		\hat{g}_{\mu\nu} \mapsto
+		g_{\mu\nu}
+	$ and vary w.r.t.\ $g_{\mu\nu}$. In particular, if $\hat{g}_{\mu\nu} = \eta_{\mu\nu}$, then the Ricci scalar $R \equiv 0$, thus any term that is proportional to $R$ can be added to the action without spoiling the diff-invariance. 
+	
+\pagebreak[4]
+	
+	One can think of this process as \textit{turning on} a dynamic $g_{\mu\nu}$ field coupled to the matter theory; there is the usual \textbf{minimal coupling}, i.e.~we replace $\eta_{\mu\nu} \mapsto g_{\mu\nu}$, $\pdd{\mu} \mapsto \cdv{\mu}$, and then compute the variation. However, we can introduce additional couplings between the matter fields and $g_{\mu\nu}$, e.g.~the dilaton coupling \cite{Polchinski:1998rq}:
+	\begin{equation}
+		S \propto \int
+			\sqrt{\abs{g}} \dd[D]{x}
+			R\,\Phi[\phi^I]
+	\end{equation}
+	Where the dilaton $\Phi = \Phi[\phi^I]$ is a functional of the fields. This term vanishes in flat space, yet it contributes extra improvement terms to the stress tensor. This is an example of \textit{non-minimal} coupling. 
+	
+	
+	\newparagraph
+	To understand the equivalence of the Hilbert stress tensor with the Noether stress tensor, we shall revisit the idea that \textbf{Noether's theorem is in fact a local statement,} even when the symmetries involved are global symmetries. 
+\subsection{Noether current from ``localized'' variation}
+	As we've noted before, we can always choose $\var_\eta \phi(x)$ to be compactly supported around some point $x_0$, by weighting it with some arbitrary, localized bump function $\epsilon(x)$. One can think of this as promoting\footnote{
+		This process is described in \textcite{Polchinski:1998rq}, Section 2.3 and Exercise 2.5, and a solution of this exercise is given by \cite{Headrick:2008ke}. We will reproduce the solution here with the language of differential forms.
+	}:
+	\begin{equation}
+		\var_\xi \phi
+		\mapsto \var_\eta \phi
+		= \epsilon(x)\,\var_\xi \phi,
+	\quad\text{i.e.}\ \,
+		X_\xi \cdot \var{\phi}
+		\mapsto X_\eta \cdot \var{\phi}
+		= \epsilon(x)\,X_\xi \cdot \var{\phi}
+	\end{equation}
+	Here we are considering general $\xi,\eta$ which act locally on the fields; they don't have to be diffeos for this to hold. 
+	
+	We see that \textbf{when contracted with $\var{\phi}$, we can simply replace $
+		X_\eta \mapsto \epsilon(x)\,X_\xi
+	$}. \textbf{However, note that this does \textit{not} imply that $
+		X_\eta = \epsilon(x)\, X_\xi 
+	$}, nor does it work for contractions with general variations such as $\var{L}$. In fact, $X_\eta$ is a flow in the field space $\mcal{F}$, so it should not have explicit dependence on the $x$ coordinate; see e.g.~\eqref{eq:symmetry_var_field}. By definition, the correct form of $X_\eta$ should be:
+	\begin{equation}
+		X_\eta
+		= \int_M \dd[D]{x}
+			\epsilon(x)\,
+			\pqty\big{
+				X_\xi \cdot \var{\phi^I(x)}
+			}
+			\fdv{\phi^I(x)}
+	\end{equation}
+%	
+	We then look at the variation $\var_\eta L$; by definition,
+	\begin{equation}
+	\begin{aligned}
+		\var_\eta L
+		&= X_\eta \cdot \var{L} \\
+		&= \epsilon\,E_I\,\var_\xi {\phi^I}
+			+ \dd{(X_\eta \cdot \Theta)} \\
+		&= \epsilon\,E_I\,\var_\xi {\phi^I}
+			+ \dd{\pqty{
+				\epsilon(x)\, X_\xi \cdot \Theta
+			}} \\
+		&= \epsilon\,E_I\,\var_\xi {\phi^I}
+			+ \epsilon \dd{(X_\xi \cdot \Theta)}
+			+ (\dd{\epsilon}) \wedge
+				X_\xi \cdot \Theta \\
+		&= \epsilon\,\var_\xi L
+			+ (\dd{\epsilon}) \wedge
+				X_\xi \cdot \Theta \\
+	\end{aligned}
+	\end{equation}
+	On the other hand, we know that $\var_\xi L$ is a symmetry variation: $\var_\xi L = \dd{(K_\xi - \var_\xi l)}$; we thus have:
+	\begin{empheq}{equation}
+	\begin{aligned}
+		\var_\eta L
+		&= \epsilon\,\var_\xi L
+			+ (\dd{\epsilon}) \wedge
+				X_\xi \cdot \Theta \\
+		&= \epsilon \dd{(K_\xi - \var_\xi l)}
+			+ (\dd{\epsilon}) \wedge
+				X_\xi \cdot \Theta \\
+		&= \dd{\pqty\big{
+				\epsilon(K_\xi - \var_\xi l)
+			}} 
+			+ (\dd{\epsilon}) \wedge \pqty{
+				X_\xi \cdot \Theta
+				+ \var_\xi l - K_\xi
+			} \\
+		&= \dd{\pqty\big{
+				\epsilon(K_\xi - \var_\xi l)
+			}} 
+			+ (\dd{\epsilon}) \wedge J_\xi
+	\end{aligned}
+	\end{empheq}
+	
+	We see that we've recovered the Noether current $J_\xi$ with this formalism. 
+	Our calculation thus far has been \textbf{off-shell;} we see that while $\xi$ is a symmetry by construction: $
+		\var_\xi L = \dd{(K_\xi - \var_\xi l)}
+	$, \textbf{$\eta$~is generally \textit{not} a symmetry of the action:} by definition, we require an \textbf{off-shell} symmetry variation of the action to be a total derivative; this is not the case for $\var_\eta L$, as we have an extra term $
+		(\dd{\epsilon}) \wedge J_\xi
+	$ which does \textit{not} vanish \textit{off-shell}. 
+	
+	We can integrate by parts once more and get:
+	\begin{empheq}{equation}
+	\begin{aligned}
+		\var_\eta L
+		&= \dd{\pqty\big{
+				\epsilon(K_\xi - \var_\xi l)
+			}} 
+			+ (\dd{\epsilon}) \wedge J_\xi \\
+		&= \dd{\pqty\big{
+				\epsilon X_\xi \cdot \Theta
+			}} 
+			- \epsilon \dd{J_\xi} \\
+		&= \dd{\Theta_\eta} 
+			- \epsilon \dd{J_\xi}
+	\end{aligned}
+	\end{empheq}
+	Current conservation follows from the fact that since we pick $\epsilon(x)$ to be compactly supported around some point $x_0$, the \textbf{on-shell variation} of the action vanishes completely, as long as $\pd M$ encloses the support of $\epsilon(x)$; his holds for \textit{arbitrary} $\epsilon(x)$ supported within $M$, which guarantees that $\dd{J_\xi}|_{\tilde{\mcal{P}}} = 0$:
+	\begin{empheq}{equation}
+	\begin{aligned}
+		0 = \var_\eta S|_{\tilde{\mcal{P}}}
+		= \int_M \var_\eta L|_{\tilde{\mcal{P}}}
+		&= \cancel{
+			\int_{\pd M} \epsilon(x)\,
+				X_\xi \cdot \Theta|_{\tilde{\mcal{P}}}
+			}
+			- \int_M \epsilon(x) \wedge
+				\dd{J_\xi}|_{\tilde{\mcal{P}}},
+	\quad
+		\dd{J_\xi}|_{\tilde{\mcal{P}}} = 0
+		\mspace{-16mu}
+	\end{aligned}
+	\end{empheq}
+	
+	The on-shell condition is necessary to guarantee that $
+		\var_\eta S|_{\tilde{\mcal{P}}} = 0
+	$, and any possible boundary terms at $\Sigma^\pm$ vanishes since it's weighted by $\epsilon(x)$. Alternatively, we can see this locally by noting that:
+	\begin{equation}
+		\dd{\Theta_\eta}
+			+ \epsilon\, E_I \,\var_\xi \phi^I
+		= \var_\eta L
+		= \dd{\Theta_\eta} 
+			- \epsilon \dd{J_\xi}
+	\end{equation}
+	We see that the boundary term $\dd{\Theta_\eta}$ actually cancels between the left and right-hand side, therefore even we choose some $\epsilon(x)$ which does not vanish along $\pd M$, we still have $
+		\dd{J_\xi} = -E_I \,\var_\xi \phi^I
+	$ which vanishes on-shell, as we've seen before. 
+	
+	\newparagraph
+	This formalism of promoting $
+		\var_\xi \phi
+		\mapsto \var_\eta \phi
+	$ suggests a convenient method of finding the Noether current $J_\xi$, without worrying about the boundary term $K_\xi$; we need only compute $\var_\eta L$, ignore the total derivatives, and collect the factors of $\dd{\epsilon}$, which will automatically include $K_\xi$ contributions and give us a conserved $J_\xi$. There will still be ambiguities as one can shift $\Theta$ by a total derivative $\dd{Y}$, as we've seen before.
+	
+	
+%\legacyReference
+	
+%	\begin{figure}[!ht]
+%	\centering
+%%	\includegraphics[width=.6\linewidth]{img/}
+%%	\hspace{2em}
+%%	\vspace{-2ex}
+%	\caption[]{}
+%	\end{figure}
+	
+	
+\vspace{1.2\baselineskip}
+\pagebreak[4]
+\raggedright
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}
