@@ -12,6 +12,8 @@
 %%% ID: sensitive, do NOT publish!
 %\InputIfFileExists{../id.tex}{}{}
 
+\usepackage{cancel}
+
 \begin{document}
 \maketitle
 \pagestyle{headings}
@@ -707,11 +709,11 @@
 	Note that the $\alpha'$ term has no dependence on $X$. 
 	
 	\begin{enumerate}
-	\item For simplicity, assume for now $X = X(z)$: holomorphic. Note that the $\alpha'$ term comes from the transformation of \textit{internal} degrees of freedom. We have:
+	\item For simplicity, assume for now $X = X(z)$: holomorphic. Note that the $\alpha'$ term comes from the transformation of ``\textit{internal}'' degrees of freedom, associated with the conformal properties of $X$. We have:
 	\begin{gather}
 		X'(z') - X(z)
 		= -\frac{\alpha' V}{2}\,\pd\epsilon
-			+ \order{\epsilon^2},
+			+ \order{\epsilon^2}
 %		\simeq -\frac{\alpha' V}{2}\,\pqty{
 %			\dv{z'}{z} - 1
 %		},\\[.5ex]
