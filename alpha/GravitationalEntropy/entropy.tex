@@ -759,7 +759,7 @@
 	\begin{equation}
 		p = k = 1
 	\end{equation}
-\subsubsection{RT surface}
+\subsubsection{The usual RT surface}
 	The Einstein frame metric $G_{\mu\nu}$ is related to the string frame metric $g_{\mu\nu}$ by:
 	\begin{equation}
 		G_{\mu\nu} = e^{-4\Phi} g_{\mu\nu}
@@ -772,10 +772,10 @@
 			- \frac{z^2}{z^2 + 2\lambda}
 	\end{equation}
 	
-	The coordinate length $L$ at the boundary is given by:
+	The coordinate length $L_\mrm{RT}$ at the boundary is given by:
 	\begin{equation}
 	\begin{aligned}
-	  L = L(z_0;\mu)
+	  L_\mrm{RT} = L_\mrm{RT}(z_0;\lambda)
 	  &= \int \dd{\varphi}
 	  = 2\int_0^{z_0}
 	      \abs{\dv{\varphi}{z}}
@@ -790,22 +790,22 @@
 	\end{aligned}
 	\label{eq:length_function}
 	\end{equation}
-	
-\pagebreak\noindent
+%	
+%\pagebreak\noindent
 	Note that:
 	\begin{itemize}
-	\item $\mu\to 0,\, L(z_0;\mu) \to 2z_0$, we recover the AdS result: in this case the geodesic $\gamma$ is a semi-circle with radius $z_0$.
+	\item $\lambda\to 0$, \textsl{or} $z_0\to \infty$, we have $L_\mrm{RT}(z_0;\lambda) \to 2z_0$, i.e.~we recover the AdS result: in this case the geodesic $\gamma$ is a semi-circle with radius $z_0$.
 	
 	\item $z_0\to 0,\,
-		L(z_0;\mu) \to \sqrt{\frac{\pi^2}{2} \lambda}
-	$, we see that $L$ is bounded from below by:
+		L_\mrm{RT}(z_0;\lambda) \to \sqrt{\frac{\pi^2}{2} \lambda}
+	$, we see that $L_\mrm{RT}$ seems to be bounded from below by:
 	\begin{equation}
-		L_{\min} (\mu)
+		L_{\mrm{RT},0} (\lambda)
 		= \sqrt{\frac{\pi^2}{2} \lambda}
 	\end{equation}
 	This feature is very similar to the lower bound $L_0$ of entanglement length, but they do \textit{not} agree; in fact,
 	\begin{equation}
-		L_{\min} / L_0 = \pi / 4
+		L_{\mrm{RT},0} / L_0 = \pi / 4
 	\end{equation}
 	\end{itemize}
 	
@@ -840,11 +840,20 @@
 	          }
 	      }
 	\end{aligned}
+	\label{eq:RT_integral}
 	\end{equation}
-	We don't have an explicit analytic result for the above integral, but numerical calculations suggest that it does not agree with \eqref{eq:tst_ft_ee}. 
-	As is inspired by the cutoff picture, we would like to tweak it such that it matches with \eqref{eq:tst_ft_ee}. 
+	We don't have an explicit analytic result for the above integral\footnote{
+		Note that there are some analytic expressions given by \cite{Asrat:2019end}, but we haven't confirmed their results. 
+		We can map \cite{Asrat:2019end} to our convention by matching the aysmptotic behavior of $L_\mrm{RT}$; namely, we have $z_0 \to \infty$, $L_\mrm{RT}(z_0;\lambda)\to 2z_0$, while $z_0 \to 0$, $L_\mrm{RT}(z_0;\lambda)\to \sqrt{\frac{\pi^2}{2} \lambda}$. It seems that for (3.17) and (4.3) in \cite{Asrat:2019end}, we have $
+			\alpha \mapsto \frac{\lambda/2}{z^2}
+		$. With this the length $L_\mrm{RT}$ given by \cite{Asrat:2019end} as a function of $z$ is \textit{not} monotonic, which sounds suspicious and does not agree with numerical results. \label{foot:asrat_matching}
+	},
+	but numerical calculations suggest that it does not agree with \eqref{eq:tst_ft_ee}. \sidenote{However, its qualitative behavior is quite close to \eqref{eq:tst_ft_ee}, and it fits \eqref{eq:tst_ft_ee} nicely as $L\to \infty$. }
 	
-	We have the following observations: 
+\pagebreak[3]
+	
+	As is inspired by the cutoff picture, we would like to tweak the holographic entropy such that it matches with \eqref{eq:tst_ft_ee}. 
+	We start with the following observations: 
 	\begin{itemize}
 	\item If we denote $L_{\mrm{CFT}} = 2z_0$, and instead of using \eqref{eq:length_function}, we use:
 	\begin{equation}
@@ -856,11 +865,72 @@
 	Which mimic the relation \eqref{eq:length_relations}, then the $C(L)$ from the field theory calculations can be re-written as:
 	\begin{equation}
 		C(L')
-		= \frac{L'}{L_{\mrm{CFT}}}
-		= \frac{1}{\sqrt{1 - (\frac{L_0}{L'})^2}},
+		= \frac{1}{\sqrt{1 - (\frac{L_0}{L'})^2}}
+		= \frac{L'}{L_{\mrm{CFT}}},
 	\quad L_0 = \sqrt{8\lambda}
 	\end{equation}
 	Where the relation $C(L') = \frac{L'}{L_{\mrm{CFT}}}$ is completely analogous to the double-trace situation; in that case we have $L_\mrm{CFT} = L_\infty$. 
+	
+	\pagebreak[3]
+	
+	\item Maybe one can ``engineer'' a suitable curve $\gamma'$ which has peak $z_0$ and boundary length $
+		L' = 2\sqrt{z_0^2 + 2\lambda}
+	$; we can require that it reproduces the desired entanglement entropy \eqref{eq:tst_ft_ee}:
+	\begin{equation}
+		\frac{1}{2G} \mop{arccosh}
+			\frac{
+				\sqrt{z_0^2 + 2\lambda}
+			}{\sqrt{2\lambda}}
+	  = \frac{1}{2G} \int_0^{z_0} \dd{z}
+	    \frac{z^2 + 2\lambda}{z^2}
+	      \sqrt{
+	          \frac{1}{z^2}
+	          + \frac{1}{z^2 + 2\lambda}
+	          \pqty{\dv{\varphi}{z}}^{\!\!2}
+	      } 
+	\end{equation}
+	This is a integral equation for $\dv{\varphi}{z} \equiv F$. The above equation can be greatly simplified by:
+	\begin{equation}
+		z = \sqrt{2\lambda} \sinh y,
+	\quad
+		F(y;y_0,\lambda)
+		= \abs{\dv{\varphi}{z}},
+	\end{equation}
+	\begin{empheq}{equation}
+		y_0
+		= \int_0^{y_0} \dd{y}
+			\coth^2 y\,\sqrt{
+				\coth^2 y
+				+ F^2(y;y_0,\lambda)
+			}
+	\end{empheq}
+	
+	$z_0$ or $y_0$ labels the peak of $\gamma$, thus we have:
+	\begin{empheq}{equation}
+		F(y\to y_0;y_0,\lambda) \to \infty
+	\end{empheq}
+	Also the boundary length should be:
+	\begin{gather}
+	  L' = 2\sqrt{z_0^2 + 2\lambda}
+	  = 2\int_0^{z_0}
+	      \abs{\dv{\varphi}{z}}
+	      \dd{z},
+	\end{gather}
+	\begin{empheq}{equation}
+		\cosh y_0
+		= \int_0^{y_0}
+			F(y;y_0,\lambda) \cosh y \dd{y}
+	\end{empheq}
+	
+	In principle one might be able to find some candidate $F = F(y;y_0,\lambda)$ from the boxed equations. This corresponds to candidate curve $\gamma'$ that reproduces the desired entropy. 
+	
+	\item There is a $B$-field in the TsT background; however, as is argued in \texttt{areaTTbar.pdf}, it should not contribute to the on-shell action. However, one might be able to promote the original $\gamma_\mrm{RT}$ to a tube surrounding $\gamma_\mrm{RT}$, and treat it as a string worldsheet, where the $B$-field couples nicely in the worldsheet action. 
+	
+	There are two ways going forward: one is to compute the string EoMs which is related to the \textit{string frame} geodesic; this is done in \texttt{notesEETTbar.pdf} and to be discussed in the next section. 
+	
+	\sidenote{Another way is to come up with a procedure that reduces the string action to a particle action close to $S_{\mrm{RT}}$, but with $B$-field corrections. One can also construct a new connection with $H = \dd{B}$ and solve the geodesic with this new connection\footnote{
+		Thank Yuan Zhong for this great idea. Also he helped a lot with simplying the integral equations. 
+	}. }
 	
 	\item With quite a bit of numeric experimentations, we find that:
 	\begin{equation}
@@ -882,13 +952,24 @@
 		= \frac{1}{2G}
 	$ exactly. Combined with the numerical results, this hints at the fact that \eqref{eq:RT_entropy_derivative} holds exactly with no $\lambda$ dependence. 
 	
-	\item Therefore, we have:
+	However, if we use the analytic result of \cite{Asrat:2019end} (see footnote \ref{foot:asrat_matching}), then this is \textit{not} correct! But one should check that result first to see if it's valid first.
+	\sidenote{Also,} if we take the $z_0$ derivative before integrating in \eqref{eq:RT_integral}, we can show that indeed we have, approximately, $
+		z_0\,\pdv{z_0}\,S_\mrm{RT}
+		\approx \frac{1}{2G}
+	$, but the result is \sidenote{\textit{not} exactly constant and \textit{not} $\lambda$ independent;} see \texttt{zDzNonConstant.nb}. 
+	
+\pagebreak[3]
+	
+	If we proceed anyways with $
+		z_0\,\pdv{z_0}\,S_\mrm{RT}
+		\approx \frac{1}{2G}
+	$, then we have:
 	\begin{equation}
 		L' \pdv{S_\mrm{RT}}{L'}
 		= L_\mrm{CFT} \pdv{S_\mrm{RT}}{L_\mrm{CFT}}
 			\pdv{L_\mrm{CFT}}{L'}
 			\frac{L'}{L_\mrm{CFT}}
-		\sim \frac{1}{2G}
+		\approx \frac{1}{2G}
 			\pqty{\frac{L'}{L_\mrm{CFT}}}^{\!\!2}
 		= C(L')^2
 	\end{equation}
@@ -906,9 +987,27 @@
 				\frac{1}{2G}
 				L' \pdv{S}{L'}
 			}
-		$. What's happening? I have no idea.
+		$. What's happening? I have no idea. \sidenote{Update: it seems that this only holds approximately, perhaps it's simply a numerical coincidence. }
 	}
 	\end{figure}
+\subsubsection{The TsT deformed geodesic}
+	If we take the usual geodesic (semi-circle) in the undeformed background, and consider a TsT transformation, we get the TsT deformed geodesic $\gamma_\mrm{TsT}$. This also coincides with the \textit{string frame} geodesic, which minimizes the string frame length without the dilaton factor, instead of the Einstein frame length. See \texttt{notesEETTbar.pdf} for a description of this process. 
+	
+	However, the on-shell action should still be the Einstein frame length; fortunately, this time the result is nice and clean:
+	\begin{equation}
+		S_E[\gamma_\mrm{TsT}(z0;\epsilon)]
+		= \frac{1}{2}
+			\frac{\sqrt{z_0^2 + 2\lambda}}{z_0}
+			\pqty{
+				\frac{\lambda}{\epsilon^2}
+				\frac{\sqrt{z_0^2 - \epsilon^2}}{z_0}
+				+ \frac{z_0^2 + \lambda}{z_0^2}
+				\mop{arctanh}
+					\frac{\sqrt{z_0^2 - \epsilon^2}}{z_0}
+			}
+	\end{equation}
+	Unfortunately, the result is highly divergent: $\sim \frac{1}{\epsilon^2}$, even worse than the $\log \frac{1}{\epsilon}$ divergence of a CFT. 
+	\sidenote{It might be possible to "renormalize" out the $\sim \frac{1}{\epsilon^2}$ divergence} which might also help us recover a more reasonable on-shell action.
 	
 \vspace{1.2\baselineskip}
 \pagebreak[4]
