@@ -1,0 +1,179 @@
+\usepackage{jheppub}
+                     
+\usepackage[mathscr]{euscript}
+\usepackage[textsize=scriptsize,textwidth=2.5cm]{todonotes}
+
+\usepackage{amssymb,amsmath,latexsym,bm,amsfonts}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{color,xcolor}
+%\usepackage{indentfirst}
+\usepackage{subfig}
+\usepackage{comment}
+\usepackage{float}
+\usepackage[normalem]{ulem}
+\usepackage{array}
+
+\usepackage{relsize}
+\usepackage{graphicx}
+
+\setcounter{tocdepth}{2}
+\numberwithin{equation}{section}
+\allowdisplaybreaks	
+
+
+\newcommand{\rednote}[1]{{\color{red}#1}}
+\newcommand{\bluenote}[1]{{\color{blue}#1}}
+\newcommand{\rout}[1]{{\color{red} \sout{#1}}}
+
+
+\makeatletter
+\def\@fpheader{\phantom{Prepared for submission to JHEP}}
+\makeatother
+
+\newcommand{\qns}{\color{red}}
+\newcommand{\tM}{{\tilde M}}
+\newcommand{\tJ}{{\tilde J}}
+\newcommand{\tu}{{\tilde u}}
+\newcommand{\tphi}{{\tilde \phi}}
+\newcommand{\tdr}{{\tilde r}}
+\newcommand{\bea}{{\begin{eqnarray}}}
+\newcommand{\eea}{{\end{eqnarray}}}
+\newcommand{\mA}{{\cal A}}
+\newcommand{\mH}{{\cal H}}
+\newcommand{\mM}{{\cal M}}
+\newcommand{\mL}{{\cal L}}
+\newcommand{\mP}{{\cal P}}
+
+
+\newcommand{\bra}[1]{\ensuremath{\left\langle#1\right|}}
+\newcommand{\ket}[1]{\ensuremath{\left|#1\right\rangle}}
+\newcommand{\braket}[2]{\ensuremath{\left\langle #1 \middle| #2 \right\rangle}}
+\newcommand{\MatBK}[3]{\ensuremath{\left\langle #1 \middle| #2 \middle| #3 \right\rangle}}
+\newcommand{\df}{\mathrm{d} }
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\bpm}{\begin{pmatrix}}
+\newcommand{\epm}{\end{pmatrix}}
+\newcommand{\lt}{\left}
+\newcommand{\rt}{\right}
+\newcommand{\PBK}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\EV}[1]{\langle #1 \rangle}
+\newcommand{\beqn}{\begin{eqnarray}}
+\newcommand{\eeqn}{\end{eqnarray}}
+\newcommand{\Od}{\mathcal{O}}
+\newcommand{\Lie}{\mathcal{L}}
+\newcommand{\zb}{\bar{z}}
+\newcommand{\Dr}{\text{D}}
+\newcommand{\p}{\partial}
+
+\newcommand{\bb}{\mathbb}
+\newcommand{\ba}{\begin{aligned}}
+\newcommand{\ea}{\end{aligned}}
+\newcommand{\bi}{\begin{enumerate}}
+\newcommand{\ei}{\end{enumerate}}
+
+
+\def\Bra#1{\left\langle#1\right|}
+\def\Ket#1{\left|#1\right\rangle}
+\def\Vev#1{\left\langle#1\right\rangle}
+\newcommand{\eq}[1]{\begin{align}#1\end{align}}
+\newcommand{\eqsp}[1]{\begin{equation}\begin{split}#1\end{split}\end{equation}}
+\newcommand{\eqga}[1]{\begin{equation}\begin{gathered}#1\end{gathered}\end{equation}}
+
+\newcommand{\zc}{z}
+
+\DeclareMathOperator{\arccosh}{arccosh}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\Real}{Re}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Imag}{Im}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+
+%%%% WX's macros %%%%
+
+\setlength{\skip\footins}{1.2\baselineskip} % pre footnote split, plain TeX
+\usepackage{mathtools,physics,enumitem,placeins}
+\usepackage[only,sslash]{stmaryrd}
+\let\textcite\cite
+
+% Captions
+	\usepackage{caption}
+	\captionsetup{labelfont+=bf
+		,margin=3em
+		,parskip=.4\baselineskip
+%		,format=plain
+%		,font+=small
+%		,textfont+=it
+%		,singlelinecheck=false
+	}
+	% ref name
+	\renewcommand{\tableautorefname}{\tablename}
+	\renewcommand{\figureautorefname}{\figurename}
+
+% Simple macros / shorthands for LaTeX,
+% ... compatible with MathJax
+% ... loaded before 'mathjax.tex'
+%
+% Generics
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\mscr}[1]{\mathscr{#1}}
+\newcommand{\mfrak}[1]{\mathfrak{#1}}
+\newcommand{\tup}[1]{\textup{#1}}
+\newcommand{\mop}[1]{\operatorname{#1}}
+%
+% Utils
+\newcommand{\idty}{\mathds{1}}
+\newcommand{\proj}[1]{\mop{proj_{\mathit{#1}}}}
+\newcommand{\textbox}[1]{\fbox{#1}}
+\newcommand{\rvec}[1]{\overrightarrow{#1}}
+\newcommand{\lvec}[1]{\overleftarrow{#1}}
+\newcommand{\sidenote}[1]{\textcolor{purple}{#1}}
+\newcommand{\mquote}[1]{\text{``$#1$''}}
+\newcommand{\thinmspace}[1][.5]{\mspace{#1\thinmuskip}}
+\newcommand{\moppower}[2]{\mop{ {#1}^{#2} }\!}
+%
+% Physics
+\newcommand{\DD}[1]{\mathinner{\mscr{D}{#1}}}
+\newcommand{\normorder}[1]{
+	\mspace{.2\thinmuskip}%
+	{\mathopen {:}}%
+	{\mspace{.8\thinmuskip}#1\mspace{.8\thinmuskip}}%
+	{\mathclose {:}}%
+	\mspace{.5\thinmuskip}%
+}
+%
+% Differential Geometry
+\newcommand{\hodgedual}{\mop{\star}}
+\newcommand{\hstar}{\mop{\star}}
+\newcommand{\cdd}{\mop{D}\!}
+\newcommand{\pdd}[1]{\partial_{#1}}
+\newcommand{\cdv}[1]{\nabla_{\!\mathnormal{#1}}}
+\newcommand{\ldv}[1]{\mcal{L}_{\mathnormal{#1}}}
+\newcommand{\ric}[1]{\mop{Ric}\pqty{#1}}
+\newcommand{\ad}{\mop{ad}}
+\newcommand{\pd}{\partial}
+\newcommand{\pdbar}{\bar{\partial}}
+%
+% Algebra
+\newcommand{\subsetnormal}{\mathrel{\triangleleft}}
+\newcommand{\Hom}{\mop{Hom}}
+\newcommand{\To}{\Rightarrow}
+\newcommand{\longto}{\longrightarrow}
+\newcommand{\Longto}{\Longrightarrow}
+%
+% QED
+\newcommand{\qed}[1][]{\hfill\ensuremath{ %
+    \square\mathrlap{_{\,#1}}%
+}}
+\newcommand{\qedfull}[1][]{\hfill\ensuremath{ %
+    \blacksquare\mathrlap{_{\,#1}}%
+}}
+
+%%%% End of WX's macros %%%%
+
