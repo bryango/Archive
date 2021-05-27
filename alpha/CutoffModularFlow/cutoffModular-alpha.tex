@@ -6,6 +6,8 @@
 
 \input{preamble.tex}
 
+\newcommand{\lui}[2]{\textcolor{red}{#1}\todo[color=yellow]{\scriptsize{L: #2}}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -36,7 +38,9 @@
 	
 	\item We then note that the periodicity can be restored by following the flow of $\xi$ starting from a codim-2 cutoff surface. This could be related to the \textit{restricted maximin} proposal of \cite{Marolf:2019bgj,Grado-White:2020wlb}. 
 	
-	\item We try to obtain the entanglement entropy using the modular flow at the \mbox{codim-2} cutoff surface, by defining a \textit{local entanglement entropy $\beta(x)$}, which relates the entanglement entropy to some thermal entropy. 
+	\item We try to obtain the entanglement entropy using the modular flow at the \mbox{codim-2} cutoff surface, using the \textit{effective inverse temperature $\beta(x)$} introduced in \cite{Wong:2013gua,Cardy:2016fqc}, which relates the entanglement entropy to some thermal entropy. \sidenote{[relation with partial entanglement entropy?]}
+	
+	\item \sidenote{We should look at the boosted interval.}
 	
 	\item[] In Section 2,
 	
@@ -616,11 +620,11 @@
 	
 \pagebreak
 \subsection{Modular flow for the cutoff field theory}
-\textbf{Summary:} We try to obtain the entanglement entropy using the modular flow at the \mbox{codim-2} cutoff surface, by defining a \textit{local entanglement entropy $\beta(x)$}, which relates the entanglement entropy to some thermal entropy. 
+\textbf{Summary:} We try to obtain the entanglement entropy using the modular flow at the \mbox{codim-2} cutoff surface, using the \textit{effective inverse temperature $\beta(x)$} introduced in \cite{Cardy:2016fqc}, which relates the entanglement entropy to some thermal entropy. 
 	
 	From the field theory's perspective, the above calculations seem to suggest that the modular flow $\xi$ of [[ an $L$-sized interval in the cutoff theory ]] is given by the modular flow $\xi = \xi(L_\infty)$ of [[ a CFT for an $L_\infty$ interval ]]. 
 	
-	We note that there is a trick to read out the entanglement entropy from the modular flow: it is possible to define a \textit{local entanglement temperature}, and then use it to read the entanglement entropy from the modular flow generator, by comparing with the Hamiltonian of a thermal field theory, where we have:
+	We note that there is a trick to read out the entanglement entropy from the modular flow: it is possible to define a \textit{local entanglement temperature}, and then use it to read the entanglement entropy from the modular flow generator \cite{Cardy:2016fqc}. The result is obtained by comparing with the Hamiltonian of a thermal field theory, where we have:
 	\begin{equation}
 	\mcal{H}=\int \beta\,T_{00}\,dx,\quad \beta = 2\pi,
 	\quad \xi|_{t=0} = \beta\,\pdd{t}
@@ -631,9 +635,9 @@
 	\mcal{H}_\mcal{A}=\int \beta(x)\, T_{00}\,dx,\quad \xi|_{t=0} = \beta(x)\, \pdd{t}
 	\end{equation}
 	
-	Let's see this shortcut in action in CFT$_2$; the \textit{entropy density} is given by:
+	Let's see this trick in action in CFT$_2$; the \textit{entropy density} is given by:
 	\begin{equation}
-	\partial_x S = \frac{c}{3} \frac{\pi}{\beta(x)}
+	s_\mcal{A} = \frac{c}{3} \frac{\pi}{\beta(x)}
 	\end{equation}
 	in terms of the local entanglement temperature $\beta(x)$, and the total entropy of the interval $\mcal{A}$ is given by:
 	\begin{equation}
@@ -653,8 +657,8 @@
 	The indefinite integral $
 		\int \frac{L_\infty/2}{(L_\infty/2)^2-x^2}dx
 		= \mop{arctanh}\frac{2x}{L_\infty}
-		\rightarrow\infty
-	$, as $x\rightarrow L_\infty/2$, so one needs a cutoff:
+%		\rightarrow\infty
+	$ diverges as $x\rightarrow L_\infty/2$, so one needs a cutoff:
 	\begin{equation}
 	S=\frac{c}{3}\int_{-L_\infty/2+a}^{L_\infty/2-a}
 		\frac{L_\infty/2}{(L_\infty/2)^2-x^2}dx
@@ -673,7 +677,7 @@
 	S=\frac{c}{3}\log\frac{L_\infty}{a}
 	\end{equation}
 	
-	Another case is the Rindler patch,
+	Another case is the Rindler patch, \sidenote{better to integrate from $l$ to $\infty$},
 	\begin{equation}
 	\xi\propto x\partial_x-t\partial_x
 	\end{equation}
@@ -699,31 +703,108 @@
 	\end{equation}
 	Namely in the same form as the modular flow of a CFT, but we have:
 	\begin{equation}
-	L^2/4+a^2=L_\infty^2/4
+	L^2/4+z_c^2=L_\infty^2/4
 	\end{equation}
 	Where the interval for the cutoff theory is of length $L$. The entanglement entropy is
 	\begin{equation}
-	S=\frac{c}{6}\mop{arctanh}\frac{2x}{L_\infty}\Big|_{-L/2}^{L/2}
-	=\frac{c}{3}\mop{arctanh}\frac{L}{\sqrt{L^2+4a^2}}
-	=\frac{c}{3}\mop{arcsinh}\frac{L}{2a}
+	S=\frac{c}{6}\mop{arctanh}\frac{2x}{L_\infty}\Big|_{x=-L/2}^{x=L/2}
+	=\frac{c}{3}\mop{arctanh}\frac{L}{\sqrt{L^2+4z_c^2}}
+	=\frac{c}{3}\mop{arcsinh}\frac{L}{2z_c}
 	\end{equation}
 	with C-function
 	\begin{equation}
-	C(l)=\frac{c}{3}\frac{1}{\sqrt{1+\frac{4a^2}{L^2}}}
+	C(l)=\frac{c}{3}\frac{1}{\sqrt{1+\frac{4z_c^2}{L^2}}}
 	\end{equation}
-	Which agrees with \cite{Lewkowycz:2019xse}. 
+	Which agrees with \cite{Lewkowycz:2019xse}. \sidenote{This provides a field theory side calculation of the cutoff entanglement entropy, based on the input of the modular flow $\xi$. }
+	
+	\textit{Note that we only need to know the modular flow $\xi$ along some time slice. We don't need to know the full modular flow. This seems to be consistent with Lewkowycz--Maldacena \cite{Lewkowycz:2013nqa} and the holographic entropy, where it only depends linearly on $\xi$ along the RT surface, as long as $\xi$ is a Killing vector. See \eqref{kdef}. }
 	
 	In the field theory side, such modular flow generator means that the Rindler transformation map a slightly large region $D(\tilde{A})$ to the hyperbolic cylinder, and keep track of the endpoints of the interval $A$. The endpoints are implied in the range of the integration in the local entanglement temperature method, and also in the length of the cylinder in the Rindler map method.
 	\begin{equation}
-	M:D(A)\rightarrow R\times S
+	f:D(A)\rightarrow R\times S
 	\end{equation}
 	\begin{equation}
-	\tilde{M}:D(\tilde{A})\rightarrow R\times S
+	\tilde{f}:D(\tilde{A})\rightarrow R\times S
 	\end{equation}
 	A is the interval with length $L$, $\tilde{A}$ is the interval with length $L_\infty$.
 	
 	In the cutoff AdS picture, it seems that the modular flow generator for the interval with lenght $L$ is on the asymptotic boundary but with the interval length $L_\infty$ instead of $L$.
 	
+\subsubsection*{Reasoning for this trick}
+	The validity of this trick can be argued from the Rindler map; suppose we have the following Rindler map at the boundary:
+	\begin{equation}
+	\begin{aligned}
+		f\colon
+		\mcal{D}(\mcal{A})
+		&\longto \mcal{R} = S^1_\beta \times f(\mcal{A}), \\
+		(t,x)
+		&\longmapsto (\tau,\tilde{x}),
+	\end{aligned}
+	\end{equation}
+	Here $f(\mcal{A})$ is the image of the boundary interval. $f$ by construction ``normalizes'' the temperature for the modular generator, namely, the modular flow $\xi$ is now realized as the pullback of $2\pi\pdd{\tau}$:
+	\begin{equation}
+		\xi = \xi^\mu \pdd{\mu}
+		= 2\pi\pdd{\tau}
+	\end{equation}
+	In particular, along the interval $\mcal{A}$ at the $t = 0$ time slice, we have:
+	\begin{equation}
+		\xi|_{t = 0}
+		= \beta(x)\,\pdd{t}
+		= 2\pi\pdd{\tau},
+	\quad
+		\pdv{t}{\tau}
+		= \frac{\beta(x)}{2\pi}
+	\end{equation}
+	Note that although $\xi$ is a Killing vector when it's extended to the bulk, it is only a \textit{conformal Killing vector} when it's restricted to the boundary. 
+	
+	Here we think of $f$ as a simple coordinates transformation or diffeomorphism, which keeps the metric $\dd{s}^2$ invariant, and maps the flat coordinates to a conformally flat coordinates:
+	\begin{equation}
+		\dd{s}^2
+		= \dd{t}^2 + \dd{x}^2
+		= \Omega^2(\tau,\tilde{x}) \pqty{
+				\dd{\tau}^2 + \dd{\tilde{x}}^2
+			},
+	\quad
+		\Omega_{t = 0} = \pdv{t}{\tau}
+		= \frac{\beta(x)}{2\pi}
+	\end{equation}
+	
+	Due to conformal symmetry, one can further drop the conformal factor $\Omega^2(\tau,\tilde{x})$ from the metric, while the thermal entropy of the system remains unchanged. We now have a flat annulus:
+	\begin{equation}
+		\tilde{\mcal{R}}
+		= S^1_\beta \times [0,\tilde{L}],
+	\quad
+		\dd{\tilde{s}}^2
+		= \frac{1}{\Omega^2} \dd{s}^2
+		= \dd{\tau}^2 + \dd{\tilde{x}}^2
+	\end{equation}
+	This is the corresponding geometry of a thermal partition function, with a constant temperature $\beta_\tau = 2\pi$. 
+	Now $\pdd{\tau}$ is truly a Killing vector of $\tilde{\mcal{R}}$. 
+	In this case the thermal entropy is extensive: the total entropy $S_\mcal{A}$ is proportional to the size of the system:
+	\begin{equation}
+		S_\mcal{A}
+%		= s\,\norm{f(\mcal{A})}_{\tilde{\mcal{R}}}
+		= \frac{c}{6}\,\norm{f(\mcal{A})}_{\tilde{\mcal{R}}}
+	\end{equation}
+	Here $\norm{f(\mcal{A})}_{\tilde{\mcal{R}}}$ denotes the $\tilde{R}$ length of the interval $f(\mcal{A})$:
+	\begin{equation}
+		\norm{f(\mcal{A})}_{\tilde{\mcal{R}}}
+		= \int_{f(\mcal{A})} \dd{\tilde{s}}
+		= \int_{f(\mcal{A})} \frac{\dd{s}}{\Omega}
+		= \int_{\mcal{A}} \frac{\dd{s}}{\Omega}
+		= \int_{\mcal{A}} \frac{2\pi}{\beta(x)} \dd{x}
+	\end{equation}
+	We've used the fact the $f$ is a diffeomorphism, to reduce the integral back to an integral along $\mcal{A}$ in the original coordinates. 
+	The entropy is thus given by:
+	\begin{equation}
+		S_\mcal{A}
+		= \frac{c}{6}
+			\int_{\mcal{A}} \frac{2\pi}{\beta(x)} \dd{x}
+	\end{equation}
+	
+	
+	
+\pagebreak
 \textit{
 	The discussion above is in the framework of $\mrm{CFT}_2$, but with different modular flow generator. Now we consider the framework of $T\bar{T}$ deformed theories. The thermal entropy with unit length is
 	\begin{equation}
