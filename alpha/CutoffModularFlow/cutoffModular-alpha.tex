@@ -776,7 +776,7 @@
 	\end{equation}
 	Note that although $\xi$ is a Killing vector when it's extended to the bulk, it is only a \textit{conformal Killing vector} when it's restricted to the boundary. 
 	
-	Here we think of $f$ as a simple coordinates transformation or diffeomorphism, which keeps the metric $\dd{s}^2$ invariant, and maps the flat coordinates to a conformally flat coordinates:
+	Here we think of $f$ as a simple coordinates transformation or diffeomorphism, which keeps the metric $\dd{s}^2$ invariant, and maps the flat coordinates to the conformally flat coordinates:
 	\begin{equation}
 		\dd{s}^2
 		= \dd{t}^2 + \dd{x}^2
@@ -787,6 +787,7 @@
 		\Omega_{t = 0} = \pdv{t}{\tau}
 		= \frac{\beta(x)}{2\pi}
 	\end{equation}
+	Here we've properly rescaled the $\tilde{x}$ coordinate to make the $(\tau,\tilde{x})$ coordinates conformally flat. 
 	
 	Due to conformal symmetry [\sidenote{what about the TTbar case? Perhaps the reason it still works is again, that the conformal factor vanishes at the endpoints, due to $2\pi$ periodicity of $\xi$}], one can further drop the conformal factor $\Omega^2(\tau,\tilde{x})$ from the metric, while the thermal entropy of the system remains unchanged. We now have a flat annulus:
 	\begin{equation}
@@ -802,12 +803,11 @@
 	In this case the thermal entropy is extensive: the total entropy $S_\mcal{A}$ is proportional to the size of the system:
 	\begin{equation}
 		S_\mcal{A}
-%		= s\,\norm{f(\mcal{A})}_{\tilde{\mcal{R}}}
-		= \frac{c}{6}\,\norm{f(\mcal{A})}_{\tilde{\mcal{R}}}
+		= \frac{c}{6} \tilde{L}
 	\end{equation}
-	Here $\norm{f(\mcal{A})}_{\tilde{\mcal{R}}}$ denotes the $\tilde{R}$ length of the interval $f(\mcal{A})$:
+	Here $\tilde{L}$ denotes the $\tilde{\mcal{R}}$ length of the interval $f(\mcal{A})$:
 	\begin{equation}
-		\norm{f(\mcal{A})}_{\tilde{\mcal{R}}}
+		\tilde{L}
 		= \int_{f(\mcal{A})} \dd{\tilde{s}}
 		= \int_{f(\mcal{A})} \frac{\dd{s}}{\Omega}
 		= \int_{\mcal{A}} \frac{\dd{s}}{\Omega}
@@ -820,6 +820,45 @@
 		= \frac{c}{6}
 			\int_{\mcal{A}} \frac{2\pi}{\beta(x)} \dd{x}
 	\end{equation}
+	
+	In the above arguments we rely on the fact that the thermal entropy density of a CFT is given by $
+		\frac{c}{6}
+	$. This can be derived from the Cardy formula\footnote{
+		The easiest way to see this is by applying the AdS/CFT dictionary, where we find that $c = \frac{3\ell_\mrm{AdS}}{2G_N}$ thus $\frac{c}{6} = \frac{\ell_\mrm{AdS}}{4G_N}$, which is precisely the Bekenstein--Hawking entropy (per unit area, with $\ell_\mrm{AdS} = 1$). But now we are committed to a purely field theoretical calculation, so we shall reproduce Cardy's arguments here, which do not rely on holographic duality. 
+	}. First note that by rescaling the Rindler map $f$ we can tune the temperature of the Rindler spacetime $\mcal{R}$ to be arbitrarily high. We've chosen $\beta_\tau = 2\pi$ only for convenience. \sidenote{[is this argument valid? check!]} Therefore we may apply the high temperature (or low $\beta$) limit of the Cardy formula; namely, by modular invariance of the partition function, we have:
+	\begin{equation}
+	\begin{aligned}
+		Z[\tau = i\tfrac{\beta}{2\pi}]
+		&= Z[-\tfrac{1}{\tau} = i\tfrac{2\pi}{\beta}],
+	\\[1ex]
+		Z[\beta]
+		&= Z[\beta\to \tfrac{4\pi^2}{\beta}] \\
+		&= \Tr e^{
+			-\frac{4\pi^2}{\beta} \pqty{
+				L_0 + \tilde{L}_0 - \frac{c}{12}
+			} \frac{\tilde{L}}{2\pi}
+		}, \quad \beta\ll 1 \\
+		&\sim e^{
+			\frac{4\pi^2}{\beta}
+			\frac{c}{12}
+			\frac{\tilde{L}}{2\pi}
+		}
+		= e^{
+			\frac{2\pi}{\beta}
+			\frac{c}{12} \tilde{L}
+		},
+	\end{aligned}
+	\end{equation}
+	Here we've used the saddle point approximation and assumed that the vacuum (the $h = \tilde{h} = 0$ state) contribution dominates. The entropy is thus given by:
+	\begin{equation}
+		S = \pqty{
+				1 - \beta\, \pdd{\beta}
+			} \log Z[\beta]
+		= \frac{2\pi}{\beta} \frac{c}{6} \tilde{L}
+	\end{equation}
+	With $\beta = \beta_\tau = 2\pi$, we recover the result $
+		S = \frac{c}{6} \tilde{L}
+	$. 
 	
 	
 	

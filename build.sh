@@ -14,7 +14,9 @@ mkdir -p release
 # naming: $project/$sub_project/$main.tex
 FILES=$(find . \
     -regex "./[^/]+/[^/]+/[^/]+\.tex" \
-    -not -path "./TeXplates/*" | sort
+    -not -path "./TeXplates/*" \
+    | sort \
+    | grep -v -E "CutoffModularFlow|AreaTTbar|GravitationalEntropy"
 )
 log "Files:"
 echo "$FILES"

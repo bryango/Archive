@@ -391,6 +391,12 @@ coeffRules=Thread[coeffNames->coeffs]
 (*Flow lines*)
 
 
+(* ::Input::Initialization:: *)
+flow={t[s],x[s],z[s]};
+dflow=\!\(
+\*SubscriptBox[\(\[PartialD]\), \(s\)]flow\)
+
+
 (* ::Subsubsection::Closed:: *)
 (*Numerical results*)
 
@@ -400,10 +406,6 @@ coeffRules=Thread[coeffNames->coeffs]
 
 
 (* ::Input:: *)
-(*flow={t[s],x[s],z[s]};*)
-(*dflow=\!\( *)
-(*\*SubscriptBox[\(\[PartialD]\), \(s\)]flow\)*)
-(**)
 (* {1/2 \[Xi].{1,-1,0},1/2 \[Xi].{1,1,0},\[Xi][[-1]]}/. {u->x+t,v->x-t,SubPlus[u]->1,SubPlus[v]->1,SubMinus[u]->-1,SubMinus[v]->-1}//Simplify*)
 (**)
 (*Thread[dflow==(%/.Thread[{t,x,z}->flow])]*)
@@ -765,14 +767,58 @@ xcBTZ=Function[{zc,L,T},x/.%//Evaluate]
 
 (* ::Input:: *)
 (**)
+(**)
+(**)
 
 
 (* ::Item:: *)
 (*TO CHECK: Boundary map:*)
 
 
+(* ::Item:: *)
+(*Again L below should be understood as Subscript[L, \[Infinity]]*)
+
+
+(* ::Input::Initialization:: *)
+{t,x,z}/.diamond2btz//Series[#,r->\[Infinity]]&
+
+Thread[{t,x,z}->%][[;;2]]//Normal//Simplify
+diamond2btz2D=%/.L->Sqrt[L^2-4 zc^2]/.Tv->Tu/.Tu->1/2 Sqrt[L^2-(2zc)^2]/L//Simplify
+
+-Dt[t]^2+Dt[x]^2/.%/.{Dt[L]->0,Dt[Tu]->0,Dt[Tv]->0}/.{Dt[L]->0,Dt[zc]->0}//Simplify
+
+
+(* ::Item:: *)
+(*Modular flow now reduces to simply Subscript[\[PartialD], \[Tau]]*)
+
+
 (* ::Input:: *)
-(*{t,x,z}/.diamond2btz//Series[#,r->\[Infinity]]&*)
+(*\[Xi]cutoff=(2\[Pi])/L {(L/2)^2-(t^2+x^2+zc^2),-2 t x};*)
+(**)
+(*\[Xi]cutoff/.diamond2btz2D//Simplify*)
+
+
+(* ::Input:: *)
+(*<<"Physica/GRUtils.wl";*)
+(*jacobianBTZbyPoincare2D=jacobianFromFunc[*)
+(*Function[{u,v},{t,x}/.diamond2btz2D//Evaluate],*)
+(*{u,v}*)
+(*]//Inverse;*)
+(**)
+(*jacobianBTZbyPoincare2D.\[Xi]cutoff/.diamond2btz2D(*/.Tu\[Rule]Tv/.Tv\[Rule]1/2*)//Simplify*)
+
+
+(* ::Input:: *)
+(*\!\( *)
+(*\*SubscriptBox[\(\[PartialD]\), \(u\)]\(( *)
+(*\*FractionBox[\(u - v\), \(2\)])\)\)-\!\( *)
+(*\*SubscriptBox[\(\[PartialD]\), \(v\)]\(( *)
+(*\*FractionBox[\(u - v\), \(2\)])\)\)*)
+
+
+(* ::Input:: *)
+(**)
+(**)
 
 
 (* ::Input:: *)
