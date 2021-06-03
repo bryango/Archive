@@ -792,10 +792,10 @@ diamond2btz2D=%/.L->Sqrt[L^2-4 zc^2]/.Tv->Tu/.Tu->1/2 Sqrt[L^2-(2zc)^2]/L//Simpl
 (*Modular flow now reduces to simply Subscript[\[PartialD], \[Tau]]*)
 
 
-(* ::Input:: *)
-(*\[Xi]cutoff=(2\[Pi])/L {(L/2)^2-(t^2+x^2+zc^2),-2 t x};*)
-(**)
-(*\[Xi]cutoff/.diamond2btz2D//Simplify*)
+(* ::Input::Initialization:: *)
+\[Xi]cutoff=(2\[Pi])/L {(L/2)^2-(t^2+x^2+zc^2),-2 t x};
+
+\[Xi]cutoff/.diamond2btz2D//Simplify
 
 
 (* ::Input:: *)
@@ -814,6 +814,20 @@ diamond2btz2D=%/.L->Sqrt[L^2-4 zc^2]/.Tv->Tu/.Tu->1/2 Sqrt[L^2-(2zc)^2]/L//Simpl
 (*\*FractionBox[\(u - v\), \(2\)])\)\)-\!\( *)
 (*\*SubscriptBox[\(\[PartialD]\), \(v\)]\(( *)
 (*\*FractionBox[\(u - v\), \(2\)])\)\)*)
+
+
+(* ::Input:: *)
+(*{x,t}/.diamond2btz2D/.uv2xt/.{L->3,zc->.4}//Evaluate*)
+
+
+(* ::Input:: *)
+(*ParametricPlot[( *)
+(*{x,t}/.diamond2btz2D/.uv2xt/.{L->2,zc->.0001}/.x->#*)
+(*)&/@Subdivide[-5,5,20]//Evaluate,*)
+(*{t,-10,10}*)
+(*,PlotRange->All*)
+(*,AspectRatio->Automatic*)
+(*]*)
 
 
 (* ::Input:: *)
