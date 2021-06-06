@@ -1,0 +1,113 @@
+% !TeX document-id = {b5392a94-51a3-49d1-9ba5-698bc09f9d35}
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper
+	,10pt
+%	,twoside
+]{article}
+
+\input{../preamble.tex}
+\input{../.modules/basics/biblatex.tex}
+
+\title{Understanding the Ising CFT}
+\addbibresource{ising.bib}
+
+%%% ID: sensitive, do NOT publish!
+\InputIfFileExists{id.tex}{}{}
+
+\makeatletter
+\newcommand{\nobeginpar}{\@beginparpenalty=10000}
+\makeatother
+
+\begin{document}
+\maketitle
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+%\vspace*{-.5\baselineskip}
+
+\setlength{\parskip}{.1\baselineskip}
+\tableofcontents
+\setlength{\parskip}{\parskipnorm}
+
+\addtocounter{section}{-1}
+\section{References}
+\raggedright
+	\begin{itemize}
+	\item \cite{Atanasov:2017abc}~\fullcite{Atanasov:2017abc}
+		\begin{itemize}
+		\item \textbf{Appendix E} of: \par
+		\cite{Belavin:1984vu}~\fullcite{Belavin:1984vu}.
+		
+		\item \textbf{Section \Romannum{4}} of: \par
+		\cite{Kogut:1979wt}~\fullcite{Kogut:1979wt}.
+		
+		\item \textbf{Chapter 5} of:\par
+		\cite{Fradkin:1991nr}~\fullcite{Fradkin:1991nr}.
+		
+		\end{itemize}
+	\end{itemize}
+\justifying
+
+\section{Primaries and their physical meanings}
+	Primaries:
+	\begin{itemize}[noitemsep]
+	\item $\idty$
+	\item Spin field: $\sigma(z,\bar{z})$ w/ weight $(\frac{1}{16},\frac{1}{16})$
+	\item Energy operator: $\epsilon(z,\bar{z})$ w/ weight $(\frac{1}{2},\frac{1}{2})$
+	\end{itemize}
+	Question: how do we get this?
+	One can answer this question through bootstrap, namely under the constraints of conformal symmetry and unitarity, this is the only possible situation for a $c = \tilde{c} = \frac{1}{2}$ CFT. But this doesn't quite explain the physical meaning of these fields. 
+	
+	To really understand the physical origin, we have to go back to the lattice model. Taking the continuous limit of the lattice model is quite a subtle process. We will summarize this procedure here, in a very rough and very schematic language. For a detailed account with exact equations, see e.g.~\cite{Atanasov:2017abc,Kogut:1979wt,Fradkin:1991nr}. 
+\subsection{Ising model on the lattice}
+	First, we start with the 2D Ising action, with the field $s(x,\tau) = \pm\frac{1}{2}$, defined on a square lattice labeled by $(x,\tau)$. Consider:
+	\begin{equation}
+		\mcal{Z} = \int \DD{s} e^{-S[s]}
+	\end{equation}
+	It can be interpreted in the following 2 ways:
+	\begin{enumerate}
+	\item If we think of $\tau$ as another spatial direction, then $\mcal{Z}$ is precisely the \textbf{classical partition function} of this 2D lattice. The inverse temperature $\beta$ is related with the coupling of the system. When it's tuned to the critical point, we have a CFT. 
+	
+	\item Alternatively, if the column direction is interpreted as the Euclidean time $\tau$, while the row direction is interpreted as the only spatial direction $x$, then this is the \textbf{Euclidean path integral} of a quantum system, where $\beta$ is the size of the $\tau$ circle. 
+	\end{enumerate}
+	
+	Some choose to call this the \textit{quantum--classical correspondence}\footnote{
+		See \cite{Simmons-Duffin:2016gjk} and \url{https://mcgreevy.physics.ucsd.edu/s19/2019-215C-lectures.pdf}. 
+	}. Here we shall take the second perspective, and the Hilbert space consists of the 2-component Pauli spinor $s(x)$ located at each site~$x$. 
+	
+	We first take the continous $\tau$ limit by switching to the Hamiltonian description. We then rewrite the time evolution using the \textit{transfer matrix}:
+	\begin{equation}
+		e^{-\tau H}
+	\end{equation}
+	Where $H$ is a $2\times 2$ matrix acting on the vector space of $s(x,\tau)$ values. 
+	$H[\sigma^\pm]$ can be written down explicitly using the Pauli matrices $\sigma^\pm$, and it is in fact $\tau$-independent. Roughly speaking, we have:
+	\begin{equation}
+		\sigma \sim \sigma^z
+		= 2\sigma^+ \sigma^- - 1
+	\end{equation}
+	
+	Note that the original Ising action contains only the $s \sim s^z$ field, with no mention of the $s^x,s^y$ or $s^\pm$ component. Why do we have $\sigma^\pm$ now? In fact, this captures the dynamics of spin flips and serves as the momentum term in the Hamiltonian. 
+	
+	Note that $H = H[\sigma^\pm]$ itself closely resembles a 1D Ising model with $s$ replaced by $\sigma$, defined along the one spatial direction: $\sigma = \sigma(x)$. 
+	Some would like to call it the 1D ``quantum'' Ising model, and call this the correspondence between the 2D ``classical'' model and the 1D ``quantum'' model. But we see here that this is simply the Lagrangian and Hamiltonian descriptions of the same system. 
+	
+\subsection{Fermionization by Jordan--Wigner}
+	
+	Why the central charge is only $\frac{1}{2}$? We are looking at Weyl fermions. $\mrm{Ising}^2$ is $c = \tilde{c} = 1$ free boson CFT, with the usual fermionization as in string theory. 
+	
+	
+	
+	
+	
+	
+\vspace{1.2\baselineskip}
+\pagebreak[4]
+\raggedright
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}
