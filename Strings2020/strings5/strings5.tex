@@ -242,7 +242,22 @@
 		,\quad q = e^{2\pi i\tau}
 	\end{equation}
 	
-	Using the expressions in (a), we find that $L_0$ action on a state $\ket{\psi}$ created by $\alpha_{-l},\tilde{\alpha}_{-l}$ yields the sum of occupation numbers $N_l$ weighted by $l$:
+	Note that here we are working in the grand canonical ensemble, where we have temperature $\beta = 2\pi\tau_2$ and chemical potential $2\pi\tau_1$. At this stage $P$ is \textit{not} fixed, and we should sum over all states with various $P$. To go to the canonical ensemble, we do a Legendre transform and trade $\tau_1$ for some $P_0$. This is implemented by a Laplace / Fourier transform $\int \dd{\tau_1} e^{-i\,(2\pi\tau_1) P_0}$ of the partition function. 
+	
+	In string theory, we should actually work with the canonical ensemble (and eventually, the \textit{micro-}canonical ensemble), since we would like to impose the \textit{level matching condition}, namely $P_0 = 0$. 
+	
+	However, in string theory, the Legendre transform is implicit as we integrate along $\tau_1$ in the moduli space; roughly speaking, we have:
+	\begin{equation}
+		\int \dd{\tau_1} e^{-i\,(2\pi\tau_1) (P - 0)}
+		\propto \delta(P - 0)
+	\end{equation}
+	As $\tau_1$ gets integrated out, we are effectively computing $\Tr' e^{-\beta H}$ where the trace only goes over the $P = 0$ sector of the Hilbert space\footnote{
+		This is nicely explained in David Tong's \href{https://www.damtp.cam.ac.uk/user/tong/string.html}{\textit{String Theory}}. See also section 6.3 of Blumenhagen et al, \textit{Basic Concepts of String Theory}. 
+	}. 
+	
+	On the other hand, since we are computing the grand partition function $Z(\tau_1 + i\tau_2)$ for now, we should \textit{not} impose the level matching condition, and the sum should go over all states with various $P$, although this is a much larger Hilbert space than the physical $P = 0$ subspace in string theory. 
+	
+	Using the expressions in (a), we find that $L_0$ action on a state $\ket{\psi}$ created by $\alpha_{-l},\tilde{\alpha}_{-l}$ yields the sum of occupation number $N_l$ weighted by $l$:
 	\begin{equation}
 		L_0 \ket{\psi}
 		= \pqty{
@@ -365,7 +380,7 @@
 	\end{equation}
 	$Z_X(\tau)$ is modular invariant by the properties of the Dedekind $\eta(\tau)$ function, as is demonstrated for the non-compact $X$ in \textit{Polchinski}. 
 	
-	The sum, on the other hand, is naturally invariant under $T\colon \tau \mapsto \tau + 1$, by making a change of variables $m \mapsto m + w$. It is also invariant under $S\colon \tau \mapsto -1/\tau$ with $m \mapsto −w, w \mapsto m$\,\footnote{
+	The sum, on the other hand, is naturally invariant under $T\colon \tau \mapsto \tau + 1$, by making a change of variables $m \mapsto m + w$. It is also invariant under $S\colon \tau \mapsto -1/\tau$ with $m \mapsto -w, w \mapsto m$\,\footnote{
 		Reference: \textit{Polchinski}. 
 	}. Therefore, $Z(\tau)$ is modular invariant. 
 	
@@ -396,7 +411,7 @@
 	\begin{equation}
 		r\colon\ %
 				\ket{(N_l),(\tilde{N}_l);n,w}
-			\longmapsto (−1)^{\sum_l (N_l + \tilde{N}_l)}
+			\longmapsto (-1)^{\sum_l (N_l + \tilde{N}_l)}
 				\ket{(N_l),(\tilde{N}_l);-n,-w}
 	\end{equation}
 	In particular, it reverses $n,w$, hence $r$ insertion gives vanishing amplitude unless $n = w = 0$; the summation is very much similar to the $Z_{S^1}$ case, i.e. we have:
@@ -409,7 +424,7 @@
 		}
 		&= \frac{1}{2}\,(q\bar{q})^{-\frac{1}{24}}
 			\prod_{l>0} \sum_{N_l,\tilde{N}_l = 0}^\infty
-				(−1)^{N_l + \tilde{N}_l}
+				(-1)^{N_l + \tilde{N}_l}
 				q^{l\cdot N_l}
 				\bar{q}^{\,l\cdot \tilde{N}_l} \\
 		&= \frac{1}{2}\,(q\bar{q})^{-\frac{1}{24}}
@@ -535,7 +550,7 @@
 			}
 			\prod_{l + \frac{1}{2} \in \mbb{Z}^+}
 			\sum_{N_l,\tilde{N}_l = 0}^\infty
-				\frac{1 + (−1)^{N_l + \tilde{N}_l}}{2}\,
+				\frac{1 + (-1)^{N_l + \tilde{N}_l}}{2}\,
 				q^{l\cdot N_l}
 				\bar{q}^{\,l\cdot \tilde{N}_l} \times 2 \\
 		&= \frac{1}{2}\,(q\bar{q})^{+\frac{1}{48}}
