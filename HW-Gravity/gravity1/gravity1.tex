@@ -10,6 +10,8 @@
 \input{../gravity_preamble.tex}
 \input{../.modules/basics/biblatex.tex}
 
+\addbibresource{../gravity.bib}
+
 %%% ID: sensitive, do NOT publish!
 \InputIfFileExists{../id.tex}{}{}
 
@@ -136,7 +138,7 @@
 	\label{eq:null_type}
 	\end{equation}
 	
-	From now on we shall focus on the $p^2 \ne 0$ situation. Note that we can complete the square on the right hand side of the $k^\mu$ conservation such that:
+	From now on we shall focus on the $p^2 \ne 0$ situation. Note that we can complete the square on the right-hand side of the $k^\mu$ conservation such that:
 	\begin{equation}
 		k_\mu + p_\mu a^2
 		= p_\mu \pqty{
@@ -192,7 +194,7 @@
 	\item $\delta = -1$, i.e.~for timelike $\gamma$, we must have $p^2 < 0$, and $z \ge \frac{1}{\abs{\norm{p}}} = \frac{L}{2} > 0$, namely $z$ is bounded from below. This means that timelike geodesic can never reach the asymptotic boundary $z \to 0$. In this case, $\gamma$ is a section of the one-sheet hyperboloid. 
 	\item $\delta = +1$, i.e.~for spacelike $\gamma$, we can have $p^2 > 0$ or $p^2 < 0$.
 		\begin{enumerate}
-		\item For $p^2 > 0$, again we have $\frac{L}{2} = \frac{1}{\norm{p}} > 0$, and $\gamma$ is again a cross section of the one-sheet hyperboloid. However, now we have $z \le \frac{L}{2}$, namely $z$ is bounded from above, and:
+		\item For $p^2 > 0$, again we have $\frac{L}{2} = \frac{1}{\norm{p}} > 0$, and $\gamma$ is again a cross-section of the one-sheet hyperboloid. However, now we have $z \le \frac{L}{2}$, namely $z$ is bounded from above, and:
 		\begin{equation}
 			z\to 0,
 		\quad
@@ -213,7 +215,7 @@
 		\label{eq:elliptic}
 		\end{equation}
 		
-		\item For $p^2 < 0$, we have $(\frac{L}{2})^2 = \frac{1}{p^2} < 0$, and $\gamma$ is now a cross section of the two-sheet hyperboloid. Again as $z\to 0$ it lands at $x^\mu = a^\mu \pm \frac{L}{2}\,\widehat{p}^\mu$; however, $\abs{x^\mu}$ grows with $z$ and extends into the bulk instead of returning to the boundary, i.e.~$z,\abs{x^\mu} \to \infty$. 
+		\item For $p^2 < 0$, we have $(\frac{L}{2})^2 = \frac{1}{p^2} < 0$, and $\gamma$ is now a cross-section of the two-sheet hyperboloid. Again as $z\to 0$ it lands at $x^\mu = a^\mu \pm \frac{L}{2}\,\widehat{p}^\mu$; however, $\abs{x^\mu}$ grows with $z$ and extends into the bulk instead of returning to the boundary, i.e.~$z,\abs{x^\mu} \to \infty$. 
 		
 		The differential equation in this case is almost the same as in (a), but now we have to choose a different initial condition, since $\gamma$ won't even reach $x = a$. However, we can actually set $x(0),z(0) \to \infty$; we then have:
 		\begin{equation}
@@ -289,7 +291,7 @@
 		= X\pqty{f^{-1}(\tau)}
 	$. 
 	
-	On the other hand, $\eta$ should be treated like an einbein: $\eta = \sqrt{-\gamma}$, here $\gamma = \gamma_{\tau\tau}$ is the worldline metric; $\gamma < 0$ due to the Lorentzian signature. We have:
+	On the other hand, $\eta$ should be treated like an einbein: $\eta = \sqrt{-\gamma}$, here $\gamma = \gamma_{\tau\tau}$ is the worldline metric; $\gamma < 0$ due to the Lorentzian signature \cite{Polchinski:1998rq}. We have:
 	\begin{gather}
 		\eta = \sqrt{-\gamma}
 		\longmapsto \eta' = \eta\,
@@ -383,12 +385,289 @@
 	\end{aligned}
 	\end{equation}
 	
+	To find the connection form, we first note the \textit{Cartan's structure equation} \cite{Carroll:1997ar}:
+	\begin{equation}
+	\begin{aligned}
+		\dd{e^a}
+		= \dd{\pqty{e^a_\nu \dd{x^\nu}}}
+		&= \pdd{\mu} e^a_\nu
+			\dd{x^\mu} \wedge \dd{x^\nu} \\
+		&= \pqty{
+				- \omega^{a}_{\mu b} e^b_\nu
+				+ \Gamma^{\lambda}_{\mu\nu} e^a_\lambda
+			}
+			\dd{x^\mu} \wedge \dd{x^\nu} \\
+		&= -\omega\id{^a_b} \wedge e^b
+			+ T^a
+	\end{aligned}
+	\end{equation}
+	Where $T^a$ is the torsion tensor. 
+	Here we've used the relation between spin connection $\omega^a_{\mu b}$ and the affine connection $\Gamma^\lambda_{\mu\nu}$. For the torsion-free Levi-Civita connection, we have $
+		\dd{e^a}
+		= -\omega\id{^a_b} \wedge e^b
+	$. 
 	
+	Rigidity of the veilbein, namely $
+		\cdv{\mu} \pqty{g_{\mu\nu} e^\mu_a e^\nu_b}
+		= \cdv{\mu} \eta_{ab} = 0
+	$, further implies that:
+	\begin{equation}
+		\omega_{\mu ab}
+		= -\omega_{\mu ba}
+	\end{equation}
+	With these constraints we can solve for the connection form, and we find that only the following components are non-vanishing\footnote{
+		Go to \url{https://github.com/bryango/Archive/blob/master/HW-Gravity/gravity1/nb/vielbein.wl} for a Mathematica script for this calculation.
+	}:
+	\begin{gather}\allowdisplaybreaks
+		\omega\id{^t_r}
+		= \frac{f'}{2\sqrt{fh}} \dd{t}
+		= -\omega\id{^r_t}
+	\\
+		\omega\id{^r_\theta}
+		= \frac{-1}{\sqrt{h}} \dd{\theta}
+		= -\omega\id{^\theta_r}
+	\\
+		\omega\id{^r_\phi}
+		= \frac{-\sin\theta}{\sqrt{h}} \dd{\phi}
+		= -\omega\id{^\phi_r}
+	\\
+		\omega\id{^\theta_\phi}
+		= -\cos\theta \dd{\phi}
+		= -\omega\id{^\phi_\theta}
+	\end{gather}
 	
+	The curvature form is thus given by:
+	\begin{equation}
+		\Omega\id{^a_b}
+		= \dd{\omega\id{^a_b}}
+			+ \omega\id{^a_c} \wedge \omega\id{^c_b}
+	\end{equation}
+	The exterior derivative is easily computed in the $\dd{x^\mu}$ basis; however, to get to the Ricci tensor, it would be convenient to switch to the $e^a$ basis. Here we only write down the upper half of $\Omega\id{^a_b}$ since the lower half can be inferred from anti-symmetry:
+	\begin{equation}
+	\Omega\id{^a_b}
+	\sim
+	\pqty{
+	\begin{array}{cccc}
+		0
+		& R\id{^t_r_t_r}\,e^t\wedge e^r
+		& R\id{^t_\theta_t_\theta}\,e^t\wedge e^\theta
+		& R\id{^t_\phi_t_\phi}\,e^t\wedge e^\phi \\
+		\cdots & 0
+		& R\id{^r_\theta_r_\theta}\,e^r\wedge e^\theta
+		& R\id{^r_\phi_r_\phi}\,e^r\wedge e^\phi \\
+		\cdots & \cdots & 0
+		& R\id{^\theta_\phi_\theta_\phi}\,e^\theta\wedge e^\phi \\
+		\cdots & \cdots & \cdots & 0 \\
+	\end{array}
+	}
+	\end{equation}
+	\begin{equation}
+	\begin{aligned}
+		R\id{^t_r_t_r}
+		&= \frac{f'^2}{4f^2 h}
+			+ \frac{f'h'}{4fh^2}
+			- \frac{f''}{2fh},
+	\\
+		R\id{^t_\theta_t_\theta}
+		&= \frac{-f'}{2rfh}
+		= R\id{^t_\phi_t_\phi},
+	\\
+		R\id{^r_\theta_r_\theta}
+		&= \frac{h'}{2rh^2}
+		= R\id{^r_\phi_r_\phi},
+	\\
+		R\id{^\theta_\phi_\theta_\phi}
+		&= \frac{h - 1}{r^2 h}
+	\end{aligned}
+	\end{equation}
 	
+	The Ricci tensor in $e^a$ basis is given by $
+		R_{ab} = R\id{^c_a_c_b}
+	$. Note that the components are non-zero iff.~$a = b$, i.e.~the Ricci tensor is diagonal. We have:
+	\begin{equation}
+	\begin{aligned}
+		R_{ab}
+		&\sim \mop{diag} \pqty\big{
+			R\id{^r_t_r_t}
+			+ R\id{^\theta_t_\theta_t}
+			+ R\id{^\phi_t_\phi_t},
+			\cdots,\cdots,\cdots
+		} \\
+		&= \mop{diag} \pqty\big{
+			R\id{^t_r_t_r}
+			+ R\id{^t_\theta_t_\theta}
+			+ R\id{^t_\phi_t_\phi},
+			\cdots,\cdots,\cdots
+		} \\
+		&= \mop{diag} \Big(\,
+			R\id{^t_r_t_r}
+			+ R\id{^t_\theta_t_\theta}
+			+ R\id{^t_\phi_t_\phi},
+		\\[-1ex] & \hspace{4.5em}
+			R\id{^t_r_t_r}
+			+ R\id{^r_\theta_r_\theta}
+			+ R\id{^r_\phi_r_\phi},
+		\\[-.5ex] & \hspace{4.5em}
+			R\id{^t_\theta_t_\theta}
+			+ R\id{^r_\theta_r_\theta}
+			+ R\id{^\theta_\phi_\theta_\phi},
+		\\[-1ex] & \hspace{4.5em}
+			R\id{^t_\phi_t_\phi}
+			+ R\id{^r_\phi_r_\phi}
+			+ R\id{^\theta_\phi_\theta_\phi}
+		\,\Big) \\
+		&= \mop{diag} \Big(\,
+			R\id{^t_r_t_r}
+			+ 2R\id{^t_\theta_t_\theta},
+		\\[-1ex] & \hspace{4.5em}
+			R\id{^t_r_t_r}
+			+ 2R\id{^r_\theta_r_\theta},
+		\\[-.5ex] & \hspace{4.5em}
+			R_{\theta\theta} = R\id{^t_\theta_t_\theta}
+			+ R\id{^r_\theta_r_\theta}
+			+ R\id{^\theta_\phi_\theta_\phi},
+		\\[-1ex] & \hspace{4.5em}
+			R_{\phi\phi} = R_{\theta\theta}
+		\,\Big) \\
+		&= \mop{diag} \bigg(\,
+			\frac{f'^2}{4f^2 h}
+			+ \frac{f'h'}{4fh^2}
+			- \frac{f''}{2fh}
+			- \frac{f'}{rfh},
+		\\[-0ex] & \hspace{4.5em}
+			\frac{f'^2}{4f^2 h}
+			+ \frac{f'h'}{4fh^2}
+			- \frac{f''}{2fh}
+			+ \frac{h'}{rh^2},
+		\\[-0ex] & \hspace{4.5em}
+			R_{\theta\theta}
+			= - \frac{f'}{2rfh}
+			+ \frac{h'}{2rh^2}
+			+ \frac{h - 1}{r^2 h},
+		\\[-0ex] & \hspace{4.5em}
+			R_{\phi\phi} = R_{\theta\theta}
+		\,\bigg),
+	\end{aligned}
+	\end{equation}
+	To go back to the $\dd{x^\mu}$ basis, we have $R_{\mu\nu} = R_{ab} e^a_\mu e^b_\nu$. In particular, here we have $R_{\mu\mu} = R_{aa} (e^a_\mu)^2$, therefore:
+	\begin{equation}
+	\begin{aligned}
+		R_{\mu\nu}
+		&= \mop{diag} \bigg(\,
+			\frac{f'^2}{4f h}
+			+ \frac{f'h'}{4h^2}
+			- \frac{f''}{2h}
+			- \frac{f'}{rh},
+		\\[-0ex] & \hspace{4.5em}
+			\frac{f'^2}{4f^2}
+			+ \frac{f'h'}{4fh}
+			- \frac{f''}{2f}
+			+ \frac{h'}{rh},
+		\\[-0ex] & \hspace{4.5em}
+			R_{\theta\theta}
+			= - \frac{rf'}{2fh}
+			+ \frac{rh'}{2h^2}
+			+ \frac{h - 1}{h},
+		\\[-0ex] & \hspace{4.5em}
+			R_{\phi\phi} = R_{\theta\theta} \sin^2\theta
+		\,\bigg)
+	\end{aligned}
+	\end{equation}
 	
-\appendix
+\section{Jackiw--Teitelboim Gravity}
+	The Jackiw--Teitelboim (JT) action is given by:
+	\begin{equation}
+		S = \frac{1}{16\pi G}
+			\int \dd[2]{x} \sqrt{-g}\,\Phi\,
+			\pqty{R + 2}
+	\end{equation}
+	$\fdv{S}{\Phi} = 0$ gives us $R = -2$. Now consider $\fdv{S}{g^{\mu\nu}}$, and we have:
+	\begin{equation}
+	\begin{aligned}
+		\var_g {S}
+		&= \frac{1}{16\pi G} \int \dd[2]{x}
+			\Phi\,\var \pqty\Big{
+				\sqrt{-g}\,\pqty{R + 2}
+			},
+		\quad R = g^{\mu\nu} R_{\mu\nu}, \\
+		&= \frac{1}{16\pi G} \int \dd[2]{x} \sqrt{-g}\,
+			\Phi\,\Bqty{
+				\pqty{
+					R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} (R + 2)
+				} \var{g^{\mu\nu}}
+				+ g^{\mu\nu} \var{R_{\mu\nu}}
+			}
+	\end{aligned}
+	\end{equation}
+	
+	Note that the $
+		g^{\mu\nu} \var{R_{\mu\nu}}
+	$ term is a total derivative\footnote{
+		See the amazing lecture note by Matthias Blau at \url{http://www.blau.itp.unibe.ch/GRLecturenotes.html}.
+	}:
+	\begin{equation}
+	\begin{aligned}
+		g^{\mu\nu} \var{R_{\mu\nu}}
+		&= \pqty{
+				\nabla^\mu \nabla^\nu
+				- g^{\mu\nu} \nabla^\lambda \nabla_\lambda
+			} \var{g_{\mu\nu}} \\
+		&= - \pqty{
+				\cdv{\mu} \cdv{\nu}
+				- g_{\mu\nu} \nabla^\lambda \nabla_\lambda
+			} \var{g^{\mu\nu}} \\
+		&= \cdv{\lambda} \pqty\Big{
+				g^{\mu\nu} \var{\Gamma^\lambda_{\mu\nu}}
+				- g^{\mu\lambda} \var{\Gamma^\nu_{\nu\mu}}
+			}
+	\end{aligned}
+	\end{equation}
+	In Einstein gravity this gets reduced to a boundary term. But here we have an additional factor of $\Phi$, so after integration by parts, we actually get the equation of motion (EoM) for $\Phi$, up to some boundary terms\footnote{
+		See e.g.~Section 2 of \cite{Harlow:2018tqv}. 
+	}:
+	\begin{equation}
+	\begin{aligned}
+		\var_g {S}
+		\sim \frac{1}{16\pi G} \int \dd[2]{x} \sqrt{-g}\,
+			\Bqty{
+				\Phi\,\pqty{
+					R_{\mu\nu}
+					- \frac{1}{2} g_{\mu\nu} (R + 2)
+				} - \pqty\Big{
+					\cdv{\mu} \cdv{\nu}
+					- g_{\mu\nu} \nabla^\lambda \nabla_\lambda
+				} \Phi
+			} \var{g^{\mu\nu}}
+	\end{aligned}
+	\end{equation}
+	
+	In 2D, we have $
+		R_{\mu\nu}
+		\equiv \frac{1}{2} g_{\mu\nu} R
+	$, so the EoM is simply:
+	\begin{equation}
+		\pqty{
+			\cdv{\mu} \cdv{\nu}
+			- g_{\mu\nu} \nabla^\lambda \nabla_\lambda
+			+ g_{\mu\nu}
+		}\, \Phi = 0
+	\end{equation}
+	Contraction with $g^{\mu\nu}$ further gives us $
+		\pqty{
+			\nabla^\lambda \nabla_\lambda - 2
+		} \Phi = 0
+	$, so in the end we have:
+	\begin{equation}
+		\pqty{
+			\cdv{\mu} \cdv{\nu}
+			- g_{\mu\nu}
+		}\, \Phi = 0,
+	\quad
+		R = -2
+	\end{equation}
 
+\pagebreak
+\appendix
 \section{Derivation of the special conformal transformations}
 \label{sect:special_conformal}
 
@@ -451,8 +730,7 @@
 %			} \pdd{I}
 	\end{aligned}
 	\end{equation}
-	
-	
+
 
 \printbibliography[%
 %	title = {参考文献} %
