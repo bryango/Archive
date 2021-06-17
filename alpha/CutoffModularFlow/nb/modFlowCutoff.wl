@@ -822,11 +822,12 @@ diamond2btz2D=%/.L->Sqrt[L^2-4 zc^2]/.Tv->Tu/.Tu->1/2 Sqrt[L^2-(2zc)^2]/L//Simpl
 
 (* ::Input:: *)
 (*ParametricPlot[( *)
-(*{x,t}/.diamond2btz2D/.uv2xt/.{L->2,zc->.0001}/.x->#*)
+(*{x,t}/.diamond2btz2D/.uv2xt/.{L->2,zc->.01}/.x->#*)
 (*)&/@Subdivide[-5,5,20]//Evaluate,*)
 (*{t,-10,10}*)
 (*,PlotRange->All*)
 (*,AspectRatio->Automatic*)
+(*,PlotStyle->Directive[RGBColor[0.567426, 0.32317, 0.729831],Thickness[.002]]*)
 (*]*)
 
 

@@ -449,19 +449,19 @@
 	\end{equation}
 	At endpoints, it becomes $1$. From the discussion in (1909.13808), the contribution to the entanglement entropy totally comes from the endpoints of the interval, so one can use the such conformal transformation where the conformal factor at the endpoints is $1$ to calculate the entanglement entropy. Also, in the conformal map above from the casual diamond to the sphere, only the length of the interval matters. If these two endpoints lie at other position, one can use the rotation and translation symmetry to put it at $(0,\pm l_p)$, since the $T\bar T$ deformed theory also admits these symmetries. Now let's consider the thermal case, the conformal transformation from the thermal cylinder to the plane reads,
 	\begin{equation}
-	z=\frac{1}{ir_1}e^{ir_1w},\ \ \ r_1=\frac{2\pi}{\beta}
+	z=\frac{1}{r_1}e^{r_1w},\ \ \ r_1=\frac{2\pi}{\beta}
 	\end{equation} 
 	where $z$ is the coordinate on the plane, and $w$ is the coordinate on the thermal cylinder with identification,
 	\begin{equation}
-	w\sim w+\beta
+	w\sim w+i\beta
 	\end{equation}
 	The endpoints of the interval on the thermal cylinder is
 	\begin{equation}
-	w=\pm l i
+	w=\pm l
 	\end{equation} 
 	The length of the interval is $L=2l$. Under the conformal map, the endpoints on the plane is
 	\begin{equation}
-	\frac{1}{ir_1}e^{\mp r_1 l}
+	\frac{1}{r_1}e^{\pm r_1 l}
 	\end{equation}
 	the length is $\frac{2}{r_1}\sinh(l r_1)$, so
 	\begin{equation}
@@ -469,9 +469,9 @@
 	\end{equation}
 	The conformal factor is
 	\begin{equation}
-	e^{ir_1(w+\bar{w})}
+	e^{r_1(w+\bar{w})}
 	\end{equation}
-	Note that compared to the usual map from cylinder to plane $z=e^{ir_1 w}$, we put the overall scaling factor $\frac{1}{ir_1}$ to make sure that the conformal factor at the endpoints is $1$. From 1806.07444, the entanglement entropy for $l_p$ is
+	Note that compared to the usual map from cylinder to plane $z=e^{r_1 w}$, we put the overall scaling factor $\frac{1}{r_1}$ to make sure that the conformal factor at the endpoints is $1$. From 1806.07444, the entanglement entropy for $l_p$ is
 	\begin{equation}
 	S_p(l)=\frac{c}{3}ArcSinh\frac{l_p}{a}
 	\end{equation}
@@ -487,21 +487,22 @@
 	\begin{equation}
 	S_t=\frac{c}{3}ArcSinh(\frac{1}{r_1 a}\sinh(l r_1))
 	\end{equation}
-	which is the same as the results obtained from the local temperature trick \eqref{} and the gravity calculation\eqref{}. Now consider the finite size case, the conformal transformation is,
+	which is the same as the results obtained from the local temperature trick \eqref{} and the gravity calculation \eqref{}. Now consider the finite size case, the conformal transformation is,
 	\begin{equation}
-	z=\frac{1}{r_1}e^{wr_1}
+	z=\frac{1}{ir_1}e^{iwr_1},\quad
+		r_1 = \frac{2\pi}{\lambda}
 	\end{equation}
 	where $w$ is the cylinder coordinate,
 	\begin{equation}
-	w\sim w+i{\color{red} R}
+	w\sim w+ \lambda
 	\end{equation}
 	The endpoints of the interval are 
 	\begin{equation}
-	w\pm i l
+	w\pm l
 	\end{equation}
 	The conformal factor is
 	\begin{equation}
-	e^{r_1(w+\bar{w})}
+	e^{ir_1(w+\bar{w})}
 	\end{equation}
 	which is $1$ at the endpoints. The plane length reads,
 	\begin{equation}
@@ -511,6 +512,9 @@
 	\begin{equation}
 	S_f=\frac{c}{3}ArcSinh(\frac{1}{r_1a}\sin(lr_1))
 	\end{equation}
+	
+\pagebreak
+	
 	The global AdS reads,
 	\begin{equation}
 	 ds^2=-(r^2+1)dt^2+\frac{dr^2}{r^2+1}+r^2d\phi^2,\ \ \phi\sim\phi+2\pi
@@ -615,7 +619,8 @@
 		$ where the RT surface lies. 
 	\end{itemize}
 	
-\subsubsection{Zero temperature: cutoff Poincar\'e $\mrm{AdS}_3$ and the loss of $2\pi$ periodicity}
+\subsection{Euclidean periodicity of the modular flow}
+\subsubsection{Cutoff Poincar\'e $\mrm{AdS}_3$ and the loss of $2\pi$ periodicity}
 
 \textbf{Summary:} We look at the flow at constant cutoff $z = z_c$, which has non-trivial $\pdd{z}$ component, which in turn leads to a violation of the $2\pi$ periodicity for $\xi$ along the horizon.
 	
