@@ -24,7 +24,7 @@ e=%*(\[DoubleStruckD]/@coord)
 
 
 (* ::Subitem:: *)
-(*`diffeoM` is a customized version of `diffgeo` and can be obtained from:*)
+(*`diffgeoM` is a customized version of `diffgeo` and can be obtained from:*)
 
 
 (* ::Subsubitem:: *)
@@ -188,7 +188,3 @@ tRicci//Expand//Diagonal
 (* ::Input:: *)
 (*<<"Physica/MathUtils.wl";*)
 (*saveScript[]*)
-
-
-(* ::Input:: *)
-(**)
