@@ -727,59 +727,75 @@
 %			},
 		\label{eq:dilaton_holomorphic}
 	\end{gather}
-	This is a first order approximation of the finite transformation $z\mapsto z' = w(z)$. 
+	This is a first order approximation of the finite transformation, where the transformation parameters are the modes $\epsilon_n$ of $\epsilon(z)$; namely, we have:
+	\begin{equation}
+		w(z) = z + \epsilon(z) + \order{\epsilon^2},
+	\quad
+		\epsilon(z) = \sum_n \epsilon_n z^n
+	\end{equation}
+	\vspace{-.5\baselineskip}
+	\begin{equation}
+		F[w(z)] = X'(z') - X(z)
+	\ \xlongrightarrow{w\to 0\,}\ %
+		-\frac{\alpha' V}{2}\,\pd\epsilon
+			+ \order{\epsilon^2}
+	\end{equation}
 	
-	To obtain a full expression, notice that for the above transformation to be a \textit{symmetry}, the action should be invariant under $X(z)\mapsto X'(z)$:
+%	For the finite ``internal'' transformation induced by $w(z)$, 
+	What the above actually means is that:
 	\begin{equation}
-		S' = S
-		\ \Longrightarrow\ %
-		\int \dd[2]{z}
-			\pd X'^\mu \pdbar X'_\mu (z,\bar{z})
-		\xlongequal{(*)} \int \dd[2]{z'}
-			\pd' X'^\mu \pdbar' X'_\mu (z',\bar{z}')
-		= \int \dd[2]{z}
-			\pd X^\mu \pdbar X_\mu (z,\bar{z})
+		\fdv{\epsilon_n} F[w(z)]_{\epsilon\to 0}
+		= -\frac{\alpha' V}{2}\,\fdv{\epsilon_n}\,
+			\pdd{z} \pqty\big{w(z) - z}
+		= -\frac{\alpha' V}{2}\,
+			n z^{n-1}
 	\end{equation}
-	Here at $(*)$ we use the diff-invariant property of the action. 
-	Restore the anti-holomorphic component and insert \eqref{eq:dilaton_holomorphic}, then we find that in order to cancel the $\order{\epsilon^2}$ terms, we have to fix:
-%	\begin{gather}
-%		X'(z',\bar{z}') - \alpha'V
-%		\simeq X(z,\bar{z})
-%			- \frac{\alpha' V}{2}\,\pqty{
-%				\dv{z'}{z} + \dv{\bar{z}'}{\bar{z}}
-%			},\\[1ex]
-%		X\longmapsto
-%		X'(z,\bar{z})
-%		\simeq X\pqty\Big{
-%				w^{-1}(z),\bar{w}^{-1}(\bar{z})
-%			} + \alpha'V
-%			- \frac{\alpha' V}{2}\,\pqty{
-%				\dv{w}{z} + \dv{\bar{w}}{\bar{z}}
-%			},
-%	\end{gather}
+	Where $\epsilon\to 0$ corresponds to $w \to z$, i.e.~the transformation goes to the identity. 
+	On the other hand,
 	\begin{equation}
-		X'(z') - X(z)
-		= -\frac{\alpha' V}{2}\,\pqty{
-			\pd\epsilon
-			- \frac{1}{2}\,(\pd\epsilon)^2
-			+ \order{\epsilon^3}
-		}
+	\begin{aligned}
+		\fdv{F}{\epsilon_n}
+		&= \pdv{F}{w} \fdv{w}{\epsilon_n}
+			+ \pdv{F}{(\pd w)} \fdv{(\pd w)}{\epsilon_n}
+			+ \pdv{F}{(\pd^2 w)} \fdv{(\pd^2 w)}{\epsilon_n}
+			+ \cdots \\
+		&= \pdv{F}{w}\, z^n
+			+ \pdv{F}{(\pd w)}\, n z^{n-1}
+			+ \pdv{F}{(\pd^2 w)}\, n(n-1)\,z^{n-2}
+			+ \cdots
+	\end{aligned}
 	\end{equation}
-	The above process can be done order by order, in the end we obtain that\footnote{
-		I would like to thank Lucy Smith for helpful discussions. A better recipe to find finite transformations is to consider its properties under composition, which will lead to some constraints that can be solved to obtain the result. 
+	
+	By comparing the two above equations, and noting that $\pdv{F}{(\pd^\bullet w)}$ should have no dependence on $n$, we obtain the following constraints on the form of $F[w(z)]$:
+	\begin{equation}
+		F|_{w\to z} = 0,
+	\quad
+		\pdv{F}{w}\bigg|_{w\to z} = 0,
+	\quad
+		\pdv{F}{(\pd w)}\bigg|_{w\to z}
+		= -\frac{\alpha' V}{2},
+	\quad
+		\pdv{F}{(\pd^k w)}\bigg|_{w\to z} = 0,
+	\quad k = 2,3,\cdots
+	\end{equation}
+	We can think of this as the first order ``Taylor'' coefficients of $F[w]$ in the functional space, around the point $w(z) \to z$. Note that $\pd w|_{w\to z} = 1$, while $
+		\pd^k w|_{w\to z} = 0
+	$, it is thus natural to consider the following ansatz:
+	\begin{equation}
+		F = F[\pd w],
+	\quad
+		F[1] = 0,
+	\quad
+		\pdv{F[x]}{x}\bigg|_{x\to 1}
+		= -\frac{\alpha' V}{2}
+	\end{equation}
+	
+	In the end we shall obtain that\footnote{
+		I would like to thank Lucy Smith for helpful discussions. 
 	}:
 	\begin{equation}
 	\begin{aligned}
 		X'(z',\bar{z}') - X(z,\bar{z})
-		&= -\frac{\alpha' V}{2}\,\pqty{
-			\pd\epsilon
-			- \frac{1}{2}\,(\pd\epsilon)^2
-			+ \frac{1}{3}\,(\pd\epsilon)^2
-			- \cdots
-		} + \pqty{\mrm{conjugate}} \\
-		&= -\frac{\alpha' V}{2}\,
-			\ln (1 + \pd\epsilon)
-		+ \pqty{\mrm{conjugate}} \\[.5ex]
 		&= -\frac{\alpha' V}{2}\,
 			\ln \pqty{
 				\dv{z'}{z}
@@ -787,7 +803,9 @@
 			}
 	\end{aligned}
 	\end{equation}
-	
+	A better recipe to find finite transformations is to consider its properties under composition, which will lead to some constraints that can be solved to obtain the result\footnote{
+		See \https{bryango.github.io/resources/archive/alpha/schwarzian.pdf} for some detailed discussions.
+	}. 
 	
 	\item Perform the usual Noether's procedure on the free boson action, and we have:
 	\begin{equation}
