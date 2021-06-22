@@ -10,6 +10,7 @@
 
 \usepackage{xspace}
 \newcommand{\TTbar}{\ensuremath{T\bar{T}}\xspace}
+\newcommand{\arcsinh}{\ensuremath{\mop{arcsinh}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -226,6 +227,122 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\noindent Let us conclude with comments on other definitions of the quasilocal energy discussed in the literature. As noted in ref.~\cite{Brown:1994gs} one can in principle define other measures of ``energy'' at a finite cutoff by choosing an appropriate normalization for the timelike Killing vector. The Killing vector considered in~\cite{Brown:1994gs} differs from ours in its overall normalization (by a factor of $r_c$) and fails to satisfy conditions (ii) and (iv) above. Relatedly, while the Killing vector considered in the quasilocal energy of BTZ-like solutions in ref.~\cite{Giribet:2013yka} does satisfy condition (iv) it is incompatible with condition (ii). In particular, we note that the expression for the quasilocal energy reported in~\cite{McGough:2016lol} contains a typo and \emph{does not} correspond to the expression originally given in~\cite{Brown:1994gs}. Indeed, to match the spectrum of the $T\bar{T}$ deformed theory one needs to use the Killing vector $\xi_c$ given in eq.~\eqref{xi1}. This provides further evidence for the physical requirements constraining our definition of $\xi_c$.  
 
 \section{Entanglement in the boundary story}
+
+\subsection{Rindler map in finite temperature}
+
+\newcommand{\lp}{\ensuremath{l_p}}
+\newcommand{\halfL}{\ensuremath{\frac{L}{2}}}
+
+	One can use the method in \cite{Lewkowycz:2019xse} to calculate the entanglement entropy in the thermal case and finite size case from the field theory side. The Rindler transformation from the domain of dependence of the interval $(-\lp,\lp)$ to the sphere is
+	\begin{equation}
+	t=\lp\frac{\sin\theta \sinh(\tau/\lp)}{1+\sin\theta \cosh(\tau/\lp)},\ \  x=\lp\frac{\cos\theta}{1+\sin\theta\cosh(\tau/\lp)}
+	\end{equation}
+	the conformal factor reads,
+	\begin{equation}
+	\Omega=\frac{1}{1+\sin\theta\cosh(\tau/\lp)}
+	\end{equation}
+	At endpoints, it becomes $1$. From the discussion in \cite{Lewkowycz:2019xse}, the contribution to the entanglement entropy totally comes from the endpoints of the interval, so one can use the such conformal transformation where the conformal factor at the endpoints is $1$ to calculate the entanglement entropy. Also, in the conformal map above from the casual diamond to the sphere, only the length of the interval matters. If these two endpoints lie at other position, one can use the rotation and translation symmetry to put it at $(\pm \lp,0)$, since the $T\bar T$ deformed theory also admits these symmetries. 
+	
+	Now let's consider the thermal case. The conformal transformation from the thermal cylinder to the plane reads,
+	\begin{equation}
+	z=\frac{1}{\kappa}e^{\kappa w},\ \ \ \kappa=\frac{2\pi}{\beta}
+	\end{equation} 
+	where $z$ is the coordinate on the plane, and $w$ is the coordinate on the thermal cylinder with identification,
+	\begin{equation}
+	w\sim w+i\beta
+	\end{equation}
+	The endpoints of the interval on the thermal cylinder is
+	\begin{equation}
+	w=\pm \halfL
+	\end{equation} 
+%	The length of the interval is $L=2l$. 
+	Under the conformal map, the endpoints on the plane is
+	\begin{equation}
+	\frac{1}{\kappa}e^{\pm \kappa \frac{L}{2}}
+	\end{equation}
+	the length is $\frac{2}{\kappa}\sinh(\halfL \kappa)$, so one can use translations and rotations to map the endpoints to $(\pm \lp, 0)$ on the plane 
+	\begin{equation}
+	l_p=\frac{1}{\kappa}\sinh(\halfL \kappa)
+	\end{equation}
+	The conformal factor is
+	\begin{equation}
+	e^{\kappa(w+\bar{w})}
+	\end{equation}
+	Note that compared to the usual map from cylinder to plane $z=e^{\kappa w}$, we put the overall scaling factor $\frac{1}{\kappa}$ to make sure that the conformal factor at the endpoints is $1$. 
+	
+	From \cite{Donnelly:2018bef}, the entanglement entropy for zero temperature is
+	\begin{equation}
+	S(L)=\frac{c}{3} \arcsinh \frac{\lp}{a}
+	\end{equation}
+	where
+	\begin{equation}
+	a^2=\frac{\mu c}{12}
+	\end{equation}
+	The $C$-function reads,
+	\begin{equation}
+	C(L)=L S'(L)=\frac{c}{3}\frac{1}{\sqrt{1+4a^2/L^2}}
+	\end{equation}
+	Now in the thermal case, $l_p\rightarrow \frac{1}{\kappa}\sinh(\halfL \kappa)$
+	\begin{equation}
+	S_t=\frac{c}{3}\arcsinh \pqty{
+			\frac{1}{\kappa a}\sinh(\halfL \kappa)
+		}
+	\end{equation}
+	which is the same as the results obtained from the local temperature trick \eqref{} and the gravity calculation \eqref{}. Now consider the finite size case, the conformal transformation is,
+	\begin{equation}
+	z=\frac{1}{ir_1}e^{iwr_1},\quad
+		r_1 = \frac{2\pi}{\lambda}
+	\end{equation}
+	where $w$ is the cylinder coordinate,
+	\begin{equation}
+	w\sim w+ \lambda
+	\end{equation}
+	The endpoints of the interval are 
+	\begin{equation}
+	w\pm l
+	\end{equation}
+	The conformal factor is
+	\begin{equation}
+	e^{ir_1(w+\bar{w})}
+	\end{equation}
+	which is $1$ at the endpoints. The plane length reads,
+	\begin{equation}
+	l_p=\frac{1}{r_1}\sin lr_1
+	\end{equation}
+	So the final result is
+	\begin{equation}
+	S_f=\frac{c}{3}ArcSinh(\frac{1}{r_1a}\sin(lr_1))
+	\end{equation}
+	
+\pagebreak
+	
+	The global AdS reads,
+	\begin{equation}
+	 ds^2=-(r^2+1)dt^2+\frac{dr^2}{r^2+1}+r^2d\phi^2,\ \ \phi\sim\phi+2\pi
+	\end{equation}
+	\begin{equation}
+	\phi\rightarrow r1\phi,\ \ r\rightarrow \frac{r}{r_1}, \ \ \ t\rightarrow r_2 t
+	\end{equation}
+	\begin{equation}
+	 ds^2=-(r^2+r_1^2)dt^2+\frac{dr^2}{r^2+r_1^2}+r^2d\phi^2,\ \ \phi\sim\phi+\beta
+	\end{equation}
+	Compared to the planer BTZ,
+	\begin{equation}
+	ds^2=-(r^2-r_1^2)dt^2+\frac{dr^2}{r^2-r_1^2}+r^2dx^2
+	\end{equation}
+	For the holographic entanglement entropy
+	\begin{equation}
+	r_1\rightarrow ir_1
+	\end{equation}
+	There is no topological obstacle in global AdS, so one can do the replacement above to get the holographic entanglement entropy in global AdS from the HEE in planer BTZ.
+	\begin{equation}
+	S_f=\frac{c}{3}ArcSinh(\frac{1}{r_1a}\sin(lr_1))
+	\end{equation}
+	
+	
+\pagebreak
+\subsection{Boundary modular flows}
+
 	A boundary interval $\mcal{A}$ defines a denisty matrix:
 	\begin{equation}
 		\rho_\mcal{A}
@@ -248,7 +365,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\begin{equation}
 		\kappa_\xi = 2\pi
 	\end{equation}
-\subsection{Boundary modular flows}
+	
 	In usual $\mrm{CFT}_2$, this prescription gives us the modular flow generators for a single interval $\mcal{A}$:
 	\begin{equation}
 		\xi_\mrm{CFT} = 2\pi \sum_{n=0,\pm 1} \pqty{
@@ -303,20 +420,13 @@ In this section we first review the holographic duality between $T\bar T$ deform
 		\xi_\mrm{CFT}|_{t = 0} 
 		= \frac{2\pi}{{\tilde L}}
 			\pqty{
-				\pqty{\frac{{\tilde L}}{2}}^2
+				(\tfrac{{\tilde L}}{2})^2
 				- x^2
 			} \,\pdd{t}
 	\end{equation}
 	
 	However, after the \TTbar-deformation, the scaling and special conformal transformations are no longer symmetries of the theory, so we cannot simply take $\xi_\mrm{CFT}$ as the modular flow in the deformed theory. 
-	
-	On the other hand, we still expect the basic properties of the modular flow to hold after the deformation; for example, we expect the endpoints $\pd\mcal{A}$ of $\mcal{A}$ to be fixed under the modular flow, and we suppose the $\xi_{T\bar{T}}$ should reduce back to $\xi_\mrm{CFT}$ as the deformation parameter $\lambda \to 0$. This leads us to the following proposal of $\xi_{T\bar{T}}|_{t = 0}$, for an interval $\mcal{A}$ with coordinate length $L$:
-	
-	Note that:
-	\begin{enumerate}[topsep=0pt]
-	\item The dependence of $\xi_{T\bar{T}}|_{t = 0}$ w.r.t.~$L$ is very similar to the dependence of $\xi_\mrm{CFT}|_{t = 0}$ w.r.t.~${\tilde L}$, except that now the normalization is slightly modified to include the deformation parameter $\lambda$. 
-	\item This is not yet a proposal for the full modular flow, but only its values around the $t = 0$ slice. But we shall see that this is enough to give us the entanglement entropy of a \TTbar-deformed theory. 
-	\end{enumerate}
+	But we shall see that by properly specifying the integration range, this is enough to give us the entanglement entropy of a \TTbar-deformed theory. 
 
 \subsection{Effective local temperature and entanglement entropy}
 	
@@ -566,109 +676,6 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\begin{equation}C(L)=\frac{L\pi c}{3\beta}\coth\frac{L\pi}{\beta}
 	\end{equation}
 	
-\subsection{Rindler map in finite temperature}
-	One can use the method in (1909.13808) to calculate the entanglement entropy in the thermal case and finite size case from the field theory side. The Rindler transformation from the domain of dependence of the interval $(-l_p,l_p)$ to the sphere is
-	\begin{equation}
-	t=l_p\frac{\sin\theta \sinh(\tau/l_p)}{1+\sin\theta \cosh(\tau/l_p)},\ \  x=l_p\frac{\cos\theta}{1+\sin\theta\cosh(\tau/l_p)}
-	\end{equation}
-	the conformal factor reads,
-	\begin{equation}
-	\Omega=\frac{1}{1+\sin\theta\cosh(\tau/l_p)}
-	\end{equation}
-	At endpoints, it becomes $1$. From the discussion in (1909.13808), the contribution to the entanglement entropy totally comes from the endpoints of the interval, so one can use the such conformal transformation where the conformal factor at the endpoints is $1$ to calculate the entanglement entropy. Also, in the conformal map above from the casual diamond to the sphere, only the length of the interval matters. If these two endpoints lie at other position, one can use the rotation and translation symmetry to put it at $(0,\pm l_p)$, since the $T\bar T$ deformed theory also admits these symmetries. Now let's consider the thermal case, the conformal transformation from the thermal cylinder to the plane reads,
-	\begin{equation}
-	z=\frac{1}{r_1}e^{r_1w},\ \ \ r_1=\frac{2\pi}{\beta}
-	\end{equation} 
-	where $z$ is the coordinate on the plane, and $w$ is the coordinate on the thermal cylinder with identification,
-	\begin{equation}
-	w\sim w+i\beta
-	\end{equation}
-	The endpoints of the interval on the thermal cylinder is
-	\begin{equation}
-	w=\pm l
-	\end{equation} 
-	The length of the interval is $L=2l$. Under the conformal map, the endpoints on the plane is
-	\begin{equation}
-	\frac{1}{r_1}e^{\pm r_1 l}
-	\end{equation}
-	the length is $\frac{2}{r_1}\sinh(l r_1)$, so
-	\begin{equation}
-	l_p=\frac{1}{r_1}\sinh(l r_1)
-	\end{equation}
-	The conformal factor is
-	\begin{equation}
-	e^{r_1(w+\bar{w})}
-	\end{equation}
-	Note that compared to the usual map from cylinder to plane $z=e^{r_1 w}$, we put the overall scaling factor $\frac{1}{r_1}$ to make sure that the conformal factor at the endpoints is $1$. From 1806.07444, the entanglement entropy for $l_p$ is
-	\begin{equation}
-	S_p(l)=\frac{c}{3}ArcSinh\frac{l_p}{a}
-	\end{equation}
-	where
-	\begin{equation}
-	a^2=\frac{\mu c}{12}
-	\end{equation}
-	The C-function reads,
-	\begin{equation}
-	C(L)=L S'(L=2l)=\frac{c}{3}\frac{1}{\sqrt{1+4a^2/L^2}}
-	\end{equation}
-	Now in the thermal case, $l_p\rightarrow \frac{1}{r_1}\sinh(l r_1)$
-	\begin{equation}
-	S_t=\frac{c}{3}ArcSinh(\frac{1}{r_1 a}\sinh(l r_1))
-	\end{equation}
-	which is the same as the results obtained from the local temperature trick \eqref{} and the gravity calculation \eqref{}. Now consider the finite size case, the conformal transformation is,
-	\begin{equation}
-	z=\frac{1}{ir_1}e^{iwr_1},\quad
-		r_1 = \frac{2\pi}{\lambda}
-	\end{equation}
-	where $w$ is the cylinder coordinate,
-	\begin{equation}
-	w\sim w+ \lambda
-	\end{equation}
-	The endpoints of the interval are 
-	\begin{equation}
-	w\pm l
-	\end{equation}
-	The conformal factor is
-	\begin{equation}
-	e^{ir_1(w+\bar{w})}
-	\end{equation}
-	which is $1$ at the endpoints. The plane length reads,
-	\begin{equation}
-	l_p=\frac{1}{r_1}\sin lr_1
-	\end{equation}
-	So the final result is
-	\begin{equation}
-	S_f=\frac{c}{3}ArcSinh(\frac{1}{r_1a}\sin(lr_1))
-	\end{equation}
-	
-\pagebreak
-	
-	The global AdS reads,
-	\begin{equation}
-	 ds^2=-(r^2+1)dt^2+\frac{dr^2}{r^2+1}+r^2d\phi^2,\ \ \phi\sim\phi+2\pi
-	\end{equation}
-	\begin{equation}
-	\phi\rightarrow r1\phi,\ \ r\rightarrow \frac{r}{r_1}, \ \ \ t\rightarrow r_2 t
-	\end{equation}
-	\begin{equation}
-	 ds^2=-(r^2+r_1^2)dt^2+\frac{dr^2}{r^2+r_1^2}+r^2d\phi^2,\ \ \phi\sim\phi+\beta
-	\end{equation}
-	Compared to the planer BTZ,
-	\begin{equation}
-	ds^2=-(r^2-r_1^2)dt^2+\frac{dr^2}{r^2-r_1^2}+r^2dx^2
-	\end{equation}
-	For the holographic entanglement entropy
-	\begin{equation}
-	r_1\rightarrow ir_1
-	\end{equation}
-	There is no topological obstacle in global AdS, so one can do the replacement above to get the holographic entanglement entropy in global AdS from the HEE in planer BTZ.
-	\begin{equation}
-	S_f=\frac{c}{3}ArcSinh(\frac{1}{r_1a}\sin(lr_1))
-	\end{equation}
-	
-	
-\pagebreak
-
 \section{Bulk story}
 	We follow the recipe from the swing surface proposal \cite{Apolo:2020bld,Apolo:2020qjm} to extend the boundary modular flow to the bulk, by matching symmetries of the bulk and the boundary.  This reproduces known results in e.g.~\cite{Lashkari:2016idm,Czech:2019vih,Apolo:2020qjm} \sidenote{[more citations needed]}. We first compute everything in Poincar\'e $\mrm{AdS}_3$ for simplicity. 
 \subsection{Bulk modular flows for Poincar\'e $\mrm{AdS}_3$}
