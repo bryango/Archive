@@ -13,9 +13,6 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title{Modular flow and holographic entanglement entropy in cutoff AdS / \TTbar deformed theory} 
@@ -114,12 +111,147 @@
 \section{Introduction}
 
 \section{$T \bar T$ deformation and cutoff AdS}
+In this section we first review the holographic duality between $T\bar T$ deformed CFT$_2$ and Einstein gravity on asymptically AdS$_3$ spacetime with a finite cutoff,  and then we use the covariant phase space method to calculate the gravitational charges for BTZ black holes with finite cutoff and show that the black hole spectrum matches that of  $T\bar T$ deformed CFT$_2$. 
 
 \subsection{Brief review of the duality}
 
-\subsection{ gravitional charges}
-\subsection{black spectrum from gravitional charges}
+review TTbar and cutoff AdS
 
+
+\subsection{black spectrum from gravitional charges}
+	Ref: \textcite{Wald:1993nt,Iyer:1994ys,Iyer:1995kg}, \textcite{Lewkowycz:2013nqa}, and \textcite{Faulkner:2013ana}.
+	
+	Here we derive the quasilocal energy of the BTZ black hole using the covariant formulation of conserved charges and reproduce the spectrum of $T\bar{T}$-deformed CFTs. 
+	
+\subsubsection*{Covariant charges}
+	
+	Let us first recall the definition of asymptotic charges. Given an asymptotic Killing vector $\xi$ generating a symmetry of the theory, the infinitesimal variation of the corresponding charge is given by~\cite{Barnich:2001jy}
+	  %
+	  \eq{
+	  \d Q_{\xi} [\d g, g] =  \frac{1}{16 \pi G} \int_{\p\ss} \sqrt{|g|} \diff x^{\a} \ve_{\a\mu\nu} k_\xi^{\mu\nu} [\d g, g],  \label{charges}
+	  }
+	  %
+	where $\d g$ denotes the variation of the metric, $\p \ss$ is the boundary of a codimension-1 spacelike surface, and  in Einstein gravity $k_\xi^{\mu\nu} [\d g, g]$ is given by
+	  %
+	  \eqsp{
+	  k_\xi^{\mu\nu}[\d g, g] = \frac{1}{2} \Big \{ & \xi^{\nu}\nabla^{\mu} \d g^{\a}{}_{\a} - \xi^{\nu} \nabla_{\a} \d g^{\a\mu} + \xi_{\a} \nabla^{\nu} \d g^{\a\mu} + \frac{1}{2} \d g^{\a}{}_{\a} \nabla^{\nu} \xi^{\mu} - \frac{1}{2} \d g^{\nu\a} \nabla_{\a}\xi^{\mu} \\
+	  &+ \frac{1}{2} \d g^{\nu\a} \nabla^{\mu} \xi_{\a} - (\mu \lra \nu) \Big \}. \label{kdef}
+	  }
+	  %
+	As discussed in~\cite{Compere:2015knw}, in three-dimensional gravity the asymptotic charges~\eqref{charges} can be evaluated on any surface and not only at the asymptotic boundary. This is true provided the asymptotic Killing vectors are appropriately continued to the interior so that the integrability condition on the charges is satisfied. 
+	
+\subsubsection*{Killing vectors}
+	
+	The quasilocal energy discussed in~\cite{Brown:1994gs} differs from the asymptotic charges~\eqref{charges} in the choice of Killing vectors or, alternatively, in the choice of observers. More precisely, asymptotic charges are measured by asymptotic observers at the asymptotic boundary while quasilocal charges are measured by locally nonrotating observers on a codimension-2 spacelike surface $\p\Sigma$. To determine the quasilocal energy, first recall that in Schwarzschild coordinates the BTZ metric may be written as~\cite{Banados:1992wn}
+	  %
+	  \eq{
+	  ds^2 = - f(r) dt^2 + \frac{dr^2}{f(r)} + r^2 \bigg ( d\phi + \frac{4 G J}{r^2} dt \bigg )^2, \label{btz}
+	  }
+	  %
+	where $f(r)$ reads
+	  %
+	  \eq{
+	  f(r) = r^2 - 8 GM + \frac{16G^2 J^2}{r^2}. \label{fr}
+	  }
+	  %
+	The induced metric on an $r = r_c$ hypersurface $\ss_{r_c}$ has vanishing curvature and is given by
+	  %
+	  \eq{
+	  ds^2_{c} = \g_{\mu\nu} dx^{\mu} dx^{\nu} =  r_c^2 \Bigg [ -\frac{f (r_c)}{r_c^2} dt^2 + \bigg ( d\phi + \frac{4 G J}{r_c^2} dt \bigg )^2 \Bigg ]. \label{inducedmetric}
+	  }
+	  %
+	%The quasilocal energy at $\p \ss_{r_c}$ depends on the definition of the Killing vector $\xi$ in the geometry~\eqref{inducedmetric}. 
+	
+	Let us denote by $\xi_c$ the timelike Killing vector associated with the quasilocal energy $Q_{\xi_c}$. The Killing vector $\xi_c$ is proportional to the unit vector normal to surfaces of fixed time. This vector evolves constant-$t$ slices forward in time and provides a natural definition of the energy in the background given by eq.~\eqref{inducedmetric}. In particular, $\xi_c$ can be chosen to satisfy 
+	  %
+	  \eq{
+	  \xi_c = -{r_c \sqrt{f(r_c)}} \g^{\mu \nu } \d^{t}_{\mu}\, \p_{\nu}, \qquad \qquad \xi_c \cdot \xi_c = -r_c^2, \label{xi2}
+	  }
+	  %
+	where the inner product is defined with respect to the induced metric~\eqref{inducedmetric}. The norm in eq.~\eqref{xi2} is chosen to match that of the asymptotic timelike Killing vector $\p_t$ used in the definition of the total energy of the spacetime, in the limit when $r_c \to r$. In particular, in this limit we find $\xi_c \to \p_t$.
+	
+	Alternatively, note that we can perform a coordinate transformation 
+	 % 
+	 \eq{
+	 \til{t}  = \frac{\sqrt{f(r_c)}}{r_c} t, \qquad \qquad \til{\phi} = \phi + \frac{4 G J }{r_c^2}t,
+	 }
+	 %
+	to turn the induced metric~\eqref{inducedmetric} into the Minkowski metric,
+	  %
+	  \eq{
+	  ds^2_{c} = r_c^2 \big (- d\til{t}^2 + d \til{\phi}^2 \big ), \label{mink}
+	  }
+	with the identifications of the original coordinates left intact, i.e.
+	  %
+	  \eq{
+	  (\til{t},\,\til{\phi}) \sim (\tilde{t},\,\til{\phi} + 2 \pi).
+	  }
+	  %
+	We thus find that the Killing vector $\xi_c$ is, up to a normalization, nothing but the generator of time translations in a locally nonrotating frame~\cite{Misner:1974qy},
+	  %
+	  \eq{
+	  \xi_c  = \frac{r_c}{\sqrt{f(r_c)}} \bigg (\p_t - \frac{4 G J}{r_c^2} \p_{\phi} \bigg ) = \p_{\tilde{t}}. \label{xi1}
+	  }
+	  %
+	
+	The Killing vector~\eqref{xi1} satisfies the following properties:
+	 %
+	 \begin{enumerate}
+	 \item[(i)] it leads to integrable charges, see eq.~\eqref{quasilocalcharge2};
+	 \item[(ii)] its normalization is background-independent and proportional to $r_c^2$;
+	 \item[(iii)] it measures the energy of a locally nonrotating observer in the orthonormal frame;
+	 \item[(iv)] it reduces to the Killing vector measuring the total (ADM) energy when $r_c \to \infty$.
+	 \end{enumerate}
+	
+\subsubsection*{Quasilocal energy}
+	
+	We define the infinitesimal variation of the quasilocal energy $\delta Q_{\xi_c}$ as the conserved charge~\eqref{charges} measured by the locally nonrotating observer at the cutoff surface $r = r_c$, 
+	  %
+	  \eq{
+	  \d Q_{\xi_c} [\d g, g] & = \frac{r_c}{\sqrt{f(r_c)}} \,\d M - \frac{4 G J}{r_c\sqrt{f(r_c)}} \,\d J, \\
+	 % \d Q_{\xi_c} [\d g, g]  
+	 & = - \frac{r_c}{4 G} \d \sqrt{f(r_c)}. \label{quasilocalcharge2}
+	  }
+	  %  
+	The integrability condition of $Q_{\xi_c}$ is manifestly satisfied in eq.~\eqref{quasilocalcharge2}, where we have used the expression for $f(r)$ given in eq.~\eqref{fr}. The finite charge can be integrated to be 
+	  %
+	  \eq{
+	Q_{\xi_c} = \frac{r_c^2}{ 4G} - \frac{r_c^2}{ 4G}  \sqrt{1 -\frac{8GM}{r_c^2} + \frac{16G^2 J^2}{ r_c^4}}, \label{quasilocalcharge3}
+	 }
+	 %
+	where the first term is an integration constant fixed by requiring $Q_{\xi_c}\big |_{M=J=0}=0$.  Note that eq.~\eqref{quasilocalcharge3} is the quasilocal energy given in~\cite{McGough:2016lol}. Furthermore, when the cutoff $r_c$ is taken to infinity, the quasilocal energy~\eqref{quasilocalcharge3} reduces to the ADM mass $M$ of the spacetime. 
+	 
+	\noindent Let us conclude with comments on other definitions of the quasilocal energy discussed in the literature. As noted in ref.~\cite{Brown:1994gs} one can in principle define other measures of ``energy'' at a finite cutoff by choosing an appropriate normalization for the timelike Killing vector. The Killing vector considered in~\cite{Brown:1994gs} differs from ours in its overall normalization (by a factor of $r_c$) and fails to satisfy conditions (ii) and (iv) above. Relatedly, while the Killing vector considered in the quasilocal energy of BTZ-like solutions in ref.~\cite{Giribet:2013yka} does satisfy condition (iv) it is incompatible with condition (ii). In particular, we note that the expression for the quasilocal energy reported in~\cite{McGough:2016lol} contains a typo and \emph{does not} correspond to the expression originally given in~\cite{Brown:1994gs}. Indeed, to match the spectrum of the $T\bar{T}$ deformed theory one needs to use the Killing vector $\xi_c$ given in eq.~\eqref{xi1}. This provides further evidence for the physical requirements constraining our definition of $\xi_c$.  
+	
+	
+	\noindent\hrulefill
+	
+	On the other hand, gravitational entropy is the Noether charge $Q_\xi$ associated with some horizon generator $\xi$. In the case of entanglement entropy between a simple interval and its complement, we've found its corresponding modular flow in the bulk, which is precisely the horizon generator of the Rindler patch. We then aim to compute the charge variation using the covariant formula:
+	\begin{equation}
+		\var{Q}_{\xi} [\var{g}, g]
+		= \int_{\pd\Sigma}
+			\chi_\xi
+		= \frac{1}{16 \pi G}
+			\int_{\pd\Sigma}
+			\sqrt{|g|} \dd{x}^{\alpha}
+				\varepsilon_{\alpha\mu\nu}\,
+				k_\xi^{\mu\nu} [\var{g}, g]
+	\end{equation}
+	\begin{equation}
+	\begin{aligned}
+		k_\xi^{\mu\nu}[\var g, g]
+		= \frac{1}{2} \Big \{
+		& \xi^{\nu}\nabla^{\mu} \var g^{\alpha}{}_{\alpha}
+		- \xi^{\nu} \nabla_{\alpha} \var g^{\alpha\mu}
+		+ \xi_{\alpha} \nabla^{\nu} \var g^{\alpha\mu}  \\
+		&+ \frac{1}{2} \var g^{\alpha}{}_{\alpha} \nabla^{\nu} \xi^{\mu}
+		- \frac{1}{2} \var g^{\nu\alpha} \nabla_{\alpha}\xi^{\mu}
+		+ \frac{1}{2} \var g^{\nu\alpha} \nabla^{\mu} \xi_{\alpha} \\
+		&- (\mu \leftrightarrow \nu) \Big \}
+	\end{aligned}
+	\label{kdef}
+	\end{equation}
+	However, to compute $\var{Q}$ we need to consider a particular metric variation $\var{g}_{\mu\nu}$ in the phase space of solutions. There is no free parameter in Poincar\'e $\mrm{AdS}_3$, unless we turn on temperature; namely we have to start with the BTZ geometry. 
 
 \section{Entanglement in the boundary story}
 	A boundary interval $\mcal{A}$ defines a denisty matrix:
