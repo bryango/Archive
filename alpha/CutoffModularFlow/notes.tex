@@ -30,23 +30,24 @@
 \abstract{
 	\begin{itemize}
 	
-%	\item[] In Section 1,
+	\item[] On the field theory side,
+	
+	\item Following \cite{Lewkowycz:2019xse,Donnelly:2018bef}, we derive the entanglement entropy for a \TTbar deformed theory, and extend the result to the finite temperature case. 
+	
+	\item We note that it is possible to generalize the \textit{effective inverse temperature $\beta(x)$} trick introduced in \cite{Wong:2013gua,Cardy:2016fqc}, and re-derive the \TTbar entanglement entropy using the $\mrm{CFT}_2$ modular flow at the \mbox{codim-2} cutoff surface (line). \sidenote{[relation with partial entanglement entropy?]}
+	
+	\item[] On the bulk side,
 	
 	\item We follow the recipe from the swing surface proposal \cite{Apolo:2020bld,Apolo:2020qjm} to extend the boundary modular flow to the bulk, by matching symmetries of the bulk and the boundary.  This reproduces known results in e.g.~\cite{Lashkari:2016idm,Czech:2019vih,Apolo:2020qjm} \sidenote{[more citations needed]}. We first compute everything in Poincar\'e $\mrm{AdS}_3$ for simplicity. 
 	
-	\item We look at the flow at constant cutoff $z = z_c$, which has non-trivial $\pdd{z}$ component, which in turn leads to a violation of the $2\pi$ periodicity for $\xi$ along the horizon. This could be related to the violation of boosted strong subadditivity (boosted SSA) in \cite{Lewkowycz:2019xse}. 
+	\item We look at the flow at constant cutoff $z = z_c$, which has non-trivial $\pdd{z}$ component, which in turn leads to a violation of the $2\pi$ periodicity for $\xi$ along the horizon. This could be related to the violation of boosted strong subadditivity (boosted SSA) in \cite{Lewkowycz:2019xse}. \sidenote{We should probably look at the boosted interval.}
 	
 	\item We then note that the periodicity can be restored by following the flow of $\xi$ starting from a codim-2 cutoff surface. This could be related to the \textit{restricted maximin} proposal of \cite{Marolf:2019bgj,Grado-White:2020wlb}. \sidenote{[With this cutoff the causal wedge again coincides with the entanglement wedge]}
 	
-	\item We try to obtain the entanglement entropy using the modular flow at the \mbox{codim-2} cutoff surface, using the \textit{effective inverse temperature $\beta(x)$} introduced in \cite{Wong:2013gua,Cardy:2016fqc}, which relates the entanglement entropy to some thermal entropy. \sidenote{[relation with partial entanglement entropy?]}
-	
-	\item \sidenote{We should look at the boosted interval.}
-	
-%	\item[] In Section 2,
-	
 	\item We map the the modular flow in the Poincar\'e $\mrm{AdS}_3$ vacuum to the BTZ background, and compute the entanglement entropy as gravitational charge. 
+	We then consider constant $r$ cutoff in the Schwarzschild coordinates, which corresponds to the proposal of \cite{McGough:2016lol}. This agrees with the finite temperature result we've obtained on the field theory side. 
 	
-	\item We then consider constant $r$ cutoff in the Schwarzschild coordinates, which corresponds to the proposal of \cite{McGough:2016lol}. This gives a finite temperature generalization of the result of \cite{Lewkowycz:2019xse}. 
+	\item The bulk calculation provides an intuitive explanation of the generalized local temperature trick. \sidenote{Details to be understood.}
 	
 	\end{itemize}
 }
@@ -78,6 +79,7 @@
 \item maybe consider later: finite size effect  
 \end{itemize}
 
+\pagebreak
 
 \section{Conventions}
 	We try to follow the conventions of the TsT paper \textcite{Apolo:2019zai}. 
@@ -115,10 +117,10 @@ In this section we first review the holographic duality between $T\bar T$ deform
 
 \subsection{Brief review of the duality}
 
-review TTbar and cutoff AdS
+{\color{red}\itshape Review TTbar and cutoff AdS. }
 
 
-\subsection{black spectrum from gravitional charges}
+\subsection{Black spectrum from gravitional charges}
 	Ref: \textcite{Wald:1993nt,Iyer:1994ys,Iyer:1995kg}, \textcite{Lewkowycz:2013nqa}, and \textcite{Faulkner:2013ana}.
 	
 	Here we derive the quasilocal energy of the BTZ black hole using the covariant formulation of conserved charges and reproduce the spectrum of $T\bar{T}$-deformed CFTs. 
@@ -222,36 +224,6 @@ review TTbar and cutoff AdS
 	where the first term is an integration constant fixed by requiring $Q_{\xi_c}\big |_{M=J=0}=0$.  Note that eq.~\eqref{quasilocalcharge3} is the quasilocal energy given in~\cite{McGough:2016lol}. Furthermore, when the cutoff $r_c$ is taken to infinity, the quasilocal energy~\eqref{quasilocalcharge3} reduces to the ADM mass $M$ of the spacetime. 
 	 
 	\noindent Let us conclude with comments on other definitions of the quasilocal energy discussed in the literature. As noted in ref.~\cite{Brown:1994gs} one can in principle define other measures of ``energy'' at a finite cutoff by choosing an appropriate normalization for the timelike Killing vector. The Killing vector considered in~\cite{Brown:1994gs} differs from ours in its overall normalization (by a factor of $r_c$) and fails to satisfy conditions (ii) and (iv) above. Relatedly, while the Killing vector considered in the quasilocal energy of BTZ-like solutions in ref.~\cite{Giribet:2013yka} does satisfy condition (iv) it is incompatible with condition (ii). In particular, we note that the expression for the quasilocal energy reported in~\cite{McGough:2016lol} contains a typo and \emph{does not} correspond to the expression originally given in~\cite{Brown:1994gs}. Indeed, to match the spectrum of the $T\bar{T}$ deformed theory one needs to use the Killing vector $\xi_c$ given in eq.~\eqref{xi1}. This provides further evidence for the physical requirements constraining our definition of $\xi_c$.  
-	
-	
-	\noindent\hrulefill
-	
-	On the other hand, gravitational entropy is the Noether charge $Q_\xi$ associated with some horizon generator $\xi$. In the case of entanglement entropy between a simple interval and its complement, we've found its corresponding modular flow in the bulk, which is precisely the horizon generator of the Rindler patch. We then aim to compute the charge variation using the covariant formula:
-	\begin{equation}
-		\var{Q}_{\xi} [\var{g}, g]
-		= \int_{\pd\Sigma}
-			\chi_\xi
-		= \frac{1}{16 \pi G}
-			\int_{\pd\Sigma}
-			\sqrt{|g|} \dd{x}^{\alpha}
-				\varepsilon_{\alpha\mu\nu}\,
-				k_\xi^{\mu\nu} [\var{g}, g]
-	\end{equation}
-	\begin{equation}
-	\begin{aligned}
-		k_\xi^{\mu\nu}[\var g, g]
-		= \frac{1}{2} \Big \{
-		& \xi^{\nu}\nabla^{\mu} \var g^{\alpha}{}_{\alpha}
-		- \xi^{\nu} \nabla_{\alpha} \var g^{\alpha\mu}
-		+ \xi_{\alpha} \nabla^{\nu} \var g^{\alpha\mu}  \\
-		&+ \frac{1}{2} \var g^{\alpha}{}_{\alpha} \nabla^{\nu} \xi^{\mu}
-		- \frac{1}{2} \var g^{\nu\alpha} \nabla_{\alpha}\xi^{\mu}
-		+ \frac{1}{2} \var g^{\nu\alpha} \nabla^{\mu} \xi_{\alpha} \\
-		&- (\mu \leftrightarrow \nu) \Big \}
-	\end{aligned}
-	\label{kdef}
-	\end{equation}
-	However, to compute $\var{Q}$ we need to consider a particular metric variation $\var{g}_{\mu\nu}$ in the phase space of solutions. There is no free parameter in Poincar\'e $\mrm{AdS}_3$, unless we turn on temperature; namely we have to start with the BTZ geometry. 
 
 \section{Entanglement in the boundary story}
 	A boundary interval $\mcal{A}$ defines a denisty matrix:
@@ -1109,35 +1081,10 @@ review TTbar and cutoff AdS
 	
 \pagebreak
 \subsection{Gravitational charges}
-
-	Ref: \textcite{Wald:1993nt,Iyer:1994ys,Iyer:1995kg}, \textcite{Lewkowycz:2013nqa}, and \textcite{Faulkner:2013ana}.
 	
-	Gravitational entropy is the Noether charge $Q_\xi$ associated with some horizon generator $\xi$. In the case of entanglement entropy between a simple interval and its complement, we've found its corresponding modular flow in the bulk, which is precisely the horizon generator of the Rindler patch. We then aim to compute the charge variation using the covariant formula:
-	\begin{equation}
-		\var{Q}_{\xi} [\var{g}, g]
-		= \int_{\pd\Sigma}
-			\chi_\xi
-		= \frac{1}{16 \pi G}
-			\int_{\pd\Sigma}
-			\sqrt{|g|} \dd{x}^{\alpha}
-				\varepsilon_{\alpha\mu\nu}\,
-				k_\xi^{\mu\nu} [\var{g}, g]
-	\end{equation}
-	\begin{equation}
-	\begin{aligned}
-		k_\xi^{\mu\nu}[\var g, g]
-		= \frac{1}{2} \Big \{
-		& \xi^{\nu}\nabla^{\mu} \var g^{\alpha}{}_{\alpha}
-		- \xi^{\nu} \nabla_{\alpha} \var g^{\alpha\mu}
-		+ \xi_{\alpha} \nabla^{\nu} \var g^{\alpha\mu}  \\
-		&+ \frac{1}{2} \var g^{\alpha}{}_{\alpha} \nabla^{\nu} \xi^{\mu}
-		- \frac{1}{2} \var g^{\nu\alpha} \nabla_{\alpha}\xi^{\mu}
-		+ \frac{1}{2} \var g^{\nu\alpha} \nabla^{\mu} \xi_{\alpha} \\
-		&- (\mu \leftrightarrow \nu) \Big \}
-	\end{aligned}
-	\label{kdef}
-	\end{equation}
-	However, to compute $\var{Q}$ we need to consider a particular metric variation $\var{g}_{\mu\nu}$ in the phase space of solutions. There is no free parameter in Poincar\'e $\mrm{AdS}_3$, unless we turn on temperature; this leads to the BTZ geometry. 
+	Gravitational entropy is the Noether charge $Q_\xi$ associated with some horizon generator $\xi$. In the case of entanglement entropy between a simple interval and its complement, its corresponding modular flow in the bulk is precisely the horizon generator of the Rindler patch. We can then compute the charge variation using the covariant formula \eqref{charges}. 
+	
+	Again, to compute $\var{Q}$ we need to consider a particular metric variation $\var{g}_{\mu\nu}$ in the phase space of solutions. There is no free parameter in Poincar\'e $\mrm{AdS}_3$, unless we turn on temperature; namely we have to start with the BTZ geometry. 
 	
 \subsubsection{Finite temperature: modular flow in $\mrm{BTZ}_3$ and entanglement entropy}
 \textbf{Summary:} We map the the modular flow in the Poincar\'e $\mrm{AdS}_3$ vacuum to the BTZ background, and compute the entanglement entropy as gravitational charge. 
