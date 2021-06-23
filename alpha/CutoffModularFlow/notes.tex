@@ -233,21 +233,24 @@ In this section we first review the holographic duality between $T\bar T$ deform
 \newcommand{\lp}{\ensuremath{l_p}}
 \newcommand{\halfL}{\ensuremath{\frac{L}{2}}}
 
-	One can use the method in \cite{Lewkowycz:2019xse} to calculate the entanglement entropy in the thermal case and finite size case from the field theory side. The Rindler transformation from the domain of dependence of the interval $(-\lp,\lp)$ to the sphere is
+	One can use the method in \cite{Lewkowycz:2019xse} to calculate the entanglement entropy in the thermal case and finite size case from the field theory side. The Rindler transformation from the domain of dependence of the interval $(-\lp,\lp)$ on the plane to the sphere is
 	\begin{equation}
 	t=\lp\frac{\sin\theta \sinh(\tau/\lp)}{1+\sin\theta \cosh(\tau/\lp)},\ \  x=\lp\frac{\cos\theta}{1+\sin\theta\cosh(\tau/\lp)}
+	\label{eq:rindler_sphere}
 	\end{equation}
 	the conformal factor reads,
 	\begin{equation}
 	\Omega=\frac{1}{1+\sin\theta\cosh(\tau/\lp)}
 	\end{equation}
-	At endpoints, it becomes $1$. From the discussion in \cite{Lewkowycz:2019xse}, the contribution to the entanglement entropy totally comes from the endpoints of the interval, so one can use the such conformal transformation where the conformal factor at the endpoints is $1$ to calculate the entanglement entropy. Also, in the conformal map above from the casual diamond to the sphere, only the length of the interval matters. If these two endpoints lie at other position, one can use the rotation and translation symmetry to put it at $(\pm \lp,0)$, since the $T\bar T$ deformed theory also admits these symmetries. 
+	At the endpoints, it becomes $1$. From the discussion in \cite{Lewkowycz:2019xse}, the contribution to the entanglement entropy totally comes from the endpoints of the interval, so one can use the such conformal transformation where the conformal factor at the endpoints is $1$ to calculate the entanglement entropy. Also, in the conformal map above from the casual diamond to the sphere, only the length of the interval matters. If these two endpoints lie at other position, one can use the rotation and translation symmetry to put it at $x = \pm \lp$, since the $T\bar T$ deformed theory also admits these symmetries. 
 	
-	Now let's consider the thermal case. The conformal transformation from the thermal cylinder to the plane reads,
+	Now let's consider the thermal case. We will make use of two successive conformal maps: first we map the thermal cylinder to the plane, and then we use \eqref{eq:rindler_sphere} to map the plane to the sphere. 
+	The conformal transformation from the thermal cylinder to the plane reads,
 	\begin{equation}
-	z=\frac{1}{\kappa}e^{\kappa w},\ \ \ \kappa=\frac{2\pi}{\beta}
+	z=\frac{\beta}{2\pi}\,e^{\frac{2\pi}{\beta} w},
+%	\ \ \ \kappa=\frac{2\pi}{\beta}
 	\end{equation} 
-	where $z$ is the coordinate on the plane, and $w$ is the coordinate on the thermal cylinder with identification,
+	where $z = x + it$ is the coordinate on the plane, and $w$ is the coordinate on the thermal cylinder with identification,
 	\begin{equation}
 	w\sim w+i\beta
 	\end{equation}
@@ -258,17 +261,17 @@ In this section we first review the holographic duality between $T\bar T$ deform
 %	The length of the interval is $L=2l$. 
 	Under the conformal map, the endpoints on the plane is
 	\begin{equation}
-	\frac{1}{\kappa}e^{\pm \kappa \frac{L}{2}}
+	\frac{\beta}{2\pi}e^{\pm \frac{2\pi}{\beta} \frac{L}{2}}
 	\end{equation}
-	the length is $\frac{2}{\kappa}\sinh(\halfL \kappa)$, so one can use translations and rotations to map the endpoints to $(\pm \lp, 0)$ on the plane 
+	the length is $\frac{\beta}{\pi}\sinh(\halfL \frac{2\pi}{\beta})$, so one can use translations and rotations to map the endpoints to $x = \pm\lp$ on the plane, where
 	\begin{equation}
-	l_p=\frac{1}{\kappa}\sinh(\halfL \kappa)
+	l_p=\frac{\beta}{2\pi}\sinh(\halfL \frac{2\pi}{\beta})
 	\end{equation}
 	The conformal factor is
 	\begin{equation}
-	e^{\kappa(w+\bar{w})}
+	e^{\frac{2\pi}{\beta}(w+\bar{w})}
 	\end{equation}
-	Note that compared to the usual map from cylinder to plane $z=e^{\kappa w}$, we put the overall scaling factor $\frac{1}{\kappa}$ to make sure that the conformal factor at the endpoints is $1$. 
+	Note that compared to the usual map from cylinder to plane $z=e^{\frac{2\pi}{\beta} w}$, we put the overall scaling factor $\frac{\beta}{2\pi}$ to make sure that the conformal factor at the endpoints is $1$. 
 	
 	From \cite{Donnelly:2018bef}, the entanglement entropy for zero temperature is
 	\begin{equation}
@@ -280,22 +283,26 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\end{equation}
 	The $C$-function reads,
 	\begin{equation}
-	C(L)=L S'(L)=\frac{c}{3}\frac{1}{\sqrt{1+4a^2/L^2}}
+	C(L)=L S'(L = 2l)=\frac{c}{3}\frac{1}{\sqrt{1+4a^2/L^2}}
 	\end{equation}
-	Now in the thermal case, $l_p\rightarrow \frac{1}{\kappa}\sinh(\halfL \kappa)$
+	Now in the thermal case, $l_p\rightarrow \frac{\beta}{2\pi}\sinh(\halfL \frac{2\pi}{\beta})$
 	\begin{equation}
 	S_t=\frac{c}{3}\arcsinh \pqty{
-			\frac{1}{\kappa a}\sinh(\halfL \kappa)
+			\frac{1}{\kappa a}\sinh(\halfL \frac{2\pi}{\beta})
 		}
 	\end{equation}
-	which is the same as the results obtained from the local temperature trick \eqref{} and the gravity calculation \eqref{}. Now consider the finite size case, the conformal transformation is,
+	\sidenote{which is the same as the results obtained from the local temperature trick \eqref{} and the gravity calculation \eqref{} [This is now the first non-trivial result of the paper. This comment should be moved to later.]} 
+	
+	------------
+	
+	Now consider the finite size case, the conformal transformation is,
 	\begin{equation}
 	z=\frac{1}{ir_1}e^{iwr_1},\quad
-		r_1 = \frac{2\pi}{\lambda}
+		r_1 = \frac{2\pi}{\sidenote{R}}
 	\end{equation}
-	where $w$ is the cylinder coordinate,
+	where $w$ is the cylinder coordinate, and $R$ is the \textit{spatial} size of the cylinder:
 	\begin{equation}
-	w\sim w+ \lambda
+	w\sim w+ R
 	\end{equation}
 	The endpoints of the interval are 
 	\begin{equation}
@@ -456,7 +463,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 		\beta(x)
 		= \frac{2\pi}{{\tilde L}}
 			\pqty{
-				\pqty{\frac{{\tilde L}}{2}}^2
+				\pqty{\tfrac{{\tilde L}}{2}}^2
 				- x^2
 			} \,\pdd{t}
 	\end{equation}
@@ -677,8 +684,10 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\end{equation}
 	
 \section{Bulk story}
-	We follow the recipe from the swing surface proposal \cite{Apolo:2020bld,Apolo:2020qjm} to extend the boundary modular flow to the bulk, by matching symmetries of the bulk and the boundary.  This reproduces known results in e.g.~\cite{Lashkari:2016idm,Czech:2019vih,Apolo:2020qjm} \sidenote{[more citations needed]}. We first compute everything in Poincar\'e $\mrm{AdS}_3$ for simplicity. 
+	This reproduces known results in e.g.~\cite{Lashkari:2016idm,Czech:2019vih,Apolo:2020qjm} \sidenote{[more citations needed]}. We first compute everything in Poincar\'e $\mrm{AdS}_3$ for simplicity. 
 \subsection{Bulk modular flows for Poincar\'e $\mrm{AdS}_3$}
+	We follow the recipe from the swing surface proposal \cite{Apolo:2020bld,Apolo:2020qjm} to extend the boundary modular flow to the bulk, by matching symmetries of the bulk and the boundary. 
+	
 	By requiring that a linear combination of the bulk Killing vectors for Poincar\'e $\mrm{AdS}_3$ reduces to the boundary $L_n$'s, one can uniquely extend the $L_n,\tilde{L}_n$'s into the bulk. The result for $L_n$'s is listed below; for $\tilde{L}_n$ one need only exchange all $u\leftrightarrow v$.
 	\begin{equation}
 		L_{-1} = -\pdd{u},
