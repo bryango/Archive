@@ -1,8 +1,12 @@
+% !TeX encoding = UTF-8
 % !TeX TS-program = pdflatex
 % !BIB TS-program = biblatex
 
-\documentclass[11pt,a4paper]{article}
-\pdfoutput=1
+\documentclass[11pt,a4paper,utf8]{article}
+
+\ifdefined\pdfoutput
+	\pdfoutput=1
+\fi
 
 \input{preamble.tex}
 
@@ -227,8 +231,9 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\noindent Let us conclude with comments on other definitions of the quasilocal energy discussed in the literature. As noted in ref.~\cite{Brown:1994gs} one can in principle define other measures of ``energy'' at a finite cutoff by choosing an appropriate normalization for the timelike Killing vector. The Killing vector considered in~\cite{Brown:1994gs} differs from ours in its overall normalization (by a factor of $r_c$) and fails to satisfy conditions (ii) and (iv) above. Relatedly, while the Killing vector considered in the quasilocal energy of BTZ-like solutions in ref.~\cite{Giribet:2013yka} does satisfy condition (iv) it is incompatible with condition (ii). In particular, we note that the expression for the quasilocal energy reported in~\cite{McGough:2016lol} contains a typo and \emph{does not} correspond to the expression originally given in~\cite{Brown:1994gs}. Indeed, to match the spectrum of the $T\bar{T}$ deformed theory one needs to use the Killing vector $\xi_c$ given in eq.~\eqref{xi1}. This provides further evidence for the physical requirements constraining our definition of $\xi_c$.  
 
 \section{Entanglement in the boundary story}
+\subsection{Review of entanglement at zero temperature}
 
-\subsection{Rindler map in finite temperature}
+\subsection{Entanglement entropy at finite temperature}
 
 \newcommand{\lp}{\ensuremath{l_p}}
 \newcommand{\halfL}{\ensuremath{\frac{L}{2}}}
@@ -404,7 +409,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\begin{gather}
 	\begin{aligned}
 		\xi_\mrm{CFT} &= \frac{2\pi}{{\tilde L}} \bigg\{
-			\pqty\Big{
+			\pqty{
 				\pqty{
 					(\tfrac{{\tilde L}}{2})^2
 					- (t^2 + x^2)
@@ -412,7 +417,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				+ 2tx \sinh\theta
 			} \,\pdd{t}
 		\\ &\qquad\qquad 
-			+ \pqty\Big{
+			+ \pqty{
 				\pqty{
 					(\tfrac{{\tilde L}}{2})^2
 					+ (t^2 + x^2)
@@ -726,11 +731,15 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	For now the coordinates $u_\pm, v_\pm, x_\pm, t_\pm$ and the coordinate length $L_\infty$ are all specified at $z\to 0$, i.e.~at the \textbf{asymptotic boundary}. Note that the RT surface lies on the plane $
 		t_\pm / x_\pm = \tanh \theta
 	$, namely $\theta$ is constant along the RT surface. 
+	
+	
+	{\color{red} use $l_u,\,l_v$}
+	
 	We have:
 	\begin{gather}
 	\begin{aligned}
 		\xi &= \frac{2\pi}{L_\infty} \bigg\{
-			\pqty\Big{
+			\pqty{
 				\pqty{
 					(\tfrac{L_\infty}{2})^2 - z^2
 					- (t^2 + x^2)
@@ -738,7 +747,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				+ 2tx \sinh\theta
 			} \,\pdd{t}
 		\\ &\qquad\qquad 
-			+ \pqty\Big{
+			+ \pqty{
 				\pqty{
 					(\tfrac{L_\infty}{2})^2 - z^2
 					+ (t^2 + x^2)
@@ -746,7 +755,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				- 2tx \cosh\theta
 			} \,\pdd{x}
 		\\ &\qquad\qquad 
-			+ \pqty\big{
+			+ \pqty{
 				x\sinh\theta
 				- t\cosh\theta
 			} \,2z\pdd{z}
@@ -754,8 +763,21 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\end{aligned}
 	\end{gather}
 	
+The RT surface is the set of the fixed points of the modular flow, ....bifurcating surface....
+
+
+\eq{ &\pqty{
+					(\tfrac{L_\infty}{2})^2 - z^2
+					- (t^2 + x^2)
+				} \cosh\theta
+				+ 2tx \sinh\theta =0\\
+			&	x\sinh\theta
+				- t\cosh\theta
+				}
+
+	
 	We note that the $\pdd{z}$ term vanishes in the following two cases:
-	\begin{itemize}[noitemsep,topsep=0pt]
+	\begin{itemize}%[noitemsep,topsep=0pt]
 	\item as $z\to 0$, i.e.~near the asymptotic boundary;
 	\item within the whole plane: $
 			x\sinh\theta
@@ -778,6 +800,8 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\label{eq:length_relations}
 	\end{equation}
 	
+	
+\begin{comment}
 	We then consider $\xi$ evaluated at the {constant finite cutoff} $z = z_c$,
 	\begin{equation}
 	\begin{aligned}
@@ -786,7 +810,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				L\sqrt{1 + (2z_c/L)^2}
 			}
 		& \bigg\{
-			\pqty\Big{
+			\pqty{
 				\pqty{
 					(\tfrac{L}{2})^2
 					- (t^2 + x^2)
@@ -794,7 +818,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				+ 2tx \sinh\theta
 			} \,\pdd{t}
 		\\[-.5ex] &\quad 
-			+ \pqty\Big{
+			+ \pqty{
 				\pqty{
 					(\tfrac{L}{2})^2
 					+ (t^2 + x^2)
@@ -802,7 +826,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				- 2tx \cosh\theta
 			} \,\pdd{x}
 		\\ &\quad 
-			+ \pqty\big{
+			+ \pqty{
 				x\sinh\theta
 				- t\cosh\theta
 			} \,2z_c\pdd{z}
@@ -820,6 +844,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				\sqrt{1 + (2z_c/L)^2}
 			}
 	\end{equation}
+\end{comment}
 	
 	This seems nice and all but there is a subtlety for finite cutoff $z = z_c$. 
 	In the bulk the constant surface gravity $
@@ -827,15 +852,17 @@ In this section we first review the holographic duality between $T\bar T$ deform
 		= \kappa_\xi \xi^\mu
 		= 2\pi \xi^\mu
 	$ guarantees that after Wick rotation, the Euclidean periodicity around the horizon is normalized to $\beta = 1$. However, if we restrict to the field theory living at constant cutoff $z = z_c$, which corresponds to a \TTbar deformed theory \cite{McGough:2016lol,Lewkowycz:2019xse} \sidenote{[more citations needed]}, since it has no knowledge of the $\pdd{z}$ component of $\xi$, we should reduce it to a modular flow within the $z = z_c$ plane by, e.g.~projecting the $z$ component out, which leaves us:
+	
+	{\color{red} delete
 	\begin{equation}
 	\begin{aligned}
 		\xi^{\mrm{FT}}_c
-		\equiv \proj{\sslash} \xi|_{z_c}
+		\equiv \proj{\text{/\!/}} \xi|_{z_c}
 		= \frac{2\pi}{
 				\sqrt{1 + (2z_c/L)^2}
 			}
 		& \bigg\{
-			\pqty\Big{
+			\pqty{
 				\pqty{
 					(\tfrac{L}{2})^2
 					- (t^2 + x^2)
@@ -843,7 +870,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				+ 2tx \sinh\theta
 			} \,\pdd{t}
 		\\[-2ex] &\quad 
-			+ \pqty\Big{
+			+ \pqty{
 				\pqty{
 					(\tfrac{L}{2})^2
 					+ (t^2 + x^2)
@@ -853,7 +880,10 @@ In this section we first review the holographic duality between $T\bar T$ deform
 		\bigg\}
 	\end{aligned}
 	\end{equation}
-	Which no longer has normalized $\beta$ if $z_c \ne 0$. In fact, compared to the $z_c \to 0$ situation which \textit{does} have $\beta = 1$, $\xi^{\mrm{FT}}_c$ is rescaled by a factor of $
+	Which no longer has normalized $\beta$ if $z_c \ne 0$.
+}
+	
+	 In fact, compared to the $z_c \to 0$ situation which \textit{does} have $\beta = 1$, $\xi^{\mrm{FT}}_c$ is rescaled by a factor of $
 		\frac{L}{L_\infty}
 		= 1/\sqrt{1 + (2z_c/L)^2}
 	$, which means that:
@@ -941,7 +971,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 		= \frac{
 				(L_\infty/2)^2 + \alpha z_c^2
 				- \sqrt{
-					\pqty\big{(L_\infty/2)^2 - \alpha z_c^2}^2
+					\pqty{(L_\infty/2)^2 - \alpha z_c^2}^2
 					+ 4t^2 \alpha z_c^2
 				}
 			}{2\alpha z_c}
@@ -1190,7 +1220,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\end{equation}
 	\begin{equation}
 		r(\phi) = \frac{2T\cosh TL}{
-				\sqrt{\cosh^2 TL - \pqty\big{
+				\sqrt{\cosh^2 TL - \pqty{
 					1 - \frac{4T^2}{r_c^2}
 				}\cosh^2 2T\phi}
 			}
@@ -1416,7 +1446,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\begin{gather}
 	\begin{aligned}
 		\xi &= \frac{2\pi}{L_\infty} \bigg\{
-			\pqty\Big{
+			\pqty{
 				\pqty{
 					(\tfrac{L_\infty}{2})^2 - z^2
 					- (t^2 + x^2)
@@ -1424,7 +1454,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				+ 2tx \sinh\theta
 			} \,\pdd{t}
 		\\ &\qquad\qquad 
-			+ \pqty\Big{
+			+ \pqty{
 				\pqty{
 					(\tfrac{L_\infty}{2})^2 - z^2
 					+ (t^2 + x^2)
@@ -1432,7 +1462,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 				- 2tx \cosh\theta
 			} \,\pdd{x}
 		\\ &\qquad\qquad 
-			+ \pqty\big{
+			+ \pqty{
 				x\sinh\theta
 				- t\cosh\theta
 			} \,2z\pdd{z}
@@ -1441,7 +1471,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	\end{gather}
 	
 	We note that the $\pdd{z}$ term vanishes in the following two cases:
-	\begin{itemize}[noitemsep,topsep=0pt]
+	\begin{itemize}%[noitemsep,topsep=0pt]
 	\item as $z\to 0$, i.e.~near the asymptotic boundary;
 	\item within the whole plane: $
 			x\sinh\theta
