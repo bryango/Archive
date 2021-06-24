@@ -1,5 +1,6 @@
+% !TeX encoding = UTF-8
 \usepackage{jheppub}
-                     
+
 \usepackage[mathscr]{euscript}
 \usepackage[textsize=scriptsize,textwidth=2.5cm]{todonotes}
 
@@ -59,7 +60,7 @@
 \newcommand{\lt}{\left}
 \newcommand{\rt}{\right}
 \newcommand{\PBK}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
-\newcommand{\abs}[1]{|#1|}
+%\newcommand{\abs}[1]{|#1|}
 \newcommand{\EV}[1]{\langle #1 \rangle}
 \newcommand{\beqn}{\begin{eqnarray}}
 \newcommand{\eeqn}{\end{eqnarray}}
@@ -95,24 +96,45 @@
 
 %%%% WX's macros %%%%
 
-\setlength{\skip\footins}{1.2\baselineskip} % pre footnote split, plain TeX
-\usepackage{mathtools,physics,enumitem,placeins}
-\usepackage[only,sslash]{stmaryrd}
 \let\textcite\cite
+\setlength{\skip\footins}{1.2\baselineskip} % pre footnote split, plain TeX
 
-% Captions
-	\usepackage{caption}
-	\captionsetup{labelfont+=bf
-		,margin=3em
-		,parskip=.4\baselineskip
-%		,format=plain
-%		,font+=small
-%		,textfont+=it
-%		,singlelinecheck=false
-	}
-	% ref name
-	\renewcommand{\tableautorefname}{\tablename}
-	\renewcommand{\figureautorefname}{\figurename}
+%\usepackage{enumitem}
+%\usepackage[only,sslash]{stmaryrd}
+
+%%%%%%%% 'mathjax.tex'
+
+%%%% \usepackage{mathtools}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\aqty}[1]{\left\langle#1\right\rangle}
+\let\ave\aqty
+%
+%%%% \usepackage{physics}
+\newcommand{\pqty}[1]{\left(#1\right)}
+\newcommand{\dd}[2][]{\mathinner{\mathrm{d}^{#1}#2}}
+\newcommand{\dv}[2]{\frac{\dd{#1}}{\dd{#2}}}
+\newcommand{\pdv}[2]{\frac{\partial{#1}}{\partial{#2}}}
+\newcommand{\var}[1]{\mathinner{\delta #1}}
+\newcommand{\order}[1]{\mcal{O}\pqty{#1}}
+%
+%%%% \usepackage{placeins}
+\def\FloatBarrier{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{caption}
+%\captionsetup{labelfont+=bf
+%	,margin=3em
+%	,parskip=.4\baselineskip
+%%	,format=plain
+%%	,font+=small
+%%	,textfont+=it
+%%	,singlelinecheck=false
+%}
+%% ref name
+%\renewcommand{\tableautorefname}{\tablename}
+%\renewcommand{\figureautorefname}{\figurename}
 
 % Simple macros / shorthands for LaTeX,
 % ... compatible with MathJax
@@ -175,17 +197,15 @@
     \blacksquare\mathrlap{_{\,#1}}%
 }}
 
-\newcommand{\aqty}[1]{\left\langle#1\right\rangle}
-\let\ave\aqty
 
 %%%% End of WX's macros %%%%
 
 %%%% macros from quasilocal.tex %%%%
 
 \def\Int#1#2{\int \textrm{d}^{#1} x \sqrt{|#2|}}
-\def\Bra#1{\left\langle#1\right|} 
+\def\Bra#1{\left\langle#1\right|}
 \def\Ket#1{\left|#1\right\rangle}
-\def\BraKet#1#2{\left\langle#1|#2\right\rangle} 
+\def\BraKet#1#2{\left\langle#1|#2\right\rangle}
 \def\Vev#1{\left\langle#1\right\rangle}
 \def\Vevm#1{\left\langle \Phi |#1| \Phi \right\rangle}\def\bbox{\bar{\Box}}
 \def\til#1{\tilde{#1}}
