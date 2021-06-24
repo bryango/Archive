@@ -1,0 +1,438 @@
+% !TeX TS-program = pdflatex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Packages and settings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[11pt,a4paper]{article}
+%\usepackage[dvips]{graphicx}
+%\usepackage[pdftex]{graphicx}     %Allows other formats for images
+%\usepackage{subfigure}
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage{graphicx}
+\usepackage{verbatim}
+\usepackage{cite}
+\usepackage{setspace}
+\usepackage[top=2.5cm, bottom=2.75cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage[colorlinks=true
+            	,urlcolor=blue
+            	,anchorcolor=blue
+            	,citecolor=blue
+            	,filecolor=blue
+            	,linkcolor=blue
+            	,menucolor=blue
+            	,linktoc=page
+            	]{hyperref}
+ \usepackage{float}
+\restylefloat{table}
+\renewcommand*\arraystretch{1.5}
+%\numberwithin{equation}{section}
+
+%\doublespacing
+\onehalfspacing
+
+%\setcounter{section}{-1}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\setcounter{tocdepth}{1}
+
+\allowdisplaybreaks
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros and definitions
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\long\def\symfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
+
+% Colored notes
+\def\rednote#1{{\color{red} #1}}
+\def\bluenote#1{{\color{blue} #1}}
+
+
+% Definitions
+\def\({\left (}
+\def\){\right )}
+\def\lb{\left [}
+\def\rb{\right ]}
+\def\lB{\left \{}
+\def\rB{\right \}}
+
+\def\Int#1#2{\int \textrm{d}^{#1} x \sqrt{|#2|}}
+\def\Bra#1{\left\langle#1\right|} 
+\def\Ket#1{\left|#1\right\rangle}
+\def\BraKet#1#2{\left\langle#1|#2\right\rangle} 
+\def\Vev#1{\left\langle#1\right\rangle}
+\def\Vevm#1{\left\langle \Phi |#1| \Phi \right\rangle}\def\bbox{\bar{\Box}}
+\def\til#1{\tilde{#1}}
+\def\wtil#1{\widetilde{#1}}
+\def\ph#1{\phantom{#1}}
+
+\def\ra{\rightarrow}
+\def\la{\leftarrow}
+\def\lra{\leftrightarrow}
+\def\p{\partial}
+\def\diff{\mathrm{d}}
+
+\def\sinh{\mathrm{sinh}}
+\def\cosh{\mathrm{cosh}}
+\def\tanh{\mathrm{tanh}}
+\def\coth{\mathrm{coth}}
+\def\sech{\mathrm{sech}}
+\def\csch{\mathrm{csch}}
+
+\def\a{\alpha}
+\def\b{\beta}
+\def\g{\gamma}
+\def\d{\delta}
+\def\e{\epsilon}
+\def\ve{\varepsilon}
+\def\k{\kappa}
+\def\l{\lambda}
+\def\n{\nabla}
+\def\om{\omega}
+\def\s{\sigma}
+\def\t{\theta}
+\def\z{\zeta}
+\def\vp{\varphi}
+
+\def\ss{\Sigma}
+\def\dd{\Delta}
+\def\GG{\Gamma}
+\def\ll{\Lambda}
+\def\tt{\Theta}
+
+\def\A{{\cal A}}
+\def\B{{\cal B}}
+\def\C{{\cal C}}
+\def\cE{{\cal E}}
+\def\D{{\cal D}}
+\def\F{{\cal F}}
+\def\H{{\cal H}}
+\def\I{{\cal I}}
+\def\J{{\cal J}}
+\def\K{{\cal K}}
+\def\L{{\cal L}}
+\def\N{{\cal N}}
+\def\O{{\cal O}}
+\def\P{{\cal P}}
+\def\cS{{\cal S}}
+\def\W{{\cal W}}
+\def\X{{\cal X}}
+\def\Z{{\cal Z}}
+
+\def\mfa{\mathfrak{a}}
+\def\mfb{\mathfrak{b}}
+\def\mfc{\mathfrak{c}}
+\def\mfd{\mathfrak{d}}
+
+\def\we{\wedge}
+\def\re{\textrm{Re}}
+
+\def\tilw{\tilde{w}}
+\def\tile{\tilde{e}}
+
+\def\tilL{\tilde{L}}
+\def\tilJ{\tilde{J}}
+
+\def\zz{\bar z}
+\def\xx{\bar x}
+\def\xp{x^{+}}
+\def\xm{x^{-}}
+
+\def\RR{\mathbb{R}}
+
+\def\tr{\mathrm{Tr}}
+\def\bnabla{\overline{\nabla}}
+
+\def\sint{\int_{\ss}}
+\def\dsint{\int_{\p\ss}}
+\def\hint{\int_{H}}
+
+% Equation environments
+\newcommand{\eq}[1]{\begin{align}#1\end{align}}
+\newcommand{\eqst}[1]{\begin{align*}#1\end{align*}}
+\newcommand{\eqsp}[1]{\begin{equation}\begin{split}#1\end{split}\end{equation}}
+
+% Square-root of determinants
+\newcommand{\absq}[1]{{\textstyle\sqrt{\left |#1\right |}}}
+%\newcommand{\absqeq}[1]{{\sqrt{|#1|}}}
+%\newcommand{\absq}[1]{{\sqrt{-#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beginning of WX's macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{physics}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ending of WX's macros
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beginning of document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\begin{center}
+{\Large \bf The contribution of the $B$-field to the area in $T\bar T$}\\
+%authors
+\today
+\vspace{5pt}
+
+\bigskip
+\parbox{\textwidth} {\hrulefill\\
+\emph{We check if the $B$-field contributes to the area term of candidate RT surfaces in single-trace $T\bar T$-deformed backgrounds.deformations.}\vspace{-5pt}
+
+\hrulefill
+}
+\end{center}
+
+\tableofcontents
+
+\bigskip
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{A replica geometry from TsT}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+Let us first consider an example a-la Lewkowycz-Maldacena. We would like to construct a smooth background invariant under $\tau \sim \tau + 2\pi n$ with a horizon in the bulk where the $\tau$-circle shrinks to zero (this is the fixed point of the replica symmetry). We can achieve this by considering the Euclidean TsT black string with $T_u = T_v = T$ which in the string frame reads
+\eqsp{
+ds^2 &= \frac{dr^2}{4(r^2 - 4 T_u^2 T_v^2)} + \frac{r du dv + T_u^2 du^2 + T_v^2 dv^2}{1 + 2 \lambda r + 4 \lambda^2 T_u^2 T_v^2},\\
+B &= \frac{r + 4 \lambda T_u^2 T_v^2}{2(1 + 2 \lambda r + 4 \lambda^2 T_u^2 T_v^2} dv \we du, \\
+e^{2\phi} &= \frac{k}{p} \bigg(\frac{1- 4 \l^2 T_u^2 T_v^2}{1 + 2 \lambda r + 4 \lambda^2 T_u^2 T_v^2} \bigg), \label{tstbackground}
+}
+where $u = \vp + i \tau$ and $v = \vp - i \tau$. Near the horizon $r = 2T^2 + \epsilon^2$ we find that 
+\eq{
+ds^2 =  \bigg( \frac{1}{4T^2} d\epsilon^2 + \frac{1}{1 + 2 \lambda T^2} d\tau^2 + \frac{4T^2}{1+2\l T^2} d\vp^2 \bigg).
+}
+When $\l=0$ we can choose $4T^2 = 1/n^2$ to get a smooth $n$-replica geometry where $\tau \sim \tau + 2\pi n$. Crucially, in the $\l = 0$, this identification between $T$ and $n$ does not spoil the boundary conditions, which are $T$-independent. 
+
+The situation is more subtle in the TsT case. We see from \eqref{tstbackground} that while the metric and the $B$ field are independent of the phase space variables at the boundary $r \to \infty$, namely
+\eq{
+ds^2\big|_{r\to \infty} \sim \frac{dr^2}{4r^2} + \frac{1}{2\l} du dv, \qquad B\big|_{r\to\infty} \sim \frac{1}{4\l} dv \we du,
+}
+the dilaton does depend on $T_u$ and $T_v$, that is
+\eq{
+e^{2\phi} \big|_{r\to\infty} \sim \frac{k}{p} \bigg(\frac{1 - 4 \l^2 T_u^2 T_v^2}{2\l r}\bigg) .
+}
+This means, in particular, that in different frames, e.g.~the Einstein frame, the boundary conditions for the metric will also depend on $T_u$ and $T_v$. We can make the boundary conditions of all of the fields of the theory by a simple rescaling of the radial coordinate
+\eq{
+r \to z = \frac{r}{1 - 4 \l^2 T_u^2 T_v^2},
+}
+which is well-defined in the limit $\l\to 0$. 
+
+In the $z$-gauge, the near horizon limit of the nonrotating TsT black string is obtained by letting $z = 2T^2/(1 - 4 \l^2 T^4) + \epsilon_z^2$, whereupon the metric becomes
+\eq{
+ds^2 =  \bigg(\frac{1 - 4 \l^2 T^4}{4T^2} \bigg) \bigg[ d\epsilon_z^2 + \frac{4 T^2}{1 + 2 \l T^2} \epsilon_z^2 d\tau^2 + {\color{red} \frac{1}{1-2\l T^2}\Big(\frac{4T^2}{1+2\l T^2}\Big)^2 d\vp^2 \textrm{(check)}}   \bigg].
+}
+Thus we can obtain an $n$-replica geometry with $\tau \sim \tau + 2 \pi n$ by letting
+\eq{
+\frac{4 T^2}{1 + 2 \l T^2} = \frac{1}{n^2} \quad \implies \quad T^2 = \frac{1}{2(2n^2 - \l)}.
+}
+Consequently, we find that near the horizon, the background becomes
+\eqsp{
+ds^2 &= \bigg(\frac{2n^2 - 2 \l}{2n^2 - \l} \bigg) \big( n^2 d\epsilon_z^2 + \epsilon_z^2 d\tau^2 + \dots \big), \\
+B&= \frac{1}{4n^2} dv \wedge du, \\
+e^{2\phi} &= \frac{k}{p} \bigg( \frac{n^2}{n^2 - \l} \bigg). \label{tstreplica}
+}
+Interestingly, we note that 
+\begin{itemize}
+\item[($i$)] the $B$ field at the horizon is independent of $\lambda$. This fact is independent of the choice of gauge we work in. The choice of gauge only affects the factor in front of the metric in \eqref{tstreplica};
+\item[($ii$)] since the $B$ is independent of $\l$, i.e.~since it takes the same value as in the BTZ background, we don't expect it to contribute to the on-shell action. We'll see what this means in what follows.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The $B$-field $\theta$-term}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We now take a look at the value of $\theta$ corresponding to the $B$-field. For the supergravity action in the Einstein frame where $(g_E)_{\mu\nu} = e^{-4\phi} g_{\mu\nu}$,
+\eq{
+S = \alpha \int d^3x \sqrt{-g} \Big( R - 4 \p_\mu \phi \p^\mu \phi + 4 e^{4\phi} - \frac{e^{-8\phi}}{12} H_{\mu\nu\a} H^{\mu\nu\a}\Big).
+} 
+The $\theta$-term for the $B$-field is given by
+\eq{
+\xi \cdot \theta_B = \frac{\a}{2} \big( e^{-8\phi} \xi^\mu H^{\nu\a\b} \d B_{\a\b}\big) \epsilon_{\mu\nu\a} dx^\a,
+}
+where $\xi$ is some vector. The contribution of the $\theta$-term to the on-shell gravitational action (in the Einstein frame) is then
+\eq{
+\int_{\gamma \times S^1} \theta_B = \int_\gamma \xi \cdot \theta_B = \a \int \sqrt{-g_E} \,e^{-8\phi} \xi^\tau H^{ruv} \delta B_{uv}\epsilon_{tr\vp},
+}
+where $\xi = \p_\tau$ is the generator of the $S^1$ and $\gamma$ is the horizon.
+
+\subsubsection*{The $\l = 0$ case}
+
+Let us first consider the $\l=0$ case. From \eqref{tstreplica} we see that $\delta B_{uv} = (2/n^3) du\we dv$. Furthermore the field strength $H = d B$ is a top form, meaning that it is proportional to $\epsilon_{\mu\nu\a}$. As a result the $\theta$-term does not vanish. This is a puzzle since we now that in the $\l = 0$ case, the on-shell action should be given just by the area of the horizon. In order to solve this puzzle we note that
+\begin{itemize}
+\item[($i$)] the $\theta$-term is not gauge invariant since $\delta B_{\mu\nu}$ appears explicitly in the $\theta$-term;
+\item[($ii$)] the norm of the gauge field diverges at the horizon.
+\end{itemize}
+We expect (or should require) that all of our fields are smooth at the horizon. Then it is possible to remedy the divergent norm of the $B$ field by a gauge transformation such that 
+\eq{
+B_{\mu\nu} \to B'_{\mu\nu}  = B_{\mu\nu} + T_u T_v du \we dv = - \frac{1}{2} ( r - 2T_u T_v) du \we dv.
+}
+The gauge transformation we used above is uniquely determined by requiring a finite norm at the horizon. In particular, it does not spoil the boundary conditions of the $B$-field (since the gauge transformation is a constant) and it does not spoil the value of the conserved charges. Importantly, this gauge transformation makes both the norm and the value of the $B$-field at the horizon vanish. As a result we find that the $\theta$ term no longer contributes.
+
+\bigskip
+\noindent{Questions and comments:} 
+\begin{itemize}
+\item[($i$)] is it possible that there is another contribution to $\theta_B$ that I'm missing before or after the gauge transformation such that the final answer is independent of the choice of gauge?
+\item[($ii$)] is it possible that when the norm of the $B$-field diverges that we cannot ignore the volume contribution of the on-shell action somehow?
+\end{itemize}
+
+
+\subsubsection*{The general case}
+
+When $\l \ne 0$, the norm of the $B$-field is given by
+\eq{
+B_{\mu\nu}B^{\mu\nu} = - 2 e^{-8\phi} \frac{(r + 4 \l T_u^2 T_v^2)^2}{(r^2 - 4 T_u^2 T_v^2)},
+}
+and also diverges at the horizon. In this case there is also a unique gauge transformation that renders the norm finite, namely
+\eq{
+B_{\mu\nu} \to B'_{\mu\nu} = B_{\mu\nu} + \frac{T_u T_v}{1 + 2 \l T_u T_v} = - \frac{1}{2} \bigg(\frac{1 - 2\l T_u T_v}{1 + 2 \l T_u T_v} \bigg) \bigg( \frac{r - 2 T_u T_v}{1 + 2 \l r + 4 \l^2 T_u^2 T_v^2}\bigg) du \we dv.
+}
+We see that the $B$-field also vanishes at the horizon and as result there is \emph{seemingly} no contribution of the $B$-field $\theta$-term to the on-shell action. This not the end of the story, however, since the gauge transformation introduced above spoils the boundary conditions of the $B$-field. Since the $B$-field asymptotes to a constant at infinity, any constant gauge transformations changes its boundary conditions. In this case we have
+\eq{
+B_{\mu\nu} \big|_{r \to \infty} \sim - \frac{1}{4\l} du \we dv, \qquad B'_{\mu\nu} \big|_{r \to \infty} \sim - \frac{1}{4\l} \bigg( \frac{1 - 2 \l T_u T_v}{1 + 2 \l T_u T_v}\bigg) du \we dv.
+}
+This means that the replica background fields would not satisfy the same boundary conditions for general $n$ and $n = 1$.
+
+\noindent{Comments:}
+\begin{itemize}
+\item[($i$)] We note that the gravitational charges are unchanged after the gauge transformation. This is a consequence of having ``the right" value for the dilaton of the TsT black string. More concretely, before the gauge transformation any constant shift of the dilaton leads to integrable charges. However, there is only one choice for which $T_u$ and $T_v$ dependent shifts of the gauge field leave the charges unchanged. This is the value of the dilaton used in~\eqref{tstbackground}.
+
+\item[($ii$)] A natural thing to try is to shift the $B$-field before performing the TsT transformation to obtain a background that presumably will feature a $B$-field with a finite norm at the horizon. This background will most likely differ from \eqref{tstbackground} with $B_{\mu\nu} \to B'_{\mu\nu}$. This seems worth understanding.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The $B$-field and the RT surface}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Let us now consider the contribution of the $B$-field to the area of the RT surface. In both the BTZ and TsT geometries constructed above, we have one unphysical feature, namely that they require a gauge transformation that depends on the location of the fixed point of the replica symmetry. On the other hand, for the set of fixed points that correspond to the RT surface, any such gauge transformations should be universal and independent of the RT surface we're interested in. We will now show that whenever we have an RT surface that is orthogonal to the asymptotic boundary near infinity, then the contribution of the $B$-field to the area vanishes.
+
+Let us first consider the Rindler parametrization of the RT surface such that near the RT surface at $\rho = 0$ we have
+\eq{
+ds^2 = d\rho^2 + \rho^2 d\tau^2 + dy^2 + \dots,
+}
+where $y$ is the coordinate along the RT surface while $\rho$ and $\tau \sim \tau + 2 \pi$ describe the plane orthogonal to the RT surface. In three-dimensional gravity --- i.e.~for both the BTZ and TsT geometries --- the field strength of the $B$-field is a top form, meaning that we can write
+\eq{
+H = c_1 \epsilon_{\mu\nu\a} dx^{\mu} \we dx^{\nu} \we dx^{\alpha},
+}
+where $\epsilon_{\mu\nu\a}$ contains a factor of $\sqrt{-g}$ and $c_1$ is a constant that depends on the phase space variables and, in the case of the TsT black string, also on the deformation parameter. Consequently we find that the field strength $H$ is given by
+\eq{
+H \sim c_1 \rho\, d\rho \we d \tau \we  d y. \label{Hdef}
+}
+
+The contribution of the $B$-field to the area of the RT surface is thus given by
+\eq{
+\int_{\gamma \times S^1} \theta_B = \int_\gamma \xi \cdot \theta_B = \frac{\a}{2} \int_\gamma e^{-8\phi} \xi^\tau H^{\rho\mu\nu} \delta B_{\mu\nu}\epsilon_{\tau \rho y}dy \sim \a c_1 e^{-8\phi} \int_\gamma \delta B_{\tau y} dy.
+}
+Hence we learn that the only possible contributions of the gauge field to the area of the RT surface come from $B_{\tau y}$. Solving for the value of the $B$-field from the field strength \eqref{Hdef} yields
+\eq{
+B \sim \frac{c_1}{2} ( \rho^2 + b) d\tau \we dy + \dots, \label{Bfieldbootstrap}
+}
+where we have ignored the other components of the gauge field and $b$ is an integration constant. Thus, we learn that the only contribution of the $B$-field to the $\theta_B$-term comes from this integration constant. 
+
+In order to determine the integration constant in \eqref{Bfieldbootstrap} it we note that near the asymptotic boundary the plane orthogonal to the RT surface is parallel to the asymptotic boundary, meaning that we can identify the following coordinates (up to a conformal factor) 
+\eq{
+d\rho^2 + \rho^2 d\tau^2 \sim e^{-4\phi} f(r) du dv, \label{boundarymatching}
+}
+where $f(r) = r$ for AdS$_3$ backgrounds while $f(r) = 1/2\l$ for TsT backgrounds. The $B$ field of the AdS$_3$ and TsT geometries features only $u$ and $v$ components, meaning that
+\eq{
+B = - \frac{f(r)}{2} du \we dv.
+}
+near the asymptotic boundary. Note that this is the same $f(r)$ function used in the parametrization of the metric at the boundary \eqref{boundarymatching}. As a result, we learn that the $B$-field at the endpoints of the RT surface features only $B_{\rho\tau}$ components, such that $B_{\tau y} = 0$ to leading order in $\rho$. This implies that the integration constant in \eqref{Bfieldbootstrap} vanishes and we have
+\eq{
+B \sim \frac{c_1}{2}  \rho^2  d\tau \we dy + \dots, 
+%\label{Bfieldbootstrap}
+}
+Consequently the $\theta_B$-term vanishes along the RT surface and the $B$-term does not contribute to the area of the RT surface.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{The $B$-field and the string frame geodesic}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We've shown that whenever we have an RT surface that is \textbf{orthogonal} to the asymptotic boundary near infinity, then the contribution of the $B$-field to the area vanishes. We shall demonstrate below that such contribution also vanishes if we compute the on-shell action of a curve $\gamma$ that goes \textbf{parallel} to the asymptotic boundary as it approaches infinity. This is what happens if we consider $\gamma$: the string frame geodesic; see \texttt{notesEETTbar.pdf}. 
+
+All the arguments up till \eqref{Bfieldbootstrap} go through in the above section; now instead of \eqref{boundarymatching}, near the asymptotic boundary, we have:
+\begin{equation}
+\begin{aligned}
+	d\rho^2 + \rho^2 d\tau^2 + dy^2
+	&\sim e^{-4\phi} \pqty{
+			\frac{\dd{r}^2}{4r^2}
+			+ f(r)\,\pqty{\dd{t}^2 + \dd{\varphi}^2}
+		} \\
+	&\sim e^{-4\phi} \pqty{
+			\pqty{\dd{\tfrac{\ln r}{2}}}^2
+			+ f(r)\,\pqty{\dd{t}^2 + \dd{\varphi}^2}
+		} \\
+\end{aligned}
+\end{equation}
+Namely, the plane orthogonal to the RT surface is now perpendicular to the asymptotic boundary. 
+Here for simplicity we use $\tau$ for the \textit{local} Euclidean time around $\gamma$, and $t$ for the Euclidean time in the \textit{global} metric. We have the following observations:
+\begin{itemize}
+\item As in \eqref{Bfieldbootstrap}, only the $B_{\tau y}$ component in the local coordinates contributes to $\theta_B$; this means that only the $B_{t\vp}, B_{r\vp}$ components in the global coordinates contribute to $\theta_B$, as only $\varphi$ is related to $y$ near the asymptotic boundary.
+
+\item The $B$ field profile in the TsT geometries contains only the $B_{uv}$ component; compared with the previous observation, this means that only the $B_{t\vp}$ component could possibly contribute. 
+\end{itemize}
+On the other hand, from the $B$-field profile we see that:
+\begin{equation}
+\begin{aligned}
+	B_{t\varphi}
+	\propto f(r) \dd{t} \we \dd{\vp}
+	&\sim e^{4\phi} \rho \dd{\tau} \we \dd{\vp} \\
+	&\sim \frac{1}{r_0^2} \pqty{
+			\rho - \frac{2}{r_0^2}\,\rho^2
+		} \dd{\tau} \we \dd{\vp} \\
+\end{aligned}
+\end{equation}
+Where $r_0 \to \infty$ is the $r$ coordinate for $\gamma$. We see that there is no constant piece in the $B$-field profile, therefore again the $B$-field does not contribute as $\gamma$ goes parallel to the asymptotic boundary. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section{Conclusions}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\bigskip
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection*{Acknowledgments}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{thebibliography}{137}
+
+%\end{thebibliography}
+
+
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% The end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

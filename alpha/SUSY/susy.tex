@@ -1,0 +1,66 @@
+% !TeX document-id = {b5392a94-51a3-49d1-9ba5-698bc09f9d35}
+% !TeX encoding = UTF-8
+% !TeX spellcheck = en_US
+% !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
+
+\documentclass[a4paper
+	,10pt
+%	,twoside
+]{article}
+
+\input{preamble.tex}
+
+\title{Understanding Supersymmetry}
+\addbibresource{susy.bib}
+
+%%% ID: sensitive, do NOT publish!
+\InputIfFileExists{id.tex}{}{}
+
+\makeatletter
+\newcommand{\nobeginpar}{\@beginparpenalty=10000}
+\makeatother
+
+\begin{document}
+\maketitle
+\pagenumbering{arabic}
+\thispagestyle{empty}
+
+%\vspace*{-.5\baselineskip}
+
+\setlength{\parskip}{.1\baselineskip}
+\tableofcontents
+\setlength{\parskip}{\parskipnorm}
+
+\addtocounter{section}{-1}
+\section{References}
+\raggedright
+	\begin{itemize}
+	\item \cite{Atanasov:2017abc}~\fullcite{Atanasov:2017abc}
+		\begin{itemize}
+		\item \textbf{Appendix E} of: \par
+		\cite{Belavin:1984vu}~\fullcite{Belavin:1984vu}.
+		
+		\item \textbf{Section \Romannum{4}} of: \par
+		\cite{Kogut:1979wt}~\fullcite{Kogut:1979wt}.
+		
+		\item \textbf{Chapter 5} of:\par
+		\cite{Fradkin:1991nr}~\fullcite{Fradkin:1991nr}.
+		
+		\end{itemize}
+	\end{itemize}
+\justifying
+
+\section{Algebra \& Unitary Representations}
+	
+	
+	
+	
+	
+\vspace{1.2\baselineskip}
+\pagebreak[4]
+\raggedright
+\printbibliography[%
+%	title = {参考文献} %
+	,heading = bibintoc
+]
+\end{document}
