@@ -1356,8 +1356,59 @@
 		\leadsto \var_\epsilon \phi
 		= \epsilon\,\var_\xi \phi
 	$ suggests a convenient method of finding the Noether current $J_\xi$, without worrying about the boundary term $K_\xi$; we need only compute $\var_\epsilon L$, throw away the total derivatives, and arrange the final result as some factors of $\dd{\epsilon}$, which will automatically include $K_\xi$ contributions and give us a conserved $J_\xi$. 
-		\mapsto \var_\eta \phi
-	$ suggests a convenient method of finding the Noether current $J_\xi$, without worrying about the boundary term $K_\xi$; we need only compute $\var_\eta L$, ignore the total derivatives, and collect the factors of $\dd{\epsilon}$, which will automatically include $K_\xi$ contributions and give us a conserved $J_\xi$. There will still be ambiguities as one can shift $\Theta$ by a total derivative $\dd{Y}$, as we've seen before.
+	
+	In fact, we don't even need to impose $
+		\var_\epsilon \phi
+		= \epsilon(x)\,\var_\xi \phi
+	$; we need only require that $\var_\epsilon \phi$ has the following properties: it's compactly supported around some point $x_0$, within the support of $\epsilon(x)$, and with $\epsilon \to 1$ it reduces to the usual symmetry variation $\var_\xi \phi$:
+	\begin{empheq}{equation}
+		\var_\epsilon \phi
+		= \var_\epsilon \phi_{\,[\epsilon(x)]},
+	\quad
+		\var_\epsilon \phi_{\,[\epsilon(x) = 1]}
+		= \var_\xi \phi
+	\label{eq:gauging_conditions}
+	\end{empheq}
+	We follow the arguments of \textcite{Polchinski:1998rq}: consider a ``Taylor expansion'' in the functional space around the ``point'' $\epsilon(x) = 1$; up to total derivative terms, $\var_\epsilon S$ would vanish if $\epsilon$ were a constant, so its variation must be proportional to the gradient $\dd{\epsilon}$,
+	\begin{empheq}{equation}
+		\var_\epsilon L
+		= \dd{\pqty\big{
+				\epsilon(K_\xi - \var_\xi l)
+			}} 
+			+ (\dd{\epsilon}) \wedge J_\xi
+			+ \order{\epsilon^2}
+	\end{empheq}
+	The total derivative terms must be proportional to $\epsilon(x)$, since it comes from the constant piece (0-mode) of $\epsilon(x)$, and its contribution is simply proportional to the $\epsilon(x) = 1$ contribution. 
+	
+	We see that we've recover the result of \eqref{eq:localized_variation} just from basic analysis, without assuming the explicit form of $\var_\xi \phi$. The rest of the arguments that leads to $\dd{J_\xi}|_{\mcal{\tilde{P}}} = 0$ follows through with no issues. We see that as long as it satisfies some basic conditions \eqref{eq:gauging_conditions}, how we promote $\var_\xi \phi \leadsto \var_\epsilon \phi$ doesn't actually matter; in the end we will get a valid conserved current $J_\xi$. 
+	
+	This result comes in handy, as the promotion of $\var_\xi \phi \leadsto \var_\epsilon \phi$ can be taken to be the usual ``gauging'' process that promotes a global symmetry to a local symmetry, by adding coordinates dependence to the symmetry parameter: $\xi \leadsto \epsilon(x)$. 
+	
+	\newparagraph
+	There will still be ambiguities as one can shift $\Theta$ by a total derivative $\dd{Y}$, as we've seen before. In fact it's highly possible that this $\dd{\epsilon}$ procedure described here may produce a different current, compared with the conventional Noether's procedure; we have:
+	\begin{equation}
+		\dd{\epsilon} \wedge
+			\pqty{J_\xi + \dd{Y_\xi}}
+		= \dd{\epsilon} \wedge J_\xi
+			+ \dd{\pqty{
+				\epsilon \dd{Y_\xi}
+			}}
+	\end{equation}
+	Indeed the coefficient of $\dd{\epsilon}$ is only defined up to a total derivative. 
+	This actually provides a way to connect the Hilbert and Noether stress tensor. 
+	
+\subsection{Derivation for the Hilbert stress tensor}
+	Again consider $\xi^\mu = \epsilon^\mu$, i.e.~the generator for translations in flat spacetime; we now promote it to some localized diffeomorphism:
+	\begin{equation}
+		x\mapsto x - \xi \leadsto x - \epsilon(x),
+	\quad
+		\xi^\mu = \epsilon^\mu
+		\leadsto \epsilon^\mu(x),
+	\quad
+		\var_\xi \phi
+		\leadsto \var_\epsilon \phi
+		= \ldv{\epsilon} \phi
+	\end{equation}
 	
 	
 %\legacyReference
