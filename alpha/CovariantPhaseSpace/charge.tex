@@ -11,7 +11,7 @@
 \input{../preamble.tex}
 \input{../.modules/basics/biblatex.tex}
 
-\title{Covariant Phase Space\\\large\it A Pedagogical Introduction}
+\title{Covariant Phase Space\\[-.2ex]\large\it A Pedagogical Introduction}
 \addbibresource{charge.bib}
 
 %%% ID: sensitive, do NOT publish!
@@ -35,7 +35,24 @@
 \setlength{\parskip}{\parskipnorm}
 
 \addtocounter{section}{-1}
-\section{Conventions}
+\section{Introduction \& Conventions}
+	The phase space is understood as the space of \textit{all solutions} of the equations of motion (EoMs), satisfying the boundary conditions; alternatively, we can think of it as a collection of all possible \textit{initial configurations} of the system, and the additional \textit{symplectic structure} specifies their evolutions. This idea is best explained by \textcite{Crnkovic:1986ex}. 
+	
+	Traditionally we construct the phase space variables $(\pi,\phi)$ as follows: we first pick a special time coordinate $t$, and then introduce the canonical momentum:
+	\begin{equation}
+		\pi = \pdv{\mcal{L}}{\dot{\phi}},
+	\quad
+		\dot{\phi} = \pdd{t} \phi
+	\end{equation}
+	Unfortunately, this procedure breaks general covariance. We would like to find a construction of phase space that respects general covariance. 
+	
+	The inspiration comes from the Lagrangian treatment of field theory, where we work with:
+	\begin{equation}
+		\pi^\mu = \pdv{\mcal{L}}{(\pd_\mu\phi)}
+	\end{equation}
+	Which preserves general covariance. But $(\pi_\mu,\phi)$ is not a set of independent coordinates; they are constrained by the equations of motion (EoMs). The rough idea is that we start with $(\pi_\mu,\phi)$, and then reduce it to the independent variables $(\pi,\phi)$ by imposing the EoMs, and possibly, additional constraints due to gauge redundancy. 
+	
+	In this note we review the covariant formalism in a systematic yet pedagogical manner. 
 	We follow Prof.~Wei Song's lecture notes on $\mrm{AdS}_3/\mrm{CFT}_2$, which include a very nice introduction to the covariant formalism and its application. 
 	When it comes to notations, we try to follow the conventions of \textcite{Harlow:2019yfa}, with the following exceptions and extensions: 
 	
@@ -58,6 +75,8 @@
 	In differential geometry, this is more commonly referred to as the \textit{interior product} (or interior derivative, interior multiplication, etc), but there is no need for such fancy notion as it's just simple contraction. 
 	
 	\item Raising and lowering indices are denoted by $\sharp$ and $\flat$ respectively; these are given the cool name of \textit{musical isomorphisms}. 
+	
+	For simplicity, sometimes we might omit the explicit notations of musical isomorphisms, but they are nonetheless implied; e.g.~the normal (co-)vector $n$ can be understood as $n^\mu$ or $n_\mu$. 
 	
 	\item The Levi-Civita \textbf{symbol} is denoted as $\epsilon_{\cdots}$ with \textbf{no} $\sqrt{\abs{g}}$ factor; we will try to keep the $\sqrt{\abs{g}}$ explicit. Therefore, the Levi-Civita \textbf{tensor}, i.e.~the standard volume form, is given by:
 	\begin{equation}
@@ -109,13 +128,14 @@
 		\hstar\,(f\sqrt{\abs{g}} \dd[D]{x})
 		= (-1)^s f,
 	\quad
-		\hstar V^\flat
-		= V\cdot \sqrt{\abs{g}} \dd[D]{x}
+		\hstar \theta^\flat
+		= \theta\cdot \sqrt{\abs{g}} \dd[D]{x}
 	\end{equation}
+	It's convenient to only act $\hstar$ on the form of a smaller degree to get the form of a larger degree; in this way we don't need to worry about the $(-1)^s$ factor. 
 	A particular useful relation is:
 	\begin{equation}
-		\dd{\hstar V^\flat}
-		= \hstar\,(\cdv{\mu} V^\mu)
+		\dd{\hstar \theta^\flat}
+		= \hstar\,(\cdv{\mu} \theta^\mu)
 	\end{equation}
 	This is derived around \eqref{eq:divergence_form}. The inner product $\aqty{\cdot,\cdot}$ is particularly convenient for 1-forms; in this case we have:
 	\begin{equation}
