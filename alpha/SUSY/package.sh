@@ -24,4 +24,8 @@ rsync \
     "$FILENAME.bbl" \
     "$FILENAME.pdf" \
     "img/" \
+    "README.md" \
     "$TARGET"
+
+# cd "$TARGET" || exit
+# zip -r "$FILENAME.zip" .
