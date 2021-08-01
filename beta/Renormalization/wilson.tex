@@ -1,6 +1,7 @@
 % !TeX document-id = {b5392a94-51a3-49d1-9ba5-698bc09f9d35}
 % !TeX encoding = UTF-8
 % !TeX spellcheck = en_US
+% !TeX TS-program = pdflatex
 % !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
 
 \documentclass[a4paper
@@ -25,20 +26,20 @@
 \thispagestyle{empty}
 
 \vspace*{-.5\baselineskip}
-	\textbf{Reason:} The continuum limit $\Lambda\to\infty$ is \textbf{not} well-defined.
+	\textbf{Philosophy:} The continuum limit $\Lambda\to\infty$ is \textbf{not} well-defined.
 	Renormalization provides a way to \emph{define} the theory when
 	$\Lambda\to\infty$.
 	
-	\textbf{My belief:} The only way to fully understand renormalization is
+	\textbf{Personal Belief:} The only way to fully understand renormalization is
 	through Wilson's arguments; all other ``interpretations'' of
 	renormalization are only \emph{heuristic}.
 
-	\textbf{Keywords:}
-	\begin{itemize}[nosep,topsep=-.5\parskip]
-	\item Renormalization group
-	\item Counterterms
-	\item Regularization and cutoff
-	\end{itemize}
+%	\textbf{Keywords:}
+%	\begin{itemize}[nosep,topsep=-.5\parskip]
+%	\item Renormalization group
+%	\item Counterterms
+%	\item Regularization and cutoff
+%	\end{itemize}
 
 
 \setlength{\parskip}{.1\baselineskip}
@@ -60,7 +61,7 @@
 	    \end{itemize}
 	  \end{itemize}
 	\item Schwartz, Chapter 15
-	\item Peskin \& Schroeder, Chapter 10 \& 12
+	\item Peskin \& Schroeder, Chapter 10, 11 \& 12
 	\item Hollowood's book:
 	  \begin{itemize}[nosep]
 	  \item \url{https://arxiv.org/abs/0909.0859}
@@ -68,13 +69,14 @@
 	  \end{itemize}
 	\end{itemize}
 
-\section{Wilson's picture}
-	Seed theory parameters (i.e.\ \emph{bare parameters}):
-	$(Z_\phi,g,\Lambda)_0$, where $g = (m,\lambda,\cdots)$ is the collection of all possible couplings. $Z_\phi$ is the coefficient of the kinetic term.
-	
+\pagebreak[4]
+
+\section{Wilson's Picture}
+	We start with a \textit{seed theory} with \textit{bare} parameters: $(Z_\phi,g,\Lambda)_0$, where $g = (m,\lambda,\cdots)$ is the collection of all possible couplings. $Z_\phi$ is the coefficient of the kinetic term.
+	We \textbf{coarse-grain} the theory by integrating out some high energy modes:
 	\begin{equation}
 	\begin{aligned}
-	  \phi_{\Lambda_0}(x)
+	  \phi^{\Lambda_0}(x)
 	  \sim \int^{\Lambda_0} \dd{p}
 	    e^{ip\cdot x}
 	    \tilde{\phi}(p)
@@ -84,13 +86,13 @@
 	    + \int_{\Lambda}^{\Lambda_0} \dd{p}
 	    e^{ip\cdot x}
 	    \tilde{\phi}(p) \\
-	  &=\colon \phi_{\Lambda}(x) + \chi(x)
+	  &=\colon \phi^{\Lambda}(x) + \chi(x)
 	\end{aligned}
 	\end{equation}
 	
 	\begin{equation}
 	\begin{aligned}
-	  \DD\phi_{\Lambda_0}(x)
+	  \DD\phi^{\Lambda_0}(x)
 	  \sim \prod_{\norm{p} < \Lambda_0}
 	    \dd{\tilde{\phi}(p)}
 	  &= \prod_{\norm{p} < \Lambda}
@@ -98,7 +100,7 @@
 	    \prod_{\Lambda < \norm{p} < \Lambda_0}
 	    \dd{\tilde{\phi}(p)} \\
 	  &\sim
-	    \DD\phi_{\Lambda}(x)\,
+	    \DD\phi^{\Lambda}(x)\,
 	    \DD\chi(x)
 	\end{aligned}
 	\end{equation}
@@ -106,17 +108,17 @@
 	\begin{equation}
 	\begin{aligned}
 	  \mcal{Z} (g_0,\Lambda_0)
-	  &= \int \DD\phi_{\Lambda_0}
-	      e^{iS[\phi_{\Lambda_0}]} \\
-	  &= \int \DD\phi_{\Lambda}
+	  &= \int \DD\phi^{\Lambda_0}
+	      e^{iS[\phi^{\Lambda_0}]} \\
+	  &= \int \DD\phi^{\Lambda}
 	    \int \DD\chi
-	      e^{iS[\phi_\Lambda + \chi]} \\
-	  &=: \int \DD\phi_{\Lambda}
-	      e^{iS_{\mathrm{eff}} [\phi_\Lambda]}
+	      e^{iS[\phi^\Lambda + \chi]} \\
+	  &=: \int \DD\phi^{\Lambda}
+	      e^{iS^\Lambda [\phi^\Lambda]}
 	  =: \mcal{Z}\pqty{g(\Lambda),\Lambda}
 	\end{aligned}
 	\end{equation}
-	Coarse-grained parameters: $(Z_\phi,g,\Lambda)$.
+	The coarse-grained parameters are given by $(Z_\phi,g,\Lambda)$.
 	
 	\textbf{Subtlety:} the notation above is only schematic; in practice we
 	first Wick-rotate to Euclidean signature, so that the momentum cutoff is
@@ -127,12 +129,11 @@
 	
 	\textbf{Effective action:}
 	\begin{equation}
-	  S_{\mathrm{eff}}[\phi]
+	  S^\Lambda[\phi]
 	  = -i \ln \int \DD \chi
 	      e^{iS[\phi + \chi]} \\
 	\end{equation}
-	$\phi = \phi_\Lambda$ is treated as constant when doing
-	$\int \DD \chi$. Perturbatively, we integrate over loops with $\chi$ propagators as internal lines.
+	$\phi = \phi^\Lambda$ is treated as an external source or a background field when we compute $\int \DD \chi$. Perturbatively, we integrate over loops with $\chi$ propagators as internal lines.
 	\begin{equation}
 	\begin{aligned}
 	  \mcal{L}[\phi + \chi]
@@ -150,13 +151,13 @@
 	\end{equation}
 	
 	\begin{equation}
-	  S_{\mathrm{eff}}[\phi_\Lambda]
-	  = S[\phi_\Lambda]
+	  S^\Lambda[\phi^\Lambda]
+	  = S[\phi^\Lambda]
 	    - i \ln \int \DD \chi
-	      e^{i\,\Delta S[\phi_\Lambda + \chi]} \\
+	      e^{i\,\Delta S[\phi^\Lambda + \chi]} \\
 	\end{equation}
 	
-	If $\Lambda \lesssim \Lambda_0$, then $S_{\mathrm{eff}}$ is almost
+	If $\Lambda \lesssim \Lambda_0$, then $S^\Lambda$ is almost
 	the same as the original $S$, with minor corrections from the
 	$\int \DD\chi$ term. Note that in such regularization scheme there will be no \textit{quadratic} cross terms $\sim \phi\chi,\, \pd\phi\,\pd\chi$ in the effective action, since they have orthogonal Fourier modes. However, there will be non-vanishing \textit{quartic} cross terms $\sim \phi^2\chi^2,\, \phi^3\chi$. After we integrate out $\chi$, the $\phi^2\chi^2$ term will cause a shift in $m^2$, while the $\phi^3\chi$ will generate a new $\phi^6$ vertex (by a $\chi\chi$ contraction).
 	
@@ -172,8 +173,15 @@
 	    }\,
 	    \mcal{Z}\pqty{g(\Lambda),\Lambda}
 	\end{equation}
-	This is an example of a \textbf{RG Equation}.
-\subsection{Free theory \& CFT}
+	This is an example of a {renormalization group (RG) equation}.
+	
+	\newparagraph
+	Note that the Euclidean path integral along a time circle of length $\beta$ computes the thermal partition function with inverse temperature $\beta$. This leads to an intuitive relation between $\beta$ and the cutoff $\Lambda$. 
+	
+	Let's focus on the Euclidean time direction. Again suppose we lower $\Lambda_0 \leadsto \Lambda$ by coarse-graining. In a thermal field theory, this can be achieved not only through integrating out UV modes (as we've done before), but also by enlarging the $\beta$ circle. Therefore, coarse-graining corresponds to a lowering of temperature. 
+	
+	Note that this is only a rough intuition, but there are more rigorous generalizations of this picture for theories based on a compact manifold, where the size of the manifold corresponds to some energy scale of the theory. 
+\subsection{Free theory, scale invariance \& CFT}
 	We first observe that a massless free theory with $
 		\mcal{L}[\phi]
 		\sim \int \dd[d]{x} (\pd\phi)^2
@@ -181,12 +189,12 @@
 	\begin{equation}
 	\begin{aligned}
 	  \mcal{Z}
-	  &= \int \DD\phi_{\Lambda_0}
+	  &= \int \DD\phi^{\Lambda_0}
 	      e^{iS[\phi_0]} \\
-	  &= \int \DD\phi_{\Lambda}
+	  &= \int \DD\phi^{\Lambda}
 	    \int \DD\chi
 	      e^{iS[\phi + \chi]} \\
-	  &\sim \int \DD\phi_{\Lambda}
+	  &\sim \int \DD\phi^{\Lambda}
 	      e^{iS[\phi]}
 	      \sqrt{Z_\phi^\#}
 	\end{aligned}
@@ -194,33 +202,44 @@
 	\end{equation}
 	Integrating over $\Lambda = s\Lambda_0 \le \abs{p} \le \Lambda_0$ produces the $Z_\phi$ factor, where $\#$ is the total number of modes in this range. One can give an explicit expression of $\#$ with some IR cutoff $L$.
 	
-	On the other hand, we can restore $\Lambda = s\Lambda_0$ back to $\Lambda_0$ by rescaling. This is easy to understand when we think of a lattice theory: to probe the IR behavor, we first ``coarse-grain'' by grouping points together, effectively lowering $\Lambda$; then we ``zoom out'' to see the bigger picture. Rescaling $\Lambda = s\Lambda_0$ back to $\Lambda_0$ is precisely the ``zooming-out'' process. 
+	On the other hand, we can restore $\Lambda = s\Lambda_0$ back to $\Lambda_0$ by \textbf{rescaling}. This is easy to understand when we think of a lattice theory: to probe the IR behavor, we first ``coarse-grain'' by grouping points together, effectively lowering $\Lambda$; then we ``zoom out'' to see the bigger picture. Rescaling $\Lambda = s\Lambda_0$ back to $\Lambda_0$ is precisely the ``zooming-out'' process. 
+	
+	Another motivation for rescaling is that we would like to compare the theories before and after coarse-graining; this comparison only makes sense if they share the same cutoff $\Lambda_0$. In summary, the conventional definition for renormalization group flow (RG flow) contains 2 operations:
+	\begin{enumerate}[noitemsep]
+	\item \textbf{Coarse-graining:} integrate out higher modes to obtain a low energy effective action at $\Lambda$;
+	\item \textbf{Rescaling:} restore $\Lambda = s\Lambda_0 \leadsto \Lambda_0$ the original cutoff by field re-definition.
+	\end{enumerate}
 	
 	When taking $\Lambda\mapsto \Lambda_0 = \Lambda / s$, first note that the kinetic term $\int \dd[d]{x} (\pd\phi)^2$ is scale-invariant if we rescale $\phi$ accordingly:
-	\begin{equation}
+	\begin{gather}
 		\Lambda\mapsto \Lambda_0 = \Lambda / s,
 	\quad
+		s < 1,
+	\notag\\
 		x\mapsto x' = sx,
 	\quad
 		\phi(x) \mapsto
 		\phi'(x') = s^{1 - \frac{d}{2}} \phi(x)
-	\end{equation}
+	\end{gather}
 	The $s^{1 - \frac{d}{2}}$ factor is consistent with the mass dimension of $\phi$, and we have $S'[\phi'] = S[\phi]$ invariant under rescaling. 
+	
+\pagebreak[4]
 	
 	The path integral measure, however, is \textit{not} scale-invariant; we have to add back some Fourier modes in between to return the path integral back to $\Lambda_0$. Luckily, the additional modes happen to cancels out the $Z_\phi$ factor in \eqref{eq:PI_free}:
 	\begin{equation}
-		\sqrt{Z_\phi^\#} \DD\phi_{\Lambda}
+		\sqrt{Z_\phi^\#} \DD\phi^{\Lambda}
 		\sim \sqrt{Z_\phi^\#}
 			\prod_{\norm{p} < \Lambda = s\Lambda_0}
 			\dd{\tilde{\phi}(p)}
 		= \prod_{\norm{p'} < \Lambda_0}
 			\dd{\tilde{\phi}'(p')}
-		\sim \DD\phi'_{\Lambda_0}
+		\sim \DD\phi'^{\,\Lambda_0}
 	\end{equation}
-	Therefore the complete path integral is invariant under RG flow \& rescaling; $Z_\phi$ is also unchanged during this process. Therefore we can simply set $Z_\phi \equiv 1$ by an appropriate \textit{normalization} of $\phi$.
+	Therefore the complete path integral is invariant under coarse-graining \& rescaling. $Z_\phi$ is also unchanged during this process. Therefore we can simply set $Z_\phi \equiv 1$ by an appropriate \textit{normalization} of $\phi$.
 	
-	One can see how this process might fail in a curved background: in flat space the Fourier modes are equally spaced, and rescaling $\DD\phi_{\Lambda}$ can be achived by simply adding back a total of $\#$ modes. However, in a curved background the Fourier modes are complicated (e.g.\ think of spherical harmonics) and we generally do not expect the Jacobian of $\DD\phi_{\Lambda} \mapsto \DD\phi'_{\Lambda_0}$ to cancel out the $Z_\phi$ factor precisely. This is a hint of \textit{Weyl anomaly} in curved backgrounds. For a concrete discussion with path integral, see \textit{Di Francesco et al}, 5.A. 
-\pagebreak[4]
+	One can see how this process might fail in a curved background: in flat space the Fourier modes are equally spaced, and rescaling $\DD\phi^{\Lambda}$ can be achived by simply adding back a total of $\#$ modes. However, in a curved background the Fourier modes are complicated (e.g.\ think of spherical harmonics) and we generally do not expect the Jacobian of $\DD\phi^{\Lambda} \mapsto \DD\phi'^{\,\Lambda_0}$ to cancel out the $Z_\phi$ factor precisely. This is a hint of \textit{Weyl anomaly} in curved backgrounds. For a concrete discussion with path integral, see \textit{Di Francesco et al}, 5.A. 
+	
+%\pagebreak[4]
 	
 	Generally, $Z_\phi$ \textit{will} change after rescaling:
 	\begin{equation}
@@ -244,13 +263,14 @@
 	
 	In summary, we've argued that the classical \& quantum theory of a massless free boson on flat space is \textit{scale-invariant}; $\gamma_\phi = 0$. In fact, this is a first example of free CFTs. 
 	CFTs are the \textit{fixed points} of RG flow.
-\subsection{Massive theory \& the space of theories}
-	What about \textit{massive} free theories? We do know that they don't receive loop corrections, therefore ``invariant'' under coarse-graining; however, mass \textit{do} flow when we zoom out. This is very natural; as we zoom out the energy-momentum of all modes are enhanced by a factor of $s^{-1}$, and we have $m\mapsto m/s$. Therefore $m$ is a \textit{relevant} parameter as we flow towards IR; it grows and flows away from the massless free CFT. For an explicitly path integral calculation (along with $\phi^{2n}$ interactions), see \textit{Hollowood}, 2.1. 
+\subsection{From mass deformation to the space of theories}
+	What about \textit{massive} free theories? We do know that they don't receive loop corrections, therefore ``invariant'' under coarse-graining; however, mass \textit{do} flow when we zoom out. This is very natural; as we zoom out the energy-momentum of all modes are enhanced by a factor of $s^{-1}$, and we have $m\mapsto m/s$. Therefore $m$ is a \textit{relevant} parameter as we flow towards IR; it grows and flows away from the massless free CFT. For an explicitly path integral calculation (along with $\phi^{2n}$ interactions), see \textit{Hollowood}, \S2.1. 
 	
 	Generally, for small $g$ we can think of the theory $(g,\Lambda)$ as a \textit{deformation} away from the massless free CFT. A neat trick to stop worrying about rescaling is to re-define $g$ as dimensionless couplings:
 	\begin{equation}
 		g(\Lambda) = \pqty{
-			g^{(2)} = \frac{m^2_{(\Lambda)}}{\Lambda^2},
+			Z_\phi,
+			\ g^{(2)} = \frac{m^2_{(\Lambda)}}{\Lambda^2},
 			\ g^{(4)} = \lambda,
 			\ g^{(6)} = \cdots
 		}
@@ -276,12 +296,26 @@
 	\end{equation}
 	i.e.\ it is constant for a free theory. Intuitively, this is because low \& high energy modes are completely decoupled in a free theory.
 	
+	In summary, we have:
+	\begin{empheq}{equation*}
+		\text{
+			\textbf{Fact:} dimensionless couplings $g(\Lambda)$ are invariant under rescaling!
+		}
+	\end{empheq}
+	To recover the dimensionful couplings:
+	\begin{itemize}[noitemsep]
+	\item ... after coarse-graining but before rescaling: multiply by $\Lambda^\#$;
+	\item ... after rescaling: multiply by $\Lambda_0^\#$.
+	\end{itemize}
+	Here $\#$ is the mass dimension of the coupling. 
+	
 	\begin{figure}[!h]
 	\centering
 	\includegraphics[width=.45\linewidth]{img/RG-flow.png}
 	\end{figure}
-\subsection{Physical Scales vs the Cutoff}
-	LSZ reduction (with the ``mostly plus'' metric convention, see \textit{Srednicki}):
+	
+\subsection{From the running cutoff to the physical scales}
+	To get to the physical amplitudes, we apply LSZ reduction (see e.g.~\textit{Srednicki}):
 	\begin{equation}
 		\int \dd[d]{x} e^{-ip\cdot x}
 		\int \dd[d]{y} e^{+ik\cdot y}
@@ -289,7 +323,7 @@
 	\xmapsto{\ p,k\ \text{on-shell}\ }
 		\frac{-i\sqrt{Z_\phi}}{p^2 + m^2 - i\epsilon}
 		\frac{-i\sqrt{Z_\phi}}{k^2 + m^2 - i\epsilon}
-		\mel{p}{S}{k}
+		\mel{p}{\mcal{S}}{k}
 	\end{equation}
 	\begin{equation}
 		\ave[\big]{\phi(x)\,\phi(y)}
@@ -297,32 +331,30 @@
 			\int \DD{\phi_\Lambda} e^{iS_\Lambda[\phi]}\,
 			\phi(x)\,\phi(y)
 	\end{equation}
-	$S \sim \idty + i\mcal{M}(\mu)$, physical amplitude $\mcal{M}(\mu)$ scale with energy $\mu$, but is cutoff-independent. 
+	Here $\mcal{S} \sim \idty + i\mcal{M}(\mu)$, and the amplitude $\mcal{M}(\mu)$ scale with energy $\mu$, but is cutoff-independent. 
 	
-	How to relate $\mcal{M}(\mu)$ to $g(\Lambda)$? Note that the canonical Green function \textit{does} scale with $\Lambda$! With the help of Poincar\'e invariance, we have:
+	How to relate $\mcal{M}(\mu)$ to $g(\Lambda)$? Note that the canonical Green function $G_\Lambda$ \textit{does} scale with $\Lambda$! With the help of Poincar\'e invariance, we have:
 	\begin{equation}
 		Z_\Lambda \ave[\big]{\phi(x)\,\phi(y)}
 		\mathbin{=:} G_\Lambda\pqty\big{x,y; g(\Lambda)}
 		= G_\Lambda\pqty\big{l; g(\Lambda)},
 	\quad
-		Z_\lambda := (Z_\phi)_\Lambda
+		Z_\Lambda := (Z_\phi)_\Lambda
 	\end{equation}
-	Physical scale: $l = \abs{x_1 - x_2}$, or center of mass momentum $\mu$ in amplitudes; $l\cdot \mu \sim 1$. $\Lambda$-dependence enters through $Z_\phi$. For general $n$-pt function, RG flow:
+	Here the physical scale is given by $l = \abs{x_1 - x_2}$, or the center of mass momentum $\mu$ in amplitudes; we have $l\cdot \mu \sim 1$. $\Lambda$-dependence enters through $Z_\phi$. For general $n$-pt function, RG flow leads to:
 	\begin{equation}
 	\begin{aligned}
-		\ave[\big]{\phi^n(\cdots)}
+		\ave[\big]{\phi^n({\cdots})}
 		= \frac{1}{\mcal{Z}}
 			\int \DD{\phi_\Lambda} e^{iS_\Lambda[\phi]}\,
-			\phi^n(\cdots)
+			\phi^n({\cdots})
 		&= Z^{-n/2}_\Lambda
 			G_\Lambda \pqty\big{l; g(\Lambda)} \\
 		&= Z^{-n/2}_{s\Lambda}
 			G_{\Lambda} \pqty\big{sl; g(s\Lambda)}\,
-			\pqty{s^{1 - \frac{d}{2}}}^{-n}
+			\pqty{s^{1 - \frac{d}{2}}}^{-n},
 	\end{aligned}
 	\end{equation}
-	
-	This is a key result! We have:
 	\begin{equation}
 		G_\Lambda \pqty\big{l; g(\Lambda)}
 		= G_{\Lambda} \pqty\big{sl; g(s\Lambda)}
@@ -333,7 +365,9 @@
 		\simeq G_{\Lambda} \pqty\big{sl; g(s\Lambda)}
 			\,s^{n\Delta_\phi}
 	\end{equation}
-	Or in terms of energy scale $\mu$,
+	
+	We see that the flow of correlation as a function of the physical scale $l$ is related to the flow of coupling as a function of the cutoff $\Lambda$. 
+	In terms of energy scale $\mu$, we have:
 	\begin{gather}
 		\mcal{M} \pqty\big{\mu; g(\Lambda)}
 		= \mcal{M} \pqty\big{\mu/s; g(s\Lambda)},
@@ -342,11 +376,12 @@
 		\ \To\ %
 		\mu\,\pdv{\mcal{M}}{\mu}
 		= \Lambda\,\pdv{g}{\Lambda}
-			\pdv{M}{g}
-		= \beta(g) \pdv{M}{g}
+			\pdv{\mcal{M}}{g}
+		= \beta(g) \pdv{\mcal{M}}{g}
 	\end{gather}
+	
 \section{Perturbative Renormalization}
-	However, in naïve perturbation theory, we wish to complete the entire
+	In naïve perturbation theory, we wish to complete the entire
 	path integral $\mcal{Z} (g_0,\Lambda_0)$. We can think of this as
 	integrating out more and more high energy modes, until we reach the IR
 	scale $\Lambda \to 0$.
@@ -356,7 +391,7 @@
 	couplings $g_0$ at $\Lambda_0$. In fact, they may differ by a large
 	(but finite) renormalization factor $Z$: $g_0 = Zg$.
 	
-\subsection{Counterterms}
+\subsection{The nature of counterterms}
 	In the above analysis, the theory flows from UV to IR. However, in
 	reality, the IR results are known from experiments, and we are trying to
 	\emph{extrapolates} from IR to UV.
@@ -418,9 +453,9 @@
 	bigger theory that works beyond $\Lambda_{\mathrm{UV}}$; this is the
 	non-trivial \emph{UV completion} of an effective theory.
 	\end{quote}
-	
+
 \subsection{Perturbation}
-	The above results are non-perturbative and should always hold.
+	The above understanding is in fact non-perturbative and should always hold.
 	Perturbation theory is only a way to calculate the RG flow from UV to
 	IR; it is reliable only if the IR coupling $g$ is sufficiently small.
 	In this case we can tune $(g_0,\Lambda_0)$ with the following
@@ -434,7 +469,7 @@
 	  Tune (redefine) $(g_0,\Lambda_0)$ by adding counterterms, so that
 	  $(g,\Lambda)$ matches with experiments
 	\item
-	  Increase order $n$ and go to step 1
+	  Increase order $n$ and go to step 1. 
 	\end{enumerate}
 	
 	The (non-)renormalizability of a theory is evident in the perturbative
@@ -456,7 +491,7 @@
 	non-renormalizable theory, however, there will always be divergences, no
 	matter how large $E$ is.
 	
-\subsection{Renormalization Schemes}
+\subsection{Renormalization schemes}
 	
 	There is a subtlety in the above procedure: how do we actually relate IR
 	parameters $(g,\Lambda)$ with actual physical quantities,
@@ -468,19 +503,24 @@
 	actually defined with scattering amplitudes. There are different choices
 	of relating $g$ with physical observables; this lead to various
 	renormalization schemes:
-	
-	\begin{itemize}[nosep]
-	
+	\begin{itemize}[noitemsep]
 	\item
 	  On-shell / pole-mass scheme
 	\item
 	  Minimal subtraction ($\mathrm{MS}$) \& modified MS
 	  ($\overline{\mathrm{MS}}$)
 	\end{itemize}
+	A review of these schemes can be found in most of the main references. 
 	
-\section{Renormalizability}
-	As we've mentioned before, most parameters $g^{(i)} \in g$ are, in fact, \emph{irrelevant} --- such terms in the Lagrangian get suppressed by $\Lambda/\Lambda_0$ in IR. We shall see how this arise from dimensional anlaysis.
+	The lesson is that we should tune $(g,\Lambda)_{\Lambda\to 0}$ such that it well approximates the physical couplings, but they are still not quite the same. To actually get to the physical couplings we really need to complete the path integral, all the way down to $\Lambda = 0$. The physical couplings are then read out from the full quantum effective action $\Gamma[\varphi]$, as we shall review later. 
 	
+\subsection{Renormalizability}
+	As we've mentioned before, most parameters $g^{(i)} \in g$ are, in fact, \emph{irrelevant} --- such terms in the Lagrangian get suppressed by $\Lambda/\Lambda_0$ in IR. This simply arises from dimensional anlaysis: imagine that we lower the cutoff gradually, by coarse-graining. Recall that the coupling before rescaling is given by $g^{(i)}_{(\Lambda)} \Lambda^\#$, which is only \textit{mildly} modified as long as $\Lambda\lesssim\Lambda_0$. By dimensional analysis,
+	\begin{equation}
+		g^{(i)}_{(\Lambda)}
+		\sim \pqty{\frac{\Lambda}{\Lambda_0}}^{\!\!-\#}
+	\end{equation}
+	This means that all couplings with negative mass dimensions is suppressed in the IR (at the classical level, due to rescaling). 
 	
 	
 	If the IR theory has only \emph{relevant} couplings, then one should be
@@ -494,33 +534,186 @@
 	contains irrelevant couplings in the IR. In this case the IR parameters
 	$g$ depend sensitively on small perturbations of the UV parameters
 	$g_0$, and one has to tune infinitely many bare parameters to obtain
-	the physical IR values. Such theory is hardly \emph{fundamental}, since
+	the physical IR values. Such theory is hardly fundamental, since
 	it depends on infinitely many parameters; but it's a good
 	\emph{effective theory} nonetheless.
 	
-\section{Effective Action}
-	After $\phi_\Lambda$ is completely integrated out, we
+\section{Effective Action Formalism}
+	After $\phi^\Lambda$ is completely integrated out, we
 	have:
-	
 	\begin{equation}
-	  S_{\mathrm{eff}}[\phi] \to W,\quad
+	  S^\Lambda[\phi] \to W,\quad
 	  Z(g_0,\Lambda_0) = e^{iW}
 	\end{equation}
 	Note that $W$ no longer has any $\phi$ dependence, but it is a
 	function of $(g_0,\Lambda_0)$, which in turn is tuned by physical
 	$(g,\Lambda)$. $W$ in fact contains all information about the seed
-	theory, labeled by $(g_0,\Lambda_0)$. To extract this information, we
-	usually perturb the original action $S[\phi]$ with a source term; then
-	we have:
+	theory, labeled by $(g_0,\Lambda_0)$. 
 	
+	To extract this information, we probe the system with an external source $J$; namely, we perturb the original action $S[\phi]$ with a source term:
 	\begin{equation}
-	  S[\phi,J]
-	  = S[\phi] + \int \dd{x}\,J(x)\,\phi(x),\quad
-	  W \to W[J]
+		S[\phi,J]
+		= S[\phi] + J\cdot \phi,\quad
+		W \to W[J]
+	\end{equation}
+	Here $J\cdot \phi$ is understood as $
+		\int \dd{x} J(x)\,\phi(x)
+	$. 
+	Expand $W[J]$ in terms of $J$-modes, and then its coefficients give us physical coupling constants in the IR. 
+	
+	Alternatively, we can define the Legendre-transformed $\Gamma[\varphi]$, where:
+	\begin{equation}
+		\varphi \equiv \fdv{W}{J} = \ave{\phi}_J,
+	\quad
+		\Gamma[\varphi]
+		= W[J] - J\cdot\varphi,
+	\quad
+		\fdv{\Gamma}{\varphi}
+		= -J
+	\label{eq:legendre_transform}
+	\end{equation}
+	The Legendre transformation can be implemented by a Fourier (or Laplace) transform, under the semi-classical limit $\hbar\to 0$, when the saddle point approximation applies\footnote{
+		We've been cavaliar about overall factors. 
+		Here the proportionality factor is in general a functional of $J$, but it is a power series in $\hbar$ starting with terms of $\order{\hbar^0}$. Hence it can be safely dropped as $\hbar\to 0$, as we focus on the $\order{\hbar^{-1}}$ terms. 
+	}:
+	\begin{equation}
+	\begin{aligned}
+		Z[J] = \exp \frac{i}{\hbar} W[J]
+		&= \exp \frac{i}{\hbar} \pqty\Big{
+				\Gamma[\varphi]
+				+ J\cdot\varphi
+			}_{
+				\mathlarger{\fdv{\Gamma}{\varphi}}
+				= -J
+			} \\
+		&\propto \lim_{\hbar\to 0} \int
+			\DD{\varphi}\,
+			\exp \frac{i}{\hbar} \pqty\Big{
+				\Gamma[\varphi]
+				+ J\cdot\varphi
+			}
+	\end{aligned}
 	\end{equation}
 	
-	Expand $W[J]$ in terms of $J$-modes, and its coefficient gives us
-	physical coupling constants in the IR. More precisely, we can define the Legendre-transformed $\Gamma[\varphi]$.
+\pagebreak[3]
+	
+	On the other hand, the path integral expansion in $\hbar$ has a diagrammatic interpretation: it counts the number of loops in Feynman diagrams. All propagators contribute a factor of $\hbar$, while all vertices carry a factor of $\hbar^{-1}$. In the end we have:
+	\begin{equation}
+		\hbar^{\,\#\text{edges}\,-\,\#\text{vertices}}
+		\equiv \hbar^{\,\#\text{loops}\,-\,1}
+	\end{equation}
+	Here $(\#\,\text{loops})$ is the same as the number of faces in planar diagrams\footnote{
+		For non-planar diagrams, see \https{physics.stackexchange.com/q/391454}. 
+	}. In the $\hbar\to 0$ limit, only tree (0-loop) diagrams survive. 
+	
+	However, $Z[J] = \exp \frac{i}{\hbar} W[J]$ itself is given by the sum over all Feynman diagrams, while at the same time it can be reproduced by a sum over only tree level diagrams with $\Gamma[\varphi]$. Therefore, all higher loop connections must have already been packed up inside $\Gamma[\varphi]$, namely it is the \textit{quantum effective action}. In terms of correlators, we have:
+	\begin{equation}
+	\begin{aligned}
+		\ave{\phi(x_1)\cdots\phi(x_n)}
+		&= \int
+			\DD{\phi}
+			\,\phi(x_1)\cdots\phi(x_n)\,
+			\exp \frac{i}{\hbar}
+%			\pqty\Big{
+				S[\phi]
+%				+ J\cdot\phi
+%			}
+	\\
+		&= \int\limits_{\hbar\to 0}
+			\DD{\varphi}
+			\,\varphi(x_1)\cdots\varphi(x_n)\,
+			\exp \frac{i}{\hbar}
+%			\pqty\Big{
+				\Gamma[\varphi]
+%				+ J\cdot\varphi
+%			}
+		= \ave{\varphi(x_1)\cdots\varphi(x_n)}_{\hbar\to 0}
+	\end{aligned}
+	\end{equation}
+	The right hand side is a sum over tree diagrams and $\varphi^n$ vertices, whose coefficient is given by:
+	\begin{equation}
+		\frac{\var[n]{i\Gamma}}{
+			\var{\varphi(x_1)}\cdots\var{\varphi(x_n)}
+		}
+	\end{equation}
+	
+	In particular, the coefficient $
+		\frac{\var[2]{i\Gamma}}{
+			\var{\varphi(x_1)} \var{\varphi(x_2)}
+		}
+	$ of the $\varphi^2$ vertex is precisely minus the inverse of the full propagator, i.e. for scalar fields:
+	\begin{equation}
+		i\,(\pd^2-m^2) \sim -i\,(p^2 + m^2)
+	\end{equation}
+	Here $m$ is the renomalized mass $m$. In general the terms in $\Gamma[\varphi]$ are the \textit{renomalized vertices}, which pack up all higher loop quantum corrections. Diagrammatically, they are produced by the one particle irreducible (1PI) diagrams. 
+	
+	The meaning of $\Gamma[\varphi]$ can also be understood order by order, from the defining Legendre transformation \eqref{eq:legendre_transform}. For example, the full propagator is given by the connected 2-point diagram:
+	\begin{equation}
+	\begin{aligned}
+		D
+		&= \ave{\phi\,\phi}_c
+		= \ave[\Big]{
+			(\phi - \ave{\phi})\,(\phi - \ave{\phi})
+		} \\
+		&= \frac{1}{i^2}
+		\frac{\var[2]{iW}}{
+			\var{J} \var{J}
+		}
+		= -i\,\fdv{J} \pqty{\fdv{W}{J}}
+		= -i\,\fdv{\varphi}{J}
+	\end{aligned}
+	\end{equation}
+	We see that indeed:
+	\begin{equation}
+		\frac{\var[2]{i\Gamma}}{
+			\var{\varphi} \var{\varphi}
+		}
+		= i\,\fdv{\varphi} \pqty{\fdv{\Gamma}{\varphi}}
+		= i\,\fdv{\,(-J)}{\varphi}
+		= - D^{-1}
+	\end{equation}
+	
+	For higher point vertices, similar results are well illustrated in \S11.5 of \textit{Peskin \& Schroeder}. 
+	In summary, we have:
+	\begin{equation}
+	\def\arraystretch{2.2}
+	\begin{array}{
+		*1{>{\displaystyle}r}
+		l
+	}
+		\quad
+		\frac{1}{i^n}\frac{\var[n]{Z}}{
+			\var{J(x_1)}\cdots\var{J(x_n)}
+		}
+		\colon&
+		\text{All Feynman diagrams}
+	\\
+		Z[J] = \exp \frac{i}{\hbar} W[J],
+		\quad
+		\frac{1}{i^n}
+		\frac{\var[n]{iW}}{
+			\var{J(x_1)}\cdots\var{J(x_n)}
+		}
+		\colon&
+		\text{\textbf{Connected} diagrams}
+	\\
+		Z[J] = 
+			\int\limits_{\hbar\to 0}
+			\DD{\varphi}\,
+			\exp \frac{i}{\hbar} \pqty\Big{
+				\Gamma[\varphi]
+				+ J\cdot\varphi
+			},
+		\quad
+		\frac{\var[n]{i\Gamma}}{
+			\var{\varphi(x_1)}\cdots\var{\varphi(x_n)}
+		}
+		\colon&
+		\text{\textbf{1PI} diagrams}
+	\end{array}
+	\end{equation}
+	
+
 
 
 \printbibliography[%
