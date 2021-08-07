@@ -10,27 +10,25 @@
 
 \input{preamble.tex}
 
+\usepackage{comment}
 \newcommand{\lui}[2]{\textcolor{red}{#1}\todo[color=yellow]{\scriptsize{L: #2}}}
+\newcommand{\wei}[2]{\textcolor{magenta}{#1}\todo[color=yellow]{\scriptsize{WS: #2}}}
+\newcommand{\wx}[2]{\textcolor{purple}{#1}\todo[color=teal]{\scriptsize{X: #2}}}
 
 \usepackage{xspace}
 \newcommand{\TTbar}{\ensuremath{T\bar{T}}\xspace}
 \newcommand{\arcsinh}{\ensuremath{\mop{arcsinh}}}
+\renewcommand{\tilde}[1]{\ensuremath{\widetilde{#1}}}
+\usepackage{ccicons}
+\usepackage{enumitem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Modular flow and holographic entanglement entropy in cutoff AdS / \TTbar deformed theory} 
+\title{Modular flow and holographic entanglement entropy in cutoff AdS} 
 \author[a]{The EE \TTbar Project}
-%\author[a]{Luis Apolo,} 
-%\author[a]{Pengxiang Hao,} 
-%\author[a]{Wen-Xin Lai,}
-%\author[a]{and Wei Song} 
 
-\affiliation[a]{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China}
- 
-
-%  \emailAdd{apolo@mail.tsinghua.edu.cn, wsong2014@mail.tsinghua.edu.cn} 
+\affiliation[a]{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China\ \,\ccbyncsajp}
  
 \abstract{
 	\begin{itemize}
@@ -56,28 +54,15 @@
 	
 	\end{itemize}
 }
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \maketitle
 %\flushbottom
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \setlength{\parskip}{.5\baselineskip}
 
 \addtocounter{section}{-1}
-
-\begin{itemize}
+\begin{itemize}[nosep]
 \item add black hole spectrum 
 \item geometric picture
 \item maybe consider later: SSA 
@@ -115,14 +100,8 @@
 	
 \pagebreak
 
-\section{Introduction}
-
 \section{$T \bar T$ deformation and cutoff AdS}
 In this section we first review the holographic duality between $T\bar T$ deformed CFT$_2$ and Einstein gravity on asymptically AdS$_3$ spacetime with a finite cutoff,  and then we use the covariant phase space method to calculate the gravitational charges for BTZ black holes with finite cutoff and show that the black hole spectrum matches that of  $T\bar T$ deformed CFT$_2$. 
-
-\subsection{Brief review of the duality}
-
-{\color{red}\itshape Review TTbar and cutoff AdS. }
 
 
 \subsection{Black spectrum from gravitional charges}
@@ -1529,14 +1508,4 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 \bibliography{cutoff.bib}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \end{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
