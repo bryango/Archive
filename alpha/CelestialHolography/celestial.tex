@@ -1,6 +1,7 @@
 % !TeX document-id = {b5392a94-51a3-49d1-9ba5-698bc09f9d35}
 % !TeX encoding = UTF-8
 % !TeX spellcheck = en_US
+% !TeX TS-program = pdflatex
 % !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
 
 \documentclass[a4paper
@@ -58,7 +59,7 @@
 
 \section{Basics}
 \subsection{\textsl{What} is the celestial sphere?}
-	The celestial sphere, \textit{天球}, is a basic concept in astronomy. According to \href{https://en.wikipedia.org/wiki/Celestial_sphere}{\textsl{Wikipedia}}, the celestial sphere is an abstract sphere that has an arbitrarily large radius and is concentric to the observer. All objects in the sky can be conceived as being projected upon the inner surface of the celestial sphere. 
+	The celestial sphere, \textkai{天球}, is a basic concept in astronomy. According to \href{https://en.wikipedia.org/wiki/Celestial_sphere}{\textsl{Wikipedia}}, the celestial sphere is an abstract sphere that has an arbitrarily large radius and is concentric to the observer. All objects in the sky can be conceived as being projected upon the inner surface of the celestial sphere. 
 	
 	The idea of celestial sphere in celestial holography is almost precisely the same as that in usual astronomy. Suppose we, the observers, are at the origin of a \textbf{asymptotically flat} universe; the stars we see in the sky are null rays coming from somewhere closed to the past null infinity $\mscr{I}^-$, i.e.~what we see in the night sky is precisely the celestial sphere $CS^-$ closed to $\mscr{I}^-$. Similarly, there is another celestial sphere $CS^+$ located near $\mscr{I}^+$. 
 	
@@ -70,7 +71,7 @@
 	}
 	\end{figure}
 	
-	\textsl{We will primarily work in \textbf{4D}, where the celestial spheres are \textbf{2-spheres}}, $CS^\pm \ni (z,\bar{z})$. 
+	\textsl{We will primarily work in \textbf{4D}, where the celestial spheres} $CS^\pm \simeq S^2 \ni (z,\bar{z})$. 
 	\begin{equation}
 		\dd{s}^2
 		= - \dd{u}^2 - 2\dd{u} \dd{r}
@@ -114,11 +115,14 @@
 	Now consider a scattering process happening ``around $i^0$'', from $\mscr{I}^-$ to $\mscr{I}^+$; this is ``far away'' from the ``center'' where all the interactions take place, so the scattering process is almost trivial. 
 	This gives the natural \textbf{antipodal matching condition} for fields around $i^0$:
 	\begin{equation}
+	\arraycolsep=.25em
+	\begin{array}{ccccccccc}
 		F(u,z,\bar{z})|_{\mscr{I}^+\to i^0}
-		= F(u\to -\infty,z,\bar{z})
-		\equiv F(z,\bar{z})
-		= F(v\to +\infty,z,\bar{z})
-		= F(v,z,\bar{z})|_{\mscr{I}^-\to i^0}
+		&=& F(u\to -\infty,z,\bar{z})
+		&\equiv& F(z,\bar{z})
+		&=& F(v\to +\infty,z,\bar{z})
+		&=& F(v,z,\bar{z})|_{\mscr{I}^-\to i^0}
+	\end{array}
 	\end{equation}
 	Note that this antipodal matching condition will prove crucial to our discussions later on. 
 \subsection{\textsl{Why} do we want to study that?}
@@ -131,7 +135,7 @@
 	\caption[Hyperbolic slicing of Minkowski]{
 		Hyperbolic slicing of Minkowski, taken from \cite{Strominger:2017zoo}.
 		
-		One can implement the \textbf{Euclidean holography} $\mrm{EAdS}_3/\mrm{CFT}_2$ in the red patch, along \textbf{a specific time slice} of the causal future \cite{deBoer:2003vf,Ball:2019atb}. 
+		One can implement the \textbf{Euclidean holography} $\mrm{EAdS}_3/\mrm{CFT}_2$ in the red patches, along \textbf{a specific time slice} of the causal future \cite{deBoer:2003vf,Ball:2019atb}. 
 		On the other hand, in the blue Rindler patches we can apply Lorentzian $\mrm{dS}_3/\mrm{CFT}_2$. 
 		
 		Note that in the $\mrm{dS}_3/\mrm{CFT}_2$ here, although the bulk $\mrm{dS}_3$ is Lorentzian, the dual $\mrm{CFT}_2$ is again a \textbf{Euclidean theory} living at $\mscr{I}^\pm$, which is very different from the usual global $\mrm{AdS}_3/\mrm{CFT}_2$, where the $\mrm{CFT}_2$ is a Lorentzian theory living at $i^0$. 
@@ -145,7 +149,7 @@
 	\begin{itemize}[noitemsep]
 	\item The $\mrm{dS}/\mrm{CFT}$ paper by \textcite{Strominger:2001pn},
 	\item Also \textcite{Witten:2001kn},
-	\item And Maldacena's comments \textcite{Maldacena:2002vr}. 
+	\item And Maldacena's comments: \citefield{Maldacena:2002vr}[eprint:arxivid]{eprint}~\cite{Maldacena:2002vr}. 
 	\end{itemize}
 	This flavor of $\mrm{dS}/\mrm{CFT}$ is far more ambiguous than the usual $\mrm{AdS}/\mrm{CFT}$ and somewhat ``suspicious''; see Maldacena's comments in \cite{Maldacena:2002vr} and Susskind's recent talk at IAS. 
 	
@@ -166,7 +170,7 @@
 	
 	\begin{figure}[!h]
 	\centering
-	\includegraphics[width=.7\linewidth]{img/IRtriangle.pdf}
+	\includegraphics[width=.85\linewidth]{img/IRtriangle.pdf}
 	\caption[The universal IR triangle]{
 		The universal IR triangle, modeled after the one in \cite{Strominger:2017zoo}. 
 	}
@@ -311,7 +315,7 @@
 			\textsl{trivial gauge symmetries: act trivially on boundary data (charges)}
 		}
 	\end{equation}
-	e.g.~In asymptotically flat 4D gravity, if we restrict to Lorentz plus ``small translations'', we obtain $\mrm{BMS}_4 = \mrm{BMS}^+ \times \mrm{BMS}^- \supset \mrm{Poincar\'e}$, i.e.~it is \textbf{$\infty$-ly larger} than the isometry of Minkowski!
+	e.g.~In asymptotically flat 4D gravity, if we restrict to Lorentz plus ``small translations'', we obtain $\mrm{BMS}_4 = \mrm{BMS}^+ \times \mrm{BMS}^- \supset \text{Poincar\'e}$, i.e.~it is \textbf{$\infty$-ly larger} than the isometry of Minkowski!
 	
 	However, this is not the full story yet; the conventional BMS is ``both too big and too small'' \cite{Strominger:2017zoo}: ``too big'' because $\mrm{BMS}^+$ and $\mrm{BMS}^-$ should in fact be bound together by the antipodal map; what remains is only the diagonal subgroup; ``too small'' because we can generalize Lorentz transformations to \textit{superrotations}, just like we generalize translations in Poincar\'e to \textit{supertranslations} in BMS. 
 	
