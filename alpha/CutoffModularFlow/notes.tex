@@ -28,7 +28,7 @@
 \title{Modular flow and holographic entanglement entropy in cutoff AdS} 
 \author[a]{The EE \TTbar Project}
 
-\affiliation[a]{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China\ \,\ccbyncsajp}
+\affiliation[a]{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China\ \,\normalsize\ccbyncsajp}
  
 \abstract{
 	\begin{itemize}
@@ -63,14 +63,11 @@
 
 \addtocounter{section}{-1}
 \begin{itemize}[nosep]
-\item add black hole spectrum 
-\item geometric picture
 \item maybe consider later: SSA 
 \item maybe consider later: finite size effect  
 \end{itemize}
 
 \pagebreak
-
 \section{Conventions}
 	We try to follow the conventions of the TsT paper \textcite{Apolo:2019zai}. 
 	\begin{itemize}
@@ -100,16 +97,12 @@
 	
 \pagebreak
 
-\section{$T \bar T$ deformation and cutoff AdS}
-In this section we first review the holographic duality between $T\bar T$ deformed CFT$_2$ and Einstein gravity on asymptically AdS$_3$ spacetime with a finite cutoff,  and then we use the covariant phase space method to calculate the gravitational charges for BTZ black holes with finite cutoff and show that the black hole spectrum matches that of  $T\bar T$ deformed CFT$_2$. 
-
-
-\subsection{Black spectrum from gravitional charges}
+\section{Black spectrum from gravitional charges}
 	Ref: \textcite{Wald:1993nt,Iyer:1994ys,Iyer:1995kg}, \textcite{Lewkowycz:2013nqa}, and \textcite{Faulkner:2013ana}.
 	
 	Here we derive the quasilocal energy of the BTZ black hole using the covariant formulation of conserved charges and reproduce the spectrum of $T\bar{T}$-deformed CFTs. 
 	
-\subsubsection*{Covariant charges}
+\subsection{Covariant charges}
 	
 	Let us first recall the definition of asymptotic charges. Given an asymptotic Killing vector $\xi$ generating a symmetry of the theory, the infinitesimal variation of the corresponding charge is given by~\cite{Barnich:2001jy}
 	  %
@@ -126,7 +119,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	  %
 	As discussed in~\cite{Compere:2015knw}, in three-dimensional gravity the asymptotic charges~\eqref{charges} can be evaluated on any surface and not only at the asymptotic boundary. This is true provided the asymptotic Killing vectors are appropriately continued to the interior so that the integrability condition on the charges is satisfied. 
 	
-\subsubsection*{Killing vectors}
+\subsection{Killing vectors}
 	
 	The quasilocal energy discussed in~\cite{Brown:1994gs} differs from the asymptotic charges~\eqref{charges} in the choice of Killing vectors or, alternatively, in the choice of observers. More precisely, asymptotic charges are measured by asymptotic observers at the asymptotic boundary while quasilocal charges are measured by locally nonrotating observers on a codimension-2 spacelike surface $\p\Sigma$. To determine the quasilocal energy, first recall that in Schwarzschild coordinates the BTZ metric may be written as~\cite{Banados:1992wn}
 	  %
@@ -165,7 +158,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	to turn the induced metric~\eqref{inducedmetric} into the Minkowski metric,
 	  %
 	  \eq{
-	  ds^2_{c} = r_c^2 \big (- d\til{t}^2 + d \til{\phi}^2 \big ), \label{mink}
+	  ds^2_{c} = r_c^2 \big({- d\til{t}^2} + d \til{\phi}^2 \big ), \label{mink}
 	  }
 	with the identifications of the original coordinates left intact, i.e.
 	  %
@@ -182,14 +175,14 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	
 	The Killing vector~\eqref{xi1} satisfies the following properties:
 	 %
-	 \begin{enumerate}
+	 \begin{enumerate}[nosep]
 	 \item[(i)] it leads to integrable charges, see eq.~\eqref{quasilocalcharge2};
 	 \item[(ii)] its normalization is background-independent and proportional to $r_c^2$;
 	 \item[(iii)] it measures the energy of a locally nonrotating observer in the orthonormal frame;
 	 \item[(iv)] it reduces to the Killing vector measuring the total (ADM) energy when $r_c \to \infty$.
 	 \end{enumerate}
 	
-\subsubsection*{Quasilocal energy}
+\subsection{Quasilocal energy}
 	
 	We define the infinitesimal variation of the quasilocal energy $\delta Q_{\xi_c}$ as the conserved charge~\eqref{charges} measured by the locally nonrotating observer at the cutoff surface $r = r_c$, 
 	  %
@@ -209,130 +202,11 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	 
 	\noindent Let us conclude with comments on other definitions of the quasilocal energy discussed in the literature. As noted in ref.~\cite{Brown:1994gs} one can in principle define other measures of ``energy'' at a finite cutoff by choosing an appropriate normalization for the timelike Killing vector. The Killing vector considered in~\cite{Brown:1994gs} differs from ours in its overall normalization (by a factor of $r_c$) and fails to satisfy conditions (ii) and (iv) above. Relatedly, while the Killing vector considered in the quasilocal energy of BTZ-like solutions in ref.~\cite{Giribet:2013yka} does satisfy condition (iv) it is incompatible with condition (ii). In particular, we note that the expression for the quasilocal energy reported in~\cite{McGough:2016lol} contains a typo and \emph{does not} correspond to the expression originally given in~\cite{Brown:1994gs}. Indeed, to match the spectrum of the $T\bar{T}$ deformed theory one needs to use the Killing vector $\xi_c$ given in eq.~\eqref{xi1}. This provides further evidence for the physical requirements constraining our definition of $\xi_c$.  
 
-\section{Entanglement in the boundary story}
-\subsection{Review of entanglement at zero temperature}
 
-\subsection{Entanglement entropy at finite temperature}
-
-\newcommand{\lp}{\ensuremath{l_p}}
-\newcommand{\halfL}{\ensuremath{\frac{L}{2}}}
-
-	One can use the method in \cite{Lewkowycz:2019xse} to calculate the entanglement entropy in the thermal case and finite size case from the field theory side. The Rindler transformation from the domain of dependence of the interval $(-\lp,\lp)$ on the plane to the sphere is
-	\begin{equation}
-	t=\lp\frac{\sin\theta \sinh(\tau/\lp)}{1+\sin\theta \cosh(\tau/\lp)},\ \  x=\lp\frac{\cos\theta}{1+\sin\theta\cosh(\tau/\lp)}
-	\label{eq:rindler_sphere}
-	\end{equation}
-	the conformal factor reads,
-	\begin{equation}
-	\Omega=\frac{1}{1+\sin\theta\cosh(\tau/\lp)}
-	\end{equation}
-	At the endpoints, it becomes $1$. From the discussion in \cite{Lewkowycz:2019xse}, the contribution to the entanglement entropy totally comes from the endpoints of the interval, so one can use the such conformal transformation where the conformal factor at the endpoints is $1$ to calculate the entanglement entropy. Also, in the conformal map above from the casual diamond to the sphere, only the length of the interval matters. If these two endpoints lie at other position, one can use the rotation and translation symmetry to put it at $x = \pm \lp$, since the $T\bar T$ deformed theory also admits these symmetries. 
-	
-	Now let's consider the thermal case. We will make use of two successive conformal maps: first we map the thermal cylinder to the plane, and then we use \eqref{eq:rindler_sphere} to map the plane to the sphere. 
-	The conformal transformation from the thermal cylinder to the plane reads,
-	\begin{equation}
-	z=\frac{\beta}{2\pi}\,e^{\frac{2\pi}{\beta} w},
-%	\ \ \ \kappa=\frac{2\pi}{\beta}
-	\end{equation} 
-	where $z = x + it$ is the coordinate on the plane, and $w$ is the coordinate on the thermal cylinder with identification,
-	\begin{equation}
-	w\sim w+i\beta
-	\end{equation}
-	The endpoints of the interval on the thermal cylinder is
-	\begin{equation}
-	w=\pm \halfL
-	\end{equation} 
-%	The length of the interval is $L=2l$. 
-	Under the conformal map, the endpoints on the plane is
-	\begin{equation}
-	\frac{\beta}{2\pi}e^{\pm \frac{2\pi}{\beta} \frac{L}{2}}
-	\end{equation}
-	the length is $\frac{\beta}{\pi}\sinh(\halfL \frac{2\pi}{\beta})$, so one can use translations and rotations to map the endpoints to $x = \pm\lp$ on the plane, where
-	\begin{equation}
-	l_p=\frac{\beta}{2\pi}\sinh(\halfL \frac{2\pi}{\beta})
-	\end{equation}
-	The conformal factor is
-	\begin{equation}
-	e^{\frac{2\pi}{\beta}(w+\bar{w})}
-	\end{equation}
-	Note that compared to the usual map from cylinder to plane $z=e^{\frac{2\pi}{\beta} w}$, we put the overall scaling factor $\frac{\beta}{2\pi}$ to make sure that the conformal factor at the endpoints is $1$. 
-	
-	From \cite{Donnelly:2018bef}, the entanglement entropy for zero temperature is
-	\begin{equation}
-	S(L)=\frac{c}{3} \arcsinh \frac{\lp}{a}
-	\end{equation}
-	where
-	\begin{equation}
-	a^2=\frac{\mu c}{12}
-	\end{equation}
-	The $C$-function reads,
-	\begin{equation}
-	C(L)=L S'(L = 2l)=\frac{c}{3}\frac{1}{\sqrt{1+4a^2/L^2}}
-	\end{equation}
-	Now in the thermal case, $l_p\rightarrow \frac{\beta}{2\pi}\sinh(\halfL \frac{2\pi}{\beta})$
-	\begin{equation}
-	S_t=\frac{c}{3}\arcsinh \pqty{
-			\frac{1}{\kappa a}\sinh(\halfL \frac{2\pi}{\beta})
-		}
-	\end{equation}
-	\sidenote{which is the same as the results obtained from the local temperature trick \eqref{} and the gravity calculation \eqref{} [This is now the first non-trivial result of the paper. This comment should be moved to later.]} 
-	
-	------------
-	
-	Now consider the finite size case, the conformal transformation is,
-	\begin{equation}
-	z=\frac{1}{ir_1}e^{iwr_1},\quad
-		r_1 = \frac{2\pi}{\sidenote{R}}
-	\end{equation}
-	where $w$ is the cylinder coordinate, and $R$ is the \textit{spatial} size of the cylinder:
-	\begin{equation}
-	w\sim w+ R
-	\end{equation}
-	The endpoints of the interval are 
-	\begin{equation}
-	w\pm l
-	\end{equation}
-	The conformal factor is
-	\begin{equation}
-	e^{ir_1(w+\bar{w})}
-	\end{equation}
-	which is $1$ at the endpoints. The plane length reads,
-	\begin{equation}
-	l_p=\frac{1}{r_1}\sin lr_1
-	\end{equation}
-	So the final result is
-	\begin{equation}
-	S_f=\frac{c}{3}ArcSinh(\frac{1}{r_1a}\sin(lr_1))
-	\end{equation}
-	
 \pagebreak
-	
-	The global AdS reads,
-	\begin{equation}
-	 ds^2=-(r^2+1)dt^2+\frac{dr^2}{r^2+1}+r^2d\phi^2,\ \ \phi\sim\phi+2\pi
-	\end{equation}
-	\begin{equation}
-	\phi\rightarrow r1\phi,\ \ r\rightarrow \frac{r}{r_1}, \ \ \ t\rightarrow r_2 t
-	\end{equation}
-	\begin{equation}
-	 ds^2=-(r^2+r_1^2)dt^2+\frac{dr^2}{r^2+r_1^2}+r^2d\phi^2,\ \ \phi\sim\phi+\beta
-	\end{equation}
-	Compared to the planer BTZ,
-	\begin{equation}
-	ds^2=-(r^2-r_1^2)dt^2+\frac{dr^2}{r^2-r_1^2}+r^2dx^2
-	\end{equation}
-	For the holographic entanglement entropy
-	\begin{equation}
-	r_1\rightarrow ir_1
-	\end{equation}
-	There is no topological obstacle in global AdS, so one can do the replacement above to get the holographic entanglement entropy in global AdS from the HEE in planer BTZ.
-	\begin{equation}
-	S_f=\frac{c}{3}ArcSinh(\frac{1}{r_1a}\sin(lr_1))
-	\end{equation}
-	
-	
-\pagebreak
-\subsection{Boundary modular flows}
+\section{The boundary story: modular flow \& entanglement entropy}
+
+\subsection{Boundary modular flow}
 
 	A boundary interval $\mcal{A}$ defines a denisty matrix:
 	\begin{equation}
@@ -373,13 +247,13 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	For simplicity, we now restrict to an interval centered at the origin: $
 		u_\pm v_\pm
 		= x^2_\pm - t^2_\pm
-		= (\frac{{\tilde L}}{2})^2
+		= (\frac{\tilde{l}}{2})^2
 	$, where $x_\pm = -x_\mp$, and same for $t_\pm, u_\pm, v_\pm$. 
 	We then introduce the \textit{rapidity} $\theta$ to nicely parametrized the boosted interval. For a constant time slice, we have $\theta = 0$. For a general boosted interval, we have:
 	\begin{equation}
-		x_\pm = \pm \frac{{\tilde L}}{2} \cosh \theta,
+		x_\pm = \pm \frac{\tilde{l}}{2} \cosh \theta,
 	\quad
-		t_\pm = \pm \frac{{\tilde L}}{2} \sinh \theta,
+		t_\pm = \pm \frac{\tilde{l}}{2} \sinh \theta,
 	\end{equation}
 	Note that the RT surface lies on the plane $
 		t_\pm / x_\pm = \tanh \theta
@@ -387,10 +261,10 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	We have:
 	\begin{gather}
 	\begin{aligned}
-		\xi_\mrm{CFT} &= \frac{2\pi}{{\tilde L}} \bigg\{
+		\xi_\mrm{CFT} &= \frac{2\pi}{\tilde{l}} \bigg\{
 			\pqty{
 				\pqty{
-					(\tfrac{{\tilde L}}{2})^2
+					(\tfrac{\tilde{l}}{2})^2
 					- (t^2 + x^2)
 				} \cosh\theta
 				+ 2tx \sinh\theta
@@ -398,7 +272,7 @@ In this section we first review the holographic duality between $T\bar T$ deform
 		\\ &\qquad\qquad 
 			+ \pqty{
 				\pqty{
-					(\tfrac{{\tilde L}}{2})^2
+					(\tfrac{\tilde{l}}{2})^2
 					+ (t^2 + x^2)
 				} \sinh\theta
 				- 2tx \cosh\theta
@@ -409,9 +283,9 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	Suppose the interval $\mcal{A}$ lies on the constant $t = 0$ slice; around the constant $t = 0$ slice, the modular flow becomes:
 	\begin{equation}
 		\xi_\mrm{CFT}|_{t = 0} 
-		= \frac{2\pi}{{\tilde L}}
+		= \frac{2\pi}{\tilde{l}}
 			\pqty{
-				(\tfrac{{\tilde L}}{2})^2
+				(\tfrac{\tilde{l}}{2})^2
 				- x^2
 			} \,\pdd{t}
 	\end{equation}
@@ -445,43 +319,43 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	For example, for a single interval in CFT$_2$,
 	\begin{equation}
 		\beta(x)
-		= \frac{2\pi}{{\tilde L}}
+		= \frac{2\pi}{\tilde{l}}
 			\pqty{
-				\pqty{\tfrac{{\tilde L}}{2}}^2
+				\pqty{\tfrac{\tilde{l}}{2}}^2
 				- x^2
 			} \,\pdd{t}
 	\end{equation}
 	\begin{equation}
-	S= \frac{c}{3} \int_{-{\tilde L}/2}^{{\tilde L}/2}
-			\frac{{\tilde L}/2}{({\tilde L}/2)^2-x^2}dx,
+	S= \frac{c}{3} \int_{-\tilde{l}/2}^{\tilde{l}/2}
+			\frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx,
 	\end{equation}
 	The indefinite integral $
-		\int \frac{{\tilde L}/2}{({\tilde L}/2)^2-x^2}dx
-		= \mop{arctanh}\frac{2x}{{\tilde L}}
+		\int \frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx
+		= \mop{arctanh}\frac{2x}{\tilde{l}}
 %		\rightarrow\mrm{CFT}
-	$ diverges as $x\rightarrow {\tilde L}/2$, so one needs a cutoff:
+	$ diverges as $x\rightarrow \tilde{l}/2$, so one needs a cutoff:
 	\begin{equation}
-	S=\frac{c}{3}\int_{-{\tilde L}/2+\epsilon}^{{\tilde L}/2-\epsilon}
-		\frac{{\tilde L}/2}{({\tilde L}/2)^2-x^2}dx
+	S=\frac{c}{3}\int_{-\tilde{l}/2+\epsilon}^{\tilde{l}/2-\epsilon}
+		\frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx
 	=\frac{2c}{3} \mop{arctanh} \pqty{
-			1-\frac{2\epsilon}{{\tilde L}}
+			1-\frac{2\epsilon}{\tilde{l}}
 		}
 	\end{equation}
 	As $\epsilon\rightarrow 0$,
 	\begin{equation}
 		\mop{arctanh} \pqty{
-			1-\frac{2\epsilon}{{\tilde L}}
-		}\rightarrow \frac{1}{2}\log\frac{{\tilde L}}{\epsilon}
+			1-\frac{2\epsilon}{\tilde{l}}
+		}\rightarrow \frac{1}{2}\log\frac{\tilde{l}}{\epsilon}
 	\end{equation}
 	So we get the usual result
 	\begin{equation}
-	S=\frac{c}{3}\log\frac{{\tilde L}}{\epsilon}
+	S=\frac{c}{3}\log\frac{\tilde{l}}{\epsilon}
 	\end{equation}
 	
 	{\color{red} For TTbar,  \begin{equation}
 	S=\frac{c}{3}\int_{- L/2}^{L/2}
-		\frac{{\tilde L}/2}{({\tilde L}/2)^2-x^2}dx
-		={c\over6} \mop{arctanh} {2x\over {\tilde L}}\bigg|^{L/2}_{-{L/2}}
+		\frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx
+		={c\over6} \mop{arctanh} {2x\over \tilde{l}}\bigg|^{L/2}_{-{L/2}}
 	\end{equation}   }
 	where integration range $L$ is related to $\tilde L$ by requiring that the distance to the pole at $\pm{\tilde L\over 2}$ is cutff
 	\eq{
@@ -627,50 +501,13 @@ In this section we first review the holographic duality between $T\bar T$ deform
 	
 	Note that in the above arguments we've assumed conformal symmetry, which we no longer have after a \TTbar deformation. However, as we've demonstrated above, it seems that this trick still works for the deformed theory. \sidenote{Perhaps the reason is again, that the conformal factor vanishes at the endpoints, due to $2\pi$ periodicity of $\xi$, which we will show in later sections. } 
 	
-	***
 	
-	In the thermal CFT$_2$,
-	\begin{equation}
-	w=e^{\frac{2\pi z}{\beta}}
-	\end{equation}
-	From this transformation between the cylinder and the plane, we can find the "local" temperature $\tilde{\beta}$
-	\begin{equation}
-	\tilde{\beta}(x)=2\pi\frac{sinh[\pi(x+l_b)/\beta]sinh[\pi(x-l_b)/\beta]}{sinh(2\pi l_b/\beta)}
-	\end{equation}
-	After integrating out,
-	\begin{equation}
-	f(x)=\frac{\log(sinh\frac{\pi(l_b+x)}{\beta})-\log(sinh\frac{\pi(l_b-x)}{\beta})}{2\pi}
-	\end{equation}
-	\sidenote{The relation between $l_b$ and $l$ comes from the gravitational side, [explain through coordinate map]}
-	\begin{equation}
-	2l_b=Arccoth(\frac{r_c\cosh(lr_1/2)}{\sqrt{r_1^2+r_c^2\sinh^2(lr_1/2)}})/r_1
-	\end{equation}
-	where
-	\begin{equation}
-	r_1=\frac{2\pi}{\beta}
-	\end{equation}
-	is the outer horizon, and $r_c$ is the cutoff, related to the deformation parameter $\lambda$. The entanglement entropy reads,
-	\begin{equation}
-	S(L=2l)=\frac{\pi c}{6}(f(l)-f(-l))=\frac{c}{3}\log(\frac{r_c}{r_1}\sinh(l r_1)+\sqrt{1+\frac{r_c^2}{r_1^2}\sinh^2(l r_1)})
-	\end{equation}
-	The C-function is
-	\begin{equation}
-	C(l)=lS'(l)=\frac{c}{3}lr_1\coth(lr_1)\sqrt{\frac{r_c^2}{r_c^2+r_1^2csch^2(l r_1)}}
-	\end{equation}
-	\begin{equation}
-	C(L)=\frac{L\pi c}{3\beta}\coth\frac{L\pi}{\beta}\sqrt{\frac{1}{1+\frac{4\pi^2\epsilon^2}{\beta^2\sinh^2\frac{L\pi}{\beta}}}}
-	\end{equation}
-	In CFT
-	\begin{equation}
-	S(L)=\frac{c}{3}\log(\frac{\beta}{\pi \epsilon}\sinh\frac{L\pi}{\beta})
-	\end{equation}
-	\begin{equation}C(L)=\frac{L\pi c}{3\beta}\coth\frac{L\pi}{\beta}
-	\end{equation}
+\pagebreak
+\section{Zero temperature: the bulk modular flow for Poincar\'e $\mrm{AdS}_3$}
 	
-\section{Bulk story}
-	This reproduces known results in e.g.~\cite{Lashkari:2016idm,Czech:2019vih,Apolo:2020qjm} \sidenote{[more citations needed]}. We first compute everything in Poincar\'e $\mrm{AdS}_3$ for simplicity. 
-\subsection{Bulk modular flows for Poincar\'e $\mrm{AdS}_3$}
 	We follow the recipe from the swing surface proposal \cite{Apolo:2020bld,Apolo:2020qjm} to extend the boundary modular flow to the bulk, by matching symmetries of the bulk and the boundary. 
+	We first compute everything in Poincar\'e $\mrm{AdS}_3$ for simplicity. 
+	This reproduces known results in e.g.~\cite{Lashkari:2016idm,Czech:2019vih,Apolo:2020qjm} \sidenote{[more citations needed]}. 
 	
 	By requiring that a linear combination of the bulk Killing vectors for Poincar\'e $\mrm{AdS}_3$ reduces to the boundary $L_n$'s, one can uniquely extend the $L_n,\tilde{L}_n$'s into the bulk. The result for $L_n$'s is listed below; for $\tilde{L}_n$ one need only exchange all $u\leftrightarrow v$.
 	\begin{equation}
@@ -706,13 +543,10 @@ In this section we first review the holographic duality between $T\bar T$ deform
 		= x^2_\pm - t^2_\pm
 		= (\frac{L_\infty}{2})^2
 	$, where $x_\pm = -x_\mp$, and same for $t_\pm, u_\pm, v_\pm$. 
-	$L_\infty$ is the coordinate length of the boundary interval $\mcal{A}$ at the asymptotic infinity; this corresponds to the field theory side ${\tilde L}$. 
+	$L_\infty$ is the coordinate length of the boundary interval $\mcal{A}$ at the asymptotic infinity; this corresponds to the field theory side $\tilde{l}$. 
 	For now the coordinates $u_\pm, v_\pm, x_\pm, t_\pm$ and the coordinate length $L_\infty$ are all specified at $z\to 0$, i.e.~at the \textbf{asymptotic boundary}. Note that the RT surface lies on the plane $
 		t_\pm / x_\pm = \tanh \theta
 	$, namely $\theta$ is constant along the RT surface. 
-	
-	
-	{\color{red} use $l_u,\,l_v$}
 	
 	We have:
 	\begin{gather}
@@ -741,9 +575,6 @@ In this section we first review the holographic duality between $T\bar T$ deform
 		\bigg\}
 	\end{aligned}
 	\end{gather}
-	
-The RT surface is the set of the fixed points of the modular flow, ....bifurcating surface....
-
 
 \eq{ &\pqty{
 					(\tfrac{L_\infty}{2})^2 - z^2
@@ -756,7 +587,7 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 
 	
 	We note that the $\pdd{z}$ term vanishes in the following two cases:
-	\begin{itemize}%[noitemsep,topsep=0pt]
+	\begin{itemize}[noitemsep,topsep=0pt]
 	\item as $z\to 0$, i.e.~near the asymptotic boundary;
 	\item within the whole plane: $
 			x\sinh\theta
@@ -764,7 +595,7 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 		$ where the RT surface lies. 
 	\end{itemize}
 	
-\subsubsection{Zero temperature: cutoff Poincar\'e $\mrm{AdS}_3$ and the loss of $2\pi$ periodicity}
+\subsection{Cutoff Poincar\'e $\mrm{AdS}_3$ and the loss of $2\pi$ periodicity}
 
 \textbf{Summary:} We look at the flow at constant cutoff $z = z_c$, which has non-trivial $\pdd{z}$ component, which in turn leads to a violation of the $2\pi$ periodicity for $\xi$ along the horizon.
 	
@@ -831,8 +662,6 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 		= \kappa_\xi \xi^\mu
 		= 2\pi \xi^\mu
 	$ guarantees that after Wick rotation, the Euclidean periodicity around the horizon is normalized to $\beta = 1$. However, if we restrict to the field theory living at constant cutoff $z = z_c$, which corresponds to a \TTbar deformed theory \cite{McGough:2016lol,Lewkowycz:2019xse} \sidenote{[more citations needed]}, since it has no knowledge of the $\pdd{z}$ component of $\xi$, we should reduce it to a modular flow within the $z = z_c$ plane by, e.g.~projecting the $z$ component out, which leaves us:
-	
-	{\color{red} delete
 	\begin{equation}
 	\begin{aligned}
 		\xi^{\mrm{FT}}_c
@@ -860,7 +689,6 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 	\end{aligned}
 	\end{equation}
 	Which no longer has normalized $\beta$ if $z_c \ne 0$.
-}
 	
 	 In fact, compared to the $z_c \to 0$ situation which \textit{does} have $\beta = 1$, $\xi^{\mrm{FT}}_c$ is rescaled by a factor of $
 		\frac{L}{L_\infty}
@@ -902,7 +730,7 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 \pagebreak
 
 
-\subsubsection{Restoring the $2\pi$ periodicity by following the flow}
+\subsection{Restore the $2\pi$ periodicity by following the flow}
 	
 \textbf{Summary:} We note that the periodicity can be restored by following the flow of $\xi$ starting from a codim-2 cutoff surface. This is related to the proposal of \cite{Grado-White:2020wlb}. 
 	
@@ -1105,13 +933,13 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 	
 	
 \pagebreak
-\subsection{Gravitational charges}
+\section{Finite temperature: entanglement entropy as gravitational charges}
 	
 	Gravitational entropy is the Noether charge $Q_\xi$ associated with some horizon generator $\xi$. In the case of entanglement entropy between a simple interval and its complement, its corresponding modular flow in the bulk is precisely the horizon generator of the Rindler patch. We can then compute the charge variation using the covariant formula \eqref{charges}. 
 	
 	Again, to compute $\var{Q}$ we need to consider a particular metric variation $\var{g}_{\mu\nu}$ in the phase space of solutions. There is no free parameter in Poincar\'e $\mrm{AdS}_3$, unless we turn on temperature; namely we have to start with the BTZ geometry. 
 	
-\subsubsection{Finite temperature: modular flow in $\mrm{BTZ}_3$ and entanglement entropy}
+\subsection{Modular flow in $\mrm{BTZ}_3$ and entanglement entropy}
 \textbf{Summary:} We map the the modular flow in the Poincar\'e $\mrm{AdS}_3$ vacuum to the BTZ background, and compute the entanglement entropy as gravitational charge. 
 
 	We thus have to repeat the calculations above to get the geodesic $\gamma$ and modular generators $\xi^\mu$ in the new BTZ backgrounds. However, it is convenient to remember that all BTZ black holes are locally equivalent to the pure $\mrm{AdS}_3$; we can then map Poincar\'e $(u,v,z)$ to BTZ Schwarzschild $(t,r,\phi)$ by \cite{Hubeny:2007xt}:
@@ -1189,7 +1017,7 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 	\end{equation}
 	
 \pagebreak
-\subsubsection{BTZ with constant cutoff}
+\subsection{BTZ with constant cutoff}
 \textbf{Summary:} We then consider constant $r$ cutoff in the Schwarzschild coordinates, which corresponds to the proposal of \cite{McGough:2016lol}. This gives a finite temperature generalization of the result of \cite{Lewkowycz:2019xse}. 
 
 	Now we consider constant cutoff at $r = r_c$. Again we need to trade the $L_\infty$ above with the coordinate length of the interval $L$ at the cutoff $r_c$. The relation can be solved by looking at the geodesic equation, which is slightly non-trivial this time:
@@ -1279,8 +1107,8 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 	Although we haven't been careful about integration constants, this result happens to agree with the entropy in \cite{Lewkowycz:2019xse}. 
 	
 	
+\pagebreak
 \appendix
-
 \section{Modular flow for Poincar\'e $\mrm{AdS}_3/\mrm{CFT}_2$}
 \label{sect:modFlowPoincare}
 
@@ -1448,9 +1276,8 @@ The RT surface is the set of the fixed points of the modular flow, ....bifurcati
 		\bigg\}
 	\end{aligned}
 	\end{gather}
-	
 	We note that the $\pdd{z}$ term vanishes in the following two cases:
-	\begin{itemize}%[noitemsep,topsep=0pt]
+	\begin{itemize}[noitemsep,topsep=0pt]
 	\item as $z\to 0$, i.e.~near the asymptotic boundary;
 	\item within the whole plane: $
 			x\sinh\theta
