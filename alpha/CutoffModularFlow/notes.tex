@@ -89,7 +89,7 @@
 	
 	\item The \TTbar deformation is parametrized by the deformation parameter $\mu$ with mass dimension $(-2)$, defined in \cite{Apolo:2019zai}; sometimes it is more convenient to use the dimensionless \textit{worldsheet} deformation parameter $\lambda = \mu/\ell_s^2$, where $\ell_s$ is the string length. See \cite{Apolo:2019zai} section 2.3 and its (2.43). 
 	
-	\item Coordinate length of the boundary interval $\mcal{A}$ at the asymptotic infinity is denoted as $L_\infty$; the coordinate length at finite cutoff is denoted as $L$. For an interval lying on the constant time slice $t = 0$ in the Poincar\'e patch, we have $L = \Delta x$; for a boosted interval, we have $
+	\item Coordinate length of the boundary interval $\mcal{A}$ at the asymptotic infinity is denoted as $\tilde{l}$; the coordinate length at finite cutoff is denoted as $L$. For an interval lying on the constant time slice $t = 0$ in the Poincar\'e patch, we have $L = \Delta x$; for a boosted interval, we have $
 		L = \eta_{\mu\nu}\, \Delta x^\mu\, \Delta x^\nu
 	$. 
 	\end{itemize}
@@ -216,7 +216,7 @@
 	\end{equation}
 	where $\bar{\mcal{A}}$ is the complement of $\mcal{A}$ and $\mcal{H}_\mcal{A}$ is the corresponding modular Hamiltonian. $\mcal{H}_\mcal{A}$ is generically nonlocal, but in a highly symmetric background (e.g.~AdS vacuum) it might be geometrically realized and corresponds to a symmetry of the underlying quantum field theory. This is the modular flow $\xi$. 
 	
-	In such case there is a generalized Rindler transformation $f$ that maps the casual domain $\mcal{D}$ to a patch $\{(\tau,\tilde{x})\}$ in some noncompact generalized Rindler spacetime, with $\pdd{\tau}$ an isometry of the spacetime. Then we have:
+	In such case there is a generalized Rindler transformation $f$ that maps the casual domain $\mcal{D}$ to a patch $\{(\tau,x')\}$ in some noncompact generalized Rindler spacetime, with $\pdd{\tau}$ an isometry of the spacetime. Then we have:
 	\begin{equation}
 		\xi = 2\pi \pdd{\tau}
 		= 2\pi \sum_i s^i H_i,
@@ -233,7 +233,7 @@
 	
 	In usual $\mrm{CFT}_2$, this prescription gives us the modular flow generators for a single interval $\mcal{A}$:
 	\begin{equation}
-		\xi_\mrm{CFT} = 2\pi \sum_{n=0,\pm 1} \pqty{
+		\xi = 2\pi \sum_{n=0,\pm 1} \pqty{
 				s_n L_n - \bar{s}_n \bar{L}_n
 			},
 	\end{equation}
@@ -261,7 +261,7 @@
 	We have:
 	\begin{gather}
 	\begin{aligned}
-		\xi_\mrm{CFT} &= \frac{2\pi}{\tilde{l}} \bigg\{
+		\xi &= \frac{2\pi}{\tilde{l}} \bigg\{
 			\pqty{
 				\pqty{
 					(\tfrac{\tilde{l}}{2})^2
@@ -282,7 +282,7 @@
 	\end{gather}
 	Suppose the interval $\mcal{A}$ lies on the constant $t = 0$ slice; around the constant $t = 0$ slice, the modular flow becomes:
 	\begin{equation}
-		\xi_\mrm{CFT}|_{t = 0} 
+		\xi|_{t = 0} 
 		= \frac{2\pi}{\tilde{l}}
 			\pqty{
 				(\tfrac{\tilde{l}}{2})^2
@@ -290,7 +290,7 @@
 			} \,\pdd{t}
 	\end{equation}
 	
-	However, after the \TTbar-deformation, the scaling and special conformal transformations are no longer symmetries of the theory, so we cannot simply take $\xi_\mrm{CFT}$ as the modular flow in the deformed theory. 
+	However, after the \TTbar-deformation, the scaling and special conformal transformations are no longer symmetries of the theory, so we cannot simply take $\xi$ as the modular flow in the deformed theory. 
 	But we shall see that by properly specifying the integration range, this is enough to give us the entanglement entropy of a \TTbar-deformed theory. 
 
 \subsection{Effective local temperature and entanglement entropy}
@@ -306,40 +306,40 @@
 	\mcal{H}_\mcal{A}=\int \beta(x)\, T_{00}\,dx,\quad \xi|_{t=0} = \beta(x)\, \pdd{t}
 	\end{equation}
 	
-	Let's see this trick in action in CFT$_2$; the \textit{entropy density} is given by:
+	Let's see this trick in action in CFT$_2$; in terms of the effective inverse temperature $\beta(x)$, the \textit{entropy density} is given by:
 	\begin{equation}
-	s = \frac{c}{6} \frac{2\pi}{\beta(x)}
+	s = \frac{c}{6} \frac{2\pi}{\beta(x)},
 	\end{equation}
-	in terms of the effective inverse temperature $\beta(x)$, and the total entropy of the interval $\mcal{A}$ is given by:
+	while the total entropy of the interval $\mcal{A}$ is given by:
 	\begin{equation}
 	S = \frac{c}{6}
 		\int_\mcal{A} \frac{2\pi}{\beta(x)} \dd{x}
 	\end{equation}
-	
-	For example, for a single interval in CFT$_2$,
+	For a single interval in CFT$_2$,
 	\begin{equation}
 		\beta(x)
 		= \frac{2\pi}{\tilde{l}}
 			\pqty{
 				\pqty{\tfrac{\tilde{l}}{2}}^2
 				- x^2
-			} \,\pdd{t}
-	\end{equation}
-	\begin{equation}
+			} \,\pdd{t},
+	\quad
 	S= \frac{c}{3} \int_{-\tilde{l}/2}^{\tilde{l}/2}
-			\frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx,
+			\frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx
 	\end{equation}
-	The indefinite integral $
+	The indefinite integral:
+	\begin{equation}
 		\int \frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx
 		= \mop{arctanh}\frac{2x}{\tilde{l}}
-%		\rightarrow\mrm{CFT}
-	$ diverges as $x\rightarrow \tilde{l}/2$, so one needs a cutoff:
+	\end{equation}
+	diverges as $x\rightarrow \tilde{l}/2$, so one needs a cutoff:
 	\begin{equation}
 	S=\frac{c}{3}\int_{-\tilde{l}/2+\epsilon}^{\tilde{l}/2-\epsilon}
 		\frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx
 	=\frac{2c}{3} \mop{arctanh} \pqty{
 			1-\frac{2\epsilon}{\tilde{l}}
 		}
+	\label{eq:cft_local_entropy}
 	\end{equation}
 	As $\epsilon\rightarrow 0$,
 	\begin{equation}
@@ -347,44 +347,10 @@
 			1-\frac{2\epsilon}{\tilde{l}}
 		}\rightarrow \frac{1}{2}\log\frac{\tilde{l}}{\epsilon}
 	\end{equation}
-	So we get the usual result
+	So we get the usual result:
 	\begin{equation}
 	S=\frac{c}{3}\log\frac{\tilde{l}}{\epsilon}
 	\end{equation}
-	
-	{\color{red} For TTbar,  \begin{equation}
-	S=\frac{c}{3}\int_{- L/2}^{L/2}
-		\frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx
-		={c\over6} \mop{arctanh} {2x\over \tilde{l}}\bigg|^{L/2}_{-{L/2}}
-	\end{equation}   }
-	where integration range $L$ is related to $\tilde L$ by requiring that the distance to the pole at $\pm{\tilde L\over 2}$ is cutff
-	\eq{
-({\tilde L\over 2})^2=2\lambda+({ L\over 2})^2}
-	
-	
-	
-%	{\color{red} looks wrong : Now for the cutoff field theory living at the boundary, where
-%	\begin{equation}
-%		\beta(x) = \frac{2\pi}{\sqrt{L^2 + 8\lambda}}
-%			\pqty{
-%				\pqty{\frac{L}{2}}^2
-%				- x^2
-%			} \,\pdd{t}
-%	\end{equation}}
-	The entanglement entropy is
-	\begin{equation}
-	S=\frac{c}{6}\mop{arctanh}\frac{2x}{\sqrt{L^2 + 8\lambda}}\Big|_{x=-L/2}^{x=L/2}
-	=\frac{c}{3}\mop{arctanh}\frac{L}{\sqrt{L^2 + 8\lambda}}
-	=\frac{c}{3}\mop{arcsinh}\frac{L}{2\sqrt{2\lambda}}
-	\end{equation}
-	with the Casini--Huerta $C(L)$-function:
-	\begin{equation}
-	C(l)=\frac{c}{3}\frac{1}{\sqrt{1+\frac{8\lambda}{L^2}}}
-	\end{equation}
-	Which agrees with \cite{Lewkowycz:2019xse}. \sidenote{This provides a field theory side calculation of the cutoff entanglement entropy, based on the input of the modular flow $\xi$. }
-	Note that we only need to know the modular flow $\xi$ along the $t = 0$ slice. We don't need to know the full modular flow\footnote{
-		\sidenote{This seems to be consistent with holographic entropy, a la Lewkowycz--Maldacena \cite{Lewkowycz:2013nqa}, where the charge only depends linearly on $\xi$ along the RT surface, as long as $\xi$ is a Killing vector. See \eqref{kdef}. }
-	}. 
 	
 	The validity of this trick can be argued from the Rindler map; suppose we have the following Rindler map at the boundary:
 	\begin{equation}
@@ -393,7 +359,7 @@
 		\mcal{D}(\mcal{A})
 		&\longto \mcal{R} = S^1_\beta \times f(\mcal{A}), \\
 		(t,x)
-		&\longmapsto (\tau,\tilde{x}),
+		&\longmapsto (\tau,{x}),
 	\end{aligned}
 	\end{equation}
 	Here $f(\mcal{A})$ is the image of the boundary interval. $f$ by construction ``normalizes'' the temperature for the modular generator, namely, the modular flow $\xi$ is now realized as the pullback of $2\pi\pdd{\tau}$:
@@ -410,41 +376,41 @@
 		\pdv{t}{\tau}
 		= \frac{\beta(x)}{2\pi}
 	\end{equation}
-	Note that although $\xi$ is a Killing vector when it's extended to the bulk, it is only a \textit{conformal Killing vector} when it's restricted to the boundary. 
+	Note that although $\xi$ is a Killing vector when it's extended to the bulk (as is done in later sections), it is only a \textit{conformal Killing vector} when it's restricted to the boundary. 
 	
 	Here we think of $f$ as a simple coordinates transformation or diffeomorphism, which keeps the metric $\dd{s}^2$ invariant, and maps the flat coordinates to the conformally flat coordinates:
 	\begin{equation}
 		\dd{s}^2
 		= \dd{t}^2 + \dd{x}^2
-		= \Omega^2(\tau,\tilde{x}) \pqty{
-				\dd{\tau}^2 + \dd{\tilde{x}}^2
+		= \Omega^2(\tau,x') \pqty{
+				\dd{\tau}^2 + \dd{x'}^2
 			},
 	\quad
 		\Omega_{t = 0} = \pdv{t}{\tau}
-		= \frac{\beta(x)}{2\pi}
+		= \frac{\beta(x)}{2\pi},
 	\end{equation}
-	Here we've properly rescaled the $\tilde{x}$ coordinate to make the $(\tau,\tilde{x})$ coordinates conformally flat. 
+	where we've properly rescaled the $x'$ coordinate to make the $(\tau,x')$ coordinates conformally flat. 
 	
-	In the case where the theory is conformally invariant, one can further drop the conformal factor $\Omega^2(\tau,\tilde{x})$ from the metric, while the thermal entropy of the system remains unchanged. We now have a flat annulus:
+	In the case where the theory is conformally invariant, one can further drop the conformal factor $\Omega^2(\tau,x')$ from the metric, while the thermal entropy of the system remains unchanged. We now have a flat annulus:
 	\begin{equation}
-		\tilde{\mcal{R}}
-		= S^1_\beta \times [0,\tilde{L}],
+		\mcal{R}'
+		= S^1_\beta \times [0,l'],
 	\quad
-		\dd{\tilde{s}}^2
+		\dd{s'}^2
 		= \frac{1}{\Omega^2} \dd{s}^2
-		= \dd{\tau}^2 + \dd{\tilde{x}}^2
+		= \dd{\tau}^2 + \dd{x'}^2
 	\end{equation}
 	This is the corresponding geometry of a thermal partition function, with a constant temperature $\beta_\tau = 2\pi$. 
-	Now $\pdd{\tau}$ is truly a Killing vector of $\tilde{\mcal{R}}$. 
+	Now $\pdd{\tau}$ is truly a Killing vector of $\mcal{R}'$. 
 	In this case the thermal entropy is extensive: the total entropy $S_\mcal{A}$ is proportional to the size of the system:
 	\begin{equation}
 		S_\mcal{A}
-		= \frac{c}{6} \tilde{L}
+		= \frac{c}{6} l'
 	\end{equation}
-	Here $\tilde{L}$ denotes the $\tilde{\mcal{R}}$ length of the interval $f(\mcal{A})$:
+	Here $l'$ denotes the $\mcal{R}'$ length of the interval $f(\mcal{A})$:
 	\begin{equation}
-		\tilde{L}
-		= \int_{f(\mcal{A})} \dd{\tilde{s}}
+		l'
+		= \int_{f(\mcal{A})} \dd{s'}
 		= \int_{f(\mcal{A})} \frac{\dd{s}}{\Omega}
 		= \int_{\mcal{A}} \frac{\dd{s}}{\Omega}
 		= \int_{\mcal{A}} \frac{2\pi}{\beta(x)} \dd{x}
@@ -461,45 +427,73 @@
 		\frac{c}{6}
 	$. This can be derived from the Cardy formula\footnote{
 		The easiest way to see this is by applying the AdS/CFT dictionary, where we find that $c = \frac{3\ell_\mrm{AdS}}{2G_N}$ thus $\frac{c}{6} = \frac{\ell_\mrm{AdS}}{4G_N}$, which is precisely the Bekenstein--Hawking entropy (per unit area, with $\ell_\mrm{AdS} = 1$). But now we are committed to a purely field theoretical calculation, so we will apply Cardy's arguments here, which do not rely on holographic duality. 
-	}, where we have: 
-%	First note that by rescaling the Rindler map $f$ we can tune the temperature of the Rindler spacetime $\mcal{R}$ to be arbitrarily high. We've chosen $\beta_\tau = 2\pi$ only for convenience. \sidenote{[is this argument valid? check!]} 
-%	Therefore we may apply the high temperature (or low $\beta$) limit of the Cardy formula; namely, by modular invariance of the partition function, we have:
-%	\begin{equation}
-%	\begin{aligned}
-%		Z[\tau = i\tfrac{\beta}{2\pi}]
-%		&= Z[-\tfrac{1}{\tau} = i\tfrac{2\pi}{\beta}],
-%	\\[1ex]
-%		Z[\beta]
-%		&= Z[\beta\to \tfrac{4\pi^2}{\beta}] \\
-%		&= \Tr e^{
-%			-\frac{4\pi^2}{\beta} \pqty{
-%				L_0 + \tilde{L}_0 - \frac{c}{12}
-%			} \frac{\tilde{L}}{2\pi}
-%		}, \quad \beta\ll 1 \\
-%		&\sim e^{
-%			\frac{4\pi^2}{\beta}
-%			\frac{c}{12}
-%			\frac{\tilde{L}}{2\pi}
-%		}
-%		= e^{
-%			\frac{2\pi}{\beta}
-%			\frac{c}{12} \tilde{L}
-%		},
-%	\end{aligned}
-%	\end{equation}
-%	Here we've used the saddle point approximation and assumed that the vacuum (the $h = \tilde{h} = 0$ state) contribution dominates. The entropy is thus given by:
+	}.
+%	, where we have: 
+	First note that by rescaling the Rindler map $f$ we can tune the temperature of the Rindler spacetime $\mcal{R}$ to be arbitrarily high. We've chosen $\beta_\tau = 2\pi$ only for convenience. \sidenote{[is this argument valid? check!]} 
+	Therefore we may apply the high temperature (or low $\beta$) limit of the Cardy formula; namely, by modular invariance of the partition function, we have:
+	\begin{equation}
+	\begin{aligned}
+		Z[\tau = i\tfrac{\beta}{2\pi}]
+		&= Z[-\tfrac{1}{\tau} = i\tfrac{2\pi}{\beta}],
+	\\[1ex]
+		Z[\beta]
+		&= Z[\beta\to \tfrac{4\pi^2}{\beta}] \\
+		&= \Tr e^{
+			-\frac{4\pi^2}{\beta} \pqty{
+				L_0 + \bar{L}_0 - \frac{c}{12}
+			} \frac{l'}{2\pi}
+		}, \quad \beta\ll 1 \\
+		&\sim e^{
+			\frac{4\pi^2}{\beta}
+			\frac{c}{12}
+			\frac{l'}{2\pi}
+		}
+		= e^{
+			\frac{2\pi}{\beta}
+			\frac{c}{12} \tilde{L}
+		},
+	\end{aligned}
+	\end{equation}
+	Here we've used the saddle point approximation and assumed that the vacuum (the $h = \tilde{h} = 0$ states) contribution dominates. The entropy is thus given by:
 	\begin{equation}
 		S
-%		= \pqty{
-%				1 - \beta\, \pdd{\beta}
-%			} \log Z[\beta]
-		= \frac{2\pi}{\beta} \frac{c}{6} \tilde{L}
+		= \pqty{
+				1 - \beta\, \pdd{\beta}
+			} \log Z[\beta]
+		= \frac{2\pi}{\beta} \frac{c}{6} l'
 	\end{equation}
 	With $\beta = \beta_\tau = 2\pi$, we recover the result $
-		S = \frac{c}{6} \tilde{L}
+		S = \frac{c}{6} l'
 	$. 
 	
-	Note that in the above arguments we've assumed conformal symmetry, which we no longer have after a \TTbar deformation. However, as we've demonstrated above, it seems that this trick still works for the deformed theory. \sidenote{Perhaps the reason is again, that the conformal factor vanishes at the endpoints, due to $2\pi$ periodicity of $\xi$, which we will show in later sections. } 
+	Note that in the above arguments we've assumed conformal symmetry, which we no longer have after a \TTbar deformation. On the other hand, as an irrelevant deformation, \TTbar is often understood as some sort of cutoff of the original CFT. With this intuition in mind, let's tweak \eqref{eq:cft_local_entropy} as follows:
+	\begin{equation}
+	S=\frac{c}{3}\int_{-l/2}^{l/2}
+		\frac{\tilde{l}/2}{(\tilde{l}/2)^2-x^2}dx
+		={c\over3} \mop{arctanh} {2x\over \tilde{l}}\bigg|^{l/2}_{-{l/2}}
+	\end{equation}   
+	where the integration range is given by the length $l$ of the interval $\mcal{A}$ in the \TTbar-deformed theory. If we \textit{assume} that $l$ is related to $\tilde l$ by:
+	\begin{equation}
+		\Big(\frac{\tilde{l}}{2}\Big)^2
+		= \Big(\frac{l}{2}\Big)^2 + 2\lambda
+	\label{eq:cutoff_relation}
+	\end{equation}
+	Then the entanglement entropy is given by
+	\begin{equation}
+	S=\frac{c}{6}\mop{arctanh}\frac{2x}{\sqrt{l^2 + 8\lambda}}\bigg|_{x=-l/2}^{x=l/2}
+	=\frac{c}{3}\mop{arctanh}\frac{l}{\sqrt{l^2 + 8\lambda}}
+	=\frac{c}{3}\mop{arcsinh}\frac{l}{2\sqrt{2\lambda}}
+	\end{equation}
+	with the Casini--Huerta $C(L)$-function:
+	\begin{equation}
+	C(l)=\frac{c}{3}\frac{1}{\sqrt{1+\frac{8\lambda}{L^2}}}
+	\end{equation}
+	Which agrees with \cite{Lewkowycz:2019xse}. \sidenote{This provides a field theory side calculation of the cutoff entanglement entropy, based on the input of the modular flow $\xi$. }
+	Note that we only need to know the modular flow $\xi$ along the $t = 0$ slice. We don't need to know the full modular flow\footnote{
+		\sidenote{This seems to be consistent with holographic entropy, a la Lewkowycz--Maldacena \cite{Lewkowycz:2013nqa}, where the charge only depends linearly on $\xi$ along the RT surface, as long as $\xi$ is a Killing vector. See \eqref{kdef}. }
+	}. 
+	
+	As we've demonstrated above, it seems that the local temperature trick still works for the deformed theory, assuming the mysterious relation \eqref{eq:cutoff_relation}. The meaning of this relation will be made clear in the holographic setting. As for why the trick still works in the absence of conformal symmetry, \sidenote{perhaps the reason is again, that one can deploy a Rindler-like map as in \cite{Lewkowycz:2019xse}, where the conformal factor vanishes at the endpoints, due to $2\pi$ periodicity of $\xi$, which we will show in later sections. } 
 	
 	
 \pagebreak
@@ -507,7 +501,7 @@
 	
 	We follow the recipe from the swing surface proposal \cite{Apolo:2020bld,Apolo:2020qjm} to extend the boundary modular flow to the bulk, by matching symmetries of the bulk and the boundary. 
 	We first compute everything in Poincar\'e $\mrm{AdS}_3$ for simplicity. 
-	This reproduces known results in e.g.~\cite{Lashkari:2016idm,Czech:2019vih,Apolo:2020qjm} \sidenote{[more citations needed]}. 
+	This reproduces known results in e.g.~\cite{Lashkari:2016idm,Czech:2019vih,Apolo:2020qjm} \needcites. 
 	
 	By requiring that a linear combination of the bulk Killing vectors for Poincar\'e $\mrm{AdS}_3$ reduces to the boundary $L_n$'s, one can uniquely extend the $L_n,\tilde{L}_n$'s into the bulk. The result for $L_n$'s is listed below; for $\tilde{L}_n$ one need only exchange all $u\leftrightarrow v$.
 	\begin{equation}
@@ -541,20 +535,20 @@
 	Again, we restrict to an interval centered at the origin: $
 		u_\pm v_\pm
 		= x^2_\pm - t^2_\pm
-		= (\frac{L_\infty}{2})^2
+		= (\frac{\tilde{l}}{2})^2
 	$, where $x_\pm = -x_\mp$, and same for $t_\pm, u_\pm, v_\pm$. 
-	$L_\infty$ is the coordinate length of the boundary interval $\mcal{A}$ at the asymptotic infinity; this corresponds to the field theory side $\tilde{l}$. 
-	For now the coordinates $u_\pm, v_\pm, x_\pm, t_\pm$ and the coordinate length $L_\infty$ are all specified at $z\to 0$, i.e.~at the \textbf{asymptotic boundary}. Note that the RT surface lies on the plane $
+	$\tilde{l}$ is the coordinate length of the boundary interval $\mcal{A}$ at the asymptotic infinity; this corresponds to the field theory side $\tilde{l}$. 
+	For now the coordinates $u_\pm, v_\pm, x_\pm, t_\pm$ and the coordinate length $\tilde{l}$ are all specified at $z\to 0$, i.e.~at the \textbf{asymptotic boundary}. Note that the RT surface lies on the plane $
 		t_\pm / x_\pm = \tanh \theta
 	$, namely $\theta$ is constant along the RT surface. 
 	
 	We have:
 	\begin{gather}
 	\begin{aligned}
-		\xi &= \frac{2\pi}{L_\infty} \bigg\{
+		\xi &= \frac{2\pi}{\tilde{l}} \bigg\{
 			\pqty{
 				\pqty{
-					(\tfrac{L_\infty}{2})^2 - z^2
+					(\tfrac{\tilde{l}}{2})^2 - z^2
 					- (t^2 + x^2)
 				} \cosh\theta
 				+ 2tx \sinh\theta
@@ -562,7 +556,7 @@
 		\\ &\qquad\qquad 
 			+ \pqty{
 				\pqty{
-					(\tfrac{L_\infty}{2})^2 - z^2
+					(\tfrac{\tilde{l}}{2})^2 - z^2
 					+ (t^2 + x^2)
 				} \sinh\theta
 				- 2tx \cosh\theta
@@ -575,17 +569,6 @@
 		\bigg\}
 	\end{aligned}
 	\end{gather}
-
-\eq{ &\pqty{
-					(\tfrac{L_\infty}{2})^2 - z^2
-					- (t^2 + x^2)
-				} \cosh\theta
-				+ 2tx \sinh\theta =0\\
-			&	x\sinh\theta
-				- t\cosh\theta
-				}
-
-	
 	We note that the $\pdd{z}$ term vanishes in the following two cases:
 	\begin{itemize}[noitemsep,topsep=0pt]
 	\item as $z\to 0$, i.e.~near the asymptotic boundary;
@@ -602,8 +585,8 @@
 	Now we'd like to study $\xi$ not at the asymptotic boundary, but at some \textbf{constant finite cutoff} $z = z_c$. 
 	Note that is the size (coordinate length) of the interval at the {asymptotic boundary}; the coordinate length of the \textbf{cutoff interval $L$}, on the other hand, is given by:
 	\begin{equation}
-		\pqty{\frac{L}{2}}^{\!\!2}
-		= \pqty{\frac{L_\infty}{2}}^{\!\!2} - z_c^2,
+		\pqty{\frac{l}{2}}^{\!\!2}
+		= \bigg(\frac{\tilde{l}}{2}\bigg)^{\!\!2} - z_c^2,
 	\quad
 		x_\pm^c
 		= \pm \frac{L}{2}
@@ -664,8 +647,8 @@
 	$ guarantees that after Wick rotation, the Euclidean periodicity around the horizon is normalized to $\beta = 1$. However, if we restrict to the field theory living at constant cutoff $z = z_c$, which corresponds to a \TTbar deformed theory \cite{McGough:2016lol,Lewkowycz:2019xse} \sidenote{[more citations needed]}, since it has no knowledge of the $\pdd{z}$ component of $\xi$, we should reduce it to a modular flow within the $z = z_c$ plane by, e.g.~projecting the $z$ component out, which leaves us:
 	\begin{equation}
 	\begin{aligned}
-		\xi^{\mrm{FT}}_c
-		\equiv \proj{\text{/\!/}} \xi|_{z_c}
+		\xi_c
+		\equiv \xi^\text{/\!/}|_{z_c}
 		= \frac{2\pi}{
 				\sqrt{1 + (2z_c/L)^2}
 			}
@@ -690,12 +673,12 @@
 	\end{equation}
 	Which no longer has normalized $\beta$ if $z_c \ne 0$.
 	
-	 In fact, compared to the $z_c \to 0$ situation which \textit{does} have $\beta = 1$, $\xi^{\mrm{FT}}_c$ is rescaled by a factor of $
-		\frac{L}{L_\infty}
+	 In fact, compared to the $z_c \to 0$ situation which \textit{does} have $\beta = 1$, $\xi_c$ is rescaled by a factor of $
+		\frac{L}{\tilde{l}}
 		= 1/\sqrt{1 + (2z_c/L)^2}
 	$, which means that:
 	\begin{equation}
-		\beta^{\mrm{FT}}_c
+		\beta_c
 		= \sqrt{1 + (2z_c/L)^2}
 		\sim 1 + 2z_c^2 / L^2
 	\end{equation}
@@ -748,7 +731,7 @@
 	\includegraphics[width=.35\linewidth]{img/modFlowAnalytic.pdf}
 %	\hspace{2em}
 %	\vspace{-2ex}
-	\caption{Integral surface of the modular flow starting from $t = 0,\ z = z_c$. Here we've chosen $\frac{L_\infty}{2} = 1$ while $z_c = 0.4$.}
+	\caption{Integral surface of the modular flow starting from $t = 0,\ z = z_c$. Here we've chosen $\frac{\tilde{l}}{2} = 1$ while $z_c = 0.4$.}
 	\end{figure}
 	
 \pagebreak
@@ -766,7 +749,7 @@
 	$, which leads to the following equations:
 	\begin{equation}
 		\dv{z}{t}
-		= \frac{2tz}{\alpha z^2 + t^2 - (L_\infty/2)^2},
+		= \frac{2tz}{\alpha z^2 + t^2 - (\tilde{l}/2)^2},
 	\quad
 		\alpha = 1 + \frac{x_c^2}{z_c^2},
 	\quad
@@ -776,9 +759,9 @@
 	\begin{equation}
 		z = z(t;x_c,z_c)
 		= \frac{
-				(L_\infty/2)^2 + \alpha z_c^2
+				(\tilde{l}/2)^2 + \alpha z_c^2
 				- \sqrt{
-					\pqty{(L_\infty/2)^2 - \alpha z_c^2}^2
+					\pqty{(\tilde{l}/2)^2 - \alpha z_c^2}^2
 					+ 4t^2 \alpha z_c^2
 				}
 			}{2\alpha z_c}
@@ -789,7 +772,7 @@
 	To gain more understanding of the modular flow of the cutoff theory, we can look at the \textit{CHM map} \cite{Casini:2011kv} to the Rindler coordinates. In the Poincar\'e $\mrm{AdS}_3$ case this is explicitly given in Appendix B of \cite{Song:2016gtd}; the entanglement wedge in Poincar\'e $(t,x,z)$ is mapped to the planar BTZ $(u,v,\rho)$:
 	\begin{equation}
 	\begin{aligned}
-		t &= \frac{L_\infty}{2} \frac{
+		t &= \frac{\tilde{l}}{2} \frac{
 				\pqty{\rho - T_u T_v}
 				\,\sinh\,(T_u u - T_v v)
 			}{
@@ -799,7 +782,7 @@
 					\,\cosh\,(T_u u - T_v v)
 			},
 	\\
-		x &= \frac{L_\infty}{2} \frac{
+		x &= \frac{\tilde{l}}{2} \frac{
 				\sqrt{\rho^2 - T_u^2 T_v^2}
 				\,\sinh\,(T_u u + T_v v)
 			}{
@@ -809,7 +792,7 @@
 					\,\cosh\,(T_u u - T_v v)
 			},
 	\\
-		z &= \frac{L_\infty}{2} \frac{
+		z &= \frac{\tilde{l}}{2} \frac{
 				\sqrt{2T_u T_v}
 				\sqrt{\rho - T_u T_v}
 			}{
@@ -829,7 +812,7 @@
 			+ 2\rho \dd{u} \dd{v},
 	\end{equation}
 	This is a BTZ \textit{black string} with \textit{non-compact} $\phi$ direction. 
-	One can check that the $(u,v,\rho)$ coordinates indeed cover the $L_\infty$-sized entanglement wedge specified by $\xi$. 
+	One can check that the $(u,v,\rho)$ coordinates indeed cover the $\tilde{l}$-sized entanglement wedge specified by $\xi$. 
 	Here we've reused the variable names $(u,v)$ for the planar BTZ coordinates, and we've tweaked the expressions in \cite{Song:2016gtd} to be more symmetric in $(u,v)$. 
 	
 	\noindent\sidenote{\textbf{TO CHECK:}} At the boundary this reduces to the result of \textcite{Casini:2011kv}, which is used by \textcite{Lewkowycz:2019xse}. Also see the note \texttt{EETTbar.pdf}. 
@@ -873,7 +856,7 @@
 	
 	With these planar BTZ coordinates, the flow of $\xi = 2\pi\pdd{\tau}$ is almost trivial; we need only identify the initial conditions, which is given by $z = z_c$ and $t = 0$ in Poincar\'e coordinates. The integral surface is thus given by:
 	\begin{equation}
-		z_c = \frac{L_\infty}{2} \frac{
+		z_c = \frac{\tilde{l}}{2} \frac{
 				\sqrt{2}\,T
 				\sqrt{\rho - T^2}
 			}{
@@ -893,7 +876,7 @@
 	\caption[Integral surface of the modular flow when mapped to the planar BTZ coordinates]{%
 		Integral surface of the modular flow when mapped to the planar BTZ coordinates. Note that the $\rho$ axis is logarithmic. 
 		
-		The flow starts from $t = 0,\ z = z_c$, and here we've chosen $\frac{L_\infty}{2} = 1$ while $z_c = 0.1,\,0.2,\,\cdots,\,0.9$. 
+		The flow starts from $t = 0,\ z = z_c$, and here we've chosen $\frac{\tilde{l}}{2} = 1$ while $z_c = 0.1,\,0.2,\,\cdots,\,0.9$. 
 		Note that the asymptotic boundary $z\to 0$ corresponds to $\rho \to \infty$. 
 		Also we've taken $T_u = T_v = T = \frac{1}{2}$ as discussed before, and the horizon is at $\rho = T_u T_v = T^2$; this is the image of the RT surface under the CHM map.
 	}
@@ -909,7 +892,7 @@
 			1 + \frac{1}{2} \pqty{
 				\frac{
 					\cosh\,(2T\phi) \sqrt{
-						1 - (\frac{2z_c}{L_\infty})^2 \sinh^2 (2T\phi)
+						1 - (\frac{2z_c}{\tilde{l}})^2 \sinh^2 (2T\phi)
 					} - 1
 				}{z_c\sinh^2 (2T\phi)}
 			}^{\!\!\!\!2\ }
@@ -920,7 +903,7 @@
 \textit{
 	We note that there is also a mysterious square root structure here: $\mathsmaller{
 		\sqrt{
-			1 - (\frac{2z_c}{L_\infty})^2 \sinh^2 (2T\phi)
+			1 - (\frac{2z_c}{\tilde{l}})^2 \sinh^2 (2T\phi)
 		}
 	}$, which resembles the familiar $
 		\sqrt{1 + (\frac{2z_c}{L})^2}
@@ -971,7 +954,7 @@
 	\end{equation}
 	$\gamma$ and $\xi^\mu$ in BTZ coordinates both follow from this map. 
 	
-	What's the difference between this map and \eqref{eq:poincare2btz}? First, the coordinates are different: in \eqref{eq:poincare2btz} we have $(u,v,\rho)$ and here we have Schwarzschild $(t,r,\phi)$; but that's not essential. What's crucial is that here, we map \textbf{the \textsl{whole} of Poincar\'e into BTZ with a \textsl{compact} $\phi$ circle}, while before in \eqref{eq:poincare2btz} we map a \textbf{$L_\infty$-sized wedge in Poincar\'e into BTZ with a \textsl{non-compact} $\phi$ line}. 
+	What's the difference between this map and \eqref{eq:poincare2btz}? First, the coordinates are different: in \eqref{eq:poincare2btz} we have $(u,v,\rho)$ and here we have Schwarzschild $(t,r,\phi)$; but that's not essential. What's crucial is that here, we map \textbf{the \textsl{whole} of Poincar\'e into BTZ with a \textsl{compact} $\phi$ circle}, while before in \eqref{eq:poincare2btz} we map a \textbf{$\tilde{l}$-sized wedge in Poincar\'e into BTZ with a \textsl{non-compact} $\phi$ line}. 
 	
 	We now restrict to $t_\pm = 0, \phi_- = -\phi_+$ and again set $T_u = T_v = T$ for convenience; in this case the RT surface is given by \textcite{Rangamani:2016dms} (section 6.1.2):
 	\begin{equation}
@@ -1020,9 +1003,9 @@
 \subsection{BTZ with constant cutoff}
 \textbf{Summary:} We then consider constant $r$ cutoff in the Schwarzschild coordinates, which corresponds to the proposal of \cite{McGough:2016lol}. This gives a finite temperature generalization of the result of \cite{Lewkowycz:2019xse}. 
 
-	Now we consider constant cutoff at $r = r_c$. Again we need to trade the $L_\infty$ above with the coordinate length of the interval $L$ at the cutoff $r_c$. The relation can be solved by looking at the geodesic equation, which is slightly non-trivial this time:
+	Now we consider constant cutoff at $r = r_c$. Again we need to trade the $\tilde{l}$ above with the coordinate length of the interval $L$ at the cutoff $r_c$. The relation can be solved by looking at the geodesic equation, which is slightly non-trivial this time:
 	\begin{equation}
-		\frac{\cosh L_\infty T}{\cosh LT}
+		\frac{\cosh \tilde{l} T}{\cosh LT}
 		= \frac{r_c}{\sqrt{r_c^2 - 4T^2}}
 	\end{equation}
 	\begin{equation}
@@ -1047,11 +1030,11 @@
 	\begin{equation}
 		\var{Q}_\xi
 		= \int_{r = \mrm{const}} \dd{\phi} (\chi_\xi)_\phi
-		= \frac{\var{T} \coth L_\infty T}{2G}
+		= \frac{\var{T} \coth \tilde{l} T}{2G}
 			\int_{-L/2}^{L/2} \dd{\phi}
 			\pqty{
 				1 - {\frac{r}{\sqrt{r^2 - 4T^2}}}
-				\frac{\cosh 2T\phi}{\cosh TL_\infty}
+				\frac{\cosh 2T\phi}{\cosh T\tilde{l}}
 			}
 	\end{equation}
 	\sidenote{The integral seems to rely on the $r$ coordinate!} However, as $T\to 0$ they are the same. \sidenote{How is this consistent with the finite temperature field theory calculation?}
@@ -1169,12 +1152,12 @@
 		z^2
 		+ \pqty{x - \frac{x_+ + x_-}{2}}^{\!\!2}
 		- \pqty{t - \frac{t_+ + t_-}{2}}^{\!\!2}
-		= \pqty{\frac{L_\infty}{2}}^{\!\!2}
+		= \pqty{\frac{\tilde{l}}{2}}^{\!\!2}
 		= \pqty{\frac{x_+ - x_-}{2}}^{\!\!2}
 		- \pqty{\frac{t_+ - t_-}{2}}^{\!\!2}
 	},\\
 	&&& \text{i.e.}\ \,
-		L_\infty^2
+		\tilde{l}^2
 		= \pqty{x_+ - x_-}^2
 			- \pqty{t_+ - t_-}^2
 		= (u_+ - u_-)(v_+ - v_-),
@@ -1238,24 +1221,24 @@
 	We now restrict to an interval centered at the origin: $
 		u_\pm v_\pm
 		= x^2_\pm - t^2_\pm
-		= (\frac{L_\infty}{2})^2
+		= (\frac{\tilde{l}}{2})^2
 	$, where $x_\pm = -x_\mp$, and same for $t_\pm, u_\pm, v_\pm$. 
 	We then introduce the \textit{rapidity} $\theta$ to nicely parametrized the boosted interval; for a constant time slice, we have $\theta = 0$. For a general boosted interval, we have:
 	\begin{equation}
-		x_\pm = \pm \frac{L_\infty}{2} \cosh \theta,
+		x_\pm = \pm \frac{\tilde{l}}{2} \cosh \theta,
 	\quad
-		t_\pm = \pm \frac{L_\infty}{2} \sinh \theta,
+		t_\pm = \pm \frac{\tilde{l}}{2} \sinh \theta,
 	\end{equation}
-	For now the coordinates $u_\pm, v_\pm, x_\pm, t_\pm$ and the coordinate length $L_\infty$ are all specified at $z\to 0$, i.e.~at the \textbf{asymptotic boundary}. Note that the RT surface lies on the plane $
+	For now the coordinates $u_\pm, v_\pm, x_\pm, t_\pm$ and the coordinate length $\tilde{l}$ are all specified at $z\to 0$, i.e.~at the \textbf{asymptotic boundary}. Note that the RT surface lies on the plane $
 		t_\pm / x_\pm = \tanh \theta
 	$, namely $\theta$ is constant along the RT surface. 
 	We have:
 	\begin{gather}
 	\begin{aligned}
-		\xi &= \frac{2\pi}{L_\infty} \bigg\{
+		\xi &= \frac{2\pi}{\tilde{l}} \bigg\{
 			\pqty{
 				\pqty{
-					(\tfrac{L_\infty}{2})^2 - z^2
+					(\tfrac{\tilde{l}}{2})^2 - z^2
 					- (t^2 + x^2)
 				} \cosh\theta
 				+ 2tx \sinh\theta
@@ -1263,7 +1246,7 @@
 		\\ &\qquad\qquad 
 			+ \pqty{
 				\pqty{
-					(\tfrac{L_\infty}{2})^2 - z^2
+					(\tfrac{\tilde{l}}{2})^2 - z^2
 					+ (t^2 + x^2)
 				} \sinh\theta
 				- 2tx \cosh\theta
