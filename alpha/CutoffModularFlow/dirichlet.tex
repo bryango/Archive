@@ -1,0 +1,1051 @@
+% !TeX encoding = UTF-8
+% !TeX TS-program = pdflatex
+% !BIB TS-program = biblatex
+
+\documentclass[12pt,a4paper,utf8]{article}
+
+\ifdefined\pdfoutput
+	\pdfoutput=1
+\fi
+
+\input{preamble.tex}
+
+\newcommand{\lui}[2]{\textcolor{red}{#1}\todo[color=yellow]{\scriptsize{L: #2}}}
+
+\usepackage{xspace}
+\newcommand{\TTbar}{\ensuremath{T\bar{T}}\xspace}
+\newcommand{\arcsinh}{\ensuremath{\mop{arcsinh}}}
+\newcommand{\tvar}[1]{\mathinner{\tilde{\delta} #1}}
+\usepackage{enumitem}
+%\usepackage{mathtools}
+\counterwithout{equation}{section}
+
+
+\begin{document}
+
+\setlength{\parskip}{.5\baselineskip}
+\setlength{\parindent}{0pt}
+
+\addtocounter{section}{-1}
+\section{On boundary conditions}
+
+\textbf{Claim:} the Dirichlet boundary condition, by our definition, 
+
+\begin{itemize}[nosep]
+\item ... specifies the set of solutions uniquely,
+\item ... but admits \textbf{different symplectic structures}, \\
+	... which are specified by $\var{g_{\mu\nu}}$, or more precisely, the total variations $h_{\mu\nu}$. 
+\end{itemize}
+
+This leads to \textbf{different charge variations $\var{Q}$}. 
+
+Consider the set of BTZ solutions $g_{\mu\nu}(T_u,T_v)$ in some gauge $(u,v,\rho)$, where we only require $\phi \cong \phi + 2\pi$, $\phi = \frac{u + v}{2}$. 
+
+\subsection{General definition of Dirichlet radial cutoff}
+
+	\textbf{Definition:} given $g_{\mu\nu}(T_u,T_v)$, if there exists a coordinate transformation:
+	\begin{equation}
+		(u,v,\rho) \mapsto (u',v',\rho'),
+	\end{equation}
+	such that:
+	\begin{equation}
+		\dd{s}^2_{\rho_c}
+		= r_c^2 \dd{u'} \dd{v'},
+	\end{equation}
+	then the collection of $g_{\mu\nu}(T_u,T_v)$ with $\rho \le \rho_c$ is the set of BTZ solutions with Dirichlet boundary condition at the radial cutoff $\rho_c$. 
+	
+	\textbf{Note:} this definition is quite general.
+	\begin{itemize}
+	\item It specifies the set of solutions uniquely.
+	\item It seems to be \textbf{compatible with everything},\\
+		including Verlinde et al \cite{McGough:2016lol} and Guica et al \cite{Guica:2019nzm,Kraus:2021cwf}. 
+	
+	\item But, it \textbf{implies no symplectic structure}. \\
+		Namely it does not fix $\var{g_{\mu\nu}}$ or $h_{\mu\nu}$ completely. 
+	\item The definition of Guica et al \cite{Guica:2019nzm,Kraus:2021cwf} is \textbf{actually more restrictive}. \\
+		They fix a special symplectic structure given by $h_{\mu\nu}$.
+	\end{itemize}
+
+\pagebreak
+
+\subsection{Metric variation $\var{g}$}
+
+Given the above boundary condition, we still need a prescription for $\var{g}$ to compute the charge variation $\var{Q}$. 
+
+\begin{itemize}
+\item \textbf{Our prescription:} we simply require that:
+	\begin{equation}
+		0 = \delta g'_{i'j'}(x')\big|_{\rho'=\rho'_c}
+		= \bigg(
+			\delta \Big(\,
+				\pdv{x^\mu}{x'^i}
+				\pdv{x^\nu}{x'^j}
+				g_{\mu\nu}
+			\Big)
+			+ \delta x^\sigma\, \partial_\sigma \Big(\,
+				\pdv{x^\mu}{x'^i}
+				\pdv{x^\nu}{x'^j}
+				g_{\mu\nu}
+			\Big)
+		\bigg) \bigg|_{\rho=\rho_c}
+		\label{eq:variation_transform}
+	\end{equation}
+	in the locally flat $(u',v',\rho')$ gauge, and solve for $
+		\zeta^\mu = \delta x^\mu
+		= (\var{u},\var{v},\delta\rho)
+	$ in the original gauge. 
+	
+	\begin{itemize}
+	\item \textbf{When expanded in Fefferman--Graham or Schwarzschild, this equation has no dependence on $\var{u},\var{v}$}.
+	
+	\item Solving $\delta g'_{\phi'\phi'} = 0$ gives us $\var{\rho}$; when substituted back to \eqref{eq:variation_transform} the equation holds \textbf{for all components automatically:} $
+			\delta g'_{i'j'}\big|_{\rho'=\rho'_c} = 0
+		$. 
+	
+	\item The total variation is then given by:
+		\begin{equation}
+			h_{\mu\nu}
+			= \delta g_{\mu\nu}
+				+ \mathcal{L}_{\zeta} \,g_{\mu\nu},
+		\quad
+			\zeta^\mu = \delta x^\mu
+			= (\var{u},\var{v},\delta\rho)
+		\label{varimetric}
+		\end{equation}
+		$h_{\mu\nu}$ indicates how different states in the phase space are ``neighboring'' each other, and can be used to defined the symplectic form $\Omega$. If $\var{u},\var{v}$ is unconstrained we don't really know the symplectic structure. 
+	
+	\color{purple}
+	\item However, it's physically natural to set:
+		\begin{equation}
+			\var{u} = \var{v} = 0
+		\end{equation}
+		This means that we apply no extra boundary diffeomorphisms as we construct $h_{\mu\nu}$. In this way we inherit the symplectic structure of the original Brown--Henneaux phase space. 
+		
+		With this choice the charge $\var{Q}[g_{\mu\nu},h_{\mu\nu},\xi]$ of the modular flow $\xi$ matches the variation of the area of the RT surface. In this case,
+		\begin{equation}
+			h_{ij}|_{\rho = \rho_c} \ne 0
+		\end{equation}
+	
+	\end{itemize}
+	
+\item \textbf{Their prescription \cite{Guica:2019nzm,Kraus:2021cwf}:} Guica et al require that we compute charges $\var{Q}[g',h',\xi']$ directly in the $(u',v',\rho')$ gauge, with:
+	\begin{equation}
+		h'_{\mu'\nu'}
+		= \delta g'_{\mu'\nu'}
+	\end{equation}
+	I am still doing the calculations, because the metric $g'_{\mu'\nu'}$ becomes messed up after the coordinate map. 
+	
+\pagebreak
+	
+	However, I have computed:
+	\begin{equation}
+		\var{Q}[g,\tilde{h},\xi],
+	\quad\text{where we \textbf{define:}}\quad
+		\tilde{h}_{\mu\nu} = h'_{\mu'\nu'}
+			\pdv{x'^{\mu'}}{x^\mu}
+			\pdv{x'^{\nu'}}{x^\nu}
+	\end{equation}
+	
+\pagebreak[3]
+	
+	We should have:
+	\begin{equation}
+		\var{Q}[g,\tilde{h},\xi]
+		= \var{Q}[g',h',\xi']
+	\end{equation}
+	Because although $\var{Q}[g,\var{g},\xi]$ is not gauge invariant, since it involves the non-tensorial $\var{g_{\mu\nu}}$, $\var{Q}[g,\tilde{h},\xi]$ \textbf{as a functional of $g,\tilde{h},\xi$ is gauge invariant}. This follows from the formula directly:
+	\begin{gather}
+		\d Q [g_{\mu\nu}, \tilde{h}_{\mu\nu}, \xi]
+		= \int_\gamma
+			\hstar k [g_{\mu\nu}, \tilde{h}_{\mu\nu}, \xi],
+	\\
+		k_{\mu\nu} [g_{\mu\nu}, \tilde{h}_{\mu\nu}, \xi]
+		= \frac{1}{2} \pqty{
+				\xi_\nu \cdv{\mu} \tilde{h}^\alpha_\alpha
+				- \xi_\nu \cdv{\alpha} \tilde{h}^\alpha{}_\mu
+				+ \cdots
+			}
+	\end{gather}
+	We see that $\var{Q}[g,\tilde{h},\xi]$ is indeed a tensor, as a function of $g,\tilde{h},\xi$. \\
+	\mbox{$
+		\tilde{h}_{\mu\nu} = h'_{\mu'\nu'}
+			\pdv{x'^{\mu'}}{x^\mu}
+			\pdv{x'^{\nu'}}{x^\nu}
+	$} here is a tensor, by construction. \\
+	But this does \textit{not} match with the variation of the area of the RT surface.
+	
+	When computing $\var{Q}[g,h,\xi]$, basically we have imposed:
+	\begin{equation}
+		h_{ij}|_{\rho = \rho_c}
+		= h'_{i'j'}
+			\pdv{x'^{i'}}{x^i}
+			\pdv{x'^{j'}}{x^j}
+			\bigg|_{\rho = \rho_c}
+		= 0
+	\end{equation}
+	\textbf{In all gauges!} This is possible, because
+%	although $\var{g_{\mu\nu}}$ is not gauge invariant (not a tensor), $
+%		h_{\mu\nu}
+%		= \delta g_{\mu\nu}
+%			+ \mathcal{L}_{\eta} \,g_{\mu\nu}
+%	$ 
+	$h_{\mu\nu}$ here
+	is gauge invariant, \textbf{by construction.}
+%	i.e.\ we choose $\eta = (\var{u},\var{v},\var{\rho})$ such that $\mathcal{L}_{\eta} \,g_{\mu\nu}$ compensates for $\delta g_{\mu\nu}$ and the whole $h_{\mu\nu}$ is a tensor. 
+	This does not seem to be equivalent with our prescription, where similarly we compute $\var{Q}[g,h,\xi]$, but $
+		h_{ij}|_{\rho = \rho_c} \ne 0
+	$. 
+	
+%	In this case, the symplectic structure $\Omega$ is explicitly constructed from $\var{g'_{\mu'\nu'}}$, by Kraus et al \cite{Kraus:2021cwf}. 
+	
+\end{itemize}
+
+\section{Things to think about}
+	\begin{itemize}[nosep]
+	\item Contribution of boundary terms to $\var{Q}$
+	\item Variation while holding $\tilde{l}$ at $\infty$ fixed
+	\end{itemize}
+
+
+%%%%%%%% migrated from sect4.tex
+
+
+
+\begin{colored}
+Things to work on:
+\begin{itemize}[nosep]
+	\item Mixed boundary condition at $\infty$
+\end{itemize}
+\end{colored}
+
+
+\bigskip\hrule\bigskip
+
+In usual AdS/CFT, holographic entanglement entropy is given by the gravitational entropy \cite{Lewkowycz:2013nqa,}. Consider a family of solutions such as BTZ black holes, holographic entanglement entropy can be calculated in the covariant formalism by integrating the infinitesimal charges
+\eq{
+\d S_{\mrm{HEE}}
+		= \d Q_{\xi} [\gamma, g_{\mu\nu}]=\int_\gamma k_\xi [h, \,g]
+}
+where $\xi$ is the modular flow generator, $\gamma$ is the RT surface, and $h$ is the infinitesimal variation of the metric in the phase space which is determined by the boundary conditions. For Brown--Henneaux boundary conditions which are Dirichlet boundary conditions imposed at the asymptotic boundary, $h$ is the variation with respect to phase space variables. In the cutoff AdS/$T\bar T$ picture, however, we have to be careful about how to implement the Dirichlet boundary conditions. 
+At the cutoff surface $r=r_c$ \eqref{} which is defined by requiring $g_{\phi\phi}=r_c^2$, the induced metric can always be put locally flat without changing the size of the circle \eq{ ds^2|_{r=r_c}= r_c^2 d u' d v', \quad (u', v')= (u'+2\pi , v'+2\pi ). }
+Let us denote the coordinate transformation as
+\eq{
+		x^\mu \mapsto x'^\mu,
+	\quad
+		g'_{\mu\nu}
+		= \pdv{x^\rho}{x'^\mu}
+			\pdv{x^\sigma}{x'^\nu}
+			g_{\rho\sigma},}
+The Dirichlet boundary condition is then given by 
+\eq{\delta' g'(x')_{i'j'}|_{r=r_c} =0\label{dirichlet}}
+where the variation is with respect to phase space parameters only in the locally flat coordinate system.
+It is more convenient to rewrite the boundary conditions in the Ba\~nados metric \eqref{}. 
+The boundary condition \eqref{dirichlet} then implies 
+\eq{
+		0&=\delta g'_{i'j'}(x')\big|_{r=r_c}
+		=\bigg( \delta\Big(\,\pdv{x^\mu}{x'^{i'}}
+			\pdv{x^\nu}{x'^{j'}}
+			g_{\mu\nu}\Big)
+			+ \delta x^\sigma\, \partial_\sigma
+			\Big(\,\pdv{x^\mu}{x'^{i'}}
+			\pdv{x^\nu}{x'^{j'}}
+			g_{\mu\nu} \Big) \bigg) \bigg|_{\rho=\rho_c}
+		\label{eq:variation_transform}
+	}where in the second expression we have expressed everything in the Ba\~nados metric \eqref{}, 
+and $\delta $ denotes variation with respect to the phase space parameters in the Ba\~nados metric:
+	\begin{equation}
+		\delta
+		= \var{T_u} \pdv{}{T_u}
+		+ \var{T_v} \pdv{}{T_v} 
+	\end{equation} 
+This is because the coordinate transformation depends on the phase space variables, and varying the phase space variables in the $x'$ coordinate is equivalent to varying the same variables accompanied by some additional diffeomorphisms in the $x$ coordinates.  As a result, the boundary condition written in terms of the old coordinate system should contain the second term. 
+Using the Ba\~nados metric \eqref{}, 
+we get the solution for the %accompanied
+necessary diffeomorphism
+\begin{equation}
+			\var{\rho}
+		= -\frac{1}{2\,(r^4 - T_u^2 T_v^2)}
+			\pqty{
+				r \var{(T_u^2 T_v^2)}
+				+ r^3 \var{(T_u^2 + T_v^2)}
+			}
+	\label{eq:rho_variation}
+	\end{equation}
+Consequently, the total infinitesimal change of the metric satisfying the boundary condition \eqref{eq:variation_transform}  is given by
+\eq{h_{\mu\nu}=\delta g_{\mu\nu}+ \mathcal{L}_{\zeta} \,g_{\mu\nu},\quad
+\zeta^\mu = \delta x^\mu
+= (0,0,\delta\rho)
+\label{varimetric}}
+where again $\delta g_{\mu\nu}$ denotes variation with respect to the phase space variables, which are $T_u$ and $T_v$ for the BTZ black holes. 
+It is important not to confuse the total variation \eqref{varimetric} in the Ba\~nados metric with the boundary conditions \eqref{eq:variation_transform}.
+In particular, the boundary condition \eqref{eq:variation_transform} does not imply $h_{ij}|_{r=r_c}=0$. %The former is imposed in the $x'$ coordinates at point $x'$, which can be rewritten in terms of variables  $T_u, T_v$ and coordinates $x$. On the other hand, $h_{ij}$ is directly defined in the $x$ coordinate system, and the meaning is the total infinitesimal change of  the metric due to the change of 
+	
+\begin{colored}
+	Note that in \eqref{eq:rho_variation} we can, in principle, include additional diffeomorphisms
+	\begin{equation}
+		\eta^\mu = \delta x^\mu
+		= (\var{u},\var{v},\delta\rho)
+	\end{equation}
+	In particular, arbitrary boundary variations $\var{u},\var{v}$ can be included while the condition \eqref{eq:variation_transform} is still satisfied. However, this is physically undesirable, as it introduces unnecessary boundary diffeomorphisms. It is thus natural to set:
+\end{colored}
+	\begin{equation}
+\begin{colored}
+		\var{u} = \var{v} = 0,
+	\quad
+		\zeta^\mu = \delta x^\mu
+		= (0,0,\delta\rho)
+\end{colored}
+	\end{equation}
+%	In this way we inherit the symplectic structure of the original Brown--Henneaux phase space. 
+	
+	By explicit calculations, we have:
+	\begin{equation}
+		\var{Q}_\xi[\gamma_c,g_{\mu\nu},h_{\mu\nu}]
+		= \delta S[l_u,l_v;T_u,T_v],
+	\quad
+		\delta
+		= \var{T_u} \pdv{}{T_u}
+		+ \var{T_v} \pdv{}{T_v} 
+	\end{equation}
+	where $\gamma_c$ is the RT cutoff by the surface $\rho=\rho_c$, and $S[l_u,l_v;T_u,T_v] = \frac{A}{4G_N}$ is the entropy \eqref{eq:entropy_RT} given by the RT proposal, i.e.~the area $A$ of the RT surface. 
+	In particular, for $l_u = l_v = l$ and $T_u = T_v = T$, we have:
+	\begin{equation}
+		\delta S^{T\bar T}_{\mrm{HEE}}=\int_{\gamma_c} k_\xi [h, \,g]
+		= \delta\pqty{
+				\frac{1}{2G} \mop{arcsinh}
+				\frac{r_c \sinh Tl}{2T}
+			}
+		= \delta S[l,T]
+	\end{equation}
+	Thereby we have provided an alternative calculation of the holographic entanglement entropy in the cutoff AdS/$T\bar T$ correspondence based on covariant charges,  and the result agrees with the RT proposal \eqref{eq:entropy_RT}. 
+	
+	\begin{equation}
+		\var{Q_\xi}
+		= \int_\mcal{C} \Big\{
+				\delta\!\pqty{
+					-\tfrac{1}{16\pi G_N}
+					\sqrt{\abs{g}}\,
+					\epsilon_{\mu\nu\sigma}
+					\nabla^\mu \xi^\nu
+					\dd{x^\sigma}
+				}
+				- \xi\cdot\Theta
+			\Big\}
+	\end{equation}
+	
+	
+	
+	
+	
+	
+\subsection{Legacy version}
+	
+	Gravitational entropy is the Noether charge $Q_\xi$ associated with the horizon generator $\xi$ \cite{Lewkowycz:2013nqa,}. In the case of entanglement entropy between a simple interval and its complement, its corresponding modular flow in the bulk is precisely the horizon generator of the Rindler patch. We can then compute the charge variation using the covariant formula \eqref{charges}. 
+	
+	Again, to compute $\var{Q}_\xi$ we need to consider a particular metric variation $\var{g}_{\mu\nu}$ in the phase space of solutions:
+	\begin{equation}
+		\d Q_\xi
+		= \d Q_{\xi} [\d g_{\mu\nu}, g_{\mu\nu}]
+	\end{equation}
+	However, before plugging everything into the formula we need to address one crucial subtlety: the phase space variation $\var{g_{\mu\nu}}$ is generally, \textit{not} gauge invariant. The variation $\delta$ in general does not commute with a coordinate transformation. More explicitly, we have:
+	\begin{gather}
+		x^\mu \mapsto x'^\mu,
+	\quad
+		g'_{\mu\nu}
+		= \pdv{x^\rho}{x'^\mu}
+			\pdv{x^\sigma}{x'^\nu}
+			g_{\rho\sigma},
+	\\[1ex]
+		\var{g'_{\mu\nu}}
+		= \pdv{x^\rho}{x'^\mu}
+			\pdv{x^\sigma}{x'^\nu}
+			\var{g_{\rho\sigma}}
+		+ g_{\rho\sigma} \var{\pqty{
+				\pdv{x^\rho}{x'^\mu}
+				\pdv{x^\sigma}{x'^\nu}
+			}}
+%		\label{eq:variation_transform}
+	\end{gather}
+	In particular, if the coordinate transformation involves some phase space variables (e.g.\ $T_u,T_v$), then the second term in \eqref{eq:variation_transform} does not vanish. In this case $\var{g_{\mu\nu}}$ does \textit{not} transform as a tensor. Therefore, the charge variation $
+		\d Q_{\xi} [\d g_{\mu\nu}, g_{\mu\nu}]
+	$ is not always gauge invariant. 
+	
+	A more careful analysis shows that $
+		\d Q_{\xi}
+	$ is in fact invariant under small gauge transformations, but not invariant under \textit{large} gauge transformations that affect the boundary conditions \sidenote{[citations needed]}. 
+	We did not pay much attention to gauge dependence before, and that's because when the cutoff is pushed to infinity, the asymptotic falloff is often unchanged when we compute $\var{g_{\mu\nu}}$ in usual coordinates. However, when there is a finite cutoff, this ambiguity becomes a problem, since a coordinate change can easily modify the boundary condition at the finite cutoff \cite{Guica:2019nzm,Kraus:2021cwf}. 
+	
+	Before we continue, we note that it is convenient to rewrite the metric variation in terms of the variation of the length element $\dd{s}^2$: 
+	\begin{equation}
+	\begin{aligned}
+		\var{(\dd{s}^2)}
+		&= (\var{g_{\mu\nu}}) \dd{x^\mu} \dd{x^\nu}
+			+ g_{\mu\nu} \var{(\dd{x^\mu})} \dd{x^\nu}
+			+ g_{\mu\nu} \dd{x^\mu} \var{(\dd{x^\nu})} \\
+		&\equiv \tvar{g}_{\mu\nu} \dd{x^\mu} \dd{x^\nu},
+	\end{aligned}
+	\end{equation}
+	where the aforementioned gauge dependency is contained in the $\var{(\dd{x^\nu})} = \dd{(\var{x^\nu})}$ term, namely the coordinate is also varied. It depends on our prescription for the variation of coordinates $\var{x}$:
+	\begin{equation}
+		\var{(\dd{x^\sigma})}
+		= \dd{(\var{x^\sigma})}
+		= \pdv{\,\var{x^\sigma}}{x^\nu} \dd{x^\nu},
+	\end{equation}
+	The total variation $\tvar{g}_{\mu\nu}$ can thus be expanded as:
+	\begin{equation}
+	\begin{aligned}
+		\tvar{g}_{\mu\nu}
+		&= \delta g_{\mu\nu}
+			+ g_{\mu\sigma}
+				\pdv{\,\var{x^\sigma}}{x^\nu}
+			+ g_{\nu\sigma}
+				\pdv{\,\var{x^\sigma}}{x^\mu}
+	\\[.3ex]
+		&= \pqty{
+			\delta g_{\mu\nu}\big|_{\var{x} = 0}
+			+ \pdv{g_{\mu\nu}}{x^\sigma} \var{x^\sigma}
+		}
+			+ g_{\mu\sigma}
+				\pdv{\,\var{x^\sigma}}{x^\nu}
+			+ g_{\nu\sigma}
+				\pdv{\,\var{x^\sigma}}{x^\mu}
+	\\[.3ex]
+		&= \delta g_{\mu\nu}\big|_{\var{x} = 0}
+			+ \pqty{
+				\pdv{g_{\mu\nu}}{x^\sigma} \var{x^\sigma}
+				+ g_{\mu\sigma}
+					\pdv{\,\var{x^\sigma}}{x^\nu}
+				+ g_{\nu\sigma}
+					\pdv{\,\var{x^\sigma}}{x^\mu}
+			}
+	\\[.3ex]
+		&= \delta g_{\mu\nu}\big|_{\var{x} = 0}
+			+ \ldv{\eta} g_{\mu\nu},
+	\quad \eta^\mu = \var{x^\mu}
+	\end{aligned}
+	\label{eq:metric_variation}
+	\end{equation}
+	
+	The term $\delta g_{\mu\nu}\big|_{\var{x} = 0}$ is the variation of the metric with respect to the phase space variable $T_u,T_v$, without considering the variation of the coordinate $\var{x^\mu} = \eta^\mu$. When restricted to the BTZ backgrounds, we have:
+	\begin{equation}
+		\delta g_{\mu\nu}\big|_{\var{x} = 0}
+		= \pdv{g_{\mu\nu}}{T_u} \var{T_u}
+			+ \pdv{g_{\mu\nu}}{T_v} \var{T_v}
+	\end{equation}
+	On the other hand, the Lie derivative term $\ldv{\eta} g_{\mu\nu}$ captures how the coordinates are varied, and therefore characterizes the ambiguity of gauge choices in the process. 
+	
+	To resolve such ambiguity, we need to carefully specify the phase space of solutions that we are considering. 
+	Recall the proposal of \cite{McGough:2016lol}, where we have a \textit{constant} radial cutoff $r_c$. Namely, the codim-1 cutoff is defined with the following equation:
+	\begin{equation}
+	\text{Cutoff:}\quad
+		g_{\phi\phi}%|_{\rho_c}
+		= r_c^2,
+	\quad
+		\phi = \frac{u + v}{2},
+	\quad
+		\phi \cong \phi + 2\pi
+	\label{eq:cutoff_surface}
+	\end{equation}
+	This is a gauge invariant definition of the radial cutoff, as long as we choose the $\phi$ coordinate of the cutoff $S^1$ cycle to be properly normalized. Variation of the above equation gives us:
+	\begin{equation}
+		\var{g_{\phi\phi}} = 0,
+	\end{equation}
+	\begin{equation}
+	\Longrightarrow\quad
+		\var{\rho}
+		= -\frac{1}{2\,(r^4 - T_u^2 T_v^2)}
+			\pqty{
+				r \var{(T_u^2 T_v^2)}
+				+ r^3 \var{(T_u^2 + T_v^2)}
+			}
+%	\label{eq:rho_variation}
+	\end{equation}
+	This fixes the $\rho$ component of $\eta^\mu = \var{x^\mu}$. 
+	
+%	As we switch to the Ba\~nados metric, the cutoff $\rho_c$ becomes state-dependent \eqref{eq:cutoff_relations}. 
+%	On the other hand, by \eqref{eq:banados_metric} we have:
+%	\begin{equation}
+%	\begin{aligned}
+%		\dd{s}^2_c
+%		\equiv \dd{s}^2|_{\rho_c}
+%		&= \pqty{\rho_c\dd{u} + \frac{T_v^2}{\rho_c}\dd{v}}
+%		\pqty{\rho_c\dd{v} + \frac{T_u^2}{\rho_c}\dd{u}}
+%	\\[.8ex]
+%		&= T_u^2 \dd{u}^2
+%			+ T_v^2 \dd{v}^2
+%			+ (r_c^2 - T_u^2 - T_v^2) \dd{u} \dd{v},
+%	\quad u,v = \phi\pm t,
+%	\\[.8ex]
+%		&= \pqty{-r_c^2 + 2\,(T_u^2 + T_v)^2} \dd{t}^2
+%			+ 2\,(T_u^2 - T_v^2) \dd{t} \dd{\phi}
+%			+ r_c^2 \dd{\phi}^2
+%	\end{aligned}
+%	\end{equation}
+%	Namely, the induced metric at $\rho_c$ also involves the phase space variables $T_u,T_v$. 
+%	This means that these coordinates are not so convenient for Dirichlet boundary condition at the spatial cutoff $\rho_c$. 
+%	In the covariant formalism, we would like to choose the boundary condition at the spatial boundary to be independent of the phase space variables. In fact, the spatial boundary condition \textit{defines} the phase space of solutions. On the other hand, the phase space variables {are} allowed to appear in the initial and final time slice $\Sigma^\pm$, which defines a specific {state} in the phase space that we are considering. 
+%	
+%	One way to avoid $T_u,T_v$ dependencies at the cutoff is to switch to a special gauge that eliminates the state dependence. This is carried out in \cite{Guica:2019nzm,Kraus:2021cwf}. A more general prescription is to include the variation of coordinates, namely the $\ldv{\var{x}} g_{\mu\nu}$ term in \eqref{eq:metric_variation}. Dirichlet boundary condition at the cutoff is then given by:
+%	\begin{equation}
+%		\var{(\dd{s}^2)}\big|_{\,\rho = \rho_c}
+%		= 0
+%	\end{equation}
+%	\begin{equation}
+%	\text{i.e.}\ \,
+%		h_{\mu\nu}|_{\rho = \rho_c}
+%		= \pqty{
+%				\delta g_{\mu\nu}\big
+%					|_{\var{x} = 0}
+%				+ \ldv{\var{x}} g_{\mu\nu}
+%			}_{\!\rho = \rho_c\!\!}
+%		= 0
+%	\label{eq:generalized_Killing}
+%	\end{equation}
+%	This ``generalized'' Killing equation is solved by the following $\var{x}$ (see \autoref{app:solve_Killing}):
+%	\begin{equation}
+%	\begin{aligned}
+%		\var{\rho}
+%		&= \frac{\var{\rho_c}}{\rho_c} \rho,
+%	\\[.5ex]
+%		\var{u}
+%%		&= \var{\pqty{
+%%				\frac{r_c^2 - T_u^2 + T_v^2}{
+%%					\sqrt{r_c^2 f(r_c)}
+%%				}
+%%			}} \frac{\sqrt{f(r_c)}}{r_c} \frac{u - v}{2}
+%		&= \frac{
+%			4T_v \pqty{
+%				2T_u T_v \var{T_u}
+%				+ \pqty{r_c^2 - (T_u^2 + T_v^2)} \var{T_v}
+%			}
+%		}{r_c^2 f(r_c)}
+%		\frac{u - v}{2},
+%	\\
+%		\var{v}
+%%		&= \var{\pqty{
+%%				-\frac{r_c^2 + T_u^2 - T_v^2}{
+%%					\sqrt{r_c^2 f(r_c)}
+%%				}
+%%			}} \frac{\sqrt{f(r_c)}}{r_c} \frac{u - v}{2}.
+%		&= \frac{
+%			-4T_u \pqty{
+%				2T_u T_v \var{T_v}
+%				+ \pqty{r_c^2 - (T_u^2 + T_v^2)} \var{T_u}
+%			}
+%		}{r_c^2 f(r_c)}
+%		\frac{u - v}{2}.
+%	\end{aligned}
+%	\label{eq:coord_variation}
+%	\end{equation}
+%	Note that the variations depend only on $\rho$ and $t = \frac{u - v}{2}$, therefore it respects the $\phi$ periodicity: $\phi \cong \phi + 2\pi$. 
+	
+%	Fortunately, these issues can be easily fixed by ``completing the squares'':
+%	\begin{equation}
+%	\begin{aligned}
+%		\dd{s}^2_c
+%		\equiv \dd{s}^2|_{\rho_c}
+%		&= \pqty{-r_c^2 + 2\,(T_u^2 + T_v)^2} \dd{t}^2
+%			+ 2\,(T_u^2 - T_v^2) \dd{t} \dd{\phi}
+%			+ r_c^2 \dd{\phi}^2 \\
+%		&= r_c^2 (-\dd{t'}^2 + \dd{\phi'}^2)
+%	\end{aligned}
+%	\end{equation}
+%	Namely, we normalize the metric at the cutoff such that is a cylinder with radius $r_c$ and $\phi' \cong \phi' + 2\pi$. This can be achieved with:
+%%	defining a new set of coordinates $(t',\phi',\rho')$:
+%%	as we've done in Section \ref{sect:2}
+%	\begin{equation}
+%		\rho'
+%		= \frac{r_c}{\rho_c} \rho,
+%	\quad
+%		\phi'
+%		= \phi + \frac{T_u^2 - T_v^2}{r_c^2}\,t,
+%	\quad
+%		t'
+%		= \frac{\sqrt{f(r_c)}}{r_c}\,t,
+%	\end{equation}
+%%	\begin{equation}
+%%		ds^2_{c}
+%%		= r_c^2 ( -dt'^2 + d\phi'^2 )
+%%	\end{equation}
+%	Physically this is the coordinates for a locally nonrotating observer in the orthonormal frame. The $\rho$ rescaling is necessary so that the cutoff is then fixed at $\rho' = r_c$, with no dependence of $T_u, T_v$. Dirichlet boundary condition at the cutoff is then given by:
+%	\begin{equation}
+%		\var{(\dd{s}^2)}|_{\rho = \rho_c}
+%		= 0
+%	\end{equation}
+%	\begin{equation}
+%	\text{i.e.}\ \,
+%		\var{\rho'}
+%		= \var{\phi'}
+%		= \var{t'}
+%		= 0
+%	\end{equation}
+	
+%	Note that the primed coordinates also appear in \cite{Guica:2019nzm,Kraus:2021cwf} based on similar logic. 
+%	On the other hand, we have been careful about the coordinate transformation so that the $2\pi$ periodicity is preserved along the $\phi$ circle: \mbox{$\phi \cong \phi + 2\pi$}, \mbox{$\phi' \cong \phi' + 2\pi$}. 
+	
+%	In light-cone coordinates, we have:
+%	\begin{equation}
+%		u' = \frac{u + v}{2}
+%			+ \frac{
+%				T_u^2 - T_v^2 + r_c \sqrt{f(r_c)}
+%			}{r_c^2} \frac{u - v}{2},
+%	\quad
+%		v' = \frac{u + v}{2}
+%			+ \frac{
+%				T_u^2 - T_v^2 - r_c \sqrt{f(r_c)}
+%			}{r_c^2} \frac{u - v}{2}
+%	\end{equation}
+%	Note that the transformation from $(u,v,\rho)$ to $(u',v',\rho')$ is completely linear in the coordinates. We then compute $\var{g'_{\mu\nu}}$ in this new gauge, which basically defines the phase space\footnote{
+%		More precisely, since we are considering infinitesimal variation $\var{g'_{\mu\nu}}$, we are considering the tangent space around a solution $g'_{\mu\nu}$ in the phase space. 
+%	} we are considering. It is then straight-forward to show that the variation actually vanishes at the boundary, i.e.\ it imposes the Dirichlet boundary condition at the cutoff:
+%	\begin{equation}
+%		\var{g'_{\mu\nu}}|_{\rho' = r_c}
+%		\equiv 0
+%	\label{eq:Dirichlet_boundary}
+%	\end{equation}
+%	
+%	For convenience, we can then define:
+%	\begin{equation}
+%		h'_{\mu\nu} = \var{g'_{\mu\nu}}
+%	\end{equation}
+%	And pull it back to the original Ba\~nados coordinates $(u,v,\rho)$, then proceed with our calculations in the old gauge. 
+	
+	For now variations of the boundary coordinates $u,v$ are not yet constrained. We look at the following two possibilities:
+	
+\subsubsection{Dirichlet at finite cutoff}
+\label{subsubsect:dirichlet}
+	This is the prescription of \cite{Guica:2019nzm,Kraus:2021cwf}, namely we impose Dirichlet boundary condition at the finite cutoff:
+	\begin{equation}
+		\var{(\dd{s}^2)}\big|_{\,\rho = \rho_c}
+		= 0
+	\quad\Longleftrightarrow\quad
+		\tvar{g_{ij}}\big|_{\,\rho = \rho_c} = 0,
+	\end{equation}
+	where $i,j$ labels the boundary directions $u,v$. Note that $\tvar{g_{ij}}$ and $\var{g_{ij}}$ should be interpreted as follows: we first vary the full 3-dimensional metric $g_{\mu\nu}$, and then restrict it to the boundary by setting $\mu,\nu = i,j$ and $\rho = \rho_c$. Namely\footnote{
+		Note that in general the variation $\mquote{\tilde{\delta}}$ or $\mquote{\delta}$ do not commute with the restriction to the boundary: $
+			( \tvar{g_{\mu\nu}} )
+				_{\mu,\nu = i,j}
+				|_{\rho = \rho_c}
+			\not\equiv
+			\tilde{\delta}\,(
+				g_{ij}
+				|_{\rho = \rho_c\!}
+			)
+		$. 
+	}, 
+	\begin{equation}
+		\tvar{g_{ij}}\big|_{\,\rho = \rho_c}
+		= \big( \tvar{g_{\mu\nu}} \big)
+			_{\mu,\nu = i,j\,}
+			\big|_{\,\rho = \rho_c}
+	\end{equation}
+	
+	This prescription eliminates $T_u,T_v$ dependencies at the cutoff, so that there is no state dependence in the boundary condition. One way to achieve this is to switch to a special gauge $(u',v',\rho')$ where the $T_u,T_v$ dependencies drop out automatically, and the induced metric is simply $
+		\dd{s^2}|_{\rho'_c}
+		= r_c^2 \dd{u'} \dd{v'}
+	$. This is carried out explicitly in \cite{Guica:2019nzm,Kraus:2021cwf}. 
+	An alternative realization of this is to include the variation of coordinates, namely the $\ldv{\eta} g_{\mu\nu}$ term in \eqref{eq:metric_variation}. We have:
+	\begin{equation}
+		0 = \tvar{g_{ij}}\big|_{\,\rho = \rho_c}
+		= \pqty{
+				\delta g_{ij}\big
+					|_{\var{x} = 0}
+				+ \ldv{\eta} g_{ij}
+			}_{\!\rho = \rho_c\!},
+	\label{eq:generalized_Killing}
+	\end{equation}
+	\begin{equation}
+		\eta^\mu = \var{x^\mu}
+		= (\var{u},\var{v},\var{\rho}),
+	\end{equation}
+	Where $\var{\rho}$ is given by \eqref{eq:rho_variation}, while $(\var{u},\var{v})$ is unknown. 
+	This ``generalized'' Killing equation can be solved by the following $(\var{u},\var{v})$ (see \autoref{app:solve_Killing}):
+	\begin{equation}
+	\begin{aligned}
+		\var{u}
+%		&= \var{\pqty{
+%				\frac{r_c^2 - T_u^2 + T_v^2}{
+%					\sqrt{r_c^2 f(r_c)}
+%				}
+%			}} \frac{\sqrt{f(r_c)}}{r_c} \frac{u - v}{2}
+		&= \frac{
+			4T_v \pqty{
+				2T_u T_v \var{T_u}
+				+ \pqty{r_c^2 - (T_u^2 + T_v^2)} \var{T_v}
+			}
+		}{r_c^2 f(r_c)}
+		\frac{u - v}{2},
+	\\
+		\var{v}
+%		&= \var{\pqty{
+%				-\frac{r_c^2 + T_u^2 - T_v^2}{
+%					\sqrt{r_c^2 f(r_c)}
+%				}
+%			}} \frac{\sqrt{f(r_c)}}{r_c} \frac{u - v}{2}.
+		&= \frac{
+			-4T_u \pqty{
+				2T_u T_v \var{T_v}
+				+ \pqty{r_c^2 - (T_u^2 + T_v^2)} \var{T_u}
+			}
+		}{r_c^2 f(r_c)}
+		\frac{u - v}{2}.
+	\end{aligned}
+	\label{eq:uv_variation}
+	\end{equation}
+	Note that the variations depend only on $t = \frac{u - v}{2}$, therefore it respects the $\phi$ periodicity: $\phi \cong \phi + 2\pi$, and it's also compatible with the equation of the cutoff \eqref{eq:cutoff_surface}. 
+	In summary, by imposing Dirichlet boundary condition at the finite cutoff, we now have:
+	\begin{equation}
+		\tvar{g^\mrm{D}_{\mu\nu}}
+		= \delta g_{\mu\nu}\big|_{\var{x} = 0}
+			+ \ldv{\eta} g_{\mu\nu},
+	\quad
+		\tvar{g_{ij}}\big|_{\,\rho = \rho_c}
+		= 0,
+	\end{equation}
+	where $
+		\eta^\mu = \var{x^\mu}
+		= (\var{u},\var{v},\var{\rho})
+	$ is given by \eqref{eq:rho_variation} and \eqref{eq:uv_variation}. 
+	
+\subsubsection{Brown--Henneaux falloff at asymptotic infinity}
+	
+	Here we look at a different proposal: rather than focusing on the boundary condition at the finite cutoff, we instead examine the falloff behavior at the asymptotic infinity, and demand that it satisfies the Brown--Henneaux boundary conditions \cite{Brown:1986nw}:
+	\begin{equation}
+	\rho\to\infty, \qquad
+	\begin{gathered}
+		\tvar{g_{tt}} \sim \order{1},
+	\quad
+		\tvar{g_{t\phi}} \sim \order{1},
+	\quad
+		\tvar{g_{\phi\phi}} \sim \order{1},
+	\\[1ex]
+		\tvar{g_{t\rho}}
+		\sim \order{\frac{1}{\rho^3}},
+	\quad
+		\tvar{g_{\phi\rho}}
+		\sim \order{\frac{1}{\rho^3}},
+	\quad
+		\tvar{g_{\rho\rho}}
+		\sim \order{\frac{1}{\rho^4}}.
+	\end{gathered}
+	\end{equation}
+	
+\pagebreak[3]
+	
+	We first note that if we fix Dirichlet boundary condition at the finite cutoff, as is done in \S\ref{subsubsect:dirichlet}, the corresponding $\tvar{g_{\mu\nu}}$ will \textit{not} satisfy the above falloff:
+	\begin{equation}
+		\eta^\mu = \var{x^\mu}
+		= (\var{u},\var{v},\var{\rho})
+	\,\ \text{as defined by \eqref{eq:rho_variation}, \eqref{eq:uv_variation}},
+	\end{equation}
+	\vspace*{-.8\baselineskip}
+	\begin{equation}
+		\tvar{g^\mrm{D}_{\mu\nu}}
+		= \delta g_{\mu\nu}\big|_{\var{x} = 0}
+			+ \ldv{\eta} g_{\mu\nu},
+	\ \quad
+	\begin{aligned}
+		\tvar{g_{\phi\phi}}
+		&= 0
+		= \tvar{g_{t\rho}}
+		= \tvar{g_{\phi\rho}},
+	\\[.5ex]
+		\tvar{g_{tt}}
+		&\sim \order{r^2},
+	\\[.5ex]
+		\tvar{g_{t\phi}}
+		&\sim \order{r^2},
+	\\[.5ex]
+		\tvar{g_{\rho\rho}}
+		&\sim \order{\frac{1}{\rho^4}},
+	\end{aligned}
+%	\qquad
+		\rho\to\infty
+	\end{equation}
+	On the other hand, simply setting $\var{u} = \var{v} = 0$ gives us a $\tvar{g_{\mu\nu}}$ that \textit{does} satisfy the Brown--Henneaux asymptotics. More explicitly, we have:
+	\begin{equation}
+		\zeta^\mu = \var{x^\mu}
+		= (\var{u},\var{v},\var{\rho})
+		= (0,0,\var{\rho}),
+	\end{equation}
+	\vspace{-.8\baselineskip}
+	\begin{equation}
+		\tvar{g^\mrm{BH}_{\mu\nu}}
+		= \delta g_{\mu\nu}\big|_{\var{x} = 0}
+			+ \ldv{\zeta} g_{\mu\nu},
+	\ \quad
+	\begin{aligned}
+		\tvar{g_{\phi\phi}}
+		&= 0
+		= \tvar{g_{t\rho}}
+		= \tvar{g_{\phi\rho}},
+	\\[.5ex]
+		\tvar{g_{tt}}
+		&= 2 \var{(T_u^2 + T_v^2)}
+		\sim \order{1},
+	\\[.5ex]
+		\tvar{g_{t\phi}}
+		&= \var{(T_u^2 - T_v^2)}
+		\sim \order{1},
+	\\[.5ex]
+		\tvar{g_{\rho\rho}}
+		&= (\ldv{\zeta} g)_{\rho\rho}
+		\sim \order{\frac{1}{\rho^4}},
+	\end{aligned}
+	\quad \rho\to\infty
+	\end{equation}
+	
+	In general, let's consider:
+	\begin{equation}
+		\zeta'
+		= \zeta + \sigma
+		= (0,0,\var{\rho}) + \sigma
+	\end{equation}
+	Note that $
+		\ldv{\zeta'} g_{\mu\nu}
+		= \ldv{(\zeta + \sigma)} g_{\mu\nu}
+		= \ldv{\zeta} g_{\mu\nu}
+			+ \ldv{\sigma} g_{\mu\nu}
+	$, therefore $
+		\tvar{g_{\mu\nu}}
+		= \delta g_{\mu\nu}\big|_{\var{x} = 0}
+			+ \ldv{\zeta'} g_{\mu\nu}
+	$ satisfies the Brown--Henneaux falloff condition if and only $
+		\ldv{\sigma} g_{\mu\nu}
+	$ follows the same falloff. This is precisely the asymptotic Killing equation \cite{Brown:1986nw}. The solution $\sigma$ is then given by the asymptotic Killing vectors. This means that $\zeta = (0,0,\var{\rho})$ and therefore $\tvar{g^\mrm{BH}_{\mu\nu}}$ is unique up to some shifts by asymptotic Killing vectors, which corresponds to a symmetry transformation in the phase space. \sidenote{[more discussions?]}
+	
+	
+	
+	
+%	\begin{enumerate}
+%	\item Simply take $\var{u} = \var{v} = 0$, thus $
+%			\eta = (\var{u},\var{v},\var{\rho})
+%			= (0,0,\var{\rho})
+%		$;
+%	\item Or alternatively, we can normalize the boundary metric to be:
+%		\begin{equation}
+%			\dd{s^2}|_{\rho_c}
+%			= r_c^2 \dd{u'} \dd{v'}
+%			= r_c^2 (\dd{\phi'}^2 - \dd{t'}^2)
+%		\end{equation}
+%		This can be achieved with the following coordinate transformation:
+%		\begin{equation}
+%		\begin{aligned}
+%			u' &= \frac{u + v}{2}
+%				+ \frac{
+%					T_u^2 - T_v^2 + r_c \sqrt{f(r_c)}
+%				}{r_c^2} \frac{u - v}{2},
+%		\\
+%			v' &= \frac{u + v}{2}
+%				+ \frac{
+%					T_u^2 - T_v^2 - r_c \sqrt{f(r_c)}
+%				}{r_c^2} \frac{u - v}{2}.
+%		\end{aligned}
+%		\label{eq:normalized_coord}
+%		\end{equation}
+%		Note that this coordinate map respects the $\phi$ periodicity: $\phi' \cong \phi' + 2\pi$ and is in fact linear in $\phi = \frac{u+v}{2}$, thus it's compatible with \eqref{eq:cutoff_surface}. We then have $\eta = (\var{u},\var{v},\var{\rho})$, where:
+%		\begin{equation}
+%			\var{u'} = \var{v'} = 0
+%		\end{equation}
+%		\begin{equation}
+%		\hspace{-2em}\Longrightarrow\quad
+%		\begin{aligned}
+%			\var{u}
+%%			&= \var{\pqty{
+%%					\frac{r_c^2 - T_u^2 + T_v^2}{
+%%						\sqrt{r_c^2 f(r_c)}
+%%					}
+%%				}} \frac{\sqrt{f(r_c)}}{r_c} \frac{u - v}{2}
+%			&= \frac{
+%				4T_v \pqty{
+%					2T_u T_v \var{T_u}
+%					+ \pqty{r_c^2 - (T_u^2 + T_v^2)} \var{T_v}
+%				}
+%			}{r_c^2 f(r_c)}
+%			\frac{u - v}{2},
+%		\\
+%			\var{v}
+%%			&= \var{\pqty{
+%%					-\frac{r_c^2 + T_u^2 - T_v^2}{
+%%						\sqrt{r_c^2 f(r_c)}
+%%					}
+%%				}} \frac{\sqrt{f(r_c)}}{r_c} \frac{u - v}{2}.
+%			&= \frac{
+%				-4T_u \pqty{
+%					2T_u T_v \var{T_v}
+%					+ \pqty{r_c^2 - (T_u^2 + T_v^2)} \var{T_u}
+%				}
+%			}{r_c^2 f(r_c)}
+%			\frac{u - v}{2}.
+%		\end{aligned}
+%		\label{eq:coord_variation}
+%		\end{equation}
+%	\end{enumerate}
+	
+	
+	\hfil -----------------
+	
+	In summary, we have two different proposals for the total variation $\tvar{g_{ij}}$,
+	\begin{itemize}[nosep]
+	\item $\tvar{g^\mrm{D}_{ij}}$ which satisfies Dirichlet boundary condition at the finite cutoff, and:
+	\item $\tvar{g^\mrm{BH}_{ij}}$ which satisfies the Brown--Henneaux falloff at the asymptotic infinity.
+	\end{itemize}
+	The charge variation is then given by:
+	\begin{equation}
+		\var{Q_\xi}
+		= \var{Q_\xi}[\tvar{g_{ij}},g_{\mu\nu}]
+	\end{equation}
+	
+	Explicit calculations reveal that they indeed produce different $\var{Q}$. 
+	Surprisingly, only $\tvar{g^\mrm{BH}_{ij}}$ gives us the result that agrees with the RT proposal \eqref{eq:entropy_RT}. 
+	In particular, for $l_u = l_v = l$ and $T_u = T_v = T$, we have:
+	\begin{equation}
+		\var{Q_\xi}
+		= \delta\pqty{
+				\frac{1}{2G} \mop{arcsinh}
+				\frac{r_c \sinh Tl}{2T}
+			}
+	\end{equation}
+	
+%	On the other hand, following \cite{McGough:2016lol}, we can carry out a similar calculation in the Schwarzschild gauge \eqref{eq:schwarzshild} where the cutoff is constant $r_c$. In this case the boundary metric is given by:
+%	\begin{equation}
+%	\begin{aligned}
+%		\dd{s}^2_c
+%		\equiv \dd{s}^2|_{r_c}
+%		&= T_u^2 \dd{u}^2
+%			+ T_v^2 \dd{v}^2
+%			+ (r_c^2 - T_u^2 - T_v^2) \dd{u} \dd{v},
+%	\quad u,v = \phi\pm t,
+%	\\[.5ex]
+%		&= \pqty{-r_c^2 + 2\,(T_u^2 + T_v)^2} \dd{t}^2
+%			+ 2\,(T_u^2 - T_v^2) \dd{t} \dd{\phi}
+%			+ r_c^2 \dd{\phi}^2
+%	\end{aligned}
+%	\end{equation}
+%	Again it is clearly state dependent, and the metric variation at the cutoff is non-vanishing:
+%	\begin{equation}
+%		\var{g_{\mu\nu}}|_{r = r_c}
+%		\not\equiv 0,
+%	\ \,
+%		\text{in Schwarzschild gauge \eqref{eq:schwarzshild}}
+%	\end{equation}
+%	So it is not obvious that the cutoff covariant charge computed in the Schwarzschild gauge should agree with the previous case, where the Dirichlet boundary condition \eqref{eq:Dirichlet_boundary} is imposed. However, for $l_u = l_v = l$ and $T_u = T_v = T$, we do recover the same result from charge variation:
+%	\begin{equation}
+%		\var{Q_\xi}
+%		= \delta\pqty{
+%				\frac{1}{2G} \mop{arcsinh}
+%				\frac{r_c \sinh Tl}{2T}
+%			}
+%	\end{equation}
+%	\sidenote{How should we understand this? Why does the Schwarzschild gauge ``just works''? In \cite{Guica:2019nzm} they demonstrate that the states are indeed in one to one correspondence between the two gauges, but here the charge variation seems to be different: at the cutoff, $\var{g_{\mu\nu}}$ vanishes in one case while the other one doesn't. If both are correct there should be a way to understand this.}
+%	
+%	\sidenote{Another possibility: for $l_u \ne l_v$ the charge variation from the $(u',v',\rho')$ gauge and the Schwarzschild gauge do \textit{not} obviously agree with each other. Maybe there are some coincidence happening for the $l_u = l_v = l$ case.}
+	
+\pagebreak
+	
+	
+\appendix
+\section{Solving the generalized Killing equation}
+\label{app:solve_Killing}
+	Here we try to find a solution for \eqref{eq:generalized_Killing} in the Fefferman--Graham coordinates. 
+%	
+%	Firstly, $h_{\rho\rho}|_{\rho_c} = 0$ gives us:
+%	\begin{equation}
+%		\pdv{\,\var{\rho}}{\rho}\bigg|_{\rho_c}
+%		= \frac{\var{\rho}}{\rho}\bigg|_{\rho_c}
+%	\end{equation}
+%	This is solved in terms of $\rho$ expansion by:
+%	\begin{equation}
+%		\var{\rho} = c(u,v)
+%			+ \frac{\var{\rho_c}}{\rho_c} \rho
+%			+ \order{\rho^2}
+%	\end{equation}
+%	Here $c(u,v)$ is some arbitrary function independent of $\rho$. 
+%	Note that the solution is far from unique. This reflects the huge amount of gauge redundancy in the theory. For simplicity, we shall take:
+%	\begin{equation}
+%		\var{\rho}
+%		= \frac{\var{\rho_c}}{\rho_c} \rho
+%%		= \rho \var{\log \rho_c}
+%	\end{equation}
+%	
+	Note that $\tvar{g_{ij}}|_{\,\rho_c} = 0$ only involves $
+		\pdd{i}\var{x^j}|_{\,\rho_c}
+	$, where the $i,j$ indices label the boundary $u,v$ directions. 
+	Therefore we can consistently impose:
+	\begin{equation}
+		\pdd{\rho}\var{u}%|_{\,\rho_c}
+		= \pdd{\rho}\var{v}%|_{\,\rho_c}
+		= 0,
+	\end{equation}
+	\begin{equation}
+	\text{i.e.}\ \,
+		\var{u} = \var{u}(u,v),
+	\quad
+		\var{v} = \var{v}(u,v)
+	\end{equation}
+	This means that the variations along the boundary directions $\var{u}, \var{v}$ do not depend on the radial direction $\rho$. This is a physically natural choice. Note that the solution is far from unique, which reflects the gauge redundancies and residual symmetries of the theory. 
+	
+	Due to $\tvar{g_{ij}} = \tvar{g_{ji}}$, there are 3 independent equations. These equations involve linear combinations of:
+	\begin{equation}
+		\pdd{u}\var{u}%|_{\rho_c},
+		,\ \pdd{v}\var{u}%|_{\rho_c},
+		,\ \pdd{u}\var{v}%|_{\rho_c},
+		,\ \pdd{v}\var{v}%|_{\rho_c}
+	\end{equation}
+	And therefore they can be solved by:
+	\begin{equation}
+	\begin{aligned}
+		\var{u}(u,v) &= a_{uu} u + a_{uv} v \\
+		\var{v}(u,v) &= a_{vu} u + a_{vv} v
+	\end{aligned}
+	\end{equation}
+	
+	There are 3 equations and 4 variables, so the system is under constrained. However, before continuing, we note that $\phi = \frac{u + v}{2}$ is defined mod $2\pi$, i.e.~$\phi \cong \phi + 2\pi$. $\var{u}(u,v),\var{v}(u,v)$ should also respect such periodicity along the $\phi = \frac{u + v}{2}$ direction. The only way to achieve at the linear order is by:
+	\begin{equation}
+	\begin{aligned}
+		\var{u}(u,v) &= a_u\,\frac{u - v}{2},\ %
+			& a_u &= a_{uu} = -a_{uv} \\
+		\var{v}(u,v) &= a_v\,\frac{u - v}{2},
+			& a_v &= a_{vu} = -a_{vv}
+	\end{aligned}
+	\end{equation}
+	Plug this back to $
+		h_{\mu\nu}|_{\rho_c}
+		= 0
+	$, and we have 3 equations with 2 unknowns. It seems that now the system is over constrained. However, only 2 of the 3 equations are linearly independent, and we have a unique solution:
+	\begin{equation}
+	\begin{aligned}
+		a_u &= \frac{
+			4T_v \pqty{
+				2T_u T_v \var{T_u}
+				+ \pqty{r_c^2 - (T_u^2 + T_v^2)} \var{T_v}
+			}
+		}{r_c^2 f(r_c)}
+	\\[1ex]
+		a_v &= \frac{
+			-4T_u \pqty{
+				2T_u T_v \var{T_v}
+				+ \pqty{r_c^2 - (T_u^2 + T_v^2)} \var{T_u}
+			}
+		}{r_c^2 f(r_c)}
+	\end{aligned}
+	\end{equation}
+	
+
+
+%\pagebreak
+\vspace{\baselineskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{JHEP} 
+\bibliography{cutoff.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

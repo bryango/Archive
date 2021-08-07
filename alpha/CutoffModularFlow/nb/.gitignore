@@ -1,1 +1,4 @@
 *.nb
+.fdignore
+data
+backup

@@ -32,10 +32,14 @@ v2btz=(u2btz/.u->v/.{Tu->Tv,Tv->Tu})//Simplify
 z2btz=z->Sqrt[((Tu+Tv)^2-(Tu-Tv)^2)/(r^2-(Tu-Tv)^2)]Exp[(u+v)/2 (Tu+Tv)+(u-v)/2 (Tu-Tv)]//Simplify
 poincare2btz={u2btz,v2btz,z2btz};
 
+(Dt[u]Dt[v]+Dt[z]^2)/z^2/.poincare2btz/.(Dt[#]->0&/@{Tu,Tv})//Simplify
+
 
 (* ::Input:: *)
-(*(Dt[u]Dt[v]+Dt[z]^2)/z^2/.poincare2btz/.(Dt[#]->0&/@{Tu,Tv})//Simplify*)
 (**)
+
+
+(* ::Input:: *)
 (*(r^2-(Tu+Tv)^2)(r^2-(Tu-Tv)^2)==r^4+(Tu^2-Tv^2)^2-2 r^2 (Tu^2+Tv^2)//Simplify*)
 
 
@@ -73,6 +77,10 @@ metric=btz`metric=Table[1/2 D[ds2,dX[i],dX[j]],{i,1,Length[coord]},{j,1,Length[c
 
 (* ::Input:: *)
 (*#.g.#&[Dt[coord]]/.r->Sqrt[\[Rho]+Tu^2+Tv^2]/.{Dt[Tu]->0,Dt[Tv]->0}//Expand//FullSimplify*)
+
+
+(* ::Input:: *)
+(*Tu^2 Dt[u]^2+(r^2-Tu^2-Tv^2) Dt[u] Dt[v]+Tv^2 Dt[v]^2*)
 
 
 (* ::Subsection:: *)
@@ -739,6 +747,10 @@ contract[\[Xi]dh,{3,4}]-contract[\[Xi]dh,{2,3}]+contract[\[Xi]dh,{1,3}]
 ]
 
 
+(* ::Item:: *)
+(*It seems that \[Delta]qr lacks a 1/2 factor (check!)*)
+
+
 (* ::Input:: *)
 (**)
 
@@ -801,6 +813,10 @@ varQ\[Xi]sameTsimp=varQ\[Xi]sameT//ExpToTrig//Simplify
 (**)
 
 
+(* ::Item:: *)
+(*Integrate along the RT surface*)
+
+
 (* ::Input:: *)
 (*RTcutoff*)
 
@@ -854,6 +870,25 @@ varQ\[Xi]sameTsimp=varQ\[Xi]sameT//ExpToTrig//Simplify
 
 (* ::Input:: *)
 (**)
+
+
+(* ::Input:: *)
+(*\!\( *)
+(*\*SubsuperscriptBox[\(\[Integral]\), \(rc\), \(\[Infinity]\)]\( *)
+(*\*FractionBox[\(2\ T\ \[Delta]T\ Csch[L\ T]\ Sinh[2\ T\ x]\), \(G\ *)
+(*\*SuperscriptBox[\(( *)
+(*\*SuperscriptBox[\(r\), \(2\)] - 4\ *)
+(*\*SuperscriptBox[\(T\), \(2\)])\), \(3/2\)]\)] \[DifferentialD]r\)\)*)
+(**)
+(*Limit[%,T->0]*)
+
+
+(* ::Input:: *)
+(**)
+
+
+(* ::Input:: *)
+(*Log[x+Sqrt[1+x^2]]//ExpToTrig*)
 
 
 (* ::Input:: *)
@@ -982,6 +1017,28 @@ RTcutoff=r->(2 T Cosh[L T])/Sqrt[Cosh[L T]^2-(1-(4 T^2)/(rc^2) ) Cosh[2 T x]^2]
 
 
 (* ::Input:: *)
+(*varQ\[Xi]sameTsimp/.{u->x,v->x}/.L->L\[Infinity]//ExpToTrig//FullSimplify*)
+
+
+(* ::Input:: *)
+(*(Sinh[T(x+L/2)]Sinh[T(x-L/2)])/Sinh[2T L/2]//TrigReduce//FullSimplify*)
+
+
+(* ::Input:: *)
+(*\[Xi]sameT/.{u->x,v->x}*)
+(**)
+(*1/2 (%[[1]]-%[[2]])//Simplify*)
+
+
+(* ::Input:: *)
+(*Limit[(\[Pi] (Coth[L T]-(r Cosh[2 T x] Csch[L T])/Sqrt[r^2-4 T^2]))/T,r->\[Infinity]]//FullSimplify*)
+
+
+(* ::Item:: *)
+(*This is the charge:*)
+
+
+(* ::Input:: *)
 (*varQ\[Xi]sameTsimp/.{u->x,v->x}/.L->L\[Infinity]/.r->rc//ExpToTrig//FullSimplify*)
 (**)
 (*\!\( *)
@@ -989,7 +1046,53 @@ RTcutoff=r->(2 T Cosh[L T])/Sqrt[Cosh[L T]^2-(1-(4 T^2)/(rc^2) ) Cosh[2 T x]^2]
 (**)
 (*%/.L\[Infinity]2Lc//FullSimplify*)
 (**)
+(*(*\[Integral](%/.\[Delta]T\[Rule]1)\[DifferentialD]T*)*)
+
+
+(* ::Input:: *)
+(**)
+
+
+(* ::Input:: *)
+(*(rc \[Delta]T (L T Cosh[L T]-Sinh[L T]))/(2 G T Sqrt[-rc^2+4 T^2+rc^2 Cosh[L T]^2])*)
+(**)
+(*L \!\( *)
+(*\*SubscriptBox[\(\[PartialD]\), \(L\)]%\)//Simplify*)
+(**)
 (*\[Integral](%/.\[Delta]T->1)\[DifferentialD]T*)
+
+
+(* ::Input:: *)
+(**)
+
+
+(* ::Item:: *)
+(*What if we send rc->\[Infinity] while keeping L,Subscript[L, \[Infinity]] fixed?*)
+
+
+(* ::Input:: *)
+(*\!\( *)
+(*\*SubsuperscriptBox[\(\[Integral]\), \(\(-L\)/2\), \(L/2\)]\( *)
+(*\*FractionBox[\(\[Delta]T\ \((Coth[L\[Infinity]\ T] - Cosh[2\ T\ x]\ Csch[L\[Infinity]\ T])\)\), \(2\ G\)] \[DifferentialD]x\)\)*)
+(**)
+(*%/.L\[Infinity]2Lc//FullSimplify*)
+(**)
+(*L \!\( *)
+(*\*SubscriptBox[\(\[PartialD]\), \(L\)]%\)//Simplify*)
+(**)
+(*\[Integral](%/.\[Delta]T->1)\[DifferentialD]T*)
+
+
+(* ::Item:: *)
+(*The difference:*)
+
+
+(* ::Input:: *)
+(*(\[Delta]T (L rc T Cosh[L T]-Sqrt[rc^2-4 T^2] Sinh[L T]))/(2 G T Sqrt[-rc^2+4 T^2+rc^2 Cosh[L T]^2])-(rc \[Delta]T (L T Cosh[L T]-Sinh[L T]))/(2 G T Sqrt[-rc^2+4 T^2+rc^2 Cosh[L T]^2])//Simplify*)
+
+
+(* ::Input:: *)
+(*((-1+rc/Sqrt[rc^2-4 T^2]) \[Delta]T Csch[L T] Sinh[2 T x])/(2 G T)/.L->L\[Infinity]/.x->L/2/.L\[Infinity]2Lc//Simplify*)
 
 
 (* ::Input:: *)

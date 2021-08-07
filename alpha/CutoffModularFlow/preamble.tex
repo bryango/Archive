@@ -116,7 +116,7 @@
 \newcommand{\dv}[2]{\frac{\dd{#1}}{\dd{#2}}}
 \newcommand{\pdv}[2]{\frac{\partial{#1}}{\partial{#2}}}
 \newcommand{\var}[1]{\mathinner{\delta #1}}
-\newcommand{\order}[1]{\mcal{O}\pqty{#1}}
+\newcommand{\order}[1]{\mcal{O}\!\pqty{#1}}
 %
 %%%% \usepackage{placeins}
 \def\FloatBarrier{}
@@ -196,7 +196,9 @@
 \newcommand{\qedfull}[1][]{\hfill\ensuremath{ %
     \blacksquare\mathrlap{_{\,#1}}%
 }}
-
+%
+\newcommand{\needcites}{\sidenote{\texttt{\small[\,citations needed\,]}}}
+\newenvironment{colored}[1][purple]{\leavevmode\color{#1}\ignorespaces}{}
 
 %%%% End of WX's macros %%%%
 
