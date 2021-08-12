@@ -49,6 +49,9 @@
 
 \def\vev#1{\ave{#1}}
 
+\usepackage{pifont}
+\newcommand{\quabla}{\text{\ding{113}\hspace{.1em}}}
+
 \begin{document}
 \maketitle
 \pagenumbering{arabic}
@@ -70,33 +73,34 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\begin{itemize}[itemsep=\parskip]%[leftmargin=2em]
 	\item[\cite{Argyres:1996abc}]\fullcite{Argyres:1996abc}
 		\par \textit{Recommended by Yanyan.}
-		
-	\item[\cite{Tachikawa:2018sae}]\fullcite{Tachikawa:2018sae}
-		\par \textit{Recommended by Chi-Ming.}
-		
+	
 	\item[\cite{Figueroa-OFarrill:2001xbd}]\fullcite{Figueroa-OFarrill:2001xbd}
 		\par \textit{Recommended by Mauricio.}
-		
-	\item[\cite{VanProeyen:1999ni}]\fullcite{VanProeyen:1999ni}
-		\par \textit{Recommended by Mauricio.}
-		
+	
+	\item[\cite{Hori:2003ic}]\fullcite{Hori:2003ic}
+	
+	\item[\cite{Freedman:2012zz}]\fullcite{Freedman:2012zz}
+	
 	\end{itemize}
 \pagebreak[3]
 \item Secondary:
 	\begin{itemize}
-	\item[\cite{Freedman:2012zz}]\fullcite{Freedman:2012zz}
 	
 	\item[\cite{Wess:1992cp}]\fullcite{Wess:1992cp}
 	
-	\item[\cite{Hori:2003ic}]\fullcite{Hori:2003ic}
-	
 	\item[\cite{figueroa2015majorana}]\fullcite{figueroa2015majorana}
+	
+	\item[\cite{VanProeyen:1999ni}]\fullcite{VanProeyen:1999ni}
+		\par \textit{Recommended by Mauricio.}
+	
+	\item[\cite{Tachikawa:2018sae}]\fullcite{Tachikawa:2018sae}
+		\par \textit{Recommended by Chi-Ming.}
 	
 	\item[\cite{Zhou:2018abc}]\fullcite{Zhou:2018abc}
 	
 	\item[\cite{Kapranov:2015nft}]\fullcite{Kapranov:2015nft}
 		\par \textit{Recommended by Yuan.}
-		
+	
 	\end{itemize}
 \end{itemize}
 \justifying
@@ -105,7 +109,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\speaker{Yanyan ``Handsome'' Li}\\
 	\references{
 	\begin{enumerate}[noitemsep,topsep=0pt]
-	\item \textcite{Argyres:1996abc}, Section 5
+	\item \textcite{Argyres:1996abc}, \S5
 	\item \textcite{Wess:1992cp}, Chapter II
 	\end{enumerate}
 	}\vspace{.5\baselineskip}
@@ -126,20 +130,91 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 		\textkai{优良传统}.
 	} of physicists (and experimental mathematicians) to take the square root of un-rootable things. For example, $\sqrt{-1}$ gives us $i$, and $\sqrt{\Box^2} = \sqrt{-P_u P^\mu}$ gives us the $\gamma$ matrices (thanks to Dirac). 
 	
-	Remarks:
+	\textit{Remarks:}
 	\begin{enumerate}
-	\item $Q$ carries a spinor index $\alpha$ (or $\dot{\alpha}$), so it lives in the spinor representation of the Lorentz group, or equivalently, the fundamental representation of the Spin group\footnote{
+	\item $Q$ carries a spinor index $\alpha$ (or $\dot{\alpha}$), so it lives in the spinor representation of the Lorentz group, or equivalently, the fundamental (spin-$\frac{1}{2}$) representation of the Spin group\footnote{
 		See a surprisingly good summary of the topic on \wikiref{https://en.wikipedia.org/wiki/Representation\_theory\_of\_the\_Lorentz\_group\#Finite-dimensional\_representations}{Representation theory of the Lorentz group \# Finite-dimensional representations}. 
+		
+		Note that higher spin supercharges are not allowed, since they cannot combine into $P_\mu$ or $J_{\mu\nu}$, but they must, due to Coleman--Mandula. Moreover in 4D higher spin charges simply violate Haag--Łopuszański--Sohnius (the SUSY extension of Coleman--Mandula). A thorough introduction of this is given in \S32 of \textcite{Weinberg:2000cr}, Vol.\,III. 
+		See also \https{physics.stackexchange.com/a/418025}. 
 	}. 
 	
-	\item The structure of this algebra can be generalized to $D$ dimensions. $(Q_\alpha, \bar{Q}_{\dot{\alpha}})$ forms a \mbox{(symplectic)}\footnote{
-		This happens when the metric signature $p - q \equiv 3,4,5\,\mop{mod}\,8$. See e.g.~\textcite{figueroa2015majorana}, or Section~3.3 and 12.1 of \textit{Supergravity} \cite{Freedman:2012zz}, or Mauricio Romo's lecture notes. In Lorentzian signature ($p = D-1, q = 1$), this corresponds to $D = 5,6,7$ dimensions; see e.g.~Table B.1 of \textcite{Polchinski:1998rq}. A worked example in 6D is given by \cite{Gustavsson:2001uw}. Also, higher form centeral charges are possible in higher dimensions. 
+	\item The structure of this algebra can be generalized to $D$ dimensions. In general, $Q$ transforms as a \mbox{(symplectic)}\footnote{
+		Symplectic Majorana happens when the metric signature $p - q \equiv 3,4,5\,\mop{mod}\,8$. See e.g.~\textcite{figueroa2015majorana}, or \S3.3 and \S12.1 of \textit{Supergravity} \cite{Freedman:2012zz}, or Mauricio Romo's lecture notes. In Lorentzian signature ($p = D-1, q = 1$), this corresponds to $D = 5,6,7$ dimensions; see e.g.~Table B.1 of \textcite{Polchinski:1998rr}. A worked example in 6D is given by \cite{Gustavsson:2001uw}. 
+		
+		Also, higher form centeral charges are possible in higher dimensions. 
 	} (pseudo)\footnote{
-		Pseudo-Majorana spinors exist for spacetime signature $(p,q)$ if and only if Majorana spinors exist for $(q,p)$. See \textcite{figueroa2015majorana} and Section~3.3 of \textit{Supergravity} \cite{Freedman:2012zz}
-	} Majorana spinor, where $\bar{Q}$ denotes charge conjugation \cite{Freedman:2012zz}. 
+		Pseudo-Majorana spinors exist for spacetime signature $(p,q)$ if and only if Majorana spinors exist for $(q,p)$. See \textcite{figueroa2015majorana} and \S3.3 of \textit{Supergravity} \cite{Freedman:2012zz}. 
+	} Majorana spinor. 
+	
+	\item Complex conjugation maps $Q_\alpha \mapsto \bar{Q}_{\dot{\alpha}}$. The supercharges have to live in a \textit{real} representation, where both $Q_\alpha$ and $\bar{Q}_{\dot{\alpha}}$ are included. Otherwise they can't combine into the Hermitian $P_\mu$. Here we've chosen to write the 4D charges as Weyl spinor $Q_\alpha$ with 2 complex components, but they are not actually Weyl; they are secretly Majorana with 4 real components. The translation between these two descriptions is documented in \S3.4.2 of \textit{Supergravity} \cite{Freedman:2012zz}. 
 	
 	\item $(Q_\alpha, \bar{Q}_{\dot{\alpha}})$ act like (fermionic) annilation and creation operators (ladder operators). We can write down its unitary irreducible representations (unitary irreps) on the Hilbert space, following Wigner's little group representation for the Poincar\'e group. 
 	\end{enumerate}
+\subsection{More on conjugations}
+	The bar notation in e.g.\ $\bar{Q}$ denotes \textit{some sort of} conjugation, usually Dirac or charge conjugation in 4D. More precisely, for a Dirac spinor $\psi^\bullet = (\lambda^\alpha, \bar{\chi}_{\dot{\alpha}})$, up to various constant coefficients (which may depend on the dimension $D$), we have:
+	\begin{equation*}
+	\newcommand{\coef}{\text{\tiny\#\,}}
+	\renewcommand{\arraystretch}{1.2}
+	\begin{array}{rccll}
+	\textbf{Type of Conjugation}
+		& \psi^\bullet 
+		&=& (\lambda^\alpha,\bar{\chi}_{\dot{\alpha}})
+		\hspace*{.5em}
+		& \textbf{Notes}\\
+\midrule
+	\text{Complex}
+		& (\psi^*)^\bullet
+		&\sim& (\bar{\lambda}^{\dot{\alpha}},\chi_{\alpha})
+		& \text{Exchange $\alpha$ with $\dot{\alpha}$} \\
+	\text{Dirac}
+		& (i\psi^\dagger\gamma_0)_\bullet
+		&\sim& ({\chi}_\alpha,\bar{\lambda}^{\dot{\alpha}})
+		& \text{Switch chirality (handedness)} \\
+	\text{Majorana}
+		& (\psi\,\mcal{C})_\bullet = (\psi^\mrm{T} C)_\bullet
+		&\sim& (\bar{\lambda}_{{\alpha}},{\chi}^{\dot{\alpha}})
+		& \text{Transpose (dual representation)} \\
+	\text{Charge}
+		& (i\gamma_0\,C^{-1} \psi^*)^\bullet
+		&\sim& ({\chi}^\alpha,\bar{\lambda}_{\dot{\alpha}})
+		& [\text{Majorana}]^{-1} \circ [\text{Dirac}]
+	\end{array}
+	\end{equation*}
+	Remarks:
+	\begin{itemize}
+	
+	\item In components, the bar notation is actually redundant. It simply indicates that we have taken some sort of conjugation \cite{Freedman:2012zz}. To know what kind of conjugation this is, we have to read the indices. 
+	
+		\begin{itemize}
+		\item Dotted indices denote the complex conjugate representation. 
+		
+		\item The position of an index indicates how it transforms under the Spin group (covariant spinor or its dual). 
+		\end{itemize}
+	
+	\item $C\id{^\bullet_\bullet}$ is the charge conjugation matrix, while $\mcal{C}_{\bullet\bullet}$ is the corresponding bilinear form. $\mcal{C}_{\bullet\bullet}$ works like a metric, and is used to raise and lower the spinor indices. It is anti-symmetric, compatible with the anti-commuting $\psi$. 
+	
+	\item Charge conjugation is basically Dirac conjugation, but without the lowering of indices with $\mcal{C}$. We see that when $\lambda = \chi$, $\psi$ is invariant under charge conjugation: $\psi^C = \psi$. This is the reality condition, and $\psi = (\chi^\alpha,\bar{\chi}_{\dot{\alpha}})$ is a \textit{Majorana spinor}. 
+	
+	\item Charge conjugation is convenient as it preserves the ordering of matrices (since it does not include a transpose). On the other hand it works just like Dirac conjugation, switching between left and right-handed components. 
+	
+	\item When the indices are suppressed, they are assumed to be contracted with $\mcal{C}$. In this case we do need to specify the meaning of $\bar{\psi}$. 
+	
+	When the indices are suppressed, charge and Dirac conjugations are equivalent (up to some constant coefficients) as they differ only by index positions. Similarly, complex and Majorana conjugations are equivalent. 
+	
+	For majorana spinors (such as the supercharges $Q$), we have $\lambda = \chi$, and all four conjugations are equivalent when the indices are suppressed. 
+	
+	\item In 4D we usually take $\bar{\psi}$ to denote Dirac conjugate, as in \S2 of \textit{Supergravity} \cite{Freedman:2012zz}. However, since \S3 they switch their conventions and $\bar{\psi}$ denotes Majorana conjugate instead\footnote{
+		See \S3.2 of \textcite{Freedman:2012zz}. 
+	}. \textcite{Polchinski:1998rr} seems to define $\bar{\psi}$ as Dirac conjugate\footnote{
+		See (B.1.29) of \textcite{Polchinski:1998rr}, Vol.\,II. 
+	}. 
+	
+	\end{itemize}
+	
+	\newparagraph
+	These have always been confusing concepts for me. For a pedagogical treatment in general dimensions, see \S2 and \S3 of \textit{Supergravity} \cite{Freedman:2012zz}. One can then compare it to the results in 4D, discussed in Appendix A.4 to A.8 of \textcite{Figueroa-OFarrill:2001xbd}. Fortunately their conventions seem to agree with each other, most of the time. 
+	
 \subsection{Equal amount of bosonic \& fermionic (excited) states}
 	$Q$ maps bosonic states to fermionic states, and vice versa. We thus have:
 	\begin{equation}
@@ -211,7 +286,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\begin{equation}
 		\mcal{H} = \mcal{H}_B \oplus \mcal{H}_F,
 	\end{equation}
-	\vspace{-\baselineskip}
+	\vspace*{-\baselineskip}
 	\begin{equation}
 		Q(\mcal{H}_B) \equiv \mcal{Q(}\mcal{H}_F),
 	\quad
@@ -237,7 +312,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\begin{equation}
 		F = F_V = J_0 + \bar{J}_0
 	\end{equation}
-	Here $J(z),\bar{J}(\bar{z})$ are bosonic currents. They can be understood as the infinite dimensional enhancement of the R-symmetry generators in an SCFT, while their 0-modes $J_0,\bar{J}_0$ corresponds to the original R-symmetry generators in the SUSY algebra. $F_V = J_0 + \bar{J}_0$ is the $\mrm{U}(1)_V$ generator, while $F_A = \bar{J}_0 - J_0$ is the $\mrm{U}(1)_A$ generator. The \mbox{subscript A} stands for ``axial'', meaning that $Q^i$ transforms in an axial representation of $\mrm{U}(1)$. For more on this, see e.g.~\cite{MauricioStuff}. 
+	Here $J(z),\bar{J}(\bar{z})$ are bosonic currents. They can be understood as the infinite dimensional enhancement of the R-symmetry generators in an SCFT, while their 0-modes $J_0,\bar{J}_0$ corresponds to the original R-symmetry generators in the SUSY algebra. $F_V = J_0 + \bar{J}_0$ is the $\mrm{U}(1)_V$ generator, while $F_A = \bar{J}_0 - J_0$ is the $\mrm{U}(1)_A$ generator. The \mbox{subscript A} stands for ``axial'', meaning that $Q^i$ transforms in an axial representation of $\mrm{U}(1)$, where the group action discriminates between left and right-handed components. For more on this, see e.g.~\cite{MauricioStuff}. 
 	
 	We can now define the elliptic genus, which looks just like the Witten index but with an additional insertion $y^{J_0}$, while the trace is restricted to the R-R sector:
 	\begin{equation}
@@ -262,13 +337,14 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	Geometrically, the elliptic genus is a generalization of the usual genus. In particular, for $z = 0$ we recover the Witten index, which evalutates to the Euler characteristic $\chi(M)$, where $M$ is the \textit{target} manifold\footnote{
 		See Chapter 10.4 of \textit{Mirror Symmetry} \cite{Hori:2003ic}, or \textcite{Witten:1982df}. See also \cite{MauricioStuff} and:
 		\begin{itemize}[
-			topsep=.5ex,noitemsep,
-			leftmargin=4em
+%			topsep=0ex,
+			noitemsep,
+			leftmargin=3em
 		]
 		\item \https{physicsoverflow.org/23261}
 		\item \https{physics.stackexchange.com/a/183620}
 		\end{itemize}
-		\vspace{-.8\baselineskip}
+%		\vspace{-.8\baselineskip}
 	}. This is due to the fact that $Q$ gets identified with the de Rham differential $\mquote{\dd}$ on the target $M$. This should become apparent as we introduce the superfield formalism and K\"ahler geometry in \S2. 
 	
 \subsection{Representations of the SUSY algebra}
@@ -410,8 +486,8 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 \section{Superspace \& Superfields}
 	\speaker{Ban ``Bo'' Lin}\\
 	\references{
-	\begin{enumerate}[noitemsep,topsep=0pt]
-	\item \textcite{Argyres:1996abc}, Section 6
+	\begin{enumerate}[noitemsep,topsep=0pt,beginpenalty=10000]
+	\item \textcite{Argyres:1996abc}, \S6
 	\item \citetitle{Hori:2003ic} \cite{Hori:2003ic}, Chapter 12
 	\end{enumerate}
 	}\vspace{.5\baselineskip}
@@ -522,20 +598,14 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\speaker{Wen-Xin ``Bryan'' Lai}\\
 	\references{
 	\begin{enumerate}[noitemsep,topsep=0pt]
-	\item \textcite{Argyres:1996abc}, Section 7
-	\item \textcite{Intriligator:1995au}, Section 2
+	\item \textcite{Argyres:1996abc}, \S7
+	\item \textcite{Intriligator:1995au}, \S2
 	\item \textcite{Seiberg:1993vc}
 	\end{enumerate}
 	}\vspace{.5\baselineskip}
 	
-\pagebreak[3]
+%\pagebreak[3]
 	
-	\begin{quotation}
-		``If a bare parameter is unnaturally set to zero, radiative corrections lead to a renormalized non-zero value. Therefore, if we want a small renormalized value \textit{without} a symmetry, the bare value has to be \textit{fine-tuned}.'' 
-		
-		\vspace{1ex}\hfill
-		--- \textcite{Seiberg:1993vc} on naturalness. 
-	\end{quotation}
 	\begin{equation}
 		\boxed{\text{Symmetry}}
 		\quad\xrightleftharpoons[
@@ -545,11 +615,19 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 		\ \text{(almost) vanishing}
 	\end{equation}
 	
+	\begin{quotation}
+		``If a bare parameter is unnaturally set to zero, radiative corrections lead to a renormalized non-zero value. Therefore, if we want a small renormalized value \textit{without} a symmetry, the bare value has to be \textit{fine-tuned}.'' 
+		
+		\vspace{1ex}\hfill
+		--- \textcite{Seiberg:1993vc} on naturalness. 
+	\end{quotation}
+	
+%	\vspace{\baselineskip}
 	\noindent%
 	The argument of non-renormalization by Dine, Polchinski and Seiberg \cite{Seiberg:1993vc}:
 	
 	\begin{enumerate}[beginpenalty=10000]
-	\item \textbf{Philosophy:} we \textit{believe} that the UV theory \textit{should} have almost no coupling and a lot of fields; think of string theory (where we have only one coupling) and string field theory (where there are $\infty$-ly many fields). In fact, this was explicitly pointed out in Section 4.2 of \mbox{\textcite{Dine:1996ui}}\footnote{
+	\item \textbf{Philosophy:} we \textit{believe} that the UV theory \textit{should} have almost no coupling and a lot of fields; think of string theory (where we have only one coupling) and string field theory (where there are $\infty$-ly many fields). In fact, this was explicitly pointed out in \S4.2 of \mbox{\textcite{Dine:1996ui}}\footnote{
 		Oh my, it's \texttt{hep-ph}! This must come from a simpler time when SUSY is expected to be found by experiments. 
 	}:
 	
@@ -601,8 +679,8 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	
 	I believe the best way to make sense of this is to have a generalized notion of symmetry, where background fields are allowed to transform non-trivially. In the QM example given above, we have $E$ as a background field, where in the field theory case we have the couplings $\lambda$ as background fields. 
 	
-	Ususally we demand a symmetry to keep the background fields invariant; this is not always convenient. We should also consider symmetries that act on \textit{the collection of all possible background configurations}. This is precisely the degenrate vacua we've seen when studying the Higgs mechanism. This justifies the trick of turning on $\lambda$. For more on this, see Section 2.1.3 of \textcite{Banados:2016zim}%
-%	, and also Section 1.2 of \cite{Lai:2021abc}
+	Ususally we demand a symmetry to keep the background fields invariant; this is not always convenient. We should also consider symmetries that act on \textit{the collection of all possible background configurations}. This is precisely the degenrate vacua we've seen when studying the Higgs mechanism. This justifies the trick of turning on $\lambda$. For more on this, see \S2.1.3 of \textcite{Banados:2016zim}%
+%	, and also \S1.2 of \cite{Lai:2021abc}
 	. 
 	
 \subsection{Wilsonian RG of the Wess--Zumino model}
@@ -740,7 +818,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\end{equation}
 	
 	There are again two proposals to fix $a_1(\mu)$:
-	\begin{itemize}
+	\begin{itemize}[beginpenalty=10000]
 	\item Consider $\lambda\to 0$, $m\to 0$ with arbitrary $m/\lambda$. We should have \cite{Intriligator:1995au}:
 	\begin{equation}
 		\mcal{W}_{(\mu)} = \mcal{W}_{\mrm{UV}},
@@ -778,7 +856,25 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\references{%
 %	\begin{enumerate}[noitemsep,topsep=0pt]
 %	\item
-	\textcite{Argyres:1996abc}, Section 7
+	\textcite{Argyres:1996abc}, \S8
+%	\end{enumerate}
+	}\vspace{.5\baselineskip}
+	
+\section{SUSY Breaking}
+	\speaker{Xia ``Summer'' Gu}\\
+	\references{%
+%	\begin{enumerate}[noitemsep,topsep=0pt]
+%	\item
+	\textcite{Argyres:1996abc}, \S9
+%	\end{enumerate}
+	}\vspace{.5\baselineskip}
+	
+\section{Super Gauge Theory}
+	\speaker{Yuan Zhong}\\
+	\references{%
+%	\begin{enumerate}[noitemsep,topsep=0pt]
+%	\item
+	\textcite{Argyres:1996abc}, \S10
 %	\end{enumerate}
 	}\vspace{.5\baselineskip}
 	
