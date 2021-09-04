@@ -114,7 +114,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\end{enumerate}
 	}\vspace{.5\baselineskip}
 	
-	The generic form of a 4D SUSY algebra with centeral charge is given by \cite{Wess:1992cp}:
+	The generic form of a 4D SUSY algebra with central charge is given by \cite{Wess:1992cp}:
 	\begin{equation}
 		\{ Q^i_\alpha, \bar{Q}_{\dot{\alpha},j} \}
 		= 2\sigma^\mu_{\alpha\dot{\alpha}} P_\mu
@@ -128,7 +128,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	$Q$ is understood as the ``square root'' of $P$. 
 	Note that it's been a fine tradition\footnote{
 		\textkai{优良传统}.
-	} of physicists (and experimental mathematicians) to take the square root of un-rootable things. For example, $\sqrt{-1}$ gives us $i$, and $\sqrt{\Box^2} = \sqrt{-P_u P^\mu}$ gives us the $\gamma$ matrices (thanks to Dirac). 
+	} of physicists (and experimental mathematicians) to take the square root of un-rootable things. For example, $\sqrt{-1}$ gives us $i$, and $\sqrt{\Box^2} = \sqrt{-P_u P^\mu}$ gives us the $\gamma$ matrices (thanks to Dirac). On the other hand, the energy $P^0$ is now written as a sum of $\abs{Q}^2$, which guarantees its positivity. See \S9 of \textcite{Argyres:1996abc}. 
 	
 	\textit{Remarks:}
 	\begin{enumerate}
@@ -142,78 +142,121 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\item The structure of this algebra can be generalized to $D$ dimensions. In general, $Q$ transforms as a \mbox{(symplectic)}\footnote{
 		Symplectic Majorana happens when the metric signature $p - q \equiv 3,4,5\,\mop{mod}\,8$. See e.g.~\textcite{figueroa2015majorana}, or \S3.3 and \S12.1 of \textit{Supergravity} \cite{Freedman:2012zz}, or Mauricio Romo's lecture notes. In Lorentzian signature ($p = D-1, q = 1$), this corresponds to $D = 5,6,7$ dimensions; see e.g.~Table B.1 of \textcite{Polchinski:1998rr}. A worked example in 6D is given by \cite{Gustavsson:2001uw}. 
 		
-		Also, higher form centeral charges are possible in higher dimensions. 
+		Also, higher form central charges are possible in higher dimensions. 
 	} (pseudo)\footnote{
 		Pseudo-Majorana spinors exist for spacetime signature $(p,q)$ if and only if Majorana spinors exist for $(q,p)$. See \textcite{figueroa2015majorana} and \S3.3 of \textit{Supergravity} \cite{Freedman:2012zz}. 
+		
+		From now on we will \textit{not} distinguish between pseudo-Majorana and Majorana spinors, as they are both ``real'' under \textit{charge conjugation}, which we will define in \S1.1. 
 	} Majorana spinor. 
 	
 	\item Complex conjugation maps $Q_\alpha \mapsto \bar{Q}_{\dot{\alpha}}$. The supercharges have to live in a \textit{real} representation, where both $Q_\alpha$ and $\bar{Q}_{\dot{\alpha}}$ are included. Otherwise they can't combine into the Hermitian $P_\mu$. Here we've chosen to write the 4D charges as Weyl spinor $Q_\alpha$ with 2 complex components, but they are not actually Weyl; they are secretly Majorana with 4 real components. The translation between these two descriptions is documented in \S3.4.2 of \textit{Supergravity} \cite{Freedman:2012zz}. 
 	
-	\item $(Q_\alpha, \bar{Q}_{\dot{\alpha}})$ act like (fermionic) annilation and creation operators (ladder operators). We can write down its unitary irreducible representations (unitary irreps) on the Hilbert space, following Wigner's little group representation for the Poincar\'e group. 
+	\item $(Q_\alpha, \bar{Q}_{\dot{\alpha}})$ act like (fermionic) annihilation and creation operators (ladder operators). We can write down its unitary irreducible representations (unitary irreps) on the Hilbert space, following Wigner's little group representation for the Poincar\'e group. 
 	\end{enumerate}
 \subsection{More on conjugations}
-	The bar notation in e.g.\ $\bar{Q}$ denotes \textit{some sort of} conjugation, usually Dirac or charge conjugation in 4D. More precisely, for a Dirac spinor $\psi^\bullet = (\lambda^\alpha, \bar{\chi}_{\dot{\alpha}})$, up to various constant coefficients (which may depend on the dimension $D$), we have:
+	The bar in e.g.\ $\bar{Q}$ denotes \textit{some sort of} conjugation. In 4D it usually means Dirac or charge conjugation. 
+	Dirac spinors exist in any dimension, but let's first look at \textit{even} dimensions, where a Dirac spinor can always be decomposed into 2 Weyl spinors:
+	\begin{equation}
+		\psi^\bullet
+		= (\lambda^\alpha, \bar{\chi}_{\dot{\alpha}})
+	\end{equation}
+	This is because in even dimensions we have a chirality operator $\Gamma$ \cite{Polchinski:1998rr}: 
+	\begin{equation}
+		D = 2k + 2,
+	\quad
+		\Gamma = i^{-k} \Gamma^0 \cdots \Gamma^{D-1},
+	\quad
+		\Gamma^2 = 1,
+	\quad
+		\{\Gamma, \Gamma^\mu\} = 0
+	\end{equation}
+	$\Gamma$ is the generalization of $\gamma_5$ in 4D, and serves as a chirality operator that distingushes the left and right handed part of a Dirac spinor. This gives us Weyl spinors with a definite chirality. We can then diagonalize $\Gamma$ such that it's all $+1$ on the upper half diagonal, and all $-1$ on the lower half diagonal. 
+	
+	There is no such chirality operator in odd dimensions, therefore in odd dimensions we don't have Weyl spinors at all, and there are only (symplectic) (pseudo) Majorana spinors. For example, in 5D $\gamma_5$ itself gets ``promoted'' to be the last $\gamma$ matrix\footnote{
+		For more on this, see \S3.1.7 of \textit{Supergravity} \cite{Freedman:2012zz}. 
+	}. 
+	
+	Back to even dimensions where $
+		\psi^\bullet
+		= (\lambda^\alpha, \bar{\chi}_{\dot{\alpha}})
+	$, we have, up to various constant coefficients (which may depend on the dimension $D$),
 	\begin{equation*}
+	\small
 	\newcommand{\coef}{\text{\tiny\#\,}}
 	\renewcommand{\arraystretch}{1.2}
 	\begin{array}{rccll}
 	\textbf{Type of Conjugation}
 		& \psi^\bullet 
 		&=& (\lambda^\alpha,\bar{\chi}_{\dot{\alpha}})
-		\hspace*{.5em}
+%		\hspace*{.5em}
 		& \textbf{Notes}\\
 \midrule
 	\text{Complex}
 		& (\psi^*)^\bullet
 		&\sim& (\bar{\lambda}^{\dot{\alpha}},\chi_{\alpha})
-		& \text{Exchange $\alpha$ with $\dot{\alpha}$} \\
+		& \text{Exchange $\alpha$ with $\dot{\alpha}$}
+\\
 	\text{Dirac}
 		& (i\psi^\dagger\gamma_0)_\bullet
 		&\sim& ({\chi}_\alpha,\bar{\lambda}^{\dot{\alpha}})
-		& \text{Switch chirality (handedness)} \\
+		& \text{Switch chirality (handedness)}
+\\[.5ex]
 	\text{Majorana}
 		& (\psi\,\mcal{C})_\bullet = (\psi^\mrm{T} C)_\bullet
 		&\sim& (\bar{\lambda}_{{\alpha}},{\chi}^{\dot{\alpha}})
-		& \text{Transpose (dual representation)} \\
+			_{D\equiv 4},
+		& \\
+	&
+		&\sim& ({\chi}_{\dot{\alpha}},\bar{\lambda}^{{\alpha}})
+			_{D\equiv 2},
+		\,\cdots
+		& \text{Transpose (dual representation)}
+\\[.5ex]
 	\text{Charge}
 		& (i\gamma_0\,C^{-1} \psi^*)^\bullet
 		&\sim& ({\chi}^\alpha,\bar{\lambda}_{\dot{\alpha}})
+			_{D\equiv 4},
+		& \\
+	&
+		&\sim& (\bar{\lambda}^{\dot{\alpha}},{\chi}_\alpha)
+			_{D\equiv 2},
+		\,\cdots
 		& [\text{Majorana}]^{-1} \circ [\text{Dirac}]
 	\end{array}
 	\end{equation*}
 	Remarks:
-	\begin{itemize}
+	\begin{itemize}[beginpenalty=10000]
 	
 	\item In components, the bar notation is actually redundant. It simply indicates that we have taken some sort of conjugation \cite{Freedman:2012zz}. To know what kind of conjugation this is, we have to read the indices. 
 	
 		\begin{itemize}
-		\item Dotted indices denote the complex conjugate representation. 
+		\item Dotted indices such as $\dot{\alpha}$ denote the complex conjugate representation. 
 		
 		\item The position of an index indicates how it transforms under the Spin group (covariant spinor or its dual). 
 		\end{itemize}
 	
 	\item $C\id{^\bullet_\bullet}$ is the charge conjugation matrix, while $\mcal{C}_{\bullet\bullet}$ is the corresponding bilinear form. $\mcal{C}_{\bullet\bullet}$ works like a metric, and is used to raise and lower the spinor indices. It is anti-symmetric, compatible with the anti-commuting $\psi$. 
 	
-	\item Charge conjugation is basically Dirac conjugation, but without the lowering of indices with $\mcal{C}$. We see that when $\lambda = \chi$, $\psi$ is invariant under charge conjugation: $\psi^C = \psi$. This is the reality condition, and $\psi = (\chi^\alpha,\bar{\chi}_{\dot{\alpha}})$ is a \textit{Majorana spinor}. 
+	\item $\mcal{C}$ is sensitive about the dimension $D$, and so is the Majorana conjugation. For example, in 4D $\mcal{C}$ is block diagonal, thus it does not switch $\lambda$ with $\chi$. In 2D, however, $\mcal{C}$ is basically the antisymmetric $\epsilon_{\alpha\dot{\alpha}}$, therefore it does switch $\lambda$ with $\chi$. 
 	
-	\item Charge conjugation is convenient as it preserves the ordering of matrices (since it does not include a transpose). On the other hand it works just like Dirac conjugation, switching between left and right-handed components. 
+	\item In 4D, charge conjugation is basically Dirac conjugation, but without the lowering of indices with $\mcal{C}$. We see that in 4D, when $\lambda = \chi$, $\psi$ is invariant under charge conjugation: $\psi^C = \psi$. This is the reality condition, and $\psi = (\chi^\alpha,\bar{\chi}_{\dot{\alpha}})$ is a \textit{Majorana spinor}. 
 	
-	\item When the indices are suppressed, they are assumed to be contracted with $\mcal{C}$. In this case we do need to specify the meaning of $\bar{\psi}$. 
+	In 2D, on the other hand, we see that Majorana conjugation is basically Dirac conjugation, but without the complex conjugation $\alpha \leftrightarrow \dot{\alpha}$. Therefore, charge conjugation is basically complex conjugation. The reality condition $\psi^C = \psi$ now reduces to $\lambda^* = \lambda$, $\chi^* = \chi$. This gives us 2 independent \textit{Majorana--Weyl} spinors. 
 	
-	When the indices are suppressed, charge and Dirac conjugations are equivalent (up to some constant coefficients) as they differ only by index positions. Similarly, complex and Majorana conjugations are equivalent. 
+	\item Charge conjugation is convenient as it preserves the ordering of matrices (since it does not include a transpose). One can think of it as a physical replacement for the na\"ive complex conjugation. 
 	
-	For majorana spinors (such as the supercharges $Q$), we have $\lambda = \chi$, and all four conjugations are equivalent when the indices are suppressed. 
+	\item When the indices are suppressed, matrices are assumed to be contracted with $\mcal{C}$. In this case we do need to specify the meaning of $\bar{\psi}$. 
 	
-	\item In 4D we usually take $\bar{\psi}$ to denote Dirac conjugate, as in \S2 of \textit{Supergravity} \cite{Freedman:2012zz}. However, since \S3 they switch their conventions and $\bar{\psi}$ denotes Majorana conjugate instead\footnote{
+	In 4D we usually take $\bar{\psi}$ to denote Dirac conjugate, as in \S2 of \textit{Supergravity} \cite{Freedman:2012zz}. However, since \S3 they switch their conventions and $\bar{\psi}$ denotes Majorana conjugate instead\footnote{
 		See \S3.2 of \textcite{Freedman:2012zz}. 
-	}. \textcite{Polchinski:1998rr} seems to define $\bar{\psi}$ as Dirac conjugate\footnote{
+	}. \textcite{Polchinski:1998rr} seems to consistently define $\bar{\psi}$ as Dirac conjugate\footnote{
 		See (B.1.29) of \textcite{Polchinski:1998rr}, Vol.\,II. 
 	}. 
 	
 	\end{itemize}
 	
 	\newparagraph
-	These have always been confusing concepts for me. For a pedagogical treatment in general dimensions, see \S2 and \S3 of \textit{Supergravity} \cite{Freedman:2012zz}. One can then compare it to the results in 4D, discussed in Appendix A.4 to A.8 of \textcite{Figueroa-OFarrill:2001xbd}. Fortunately their conventions seem to agree with each other, most of the time. 
+	These have always been confusing concepts for me. For a friendly introduction to Majorana spinors in 4D, check out \textcite{Pal:2010ih}. For a pedagogical treatment in general dimensions, see \S2 and \S3 of \textit{Supergravity} \cite{Freedman:2012zz}. One can then compare it to the results in 4D, discussed in Appendix A.4 to A.8 of \textcite{Figueroa-OFarrill:2001xbd}. See also \textcite{Tachikawa:2018sae}. Fortunately their conventions seem to agree with each other, for most of the time. 
 	
 \subsection{Equal amount of bosonic \& fermionic (excited) states}
 	$Q$ maps bosonic states to fermionic states, and vice versa. We thus have:
