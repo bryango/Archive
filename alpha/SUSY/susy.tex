@@ -542,7 +542,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\speaker{Ban ``Bo'' Lin}\\
 	\references{
 	\begin{enumerate}[noitemsep,topsep=0pt,beginpenalty=10000]
-	\item \textcite{Argyres:1996abc}, \S6
+	\item \textcite{Argyres:1996abc}, \S6 \& \S9
 	\item \citetitle{Hori:2003ic} \cite{Hori:2003ic}, Chapter 12
 	\end{enumerate}
 	}\vspace{.5\baselineskip}
@@ -551,7 +551,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	
 	A generic superfield will give a \textit{reducible} representation of the superalgebra. To get an \textit{irreducible} representation (\textit{irrep}), we must impose a constraint on the superfield which (anti-)commutes with the superalgebra. There are two possibilities for 4D $\mcal{N} = 1$:
 	\begin{enumerate}%[noitemsep]
-	\item \textbf{Reality condition:} this lead to a vector multiplet. We shall revisit this in the future. For now we will proceed to the next condition, which is:
+	\item \textbf{Reality condition:} $\bar{V} = V$, this gives us the vector superfield; see \S10.1 of \textcite{Argyres:1996abc}. We shall revisit this in \S6. For now we will proceed to the next condition, which is:
 	
 	\item \textbf{Chirality condition:}
 	\begin{equation}
@@ -626,14 +626,26 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	
 	\end{enumerate}
 	
-	A full expansion of the Lagrangian $\mcal{L}$ (including $\mcal{K}$ and $\mcal{W}$) reveals that $F$ has no kinetic term and is quadratic in the action, thus it can be safely integrated out. The result gives us the potential for the scalar component $\phi$:
+\subsection{$F$-term and the classical vacua}
+	A full expansion of the Lagrangian $\mcal{L}$ (including $\mcal{K}$ and $\mcal{W}$) reveals that $F$ has no kinetic term and is quadratic in the action, thus it can be safely integrated out. The equation of motion is simply:
+	\begin{equation}
+		F^i = - g^{i\wbar{i}}
+			\pdd{\wbar{i}} \wbar{\mcal{W}}
+		+ \frac{1}{2}\,\Gamma^i_{jk} \psi^j \psi^k
+	\end{equation}
+	This gives a potential for the scalar component $\phi$:
 	\begin{equation}
 		V(\phi,\bar{\phi})
+		= \norm{\pd\mcal{W}}^2
 		= g^{i\wbar{j}}
 			\,\pdd{i} \mcal{W}
 			\,\pdd{\wbar{j}} \wbar{\mcal{W}}
-		= \abs{\pd\mcal{W}}^2
+		\xlongequal{\vev{\psi \psi} = 0}
+		g_{i\wbar{j}} F^i \wbar{F}^{\wbar{j}}
+		= \norm{F}^2
 	\end{equation}
+	Here we've used the fact that $\vev{\psi \psi} = 0$, so only the $\pd\mcal{W}$ term contributes to the VEV $\vev{F}$. Note that the non-zero fermion propagator is given by $\vev{\psi \bar{\psi}}$ instead. 
+	
 	The classical vacua satisfy $\pd_i V = 0$. 
 %	Spontaneous breaking of internal symmetry happens if we have $\vev{\phi} \ne 0$. 
 	On the other hand, we see that $V\ge 0$ for a positive-definite metric $g_{i\wbar{j}}$, therefore if $V = 0$ we have $\pdd{i} V = 0$ and $\pdd{i} \mcal{W} = 0$. In this case we have SUSY vacua, i.e.~SUSY is unbroken. 
@@ -642,7 +654,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\begin{itemize}[noitemsep]
 	\item Vacua: $
 		\pdd{i} V
-		= \pdd{i}\,\pqty\big{\abs{\pdd{i} \mcal{W}}^2}
+		= \pdd{i}\,\pqty\big{\norm{\pdd{i} \mcal{W}}^2}
 		= 0
 	$
 	\item SUSY vacua: $\pdd{i} \mcal{W} = 0$, which implies $V = 0$ thus $\pdd{i} V = 0$. 
@@ -678,6 +690,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\end{quotation}
 	
 %	\vspace{\baselineskip}
+	\pagebreak[3]
 	\noindent%
 	The argument of non-renormalization by Dine, Polchinski and Seiberg \cite{Seiberg:1993vc}:
 	
@@ -715,15 +728,14 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	These constraints fix the form of $\mcal{W}(\Phi,\lambda)$ almost entirely. 
 	\end{enumerate}
 	
-	\textit{Note:} in \cite{Seiberg:1993vc} Seiberg chose to call the non-renormalization in SUSY \textit{a violation of naturalness} in the conventional sense, since in the IR we see no global symmetry but we still have many vanishing amptitudes. But I believe it's okay to understand this as a new sense of naturalness, where the vanishing of amplitudes (or the rigid form of the potentials) is protected by supersymmetry and some ``hidden'' global symmetries (that are spontaneously broken in the IR). 
+	\textit{Note:} in \cite{Seiberg:1993vc} Seiberg chose to call the non-renormalization in SUSY \textit{a violation of naturalness} in the conventional sense, since in the IR we see no global symmetry but we still have many vanishing amplitudes. But I believe it's okay to understand this as a new sense of naturalness, where the vanishing of amplitudes (or the rigid form of the potentials) is protected by supersymmetry and some ``hidden'' global symmetries (that are spontaneously broken in the IR). 
 	
 \subsection{Why can we turn on the couplings?}
 	We've argued that it's physically reasonable to turn on the coupling $\lambda$ and make it a dynamical field\footnote{
 		I believe this is the so-called ``un-Higgs-ing'' procedure, and the unHiggsed field is called a ``spurion''. \\
-		\hspace*{2em}
 		See \https{physicsforums.com/threads/spurion-symmetry.205417}.
 	}. On the other hand, as pointed out by \textcite{Argyres:1996abc}, we can simply think of this as ``just a trick''\footnote{
-		See also \https{physics.stackexchange.com/q/110926/162487}. 
+		See also \https{physics.stackexchange.com/q/110926}. 
 	}:
 	
 	\begin{quote}\small
@@ -763,8 +775,8 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 			}^2 + \Psi \Phi^2 \\
 	\end{aligned}
 	\end{equation}
-	Here we've been cavaliar about constant shifts of $\mcal{W}$, as they do not affect the physics\footnote{
-		On the other hand, constant shifts of $V = \abs{\pd\mcal{W}}^2$ \textit{do} matter in SUSY theories, as they are related to spontaneous SUSY breaking; see \S2 and \S4. 
+	Here we've been cavalier about constant shifts of $\mcal{W}$, as they do not affect the physics\footnote{
+		On the other hand, constant shifts of $V = \norm{\pd\mcal{W}}^2$ \textit{do} matter in SUSY theories, as they are related to spontaneous SUSY breaking; see \S2 and the following sections. 
 	}. 
 	Also, we are free to include a kinetic term for $\Psi$ in the K\"ahler potential so that it does look like a physical field. However, this does not matter much, as for $M \gg \Lambda_{\mrm{UV}}$, the $
 		M \pqty{\Psi - m}^2
@@ -906,7 +918,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\end{equation}
 	Namely, the superpotential is not renormalized. In our current scheme where the field strength $\Phi$ is not renormalized, $m,\lambda$ is constant along the flow. However, the K\"ahler potential is non-holomorphic from the start and it is renormalized, which leads to field strength renormalization. 
 	
-\section{Moduli Space of Vacua}
+\section{Singularies from Integrating Out}
 	\speaker{Yuan Zhong}\\
 	\references{%
 %	\begin{enumerate}[noitemsep,topsep=0pt]
