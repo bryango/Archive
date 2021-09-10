@@ -113,9 +113,11 @@
 		\norm{V}^2
 		= \frac{(V^z)^2}{z^2}
 		\ge 0
-	$, thus $\gamma$ can be either spacelike or null, but not timelike. In fact, $
-		\frac{1}{z}\dv{z}{\lambda} = 0,\pm 1
-	$, along with $\dv{x^\mu}{\lambda} = z^2 p^\mu$, we obtain:
+	$, thus $\gamma$ can be either spacelike or null, but not timelike. In fact, we have $
+		\frac{V^z}{z}
+		= \frac{1}{z}\dv{z}{\lambda}
+		= 0,\pm 1
+	$; along with $\dv{x^\mu}{\lambda} = z^2 p^\mu$, we obtain:
 	\begin{equation}
 	p^2 = 0,\qquad
 	\begin{aligned}
@@ -259,13 +261,14 @@
 	\begin{equation}
 	\begin{aligned}
 		A
-		&= \int_{z=-\epsilon}^{z=\epsilon}
-			\frac{\dd{x}^2 + \dd{z}^2}{z^2} \\
-		&= \int_{-\Lambda}^{\Lambda}
+		&= \int_{z\ge\epsilon}
+			\sqrt{\frac{\dd{x}^2 + \dd{z}^2}{z^2}} \\
+		&= \int_{\abs{\lambda} \le \Lambda} \sqrt{
 			\frac{
 				(\dd{\tanh\lambda})^2
 				+ (\dd{\sech\lambda})^2
-			}{(\sech\lambda)^2},
+			}{(\sech\lambda)^2}
+		},
 		\quad \Lambda
 			= \cosh^{-1} (\tfrac{L}{2\epsilon}) \\
 		&= \int_{-\Lambda}^{\Lambda}
