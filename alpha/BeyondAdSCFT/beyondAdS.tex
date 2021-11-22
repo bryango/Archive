@@ -1,0 +1,180 @@
+% !TeX spellcheck = en_US
+% !TeX TS-program = pdflatex
+% !BIB TS-program = biblatex
+\documentclass[11pt,a4paper]{article}
+\pdfoutput=1
+
+\input{preamble.tex}
+
+\usepackage{comment}
+%\newcommand{\lui}[2]{\textcolor{red}{#1}\todo[color=yellow]{\scriptsize{L: #2}}}
+\newcommand{\wei}[2]{\textcolor{magenta}{#1}\todo[color=yellow]{\scriptsize{WS: #2}}}
+\newcommand{\wx}[2]{\textcolor{purple}{#1}\todo[color=teal]{\scriptsize{XL: #2}}}
+
+\usepackage{xspace}
+\newcommand{\TTbar}{\texorpdfstring{\ensuremath{T\bar{T}}}{TTbar}\xspace}
+\newcommand{\arcsinh}{\ensuremath{\mop{arcsinh}}}
+\renewcommand{\tilde}[1]{\ensuremath{\widetilde{#1}}}
+\newcommand{\ads}[1]{AdS\ensuremath{_{#1}}}
+\newcommand{\cft}[1]{CFT\ensuremath{_{#1}}}
+
+\usepackage{enumitem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Holographic duality beyond AdS/CFT}
+
+%\author[a]{Wen-Xin Lai,}
+\author[a]{Wei Song}
+
+\affiliation[a]{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China}
+
+%  \emailAdd{apolo@mail.tsinghua.edu.cn, wsong2014@mail.tsinghua.edu.cn}
+
+\abstract{
+	Lecture notes for the Southeast Summer School on Strings and Stuff, 2021. 
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+%\flushbottom
+\setlength{\parskip}{.5\baselineskip}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+	
+	Since the discovery of AdS/CFT duality \cite{Maldacena:1997re}, we have greatly furthered our understanding of quantum gravity in asymptotically AdS backgrounds. However, there are plenty of non-AdS geometries in our real worlds, including:
+	\begin{itemize}%[noitemsep]
+	\item The Kerr metric of a rotation black hole, \sidenote{which ... };
+	\item The asymptotically flat / Minkowski spacetime, which well approximates our current universe at a smaller length (and time) scale;
+	\item The asymptotically de Sitter spacetime, which well approximates our current (and future) universe at a larger length scale, and also during the period of inflation;
+	\item The FRW metric (or more precisely, the Friedmann-Lemaître-Robertson-Walker \cite{Friedmann:1924bb,Lemaitre:1933gd,Robertson:1935zz,Walker:1937} metric), which describes the evolution of our homogeneous and isotropic universe from the big bang to its ;
+	\item and more ...
+	\end{itemize}
+	Much less is known about quantum gravity in these backgrounds. 
+	
+	
+\section{Brief review of \ads{3}/\cft{2}}
+	
+\section{Bottom-up approach: %based on
+from asymptotic symmetry}
+	
+	
+\section{Top-down approach: %in 
+from string theory}
+	
+	String theory is a self-consistent theory of quantum gravity. 
+	
+	The first example of microscopic counting of black hole entropy, discovered by Strominger-Vafa \cite{Strominger:1996sh}, comes from the \mbox{D1-D5-$P$} system in string theory. 
+	
+	The first incarnation of holographic principle was realized by Maldacena \cite{Maldacena:1997re}, by a stack of D3 branes in type IIB string theory. 
+	
+\subsection{The \mbox{D1-D5-$P$} system}
+	
+	Let us look at the \mbox{D1-D5-$P$} brane configuration in type IIB string theory. This is well-reviewed in \cite{David:2002wn}. This configuration allows for an open string description and a closed string description. 
+	
+	\begin{table}[!htbp]
+	\centering%\small
+	%\setlength{\tabcolsep}{3pt}
+	%\begin{adjustwidth}{-2em}{-5em}
+	\begin{tabularx}{.7\linewidth}{
+		~C{1.5}| ^C{.3}| ^C{1.5}|
+		^C{.3} *4{ | ^C{.3} }
+	}
+	\toprule
+		\textsf{Geometry} &
+		\multicolumn{2}{~c|}{%
+			\setrowstyle{\sffamily}%
+			$\mathbb{R}^{4,1}$%
+		} &
+		$S^1$ &
+		\multicolumn{4}{^c}{
+			$\mcal{M}_4 = T^4, \mrm{K3}$
+		}
+	\\ %\cline{2-3}
+	\midrule
+		\textsf{Direction}
+		& 0 & 1, 2, 3, 4 & 5 & 6 & 7 & 8 & 9 \\
+	\midrule
+		$\mop{\#}\text{\small D5} = Q_5$ &
+		$\times$ & &
+		$\times$ & $\times$ & $\times$ & $\times$ & $\times$
+	\\
+		$\mop{\#}\text{\small D1} = Q_1$ &
+		$\times$ & &
+		$\times$ & & & &
+	\\
+		$P$ &
+		$\times$ & &
+		$\times$ & & & &
+	\\
+	\bottomrule
+	\end{tabularx}
+	\caption[Brane configuration of the D1-D5-$P$ system]{
+		Brane configuration of the D1-D5-$P$ system. 
+%	\\
+		Here we are considering type IIB string theory on flat 6D spacetime, with a compactified $x^5\in S^1$ direction, along with an internal $\mcal{M}_4$ manifold. 
+		We use $\mquote{\times}$ to mark the directions $x^\mu$ that an object occupies. Here $\mu = 0,1,\cdots,9$.
+	}
+	\end{table}
+	
+	The D5 branes wrap the compact $\mcal{M}_4$, while the D1 branes are localized on $\mcal{M}_4$. Both the D1 and D5 branes extend along the fifth direction $x^5$, which is compactified to a circle $S^1$ with a large radius. 
+	
+	Open string excitations on the branes carry momentum and winding. Due to the large radius of $S^1$, we can focus on the momentum modes $P$ along $x^5 \in S^1$ and neglect the winding modes. On the other hand, we will neglect momentum modes along the $\mcal{M}_4$ directions, since $\mcal{M}_4$ is assumed to be compact and small. 
+	
+	In the IR limit, type IIB string theory is described by the low energy effective action of type IIB supergravity (SUGRA). The field content and the action of type IIB SUGRA are well reviewed in the literature; see e.g.\ Appendix H of \cite{Kiritsis:1997hj}. In particular, there is a pair of 2-form gauge fields in type IIB SUGRA. One of them is the NS-NS field $B_2$, and the other is the R-R field $C_2$. 
+	The D1 branes are electrically charged under $C_2$, while the D5 branes are magnetically charged under $C_2$. 
+	
+	The bosonic part of the string frame action is then given by:
+	\begin{gather}
+		\frac{1}{16\pi G}
+		\int \dd[10]{x} \sqrt{-g}
+			\pqty{
+				e^{-2\phi} \Big(
+					R + 4\,(\nabla\phi)^2
+					- \frac{1}{12} H^2
+				\Big)
+				- \frac{1}{12} F^2
+			},
+	\\
+		H = \dd{B_2},\quad
+		F = \dd{C_2}
+	\end{gather}
+	After dimension reduction of the compact $\mcal{M}_4$, the equations of motion lead to the following black string solution in 6D:
+	\begin{equation}
+	\begin{aligned}
+		\dd{s}^2
+		= {} & (f_1 f_5)^{-1/2} \pqty{
+				-\dd{t}^2 + \dd{\phi}^2
+				+ \frac{r_0^2}{r^2} \pqty{
+					\cosh\sigma \dd{t}
+					+ \sinh\sigma \dd{\phi}
+				}^2
+			} \\
+		{} + {} & (f_1 f_5)^{+1/2} \pqty{
+				\frac{\dd{r}^2}{1 - r_0^2 / r^2}
+				+ r^2 \dd{\Omega_3^2}
+			}
+	\end{aligned}
+	\end{equation}
+	
+	
+	
+\subsection{Type IIB string theory with NS-NS flux}
+	
+	
+	
+	
+\section{Deformation of \ads{3}/\cft{2} in string theory}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagebreak
+\bibliographystyle{JHEP} 
+\bibliography{beyondAdS.bib}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}

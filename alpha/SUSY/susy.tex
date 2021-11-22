@@ -171,7 +171,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\quad
 		\{\Gamma, \Gamma^\mu\} = 0
 	\end{equation}
-	$\Gamma$ is the generalization of $\gamma_5$ in 4D, and serves as a chirality operator that distingushes the left and right handed part of a Dirac spinor. This gives us Weyl spinors with a definite chirality. We can then diagonalize $\Gamma$ such that it's all $+1$ on the upper half diagonal, and all $-1$ on the lower half diagonal. 
+	$\Gamma$ is the generalization of $\gamma_5$ in 4D, and serves as a chirality operator that distinguishes the left and right handed part of a Dirac spinor. This gives us Weyl spinors with a definite chirality. We can then diagonalize $\Gamma$ such that it's all $+1$ on the upper half diagonal, and all $-1$ on the lower half diagonal. 
 	
 	There is no such chirality operator in odd dimensions, therefore in odd dimensions we don't have Weyl spinors at all, and there are only (symplectic) (pseudo) Majorana spinors. For example, in 5D $\gamma_5$ itself gets ``promoted'' to be the last $\gamma$ matrix\footnote{
 		For more on this, see \S3.1.7 of \textit{Supergravity} \cite{Freedman:2012zz}. 
@@ -442,11 +442,11 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	
 	\item \textbf{Vector multiplet} $
 		\{\phi',\psi_\alpha,\lambda_\alpha,A'_\mu\}
-	$: for $j = \frac{1}{2}$, the $j\pm\frac{1}{2} = 0,1$ states and their $\mrm{Spin}(3)$ descendents live in a $0\oplus 1$ representation of $\mrm{Spin}(3)$. 
+	$: for $j = \frac{1}{2}$, the $j\pm\frac{1}{2} = 0,1$ states and their $\mrm{Spin}(3)$ descendants live in a $0\oplus 1$ representation of $\mrm{Spin}(3)$. 
 	In terms of field content, we have 1 \textit{real} scalars $\phi'$, 1 massive vector $A'_\mu$, and 2 Weyl spinors $\psi_\alpha, \lambda_\alpha$. 
 	\end{itemize}
 	
-	In general, the $j \pm \frac{1}{2}$ states and their $\mrm{Spin}(3)$ descendents live in a $
+	In general, the $j \pm \frac{1}{2}$ states and their $\mrm{Spin}(3)$ descendants live in a $
 		\pqty{j - \frac{1}{2}}
 		\oplus
 		\pqty{j + \frac{1}{2}}
@@ -469,7 +469,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	\end{array}
 	\end{equation}
 	Here $J_-$ is the $\mrm{Spin}(3)$ lowering operator. 
-	Namely, including the $\mrm{Spin}(3)$ descendents, the dimension of the $\mrm{super} \times \mrm{Spin}(3)$ representation is thus $4\times (2j+1)$. 
+	Namely, including the $\mrm{Spin}(3)$ descendants, the dimension of the $\mrm{super} \times \mrm{Spin}(3)$ representation is thus $4\times (2j+1)$. 
 	Note that for $j = 0$ the situation is special; in that case we simply have:
 	\begin{equation}
 	\begin{array}{ccccc}
@@ -659,7 +659,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	$
 	\item SUSY vacua: $\pdd{i} \mcal{W} = 0$, which implies $V = 0$ thus $\pdd{i} V = 0$. 
 	\end{itemize}
-	Spontaneous breaking of SUSY happens if $\pdd{i} V = 0$ while $V \ne 0$, namely we don't have a SUSY vacua. 	Fig.\,1.4 of \textcite{Terning:2006bq} is a nice summary of the situations. These backgrounds will come in handy in later sections. 
+	Spontaneous breaking of SUSY happens if $\pdd{i} V = 0$ while $V \ne 0$, namely we don't have a SUSY vacua. Fig.\,1.4 of \textcite{Terning:2006bq} is a nice summary of the situations. These backgrounds will come in handy in later sections. 
 	
 \section{Holomorphy and Non-renormalization}
 	\speaker{Wen-Xin ``Bryan'' Lai}\\
@@ -927,6 +927,130 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 %	\end{enumerate}
 	}\vspace{.5\baselineskip}
 	
+	As is discussed in \S2, the classical SUSY vacua are given by $\pd\mcal{W} = 0$. This is an equation on the tangent bundle of the target, so it comes with an induced metric inherited from the target. However, it need not be a manifold (perhaps with singularities), but can also have intersections.
+	
+	Let's look at a simple example where:
+	\begin{equation}
+		\mcal{W}[L,H] = \frac{1}{2} \lambda LH^2
+	\end{equation}
+	Extrema of $\mcal{W}$ are at $H = 0$ and \textit{arbitrary} $L$. The \textit{classical} vacuum moduli is thus given by the $\vev{L} \in \mbb{C}$ plane, with a K\"ahler metric $\dd{s^2} = \dd{L} \dd{\bar{L}}$ induced from the target. 
+	
+\subsection{Singular K\"ahler potential $\mcal{K}$}
+	To properly account for the quantum corrections, instead of setting $H = 0$, we need to \textit{integrate it out}. The path integral over $H$ includes the following 1-loop correction from the $LH^2$ vertex:
+	\begin{equation}
+		LH^2\, \bar{L} \bar{H}^2
+		= L\,(H^2\bar{H}^2)\,\bar{L}
+		\xrightarrow{\ {\textstyle\int} \DD{H}\ }
+		{}\propto - \bar{L}L
+			\abs{\lambda}^2
+			\log \abs{\frac{L}{\lambda}}^2
+	\label{eq:1-loop_kahler}
+	\end{equation}
+	where the internal $H$ fields are contracted. This renormalizes the $\bar{L}L$ term in the K\"ahler potential. We see that quantum corrections lead to a singularity in the K\"ahler metric at $\vev{L} = 0$:
+	\begin{equation}
+		\mcal{K}
+		\propsim - \bar{L}L
+			\abs{\lambda}^2
+			\log \abs{\frac{L}{\lambda}}^2
+		\to +\infty,
+	\quad L \to 0
+	\end{equation}
+	
+	This has a physical interpretation: the mass of $H$ is proportional to $\lambda\vev{L}$; at $\vev{L} = 0$ it becomes massless. We've \textit{assumed} that $H$ is ``heavy'' and thus can be safely integrated out, but this is not the case at $\vev{L} = 0$. 
+	
+	It is a general phenomenon that singularities in the effective action correspond to ``new'' massless particles. They indicate the breakdown of our effective theory. In other words, we are using the effective action beyond its range of validity: as $L\to 0$ some new degrees of freedom are necessary to give a full description of our theory in the IR, in this case we \textit{have to} include $H$ as it becomes massless when $L \to 0$. 
+	
+	Note that the 1-loop result becomes exact as $L \to 0$, since $H$ is more and more weakly coupled in this limit. Again note that the effective coupling for $H$ is $\vev{\lambda L}$. On the other hand, as $L \to \infty$ the theory becomes strongly coupled and perturbative expansions become unreliable. Note that the 1-loop correction \eqref{eq:1-loop_kahler} carries a minus sign, so for large $\abs{L}$ the metric becomes negative: $\dd{s^2} \to -\infty$. This is a \textit{Landau pole} in the IR. 
+	
+\subsection{Singular superpotential $\mcal{W}$}
+	In the example above we see a singularity in the renormalized K\"ahler potential $\mcal{K}$ as we integrate out the $H$ field. Although the superpotential is usually not renormalized (as discussed in \S3), singularities can still arise from integrating out the $H$ field. 
+	
+	Let us do a more complicated example:
+	\begin{equation}
+		\mcal{W}[L,H]
+		= \frac{1}{2} mH^2
+			+ \lambda L^2 H
+			+ \frac{1}{6} g H^3
+	\end{equation}
+	At scales well below $m$, $H$ is frozen at $\vev{H}$, which is the solution of $\pdd{H} \mcal{W} = 0$ by saddle point approximation. This gives us an effective potential $\mcal{W}[L]$. Here we are assuming that:
+	\begin{itemize}
+	\item SUSY is not broken at or above the scale of the effective theory. In this case $\vev{H}$ is completely given by the VEV of its scalar component, because the VEV of a fermion vanishes due to Lorentz invariance of the vacuum, and $\vev{F} = 0$ since SUSY is not broken. 
+	
+	\item Unlike in the previous example, now we have an explicit mass gap for $H$ while we integrate it out, therefore at scales well below $m$ we can ignore all quantum fluctuations, and the classical limit is actually exact\footnote{
+		\textcite{Argyres:1996abc} claims that ``\textit{it is not hard to see that, together with the non-renormalization theorem, this is equivalent to the above more laborious procedure using the symmetries and the classical limit.}'' I can understand the spirit of this (as is explained in the following passage) but I am not sure how to see this rigorously. 
+	}. 
+	
+		\begin{itemize}
+		\item Note that $L$ is treated as an external source as we integrate out $H$. If $\vev{L} = 0$ then the above argument goes through without issue. 
+		
+		\item If $\vev{L} \ne 0$, then the saddle point approximation is not quite valid. However, the functional dependence of $\mcal{W}[L;m,\lambda,g]$ is protected by symmetry (global symmetry and SUSY, namely holomorphy), as discussed in \S3. One can check explicitly that the result should hold even for $\vev{L} \ne 0$. 
+		\end{itemize}
+	
+	\end{itemize}
+	
+	\begin{figure}[!h]
+	\centering
+	\includegraphics[width=.6\linewidth]{img/effective_potential_branch_cuts.pdf}
+	\caption[Behavior of the effective potential $\mcal{W}\[L\]$ in the $L$ plane]{%
+		Behavior of the effective potential $\mcal{W}[L]$ in the $L$ plane, based on \cite{Argyres:1996abc}. 
+		
+		The bubbles illustrate the behavior of the scalar potential $V[H] = \norm{\pd_H \mcal{W}\mspace{1.5mu}[L,H]}^2$ at given values of $\vev{L}$. Note that the vertical axis is not at $H = 0$ but at $H = -m/g$, and the plot covers only $\mbb{R}$eal values of $H$. 
+		
+		The original illustration in \cite{Argyres:1996abc} seems to be inaccurate. Here we try to clear up the confusions by redrawing parts of the diagrams. 
+	}
+	\label{fig:effective_potential_branch_cuts}
+	\end{figure}
+	
+	The resulting $\mcal{W}[L]$ have branch points at:
+	\begin{equation}
+		L = \pm \sqrt{\frac{m^2}{2\lambda g}}\,,
+	\end{equation}
+	as depicted in \autoref{fig:effective_potential_branch_cuts}. 
+	At these points $H$ becomes massless, therefore we should not integrate it out in the first place. Generally, the \textit{effective} mass of $H$ is not simply $m$, but:
+	\begin{equation}
+		\pd^2_H \mcal{W} \mspace{1.5mu}[L,H]
+		\,\big|_{\vev{L},\vev{H}}
+		= \pm m \sqrt{
+			1 - \vev{L}^2 \Big/ \frac{m^2}{2\lambda g}
+		}
+	\label{eq:effective_mass}
+	\end{equation}
+	The 2 signs correspond to the 2 solutions of $\pd_H \mcal{W} = 0$, namely:
+	\begin{equation}
+		\vev{H}
+		= \frac{m}{g} \pqty{
+			-1 \pm \sqrt{
+				1 - \vev{L}^2 \Big/ \frac{m^2}{2\lambda g}
+			}
+		\,}
+	\label{eq:vev_H}
+	\end{equation}
+	
+%\pagebreak[3]
+	
+	On the other hand, we can look at the scalar potential:
+	\begin{equation}
+		V_{\vev{L}} [H] = \norm\big{\,
+			\pd_H \mcal{W}\mspace{1.5mu}[L,H]
+		\,}^2_{L = \vev{L}}
+	\end{equation}
+	at \textit{given} values of $\vev{L}$, as shown in \autoref{fig:effective_potential_branch_cuts}. 
+	\begin{itemize}
+	\item For $
+			-\sqrt{\frac{m^2}{2\lambda g}}
+			< \vev{L} <
+			+\sqrt{\frac{m^2}{2\lambda g}}
+		$ there are 2 inequivalent vacua, corresponding to the 2 branches of the square root in \eqref{eq:effective_mass} and \eqref{eq:vev_H}. They are reflected in the low energy effective potential $\mcal{W}[L]$ by the same multi-valued square root structure. 
+	
+	\item For $\vev{L} = \pm \sqrt{\frac{m^2}{2\lambda g}}$ there is an unique vacuum. This is the branch point in \eqref{eq:effective_mass}, \eqref{eq:vev_H} and $\mcal{W}[L]$. 
+	
+	\item For $\vev{L} > +\sqrt{\frac{m^2}{2\lambda g}}$ or $\vev{L} < +\sqrt{\frac{m^2}{2\lambda g}}$ it would appear that $V_{\vev{L}} [H] > 0$, and one would suppose that SUSY is spontaneously broken. However, if we allow for $H \in \mbb{C}$, then $V_{\vev{L}} [H] = 0$ can actually be solved with $H \in \mbb{C}$. There are still 2 inequivalent vacua. 
+	
+	Same applies for generic values of $\vev{L} \in \mbb{C}$. 
+	
+	\end{itemize}
+	
+	
 \section{SUSY Breaking}
 	\speaker{Xia ``Summer'' Gu}\\
 	\references{%
@@ -937,7 +1061,7 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 	}\vspace{.5\baselineskip}
 	
 \section{Super Gauge Theory}
-	\speaker{Yuan Zhong}\\
+	\speaker{Yihua ``Louiva'' Liu}\\
 	\references{%
 %	\begin{enumerate}[noitemsep,topsep=0pt]
 %	\item
