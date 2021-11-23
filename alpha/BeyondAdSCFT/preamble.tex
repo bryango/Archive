@@ -1,22 +1,24 @@
 % !TeX encoding = UTF-8
-\usepackage{jheppub}
 
-\usepackage[mathscr]{euscript}
-\usepackage[textsize=scriptsize,textwidth=2.5cm]{todonotes}
+%\usepackage{indentfirst} % when scheme=plain
 
-\usepackage{amssymb,amsmath,latexsym,bm,amsfonts}
-\usepackage{graphicx}
-\usepackage{longtable}
-\usepackage{color,xcolor}
-%\usepackage{indentfirst}
-\usepackage{subfig}
-\usepackage{comment}
-\usepackage{float}
+% Presentation
+	\PassOptionsToPackage{%
+		table,svgnames,dvipsnames
+	}{xcolor}
+	\usepackage{xcolor}
+	\usepackage{graphicx}
+
+\usepackage{mathtools,amssymb,latexsym,bm % basics
+		,relsize % utils
+%		,amsfonts
+%		,longtable
+%		,subfig,float
+%		,array
+}
+
 \usepackage[normalem]{ulem}
-\usepackage{array}
-
 \usepackage{relsize}
-\usepackage{graphicx}
 
 \setcounter{tocdepth}{2}
 \numberwithin{equation}{section}
@@ -46,7 +48,7 @@
 \newcommand{\mL}{{\cal L}}
 \newcommand{\mP}{{\cal P}}
 
-
+%\newcommand{\abs}[1]{|#1|}
 \newcommand{\bra}[1]{\ensuremath{\left\langle#1\right|}}
 \newcommand{\ket}[1]{\ensuremath{\left|#1\right\rangle}}
 \newcommand{\braket}[2]{\ensuremath{\left\langle #1 \middle| #2 \right\rangle}}
@@ -60,7 +62,6 @@
 \newcommand{\lt}{\left}
 \newcommand{\rt}{\right}
 \newcommand{\PBK}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
-%\newcommand{\abs}[1]{|#1|}
 \newcommand{\EV}[1]{\langle #1 \rangle}
 \newcommand{\beqn}{\begin{eqnarray}}
 \newcommand{\eeqn}{\end{eqnarray}}
@@ -99,7 +100,7 @@
 \let\textcite\cite
 \setlength{\skip\footins}{1.2\baselineskip} % pre footnote split, plain TeX
 
-%\usepackage{enumitem}
+\usepackage{enumitem}
 %\usepackage[only,sslash]{stmaryrd}
 
 %%%%%%%% 'mathjax.tex'
@@ -244,10 +245,10 @@
 \def\vp{\varphi}
 
 \def\ss{\Sigma}
-%\def\dd{\Delta}
 \def\GG{\Gamma}
 \def\ll{\Lambda}
 \def\tt{\Theta}
+%\def\dd{\Delta}
 
 %%%% End of macros from quasilocal.tex %%%%
 
@@ -264,3 +265,11 @@
 	#1\ignorespaces%
 }
 \newcolumntype{~}{>{\global\let\rowstyle\relax}}
+
+
+%%%% specialized %%%%
+%\usepackage{comment}
+\usepackage[textsize=scriptsize,textwidth=2.5cm]{todonotes}
+\newcommand{\wei}[2]{\textcolor{magenta}{#1}\todo[color=yellow]{\scriptsize{WS: #2}}}
+\newcommand{\wx}[2]{\textcolor{purple}{#1}\todo[color=teal]{\scriptsize{XL: #2}}}
+

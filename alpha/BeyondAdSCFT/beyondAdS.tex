@@ -2,23 +2,15 @@
 % !TeX TS-program = pdflatex
 % !BIB TS-program = biblatex
 \documentclass[11pt,a4paper]{article}
+\usepackage{jheppub}
+
 \pdfoutput=1
-
 \input{preamble.tex}
-
-\usepackage{comment}
-%\newcommand{\lui}[2]{\textcolor{red}{#1}\todo[color=yellow]{\scriptsize{L: #2}}}
-\newcommand{\wei}[2]{\textcolor{magenta}{#1}\todo[color=yellow]{\scriptsize{WS: #2}}}
-\newcommand{\wx}[2]{\textcolor{purple}{#1}\todo[color=teal]{\scriptsize{XL: #2}}}
 
 \usepackage{xspace}
 \newcommand{\TTbar}{\texorpdfstring{\ensuremath{T\bar{T}}}{TTbar}\xspace}
-\newcommand{\arcsinh}{\ensuremath{\mop{arcsinh}}}
-\renewcommand{\tilde}[1]{\ensuremath{\widetilde{#1}}}
 \newcommand{\ads}[1]{AdS\ensuremath{_{#1}}}
 \newcommand{\cft}[1]{CFT\ensuremath{_{#1}}}
-
-\usepackage{enumitem}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -27,23 +19,20 @@
 
 %\author[a]{Wen-Xin Lai,}
 \author[a]{Wei Song}
+%\author[a]{and Fengjun Xu}
 
 \affiliation[a]{Yau Mathematical Sciences Center, Tsinghua University, Beijing 100084, China}
 
-%  \emailAdd{apolo@mail.tsinghua.edu.cn, wsong2014@mail.tsinghua.edu.cn}
+%\emailAdd{laiwx19@mails.tsinghua.edu.cn, wsong2014@mail.tsinghua.edu.cn}
 
 \abstract{
 	Lecture notes for the Southeast Summer School on Strings and Stuff, 2021. 
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
 \maketitle
 %\flushbottom
 \setlength{\parskip}{.5\baselineskip}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Introduction}
 	
@@ -52,7 +41,7 @@
 	\item The Kerr metric of a rotation black hole, \sidenote{which ... };
 	\item The asymptotically flat / Minkowski spacetime, which well approximates our current universe at a smaller length (and time) scale;
 	\item The asymptotically de Sitter spacetime, which well approximates our current (and future) universe at a larger length scale, and also during the period of inflation;
-	\item The FRW metric (or more precisely, the Friedmann-Lemaître-Robertson-Walker \cite{Friedmann:1924bb,Lemaitre:1933gd,Robertson:1935zz,Walker:1937} metric), which describes the evolution of our homogeneous and isotropic universe from the big bang to its ;
+	\item The FRW metric (or more precisely, the Friedmann-Lemaître-Robertson-Walker \cite{Friedmann:1924bb,Lemaitre:1933gd,Robertson:1935zz,Walker:1937} metric), which describes the evolution of our homogeneous and isotropic universe from the big bang to \sidenote{its ...} ;
 	\item and more ...
 	\end{itemize}
 	Much less is known about quantum gravity in these backgrounds. 
@@ -61,11 +50,11 @@
 \section{Brief review of \ads{3}/\cft{2}}
 	
 \section{Bottom-up approach: %based on
-from asymptotic symmetry}
+			from asymptotic symmetry}
 	
 	
 \section{Top-down approach: %in 
-from string theory}
+			from string theory}
 	
 	String theory is a self-consistent theory of quantum gravity. 
 	
@@ -172,9 +161,10 @@ from string theory}
 \section{Deformation of \ads{3}/\cft{2} in string theory}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \pagebreak
 \bibliographystyle{JHEP} 
 \bibliography{beyondAdS.bib}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
