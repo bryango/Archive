@@ -23,7 +23,7 @@ rsync \
     "$FILENAME.bib" \
     "$FILENAME.bbl" \
     "$FILENAME.pdf" \
-    "img/" \
+    "img" \
     "README.md" \
     "$TARGET"
 

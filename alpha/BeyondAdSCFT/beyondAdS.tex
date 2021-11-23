@@ -34,6 +34,7 @@
 %\flushbottom
 \setlength{\parskip}{.5\baselineskip}
 
+\addtocounter{section}{-1}
 \section{Introduction}
 	
 	Since the discovery of AdS/CFT duality \cite{Maldacena:1997re}, we have greatly furthered our understanding of quantum gravity in asymptotically AdS backgrounds. However, there are plenty of non-AdS geometries in our real worlds, including:
@@ -106,7 +107,7 @@
 	\caption[Brane configuration of the D1-D5-$P$ system]{
 		Brane configuration of the D1-D5-$P$ system. 
 %	\\
-		Here we are considering type IIB string theory on flat 6D spacetime, with a compactified $x^5\in S^1$ direction, along with an internal $\mcal{M}_4$ manifold. 
+		Here we are considering type IIB string theory on flat 6D spacetime, with a compactified $x^5 \in S^1$ direction, along with an internal $\mcal{M}_4$ manifold. 
 		We use $\mquote{\times}$ to mark the directions $x^\mu$ that an object occupies. Here $\mu = 0,1,\cdots,9$.
 	}
 	\end{table}
@@ -115,7 +116,7 @@
 	
 	Open string excitations on the branes carry momentum and winding. Due to the large radius of $S^1$, we can focus on the momentum modes $P$ along $x^5 \in S^1$ and neglect the winding modes. On the other hand, we will neglect momentum modes along the $\mcal{M}_4$ directions, since $\mcal{M}_4$ is assumed to be compact and small. 
 	
-	In the IR limit, type IIB string theory is described by the low energy effective action of type IIB supergravity (SUGRA). The field content and the action of type IIB SUGRA are well reviewed in the literature; see e.g.\ Appendix H of \cite{Kiritsis:1997hj}. In particular, there is a pair of 2-form gauge fields in type IIB SUGRA. One of them is the NS-NS field $B_2$, and the other is the R-R field $C_2$. 
+	In the IR limit, type IIB string theory is described by the low energy effective action of type IIB supergravity (SUGRA). The field content and the action of type IIB SUGRA are well reviewed in the literature; see e.g.\ Appendix H of \cite{Kiritsis:1997hj}. In particular, there is a pair of 2-form gauge potentials in type IIB SUGRA. One of them is the NS-NS field $B_2$, and the other is the R-R field $C_2$. 
 	The D1 branes are electrically charged under $C_2$, while the D5 branes are magnetically charged under $C_2$. 
 	
 	The bosonic part of the string frame action is then given by:
@@ -133,8 +134,9 @@
 		H = \dd{B_2},\quad
 		F = \dd{C_2}
 	\end{gather}
-	After dimension reduction of the compact $\mcal{M}_4$, the equations of motion lead to the following black string solution in 6D:
-	\begin{equation}
+	where $H$ and $F$ are the 3-form field strengths, $H^2 = H_{\mu\nu\rho} H^{\mu\nu\rho} \mathbin{\sidenote{\propto}} H\wedge \hstar H$, and similar for $F^2$. 
+	After dimension reduction of the compact $\mcal{M}_4$, the equations of motion admit the following black string solution in 6D \needcites:
+	\begin{gather}
 	\begin{aligned}
 		\dd{s}^2
 		= {} & (f_1 f_5)^{-1/2} \pqty{
@@ -147,11 +149,22 @@
 		{} + {} & (f_1 f_5)^{+1/2} \pqty{
 				\frac{\dd{r}^2}{1 - r_0^2 / r^2}
 				+ r^2 \dd{\Omega_3^2}
-			}
+			},
+	\qquad f_1 = 1 + \frac{r_1^2}{r^2},
+	\quad  f_5 = 1 + \frac{r_5^2}{r^2},
 	\end{aligned}
-	\end{equation}
+	\end{gather}
 	
-	
+	We note that the above black string solution is asymptotically flat, consistent with our brane construction in type IIB string theory. More specifically, parameters in this supergravity solution can be related to the brane construction in the following way:
+	\begin{itemize}
+	    \item $\phi \equiv x^5$ is the compactified $S^1$ direction along the D1 brane, normalized such that $\phi \cong \phi + 2\pi R$. 
+	    
+	    Upon dimension reduction of the $\phi$ direction, this 6D black string solution will become a 5D black hole solution. In fact the resulting 5D black hole solution is precisely the Strominger-Vafa black hole \cite{Strominger:1996sh}, which serves as the first example of microscopic counting of the black hole entropy. 
+	    
+	    \item $r_0$ marks the horizon of the black string, and it is related to the open string momentum $P$ attached to the branes: $P \propto r_0^2 \sinh 2\sigma$. 
+	    
+	    \item $r_1^2$ and $r_5^2$ are related to the charges $Q_1$ and $Q_5$. 
+	\end{itemize}
 	
 \subsection{Type IIB string theory with NS-NS flux}
 	
