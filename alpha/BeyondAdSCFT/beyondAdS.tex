@@ -9,8 +9,8 @@
 
 \usepackage{xspace}
 \newcommand{\TTbar}{\texorpdfstring{\ensuremath{T\bar{T}}}{TTbar}\xspace}
-\newcommand{\ads}[1]{AdS\ensuremath{_{#1}}}
-\newcommand{\cft}[1]{CFT\ensuremath{_{#1}}}
+\newcommand{\ads}[1]{\text{AdS}\ensuremath{_{#1}}}
+\newcommand{\cft}[1]{\text{CFT}\ensuremath{_{#1}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,11 +59,11 @@
 	
 	String theory is a self-consistent theory of quantum gravity. 
 	
-	The first example of microscopic counting of black hole entropy, discovered by Strominger-Vafa \cite{Strominger:1996sh}, comes from the \mbox{D1-D5-$P$} system in string theory. 
+	The first example of a microscopic counting of black hole entropy, discovered by Strominger-Vafa \cite{Strominger:1996sh}, comes from the \mbox{D1-D5-$P$} system in string theory. 
 	
 	The first incarnation of holographic principle was realized by Maldacena \cite{Maldacena:1997re}, by a stack of D3 branes in type IIB string theory. 
 	
-\subsection{The \mbox{D1-D5-$P$} system}
+\subsection{The \mbox{D1-D5-$P$} system and its IR limit}
 	
 	Let us look at the \mbox{D1-D5-$P$} brane configuration in type IIB string theory. This is well-reviewed in \cite{David:2002wn}. This configuration allows for an open string description and a closed string description. 
 	
@@ -116,26 +116,27 @@
 	
 	Open string excitations on the branes carry momentum and winding. Due to the large radius of $S^1$, we can focus on the momentum modes $P$ along $x^5 \in S^1$ and neglect the winding modes. On the other hand, we will neglect momentum modes along the $\mcal{M}_4$ directions, since $\mcal{M}_4$ is assumed to be compact and small. 
 	
-	In the IR limit, type IIB string theory is described by the low energy effective action of type IIB supergravity (SUGRA). The field content and the action of type IIB SUGRA are well reviewed in the literature; see e.g.\ Appendix H of \cite{Kiritsis:1997hj}. In particular, there is a pair of 2-form gauge potentials in type IIB SUGRA. One of them is the NS-NS field $B_2$, and the other is the R-R field $C_2$. 
+\subsubsection{IR limit and the \ads{3} gravity}
+	In the IR limit, type IIB string theory is described by the low energy effective action of type IIB supergravity. The field content and the action of type IIB supergravity are well reviewed in the literature; see e.g.\ Appendix H of \cite{Kiritsis:1997hj}. In particular, there is a pair of 2-form gauge potentials in type IIB supergravity. One of them is the NS-NS field $B_2$, and the other is the R-R field $C_2$. 
 	The D1 branes are electrically charged under $C_2$, while the D5 branes are magnetically charged under $C_2$. 
 	
-	The bosonic part of the string frame action is then given by:
+	The bosonic part of the string frame action is then given by \needcites:
 	\begin{gather}
 		\frac{1}{16\pi G}
 		\int \dd[10]{x} \sqrt{-g}
 			\pqty{
 				e^{-2\phi} \Big(
 					R + 4\,(\nabla\phi)^2
-					- \frac{1}{12} H^2
+					- \sidenote{\frac{1}{12}} H^2
 				\Big)
-				- \frac{1}{12} F^2
+				- \sidenote{\frac{1}{12}} F^2
 			},
 	\\
 		H = \dd{B_2},\quad
 		F = \dd{C_2}
 	\end{gather}
-	where $H$ and $F$ are the 3-form field strengths, $H^2 = H_{\mu\nu\rho} H^{\mu\nu\rho} \mathbin{\sidenote{\propto}} H\wedge \hstar H$, and similar for $F^2$. 
-	After dimension reduction of the compact $\mcal{M}_4$, the equations of motion admit the following black string solution in 6D \needcites:
+	where $H$ and $F$ are the 3-form field strengths, $H^2 = H_{\mu\nu\rho} H^{\mu\nu\rho} \mathbin{\sidenote{\propto}} H\wedge \hstar H$\wx{}{convention for the coefficients?}, and similar for $F^2$. 
+	After dimension reduction of the compact $\mcal{M}_4$, the equations of motion admit a \textit{black string} solution in 6D, where the metric is given by \needcites:
 	\begin{gather}
 	\begin{aligned}
 		\dd{s}^2
@@ -146,25 +147,101 @@
 					+ \sinh\sigma \dd{\phi}
 				}^2
 			} \\
-		{} + {} & (f_1 f_5)^{+1/2} \pqty{
+		& {} + (f_1 f_5)^{+1/2} \pqty{
 				\frac{\dd{r}^2}{1 - r_0^2 / r^2}
 				+ r^2 \dd{\Omega_3^2}
 			},
-	\qquad f_1 = 1 + \frac{r_1^2}{r^2},
-	\quad  f_5 = 1 + \frac{r_5^2}{r^2},
+		\quad \phi \cong \phi + 2\pi R,
 	\end{aligned}
+	\\[1ex] \text{where}
+	\quad f_1 = 1 + \frac{r_1^2}{r^2},
+	\quad f_5 = 1 + \frac{r_5^2}{r^2}
 	\end{gather}
-	
-	We note that the above black string solution is asymptotically flat, consistent with our brane construction in type IIB string theory. More specifically, parameters in this supergravity solution can be related to the brane construction in the following way:
+	The parameters in this supergravity solution can be related to the brane construction as follows:
 	\begin{itemize}
-	    \item $\phi \equiv x^5$ is the compactified $S^1$ direction along the D1 brane, normalized such that $\phi \cong \phi + 2\pi R$. 
-	    
-	    Upon dimension reduction of the $\phi$ direction, this 6D black string solution will become a 5D black hole solution. In fact the resulting 5D black hole solution is precisely the Strominger-Vafa black hole \cite{Strominger:1996sh}, which serves as the first example of microscopic counting of the black hole entropy. 
-	    
-	    \item $r_0$ marks the horizon of the black string, and it is related to the open string momentum $P$ attached to the branes: $P \propto r_0^2 \sinh 2\sigma$. 
-	    
-	    \item $r_1^2$ and $r_5^2$ are related to the charges $Q_1$ and $Q_5$. 
+		\item $\phi \equiv x^5$ is the compactified $S^1$ direction along the D1 brane, normalized such that $\phi \cong \phi + 2\pi R$, where $R$ is the large radius of the $S^1$ circle. 
+		
+		Upon dimension reduction of the $\phi$ direction, this 6D black string solution will become a 5D black hole solution. In fact the resulting 5D black hole solution is precisely the Strominger-Vafa black hole \cite{Strominger:1996sh}, which serves as the first example of a microscopic counting of the black hole entropy. 
+		
+		\item $r_0$ marks the horizon of the black string, and it is related to the open string momentum $P$ attached to the branes: $P \propto r_0^2 \sinh 2\sigma$. 
+		
+		\item $r_1^2$ and $r_5^2$ are related to the charges $Q_1$ and $Q_5$. 
 	\end{itemize}
+	
+	We further note that the above black string solution is asymptotically flat, consistent with our brane construction in string theory. On the other hand, if we zoom in to the near horizon region of this black string solution, we discover an $\ads{3}\times S^3$ geometry. This can be achieved by setting:
+	\begin{equation}
+		\ell^2 = r_1 r_5,
+	\quad r\mapsto \lambda\ell r,
+	\quad r_0\mapsto \lambda\ell r_0,
+	\quad t\mapsto t\ell / \lambda,
+	\quad \phi\mapsto \phi\ell / \lambda,
+	\end{equation}
+	where $\ell$ is the \ads{} radius, and now the $\phi$ coordinate is normalized such that $\phi \cong \phi + 2\pi$. 
+	More specially,
+	\begin{itemize}
+	\item For extremal black string with $r_0 = 0$ and thus $P = 0$, the near horizon limit leads to the zero mass BTZ geometry, with an additional $S^3$ factor:
+	\begin{equation}
+		\dd{s}^2
+		= \ell^2 \pqty{
+			r^2 (-\dd{t}^2 + \dd{\phi}^2)
+			+ \frac{\dd{r}^2}{r^2}
+			+ \dd{\Omega_3^2}
+		}
+	\end{equation}
+	
+	\item For the near-extremal case with generic $r_0, \sigma$, the near horizon limit leads to the rotating BTZ geometry, again with an additional $S^3$ factor:
+	\begin{equation}
+		\dd{s}^2
+		= \ell^2 \pqty{
+			r^2 (-\dd{t}^2 + \dd{\phi}^2)
+			+ \frac{\dd{r}^2}{r^2 - r_0^2}
+			+ r_0^2 \pqty{
+				\cosh\sigma \dd{t}
+				+ \sinh\sigma \dd{\phi}
+			}^2
+			+ \dd{\Omega_3^2}
+		}
+	\end{equation}
+	
+	\end{itemize}
+	
+	It is convenient to define the left and right-moving temperature:
+	\begin{equation}
+		T_L = \frac{1}{2\pi}
+			\frac{r_0\,e^\sigma}{\ell^2},
+	\quad
+		T_R = \frac{1}{2\pi}
+			\frac{r_0\,e^{-\sigma}}{\ell^2}
+	\end{equation}
+	On the other hand, the Hawking temperature $T_H$ of this solution can be computed, and is given in terms of $T_L,T_R$ as follows:
+	\begin{equation}
+		\frac{2}{T_H}
+		= \frac{1}{T_L}
+		+ \frac{1}{T_R}
+	\end{equation}
+	
+	One can understand the IR supergravity solution as the result of ``integrating out'' the dynamics of the branes, including the open string excitations. This process deforms the background geometry, and we end up with a closed string theory on the black string background. \sidenote{......}
+	
+	
+	
+\subsubsection{Worldvolume \cft{2} and the duality}
+	
+	On the other hand, we can consider the worldvolume theory of the brane construction. After dimension reduction of the compact $\mcal{M}_4$, we have a $(1+1)$ dimensional QFT living on the D1-D5 branes. This is a supersymmetric gauge theory with $\mcal{N} = (4,4)$ supersymmetry. 
+	Similar to our previous discussions, we can consider the IR limit of this system. It should flow to an IR fixed point, which is a $(1+1)$ dimensional superconformal field theory (S\cft{2}). 
+	
+	The central charge of this S\cft{2} can be read off from the field contents of the worldvolume theory: the number of bosonic fields is given by: 
+	\begin{equation}
+		4Q_1 Q_5
+	\end{equation}
+	and the same amount for fermions. The factor $Q_1 Q_5$ comes from the open string excitations between the D1 and D5 branes, while the factor of 4 comes from the fact that the D1 branes can move inside the D5 branes \wx{along the compact $\mcal{M}_4$ directions.}{is this language accurate?} In the end we have the central charge:
+	\begin{equation}
+		c = 1\times 4Q_1 Q_5
+			+ \frac{1}{2}\times 4Q_1 Q_5
+		= 6Q_1 Q_5
+	\end{equation}
+	
+	
+	
 	
 \subsection{Type IIB string theory with NS-NS flux}
 	
@@ -181,3 +258,5 @@
 \bibliography{beyondAdS.bib}
 
 \end{document}
+
+% vim: set ts=4 sw=4 sts=4 noexpandtab:
