@@ -7,6 +7,9 @@
 \pdfoutput=1
 \input{preamble.tex}
 
+%% detailed ToC
+\setcounter{tocdepth}{3}
+
 \usepackage{xspace}
 \newcommand{\TTbar}{\texorpdfstring{\ensuremath{T\bar{T}}}{TTbar}\xspace}
 \newcommand{\ads}[1]{\text{AdS}\ensuremath{_{#1}}}
@@ -116,7 +119,7 @@
 	
 	Open string excitations on the branes carry momentum and winding. Due to the large radius of $S^1$, we can focus on the momentum modes $P$ along $x^5 \in S^1$ and neglect the winding modes. On the other hand, we will neglect momentum modes along the $\mcal{M}_4$ directions, since $\mcal{M}_4$ is assumed to be compact and small. 
 	
-\subsubsection{IR limit and the \ads{3} gravity}
+\subsubsection{Closed string picture: gravity on \ads{3} background}
 	In the IR limit, type IIB string theory is described by the low energy effective action of type IIB supergravity. The field content and the action of type IIB supergravity are well reviewed in the literature; see e.g.\ Appendix H of \cite{Kiritsis:1997hj}. In particular, there is a pair of 2-form gauge potentials in type IIB supergravity. One of them is the NS-NS field $B_2$, and the other is the R-R field $C_2$. 
 	The D1 branes are electrically charged under $C_2$, while the D5 branes are magnetically charged under $C_2$. 
 	
@@ -220,25 +223,62 @@
 		+ \frac{1}{T_R}
 	\end{equation}
 	
-	One can understand the IR supergravity solution as the result of ``integrating out'' the dynamics of the branes, including the open string excitations. This process deforms the background geometry, and we end up with a closed string theory on the black string background. \sidenote{......}
+	\wx{Within the framework of string theory, one can understand the IR black string geometry as the result of ``integrating out'' the dynamics of the branes, which includes the open string excitations.}{accurate?} This process deforms the background geometry, and we end up with a closed string theory on the black string background. The near horizon limit brings us further to the IR fixed point, where the far region dynamics decouple and we are left with the \ads{3} geometry. 
 	
+	In other words, strings on $\ads{3}\times S^3\times \mcal{M}_4$ is understood as the \textit{closed string description} of the IR fixed point of the D1-D5-$P$ system. 
 	
+\subsubsection{Open string picture: worldvolume \cft{2} and the duality}
 	
-\subsubsection{Worldvolume \cft{2} and the duality}
+	On the other hand, we can consider the worldvolume theory of the brane construction. This provides the \textit{open string description} of the D1-D5-$P$ system. 
 	
-	On the other hand, we can consider the worldvolume theory of the brane construction. After dimension reduction of the compact $\mcal{M}_4$, we have a $(1+1)$ dimensional QFT living on the D1-D5 branes. This is a supersymmetric gauge theory with $\mcal{N} = (4,4)$ supersymmetry. 
+	After dimension reduction of the compact $\mcal{M}_4$, we have a $(1+1)$ dimensional QFT living on the D1-D5 branes. This is a supersymmetric gauge theory with $\mcal{N} = (4,4)$ supersymmetry. 
 	Similar to our previous discussions, we can consider the IR limit of this system. It should flow to an IR fixed point, which is a $(1+1)$ dimensional superconformal field theory (S\cft{2}). 
 	
-	The central charge of this S\cft{2} can be read off from the field contents of the worldvolume theory: the number of bosonic fields is given by: 
+	The central charge of this S\cft{2} can be read off from the field contents of the worldvolume theory: the number of bosonic fields is given by \needcites: 
 	\begin{equation}
 		4Q_1 Q_5
 	\end{equation}
-	and the same amount for fermions. The factor $Q_1 Q_5$ comes from the open string excitations between the D1 and D5 branes, while the factor of 4 comes from the fact that the D1 branes can move inside the D5 branes \wx{along the compact $\mcal{M}_4$ directions.}{is this language accurate?} In the end we have the central charge:
+	and same for the fermions. The factor $Q_1 Q_5$ comes from the open string excitations between the D1 and D5 branes, while the factor of 4 comes from the fact that the D1 branes can move inside the D5 branes \wx{along the compact $\mcal{M}_4$ directions.}{is this language accurate?} In the end we have the central charge:
 	\begin{equation}
 		c = 1\times 4Q_1 Q_5
 			+ \frac{1}{2}\times 4Q_1 Q_5
 		= 6Q_1 Q_5
 	\end{equation}
+	
+	We have thus discovered two equivalent descriptions of the D1-D5-$P$ system, summarized as follows:
+	\begin{equation*}
+	\begin{array}{ccc}
+		\pqty{
+			\ \begin{gathered}
+				\text{Far-region dynamics} \\
+				+ \\
+				\text{Strings on $\ads{3}\times S^3\times \mcal{M}_4$}
+			\end{gathered}\ %
+		}
+		&=&
+		\pqty{
+			\ \begin{gathered}
+				\text{Far-region dynamics} \\
+				+ \\
+				\text{S\cft{2} with target $\mcal{M}_4$}
+				\vphantom{S^3}
+			\end{gathered}\ %
+		}
+	\\[6ex]
+		\textit{Closed string picture}
+		& &
+		\textit{Open string picture}
+	\end{array}
+	\end{equation*}
+	The far-region dynamics decouple on both sides, and we have the following proposal of an \ads{3}/\cft{2} duality:
+	\begin{equation}
+	\begin{aligned}
+		&\text{Type IIB string theory on $\ads{3}\times S^3\times \mcal{M}_4$} \\
+		{} = {}
+		&\text{Deformations of some $\mcal{N} = (4,4)$ S\cft{2} with target $\mcal{M}_4$}
+	\end{aligned}
+	\end{equation}
+	\sidenote{Deformations? Symmetric orbifolds?}
 	
 	
 	
