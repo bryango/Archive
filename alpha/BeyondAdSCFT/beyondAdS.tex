@@ -67,6 +67,7 @@
 	The first incarnation of holographic principle was realized by Maldacena \cite{Maldacena:1997re}, by a stack of D3 branes in type IIB string theory. 
 	
 \subsection{The \mbox{D1-D5-$P$} system and its IR limit}
+\label{sect:d1-d5-p}
 	
 	Let us look at the \mbox{D1-D5-$P$} brane configuration in type IIB string theory. This is well-reviewed in \cite{David:2002wn}. This configuration allows for an open string description and a closed string description. 
 	
@@ -282,13 +283,59 @@
 	
 \subsection{Type IIB string theory with NS-NS flux}
 	
-	The D1-D5-$P$ system is tough to deal with on the worldsheet, within the framework of the RNS (or NSR) formalism, due to its non-trivial coupling to the R-R field $C_2$. This difficulty can be avoided by considering its S-dual, the NS1-NS5-$P$ system. 
+	Due to its non-trivial coupling to the R-R field $C_2$, the D1-D5 system is difficult to deal with on the worldsheet, within the framework of the RNS (or NSR) formalism. This difficulty can be avoided by considering its S-dual, the NS1-NS5 system. 
 	
+	First let us recall the $\mrm{SL}(2,\mbb{Z})$ duality of type IIB string theory, reviewed in \S12 and \S14 of \cite{Polchinski:1998rr}. In particular, the strong-weak S-duality is one of the generators of the $\mrm{SL}(2,\mbb{Z})$ action. When acted on the field strengths $H = \dd{B_2}$ and $F = \dd{C_2}$, it's given by:
+	\begin{gather}
+		S\colon\ %
+		\pqty{\begin{array}{c} H \\ F \end{array}}
+		\ \longmapsto\ %
+		\pqty{\begin{array}{cc}
+			0 & 1 \\
+			-1\hspace*{.2em} & 0
+		\end{array}}
+		\pqty{\begin{array}{c} H \\ F \end{array}}
+		= \pqty{\begin{array}{c} F \\ -H \end{array}},
+	\\[.5ex]
+		H = \dd{B_2},\quad F = \dd{C_2} \nonumber
+	\end{gather}
+	We note that S-duality exchanges the field strengths $H$ and $F$. On the other hand, the D1-D5 system couples to $C_2$ (electrically for D1, and magnetically for D5), while the NS1-NS5 system couples to $B_2$. Therefore S-duality corresponds to a map:
+	\begin{equation}
+	S\colon\quad
+	\begin{aligned}
+		Q_5\ \,\text{D5 branes}
+		\ \,&\longmapsto\ \,
+		k = Q_5\ \,\text{NS5 branes} \\
+		Q_1\ \,\text{D1 branes}
+		\ \,&\longmapsto\ \,
+		p = Q_1\ \,\text{NS1 branes} \\
+	\end{aligned}
+	\end{equation}
 	
-	On the other hand, we can make use of the $\mrm{SL}(2,\mbb{Z})$ duality from type IIB string theory. 
+	We can then repeat the analysis in \S\ref{sect:d1-d5-p} and obtain a similar black string solution in 6D. By taking the near horizon limit, we further obtain an asymptotically \ads{3} geometry, namely the BTZ solutions as described in \S\ref{sect:d1-d5-p}, but now with NS-NS flux instead of R-R flux. In particular, for $P = 0$ we have the massless BTZ solution \needcites:
+	\begin{gather}
+		\dd{s}^2
+		= k \pqty{
+			\dd{\rho}^2
+			+ e^{2\rho} \dd{\gamma} \dd{\bar{\gamma}}
+		},
+	\\
+		B_2 = \frac{1}{2} B_{\mu\nu}
+				\dd{x^\mu} \wedge \dd{x^\nu}
+		= - \frac{k}{2}\,e^{2\rho}
+				\dd{\gamma} \wedge \dd{\bar{\gamma}},
+	\quad e^{2\Phi} = \frac{k}{p},
+	\end{gather}
+	where we note that there is a non-trivial $B$-field and a dilaton profile $\Phi$. 
 	
+	Why are we interested in this S-dual system? As we've mentioned before, unlike the original D1-D5 system, the NS1-NS5 system admits a worldsheet description as an RNS superstring theory. Therefore we have a well understood \textit{worldsheet} \cft{2} for the bulk string theory. Furthermore, based on this worldsheet \cft{2}, we are able to construct explicitly the \textit{dual} \cft{2} on the asymptotic boundary of the spacetime. This is sometimes referred to as the \textit{spacetime} \cft{2}. Therefore the NS1-NS5 system serves as a realization of \ads{3}/\cft{2} where both sides of the holographic duality are in some sense, under control. 
 	
-\section{Deformation of \ads{3}/\cft{2} in string theory}
+\section{Holographic Dualities Beyond \ads{3}/\cft{2}}
+
+In the previous sections, we have laid down some basic aspects of \ads{3}/\cft{2} dualities in string theory. Starting from this section, we are going to introduce recent salient developments on holographic dualities beyond \ads{3}/\cft{2}. In particular, we will focus on $T\bar{T}$ deformation. This section is organized as follows:
+
+\subsection{Top-Down Approach: Deformations of \ads{3}/\cft{2} in string theory}
+In order to introduce deformations, we here remind the basic triangle among \ads{3}/\cft{2}.   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
