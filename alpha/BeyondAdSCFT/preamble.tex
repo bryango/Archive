@@ -36,6 +36,8 @@
 
 \makeatletter
 \def\@fpheader{\phantom{Prepared for submission to JHEP}}
+%\def\@fpheader{\today}
+%\def\@fpheader{\phantom{:-)}}
 \makeatother
 
 \newcommand{\qns}{\color{red}}
@@ -85,11 +87,11 @@
 \def\Bra#1{\left\langle#1\right|}
 \def\Ket#1{\left|#1\right\rangle}
 \def\Vev#1{\left\langle#1\right\rangle}
+
+% Equation environments
 \newcommand{\eq}[1]{\begin{align}#1\end{align}}
 \newcommand{\eqsp}[1]{\begin{equation}\begin{split}#1\end{split}\end{equation}}
 \newcommand{\eqga}[1]{\begin{equation}\begin{gathered}#1\end{gathered}\end{equation}}
-
-\newcommand{\zc}{z}
 
 \DeclareMathOperator{\arccosh}{arccosh}
 \DeclareMathOperator{\sgn}{sgn}
@@ -256,10 +258,181 @@
 
 %%%% End of macros from quasilocal.tex %%%%
 
+%%%% Packages from TsT %%%%
+
+%\usepackage{verbatim}
+%\usepackage{subfigure}
+%\usepackage{multirow}
+%\usepackage{bbold}
+%\usepackage{transparent}
+
+%\restylefloat{table}
+%\renewcommand*\arraystretch{2}
+
+%\usepackage{etoolbox}
+%\appto\appendix{\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}}
+
+\makeatletter
+\def\hlinewd#1{%
+\noalign{\ifnum0=`}\fi\hrule \@height #1 %
+\futurelet\reserved@a\@xhline}
+\makeatother
+
+\newcolumntype{?}[1]{!{\vrule width #1}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Macros and definitions from TsT
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\long\def\symfootnote[#1]#2{\begingroup%
+\def\thefootnote{\fnsymbol{footnote}}\footnote[#1]{#2}\endgroup} 
+
+% Colored notes
+\def\rednote#1{{\color{red} #1}}
+\def\bluenote#1{{\color{blue} #1}}
+\def\magnote#1{{\color{magenta} #1}}
+\def\rout#1{{\color{red} \sout{#1}}}
+
+% Definitions
+\def\({\left (}
+\def\){\right )}
+\def\lb{\left [}
+\def\rb{\right ]}
+\def\lB{\left \{}
+\def\rB{\right \}}
+
+\def\Int#1#2{\int \textrm{d}^{#1} x \sqrt{|#2|}}
+\def\Bra#1{\left\langle#1\right|} 
+\def\Ket#1{\left|#1\right\rangle}
+\def\BraKet#1#2{\left\langle#1|#2\right\rangle} 
+\def\Vev#1{\left\langle#1\right\rangle}
+\def\Vevm#1{\left\langle \Phi |#1| \Phi \right\rangle}\def\bbox{\bar{\Box}}
+\def\til#1{\tilde{#1}}
+\def\wtil#1{\widetilde{#1}}
+\def\ph#1{\phantom{#1}}
+
+\def\ra{\rightarrow}
+\def\la{\leftarrow}
+\def\lra{\leftrightarrow}
+\def\p{\partial}
+\def\barp{\bar{\partial}}
+\def\diff{\mathrm{d}}
+
+\def\sinh{\mathrm{sinh}}
+\def\cosh{\mathrm{cosh}}
+\def\tanh{\mathrm{tanh}}
+\def\coth{\mathrm{coth}}
+\def\sech{\mathrm{sech}}
+\def\csch{\mathrm{csch}}
+
+\def\a{\alpha}
+\def\b{\beta}
+\def\g{\gamma}
+\def\d{\delta}
+\def\e{\epsilon}
+\def\ve{\varepsilon}
+\def\k{\kappa}
+\def\l{\lambda}
+\def\n{\nabla}
+\def\om{\omega}
+\def\s{\sigma}
+\def\t{\theta}
+\def\z{\zeta}
+\def\vp{\varphi}
+
+\def\ss{\Sigma}
+\def\dd{\Delta}
+\def\GG{\Gamma}
+\def\LL{\Lambda}
+\def\tt{\Theta}
+
+\def\A{{\cal A}}
+\def\B{{\cal B}}
+\def\C{{\cal C}}
+\def\cE{{\cal E}}
+\def\D{{\cal D}}
+\def\F{{\cal F}}
+\def\H{{\cal H}}
+\def\I{{\cal I}}
+\def\J{{\cal J}}
+\def\K{{\cal K}}
+\def\L{{\cal L}}
+\def\M{{\cal M}}
+\def\N{{\cal N}}
+\def\O{{\cal O}}
+\def\Q{{\cal Q}}
+\def\P{{\cal P}}
+\def\cS{{\cal S}}
+\def\T{{\cal T}}
+\def\W{{\cal W}}
+\def\X{{\cal X}}
+\def\Z{{\cal Z}}
+
+\def\mfa{\mathfrak{a}}
+\def\mfb{\mathfrak{b}}
+\def\mfc{\mathfrak{c}}
+\def\mfd{\mathfrak{d}}
+
+\def\we{\wedge}
+\def\re{\textrm{Re}}
+
+\def\tilw{\tilde{w}}
+\def\tile{\tilde{e}}
+
+\def\tilL{\tilde{L}}
+\def\tilJ{\tilde{J}}
+
+\def\zz{\bar z}
+\def\xx{\bar x}
+\def\yy{\bar y}
+\def\xp{x^{+}}
+\def\xm{x^{-}}
+
+\def\bp{\bar{\p}}
+\def\note#1{{\color{red}#1}}
+\def\notebf#1{{\bf\color{red}#1}}
+
+
+%\def\VirU1{\mathrm{Vir}\times\hat{\mathrm{U}}(1)}
+\def\VirU1{Vir \times U(1)}
+\def\VirSL2R{\mathrm{Vir}\otimes\widehat{\mathrm{SL}}(2,\mathbb{R})}
+%\def\U1{\hat{\mathrm{U}}(1)}
+\def\U1{U(1)}
+%\def\u1{\mathrm{U}(1)}
+\def\u1{U(1)}
+\def\SL2R{\widehat{\mathrm{SL}}(2,\mathbb{R})}
+\def\sl2r{\mathrm{SL}(2,\mathbb{R})}
+\def\by{\mathrm{BY}}
+
+\def\RR{\mathbb{R}}
+
+\def\tr{\mathrm{Tr}}
+\def\bnabla{\overline{\nabla}}
+
+\def\sint{\int_{\ss}}
+\def\dsint{\int_{\p\ss}}
+\def\hint{\int_{H}}
+
+% Square-root of determinants
+\newcommand{\absq}[1]{{\textstyle\sqrt{\left |#1\right |}}}
+%\newcommand{\absqeq}[1]{{\sqrt{|#1|}}}
+%\newcommand{\absq}[1]{{\sqrt{-#1}}}
+
+% Comment
+%\newcommand{\comm}[1]{\begin{comment}#1\end{comment}}
+
+%%%% Stephane's commands
+
+%\newcommand{\p}{{\partial}{}}
+\newcommand{\pp}{{\partial_+}{}}
+\newcommand{\pmm}{{\partial_-}{}}
+
+%%%%%%%% END of macros from TsT %%%%%%%%
+
 \usepackage{tabularx,booktabs}
 \newcolumntype{C}[1]{>{%
 	\hsize=#1\hsize\centering\arraybackslash%
 }X}
+%\newcolumntype{C}[1]{>{\centering\arraybackslash$}p{#1}<{$}}
 \newcolumntype{W}[1]{>{%
 	\hsize=#1\hsize\arraybackslash%
 }X}
