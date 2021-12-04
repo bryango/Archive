@@ -335,7 +335,76 @@
 In the previous sections, we have laid down some basic aspects of \ads{3}/\cft{2} dualities in string theory. Starting from this section, we are going to introduce recent salient developments on holographic dualities beyond \ads{3}/\cft{2}. In particular, we will focus on $T\bar{T}$ deformation. This section is organized as follows:
 
 \subsection{Top-Down Approach: Deformations of \ads{3}/\cft{2} in string theory}
-In order to introduce deformations, we here remind the basic triangle among \ads{3}/\cft{2}.   
+In order to introduce deformations, we here remind the basic triangle among \ads{3}/\cft{2}. 
+
+
+
+\begin{figure}[ht!]
+\centering
+ \includegraphics[scale=0.45]{diagram4}
+\caption{The holographic correspondence between string theory on AdS$_3 \times M^7$ backgrounds and two-dimensional CFTs (inner triangle), and its relationship to the conjectured duality between TsT transformations of AdS$_3 \times M^7$ spacetimes, bi-current deformations of the worldsheet action, and single-trace irrelevant deformations of two-dimensional CFTs (outer triangle). 
+Adapted from \cite{Apolo:2021wcn}}
+\label{fig:triangle}
+\end{figure}
+
+
+
+\subsection{$T\bar{T}$ deformation}
+In a Lorentzian invariant theory, the stress tensor $T^{\mu\nu}$ is conserved, i.e. $\partial_\mu T^{\mu\nu}=0$. One can define its determinant $\text{Det} T_{\mu\nu}$ as 
+\begin{equation}
+\begin{split}
+    \mathcal O_{T\bar T}&:= \text{Det} T_{\mu\nu} \\
+    &=T_{xx}T_{\bar x\bar x}-T_{x\bar x}T_{\bar{x} x} \\
+    &=\text{Lim}_{x \rightarrow y} (T_{xx}(x)T_{\bar x\bar x}(y)-T_{x\bar x}(x)T_{\bar{x} x}(y) )+ \text{derivatives}
+    \end{split}
+\end{equation}
+which is well-defined, and has 
+\begin{equation}
+    \langle n| \mathcal{O}_{T\bar T} |\rangle =\langle n| T |n\rangle \langle n|\bar T |n\rangle -\langle n| 
+    \Theta|n\rangle \langle n|\bar{\Theta} |n\rangle
+\end{equation}
+
+The $T\bar T$ deformations can be described by deforming the CFT by an extra term 
+\begin{equation}
+     \frac{\p S_{\mathcal M_\mu}}{\p \mu} = \int d^2x \mathcal{O}_{T\bar T}
+\end{equation}
+
+where we have combine the 2d spacetime coordinate $(\phi, t)$ into  $x=\phi+t$ and $\bar{x}=\phi-t$.
+
+When putting the deformed CFT on a cylinder, with $(x, \bar x) \sim (x+ 2\pi R, \bar x+2\pi R)$, one can then evaluate the energy spectra via invisited Burger's equation:
+\begin{equation}
+    \p E_n(R, \mu)= E_n(R, \mu) \p E(R, 0)+\frac 1{R} J_n^2(R)
+\end{equation}
+
+The spectrum 
+
+  \eq{
+  E(\mu) &= - \frac{ R}{2 \mu} \Bigg[ 1 - \sqrt{1 + \frac{4 \mu}{ R} E(0) + \frac{4 \mu^2}{ R^4} J(0)^2} \,\Bigg], \qquad J(\mu) = J(0), \label{ttbarspectrum}
+  }
+  %  
+where $E = E_L + E_R$ and $J = R(E_L - E_R)$ denote the energy and angular momentum.  
+
+Let us make some comments on the $T\bar T$ deformation:
+$\bullet$ it is irrelevant, since the dimension of $\mu$ is $2>0$. 
+
+$\bullet$ It is also solvable, which is the main reason why people are interested in studying them. 
+
+$\bullet$ It can also be reformulated as coupling to random geometry, flat $JT$ gravity, (non-) critical strings. 
+
+$\bullet$ The partition function after the deformation is still modular invariant. 
+
+$\bullet$ The scattering amplitude can be shown as dressed by a phase factor. 
+
+From the histroric viewpoint, 
+
+
+
+It was conjectured in \cite{Apolo:2019zai} that performing the following TsT transformation on the string theory is holographically equivalent to deforming the seed of the dual symmetric orbifold,
+\begin{equation}
+\textrm{TsT}_{(X^m,X^{\bar m};\check\mu)} \quad\Longleftrightarrow\quad  \frac{\p S_{\mathcal M_\mu}}{\p \mu} = -4 \int J_{(m)} \wedge J_{(\bar{m})}, \label{conjecture}
+\end{equation}
+where $\textrm{TsT}_{(X^m,X^{\bar m};\check\mu)}$ denotes T-duality on  $X^m$, shift $ X^{\bar m} \to X^{\bar m} - 2\check\mu X^m$,  and T-duality on $ X^m$, $S_{\mathcal M_\mu}$ is the action of the deformed seed, $\mu$($\check\mu$) is the dimensionful(less) deformation parameter, and $J_{(m)}$, $J_{(\bar{m})}$ are the Noether currents generating translations along $X^m$, $X^{\bar m}$. It is interesting to note that from a purely worldsheet perspective, a TsT transformation is equivalent to a \emph{marginal} bi-current deformation of the worldsheet action, the latter of which can be shown to be equivalent to a gauged $(SL(2,R) \times U(1))/ U(1)$ WZW model~\cite{Apolo:2019zai}.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
