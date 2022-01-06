@@ -319,20 +319,52 @@
 			\dd{\rho}^2
 			+ e^{2\rho} \dd{\gamma} \dd{\bar{\gamma}}
 		},
+	\label{eq:massless_btz_G}
 	\\
 		B_2 = \frac{1}{2} B_{\mu\nu}
 				\dd{x^\mu} \wedge \dd{x^\nu}
 		= - \frac{k}{2}\,e^{2\rho}
 				\dd{\gamma} \wedge \dd{\bar{\gamma}},
 	\quad e^{2\Phi} = \frac{k}{p},
+	\label{eq:massless_btz_B}
 	\end{gather}
 	where we note that there is a non-trivial $B$-field and a dilaton profile $\Phi$. 
 	
-	Why are we interested in this S-dual system? As we've mentioned before, unlike the original D1-D5 system, the NS1-NS5 system admits a worldsheet description as an RNS superstring theory. Therefore we have a well understood \textit{worldsheet} \cft{2} for the bulk string theory. Furthermore, based on this worldsheet \cft{2}, we are able to construct explicitly the \textit{dual} \cft{2} on the asymptotic boundary of the spacetime. This is sometimes referred to as the \textit{spacetime} \cft{2}. Therefore the NS1-NS5 system serves as a realization of \ads{3}/\cft{2} where both sides of the holographic duality are in some sense, under control. 
+	Why are we interested in this S-dual system? As we've mentioned before, unlike the original D1-D5 system, the NS1-NS5 system admits a worldsheet description as an RNS superstring theory. Therefore we have a well understood \textit{worldsheet} \cft{2} for the bulk string theory. Furthermore, based on this worldsheet \cft{2}, we are able to construct explicitly the \textit{dual} \cft{2} on the asymptotic boundary of the spacetime. This is sometimes referred to as the \textit{spacetime} \cft{2}. Therefore the NS1-NS5 system serves as a realization of \ads{3}/\cft{2} where both sides of the holographic duality are, in some sense, under control. 
 	
 \subsubsection{The worldsheet \cft{2}}
 	
+	The bosonic action of the worldsheet theory is given by \wx{the familiar non-linear sigma model \needcites:}{conventions?}
+	\begin{equation}
+	\begin{aligned}
+		S &= \sidenote{-} \frac{1}{4\pi\alpha'}
+			\int \dd[2]{z} \sqrt{-\eta}\,\big(
+					\eta^{ab} G_{\mu\nu} (X)
+					+ \epsilon^{ab} B_{\mu\nu} (X)
+				\big)\,\pdd{a} X^\mu \pdd{b} X^\nu \\
+		&= \frac{k}{2\pi}
+			\int \dd[2]{z} \pqty{
+				\pd\rho\,\pdbar\rho
+				+ e^{2\rho}\,\pd\bar{\gamma}\,\pdbar\gamma
+			} \\
+	\end{aligned}
+	\end{equation}
+	where in the second line we've restricted to the \ads{3} part and plugged in the BTZ solution given in \eqref{eq:massless_btz_G} and \eqref{eq:massless_btz_B}. We see that $\rho$ is a Liouville field. 
+	We can further introduce an auxiliary field $\beta$, which leads us to the \wx{Wakimoto representation \needcites:}{conventions?}
+	\begin{equation}
+		S[\rho,\gamma,\bar{\gamma},\beta,\bar{\beta}]
+		= \frac{k}{2\pi}
+			\int \dd[2]{z} \pqty{
+				\pd\rho\,\pdbar\rho
+				+ \beta\,\pdbar\gamma
+				+ \bar{\beta}\,\pd\bar{\gamma}
+				- \beta \bar{\beta}\,e^{-2\rho}\,
+					\sidenote{\pdbar\bar{\gamma}\,\pd\gamma}
+			}
+	\end{equation}
+	It returns to the original action after we integrate out $\beta$. From this action it is clear that at large radius (large $\rho$), the last term in the action can be dropped, and the theory is well approximated by free fields, including a free scalar $\rho$, a pair of left-moving free fermions $(\beta,\gamma)$, and a pair of right-moving ones $(\bar{\beta},\bar{\gamma})$. 
 	
+	An alternative representation is given in terms of the $\widehat{\mrm{SL}}(2,\mbb{R})_k$ WZW model. 
 	
 	
 	
