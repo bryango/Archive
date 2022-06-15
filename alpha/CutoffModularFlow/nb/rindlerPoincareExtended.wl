@@ -3,6 +3,7 @@
 
 (* ::Section:: *)
 (*Rindler maps in Poincar\[EAcute] Subscript[AdS, 3] - Extended!*)
+(*> Physics*)
 
 
 (* ::Subsection:: *)
@@ -24,7 +25,7 @@ SetDirectory@NotebookDirectory[]
 (*<<"Physica/MathUtils.wl"*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Setup*)
 
 
@@ -90,108 +91,30 @@ Quiet[SetOptions[Solve,Assumptions->True],{SetOptions::optnf}]
 (*Modular flow: basics*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Killing vectors*)
+
+
+(* ::Item:: *)
+(*Note to self: Formatted piecewise is difficult to read in script. Use the following instead:*)
 
 
 (* ::Input::Initialization:: *)
 {ju,jv}={
-Function[{n},\!\(\*
-TagBox[GridBox[{
-{"\[Piecewise]", GridBox[{
-{
-RowBox[{"{", 
-RowBox[{
-RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}], 
-RowBox[{"n", "==", 
-RowBox[{"-", "1"}]}]},
-{
-RowBox[{"{", 
-RowBox[{
-RowBox[{"-", "u"}], ",", "0", ",", 
-RowBox[{"-", 
-FractionBox["z", "2"]}]}], "}"}], 
-RowBox[{"n", "==", "0"}]},
-{
-RowBox[{"{", 
-RowBox[{
-RowBox[{"-", 
-SuperscriptBox["u", "2"]}], ",", 
-SuperscriptBox["z", "2"], ",", 
-RowBox[{
-RowBox[{"-", "u"}], " ", "z"}]}], "}"}], 
-RowBox[{"n", "==", "1"}]},
-{"0", 
-TagBox["True",
-"PiecewiseDefault",
-AutoDelete->True]}
-},
-AllowedDimensions->{2, Automatic},
-Editable->True,
-GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
-GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.84]}, Offset[0.27999999999999997`]}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}},
-Selectable->True]}
-},
-GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
-GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.35]}, Offset[0.27999999999999997`]}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}}],
-"Piecewise",
-DeleteWithContents->True,
-Editable->False,
-SelectWithContents->True,
-Selectable->False,
-StripWrapperBoxes->True]\)],
-Function[{n},\!\(\*
-TagBox[GridBox[{
-{"\[Piecewise]", GridBox[{
-{
-RowBox[{"{", 
-RowBox[{"0", ",", 
-RowBox[{"-", "1"}], ",", "0"}], "}"}], 
-RowBox[{"n", "==", 
-RowBox[{"-", "1"}]}]},
-{
-RowBox[{"{", 
-RowBox[{"0", ",", 
-RowBox[{"-", "v"}], ",", 
-RowBox[{"-", 
-FractionBox["z", "2"]}]}], "}"}], 
-RowBox[{"n", "==", "0"}]},
-{
-RowBox[{"{", 
-RowBox[{
-SuperscriptBox["z", "2"], ",", 
-RowBox[{"-", 
-SuperscriptBox["v", "2"]}], ",", 
-RowBox[{
-RowBox[{"-", "v"}], " ", "z"}]}], "}"}], 
-RowBox[{"n", "==", "1"}]},
-{"0", 
-TagBox["True",
-"PiecewiseDefault",
-AutoDelete->True]}
-},
-AllowedDimensions->{2, Automatic},
-Editable->True,
-GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
-GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.84]}, Offset[0.27999999999999997`]}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}},
-Selectable->True]}
-},
-GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
-GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.35]}, Offset[0.27999999999999997`]}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}}],
-"Piecewise",
-DeleteWithContents->True,
-Editable->False,
-SelectWithContents->True,
-Selectable->False,
-StripWrapperBoxes->True]\)]
-};
+Function[{n},Piecewise[{
+{{-1,0,0},n==-1},
+{{-u,0,-(z/2)},n==0},
+{{-u^2,z^2,-u z},n==1}},
+0]],
+Function[{n},Piecewise[{
+{{0,-1,0},n==-1},
+{{0,-v,-(z/2)},n==0},
+{{z^2,-v^2,-v z},n==1}},
+0]]
+}
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*The y-gauge*)
 
 
@@ -229,7 +152,7 @@ y2z=(y->z^2 Sign[z]);
 (*z/.z2y/.y2z//FullSimplify*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Isometries & modular flow*)
 
 
@@ -388,538 +311,6 @@ flowGlueon=Thread[{u,v,y}->{lu/2 (Cosh[U+x0] Sinh[V+x0]-Y Cosh[U] Sinh[V])/(Sinh
 
 (* ::Item:: *)
 (*... which we shall derive as follows.*)
-
-
-(* ::Section::Closed:: *)
-(*Rindler maps: derivations*)
-
-
-(* ::Subsection::Closed:: *)
-(*Flow equations & solutions*)
-
-
-(* ::Input:: *)
-(*flow=#[s]&/@coord*)
-
-
-(* ::Item:: *)
-(*We aim to compute the flow lines for Subscript[\[Xi], (u)],Subscript[\[Xi], (v)]. Let us look at Subscript[\[Xi], (u)] first.*)
-
-
-(* ::Item:: *)
-(*This amounts to solving the following ODE:*)
-
-
-(* ::Input:: *)
-(*flowEqs=Thread[\!\( *)
-(*\*SubscriptBox[\(\[PartialD]\), \(s\)]flow\)==(\[Xi]u/.Thread[coord->flow])]*)
-(*initEqs=Thread[(flow/.s->0)=={u0,v0,y0}]*)
-(**)
-(*DSolve[flowEqs~Join~initEqs,flow,s]*)
-(**)
-(*{solsInside,solsOutside}={%[[{3,4}]],%[[{1,2}]]};*)
-
-
-(* ::Item:: *)
-(*There are two types of solutions, one stays inside the wedge, while the other goes outside the wedge.*)
-
-
-(* ::Item:: *)
-(*Only half of the solutions satisfy the initial & boundary conditions:*)
-
-
-(* ::Input:: *)
-(*Block[{u0=2,v0=2,y0=-5,lu=10,lv=10},*)
-(**)
-(*Show[*)
-(*ParametricPlot3D[*)
-(*flow/.solsInside//Evaluate,{s,0,.5},*)
-(*AxesLabel->coord,*)
-(*PlotRange->{{-5,5},{-5,5},{-10,10}},*)
-(*MaxRecursion->15*)
-(*],*)
-(**)
-(*Graphics3D[Ball[{u0,v0,y0},.2]]*)
-(*]*)
-(*]*)
-
-
-(* ::Item:: *)
-(*Note that this works for both signs of Subscript[y, 0]!*)
-
-
-(* ::Item:: *)
-(*<<< saved image here >>>*)
-
-
-(* ::Input:: *)
-(*flowInside=solsInside[[2]]*)
-
-
-(* ::Item:: *)
-(*For the glue-on side we need to choose the solution that goes outside of the causal diamond. *)
-
-
-(* ::Input:: *)
-(*Block[{u0=2,v0=2,y0=-3,lu=1,lv=1},*)
-(**)
-(*Show[*)
-(*ParametricPlot3D[*)
-(*flow/.solsOutside//Evaluate,{s,0,.3},*)
-(*AxesLabel->coord,*)
-(*PlotRange->{{-5,5},{-5,5},{0,-10}},*)
-(*MaxRecursion->15*)
-(*],*)
-(**)
-(*Graphics3D[Ball[{u0,v0,y0},.2]]*)
-(*]*)
-(*]*)
-
-
-(* ::Input:: *)
-(*Block[{u0=3,v0=3,y0=-5,lu=2,lv=2},*)
-(**)
-(*Show[*)
-(*ParametricPlot3D[*)
-(*flow/.solsOutside[[2]]//Evaluate,{s,0,10},*)
-(*AxesLabel->coord,*)
-(*PlotRange->{{-5,5},{-5,5},{0,-8}},*)
-(*MaxRecursion->15*)
-(*],*)
-(**)
-(*Graphics3D[Ball[{u0,v0,y0},.2]],*)
-(*Graphics3D[Ball[{lu/2,lv/2,0},.2]]*)
-(*]*)
-(*]*)
-
-
-(* ::Item:: *)
-(*Also the flow stays outside of the causal diamond (on the right hand side). This is what we expect. *)
-
-
-(* ::Item:: *)
-(*<<< saved images >>>*)
-
-
-(* ::Input:: *)
-(*flowOutside=solsOutside[[2]]*)
-
-
-(* ::Subsection::Closed:: *)
-(*Simplifications: flow inside the wedge*)
-
-
-(* ::Item:: *)
-(*Initiate the flow from (Subscript[u, 0],Subscript[v, 0],Subscript[y, 0])=(Subscript[l, u]/2 Subscript[x, 0],Subscript[l, v]/2 Subscript[x, 0],Subscript[y, 0]), the s parameter is the new coordinate \!\(\*OverscriptBox[\(u\), \(~\)]\), or U for simplicity.*)
-
-
-(* ::Item:: *)
-(*We've rescaled (Subscript[u, 0],Subscript[v, 0],Subscript[y, 0]); effectively we've set Subscript[l, u]=Subscript[l, v]=2:*)
-
-
-(* ::Item:: *)
-(*Flow along the U direction:*)
-
-
-(* ::Input:: *)
-(*flowInside/.Thread[{u0,v0,y0}->{lu/2 u0,lv/2 u0,(lu lv)/4 y0}](*/.u0\[Rule]Tanh[x0]*)/.s->U//Simplify[#,{u0<1}]&*)
-(*%/.{u[U]->u0,v[U]->v0,y[U]->y0}*)
-
-
-(* ::Item:: *)
-(*Now for the flow along the V direction, following Subscript[\[Xi], (v)]. The equations are identical under u<->v:*)
-
-
-(* ::Input:: *)
-(*Thread[\!\( *)
-(*\*SubscriptBox[\(\[PartialD]\), \(s\)]flow\)==(\[Xi]v/.Thread[{u,v,y}->flow])]*)
-
-
-(* ::Input:: *)
-(*flowInside/.uvExchange*)
-(*flowUVY=flow/.%/.{u0->1/2 lu Tanh[U+ArcSech[Sqrt[1-u0^2]]],v0->(lu lv u0-lu lv u0^3-4 u0 y0+4 y0 Tanh[U+ArcSech[Sqrt[1-u0^2]]])/(2 lu-2 lu u0^2),y0->(y0 Sech[U+ArcSech[Sqrt[1-u0^2]]]^2)/(1-u0^2)}/.s->V/.y0->(lu lv)/4 y0//Simplify*)
-
-
-(* ::Item:: *)
-(*The v-component is much nicer than the u-component, but they should be identical under u<->v. So we have:*)
-
-
-(* ::Input:: *)
-(*flowUVY={1/2 lu Tanh[U+ArcSech[Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[Sqrt[1-u0^2]]])^2/(-1+u0^2)^2]]],1/2 lv Tanh[V+ArcSech[Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[U+ArcSech[Sqrt[1-u0^2]]])^2/(-1+u0^2)^2]]],(lu lv (-1+u0^2) y0 Sech[U+ArcSech[Sqrt[1-u0^2]]]^2 Sech[V+ArcSech[Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[U+ArcSech[Sqrt[1-u0^2]]])^2/(-1+u0^2)^2]]]^2)/(4 (-1+u0^6+u0^4 (-3+2 y0)+u0^2 (3-2 y0+y0^2)-2 u0 y0 (-1+u0^2+y0) Tanh[U+ArcSech[Sqrt[1-u0^2]]]+y0^2 Tanh[U+ArcSech[Sqrt[1-u0^2]]]^2))}//Simplify*)
-
-
-(* ::Input:: *)
-(*flowUVY/.y0->0//Simplify*)
-
-
-(* ::Item:: *)
-(*Manual simplification of square roots:*)
-
-
-(* ::Input:: *)
-(*Tanh[U+ArcSech[x]]//TrigExpand//Simplify*)
-
-
-(* ::Input:: *)
-(*(Sqrt[1-x^2]Cosh[U]+Sinh[U])/(Cosh[U]+Sqrt[1-x^2]Sinh[U])/.x->Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[Sqrt[1-u0^2]]])^2/(-1+u0^2)^2]//Simplify*)
-
-
-(* ::Input:: *)
-(*(Sinh[U]+Cosh[U] (u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[Sqrt[1-u0^2]]])/(-1+u0^2))/(Cosh[U]+Sinh[U] (u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[Sqrt[1-u0^2]]])/(-1+u0^2))//Simplify*)
-
-
-(* ::Input:: *)
-(*Tanh[V+ArcSech[x]]//TrigExpand//Simplify*)
-
-
-(* ::Input:: *)
-(*(Sqrt[1-x^2]Cosh[V]+Sinh[V])/(Cosh[V]+Sqrt[1-x^2]Sinh[V])/.x->Sqrt[1-u0^2]//Simplify*)
-
-
-(* ::Input:: *)
-(*((-1+u0^2) Sinh[U]+Cosh[U] (u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[Sqrt[1-u0^2]]]))/((-1+u0^2) Cosh[U]+Sinh[U] (u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[Sqrt[1-u0^2]]]))/.Tanh[V+ArcSech[Sqrt[1-u0^2]]]->(u0 Cosh[V]+Sinh[V])/(Cosh[V]+u0 Sinh[V])//FullSimplify*)
-
-
-(* ::Input:: *)
-(*(Sinh[U] (Cosh[V]+u0 Sinh[V])+Cosh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))/(Cosh[U] (Cosh[V]+u0 Sinh[V])+Sinh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))//NumeratorDenominator*)
-(**)
-(*%/(Sinh[U]Sinh[V])//Simplify*)
-(**)
-(*%[[1]]/%[[2]]*)
-
-
-(* ::Input:: *)
-(*Coth[U] (y0+(u0+Tanh[U])(u0+Coth[V]))/(y0+(u0+Coth[U])(u0+Coth[V]))==(Sinh[U] (Cosh[V]+u0 Sinh[V])+Cosh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))/(Cosh[U] (Cosh[V]+u0 Sinh[V])+Sinh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))//Simplify*)
-
-
-(* ::Input:: *)
-(*HoldForm[Tanh[U] (y0 Coth[U]Tanh[V]+(1+u0 Coth[U])(1+u0 Tanh[V]))/(y0 Tanh[U]Tanh[V]+(1+u0 Tanh[U])(1+u0 Tanh[V]))==Coth[U] (y0+(u0+Tanh[U])(u0+Coth[V]))/(y0+(u0+Coth[U])(u0+Coth[V]))];*)
-(*Framed[%]*)
-(*Simplify[ReleaseHold[%%]]*)
-
-
-(* ::Input:: *)
-(*Tanh[U] (y0 Coth[U]Tanh[V]+(1+u0 Coth[U])(1+u0 Tanh[V]))/(y0 Tanh[U]Tanh[V]+(1+u0 Tanh[U])(1+u0 Tanh[V]))/.u0->0/.y0->Y*)
-(*lu/2 %==u/.flowCutoff//Simplify*)
-
-
-(* ::Item:: *)
-(*This is the result if we keep Subscript[u, 0],Subscript[y, 0] unfixed.*)
-
-
-(* ::Item:: *)
-(*Check asymptotics:*)
-
-
-(* ::Input:: *)
-(*(u0+Coth[V]+Coth[U] (u0^2+y0)+u0 Coth[U]Coth[V])/(u0^2+y0+u0(Coth[V]+Coth[U])+Coth[U]Coth[V])/.y0->0//Simplify*)
-(**)
-(*%/.u0->Tanh[x0]//Simplify*)
-(*%%/.u0->Coth[x0]//Simplify*)
-
-
-(* ::Item:: *)
-(*It seems that it would be convenient to introduce Subscript[u, 0]=coth Subscript[x, 0] or Subscript[u, 0]=tanh Subscript[x, 0], depending on the range of Subscript[u, 0]. *)
-
-
-(* ::Input:: *)
-(*(u0+Coth[V]+Coth[U] (u0^2+y0)+u0 Coth[U]Coth[V])/(u0^2+y0+u0(Coth[V]+Coth[U])+Coth[U]Coth[V])/.y0->1-u0^2//FullSimplify*)
-(**)
-(*%/.u0->Tanh[x0]//Simplify*)
-(*%%/.u0->Coth[x0]//Simplify*)
-
-
-(* ::Item:: *)
-(*Great!*)
-
-
-(* ::Input:: *)
-(*(u0+Coth[V]+Coth[U] (u0^2+y0)+u0 Coth[U]Coth[V])/(u0^2+y0+u0(Coth[V]+Coth[U])+Coth[U]Coth[V])/.y0->(1-u0^2)Y/.u0->Tanh[x0]*)
-(**)
-(*%/.{U->Ux-x0,V->Vx-x0}//Simplify*)
-(**)
-(*%//NumeratorDenominator//Collect[#,Y,FullSimplify]&*)
-(**)
-(*%[[1]]/%[[2]]/.{Ux->U+x0,Vx->V+x0}//Simplify*)
-
-
-(* ::Input:: *)
-(*(Y Cosh[U] Sinh[V]+Sinh[U+x0] Cosh[V+x0])/(Y Sinh[U] Sinh[V]+Cosh[U+x0] Cosh[V+x0]);*)
-(**)
-(*Framed[%]*)
-(*%%/.{{Y->0},{Y->1}}//FullSimplify*)
-
-
-(* ::Item:: *)
-(*The coth Subscript[x, 0] results can be obtained by sinh<->cosh for the terms containing Subscript[x, 0]. *)
-
-
-(* ::Input:: *)
-(*Sinh[U+ArcCoth[Tanh[x0]]]//TrigExpand//FullSimplify*)
-
-
-(* ::Item:: *)
-(*We can also choose some special Subscript[u, 0],Subscript[y, 0].*)
-
-
-(* ::Input:: *)
-(*(Y Cosh[U] Sinh[V]+Sinh[U+x0] Cosh[V+x0])/(Y Sinh[U] Sinh[V]+Cosh[U+x0] Cosh[V+x0])/.x0->0*)
-(**)
-(*lu/2 %==(u/.flowCutoff)//Simplify*)
-
-
-(* ::Item:: *)
-(*This goes back to our previous result. *)
-
-
-(* ::Item:: *)
-(*What about the y component?*)
-
-
-(* ::Input:: *)
-(**)
-
-
-(* ::Input:: *)
-(*(lu lv (-1+u0^2) y0 Sech[U+ArcSech[Sqrt[1-u0^2]]]^2 Sech[V+ArcSech[Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[U+ArcSech[Sqrt[1-u0^2]]])^2/(-1+u0^2)^2]]]^2)/(4 (-1+u0^6+u0^4 (-3+2 y0)+u0^2 (3-2 y0+y0^2)-2 u0 y0 (-1+u0^2+y0) Tanh[U+ArcSech[Sqrt[1-u0^2]]]+y0^2 Tanh[U+ArcSech[Sqrt[1-u0^2]]]^2))/.Tanh[U+ArcSech[Sqrt[1-u0^2]]]->(u0 Cosh[U]+Sinh[U])/(Cosh[U]+u0 Sinh[U])//Simplify*)
-
-
-(* ::Input:: *)
-(*Sech[U+ArcSech[x]]^2 Sech[V+ArcSech[y]]^2//TrigExpand//Simplify*)
-(**)
-
-
-(* ::Input:: *)
-(*(x^2 y^2)/((Cosh[U]^2+Sinh[U] (2 Sqrt[1-x^2] Cosh[U]+(1+x)Sinh[U]-x (1+x)Sinh[U])) (Cosh[V]^2+Sinh[V] (2 Sqrt[1-y^2] Cosh[V]+(1+y)Sinh[V]-y (1+y)Sinh[V])))/.{*)
-(*x->Sqrt[1-u0^2],y->Sqrt[1-(u0 Cosh[U]+(u0^2+y0) Sinh[U])^2/(Cosh[U]+u0 Sinh[U])^2]*)
-(*}//Simplify*)
-
-
-(* ::Input:: *)
-(*((1-u0^2) (1-(u0 Cosh[U]+(u0^2+y0) Sinh[U])^2/(Cosh[U]+u0 Sinh[U])^2))/((Cosh[U]^2+u0^2 Sinh[U]^2+u0 Sinh[2 U]) (Cosh[V]^2+Sinh[V]^2-(1-(u0 Cosh[U]+(u0^2+y0) Sinh[U])^2/(Cosh[U]+u0 Sinh[U])^2) Sinh[V]^2+(u0 Cosh[U]+(u0^2+y0) Sinh[U])/(Cosh[U]+u0 Sinh[U]) Sinh[2 V]))//Simplify*)
-
-
-(* ::Input:: *)
-(*((lu lv y0 (Cosh[U]+u0 Sinh[U])^2)/(4 (-1+u0^2) ((-1+u0^2) Cosh[U]^2-2 u0 Cosh[U] Sinh[U]+(u0^4+y0^2+u0^2 (-1+2 y0)) Sinh[U]^2+u0 (u0^2+y0) Sinh[2 U])))(((-1+u0^2) ((-1+u0^2) Cosh[U]^2-2 u0 Cosh[U] Sinh[U]+(u0^4+y0^2+u0^2 (-1+2 y0)) Sinh[U]^2+u0 (u0^2+y0) Sinh[2 U]))/((Cosh[U]+u0 Sinh[U])^2 (Cosh[U] (Cosh[V]+u0 Sinh[V])+Sinh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))^2))//Simplify*)
-
-
-(* ::Input:: *)
-(*y0 (lu lv)/4 ((Csch[U]Csch[V])/(y0+(u0+Coth[U])(u0+Coth[V])))^2==(lu lv y0)/(4 (Cosh[U] (Cosh[V]+u0 Sinh[V])+Sinh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))^2)//Simplify*)
-
-
-(* ::Input:: *)
-(*HoldForm[y0 (lu lv)/4 ((Csch[U]Csch[V])/(y0+(u0+Coth[U])(u0+Coth[V])))^2==y0 (lu lv)/4 ((Sech[U]Sech[V])/(y0 Tanh[U]Tanh[V]+(1+u0 Tanh[U])(1+u0 Tanh[V])))^2];*)
-(*Framed[%]*)
-(*Simplify[ReleaseHold[%%]]*)
-
-
-(* ::Item:: *)
-(*This is for generic Subscript[u, 0]. Setting Subscript[u, 0]=tanh Subscript[x, 0] and Subscript[y, 0]=(1-Subscript[u, 0]^2)Y*)
-
-
-(* ::Input:: *)
-(*(lu lv y0)/(4 (Cosh[U] (Cosh[V]+u0 Sinh[V])+Sinh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))^2)/.y0->(1-u0^2)Y/.u0->Tanh[x0]//Simplify*)
-
-
-(* ::Input:: *)
-(*-(-1+Y) Cosh[U-V]+Y Cosh[U+V]+Cosh[U+V+2 x0]//Collect[#,Y,FullSimplify]&//Simplify*)
-
-
-(* ::Input:: *)
-(*(lu lv)/4 Y (Cosh[x0]/(Cosh[U+x0] Cosh[V+x0]+Y Sinh[U] Sinh[V]))^2==(lu lv Y Cosh[x0]^2)/(-(-1+Y) Cosh[U-V]+Y Cosh[U+V]+Cosh[U+V+2 x0])^2//Simplify*)
-
-
-(* ::Input:: *)
-(*Framed[(lu lv)/4 Y (Cosh[x0]/(Cosh[U+x0] Cosh[V+x0]+Y Sinh[U] Sinh[V]))^2]//hideShow*)
-
-
-(* ::Subsection::Closed:: *)
-(*Simplifications: flow outside the wedge*)
-
-
-(* ::Input:: *)
-(*flowOutside*)
-
-
-(* ::Item:: *)
-(*Initiate the flow from (Subscript[u, 0],Subscript[v, 0],Subscript[y, 0])=(Subscript[l, u]/2 Subscript[x, 0],Subscript[l, v]/2 Subscript[x, 0],Subscript[y, 0]), the s parameter is the new coordinate \!\(\*OverscriptBox[\(u\), \(~\)]\), or U for simplicity.*)
-
-
-(* ::Item:: *)
-(*We've rescaled (Subscript[u, 0],Subscript[v, 0],Subscript[y, 0]); effectively we've set Subscript[l, u]=Subscript[l, v]=2:*)
-
-
-(* ::Item:: *)
-(*Flow along the U direction:*)
-
-
-(* ::Input:: *)
-(*flowOutside/.Thread[{u0,v0,y0}->{lu/2 u0,lv/2 u0,(lu lv)/4 y0}]/.s->U//Simplify[#,{u0>1}]&*)
-(*%/.{u[U]->u0,v[U]->v0,y[U]->y0}*)
-
-
-(* ::Item:: *)
-(*Now for the flow along the V direction, following Subscript[\[Xi], (v)]. The equations are identical under u<->v:*)
-
-
-(* ::Input:: *)
-(*Thread[\!\( *)
-(*\*SubscriptBox[\(\[PartialD]\), \(s\)]flow\)==(\[Xi]v/.Thread[{u,v,y}->flow])]*)
-
-
-(* ::Input:: *)
-(*flowOutside/.uvExchange*)
-(*flowUVY=flow/.%/.{u0->1/2 lu Tanh[U+ArcSech[-I Sqrt[-1+u0^2]]],v0->(lv (u0 (-1+u0^2+y0)-y0 Tanh[U+ArcSech[-I Sqrt[-1+u0^2]]]))/(2 (-1+u0^2)),y0->(lu lv y0 Sech[U+ArcSech[-I Sqrt[-1+u0^2]]]^2)/(4-4 u0^2)}/.s->V//Simplify*)
-
-
-(* ::Item:: *)
-(*The v-component is much nicer than the u-component, but they should be identical under u<->v. So we have:*)
-
-
-(* ::Input:: *)
-(*flowUVY={1/2 lu Tanh[U+ArcSech[-Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[-I Sqrt[-1+u0^2]]])^2/(-1+u0^2)^2]]],1/2 lv Tanh[V+ArcSech[-Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[U+ArcSech[-I Sqrt[-1+u0^2]]])^2/(-1+u0^2)^2]]],(lu lv y0 Sech[U+ArcSech[-I Sqrt[-1+u0^2]]]^2 Sech[V+ArcSech[-Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[U+ArcSech[-I Sqrt[-1+u0^2]]])^2/(-1+u0^2)^2]]]^2)/((4-4 u0^2) (1-(u0 (-1+u0^2+y0)-y0 Tanh[U+ArcSech[-I Sqrt[-1+u0^2]]])^2/(-1+u0^2)^2))}//Simplify*)
-
-
-(* ::Item:: *)
-(*Manual simplification of square roots:*)
-
-
-(* ::Input:: *)
-(*Tanh[U+ArcSech[x]]//TrigExpand//Simplify*)
-
-
-(* ::Input:: *)
-(*(Sqrt[1-x^2]Cosh[U]+Sinh[U])/(Cosh[U]+Sqrt[1-x^2]Sinh[U])/.x->-Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[-I Sqrt[-1+u0^2]]])^2/(-1+u0^2)^2]//Simplify*)
-
-
-(* ::Input:: *)
-(*(Sinh[U]+Cosh[U] (u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[-I Sqrt[-1+u0^2]]])/(-1+u0^2))/(Cosh[U]+Sinh[U] (u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[-I Sqrt[-1+u0^2]]])/(-1+u0^2))//Simplify*)
-
-
-(* ::Input:: *)
-(*Tanh[V+ArcSech[x]]//TrigExpand//Simplify*)
-
-
-(* ::Input:: *)
-(*(Sqrt[1-x^2]Cosh[V]+Sinh[V])/(Cosh[V]+Sqrt[1-x^2]Sinh[V])/.x->-I Sqrt[-1+u0^2]//Simplify*)
-
-
-(* ::Input:: *)
-(*((-1+u0^2) Sinh[U]+Cosh[U] (u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[-I Sqrt[-1+u0^2]]]))/((-1+u0^2) Cosh[U]+Sinh[U] (u0 (-1+u0^2+y0)-y0 Tanh[V+ArcSech[-I Sqrt[-1+u0^2]]]))/.Tanh[V+ArcSech[-I Sqrt[-1+u0^2]]]->(u0 Cosh[V]+Sinh[V])/(Cosh[V]+u0 Sinh[V])//FullSimplify*)
-
-
-(* ::Item:: *)
-(*This is identical to the result obtained inside the wedge!*)
-
-
-(* ::Input:: *)
-(*(u/.flowGeneral)==lu/2 (Sinh[U] (Cosh[V]+u0 Sinh[V])+Cosh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))/(Cosh[U] (Cosh[V]+u0 Sinh[V])+Sinh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))//Simplify*)
-
-
-(* ::Item:: *)
-(*It seems that it would be convenient to introduce Subscript[u, 0]=coth Subscript[x, 0]:*)
-
-
-(* ::Input:: *)
-(*(u0+Coth[V]+Coth[U] (u0^2+y0)+u0 Coth[U]Coth[V])/(u0^2+y0+u0(Coth[V]+Coth[U])+Coth[U]Coth[V])/.y0->(u0^2-1)Y/.u0->Coth[x0]*)
-(**)
-(*%/.{U->Ux-x0,V->Vx-x0}//Simplify*)
-(**)
-(*%//NumeratorDenominator//Collect[#,Y,FullSimplify]&*)
-(**)
-(*%[[1]]/%[[2]]/.{Ux->U+x0,Vx->V+x0}//Simplify*)
-
-
-(* ::Input:: *)
-(*(Y Cosh[U] Sinh[V]+Cosh[U+x0] Sinh[V+x0])/(Y Sinh[U] Sinh[V]+Sinh[U+x0] Sinh[V+x0]);*)
-(**)
-(*Framed[%]*)
-(*%%/.{{Y->0},{Y->-1}}//FullSimplify*)
-
-
-(* ::Item:: *)
-(*We can also choose some special Subscript[u, 0],Subscript[y, 0].*)
-
-
-(* ::Item:: *)
-(*Setting Subscript[u, 0]=1 seems convenient, although this point is somewhat singular (at the tip of the diamond):*)
-
-
-(* ::Input:: *)
-(*(y0 Coth[U]+(Coth[U]+1)(Coth[V]+1))/(y0+(Coth[U]+1)(Coth[V]+1))==(u0+Coth[V]+Coth[U] (u0^2+y0)+u0 Coth[U]Coth[V])/(u0^2+y0+u0(Coth[V]+Coth[U])+Coth[U]Coth[V])/.u0->1//Simplify*)
-
-
-(* ::Item:: *)
-(*For safety reasons, let's keep Subscript[u, 0]=coth Subscript[x, 0]. *)
-
-
-(* ::Item:: *)
-(*What about the y component?*)
-
-
-(* ::Input:: *)
-(*(lu lv y0 Sech[U+ArcSech[-I Sqrt[-1+u0^2]]]^2 Sech[V+ArcSech[-Sqrt[1-(u0 (-1+u0^2+y0)-y0 Tanh[U+ArcSech[-I Sqrt[-1+u0^2]]])^2/(-1+u0^2)^2]]]^2)/((4-4 u0^2) (1-(u0 (-1+u0^2+y0)-y0 Tanh[U+ArcSech[-I Sqrt[-1+u0^2]]])^2/(-1+u0^2)^2))/.Tanh[U+ArcSech[-I Sqrt[-1+u0^2]]]->(u0 Cosh[U]+Sinh[U])/(Cosh[U]+u0 Sinh[U])//Simplify*)
-
-
-(* ::Input:: *)
-(*Sech[U+ArcSech[x]]^2 Sech[V+ArcSech[y]]^2//TrigExpand//Simplify*)
-
-
-(* ::Input:: *)
-(*(x^2 y^2)/((Cosh[U]^2+Sinh[U] (2 Sqrt[1-x^2] Cosh[U]+(1+x)Sinh[U]-x (1+x)Sinh[U])) (Cosh[V]^2+Sinh[V] (2 Sqrt[1-y^2] Cosh[V]+(1+y)Sinh[V]-y (1+y)Sinh[V])))/.{*)
-(*x->-I Sqrt[-1+u0^2],y->-Sqrt[1-(u0 Cosh[U]+(u0^2+y0) Sinh[U])^2/(Cosh[U]+u0 Sinh[U])^2]*)
-(*}//Simplify*)
-
-
-(* ::Input:: *)
-(*((1-u0^2) (1-(u0 Cosh[U]+(u0^2+y0) Sinh[U])^2/(Cosh[U]+u0 Sinh[U])^2))/((Cosh[U]^2+u0^2 Sinh[U]^2+u0 Sinh[2 U]) (Cosh[V]^2+Sinh[V]^2-(1-(u0 Cosh[U]+(u0^2+y0) Sinh[U])^2/(Cosh[U]+u0 Sinh[U])^2) Sinh[V]^2+(u0 Cosh[U]+(u0^2+y0) Sinh[U])/(Cosh[U]+u0 Sinh[U]) Sinh[2 V]))//Simplify*)
-
-
-(* ::Input:: *)
-(*(lu lv y0 (Cosh[U]+u0 Sinh[U])^2)/(4 (-1+u0^2) ((-1+u0^2) Cosh[U]^2-2 u0 Cosh[U] Sinh[U]+(u0^4+y0^2+u0^2 (-1+2 y0)) Sinh[U]^2+u0 (u0^2+y0) Sinh[2 U])) ((-1+u0^2) ((-1+u0^2) Cosh[U]^2-2 u0 Cosh[U] Sinh[U]+(u0^4+y0^2+u0^2 (-1+2 y0)) Sinh[U]^2+u0 (u0^2+y0) Sinh[2 U]))/((Cosh[U]+u0 Sinh[U])^2 (Cosh[U] (Cosh[V]+u0 Sinh[V])+Sinh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))^2)//Simplify*)
-
-
-(* ::Item:: *)
-(*This is also identical to the result obtained inside the wedge!*)
-
-
-(* ::Input:: *)
-(*(y/.flowGeneral)==(lu lv y0)/(4 (Cosh[U] (Cosh[V]+u0 Sinh[V])+Sinh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))^2)//Simplify*)
-
-
-(* ::Item:: *)
-(*This is for generic Subscript[u, 0]. Setting Subscript[u, 0]=coth Subscript[x, 0] and Subscript[y, 0]=(1-Subscript[u, 0]^2)Y*)
-
-
-(* ::Input:: *)
-(*(lu lv y0)/(4 (Cosh[U] (Cosh[V]+u0 Sinh[V])+Sinh[U] (u0 Cosh[V]+(u0^2+y0) Sinh[V]))^2)/.y0->(1-u0^2)Y/.u0->Coth[x0]//Simplify*)
-
-
-(* ::Input:: *)
-(*(-1+Y) Cosh[U-V]-Y Cosh[U+V]+Cosh[U+V+2 x0]//Collect[#,Y,FullSimplify]&//Simplify*)
-
-
-(* ::Input:: *)
-(*-((lu lv)/4)Y (Sinh[x0]/(-Y Sinh[U] Sinh[V]+Sinh[U+x0] Sinh[V+x0]))^2==-((lu lv Y Sinh[x0]^2)/((-1+Y) Cosh[U-V]-Y Cosh[U+V]+Cosh[U+V+2 x0])^2)//Simplify*)
-
-
-(* ::Input:: *)
-(*Framed[-((lu lv)/4)Y (Sinh[x0]/(Y Sinh[U] Sinh[V]+Sinh[U+x0] Sinh[V+x0]))^2]//hideShow*)
-
-
-(* ::Subsection:: *)
-(*Checks for the general solution*)
-
-
-(* ::Input:: *)
-(*Limit[coord/.flowGeneral,{U->0,V->0}]*)
-
-
-(* ::Input:: *)
-(*\!\( *)
-(*\*SubscriptBox[\(\[PartialD]\), \(U\)]\((coord /. flowGeneral)\)\)==\[Xi]u/.flowGeneral//Simplify*)
-(*\!\( *)
-(*\*SubscriptBox[\(\[PartialD]\), \(V\)]\((coord /. flowGeneral)\)\)==\[Xi]v/.flowGeneral//Simplify*)
 
 
 (* ::Section::Closed:: *)
@@ -1157,59 +548,16 @@ flowGlueon=Thread[{u,v,y}->{lu/2 (Cosh[U+x0] Sinh[V+x0]-Y Cosh[U] Sinh[V])/(Sinh
 (*{*)
 (*{u0,-u0,1+Abs[u0]},*)
 (*{u0,u0,-1-Abs[u0]},*)
-(*{u0,-u0,\!\(\**)
-(*TagBox[GridBox[{*)
-(*{"\[Piecewise]", GridBox[{*)
-(*{*)
-(*RowBox[{*)
-(*RowBox[{"-", "1"}], "+", *)
-(*RowBox[{"Abs", "[", "u0", "]"}]}], *)
-(*RowBox[{*)
-(*RowBox[{"Abs", "[", "u0", "]"}], ">", "1"}]},*)
-(*{"Indeterminate", "True"}*)
+(*{u0,-u0,Piecewise[{*)
+(*{-1+Abs[u0],Abs[u0]>1},*)
+(*{Indeterminate,True}*)
+(*}]*)
 (*},*)
-(*AllowedDimensions->{2, Automatic},*)
-(*Editable->True,*)
-(*GridBoxAlignment->{"Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},*)
-(*GridBoxItemSize->{"Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, "RowsIndexed" -> {}},*)
-(*GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.84]}, Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}, "RowsIndexed" -> {}},*)
-(*Selectable->True]}*)
-(*},*)
-(*GridBoxAlignment->{"Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},*)
-(*GridBoxItemSize->{"Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, "RowsIndexed" -> {}},*)
-(*GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.35]}, Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}, "RowsIndexed" -> {}}],*)
-(*"Piecewise",*)
-(*DeleteWithContents->True,*)
-(*Editable->False,*)
-(*SelectWithContents->True,*)
-(*Selectable->False,*)
-(*StripWrapperBoxes->True]\)},*)
-(*{u0,u0,\!\(\**)
-(*TagBox[GridBox[{*)
-(*{"\[Piecewise]", GridBox[{*)
-(*{*)
-(*RowBox[{"1", "-", *)
-(*RowBox[{"Abs", "[", "u0", "]"}]}], *)
-(*RowBox[{*)
-(*RowBox[{"Abs", "[", "u0", "]"}], ">", "1"}]},*)
-(*{"Indeterminate", "True"}*)
-(*},*)
-(*AllowedDimensions->{2, Automatic},*)
-(*Editable->True,*)
-(*GridBoxAlignment->{"Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},*)
-(*GridBoxItemSize->{"Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, "RowsIndexed" -> {}},*)
-(*GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.84]}, Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}, "RowsIndexed" -> {}},*)
-(*Selectable->True]}*)
-(*},*)
-(*GridBoxAlignment->{"Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},*)
-(*GridBoxItemSize->{"Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, "RowsIndexed" -> {}},*)
-(*GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.35]}, Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}, "RowsIndexed" -> {}}],*)
-(*"Piecewise",*)
-(*DeleteWithContents->True,*)
-(*Editable->False,*)
-(*SelectWithContents->True,*)
-(*Selectable->False,*)
-(*StripWrapperBoxes->True]\)}*)
+(*{u0,u0,Piecewise[{*)
+(*{1-Abs[u0],Abs[u0]>1},*)
+(*{Indeterminate,True}*)
+(*}]*)
+(*}*)
 (*}*)
 (*}//Apply[Join]//Evaluate,*)
 (*{u0,-3,3},*)

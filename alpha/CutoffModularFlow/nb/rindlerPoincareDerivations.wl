@@ -3,7 +3,7 @@
 
 (* ::Section:: *)
 (*Rindler maps in Poincar\[EAcute] Subscript[AdS, 3] - Extended!*)
-(*Basics: derivations*)
+(*> Derivations*)
 
 
 (* ::Subsection:: *)
@@ -91,108 +91,30 @@ Quiet[SetOptions[Solve,Assumptions->True],{SetOptions::optnf}]
 (*Modular flow: basics*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Killing vectors*)
+
+
+(* ::Item:: *)
+(*Note to self: Formatted piecewise is difficult to read in script. Use the following instead:*)
 
 
 (* ::Input::Initialization:: *)
 {ju,jv}={
-Function[{n},\!\(\*
-TagBox[GridBox[{
-{"\[Piecewise]", GridBox[{
-{
-RowBox[{"{", 
-RowBox[{
-RowBox[{"-", "1"}], ",", "0", ",", "0"}], "}"}], 
-RowBox[{"n", "==", 
-RowBox[{"-", "1"}]}]},
-{
-RowBox[{"{", 
-RowBox[{
-RowBox[{"-", "u"}], ",", "0", ",", 
-RowBox[{"-", 
-FractionBox["z", "2"]}]}], "}"}], 
-RowBox[{"n", "==", "0"}]},
-{
-RowBox[{"{", 
-RowBox[{
-RowBox[{"-", 
-SuperscriptBox["u", "2"]}], ",", 
-SuperscriptBox["z", "2"], ",", 
-RowBox[{
-RowBox[{"-", "u"}], " ", "z"}]}], "}"}], 
-RowBox[{"n", "==", "1"}]},
-{"0", 
-TagBox["True",
-"PiecewiseDefault",
-AutoDelete->True]}
-},
-AllowedDimensions->{2, Automatic},
-Editable->True,
-GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
-GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.84]}, Offset[0.27999999999999997`]}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}},
-Selectable->True]}
-},
-GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
-GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.35]}, Offset[0.27999999999999997`]}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}}],
-"Piecewise",
-DeleteWithContents->True,
-Editable->False,
-SelectWithContents->True,
-Selectable->False,
-StripWrapperBoxes->True]\)],
-Function[{n},\!\(\*
-TagBox[GridBox[{
-{"\[Piecewise]", GridBox[{
-{
-RowBox[{"{", 
-RowBox[{"0", ",", 
-RowBox[{"-", "1"}], ",", "0"}], "}"}], 
-RowBox[{"n", "==", 
-RowBox[{"-", "1"}]}]},
-{
-RowBox[{"{", 
-RowBox[{"0", ",", 
-RowBox[{"-", "v"}], ",", 
-RowBox[{"-", 
-FractionBox["z", "2"]}]}], "}"}], 
-RowBox[{"n", "==", "0"}]},
-{
-RowBox[{"{", 
-RowBox[{
-SuperscriptBox["z", "2"], ",", 
-RowBox[{"-", 
-SuperscriptBox["v", "2"]}], ",", 
-RowBox[{
-RowBox[{"-", "v"}], " ", "z"}]}], "}"}], 
-RowBox[{"n", "==", "1"}]},
-{"0", 
-TagBox["True",
-"PiecewiseDefault",
-AutoDelete->True]}
-},
-AllowedDimensions->{2, Automatic},
-Editable->True,
-GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
-GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.84]}, Offset[0.27999999999999997`]}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}},
-Selectable->True]}
-},
-GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
-GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{1.}}},
-GridBoxSpacings->{"Columns" -> {Offset[0.27999999999999997`], {Offset[0.35]}, Offset[0.27999999999999997`]}, "Rows" -> {Offset[0.2], {Offset[0.4]}, Offset[0.2]}}],
-"Piecewise",
-DeleteWithContents->True,
-Editable->False,
-SelectWithContents->True,
-Selectable->False,
-StripWrapperBoxes->True]\)]
-};
+Function[{n},Piecewise[{
+{{-1,0,0},n==-1},
+{{-u,0,-(z/2)},n==0},
+{{-u^2,z^2,-u z},n==1}},
+0]],
+Function[{n},Piecewise[{
+{{0,-1,0},n==-1},
+{{0,-v,-(z/2)},n==0},
+{{z^2,-v^2,-v z},n==1}},
+0]]
+}
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*The y-gauge*)
 
 
@@ -230,7 +152,7 @@ y2z=(y->z^2 Sign[z]);
 (*z/.z2y/.y2z//FullSimplify*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Isometries & modular flow*)
 
 
@@ -391,7 +313,7 @@ flowGlueon=Thread[{u,v,y}->{lu/2 (Cosh[U+x0] Sinh[V+x0]-Y Cosh[U] Sinh[V])/(Sinh
 (*... which we shall derive as follows.*)
 
 
-(* ::Section::Closed:: *)
+(* ::Section:: *)
 (*Rindler maps: derivations*)
 
 
@@ -908,7 +830,7 @@ flowGlueon=Thread[{u,v,y}->{lu/2 (Cosh[U+x0] Sinh[V+x0]-Y Cosh[U] Sinh[V])/(Sinh
 (*Framed[-((lu lv)/4)Y (Sinh[x0]/(Y Sinh[U] Sinh[V]+Sinh[U+x0] Sinh[V+x0]))^2]//hideShow*)
 
 
-(* ::Subsection:: *)
+(* ::Subsection::Closed:: *)
 (*Checks for the general solution*)
 
 
