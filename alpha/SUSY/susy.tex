@@ -1069,6 +1069,69 @@ This is a note for our recreational journal club on supersymmetry (SUSY). It is 
 %	\end{enumerate}
 	}\vspace{.5\baselineskip}
 	
+	
+\subsection{Some cool facts about anomaly}
+\label{subsect:anomaly}
+\references{
+	\begin{enumerate}[noitemsep,topsep=0pt]
+	\item \textcite{Tong:2018gauge}, \S3
+	\item \textcite{Schwartz:2014sze}, \S30
+	\end{enumerate}
+}\vspace{\parskip}
+	
+	At the classical level, a massless Dirac fermion in \textit{even} dimensions enjoys the symmetry:
+	\begin{equation}
+		\mrm{U}(1)_V \times \mrm{U}(1)_A
+	\end{equation}
+	But only a $\mrm{U}(1)$ subgroup survives after quantization of the continuum field theory. This is the so-called chiral anomaly. 
+	
+	The interesting thing is that we can actually choose the surviving $\mrm{U}(1)$ subgroup. The $\mrm{U}(1)_A$ subgroup is often doomed to suffer, which is why we often don't distinguish the chiral anomaly with the so-called axial anomaly. 
+	On the other hand, the $\mrm{U}(1)_V$ subgroup is usually the lucky survivor, due to its close relation with the gauge symmetry, which affects our choice of regularization schemes. 
+	
+	Recall that in general, anomaly arises when it's impossible to choose a regularization scheme that is compatible with the symmetry. In usual computations of the chiral anomaly, we often assume the survival of $\mrm{U}(1)_V$, either explicitly or implicitly. 
+	\begin{itemize}
+	\item Let's denote the axial current as $j^\sigma$ and the vector current as $J^\mu$. When computing the triangle diagram $\vev{j^\sigma J^\mu J^\nu}$ in 4D, there is a free paramter that we can tune to regularize the loop momentum integral, which ``distributes'' the anomalous amplitude between $\pdd{\sigma} j^\sigma$ and $\pdd{\mu} J^\mu$. More precisely, the result is that $\pdd{\sigma} \vev{j^\sigma J^\mu J^\nu}$ and $\pdd{\mu} \vev{j^\sigma J^\mu J^\nu}$ cannot vanish simultaneously. 
+	
+	\item Computing $\vev{j^\sigma J^\mu J^\nu}$ is equivalent to computing $\vev{j^\sigma}_A$, where $A^\mu$ is some non-dynamic background gauge field coupled to $J^\mu$. Basically\footnote{
+		This is taken from \S22.3 of \textcite{Weinberg:1996kr}, Vol.\,II, where there is an extra minus sign in the front, probabaly due to a different convention for the current $j$. 
+	},
+	\begin{equation}
+		\vev{j^\sigma}_A
+		= \frac{1}{2} \int \dd[D]{x} \dd[D]{y}
+			\vev{j^\sigma J^\mu(x) J^\nu(y)}\,
+			A_\mu(x) A_\nu(y)
+	\end{equation}
+	I believe the $\frac{1}{2}$ factor here is to cancel the overcounting as we integrate over both $x$ and $y$. 
+	
+	\item We usually compute the axial anomaly for a massless Dirac fermion. Equivalently, we can look at its components, which are a pair of left and right-handed Weyl fermions, charged $Q = \pm 1$ under $\mrm{U}(1)_A$. They each contribute half of the anomaly. To prove this, one can insert a projection matrix $\frac{1 \pm \gamma_5}{2}$ which reduces the action for a Dirac fermion to that of a Weyl fermion\footnote{
+		Note that the Dirac mass term mixes left and right-handed components and will always be projected out. 
+	}; see \S30.2.4 of \cite{Schwartz:2014sze}. 
+	
+	In general, we can consider a series of Weyl fermions charged $Q$ under $\mrm{U}(1)_A$. Their contribution to the anomaly will be given by $\Tr Q\gamma_5$, where the trace goes over the whole representation. For the massless Dirac fermion with $Q = \pm 1$, we have:
+	\begin{equation}
+	\begin{aligned}
+		\Tr_{\,\textsl{Dirac}} Q\gamma_5
+		&= \Tr_{\,\textsl{Dirac}} \pqty{
+				\frac{1 + \gamma_5}{2}\,Q
+				- \frac{1 - \gamma_5}{2}\,Q
+			} \\
+		&= \Tr_{\,\textsl{Dirac}} \pqty{
+				\frac{1 + \gamma_5}{2}\,(+1)
+				- \frac{1 - \gamma_5}{2}\,(-1)
+			}
+		= \frac{1}{2} + \frac{1}{2}
+		= 1
+	\end{aligned}
+	\end{equation}
+	
+	\item Note that the axial $\mrm{U}(1)_A$ only exists in even dimensions, where we have a chirality matrix $\Gamma$ like $\gamma_5$, and we have Weyl spinors with definite chiralities; see \S1.1. In odd dimensions there are only (symplectic) Majorana spinors, so we can't even define $\mrm{U}(1)_A$ at the classical level. 
+	
+	On the other hand, massless Majorana spinors in even dimensions do admit $\mrm{U}(1)_A$ just like massless Dirac spinors, but it must be $\mrm{U}(1)_V$ neutral due to the reality condition\footnote{
+		It does have a $\mbb{Z}_2$ symmetry which can be understood as the remnant of the $\mrm{U}(1)_V$ at $\theta = \pi$, where $e^{i\theta} = -1$. This is quite similar to the fermion number symmetry $(-1)^F$ discussed in \S1.2. 
+	}. 
+	
+	\end{itemize}
+	
 \vspace{1.2\baselineskip}
 \pagebreak[4]
 \raggedright

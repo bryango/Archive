@@ -138,7 +138,7 @@
 		= \aqty{\eta,\omega} \,\mrm{Vol}_M
 	\end{equation}
 	$\aqty{\cdot,\cdot}$ is the induced inner product on the space of $p$-forms. 
-	The $\frac{1}{p!}$ factor is necessary to guarentee that $\hstar\hstar\omega = (-1)^s\cdot(-1)^{p(D-p)} \omega$. Again the $(-1)^s$ comes from signature of the metric. In particular, for a scalar $f$ and a vector $V$, we have:
+	The $\frac{1}{p!}$ factor is necessary to guarentee that $\hstar\hstar\omega = (-1)^s\cdot(-1)^{p(D-p)} \omega$. Again the $(-1)^s$ comes from signature of the metric. In particular, for a scalar $f$ and a vector $\theta$, we have:
 	\begin{equation}
 		\hstar f
 		= f\sqrt{\abs{g}} \dd[D]{x},
@@ -1409,6 +1409,21 @@
 		\leadsto \var_\epsilon \phi
 		= \ldv{\epsilon} \phi
 	\end{equation}
+	We then have \cite{Compere:2018aar}:
+	\begin{equation}
+	\begin{aligned}
+		\var_\epsilon L
+		&= \dd[D]{x} \pqty{
+				\frac{\sqrt{-g}}{2}\, T^{\mu\nu}\,
+					\var_\epsilon {g_{\mu\nu}}
+				+ \fdv{S^M_L}{\phi}\,
+					\var_\epsilon {\phi}
+				+ \fdv{S^G_L}{g_{\mu\nu}}\,
+					\var_\epsilon {g_{\mu\nu}}
+			} \\
+	\end{aligned}
+	\end{equation}
+	
 	
 	
 %\legacyReference
