@@ -3,4 +3,5 @@
 *.snm
 ref
 img/backup
+!img/*.pdf
 *.xcf
