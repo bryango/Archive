@@ -1,0 +1,6 @@
+*.dep
+*.nav
+*.snm
+ref
+img/backup
+*.xcf
