@@ -4,9 +4,10 @@
 % !TeX TS-program = pdflatex
 % !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
 
-\documentclass[aspectratio=169,10pt
+\documentclass[
+	10pt
 %	,draft
-%	,handout
+	,handout
 	,noamsthm
 ]{beamer}
 
@@ -16,21 +17,21 @@
 %\usepackage{snapshot}
 
 \title{Glue-on AdS holography for $T\bar T$-deformed CFTs}
-\subtitle{Holography duality beyond AdS/CFT}
+\subtitle{An extended AdS\,/\,\TTbar duality \textit{(beyond infinity)}}
 \author{%
 	Wen-Xin Lai 
 	\texstringonly{\,}\textkai{赖文昕}%
-	\texstringonly{\\[1ex]
+	\texstringonly{
 		\textit{\small in collaboration with} \\
 			Luis Apolo,
 			Peng-Xiang Hao \textkai{郝鹏翔}
 			and Wei Song \textkai{宋伟}\\[2ex]
-		\sidenote{\arxiv{2303.04836}}
-		\ submitted to \textit{JHEP}
+		\sidenote{\arxiv{2303.04836}}%
+%		\ submitted to \textit{JHEP}
 	}%
 }
 \institute{\small%
-	Yau Mathematical Sciences Center,
+	Yau Mathematical Sciences Center,\\
 	Tsinghua\texstringonly{
 %		\\\large\ccbyncsajp
 	}%
@@ -65,17 +66,17 @@
 	\titlepage
 	\tikz [remember picture,overlay]
 	\node at ([
-		yshift=-2.5\baselineskip,xshift=.3\linewidth
+		yshift=-4.8\baselineskip,
+		xshift=.26\linewidth
 	] current page.center) {
 		\begin{minipage}{.5\textwidth}
 		\centering
-		\includegraphics[height=.45\textheight]{img/escher_links.png}
-		\\[2ex]
-		\footnotesize fig:~\textcite{Dunham:Escher} on Escher's art
-		\hspace{-1em}
+		\includegraphics[height=.33\textheight]{img/smbc-cantor-cropped.png}
+		\\[.2ex]
+		\footnotesize \url{https://smbc-comics.com/comic/cantor}
+		\hspace{-1.5em}
 		\end{minipage}
 	};
-
 \end{frame}
 }%%% TITLEPAGE
 
@@ -85,98 +86,97 @@
 \tableofcontents
 \end{frame}
 
-\section{\textbf{Background:} AdS/CFT holography}
+\section{\textbf{Warmup:} $\mrm{AdS}_{d+1}$/$\mrm{CFT}_{d}$ at $d = 2$}
 
-\newcommand{\stateAdsCft}{\ensuremath{
-	\textrm{String Theory on $\mrm{AdS}_{d+1}$ background}
+\newcommand{\stateAdsCft}{
+\begin{align*}
+	\textrm{Strings on $\mrm{AdS}_{d+1}$ background}
 	&\ \equiv\ 
 	\textrm{Conformal Field Theory $\mrm{CFT}_{d}$}
 \\
-	\textrm{Asymptotically $\mrm{AdS}_{d+1}$ Gravity}
+	\textrm{\textit{asympt.}~$\mrm{AdS}_{d+1}$ Gravity}
 	&\ \equiv\ 
-	\textrm{Large $N$ $\mrm{CFT}_{d}$ at asympt.~boundary}
-}}
+	\textrm{Large $N$ $\mrm{CFT}_{d}$ at \textit{asympt.}~boundary}
+\end{align*}
+}
+
+\newcommand{\citeMaldacena}{%
+	\textcite{Maldacena:1997re} --- \scriptsize\citetitle{Maldacena:1997re}
+}
 
 \begin{frame}{AdS/CFT --- holography duality}{%
-	\textcite{Maldacena:1997re} --- \citetitle{Maldacena:1997re}%
+	\citeMaldacena%
 }
-\vspace{-1\baselineskip}
-\begin{align}
+\vspace{-2.5\baselineskip}
 \stateAdsCft
-\end{align}
-\vspace{-1.5\baselineskip}
-\pause
-\begin{itemize}
-\item (asympt.) AdS: Anti-de Sitter spacetime, geometry with negative Ricci curvature $R < 0$, solution of Einsteins equations with cosmological constant $\Lambda < 0$:
-\begin{equation}
-	R_{\mu\nu} - \frac{1}{2}\,R g_{\mu\nu}
-	+ \Lambda g_{\mu\nu}
-	= 8\pi G_N T_{\mu\nu}^{\textit{matter}},\quad
-	\Lambda < 0
-\label{eq:einstein}
-\end{equation}
-
-\pause
-\item CFT: conformal field theory, quantum field theory (QFT) invariant under rescaling\textsuperscript{*}, well defined \& well understood in math
-\begin{equation}
-	g_{ij} \sim e^{2\Omega(x)} g_{ij}
-\end{equation}
-*\,``ruler-independent'', {\footnotesize unless there is an \textit{``anomaly''}, but everything is still under control}
-\end{itemize}
-\vspace{\baselineskip}
-\end{frame}
-
-\begin{frame}{AdS/CFT --- a model of quantum gravity}{%
-	\textcite{Maldacena:1997re} -- \citetitle{Maldacena:1997re}%
-}
-\vspace{-1.5\baselineskip}
-\begin{align*}
-\stateAdsCft
-\end{align*}
-\vspace{-1.5\baselineskip}
-\pause
-\begin{itemize}
-
-\item A model of \textsc{quantum gravity}, discovered from dualities in \textsc{string theory}
-	\begin{itemize}
-	\item Dualities: equivalent descriptions for the same theory, physicist's ``proof'' of AdS/CFT
-	\item No general proof yet in the mathematical sense, but there is \textit{overwhelming} evidence
-	\end{itemize}
-
-\pause
-\item Universal / ubiquitous
-\begin{itemize}
-	\item Model agnostic: $\mrm{AdS}_5\times S^5$, $\mrm{AdS}_3\times S^3 \times T^4$, symmetric orbifolds, minimal models, ``monsters'', ... \textit{\small Maldacena, Witten, GKP, ABJM, Gaberdiel, and many many more}
-	\item Our work: based on universal properties of $\mrm{AdS}_3/\mrm{CFT}_2$ $(d=2)$.
-	
-\end{itemize}
-\end{itemize}
-\end{frame}
-
-\newcommand{\figAdsCft}{
+\vspace{-1.8\baselineskip}
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=\linewidth]{img/ads-cft.png}
+	\includegraphics[width=.5\linewidth]{img/ads-cft.png}
 
 	\vspace{-.3\baselineskip}
 	\caption{$\mrm{AdS}_3/\mrm{CFT}_2$ cartoon}
 	
-	\vspace{-.3\baselineskip}
+	\vspace*{-.8\baselineskip}
 	\scriptsize\ Image courtesy: \textcite{AldegundePWSep22}
 \end{figure}
+\vspace{-1.3\baselineskip}
+\end{frame}
+
+%\begin{equation}
+%	R_{\mu\nu} - \frac{1}{2}\,R g_{\mu\nu}
+%	+ \Lambda g_{\mu\nu}
+%	= 8\pi G_N T_{\mu\nu}^{\textit{matter}},\quad
+%	\Lambda < 0
+%\label{eq:einstein}
+%\end{equation}
+
+\begin{frame}{AdS/CFT --- a model of quantum gravity}{%
+	\citeMaldacena
+}
+\vspace{-2.4\baselineskip}
+\stateAdsCft
+\vspace{-1.6\baselineskip}
+\pause
+\begin{itemize}
+
+\item A model of \textsc{quantum gravity}
+\item ... originating from \textsc{string theory}
+\item ... seemingly \textsc{Universal / ubiquitous}
+
+\pause
+\begin{itemize}
+	\item Model agnostic: $\mrm{AdS}_5\times S^5$, $\mrm{AdS}_3\times S^3 \times T^4$, symmetric orbifolds, minimal models, ``monsters'', ... \textit{\small Maldacena, Witten, GKP, ABJM, Gaberdiel, and many many more}
+	\item Our work: pure Einstein gravity in $\mrm{AdS}_3$ / $\mrm{CFT}_2$ $(d=2)$.
+	
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
+
+%%% LaTeX3e!
+\NewDocumentCommand{\figAdsCft}{ O{.28} }{
+\begin{column}{#1\textwidth}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=\linewidth]{img/ads-cft-cleaner.png}
+
+	\vspace{-.01\baselineskip}
+	\scriptsize\textcite{AldegundePWSep22}\ \,
+\end{figure}
+\end{column}
 }
 
+
 \begin{frame}{$\mrm{AdS}_3/\mrm{CFT}_2$ --- gravity trapped in a \textit{Poincar\'e cylinder}}{%
-	Title inspired by
-	\textcite{Kraus:2021cwf} -- \citetitle{Kraus:2021cwf}%
+	\textcite{Aharony:1999ti}
 }
 \begin{columns}
-\begin{column}{.45\textwidth}
 \figAdsCft
-\end{column}
-\begin{column}{.55\textwidth}
+\begin{column}{.75\textwidth}
 	\begin{itemize}
-	\item $\mrm{AdS}_3$ metric,
+	\item $\mrm{AdS}_3$ metric, $\rho \sim z^2 \sim r^{-2}$
 	\begin{equation}
 	\hspace{-2em}
 		ds^2 = \ell^2 \frac{d\rho^2}{4 \rho^2} + \pqty{\frac{1}{\rho} g^{(0)}_{ij} + g^{(2)}_{ij} + \rho\thinmspace g^{(4)}_{ij} + \cdots}\, dx^i dx^j \label{fggauge}
@@ -196,28 +196,29 @@
 \end{columns}
 \end{frame}
 
+\newcommand{\eqBanados}{
+	\begin{equation*}
+	\hspace{-2em}
+		ds^2 = \ell^2 \bigg( \frac{d\rho^2}{4 \rho^2} + \frac{ \big( du + \rho \, \mathcal {\bar L}(v)\, dv \big) \big( dv + \rho \, \mathcal L(u)\, du \big) }{\rho} \bigg)\ \,
+	\end{equation*}
+}
 
 \begin{frame}{$\mrm{AdS}_3/\mrm{CFT}_2$ --- simple realization of holography}{%
-	\textcite{Aharony:1999ti} -- \citetitle{Aharony:1999ti}
+	\textcite{Banados:1992wn}
 }
 \begin{columns}
-\begin{column}{.4\textwidth}
 \figAdsCft
-\end{column}
-\begin{column}{.6\textwidth}
+\begin{column}{.72\textwidth}
 	\begin{itemize}
 	\item $\mrm{AdS}_3$ metric for $\rho > 0$, \\
 	\textcite{Banados:1998gg}
-	\begin{equation}
-	\hspace{-2.5em}
-		ds^2 = \ell^2 \bigg( \frac{d\rho^2}{4 \rho^2} + \frac{ \big( du + \rho \, \mathcal {\bar L}(v)\, dv \big) \big( dv + \rho \, \mathcal L(u)\, du \big) }{\rho} \bigg)\ \label{banados}
-	\end{equation}
+	\eqBanados
 	$g^{(2)} \leadsto \mathcal L(u)$, $\bar{\mathcal L}(v)$: arbitrary periodic functions,\\
 	where $u,v = \varphi \mp it$, $du\,dv = d\varphi^2 + dt^2$
 %	\vspace{-.5\baselineskip}
 	
 \pause
-	\item A consequence of Einstein equations \eqref{eq:einstein} \\
+	\item A consequence of Einstein equations \\
 	in $(2+1)$ dimensions.\\
 	\textit{Too many constraints, too little freedom!}
 	\end{itemize}
@@ -227,62 +228,25 @@
 
 
 \begin{frame}{$\mrm{AdS}_3/\mrm{CFT}_2$ --- simple realization of holography}{%
-	\textcite{Banados:1992wn} -- \citetitle{Banados:1992wn}
+	\textcite{Aharony:1999ti}
 }
 \begin{columns}
-\begin{column}{.4\textwidth}
 \figAdsCft
-\end{column}
-\begin{column}{.6\textwidth}
+\begin{column}{.72\textwidth}
 	\begin{itemize}
 	\item Different \textbf{geometries} in the ``bulk''
-	\begin{equation}
-	\hspace{-2.5em}
-		ds^2 = \ell^2 \bigg( \frac{d\rho^2}{4 \rho^2} + \frac{ \big( du + \rho \, \mathcal {\bar L}(v)\, dv \big) \big( dv + \rho \, \mathcal L(u)\, du \big) }{\rho} \bigg)\ \label{banados}
-	\end{equation}
-	specified by $\mathcal L(u)$, $\bar{\mathcal L}(v)$: arbitrary periodic functions
-	
-	\vspace{.5\baselineskip}
-	
-\pause
-	\item ... maps to different \textbf{states} in the boundary $\mrm{CFT}_2$
-	\begin{itemize}
-		\item \textit{state:} excitations of the boundary field theory
-		\item \textit{spectrum} of the Hamiltonian operator, $\hat{H}$
-	\end{itemize}
-%	\item In a \textit{holographic} theory, $,\\
-%	a boundary state can be prepared by a bulk path integral.
-	\end{itemize}
-\end{column}
-\end{columns}
-\end{frame}
+	\eqBanados
+	specified by $\mathcal L(u)$, $\bar{\mathcal L}(v)$: periodic functions, maps to different \textbf{states} in the boundary $\mrm{CFT}_2$ with stress energy $\ave{T(u)}_\psi$, $\ave{\bar{T}(v)}_\psi$
 
-\begin{frame}{$\mrm{AdS}_3/\mrm{CFT}_2$ --- the holographic dictionary}{%
-	\textcite{Aharony:1999ti} -- \citetitle{Aharony:1999ti}
-}
-\begin{columns}
-\begin{column}{.4\textwidth}
-\figAdsCft
-\end{column}
-\begin{column}{.6\textwidth}
-	\begin{itemize}
-	\item \textit{Dictionary:} bulk $\leftrightarrow$ boundary quantities
-	
-	\begin{itemize}
-	\item spectrum,
-	\item symmetry,
-	\item correlations, ...
+	\item \textit{Dictionary:} bulk $\leftrightarrow$ boundary quantities:\\
+		\begin{itemize}
+		\item spectrum,
+			symmetry,\\
+			partition functions,
+			correlators, ...
+		\end{itemize}
 	\end{itemize}
-	
-	\item Partition function:
-	\begin{equation}
-		\mcal{Z}_{\pd B}
-		= \sum_{i \in \textit{states}} \ave{e^{-\beta \hat{H}}}_i
-		= \mcal{Z}_{B\textit{ulk}}
-	\end{equation}
-	weighted sum over the spectrum
-	
-	\end{itemize}
+
 \end{column}
 \end{columns}
 \end{frame}
@@ -293,10 +257,8 @@
 	Comments taken from \textcite{Cui:2023jrb}
 }
 \begin{columns}
-\begin{column}{.45\textwidth}
 \figAdsCft
-\end{column}
-\begin{column}{.55\textwidth}
+\begin{column}{.72\textwidth}
 	\begin{itemize}
 	\item Ideally: AdS/CFT
 	\item Reality: non-AdS space and non-CFT
@@ -310,59 +272,58 @@
 \end{columns}
 \end{frame}
 
+\newcommand{\citeTTbar}{%
+	\textcite{Zamolodchikov:2004ce}, revived by \textcite{Smirnov:2016lqw} and \textcite{Cavaglia:2016oda} \textit{et al}
+}
 
-\begin{frame}{\TTbar deformations --- definition}{%
-	\textcite{Zamolodchikov:2004ce},\\
-	revived by \textcite{Smirnov:2016lqw,Cavaglia:2016oda}
+
+\begin{frame}{\TTbar deformations --- ``solvable''}{%
+	\citeTTbar
 }
 \begin{itemize}
-\item Path integral formalism:
+
+\item Define ``\,\TTbar\,'' as the flow of action:
 \begin{equation}
-	\mcal{Z}
-	= \sum_{i \in \textit{states}} \ave{e^{-\beta \hat{H}}}_i
-	= \int \DD{\phi(x)} e^{-I[\phi(x)]}
-\label{eq:partition}
+	\partial_{\sidenote{\mu}} I = -{8 \pi} \int d^2x \, T\bar T =  -{\pi} \int d^2x\,\big( T^{ij}T_{ij}- (T^i_i)^2 \big)
+	\label{TTbardef}
 \end{equation}
-$I[\phi(x)]$: action (energy) functional of the fields $\phi(x)$\\
-\phantom{$I[\phi(x)]$: }captures the dynamics of the theory
+For $\mrm{CFT}_2$,\ $T\bar{T} = T_{xx} T_{\bar{x}\bar{x}}$,\ where $x, \bar{x} = \varphi' \mp it'$.
+
+\item The stress tensor $T_{ij}(\sidenote{\mu})$ on the right hand side flows with the deformation parametrized by $\sidenote{\mu}$. 
 
 \pause
 
-\item Stress tensor $T_{ij}[\phi(x)]$: energy momentum, local and covariant version of $\hat{H}$
-\begin{equation}
-%	\label{TTbardefintro}
-	\partial_\mu I = -{8 \pi} \int d^2x \, T\bar T =  -{\pi} \int d^2x\,\big( T^{ij}T_{ij}- (T^i_i)^2 \big)
-\end{equation}
-For $\mrm{CFT}_2$,\ $T\bar{T} = T_{xx} T_{\bar{x}\bar{x}}$,\ where $x, \bar{x} = \varphi' \mp it'$.
-{\footnotesize We've set the length scale $\ell = 1$.}
+\item This is thus a \textit{differential equation} for a flow, starting from some generic QFT specified by $I(\mu = 0)$. In this work we shall start from $\mrm{CFT}_2$, but note that \TTbar is \textit{irrelevant}: conformal symmetry will be broken.
 
 \end{itemize}
 \end{frame}
 
+
 \begin{frame}{\TTbar deformations --- ``solvable''}{%
-	\textcite{Zamolodchikov:2004ce},\\
-	revived by \textcite{Smirnov:2016lqw,Cavaglia:2016oda}
+	\citeTTbar
 }
-\vspace{-.3\baselineskip}
 \begin{itemize}
-\item Define of \TTbar as the flow of action:
-\begin{equation}
-	\label{TTbardefintro}
-	\partial_\mu I = -{8 \pi} \int d^2x \, T\bar T =  -{\pi} \int d^2x\,\big( T^{ij}T_{ij}- (T^i_i)^2 \big)
-\end{equation}
-This is a \textit{flow equation} from some generic QFT specified by $I(\mu = 0)$. 
 
-\pause
-
-\item \textbf{``Solvable'':} the deformed spectrum of $\hat{H}(\mu)$ and $\hat{J}(\mu)$ on a cylinder of radius $R$\\
-can be solved, and it's a simple function of the undeformed $E(0)$, $J(0)$:
+\item \textbf{``Solvable'':} the deformed spectrum of $\hat{H}(\mu)$ and $\hat{J}(\mu)$ on a cylinder of radius $R$ can be solved, 
+and it's a simple function\\
+ of the undeformed $E(0)$, $J(0)$:
 \begin{equation}
+\hspace{-2em}
 	E(\mu) = - \frac{R }{ 2\mu } \bigg(1-\sqrt{1 + \frac{4\mu}{R} E(0) + \frac{4\mu^2}{R^4} J(0)^2 }
 	\,\bigg), \ \quad J(\mu)=J(0) % \label{ttbarspectrum}
 \end{equation}
 under simple (and reasonable) assumptions (e.g.~translation invariance et al). 
 
+\item \textbf{Variants:} suppose the theory has some ``components'' labeled by $w$,
+
+\begin{itemize}
+\item double-trace $\TTbar = (\sum_w T_w) (\sum_w \bar{T}_w)$ (this work)
+\item single-trace $\TTbar' = \sum_w (T_w \bar{T}_w)$ (e.g.~\textit{\citeauthor{Cui:2023jrb}},~23)
 \end{itemize}
+
+\end{itemize}
+
+\vspace{.5\baselineskip}
 \end{frame}
 
 \begin{frame}{\TTbar deformations --- properties}{%
@@ -371,17 +332,13 @@ under simple (and reasonable) assumptions (e.g.~translation invariance et al).
 }
 \vspace{-1.\baselineskip}
 \begin{equation}
-	\partial_\mu I = -{8 \pi} \int d^2x\,T\bar T
-	\label{TTbardef}
-\end{equation}
-\begin{equation}
 	E(\mu) = - \frac{R }{ 2\mu } \bigg(1-\sqrt{1 + \frac{4\mu}{R} E(0) + \frac{4\mu^2}{R^4} J(0)^2 }
 	\,\bigg), \ \quad J(\mu)=J(0)  \label{ttbarspectrum}
 \end{equation}
 \vspace{-\baselineskip}
 \begin{itemize}
-\item It seems that the \TTbar deformation is well-defined non-perturbatively for generic $\mrm{QFT}_2$,\\
-yet mysterious: computations of many quantities are difficult\\
+\item It seems that the \TTbar deformation is well-defined non-perturbatively for generic $\mrm{QFT}_2$,
+yet it's still mysterious and difficult\\
 \begin{itemize}
 \item e.g.~correlators: \textcite{Kraus:2018xrn,Cardy:2019qao,Cui:2023jrb}
 \item ``asymptotic fragility'': \textcite{Dubovsky:2017cnj}
@@ -393,17 +350,17 @@ yet mysterious: computations of many quantities are difficult\\
 \end{itemize}
 \end{frame}
 
-\newcommand{\figCutoffAds}{
+\newcommand{\figCutoffAds}[1][.3]{
+\begin{column}{#1\textwidth}
 \begin{figure}[!h]
-	\hfill\includegraphics[width=.8\linewidth]{img/cutoff-ads.jpg}
+	\hfill\includegraphics[width=\linewidth]{img/cutoff-ads.jpg}
 
-	\centering
-	\vspace{-.3\baselineskip}
-	\caption{Cutoff $\mrm{AdS}_3/\TTbar$ duality}
-	
-	\vspace{-.3\baselineskip}
-	\scriptsize\ Image courtesy: \textcite{AldegundePWSep22}
+	\vspace{-.5\baselineskip}
+	\flushleft
+	\ \scriptsize\textcite{AldegundePWSep22}
 \end{figure}
+\end{column}
+\hspace{-2em}
 }
 
 \begin{frame}{Cutoff $\mrm{AdS}_3$ / \TTbar deformed $\mrm{CFT}_2$}{%
@@ -411,10 +368,9 @@ yet mysterious: computations of many quantities are difficult\\
 	\citetitle{McGough:2016lol}
 }
 \begin{columns}
-\begin{column}{.4\textwidth}
 \figCutoffAds
-\end{column}
-\begin{column}{.6\textwidth}
+\hspace{-2em}
+\begin{column}{.75\textwidth}
 	\begin{itemize}
 	\item Question: what is the AdS dual of \TTbar deformation?\\
 	
@@ -443,10 +399,9 @@ yet mysterious: computations of many quantities are difficult\\
 	\citetitle{McGough:2016lol}
 }
 \begin{columns}
-\begin{column}{.35\textwidth}
 \figCutoffAds
-\end{column}
-\begin{column}{.65\textwidth}
+\hspace{-1em}
+\begin{column}{.7\textwidth}
 	\begin{itemize}
 	\item Location (radius) of the cutoff surface:
 	\begin{equation}
@@ -461,7 +416,7 @@ yet mysterious: computations of many quantities are difficult\\
 \pause
 	
 	\item Passed many non-trivial tests
-	\item Generalized to ``mixed boundary conditions''\\
+	\item Related to ``mixed boundary conditions''\\
 	by \textcite{Guica:2019nzm}
 	
 	\end{itemize}
@@ -475,10 +430,9 @@ yet mysterious: computations of many quantities are difficult\\
 	\textcite{Kraus:2021cwf} -- \citetitle{Kraus:2021cwf}%
 }
 \begin{columns}
-\begin{column}{.35\textwidth}
 \figCutoffAds
-\end{column}
-\begin{column}{.65\textwidth}
+\hspace{-1em}
+\begin{column}{.75\textwidth}
 \vspace{-.5\baselineskip}
 	\begin{itemize}
 	\item \textbf{Significance:} gravity inside a finite box\\
@@ -770,7 +724,7 @@ froms Wen-Xin Lai\ \textkai{赖文昕}
 	Peng-Xiang Hao \textkai{郝鹏翔}
 	and Wei Song \textkai{宋伟}\\[2ex]
 \sidenote{\arxiv{2303.04836}}
-\ submitted to \textit{JHEP}
+%\ submitted to \textit{JHEP}
 
 \end{frame}
 
