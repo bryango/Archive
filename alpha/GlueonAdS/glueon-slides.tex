@@ -4,38 +4,34 @@
 % !TeX TS-program = pdflatex
 % !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
 
-\documentclass[
-	10pt
-%	,draft
-%	,handout
-	,noamsthm
-]{beamer}
+\documentclass[10pt]{article}
 
 \input{preamble-slides.tex}
 
 \usepackage{tikz}
+\usepackage{caption}
 %\usepackage{snapshot}
 
+\renewenvironment{frame}[1]%
+	{\section*{#1}}%
+	{\clearpage}
+
+\newcommand{\pause}{}
+
+\newenvironment{columns}%
+	{\par\begin{minipage}{\textwidth}}%
+	{\end{minipage}}
+	
+\newenvironment{column}[1]%
+	{\begin{minipage}{#1}}%
+	{\end{minipage}}
+
+
 \title{Glue-on AdS holography for $T\bar T$-deformed CFTs}
-\subtitle{An extended AdS\,/\,\TTbar duality \textit{(beyond infinity)}}
+%\subtitle{An extended AdS\,/\,\TTbar duality \textit{(beyond infinity)}}
 \author{%
-	Wen-Xin Lai 
+	Wen-Xin Lai
 	\texstringonly{\,}\textkai{赖文昕}%
-	\texstringonly{
-		\textit{\small in collaboration with} \\
-			Luis Apolo,
-			Peng-Xiang Hao \textkai{郝鹏翔}
-			and Wei Song \textkai{宋伟}\\[2ex]
-		\sidenote{\arxiv{2303.04836}}%
-%		\ submitted to \textit{JHEP}
-	}%
-}
-\institute{\small%
-	Yau Mathematical Sciences Center,\\
-	Tsinghua\texstringonly{
-%		\\\large\ccbyncsajp
-	}\\[2ex]
-	\today\ @ BIMSA
 }
 \date{}
 
@@ -56,41 +52,45 @@
 \newcommand{\TTbar}{\texorpdfstring{\ensuremath{T\bar{T}}}{TTbar}\xspace}
 
 \begin{document}
-{%%% TITLEPAGE
-\setbeamercolor{title in head/foot}{
-		use=palette quaternary
-		,fg=palette quaternary.bg
-	}
-\logo{}
-\begin{frame}
-%	\titlegraphic{\vspace{2\baselineskip}}
-	\titlepage
-	\tikz [remember picture,overlay]
-	\node at ([
-		yshift=-4.6\baselineskip,
-		xshift=.25\linewidth
-	] current page.center) {
-		\begin{minipage}{.5\textwidth}
-		\centering
-		\includegraphics[height=.33\textheight]{img/smbc-cantor-cropped.png}
-		\\[.2ex]
-		\footnotesize \url{https://smbc-comics.com/comic/cantor}
-		\hspace{-1.5em}
-		\end{minipage}
-	};
-\end{frame}
-}%%% TITLEPAGE
 
-\begin{frame}{Outline}
-\raggedbottom
+\setlength{\droptitle}{-3.5\baselineskip}
+\maketitle
+\thispagestyle{empty}
+
+\vspace{-3.5\baselineskip}
+
+\centering
+
+\textit{in collaboration with}
+\\[.8ex]
+	{\large Luis Apolo,
+	Peng-Xiang Hao \textkai{郝鹏翔}
+	and Wei Song \textkai{宋伟}}
+\\[2ex]
+	\sidenote{\arxiv{2303.04836}}
+\\[3ex]
+	\textsf{Yau Mathematical Sciences Center, Tsinghua}
+\\[1ex]
+	{\large\ccbyncsajp}
+\\[2ex]
+	\textsf{\today\ @ BIMSA}
+\\[4ex]
+	\includegraphics[height=.38\textheight]{img/smbc-cantor-cropped.png}
+\\[-.5ex]
+	{\footnotesize\url{https://smbc-comics.com/comic/cantor}}
+
+\clearpage
+\justifying
+
+%\raggedbottom
 \large
 \tableofcontents
-\end{frame}
+\pagebreak
 
 \section{\textbf{Warmup:} Pure Einstein gravity in $\mrm{AdS}_3$ / $\mrm{CFT}_2$}
 
 \newcommand{\citeMaldacena}{%
-	\textcite{Maldacena:1997re} --- \scriptsize\citetitle{Maldacena:1997re}
+	\textcite{Maldacena:1997re}
 }
 
 \newcommand{\stateAdsCft}{
@@ -105,24 +105,19 @@
 \end{align*}
 }
 
-\begin{frame}{AdS/CFT --- holography duality}{%
-	\citeMaldacena%
-}
-\vspace{-2.5\baselineskip}
+
+\citeMaldacena
 \stateAdsCft
-\vspace{-1.8\baselineskip}
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=.5\linewidth]{img/ads-cft.png}
 
-	\vspace{-.3\baselineskip}
+	\vspace{-.2\baselineskip}
 	\caption{$\mrm{AdS}_3/\mrm{CFT}_2$ cartoon}
 	
-	\vspace*{-.8\baselineskip}
 	\scriptsize\ Image courtesy: \textcite{AldegundePWSep22}
 \end{figure}
 \vspace{-1.3\baselineskip}
-\end{frame}
 
 %\begin{equation}
 %	R_{\mu\nu} - \frac{1}{2}\,R g_{\mu\nu}
@@ -132,50 +127,43 @@
 %\label{eq:einstein}
 %\end{equation}
 
-\begin{frame}{AdS/CFT --- a model of quantum gravity}{%
-	\citeMaldacena
-}
-\vspace{-2.4\baselineskip}
+\section*{AdS/CFT --- a model of quantum gravity}
+\citeMaldacena
 \stateAdsCft
-\vspace{-1.6\baselineskip}
-\pause
 \begin{itemize}
 
 \item A model of \textsc{quantum gravity}
 \item ... originating from \textsc{string theory}
 \item ... seemingly \textsc{Universal / ubiquitous}
 
-\pause
 \begin{itemize}
 	\item Model agnostic: $\mrm{AdS}_5\times S^5$, $\mrm{AdS}_3\times S^3 \times T^4$, symmetric orbifolds, minimal models, ``monsters'', ... \textit{\small Maldacena, Witten, GKP, ABJM, Gaberdiel, and many many more}
 	\item Our work: pure Einstein gravity in $\mrm{AdS}_3$ / $\mrm{CFT}_2$ $(d=2)$.
 	
 \end{itemize}
 \end{itemize}
-\end{frame}
 
-
+\pagebreak
 
 %%% LaTeX3e!
 \NewDocumentCommand{\figAdsCft}{ O{.28} }{
-\begin{column}{#1\textwidth}
-\begin{figure}[!h]
+\begin{minipage}{#1\textwidth}
 	\centering
 	\includegraphics[width=\linewidth]{img/ads-cft-cleaner.png}
 
 	\vspace{-.01\baselineskip}
 	\scriptsize\textcite{AldegundePWSep22}\ \,
-\end{figure}
-\end{column}
+\end{minipage}
 }
 
 
-\begin{frame}{$\mrm{AdS}_3/\mrm{CFT}_2$ --- gravity trapped in a cylinder}{%
-	\textcite{Aharony:1999ti}
-}
+\begin{frame}{$\mrm{AdS}_3/\mrm{CFT}_2$ --- gravity trapped in a cylinder}
+
+\textcite{Aharony:1999ti}
+
 \begin{columns}
 \figAdsCft
-\begin{column}{.75\textwidth}
+\begin{column}{.72\textwidth}
 	\begin{itemize}
 	\item $\mrm{AdS}_3$ metric, $\rho \sim z^2 \sim r^{-2}$
 	\begin{equation}
@@ -355,13 +343,11 @@ yet it's still mysterious and difficult\\
 
 \newcommand{\figCutoffAds}[1][.3]{
 \begin{column}{#1\textwidth}
-\begin{figure}[!h]
 	\hfill\includegraphics[width=\linewidth]{img/cutoff-ads.jpg}
 
 	\vspace{-.5\baselineskip}
 	\flushleft
 	\ \scriptsize\textcite{AldegundePWSep22}
-\end{figure}
 \end{column}
 \hspace{-2em}
 }
@@ -436,7 +422,7 @@ yet it's still mysterious and difficult\\
 \begin{columns}
 \figCutoffAds
 \hspace{-1.2em}
-\begin{column}{.75\textwidth}
+\begin{column}{.72\textwidth}
 \vspace{-.5\baselineskip}
 	\begin{itemize}
 	\item \textbf{Significance:} gravity inside a finite box\\
@@ -487,17 +473,16 @@ yet it's still mysterious and difficult\\
 \end{frame}
 
 \newcommand{\figGlueon}[1][.37]{
-\begin{column}{#1\textwidth}
-\begin{figure}[!h]
+\begin{minipage}{#1\textwidth}
 	\centering
 	\includegraphics[width=\linewidth]{img/diagram.pdf}
 	\vspace{-1.5\baselineskip}
+	\captionsetup{type=figure}
 	\caption{Glue-on $\mrm{AdS}_3$}
 	
 	\vspace{-.3\baselineskip}
 	\scriptsize\ Top-down view of the Poincar\'e disk
-\end{figure}
-\end{column}
+\end{minipage}
 }
 
 \begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar --- updating the dictionary}{%
@@ -505,14 +490,12 @@ yet it's still mysterious and difficult\\
 }
 \begin{columns}
 \figGlueon
-\begin{column}{.64\textwidth}
-\vspace{-\baselineskip}
+\begin{column}{.6\textwidth}
 \begin{equation}
 	\frac{1}{\zeta} \equiv \ell^{-2} g_{\varphi\varphi} \in \mbb{R},
 \ \quad
 	\zeta_c = - \frac{c \mu}{3\ell^2} \in \mbb{R}
 \end{equation}
-\vspace{-.5\baselineskip}
 \begin{itemize}
 \item What have we done other than copy-pasting?
 	\begin{itemize}
@@ -586,13 +569,14 @@ Note that the geometry can be decomposed such that:
 \begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar --- the proposal}{%
 	\textcite{Apolo:2023vnm} -- \citetitle{Apolo:2023vnm}
 }
+
 \centering
-\vspace{-.5\baselineskip}
+
 \begin{minipage}{.5\textwidth}
 \centering
 \includegraphics[width=.9\linewidth]{img/diagram.pdf}
 \end{minipage}
-\vspace{-.1\baselineskip}
+
 \begin{equation*}
 \stateGlueon
 \end{equation*}
@@ -605,7 +589,7 @@ Note that the geometry can be decomposed such that:
 }
 \begin{columns}
 \figGlueon[.3]
-\begin{column}{.75\textwidth}
+\begin{column}{.7\textwidth}
 \begin{itemize}
 \item AdS/CFT: weak / strong duality
 	\begin{itemize}
@@ -634,8 +618,7 @@ Note that the geometry can be decomposed such that:
 }
 \begin{columns}
 \figGlueon[.3]
-\begin{column}{.75\textwidth}
-\vspace{-.3\baselineskip}
+\begin{column}{.7\textwidth}
 \begin{itemize}
 \item Spectrum: conserved charges of geometries,\\
 	e.g.~black holes \textit{BTZ} \cite{Banados:1992wn}
@@ -724,7 +707,7 @@ Note that the geometry can be decomposed such that:
 \begin{columns}
 \figGlueon
 \hspace{-1.5em}
-\begin{column}{.7\textwidth}
+\begin{column}{.6\textwidth}
 \vspace{-.3\baselineskip}
 \begin{itemize}
 \item Bulk: weakly coupled gravity, the partition function is approximated by the on-shell gravity action of the dominant saddle:
@@ -746,11 +729,9 @@ Note that the geometry can be decomposed such that:
 \begin{frame}{Comparison with field theory analysis}{%
 	\textcite{Datta:2018thy,Apolo:2023aho}
 }
-\begin{columns}
-%\figGlueon
-%\hspace{-1.5em}
-\begin{column}{\textwidth}
+
 \vspace{-.3\baselineskip}
+
 \begin{itemize}
 \item \textbf{Torus:} Large $c$, \textit{modular invariance} \& sparseness of the ``light'' spectrum \cite{Datta:2018thy,Apolo:2023aho},
 	c.f. \textcite{Hartman:2014oaa}
@@ -768,18 +749,12 @@ Note that the geometry can be decomposed such that:
 		\langle T_{ij}\rangle =-\frac{1}{4\pi\mu} \bigg(1-\sqrt{1-\frac{c\mu}{3L^2}}\, \bigg)  \gamma_{ij}.
 	\end{equation}
 \end{itemize}
-\end{column}
-\end{columns}
 \end{frame}
 
 \begin{frame}{Sphere partition functions}{%
 	\textcite{Donnelly:2018bef,Li:2020zjb}
 }
-\begin{columns}
-%\figGlueon
-%\hspace{-1.5em}
-\begin{column}{\textwidth}
-\vspace{-.3\baselineskip}
+
 \begin{itemize}
 
 \item Given the explicit stress tensor $\langle T_{ij}\rangle \propto \gamma_{ij}$, the flow equations:
@@ -795,18 +770,12 @@ Note that the geometry can be decomposed such that:
 
 	\item \textcite{Donnelly:2018bef} is recovered with $a = \sqrt{c|\mu|/3}$ but one can also take $a = \epsilon$, thus decoupling the energy (RG) scale $\epsilon$ with the deformation $\mu$. 
 \end{itemize}
-\end{column}
-\end{columns}
 \end{frame}
 
 \begin{frame}{Gravitational actions: with counterterms}{%
 	\textcite{Donnelly:2018bef,Li:2020zjb}
 }
-\begin{columns}
-%\figGlueon
-%\hspace{-1.5em}
-\begin{column}{1.1\textwidth}
-\vspace{-.3\baselineskip}
+
 \begin{itemize}
 
 \item Gravitational actions, with counterterms:
@@ -822,18 +791,13 @@ Note that the geometry can be decomposed such that:
 	\item The lack of diff invariance of the $\log |\zeta|$ counterterm is known to be a reflection of the Weyl anomaly: \textsl{\citeauthor{Henningson:1998gx,deHaro:2000vlm,Papadimitriou:2010as}}.
 	
 \end{itemize}
-\end{column}
-\end{columns}
+
 \end{frame}
 
 \begin{frame}{Gravitational actions: with counterterms}{%
 	\textcite{Caputa:2020lpa,Li:2020zjb}
 }
-\begin{columns}
-%\figGlueon
-%\hspace{-1.5em}
-\begin{column}{1.1\textwidth}
-\vspace{-.3\baselineskip}
+
 \begin{itemize}
 
 \item The $\log$ counterterm makes a crucial contribution to the on-shell action:
@@ -848,35 +812,31 @@ Note that the geometry can be decomposed such that:
 	\item In general the space of deformed theories are parametrized by $(\mu,a)$, where $a$ is the length scale (inverse energy scale). In many contexts they are naturally related: $a = \sqrt{c|\mu|/3}$, but $a$ can be tuned by RG.
 	
 \end{itemize}
-\end{column}
-\end{columns}
 \end{frame}
 
 
 \section{Summary \& future directions}
 
-\begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar deformed $\mrm{CFT}_2$}{%
+\begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar deformed $\mrm{CFT}_2$}
+\noindent
 	\textcite{Apolo:2023vnm} -- \citetitle{Apolo:2023vnm}
-}
-\vspace{-2\baselineskip}
+
 \begin{equation*}
 \stateGlueon
 \end{equation*}
-\vspace{-1.3\baselineskip}
+
 \begin{columns}
 \begin{column}{.37\textwidth}
-\begin{figure}[!h]
 	\centering
 	\includegraphics[width=\linewidth]{img/RT-AdS.pdf}
 	\vspace{-1.5\baselineskip}
-	\caption{RT for Glue-on $\mrm{AdS}_3$}
+	\captionof{figure}{RT for Glue-on $\mrm{AdS}_3$}
 	
 	\vspace{-.3\baselineskip}
 	\scriptsize\, Top-down view of the Poincar\'e disk
-\end{figure}
 \end{column}
 \hspace{-1em}
-\begin{column}{.71\textwidth}
+\begin{column}{.65\textwidth}
 \begin{itemize}
 \item Holographic proposal for $T\bar T$-deformed CFTs\\
 with $\mu \in \mbb{R}$.
@@ -894,22 +854,18 @@ with $\mu \in \mbb{R}$.
 \begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar deformed $\mrm{CFT}_2$}{%
 	\textcite{Apolo:2023vnm} -- \citetitle{Apolo:2023vnm}
 }
-\vspace{-2\baselineskip}
 \begin{equation*}
 \stateGlueon
 \end{equation*}
-\vspace{-1.3\baselineskip}
 \begin{columns}
-\begin{column}{.37\textwidth}
-\begin{figure}[!h]
+\begin{column}{.3\textwidth}
 	\centering
 	\includegraphics[width=\linewidth]{img/RT-AdS.pdf}
 	\vspace{-1.5\baselineskip}
-	\caption{RT for Glue-on $\mrm{AdS}_3$}
+	\captionof{figure}{RT for Glue-on $\mrm{AdS}_3$}
 	
 	\vspace{-.3\baselineskip}
 	\scriptsize\, Top-down view of the Poincar\'e disk
-\end{figure}
 \end{column}
 \hspace{-1em}
 \begin{column}{.71\textwidth}
@@ -925,7 +881,7 @@ with $\mu \in \mbb{R}$.
 \end{columns}
 \end{frame}
 
-\begin{frame}
+\begin{frame}{}
 
 \centering
 
@@ -949,7 +905,7 @@ froms Wen-Xin Lai\ \textkai{赖文昕}
 
 
 
-\begin{frame}[allowframebreaks]{References}
+\begin{frame}{}
 \renewcommand*{\bibfont}{\footnotesize}
 \printbibliography %%% should not specify heading etc
 \end{frame}

@@ -14,7 +14,7 @@
 
 \input{../.modules/basics/macros.tex}
 \input{../.modules/preamble_base.tex}
-\input{../.modules/preamble_beamer.tex}
+%\input{../.modules/preamble_notes.tex}
 \input{../.modules/basics/biblatex.tex}
 
 
@@ -23,12 +23,10 @@
 %	\newcommand{\indicator}{$\text{\clefG}$}
 %	\newcommand{\indicatorInline}{$\text{\clefGInline}$}
 
-\newcommand{\legacyReference}{{
-%	\clearpage\par
-%	\quad\clearpage
-	\def{\midquote}{\textbf{PAST WORK, AS TEMPLATE}}
-	\newparagraph
-}}
+\usepackage{titling}
+\setlength{\droptitle}{-2.5\baselineskip}
+
+
 
 % Settings
 \counterwithout{equation}{section}
@@ -36,9 +34,16 @@
 %\DeclareTextFontCommand{\textbf}{\sffamily}
 
 % Spacing
+\usepackage[
+	papersize={200mm,150mm},
+	hmargin=1.5cm,
+	vmargin={1.5cm,1.7cm}
+]{geometry}
 \geometry{footnotesep=2\baselineskip} % pre footnote split
 \setlength{\parskip}{.5\baselineskip}
 \renewcommand{\baselinestretch}{1.15}
+
+\usepackage{ragged2e}
 
 
 %% List
@@ -48,38 +53,3 @@
 %		,parsep=\parskip
 %		,itemsep=1.2\parskip
 %	}
-
-
-\addtobeamertemplate{navigation symbols}{}{%
-    \usebeamerfont{footline}%
-%    \usebeamercolor[fg]{footline}%
-    \hspace{1em}%
-    \normalsize\insertframenumber/\inserttotalframenumber
-}
-
-\makeatletter
-\setbeamertemplate{headline}
-{%
-    \begin{beamercolorbox}[wd=\paperwidth,colsep=1.5pt]{upper separation line head}
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
-      leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}
-      \usebeamerfont{title in head/foot}\insertshorttitle
-    \end{beamercolorbox}
-    \begin{beamercolorbox}[wd=\paperwidth,ht=2.5ex,dp=1.125ex,%
-      leftskip=.3cm,rightskip=.3cm plus1fil]{section in head/foot}
-      \usebeamerfont{section in head/foot}%
-      \ifbeamer@tree@showhooks
-        \setbox\beamer@tempbox=\hbox{\insertsectionhead}%
-        \ifdim\wd\beamer@tempbox>1pt%
-          \hskip2pt\raise1.9pt\hbox{\vrule width0.4pt height1.875ex\vrule width 5pt height0.4pt}%
-          \hskip1pt%
-        \fi%
-      \else%  
-        \hskip6pt%
-      \fi%
-      \insertsectionhead
-    \end{beamercolorbox}
-% Code for subsections removed here
-}
-\makeatother
