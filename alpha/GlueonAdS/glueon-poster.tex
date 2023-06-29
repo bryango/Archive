@@ -4,9 +4,9 @@
 % !TeX TS-program = pdflatex
 % !TeX TXS-program:bibliography = biber -l zh__pinyin --output-safechars %
 
-\documentclass[10pt]{article}
+\documentclass[11pt]{article}
 
-\input{preamble-slides.tex}
+\input{preamble-poster.tex}
 
 \usepackage{tikz}
 \usepackage{caption}
@@ -14,26 +14,9 @@
 
 \renewenvironment{frame}[1]%
 	{\section*{#1}}%
-	{\clearpage}
+	{}
 
-\newcommand{\pause}{}
-
-\newenvironment{columns}%
-	{\par\begin{minipage}{\textwidth}}%
-	{\end{minipage}}
-	
-\newenvironment{column}[1]%
-	{\begin{minipage}{#1}}%
-	{\end{minipage}}
-
-
-\title{Glue-on AdS holography for $T\bar T$-deformed CFTs}
 %\subtitle{An extended AdS\,/\,\TTbar duality \textit{(beyond infinity)}}
-\author{%
-	Wen-Xin Lai
-	\texstringonly{\,}\textkai{赖文昕}%
-}
-\date{}
 
 
 \newcommand{\veccol}[1]{\pqty{
@@ -51,49 +34,52 @@
 \usepackage{xspace}
 \newcommand{\TTbar}{\texorpdfstring{\ensuremath{T\bar{T}}}{TTbar}\xspace}
 
+\newcommand{\jokeInfinity}{
+	\includegraphics[height=.2\linewidth]{img/smbc-cantor-cropped.png}
+\\[-.5ex]
+	{\footnotesize\url{https://smbc-comics.com/comic/cantor}}
+}
+
+\setlength{\droptitle}{-3.2\baselineskip}
+\pretitle{\huge\bfseries\noindent}
+\title{Glue-on AdS holography for $T\bar T$-deformed CFTs}
+\posttitle{\ \,}
+
+\preauthor{\large}
+\author{Wen-Xin Lai \textkai{赖文昕}}
+\postauthor{, \textit{\footnotesize with}
+	Luis Apolo,
+	Peng-Xiang Hao \textkai{郝鹏翔}
+	and Wei Song \textkai{宋伟}
+	\ \arxiv{2303.04836}
+	\par\vspace{.5\baselineskip}
+	\hrule\vspace{.3\baselineskip}
+}
+
+\predate{\noindent\sffamily\,%
+	Yau Mathematical Sciences Center YMSC, Tsinghua
+	---
+}
+\date{July 2023}
+\postdate{
+	@ ICBS @ BIMSA
+	\vspace{.5\baselineskip}
+}
+
+\pagestyle{empty}
+
 \begin{document}
 
-\setlength{\droptitle}{-3.5\baselineskip}
 \maketitle
 \thispagestyle{empty}
 
-\vspace{-3.5\baselineskip}
 
-\centering
+\begin{multicols}{3}
 
-\textit{in collaboration with}
-\\[.8ex]
-	{\large Luis Apolo,
-	Peng-Xiang Hao \textkai{郝鹏翔}
-	and Wei Song \textkai{宋伟}}
-\\[2ex]
-	\sidenote{\arxiv{2303.04836}}
-\\[3ex]
-	\textsf{Yau Mathematical Sciences Center, Tsinghua}
-\\[1ex]
-	{\large\ccbyncsajp}
-\\[2ex]
-	\textsf{\today\ @ BIMSA}
-\\[4ex]
-	\includegraphics[height=.38\textheight]{img/smbc-cantor-cropped.png}
-\\[-.5ex]
-	{\footnotesize\url{https://smbc-comics.com/comic/cantor}}
+\section*{Foundation: pure Einstein in $\mrm{AdS}_3$~/~$\mrm{CFT}_2$}
 
-\clearpage
-\justifying
-
-%\raggedbottom
-\large
-\tableofcontents
-\pagebreak
-
-\section{\textbf{Warmup:} Pure Einstein gravity in $\mrm{AdS}_3$ / $\mrm{CFT}_2$}
-
-\newcommand{\citeMaldacena}{%
-	\textcite{Maldacena:1997re}
-}
-
-\newcommand{\stateAdsCft}{
+\textcite{Maldacena:1997re}\\
+\textcite{Aharony:1999ti}
 \begin{align*}
 	\textrm{Strings on $\mrm{AdS}_{d+1}$ background}
 	&\ \equiv\ 
@@ -103,151 +89,88 @@
 	&\ \equiv\ 
 	\textrm{Large $N$ $\mrm{CFT}_{d}$ at \textit{asympt.}~boundary}
 \end{align*}
-}
-
-
-\citeMaldacena
-\stateAdsCft
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=.5\linewidth]{img/ads-cft.png}
+\begin{center}
+	\includegraphics[width=.6\linewidth]{img/ads-cft.png}
 
 	\vspace{-.2\baselineskip}
+	\captionsetup{type=figure}
 	\caption{$\mrm{AdS}_3/\mrm{CFT}_2$ cartoon}
 	
+	\vspace{.1\baselineskip}
 	\scriptsize\ Image courtesy: \textcite{AldegundePWSep22}
-\end{figure}
-\vspace{-1.3\baselineskip}
+\end{center}
 
-%\begin{equation}
-%	R_{\mu\nu} - \frac{1}{2}\,R g_{\mu\nu}
-%	+ \Lambda g_{\mu\nu}
-%	= 8\pi G_N T_{\mu\nu}^{\textit{matter}},\quad
-%	\Lambda < 0
-%\label{eq:einstein}
-%\end{equation}
-
-\section*{AdS/CFT --- a model of quantum gravity}
-\citeMaldacena
-\stateAdsCft
 \begin{itemize}
 
-\item A model of \textsc{quantum gravity}
-\item ... originating from \textsc{string theory}
-\item ... seemingly \textsc{Universal / ubiquitous}
+\item \textsc{Universal / ubiquitous}
 
 \begin{itemize}
 	\item Model agnostic: $\mrm{AdS}_5\times S^5$, $\mrm{AdS}_3\times S^3 \times T^4$, symmetric orbifolds, minimal models, ``monsters'', ... \textit{\small Maldacena, Witten, GKP, ABJM, Gaberdiel, and many many more}
-	\item Our work: pure Einstein gravity in $\mrm{AdS}_3$ / $\mrm{CFT}_2$ $(d=2)$.
 	
 \end{itemize}
+
+\item Our work: pure Einstein gravity in $\mrm{AdS}_3$ / $\mrm{CFT}_2$ $(d=2)$.\\
+$\mrm{AdS}_3$ metric, $\rho \sim z^2 \sim r^{-2}$
+\begin{equation}
+\hspace{-2em}
+\begin{aligned}
+	ds^2
+	&= \ell^2 \frac{d\rho^2}{4 \rho^2} + \pqty{\frac{1}{\rho} g^{(0)}_{ij} + g^{(2)}_{ij} + \rho\thinmspace g^{(4)}_{ij} + \cdots}\, dx^i dx^j
+\\[.5ex]
+	&= \ell^2 \bigg( \frac{d\rho^2}{4 \rho^2} + \frac{ \big( du + \rho \, \mathcal {\bar L}(v)\, dv \big) \big( dv + \rho \, \mathcal L(u)\, du \big) }{\rho} \bigg)
+	\label{fggauge}
+\end{aligned}
+\end{equation}
+
+\vspace{-.5\baselineskip}
+boundary at $\rho \to 0$, $x^{i} \sim \varphi, t$, indices $i,j = 1,2$
+
+
+\item Surprisingly the expansion simply terminates at~$\rho\thinmspace g^{(4)}_{ij}$ for pure Einstein gravity! Moreover,
+\begin{equation}
+	g^{(4)}_{ij} = \frac{1}{4} g^{(2)}_{ik} g^{(0)\thinmspace kl}_{\phantom{kl}} g^{(2)}_{lj}
+\end{equation}
+\textcite{Fefferman:2007rka}\\
+\textcite{Banados:1992wn}\\
+\textcite{Banados:1998gg}
 \end{itemize}
-
-\pagebreak
-
-%%% LaTeX3e!
-\NewDocumentCommand{\figAdsCft}{ O{.28} }{
-\begin{minipage}{#1\textwidth}
-	\centering
-	\includegraphics[width=\linewidth]{img/ads-cft-cleaner.png}
-
-	\vspace{-.01\baselineskip}
-	\scriptsize\textcite{AldegundePWSep22}\ \,
-\end{minipage}
-}
-
-
-\begin{frame}{$\mrm{AdS}_3/\mrm{CFT}_2$ --- gravity trapped in a cylinder}
-
-\textcite{Aharony:1999ti}
-
-\begin{columns}
-\figAdsCft
-\begin{column}{.72\textwidth}
-	\begin{itemize}
-	\item $\mrm{AdS}_3$ metric, $\rho \sim z^2 \sim r^{-2}$
-	\begin{equation}
-	\hspace{-2em}
-		ds^2 = \ell^2 \frac{d\rho^2}{4 \rho^2} + \pqty{\frac{1}{\rho} g^{(0)}_{ij} + g^{(2)}_{ij} + \rho\thinmspace g^{(4)}_{ij} + \cdots}\, dx^i dx^j \label{fggauge}
-	\end{equation}
-	
-	\vspace{-.5\baselineskip}
-	boundary at $\rho \to 0$, $x^{i} \sim \varphi, t$, $i = 1,2$
-
-\pause
-	\item Surprisingly the expansion simply terminates at~$\rho\thinmspace g^{(4)}_{ij}$ for pure Einstein gravity! Moreover,
-	\begin{equation}
-		g^{(4)}_{ij} = \frac{1}{4} g^{(2)}_{ik} g^{(0)\thinmspace kl}_{\phantom{kl}} g^{(2)}_{lj}
-	\end{equation}
-	\textcite{Fefferman:2007rka,Banados:1998gg}
-	\end{itemize}
-\end{column}
-\end{columns}
-\end{frame}
 
 \newcommand{\eqBanados}{
 	\begin{equation*}
 	\hspace{-2em}
-		ds^2 = \ell^2 \bigg( \frac{d\rho^2}{4 \rho^2} + \frac{ \big( du + \rho \, \mathcal {\bar L}(v)\, dv \big) \big( dv + \rho \, \mathcal L(u)\, du \big) }{\rho} \bigg)\ \,
+		ds^2 \ \,
 	\end{equation*}
 }
 
-\begin{frame}{$\mrm{AdS}_3/\mrm{CFT}_2$ --- simple realization of holography}{%
-	\textcite{Banados:1992wn}
-}
-\begin{columns}
-\figAdsCft
-\begin{column}{.72\textwidth}
-	\begin{itemize}
-	\item $\mrm{AdS}_3$ metric for $\rho > 0$, \\
-	\textcite{Banados:1998gg}
-	\eqBanados
-	$g^{(2)} \leadsto \mathcal L(u)$, $\bar{\mathcal L}(v)$: arbitrary periodic functions,\\
-	where $u,v = \varphi \mp it$, $du\,dv = d\varphi^2 + dt^2$
+
+\begin{itemize}
+\item $g^{(2)} \leadsto \mathcal L(u)$, $\bar{\mathcal L}(v)$: arbitrary periodic functions,\\
+where $u,v = \varphi \mp it$, $du\,dv = d\varphi^2 + dt^2$
 %	\vspace{-.5\baselineskip}
-	
-\pause
-	\item A consequence of Einstein equations \\
-	in $(2+1)$ dimensions.\\
-	\textit{Too many constraints, too little freedom!}
-	\end{itemize}
-\end{column}
-\end{columns}
-\end{frame}
 
 
-\begin{frame}{$\mrm{AdS}_3/\mrm{CFT}_2$ --- simple realization of holography}{%
-	\textcite{Aharony:1999ti}
-}
-\begin{columns}
-\figAdsCft
-\begin{column}{.72\textwidth}
+\item A consequence of Einstein equations \\
+in $(2+1)$ dimensions.\\
+\textit{Too many constraints, too little freedom!}
+\end{itemize}
+
+\begin{itemize}
+\item Different \textbf{geometries} in the ``bulk''
+
+specified by $\mathcal L(u)$, $\bar{\mathcal L}(v)$: periodic functions, maps to different \textbf{states} in the boundary $\mrm{CFT}_2$ with stress energy $\ave{T(u)}_\psi$, $\ave{\bar{T}(v)}_\psi$
+
+\item \textit{Dictionary:} bulk $\leftrightarrow$ boundary quantities:
 	\begin{itemize}
-	\item Different \textbf{geometries} in the ``bulk''
-	\eqBanados
-	specified by $\mathcal L(u)$, $\bar{\mathcal L}(v)$: periodic functions, maps to different \textbf{states} in the boundary $\mrm{CFT}_2$ with stress energy $\ave{T(u)}_\psi$, $\ave{\bar{T}(v)}_\psi$
-
-	\item \textit{Dictionary:} bulk $\leftrightarrow$ boundary quantities:\\
-		\begin{itemize}
-		\item spectrum,
-			symmetry,\\
-			partition functions,
-			correlators, ...
-		\end{itemize}
+	\item spectrum,
+		symmetry,\\
+		partition functions,
+		correlators, ...
 	\end{itemize}
-
-\end{column}
-\end{columns}
-\end{frame}
-
-\section{\textbf{Review:} \TTbar deformation and cutoff AdS} \label{se:cutoffholography}
+\end{itemize}
 
 \begin{frame}{\TTbar deformations --- motivations}{%
 	Comments taken from \textcite{Cui:2023jrb}
 }
-\begin{columns}
-\figAdsCft
-\begin{column}{.72\textwidth}
 	\begin{itemize}
 	\item Ideally: AdS/CFT
 	\item Reality: non-AdS space and non-CFT
@@ -257,8 +180,6 @@
 		in a controllable way
 	\end{itemize}
 	\end{itemize}
-\end{column}
-\end{columns}
 \end{frame}
 
 \newcommand{\citeTTbar}{%
@@ -280,7 +201,7 @@ For $\mrm{CFT}_2$,\ $T\bar{T} = T_{xx} T_{\bar{x}\bar{x}}$,\ where $x, \bar{x} =
 
 \item The stress tensor $T_{ij}(\sidenote{\mu})$ on the right hand side flows with the deformation parametrized by $\sidenote{\mu}$. 
 
-\pause
+
 
 \item This is thus a \textit{differential equation} for a flow, starting from some generic QFT specified by $I(\mu = 0)$. In this work we shall start from $\mrm{CFT}_2$, but note that \TTbar is \textit{irrelevant}: conformal symmetry will be broken.
 
@@ -305,7 +226,7 @@ under simple (and reasonable) assumptions (e.g.~translation invariance et al).
 
 \item \textbf{Variants:} suppose the theory has some ``components'' labeled by $w$,
 
-\pause
+
 
 \begin{itemize}
 \item double-trace $\TTbar = (\sum_w T_w) (\sum_w \bar{T}_w)$ (this work)
@@ -321,7 +242,7 @@ under simple (and reasonable) assumptions (e.g.~translation invariance et al).
 	\textcite{Zamolodchikov:2004ce}\\
 	\citetitle{Zamolodchikov:2004ce}
 }
-\vspace{-1.\baselineskip}
+\vspace{-.1\baselineskip}
 \begin{equation}
 	E(\mu) = - \frac{R }{ 2\mu } \bigg(1-\sqrt{1 + \frac{4\mu}{R} E(0) + \frac{4\mu^2}{R^4} J(0)^2 }
 	\,\bigg), \ \quad J(\mu)=J(0)  \label{ttbarspectrum}
@@ -335,62 +256,54 @@ yet it's still mysterious and difficult\\
 \item ``asymptotic fragility'': \textcite{Dubovsky:2017cnj}
 \end{itemize}
 
-\pause
+
 \item What if we start from a $\mrm{CFT}_2$, that enjoys a holographic dual to $\mrm{AdS}_3$...
 
 \end{itemize}
 \end{frame}
 
-\newcommand{\figCutoffAds}[1][.3]{
-\begin{column}{#1\textwidth}
-	\hfill\includegraphics[width=\linewidth]{img/cutoff-ads.jpg}
+\newcommand{\figCutoffAds}[1][.5]{
+\begin{center}
+	\hspace{.15\linewidth}
+	\includegraphics[width=#1\linewidth]{img/cutoff-ads.jpg}
 
 	\vspace{-.5\baselineskip}
-	\flushleft
 	\ \scriptsize\textcite{AldegundePWSep22}
-\end{column}
-\hspace{-2em}
+\end{center}
 }
 
 \begin{frame}{Cutoff $\mrm{AdS}_3$ / \TTbar deformed $\mrm{CFT}_2$}{%
 	\textcite{McGough:2016lol} --
 	\citetitle{McGough:2016lol}
 }
-\begin{columns}
+
 \figCutoffAds
-\hspace{-2em}
-\begin{column}{.75\textwidth}
-	\begin{itemize}
-	\item Question: what is the AdS dual of \TTbar deformation?\\
-	
-	\begin{itemize}
-	\item look up \textit{double-trace deformations}\\
-	in \textit{the dictionary}:\\
-	\textcite{Heemskerk:2010hk}
-	
-\pause
-	\item look at properties of \TTbar:\\
-	signs of gravity and coarse-graining\\
-	\textcite{Dubovsky:2012wk,Dubovsky:2013ira}
-	\end{itemize}
-	
-	\pause
-	\item Answer: AdS gravity within a finite Dirichlet wall
-	
-	\end{itemize}
-\end{column}
-\end{columns}
+
+
+\begin{itemize}
+\item Question: what is the AdS dual of \TTbar deformation?
+
+\begin{itemize}
+\item look up \textit{double-trace deformations}\\
+in \textit{the dictionary}:\\
+\textcite{Heemskerk:2010hk}
+
+
+\item look at properties of \TTbar:\\
+signs of gravity and coarse-graining\\
+\textcite{Dubovsky:2012wk,Dubovsky:2013ira}
+\end{itemize}
+
+
+\item Answer: AdS gravity within a finite Dirichlet wall
+
+\end{itemize}
+
 \end{frame}
 
 
-\begin{frame}{Cutoff $\mrm{AdS}_3$ --- the dictionary}{%
-	\textcite{McGough:2016lol} --
-	\citetitle{McGough:2016lol}
-}
-\begin{columns}
-\figCutoffAds
-\hspace{-1em}
-\begin{column}{.7\textwidth}
+\begin{frame}{Cutoff $\mrm{AdS}_3$ --- the dictionary}{}
+
 	\begin{itemize}
 	\item Location (radius) of the cutoff surface:
 	\begin{equation}
@@ -403,15 +316,12 @@ yet it's still mysterious and difficult\\
 	\end{equation}
 	\textit{Roughly $\mu \sim 1/r^2$}
 	
-\pause
-	
-	\item Passed many non-trivial tests
-	\item Related to ``mixed boundary conditions''\\
+	\item Passed many non-trivial tests,\\
+	related to ``mixed boundary conditions''\\
 	by \textcite{Guica:2019nzm}
 	
 	\end{itemize}
-\end{column}
-\end{columns}
+
 \end{frame}
 
 
@@ -419,34 +329,29 @@ yet it's still mysterious and difficult\\
 	Title inspired by
 	\textcite{Kraus:2021cwf} -- \citetitle{Kraus:2021cwf}%
 }
-\begin{columns}
-\figCutoffAds
-\hspace{-1.2em}
-\begin{column}{.72\textwidth}
-\vspace{-.5\baselineskip}
-	\begin{itemize}
-	\item \textbf{Significance:} gravity inside a finite box\\
-		with hard Dirichlet walls
-	
-	\begin{itemize}
-		\item Dual to some ``solvable'' no-longer-conformal ft
-		\item A step towards quantum gravity in reality!
-	\end{itemize}
-	
-\pause
-	\item \textbf{Caveat:} the duality only admits $\zeta_c > 0$ so $\mu < 0$
-	\begin{equation}
-		\zeta_c = - \frac{c \mu}{3\ell^2}
+
+\begin{itemize}
+\item \textbf{Significance:} gravity inside a finite box\\
+	with hard Dirichlet walls
+
+\begin{itemize}
+	\item Dual to some ``solvable'' no-longer-conformal ft
+	\item A step towards quantum gravity in reality!
+\end{itemize}
+
+
+\item \textbf{Caveat:} the duality only admits $\zeta_c > 0$ so $\mu < 0$
+\begin{equation}
+	\zeta_c = - \frac{c \mu}{3\ell^2}
 %		\label{dictionary}
-	\end{equation}
-	But \TTbar itself admits $\mu > 0$ with nice properties.\\
-	\textit{What is the other side of the duality?}
-		\begin{itemize}
-		\item For comparison, the proposal of \textcite{Guica:2019nzm} admits both signs of $\mu$
-		\end{itemize}
+\end{equation}
+But \TTbar itself admits $\mu > 0$ with nice properties.\\
+\textit{What is the other side of the duality?}
+	\begin{itemize}
+	\item For comparison, the proposal of \textcite{Guica:2019nzm} admits both signs of $\mu$
 	\end{itemize}
-\end{column}
-\end{columns}
+\end{itemize}
+
 \end{frame}
 
 \section{\textbf{Proposal:} Glue-on AdS holography} \label{se:glueonproposal}
@@ -472,10 +377,10 @@ yet it's still mysterious and difficult\\
 	\end{itemize}
 \end{frame}
 
-\newcommand{\figGlueon}[1][.37]{
-\begin{minipage}{#1\textwidth}
+\newcommand{\figGlueon}[1][1]{
+\begin{minipage}{#1\linewidth}
 	\centering
-	\includegraphics[width=\linewidth]{img/diagram.pdf}
+	\includegraphics[width=.5\linewidth]{img/diagram.pdf}
 	\vspace{-1.5\baselineskip}
 	\captionsetup{type=figure}
 	\caption{Glue-on $\mrm{AdS}_3$}
@@ -488,9 +393,9 @@ yet it's still mysterious and difficult\\
 \begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar --- updating the dictionary}{%
 	\textcite{Apolo:2023vnm} -- \citetitle{Apolo:2023vnm}
 }
-\begin{columns}
+
 \figGlueon
-\begin{column}{.6\textwidth}
+
 \begin{equation}
 	\frac{1}{\zeta} \equiv \ell^{-2} g_{\varphi\varphi} \in \mbb{R},
 \ \quad
@@ -505,8 +410,8 @@ yet it's still mysterious and difficult\\
 	\end{itemize}
 	
 \end{itemize}
-\end{column}
-\end{columns}
+
+
 \end{frame}
 
 \begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar --- updating the dictionary}{%
@@ -520,14 +425,12 @@ yet it's still mysterious and difficult\\
 	\end{equation}
 	The field theory metric $\gamma_{ij} = \zeta_c h_{ij}$, where $h_{ij}$ is the induced metric.
 	
-	\pause
-	
 	\begin{itemize}
 	\item $\gamma_{ij}$ is always positive-definite, while $h_{ij}$ becomes negative-definite for the glue-on region.
 	This discrepancy is the origin of the $\abs{\zeta_c}$.
 	\end{itemize}
 	
-	\pause
+	
 	
 \item \TTbar flow is recast geometrically as the $i,j$ components of the Einstein equations. 
 Note that the geometry can be decomposed such that:
@@ -553,7 +456,7 @@ Note that the geometry can be decomposed such that:
 	\end{equation}
 	The \TTbar deformed theory lives on $\mcal{N}_{\zeta_c}$ with metric $\gamma_{ij}$.
 	
-\pause
+
 \item Treatment for the singularity at $\zeta\to 0^\pm$: introduce $\mathcal N_{\zeta={\pm\epsilon}}$ and glue them together (``glue-on'');
 	exclude the $-\epsilon < \zeta < \epsilon$ region until finally sending $\epsilon \to 0$. 
 \item We formally denote the boundary surface by the limit $\mathcal N_{0}=\mathcal N_{0^+}=\mathcal N_{0^-}$, though we need to keep track of the asymptotic cutoff $\epsilon$ in actual computations.
@@ -563,23 +466,18 @@ Note that the geometry can be decomposed such that:
 \newcommand{\stateGlueon}{\ensuremath{
 	\textrm{Cutoff / \textit{glue-on} $\mrm{AdS}_{d+1}$ Gravity}
 	\ \equiv\ %
-	\textrm{\TTbar deformed $\mrm{CFT}_{d}$ at $\mcal{N}_{\zeta_c}$}\ \,
+	\textrm{\TTbar deformed $\mrm{CFT}_{d}$ at $\mcal{N}_{\zeta_c}$}
 }}
 
-\begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar --- the proposal}{%
-	\textcite{Apolo:2023vnm} -- \citetitle{Apolo:2023vnm}
-}
+\begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar --- the proposal}{}
 
-\centering
-
-\begin{minipage}{.5\textwidth}
-\centering
-\includegraphics[width=.9\linewidth]{img/diagram.pdf}
-\end{minipage}
-
+\begin{center}
+\includegraphics[width=.6\linewidth]{img/diagram.pdf}
 \begin{equation*}
 \stateGlueon
 \end{equation*}
+\end{center}
+
 \end{frame}
 
 \section{\textbf{Check:} \TTbar deformed charges \& partition functions} \label{se:charges}
@@ -587,9 +485,7 @@ Note that the geometry can be decomposed such that:
 \begin{frame}{\TTbar quantities from bulk geometry}{%
 	\textcite{Apolo:2023vnm} -- \citetitle{Apolo:2023vnm}
 }
-\begin{columns}
-\figGlueon[.3]
-\begin{column}{.7\textwidth}
+
 \begin{itemize}
 \item AdS/CFT: weak / strong duality
 	\begin{itemize}
@@ -598,7 +494,7 @@ Note that the geometry can be decomposed such that:
 	\item inherited by the \TTbar deformation
 	\end{itemize}
 	
-\pause
+
 \item Demanding the extended geometry to be non-singular
 	re-produces bounds on the \TTbar deformed theory, e.g.
 	\begin{equation}
@@ -608,17 +504,15 @@ Note that the geometry can be decomposed such that:
 	where $\det g_{\mu\nu} = 0$.
 	
 \end{itemize}
-\end{column}
-\end{columns}
+
+
 \end{frame}
 
 
 \begin{frame}{\TTbar spectrum from bulk covariant charges}{%
 	\textcite{Kraus:2021cwf,Apolo:2023vnm}
 }
-\begin{columns}
-\figGlueon[.3]
-\begin{column}{.7\textwidth}
+
 \begin{itemize}
 \item Spectrum: conserved charges of geometries,\\
 	e.g.~black holes \textit{BTZ} \cite{Banados:1992wn}
@@ -629,24 +523,20 @@ Note that the geometry can be decomposed such that:
 		so delay gauge fixing until the very end
 	\end{itemize}
 	
-\pause
+
 \item We are careful to match the bulk \& boundary symmetries at $\mcal{N}_{\zeta_c}$
 
 \item This reproduces $E(\mu)$, $J(\mu)$ with $\mu \in\mbb{R}$ in \eqref{ttbarspectrum}
 	
 \end{itemize}
-\end{column}
-\end{columns}
+
 \end{frame}
 
 
 \begin{frame}{\TTbar spectrum from bulk covariant charges}{%
 	\textcite{Kraus:2021cwf,Apolo:2023vnm}
 }
-\begin{columns}
-%\figGlueon[.3]
-\begin{column}{\textwidth}
-\vspace{-.3\baselineskip}
+
 \begin{itemize}
 \item Covariant charges of geometries
 	\begin{align*}
@@ -658,7 +548,7 @@ Note that the geometry can be decomposed such that:
 		ds^2_c = \ell^2 ( -dt'^2 + d\varphi'^2) , \qquad \varphi' \sim \varphi' + 2\pi.\label{cutoffmetric}
 	\end{equation}
 
-\pause
+
 
 \item This is realized by the \textit{state-dependent} map of coordinates
 	\begin{align*}
@@ -666,26 +556,15 @@ Note that the geometry can be decomposed such that:
 		 d\varphi' &= d\varphi + \zeta_c \big( T_u^2 - T_v^2 \big)\,dt.
 	\end{align*}
 \end{itemize}
-\end{column}
-\end{columns}
+
 \end{frame}
 
 \begin{frame}{\TTbar thermodynamics from bulk geometry}{%
 	\textcite{Giveon:2017nie,Apolo:2019zai}
 }
-\begin{columns}
-%\figGlueon[.3]
-\begin{column}{\textwidth}
-\vspace{-.3\baselineskip}
+
 \begin{itemize}
 
-\item \textit{State-dependent} map of coordinates
-	\begin{align*}
-		dt' &= \sqrt{ \big(1 - \zeta_c (T_u+T_v)^2 \big) \big(1 - \zeta_c (T_u-T_v)^2 \big) } \, dt, \\
-		 d\varphi' &= d\varphi + \zeta_c \big( T_u^2 - T_v^2 \big)\,dt.
-	\end{align*}
-
-\pause
 \item Many consequences: correct charges, signal propagation speed $v'_{\pm} \equiv \pm \frac{d\varphi'}{dt'}$, and thermodynamics when Wick rotated:
 	\begin{equation}
 		T_L(\mu)\,T_R(\mu) \le - \frac{1}{4\pi^2 \ell^2 \zeta_c} = \frac{3}{4\pi^2c\mu} = T_H(\mu)^2,
@@ -695,8 +574,7 @@ Note that the geometry can be decomposed such that:
 
 \item $T_H$ is the \textit{Hagedorn temperature}: exceeding $T_H$ corresponds to a complex entropy
 \end{itemize}
-\end{column}
-\end{columns}
+
 \end{frame}
 
 \section{\textbf{Check:} \TTbar partition functions from glue-on AdS} \label{se:partitionfunction}
@@ -704,26 +582,20 @@ Note that the geometry can be decomposed such that:
 \begin{frame}{\TTbar partition functions from bulk on-shell actions}{%
 	\textcite{Caputa:2020lpa}
 }
-\begin{columns}
-\figGlueon
-\hspace{-1.5em}
-\begin{column}{.6\textwidth}
-\vspace{-.3\baselineskip}
+
 \begin{itemize}
 \item Bulk: weakly coupled gravity, the partition function is approximated by the on-shell gravity action of the dominant saddle:
 	\begin{equation}
 		Z_{T\bar T} (\mu) = \mathcal Z (\zeta_c) \approx  e^{-I(\zeta_c)}\label{partition2}
 	\end{equation}
 
-\pause
+
 \item $I(\zeta_c)$ is roughly the volume of the geometry, which diverges at $\zeta \to 0^\pm$. We apply a natural extension of \textit{holographic renormalization} to remove the divergence.
 
-\pause
+
 \item $I = -\log \mcal{Z}$ satisfies the \TTbar flow \eqref{TTbardef}.\\
 	This is non-trivial because we've packaged the quantum corrections of the boundary theory.
 \end{itemize}
-\end{column}
-\end{columns}
 \end{frame}
 
 \begin{frame}{Comparison with field theory analysis}{%
@@ -817,7 +689,7 @@ Note that the geometry can be decomposed such that:
 
 \section{Summary \& future directions}
 
-\begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar deformed $\mrm{CFT}_2$}
+\section*{Glue-on $\mrm{AdS}_3$ / \TTbar deformed $\mrm{CFT}_2$}
 \noindent
 	\textcite{Apolo:2023vnm} -- \citetitle{Apolo:2023vnm}
 
@@ -825,30 +697,25 @@ Note that the geometry can be decomposed such that:
 \stateGlueon
 \end{equation*}
 
-\begin{columns}
-\begin{column}{.37\textwidth}
-	\centering
-	\includegraphics[width=\linewidth]{img/RT-AdS.pdf}
-	\vspace{-1.5\baselineskip}
+\begin{center}
+	\includegraphics[width=.5\linewidth]{img/RT-AdS.pdf}
+	\vspace{-1\baselineskip}
 	\captionof{figure}{RT for Glue-on $\mrm{AdS}_3$}
 	
-	\vspace{-.3\baselineskip}
+	\vspace{.1\baselineskip}
 	\scriptsize\, Top-down view of the Poincar\'e disk
-\end{column}
-\hspace{-1em}
-\begin{column}{.65\textwidth}
+\end{center}
+
+
 \begin{itemize}
 \item Holographic proposal for $T\bar T$-deformed CFTs\\
 with $\mu \in \mbb{R}$.
 
 \item As evidence, we show that the $T\bar T$ trace flow equation, the spectrum on the cylinder, and the partition function on the torus and the sphere, among other results, can all be reproduced from bulk calculations in glue-on AdS$_3$.
 
-\pause
+
 \item We hope to understand the entanglement structure of \TTbar deformed theories from bulk geometry. 
 \end{itemize}
-\end{column}
-\end{columns}
-\end{frame}
 
 
 \begin{frame}{Glue-on $\mrm{AdS}_3$ / \TTbar deformed $\mrm{CFT}_2$}{%
@@ -857,58 +724,23 @@ with $\mu \in \mbb{R}$.
 \begin{equation*}
 \stateGlueon
 \end{equation*}
-\begin{columns}
-\begin{column}{.3\textwidth}
-	\centering
-	\includegraphics[width=\linewidth]{img/RT-AdS.pdf}
-	\vspace{-1.5\baselineskip}
-	\captionof{figure}{RT for Glue-on $\mrm{AdS}_3$}
-	
-	\vspace{-.3\baselineskip}
-	\scriptsize\, Top-down view of the Poincar\'e disk
-\end{column}
-\hspace{-1em}
-\begin{column}{.71\textwidth}
+
 \begin{itemize}
 
-\item We hope to understand the entanglement structure of \TTbar deformed theories from bulk geometry. \pause
+\item We hope to understand the entanglement structure of \TTbar deformed theories from bulk geometry. 
 	\begin{itemize}
 	\item \textcite{Donnelly:2018bef,Lewkowycz:2019xse}
 	\item \textcite{He:2023xnb,He:2023wko,Tian:2023fgf,Hou:2023ytl}
 	\end{itemize}
 \end{itemize}
-\end{column}
-\end{columns}
-\end{frame}
 
-\begin{frame}{}
-
-\centering
-
-\huge
-\sidenote{Thank you!}
-\bigskip
-
-\large
-froms Wen-Xin Lai\ \textkai{赖文昕}
-
-\textit{\normalsize in collaboration with}
-
-	Luis Apolo,
-	Peng-Xiang Hao \textkai{郝鹏翔}
-	and Wei Song \textkai{宋伟}\\[2ex]
-\sidenote{\arxiv{2303.04836}}
-%\ submitted to \textit{JHEP}
 
 \end{frame}
 
 
-
-
-\begin{frame}{}
 \renewcommand*{\bibfont}{\footnotesize}
-\printbibliography %%% should not specify heading etc
-\end{frame}
+\printbibliography %%% should not specify heading
 
+\end{multicols}
 
 \end{document}

@@ -1,0 +1,67 @@
+% to be `\input` in subfolders,
+% ... therefore the path should be relative to subfolders.
+
+\usepackage{iftex}
+\ifPDFTeX
+\else
+	\usepackage[UTF8
+		,heading=false
+		,scheme=plain % English Document
+	]{ctex}
+\fi
+%\ctexset{autoindent=true}
+%\usepackage{indentfirst}
+
+\input{../.modules/basics/macros.tex}
+\input{../.modules/preamble_base.tex}
+%\input{../.modules/preamble_notes.tex}
+\input{../.modules/basics/biblatex.tex}
+
+
+%Misc
+%	\usepackage{lilyglyphs}
+%	\newcommand{\indicator}{$\text{\clefG}$}
+%	\newcommand{\indicatorInline}{$\text{\clefGInline}$}
+
+\usepackage{titling}
+
+\hypersetup{%
+	colorlinks=true
+	,linkcolor=DarkBlue
+	,urlcolor=purple
+	,linktoc=all
+}
+
+
+% Settings
+\counterwithout{equation}{section}
+\mathtoolsset{showonlyrefs=false}
+%\DeclareTextFontCommand{\textbf}{\sffamily}
+
+% Spacing
+\usepackage[
+	papersize={40cm,32cm},
+	hmargin=1.5cm,
+	vmargin={1.5cm,1.7cm}
+]{geometry}
+\geometry{footnotesep=2\baselineskip} % pre footnote split
+\setlength{\parskip}{.5\baselineskip}
+\renewcommand{\baselinestretch}{1.15}
+
+\usepackage{ragged2e}
+
+\usepackage{multicol}
+\setlength{\columnsep}{2em}
+\usepackage{enumitem}
+
+
+%% List
+	\setlist*{
+%		noitemsep,
+%		listparindent=\parindent
+%		,labelindent=\parindent
+%		parsep=\parskip
+		nosep,
+		parsep=\parskip,
+		leftmargin=\parindent
+	}
