@@ -84,18 +84,17 @@
 
 \noindent%
 \textbf{Abstract:}
+\TTbar-deformed CFTs with $\mu < 0$ have been proposed by \textcite{McGough:2016lol} to be holographically dual to Einstein gravity with a finite \mbox{Dirichlet} cutoff.
 
-\TTbar-deformed CFTs with $\mu < 0$ have been proposed by \mbox{\textcite{McGough:2016lol}} to be holographically dual to Einstein gravity with a finite \mbox{Dirichlet} cutoff.
-
-In this work we put forward a holographic proposal for \TTbar-deformation with $\mu > 0$, in which case the bulk dual geometry is constructed by \textit{gluing-on} a patch of $\mrm{AdS}_3$ to the original spacetime. We provide various evidence for this extended holography, now valid for $\mu \in \mbb{R}$.
+In this work we put forward a holographic proposal for \TTbar-deformed CFTs with $\mu > 0$, in which case the bulk dual geometry is constructed by gluing-on a patch of $\mrm{AdS}_3$ to the original spacetime. We provide various evidence for this extended holography, now valid for $\mu \in \mbb{R}$.
 
 \vspace{.8\baselineskip}
 \hrule
 \vspace{.3\baselineskip}
 
-\textbf{Pure Einstein gravity} without matter in $\mrm{AdS}_3$:
+We start from \textbf{pure Einstein gravity} without matter in $\mrm{AdS}_3$; the Einstein equations are solved by the metric:
 \begin{equation}
-\hspace{-2.5em}
+\hspace{-2em}
 \begin{aligned}
 	ds^2
 	&= \ell^2 \bigg( \frac{d\rho^2}{4 \rho^2} + \frac{ \big( du + \rho \, \mathcal {\bar L}(v)\, dv \big) \big( dv + \rho \, \mathcal L(u)\, du \big) }{\rho} \bigg)\\
@@ -104,46 +103,58 @@ In this work we put forward a holographic proposal for \TTbar-deformation with $
 \end{aligned}
 \label{fggauge}
 \end{equation}
+The radial coordinate: $\rho \approx r^{-2} \equiv \zeta$,
+where $r$ is the ``proper radius''; $\mathcal L(u)$ and $\bar{\mathcal L}(v)$ are arbitrary periodic functions.
 
-\begin{itemize}[noitemsep]
-\item Transverse coordinates: $x^{i} \sim \varphi, t$, or $u,v = \varphi \pm t$
-\item Radial coordinate: $\rho \approx r^{-2} \equiv \zeta$
-\item $r$: the ``proper radius''
-\item $\mathcal L(u), \bar{\mathcal L}(v)$: arbitrary periodic functions
-\end{itemize}
-\begin{center}
-%	\hspace{.1\linewidth}
-	\includegraphics[width=.6\linewidth]{img/foliation.pdf}
-	
-%	\vspace{-.5\baselineskip}\small
-%	Cutoff $\mrm{AdS}_3$\,/\,\TTbar-deformed $\mrm{CFT}_2$
+\noindent%
+The geometry is foliated by constant $\zeta$ surfaces ${\mathcal N}_\zeta$. 
+\\
+The asymptotic boundary $\mcal{N}_0$ is at $\zeta \to 0$, with coordinates: $x^{i} \sim \varphi, t$, while $u,v = \varphi \pm t$.
 
-	\vspace{-.2\baselineskip}
-%	\scriptsize\ Image courtesy: \textcite{AldegundePWSep22}
-\end{center}
-\begin{itemize}[itemsep=-1ex]
-\item Structure: foliated by constant $\zeta$ surfaces ${\mathcal N}_\zeta$
-\item Asymptotic boundary: $\mcal{N}_0$ is at $\zeta \to 0$
-\\[1ex]
-\citations{%
-	\textcite{Fefferman:2007rka}\\
-	\textcite{Banados:1992wn}%\\
-%	\textcite{Banados:1998gg}
+\noindent\citations{%
+\textcite{Fefferman:2007rka}\\
+\textcite{Banados:1992wn}\\
+\textcite{Banados:1998gg}
 }
-\end{itemize}
+\vspace{-.5\baselineskip}
+\subsection*{Foundations: $\mrm{AdS}_3/\mrm{CFT}_2$ holography}
+\vspace{-.5\baselineskip}
+\begin{align*}
+%\hspace{-1em}
+	\textrm{\textit{asympt.}~$\mrm{AdS}_3$ Gravity}
+	&\ \equiv\ 
+	\textrm{Large $N$ $\mrm{CFT}_2$ at $\mcal{N}_0$}
+\end{align*}
 
-\textbf{``\,$\bm{T\bar{T}}$\,'' deformation:} defined as the flow of action:
-\begin{align}
-\hspace{-2em}
-	\partial_{\sidenote{\mu}} I &= {8 \pi} \int d^2x \, T\bar T_{(\sidenote{\mu})} = {\pi} \int d^2x\,\big( T^{ij}T_{ij}- (T^i_i)^2 \big)_{(\sidenote{\mu})},\notag\\
-	&x, \bar{x} = \varphi' \pm t'
-	\label{TTbardef}
-\end{align}
+\citations{\noindent%
+	\textcite{Maldacena:1997re}\\
+	\textcite{Aharony:1999ti} \textit{et al}
+}
+%\begin{center}
+%	\includegraphics[width=.7\linewidth]{img/ads-cft.png}\\[.5ex]
+%	\scriptsize\ Image courtesy: \textcite{AldegundePWSep22}
+%\end{center}
 
+%\begin{itemize}
+
+%\item Universal / ubiquitous:
+%
+%\begin{itemize}
+%	\item Model agnostic: $\mrm{AdS}_5\times S^5$, $\mrm{AdS}_3\times S^3 \times T^4$, symmetric orbifolds, minimal models, ``monsters'', ... \textit{\small Maldacena, Witten, GKP, ABJM, Gaberdiel, and many many more}
+%	
+%\end{itemize}
+
+%\end{itemize}
 
 \begin{itemize}
 
-\item \textbf{Irrelevant:} init from $\mrm{CFT}_2$: $T\bar{T}_{(\sidenote{\mu = 0})} = T_{xx} T_{\bar{x}\bar{x}}$, but conformal symmetry will be broken for $\mu \ne 0$.
+\item Define \textbf{``\,$\TTbar$\,'' deformation} as the flow of action:
+\begin{equation}
+	\partial_{\sidenote{\mu}} I = {8 \pi} \int d^2x \, T\bar T_{(\sidenote{\mu})} = {\pi} \int d^2x\,\big( T^{ij}T_{ij}- (T^i_i)^2 \big)_{(\sidenote{\mu})}
+	\label{TTbardef}
+\end{equation}
+where $x, \bar{x} = \varphi' \pm t'$.
+We shall start from $\mrm{CFT}_2$ such that $T\bar{T}_{(\mu = 0)} = T_{xx} T_{\bar{x}\bar{x}}$, but note that the deformation is \textit{irrelevant}: conformal symmetry will be broken for $\mu \ne 0$.
 
 \item \textbf{Solvable:} the deformed spectrum of $\hat{H}(\mu)$ and $\hat{J}(\mu)$ on a cylinder of radius $R$ is a simple function:
 \begin{equation}
@@ -161,31 +172,30 @@ under reasonable assumptions (e.g.~translation invariance).
 \textcite{Dubovsky:2012wk}\\
 \textcite{Dubovsky:2013ira}\\
 \textcite{Smirnov:2016lqw}\\
-\textcite{Cavaglia:2016oda} \textit{et al}%\\
-%\textcite{Dubovsky:2017cnj} 
+\textcite{Cavaglia:2016oda}\\
+\textcite{Dubovsky:2017cnj} \textit{et al}
 }
 
 \vspace{-.5\baselineskip}
 
 \end{itemize}
 
-\subsection*{Cutoff $\mrm{AdS}_3$ / \TTbar-deformed $\mrm{CFT}_2$ at $\mcal{N}_{\zeta_c}$
-\texorpdfstring{\\[.5ex]\normalsize}{:} Holography within a finite Dirichlet wall
-}
-\vspace{-1ex}
+\subsection*{Cutoff $\mrm{AdS}_3$ duality:\texstringonly{\\} Holography within a finite Dirichlet wall}
+
 \citations{
 \textcite{McGough:2016lol}\\
 \textcite{Kraus:2018xrn} \textit{et al}
 }
 
-\textbf{Dictionary:} radial location $\zeta_c$ of the cutoff surface $\mcal{N}_{\zeta_c}$ gets mapped to the deformation parameter $\mu$:
+\textbf{Dictionary:} the \TTbar deformed theory lives on $\mcal{N}_{\zeta_c}$ with metric $\gamma_{ij}$.
+Location (radius) of the cutoff surface gets mapped to the deformation parameter $\mu$:
 \begin{equation}
 	\zeta_c = - \frac{c \mu}{3\ell^2}
 	\label{dictionary}
 \end{equation}
-\TTbar flow recast geometrically as the $i,j$ components of the Einstein equations. 
+\TTbar flow is recast geometrically as the $i,j$ components of the Einstein equations. This is a ``non-AdS'' / non-CFT duality.
 
-This is a ``non-AdS'' / non-CFT duality.\\
+\noindent%
 \textit{A step towards quantum gravity in \reality!}
 
 \columnbreak
@@ -193,7 +203,7 @@ This is a ``non-AdS'' / non-CFT duality.\\
 \vspace*{-4\baselineskip}
 \begin{center}
 	\hspace{.1\linewidth}
-	\includegraphics[width=.5\linewidth]{img/cutoff-ads.jpg}
+	\includegraphics[width=.4\linewidth]{img/cutoff-ads.jpg}
 	
 	\vspace{-.5\baselineskip}\small
 	Cutoff $\mrm{AdS}_3$\,/\,\TTbar-deformed $\mrm{CFT}_2$
@@ -223,7 +233,7 @@ admits both signs of $\mu$.}
 \parbox{\linewidth}{
 \vspace{-\baselineskip}
 \begin{equation*}
-\hspace{-2em}
+\hspace{-.8em}
 	\textrm{Cutoff / \textit{glue-on} $\mrm{AdS}_{d+1}$ Gravity}
 	\ \equiv\ %
 	\textrm{\TTbar deformed $\mrm{CFT}_{d}$ at $\mcal{N}_{\zeta_c}$}
@@ -241,7 +251,7 @@ admits both signs of $\mu$.}
 
 \begin{itemize}
 
-\item The metric \eqref{fggauge} has a simple pole, thus admits a well-defined \textbf{analytic continuation:}
+\item \textbf{Analytic continuation:} metric \eqref{fggauge} has a simple pole, thus admits well-defined analytic continuation:
 %\begin{equation}
 %	\rho,\ \zeta,\ \mu\ \in\ \mbb{R}
 %\end{equation}
@@ -251,14 +261,13 @@ admits both signs of $\mu$.}
 	\zeta_c = - \frac{c \mu}{3\ell^2} \in \mbb{R}
 \end{equation}
 What are we doing other than copy-pasting?
-We need a prescription to ``renormalize'' the divergences as $\zeta \to 0^\pm$:
-	\begin{itemize}[noitemsep]
-
-	\item introduce regulating surfaces $\mathcal N_{\zeta={\pm\epsilon}}$
-	\item exclude the $-\epsilon < \zeta < \epsilon$ region
-	\item ... until finally sending $\epsilon \to 0$
-	\item effectively, ``glue'' together $\mathcal N_{\zeta={\pm\epsilon}}$ (``\textbf{glue-on}'')
-
+	\begin{itemize}
+	\item Physical quantities diverge as $\zeta \to 0$.
+	A prescription is required to ``renormalize'' the divergences.
+	
+	\item Treatment for the singularity at $\zeta\to 0^\pm$: introduce $\mathcal N_{\zeta={\pm\epsilon}}$ and glue them together (``\textbf{glue-on}'');
+		exclude the $-\epsilon < \zeta < \epsilon$ region until finally sending $\epsilon \to 0$. 
+%	\item We formally denote the boundary surface by the limit $\mathcal N_{0}=\mathcal N_{0^+}=\mathcal N_{0^-}$, though we need to keep track of the asymptotic cutoff $\epsilon$ in actual computations.
 	\end{itemize}
 	
 \item \textbf{Extending the flow:} matching energy momentum (Brown-York) \& the \TTbar flow equations:
