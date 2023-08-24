@@ -11,6 +11,7 @@
 \fi
 %\ctexset{autoindent=true}
 %\usepackage{indentfirst}
+\setlength{\parindent}{0pt}
 
 \input{../.modules/basics/macros.tex}
 \input{../.modules/preamble_base.tex}
@@ -40,7 +41,7 @@
 
 % Spacing
 \usepackage[
-	papersize={40cm,32cm},
+	papersize={32cm,40cm},
 	hmargin=1.5cm,
 	vmargin={1.5cm,1.7cm}
 ]{geometry}
@@ -63,5 +64,5 @@
 %		parsep=\parskip
 		nosep,
 		parsep=\parskip,
-		leftmargin=\parindent
+		leftmargin=1.5em
 	}

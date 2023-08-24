@@ -86,30 +86,36 @@
 \textbf{Abstract:}
 \TTbar-deformed CFTs with $\mu < 0$ have been proposed by \textcite{McGough:2016lol} to be holographically dual to Einstein gravity with a finite \mbox{Dirichlet} cutoff.
 
-In this work we put forward a holographic proposal for \TTbar-deformed CFTs with $\mu > 0$, in which case the bulk dual geometry is constructed by gluing-on a patch of $\mrm{AdS}_3$ to the original spacetime. We provide various evidence for this extended holography, now valid for $\mu \in \mbb{R}$.
+We generalize the proposal for $\mu > 0$ and \mbox{provide} various evidence for this extended holography, now valid for $\mu \in \mbb{R}$.
 
 \vspace{.8\baselineskip}
 \hrule
 \vspace{.3\baselineskip}
 
-We start from \textbf{pure Einstein gravity} without matter in $\mrm{AdS}_3$; the Einstein equations are solved by the metric:
+\noindent
+\textbf{Pure Einstein gravity} without matter in $\mrm{AdS}_3$:
 \begin{equation}
 \hspace{-2em}
 \begin{aligned}
 	ds^2
 	&= \ell^2 \bigg( \frac{d\rho^2}{4 \rho^2} + \frac{ \big( du + \rho \, \mathcal {\bar L}(v)\, dv \big) \big( dv + \rho \, \mathcal L(u)\, du \big) }{\rho} \bigg)\\
-	&= n_\mu n_\nu dx^\mu dx^\nu + \frac{1}{\zeta} \gamma_{ij}dx^i dx^j,\quad
-\frac{1}{\zeta} \equiv \ell^{-2} g_{\varphi\varphi} \equiv r^2
+	&= n_\mu n_\nu dx^\mu dx^\nu + \frac{1}{\zeta} \gamma_{ij}dx^i dx^j,
 \end{aligned}
 \label{fggauge}
 \end{equation}
-The radial coordinate: $\rho \approx r^{-2} \equiv \zeta$,
-where $r$ is the ``proper radius''; $\mathcal L(u)$ and $\bar{\mathcal L}(v)$ are arbitrary periodic functions.
+$\mathcal L(u)$ and $\bar{\mathcal L}(v)$: arbitrary periodic functions.
+\begin{itemize}%[noitemsep]
+\item Change of radial coordinate: $\rho \leadsto \zeta$:
+\begin{equation*}
+	\frac{1}{\zeta} \equiv \ell^{-2} g_{\varphi\varphi} \equiv r^2
+\end{equation*}
+$r$ is the ``proper radius'', $\rho \approx r^{-2}$ but \textit{not exactly}.
 
-\noindent%
-The geometry is foliated by constant $\zeta$ surfaces ${\mathcal N}_\zeta$. 
+\item The geometry is foliated by constant $\zeta$ surfaces ${\mathcal N}_\zeta$.
 \\
-The asymptotic boundary $\mcal{N}_0$ is at $\zeta \to 0$, with coordinates: $x^{i} \sim \varphi, t$, while $u,v = \varphi \pm t$.
+Asymptotic boundary: $\mcal{N}_0$, at $\rho, \zeta \to 0$, \\
+with coordinates: $x^{i} \sim \varphi, t$, while $u,v = \varphi \pm t$.
+\end{itemize}
 
 \noindent\citations{%
 \textcite{Fefferman:2007rka}\\
@@ -119,12 +125,12 @@ The asymptotic boundary $\mcal{N}_0$ is at $\zeta \to 0$, with coordinates: $x^{
 \vspace{-.5\baselineskip}
 \subsection*{Foundations: $\mrm{AdS}_3/\mrm{CFT}_2$ holography}
 \vspace{-.5\baselineskip}
-\begin{align*}
+{\large \begin{align*}
 %\hspace{-1em}
 	\textrm{\textit{asympt.}~$\mrm{AdS}_3$ Gravity}
 	&\ \equiv\ 
 	\textrm{Large $N$ $\mrm{CFT}_2$ at $\mcal{N}_0$}
-\end{align*}
+\end{align*}}
 
 \citations{\noindent%
 	\textcite{Maldacena:1997re}\\
@@ -148,13 +154,14 @@ The asymptotic boundary $\mcal{N}_0$ is at $\zeta \to 0$, with coordinates: $x^{
 
 \begin{itemize}
 
-\item Define \textbf{``\,$\TTbar$\,'' deformation} as the flow of action:
+\item \textbf{``\,$\TTbar$\,'' deformation} as the flow of action:
 \begin{equation}
 	\partial_{\sidenote{\mu}} I = {8 \pi} \int d^2x \, T\bar T_{(\sidenote{\mu})} = {\pi} \int d^2x\,\big( T^{ij}T_{ij}- (T^i_i)^2 \big)_{(\sidenote{\mu})}
 	\label{TTbardef}
 \end{equation}
 where $x, \bar{x} = \varphi' \pm t'$.
-We shall start from $\mrm{CFT}_2$ such that $T\bar{T}_{(\mu = 0)} = T_{xx} T_{\bar{x}\bar{x}}$, but note that the deformation is \textit{irrelevant}: conformal symmetry will be broken for $\mu \ne 0$.
+
+\item \textbf{Irrelevant:} start from $\mrm{CFT}_2$ where $T\bar{T}_{(\mu = 0)} = T_{xx} T_{\bar{x}\bar{x}}$, but conformal symmetry will be broken for $\mu \ne 0$.
 
 \item \textbf{Solvable:} the deformed spectrum of $\hat{H}(\mu)$ and $\hat{J}(\mu)$ on a cylinder of radius $R$ is a simple function:
 \begin{equation}
@@ -165,7 +172,7 @@ We shall start from $\mrm{CFT}_2$ such that $T\bar{T}_{(\mu = 0)} = T_{xx} T_{\b
 \end{gathered} \label{ttbarspectrum}
 \end{equation}
 of the undeformed spectrum $E(0)$, $J(0)$,
-under reasonable assumptions (e.g.~translation invariance). 
+under reasonable assumptions. 
 
 \citations{
 \textcite{Zamolodchikov:2004ce}\\
@@ -188,12 +195,12 @@ under reasonable assumptions (e.g.~translation invariance).
 }
 
 \textbf{Dictionary:} the \TTbar deformed theory lives on $\mcal{N}_{\zeta_c}$ with metric $\gamma_{ij}$.
-Location (radius) of the cutoff surface gets mapped to the deformation parameter $\mu$:
+Parameter $\zeta_c$ related to $\mu$:
 \begin{equation}
 	\zeta_c = - \frac{c \mu}{3\ell^2}
 	\label{dictionary}
 \end{equation}
-\TTbar flow is recast geometrically as the $i,j$ components of the Einstein equations. This is a ``non-AdS'' / non-CFT duality.
+\TTbar flow recast geometrically as the $i,j$ components of the Einstein equations. This is a ``non-AdS'' / non-CFT duality.
 
 \noindent%
 \textit{A step towards quantum gravity in \reality!}
@@ -203,7 +210,7 @@ Location (radius) of the cutoff surface gets mapped to the deformation parameter
 \vspace*{-4\baselineskip}
 \begin{center}
 	\hspace{.1\linewidth}
-	\includegraphics[width=.4\linewidth]{img/cutoff-ads.jpg}
+	\includegraphics[width=.45\linewidth]{img/cutoff-ads.jpg}
 	
 	\vspace{-.5\baselineskip}\small
 	Cutoff $\mrm{AdS}_3$\,/\,\TTbar-deformed $\mrm{CFT}_2$
@@ -232,14 +239,22 @@ admits both signs of $\mu$.}
 
 \parbox{\linewidth}{
 \vspace{-\baselineskip}
-\begin{equation*}
-\hspace{-.8em}
-	\textrm{Cutoff / \textit{glue-on} $\mrm{AdS}_{d+1}$ Gravity}
-	\ \equiv\ %
-	\textrm{\TTbar deformed $\mrm{CFT}_{d}$ at $\mcal{N}_{\zeta_c}$}
-\end{equation*}
+\textbf{\begin{equation*}
+\hspace{-1.8em}
+\begin{aligned}
+	\textrm{Cutoff}
+	\ &/\ %
+	\text{\textit{glue-on} $\mrm{AdS}_3$ Gravity}
+	\!\!&\equiv\ %
+	\textrm{\TTbar deformed $\mrm{CFT}_2$ at $\mcal{N}_{\zeta_c}$} \\
+	\zeta_c > 0
+	\ &/\ %
+	\zeta_c < 0
+	& \mu \in \mbb{R}\quad
+\end{aligned}
+\end{equation*}}
 \begin{center}
-	\vspace{-.8\baselineskip}%
+	\vspace{-1\baselineskip}%
 	\centering
 	\includegraphics[width=.6\linewidth]{img/diagram.pdf}
 	
@@ -261,12 +276,10 @@ admits both signs of $\mu$.}
 	\zeta_c = - \frac{c \mu}{3\ell^2} \in \mbb{R}
 \end{equation}
 What are we doing other than copy-pasting?
-	\begin{itemize}
-	\item Physical quantities diverge as $\zeta \to 0$.
-	A prescription is required to ``renormalize'' the divergences.
-	
-	\item Treatment for the singularity at $\zeta\to 0^\pm$: introduce $\mathcal N_{\zeta={\pm\epsilon}}$ and glue them together (``\textbf{glue-on}'');
-		exclude the $-\epsilon < \zeta < \epsilon$ region until finally sending $\epsilon \to 0$. 
+A prescription to ``renormalize'' the divergences at $\zeta \to 0$:
+	\begin{itemize}[noitemsep]\small
+	\item Introduce $\mathcal N_{\zeta={\pm\epsilon}}$ and glue them together (``\textbf{glue-on}'');
+	\item Exclude the $-\epsilon < \zeta < \epsilon$ region until finally sending $\epsilon \to 0$. 
 %	\item We formally denote the boundary surface by the limit $\mathcal N_{0}=\mathcal N_{0^+}=\mathcal N_{0^-}$, though we need to keep track of the asymptotic cutoff $\epsilon$ in actual computations.
 	\end{itemize}
 	
@@ -277,7 +290,7 @@ What are we doing other than copy-pasting?
 		\gamma_{ij} = \zeta_c h_{ij}, \\[-1ex]
 	\end{gathered}	\label{BYtensor}
 	\end{equation}
-	where $h_{ij}$ is the induced metric. 
+	$h_{ij}$: the induced metric. 
 	
 	The field theory metric $\gamma_{ij}$ is always positive-definite, while $h_{ij}$ becomes negative-definite for the glue-on region $\rho,\zeta < 0$.
 	This discrepancy is the origin of the $\abs{\zeta_c}$.
@@ -295,7 +308,7 @@ What are we doing other than copy-pasting?
 	This is a Killing horizon in the glue-on region of the \mbox{extended} geometry;
 	$(\det g_{\mu\nu})_{\,\zeta = -1} = 0$.
 
-\item \textbf{Spectrum from the extended geometry:} they are \mbox{conserved} charges of the Killing symmetries, and can be computed with the \textit{covariant formalism}.
+\item \textbf{Spectrum from the extended geometry:} they are \mbox{conserved} charges $\mcal{Q}$ of the Killing symmetries, and can be computed with the \textit{covariant formalism}.
 
 \citations{
 	\textsl{\citeauthor{Iyer:1994ys,Barnich:2001jy}} et al\\
@@ -304,64 +317,62 @@ What are we doing other than copy-pasting?
 	\begin{align*}
 		\delta E(\mu) &\equiv  \ell^{-1} \delta \mathcal Q_{\pd_{t'}}, \quad \delta J(\mu) \equiv  \delta \mathcal Q_{\pd_{\varphi'}}.
 	\end{align*}
-	This reproduces $E(\mu)$, $J(\mu)$ with $\mu \in\mbb{R}$ in \eqref{ttbarspectrum}.
+	This reproduces $E(\mu)$, $J(\mu)$ with $\mu \in\mbb{R}$ in \eqref{ttbarspectrum}.\\
+	$(t',\varphi')$: normalized boundary coordinates:
+	\begin{equation}
+		ds^2_c = \ell^2 ( -dt'^2 + d\varphi'^2) , \qquad \varphi' \sim \varphi' + 2\pi.\label{cutoffmetric}
+	\end{equation}
 
 \columnbreak
 
 \vspace*{-8\baselineskip}
 %\item The covariant charges (variation):
 
-	\item To match the bulk \& boundary symmetries at $\mcal{N}_{\zeta_c}$, we choose the appropriate coordinates $(t',\varphi')$, such that
-	\begin{equation}
-		ds^2_c = \ell^2 ( -dt'^2 + d\varphi'^2) , \qquad \varphi' \sim \varphi' + 2\pi.\label{cutoffmetric}
-	\end{equation}
-This is realized by:
-	\begin{align*}
-		dt' &= \sqrt{ \big(1 - \zeta_c (T_u+T_v)^2 \big) \big(1 - \zeta_c (T_u-T_v)^2 \big) } \, dt,  \\
+	\item $(t',\varphi')$: from \textbf{\textit{state-dependent} maps of \mbox{coordinates}}
+	\begin{align}
+		dt' &= \sqrt{ \big(1 - \zeta_c (T_u+T_v)^2 \big) \big(1 - \zeta_c (T_u-T_v)^2 \big) } \, dt, \notag \\
 		 d\varphi' &= d\varphi + \zeta_c \big( T_u^2 - T_v^2 \big)\,dt.
-	\end{align*}
-
-\item The above \textbf{\textit{state-dependent} map of \mbox{coordinates}} leads to the correct charges, the modified signal propagation speed $v'_{\pm} \equiv \pm {d\varphi'}/{dt'}$, and the \TTbar \textbf{thermodynamics} when Wick rotated. In particular,
+	\label{eq:state_dependent_map}
+	\end{align}
+	$\leadsto$ correct charges, the modified signal propagation speed $v'_{\pm} \equiv \pm {d\varphi'}/{dt'}$, and the \TTbar \textbf{thermodynamics} when Wick rotated. In particular,
 	\begin{equation*}
 	\hspace{-.5em} \mu > 0,\quad
 		T_L(\mu)\,T_R(\mu) \le - \frac{1}{4\pi^2 \ell^2 \zeta_c} = \frac{3}{4\pi^2c\mu} = T_H(\mu)^2.
 	\end{equation*}
-	$T_{L,R}$ are temperatures associated with $u',v' = \varphi' \pm t'$.\\
-	$T_H$ is the \textit{Hagedorn temperature}: exceeding $T_H$ leads to a complex entropy.
+	$T_{L,R}$: temperatures associated with $u',v' = \varphi' \pm t'$.\\
+	$T_H$: the \textit{Hagedorn temperature}: exceeding $T_H$ leads to a complex entropy.
 
 \begin{flushright}
-\vspace{-.5\baselineskip}
+\vspace{-\baselineskip}
 \citations{
 \textcite{Giveon:2017nie}\\
 \textcite{Apolo:2019zai}
 }
-\vspace{-\baselineskip}
+\vspace{-.8\baselineskip}
 \end{flushright}
 
 \end{itemize}
 
-\subsection*{\TTbar partition functions from bulk actions} \label{se:partitionfunction}
+\subsection*{\TTbar partition functions from the bulk} \label{se:partitionfunction}
 
 \begin{itemize}
-\item The \TTbar partition function is approximated by the bulk on-shell action of the dominant saddle:
+\item Via bulk on-shell action of the dominant saddle:
 	\begin{equation}
 		Z_{T\bar T} (\mu) = \mathcal Z (\zeta_c) \approx  e^{-I(\zeta_c)}. \label{partition2}
 	\end{equation}
-$I(\zeta_c)$ \mbox{diverges} at $\zeta \to 0^\pm$. We apply a natural extension of \textit{holographic renormalization} to remove the divergence.
-It includes the boundary action (with counterterms):
+$I(\zeta_c)$ \mbox{diverges} at $\zeta \to 0^\pm$: require a natural extension of \textit{holographic renormalization}, with the boundary action:
 	\begin{align}
 %		I_{\mcal{M}}(\zeta_1, \zeta_2) & \coloneqq - \frac{1}{16\pi G} \int_{\zeta_1}^{\zeta_2} d\zeta \int d^2 x \sqrt{g} \, (R + 2 \ell^{-2}),  %\label{bulkaction} \\
 %	\\
 		I_{\mathcal N_{\zeta}} & \coloneqq  - \frac{1}{8\pi G} \int_{\mathcal N_{\zeta}} d^2x \sqrt{h}\,h^{ij} K_{ij} \notag
 	\\& \qquad + \frac{\sigma_\zeta}{8\pi G} \int_{\mathcal N_{\zeta}} d^2x \sqrt{h} \, \bigg(\ell^{-1} - \frac{\ell  \mathcal{R}[h]}{4} \log |\zeta| \bigg). \label{boundaryaction}
 	\end{align}
-	The lack of diff invariance of the $\log |\zeta|$ counterterm is known to be a reflection of the Weyl anomaly. 
-	The \mbox{action} is consistent with the Brown-York stress \mbox{tensor} in \eqref{BYtensor}. 
-
 	\hfill{\footnotesize \textcite{Henningson:1998gx} \textit{et al}}
 
-The resulting $I = -\log \mcal{Z}$ satisfies the \TTbar flow \eqref{TTbardef}.\\
-Furthermore, it agrees with the field theory analysis:
+	$\log |\zeta|$: not diff-invariant, due to the Weyl anomaly. 
+
+	$I_{\mcal{N}_\zeta}$ consistent with the Brown-York stress \mbox{tensor} \eqref{BYtensor}.\\
+	$Z_{\TTbar}$ agrees with the field theory analysis, using \eqref{eq:state_dependent_map}:
 
 \item \textbf{Torus:} {modular invariance} \& sparseness of the ``light'' spectrum at large $c$ leads to the universal form :
 	\begin{equation*}\small
@@ -383,20 +394,28 @@ Furthermore, it agrees with the field theory analysis:
 %		\label{sphere:stresstensor}
 		\langle T_{ij}\rangle = -\frac{1}{4\pi\mu} \bigg(1-\sqrt{1-\frac{c\mu}{3R^2}}\, \bigg)  \gamma_{ij}.
 	\end{equation}
-Then the trace relation \mbox{$
+Trace relation: \mbox{$
 %	\begin{align*}
 %\partial_\mu \log Z_{\TTbar}(\mu)&=8\pi \int d^2x\sqrt{\gamma}\, \langle T\bar{T} \rangle \\
 (-R)\,\partial_R \log Z_{\TTbar}(\mu)=\int d^2x\sqrt{\gamma}\,\langle T^i_i \rangle
 %	\end{align*}
-$} along with the flow equation \eqref{TTbardef} 
-admits the general \mbox{solution} with a $\mu$-\textit{independent} integration constant $a$:
+$} and the flow equation \eqref{TTbardef} 
+admit the general \mbox{solution} with a $\mu$-\textit{independent} integration constant $a$:
 	\begin{equation*}\small
-	\hspace{-1.2em}
+	\hspace{-1.35em}
 		\log Z_{\TTbar}(\mu, a) = \frac{c}{3} \log \bigg[\frac{R}{a}   \bigg(1+\sqrt{1-\frac{c \mu }{3  R^2}}\, \bigg) \bigg] - \frac{R^2}{\mu}  \sqrt{1-\frac{c \mu }{3 R^2}} + \frac{R^2}{\mu}. %\label{Zsol}
 	\end{equation*}
-	\cite{Donnelly:2018bef} is recovered with $a = \sqrt{c|\mu|/3}$ but one can also take $a = \epsilon$, thus decoupling the renormalization length scale $\epsilon$ with the deformation $\mu$. In general the space of deformed theories can be parametrized by independent $(\mu,a)$.
+	\begin{itemize}%[noitemsep]
+	\item $a = \sqrt{c|\mu|/3}$: recover {\footnotesize \textcite{Donnelly:2018bef}} \\
+	$a = \epsilon$: also a valid choice, where the the RG length scale $\epsilon$ is decoupled from the deformation $\mu$.
+	
+	\item Enlarge the \textbf{space of \TTbar deformed theories:}\\
+	with \mbox{independent} parameters $(\mu,a)$.
+	
+	\item The $\log |\zeta|$ term in \eqref{boundaryaction} guarantees that $I = -\log Z_{\TTbar}$ satisfies the $T\bar T$ flow \eqref{TTbardef}; not the case for \cite{Donnelly:2018bef}.
+	\end{itemize}
 
-	The $\log$ counterterm in \eqref{boundaryaction} makes a crucial contribution to the on-shell action; it guarantees that the partition function is compatible with the $T\bar T$ differential equation, which is not the case for \cite{Donnelly:2018bef}.
+	
 	\begin{flushright}
 		\vspace{-.6\baselineskip}
 		\citations{
@@ -405,7 +424,7 @@ admits the general \mbox{solution} with a $\mu$-\textit{independent} integration
 		}\vspace{-.8\baselineskip}
 	\end{flushright}
 	
-	\item Following these results, we would like to understand the entanglement structure of \TTbar deformed theories with the help of bulk geometry in future studies.
+	\item Future: to understand the \textbf{entanglement structure} of \TTbar deformed theories with the help of bulk geometry.
 	\begin{flushright}
 		\vspace{-.5\baselineskip}
 		\citations{
@@ -413,13 +432,12 @@ admits the general \mbox{solution} with a $\mu$-\textit{independent} integration
 		}
 	\end{flushright}
 \end{itemize}
+\centering\vspace{-.8\baselineskip}
+\includegraphics[width=.5\linewidth]{img/RT-AdS.pdf}
 
-%\begin{center}
-%	\includegraphics[width=.5\linewidth]{img/RT-AdS.pdf}
-%	
-%	\vspace{-.8\baselineskip}
-%	RT surface for the extended $\mrm{AdS}_3$
-%\end{center}
+\vspace{-1.2\baselineskip}
+{\footnotesize RT surface for the extended $\mrm{AdS}_3$}
+
 %
 %\citations{
 %\begin{itemize}[noitemsep]
