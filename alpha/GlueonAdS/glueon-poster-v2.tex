@@ -191,7 +191,7 @@ This is a ``non-AdS'' / non-CFT duality.\\
 \textit{A step towards quantum gravity in \reality!}
 
 \textbf{Caveat:} the duality only admits $\zeta_c > 0$ so $\mu < 0$.\\
-But \TTbar itself admits $\mu > 0$ with cool properties.
+But \TTbar itself admits $\mu > 0$ with nice properties.
 
 \citations{The related proposal of \textcite{Guica:2019nzm}\\
 admits both signs of $\mu$.}
@@ -203,8 +203,8 @@ admits both signs of $\mu$.}
 \vspace*{-4\baselineskip}
 \begin{center}
 	\mbox{
-		\hspace{-3em}
-		\includegraphics[width=1.19\linewidth]{img/ads-cft-cutoff.png}
+		\hspace{-2.6em}
+		\includegraphics[width=1.17\linewidth]{img/ads-cft-cutoff.png}
 	}
 	
 	\vspace{-.9\baselineskip}\small
@@ -251,9 +251,9 @@ admits both signs of $\mu$.}
 \begin{center}
 	\vspace{-1\baselineskip}%
 	\centering
-	\includegraphics[width=.65\linewidth]{img/diagram.pdf}
+	\includegraphics[width=.7\linewidth]{img/diagram.pdf}
 	
-	\vspace{-.5\baselineskip}
+	\vspace{-.45\baselineskip}
 	\scriptsize\ Top-down view of a constant $t$ slice
 \end{center}
 %\vspace{-\baselineskip}
@@ -329,7 +329,7 @@ What are we doing other than copy-pasting?\\
 		 d\varphi' &= d\varphi + \zeta_c \big( T_u^2 - T_v^2 \big)\,dt.
 	\label{eq:state_dependent_map}
 	\end{align}
-	$\leadsto$ correct charges, the modified signal propagation speed $v'_{\pm} \equiv \pm {d\varphi'}/{dt'}$, and \TTbar \textbf{thermodynamics} when Wick rotated. In particular,
+	$\leadsto$ correct charges, the modified signal propagation speed $v'_{\pm} \equiv \pm {d\varphi'}/{dt'}$, and \TTbar \textbf{thermodynamics} upon Wick rotation. In particular,
 	\begin{equation*}
 	\hspace{-.5em} \mu > 0,\ \ \,
 		T_L(\mu)\,T_R(\mu) \le - \frac{1}{4\pi^2 \ell^2 \zeta_c} = \frac{3}{4\pi^2c\mu} = T_H(\mu)^2.
@@ -369,7 +369,7 @@ $I(\zeta_c)$ \mbox{diverges} at $\zeta \to 0^\pm$: we need \textit{holographic r
 	
 	$Z_{\TTbar}$ agrees with the field theory analysis, using \eqref{eq:state_dependent_map}:
 
-\item \textbf{Torus:} {modular invariance} \& sparseness of the ``light'' spectrum at large $c$ leads to the universal form :
+\item \textbf{Torus:} {modular invariance} \& sparseness of the ``light'' spectrum at large $c$ $\leadsto$ universal form:
 	\begin{equation*}\small
 	\hspace{-2em}
 		\log   Z_{T\bar T}(\mu)  \approx \left\{ \begin{aligned}
@@ -377,14 +377,19 @@ $I(\zeta_c)$ \mbox{diverges} at $\zeta \to 0^\pm$: we need \textit{holographic r
 		& {-2 \pi^2 \bigg(\frac{1}{\beta_L} + \frac{1}{\beta_R}\bigg)  RE_{\text{vac}}\bigg(\frac{4\pi^2}{\beta_L \beta_R} \mu \bigg)},  &\beta_L\beta_R < 1. %\\[2ex]
 		 \end{aligned} \right. %\label{ZTTbar}
 	\end{equation*}
-	\citations{\noindent%
-		\textcite{Datta:2018thy}\\
-		\textcite{Apolo:2023aho}\\
-		cf.~\textcite{Hartman:2014oaa}
-%		\textcite{Apolo:2023aho}, \mbox{following \textcite{Datta:2018thy} and \textsl{\citeauthor{Hartman:2014oaa}}}
-	}
+	\begin{flushright}
+		\vspace{-.5\baselineskip}
+		\citations{\noindent%
+			\textcite{Datta:2018thy}\\
+			\textcite{Apolo:2023aho}\\
+			cf.~\textcite{Hartman:2014oaa}
+		}
+		\vspace{-.5\baselineskip}
+	\end{flushright}
 
-\item \textbf{Sphere:} maximally symmetric,\\ \mbox{\footnotesize \textcite{Donnelly:2018bef}}
+\item \textbf{Sphere:} maximally symmetric,\\[-1.4\baselineskip]
+
+\hfill\mbox{\footnotesize \textcite{Donnelly:2018bef}}
 	\begin{equation}
 %		\label{sphere:stresstensor}
 		\langle T_{ij}\rangle = -\frac{1}{4\pi\mu} \bigg(1-\sqrt{1-\frac{c\mu}{3R^2}}\, \bigg)  \gamma_{ij}.
@@ -401,7 +406,10 @@ admit the general \mbox{solution} with a $\mu$-\textit{independent} integration 
 		\log Z_{\TTbar}(\mu, a) = \tfrac{c}{3} \log \Big[\tfrac{R}{a}   \Big(1+\sqrt{1-\tfrac{c \mu }{3  R^2}}\, \Big) \Big] - \tfrac{R^2}{\mu}  \sqrt{1-\tfrac{c \mu }{3 R^2}} + \tfrac{R^2}{\mu}. %\label{Zsol}
 	\end{equation*}
 	\begin{itemize}%[noitemsep]
-	\item $a = \sqrt{c|\mu|/3}$: \mbox{recover {\footnotesize \textcite{Donnelly:2018bef}}} \\
+	\item $a = \sqrt{c|\mu|/3}$: \mbox{recover {\small
+		\textsl{\citeauthor{Donnelly:2018bef}}
+		\cite{Donnelly:2018bef}
+	}} \\
 	$a = \epsilon$: also a valid choice, where the the RG length scale $\epsilon$ is decoupled from $\mu$.
 	
 	\item Enlarge the \textbf{space of \TTbar deformed theories:}\\
@@ -427,23 +435,36 @@ admit the general \mbox{solution} with a $\mu$-\textit{independent} integration 
 		}
 	\end{flushright}
 \end{itemize}
-\centering\vspace{-.8\baselineskip}
+\centering\vspace{-1\baselineskip}
 \includegraphics[width=.6\linewidth]{img/RT-AdS.pdf}
 
-\vspace{-1.2\baselineskip}
+\vspace{-1\baselineskip}
 {\footnotesize RT surface for the extended $\mrm{AdS}_3$}
 
-%
-%\citations{
-%\begin{itemize}[noitemsep]
-%\item \textcite{He:2023xnb}
-%\item \textcite{He:2023wko}
-%\item \textcite{Tian:2023fgf}
-%\end{itemize}
-%}
-%
-%\renewcommand*{\bibfont}{\footnotesize}
-%\printbibliography %%% should not specify heading
+\vspace{.8\baselineskip}
+\hrule
+\vspace{.1\baselineskip}
+
+\hspace{-.7em}
+\begin{minipage}[c]{.81\linewidth}
+\begin{itemize}[noitemsep,leftmargin=5em]\small
+\item[\texttt{Email:}]
+	\url{bryanlais@gmail.com}
+\item[\texttt{Inspire:}]
+	\href{https://inspirehep.net/authors/2640135}{
+		\texttt{inspirehep.net/authors/2640135}
+	}
+\item[\texttt{GitHub:}]
+	\href{https://github.com/bryango}{
+		\texttt{github.com/bryango}
+	}
+\end{itemize}
+\end{minipage}%
+\hfill%
+\begin{minipage}{.17\linewidth}
+\includegraphics[width=\linewidth]{img/inspire-qr.png}
+\end{minipage}%
+~\mbox{}
 
 \end{multicols}
 
