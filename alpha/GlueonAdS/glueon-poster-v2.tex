@@ -49,10 +49,10 @@
 \posttitle{\ \footnotesize\textsl{JHEP 06 (2023) 117}}
 
 \preauthor{\par\large\noindent}
-\author{
+\author{%
 	Luis Apolo,
 	Peng-Xiang Hao \textkai{\normalsize 郝鹏翔},
-	\textbf{Wen-Xin Lai} \textkai{\small 赖文昕},
+	\textbf{Wen-Xin Lai \textkai{\small 赖文昕}},
 	and Wei Song \textkai{\small 宋伟}
 }
 \postauthor{
@@ -64,7 +64,10 @@
 %	\vspace{.3\baselineskip}
 }
 
-\predate{\noindent\sffamily\,%
+\predate{\noindent\sffamily%
+	\begin{minipage}{3em}
+		\includegraphics[width=2.7em]{img/ymsc-logo.pdf}
+	\end{minipage}
 	Yau Mathematical Sciences Center YMSC, Tsinghua
 	---
 }
@@ -84,8 +87,8 @@
 
 \begin{multicols}{3}
 
-\noindent%
-\textbf{Abstract:}
+%\textbf{Abstract:}
+\,\\[-2.2\baselineskip]
 
 \TTbar-deformed CFTs with $\mu < 0$ have been proposed by \mbox{\textcite{McGough:2016lol}} to be holographically dual to Einstein gravity with a finite \mbox{Dirichlet} cutoff.
 
@@ -96,23 +99,20 @@ We generalize the proposal for $\mu > 0$ by \textit{gluing-on} another patch of 
 \vspace{.3\baselineskip}
 
 \textbf{Pure Einstein gravity} without matter in $\mrm{AdS}_3$:
-\begin{equation}
-\hspace{-2.5em}
-\begin{aligned}
+\begin{align}
+\hspace{-.8em}
 	ds^2
-	&= \ell^2 \bigg( \frac{d\rho^2}{4 \rho^2} + \frac{ \big( du + \rho \, \mathcal {\bar L}(v)\, dv \big) \big( dv + \rho \, \mathcal L(u)\, du \big) }{\rho} \bigg)\\
-	&= n_\mu n_\nu dx^\mu dx^\nu + \frac{1}{\zeta} \gamma_{ij}dx^i dx^j,\quad
-\end{aligned}
-\label{fggauge}
-\end{equation}
+	&= \ell^2 \bigg( \frac{d\rho^2}{4 \rho^2} + \frac{ \big( du + \rho \, \mathcal {\bar L}(v)\, dv \big) \big( dv + \rho \, \mathcal L(u)\, du \big) }{\rho} \bigg) \notag\\
+	&= n_\mu n_\nu dx^\mu dx^\nu + \frac{1}{\zeta} \gamma_{ij}dx^i dx^j, \label{fggauge}
+\end{align}
 
 \begin{itemize}
 \item Transverse coordinates: $x^{i} \sim \varphi, t$ \\
-	Lightcone coordinates: $u,v = \varphi \pm t$
+	Light-cone coordinates: $u,v = \varphi \pm t$
 
 	$\mathcal L(u), \bar{\mathcal L}(v)$: arbitrary periodic functions
 \item Radial coordinate: $
-	\ell^{-2} g_{\varphi\varphi} \equiv r^2 \equiv \frac{1}{\zeta}$\\
+	\ell^{-2} g_{\varphi\varphi} \equiv r^2 \equiv \zeta^{-1}$\\
 	$r$: the ``proper radius''
 \end{itemize}
 \begin{center}
@@ -126,7 +126,7 @@ We generalize the proposal for $\mu > 0$ by \textit{gluing-on} another patch of 
 	\vspace{-.5\baselineskip}
 \end{center}
 \begin{itemize}
-\item Structure: foliated by constant $\zeta$ surfaces ${\mathcal N}_\zeta$\\[.7ex]
+\item Structure: foliated by constant $\zeta$ surfaces ${\mathcal N}_\zeta$\\[.6ex]
 Asymptotic boundary: $\mcal{N}_0$ is at $\zeta \to 0$
 \\[1ex]
 \citations{%
@@ -136,9 +136,9 @@ Asymptotic boundary: $\mcal{N}_0$ is at $\zeta \to 0$
 }
 \end{itemize}
 
-\textbf{``\,$\TTbar$\,'' deformation} as the flow of action:
+\textbf{``$\thinmspace[.9]\TTbar$\,'' deformation} as the flow of action:
 \begin{align}
-\hspace{-1.5em}
+\hspace{-.1em}
 	\partial_{\sidenote{\mu}} I &= {8 \pi} \int d^2x \, T\bar T_{(\sidenote{\mu})} = {\pi} \int d^2x\,\big( T^{ij}T_{ij}- (T^i_i)^2 \big)_{(\sidenote{\mu})},\notag\\
 	&x, \bar{x} = \varphi' \pm t'
 	\label{TTbardef}
@@ -169,12 +169,12 @@ of the undeformed spectrum $E(0)$, $J(0)$.\\
 %\textcite{Dubovsky:2017cnj} 
 }
 
-\vspace{-.5\baselineskip}
+\vspace{-.8\baselineskip}
 
 \end{itemize}
 
 \subsection*{Cutoff $\mrm{AdS}_3$ duality:\texstringonly{\\} Holography within a finite Dirichlet wall}
-
+\vspace{-.2\baselineskip}
 \citations{
 \textcite{McGough:2016lol}\\
 \textcite{Kraus:2018xrn} \textit{et al}
@@ -200,14 +200,14 @@ admits both signs of $\mu$.}
 
 \columnbreak
 
-\vspace*{-4\baselineskip}
+\vspace*{-3.6\baselineskip}
 \begin{center}
 	\mbox{
-		\hspace{-2.6em}
-		\includegraphics[width=1.17\linewidth]{img/ads-cft-cutoff.png}
+		\hspace{-1.55em}
+		\includegraphics[width=1.14\linewidth]{img/ads-cft-cutoff.png}
 	}
 	
-	\vspace{-.9\baselineskip}\small
+	\vspace{-.8\baselineskip}\small
 	Cutoff $\mrm{AdS}_3$\,/\,\TTbar-deformed $\mrm{CFT}_2$
 
 	\vspace{-.3\baselineskip}
@@ -235,7 +235,7 @@ admits both signs of $\mu$.}
 \parbox{\linewidth}{
 \vspace{-\baselineskip}
 \textbf{\begin{equation*}
-\hspace{-3em}
+\hspace{-2.8em}
 \begin{aligned}
 	\textrm{Cutoff}
 	\ &/\ %
@@ -323,7 +323,7 @@ What are we doing other than copy-pasting?\\
 \vspace*{-8\baselineskip}
 %\item The covariant charges (variation):
 
-	\item \textbf{\textit{State-dependent} maps of \mbox{coordinates}}
+	\item \textbf{\textit{State-dependent} maps of \mbox{coordinates}:}
 	\begin{align}
 		dt' &= \sqrt{ \big(1 - \zeta_c (T_u+T_v)^2 \big) \big(1 - \zeta_c (T_u-T_v)^2 \big) } \, dt, \notag \\
 		 d\varphi' &= d\varphi + \zeta_c \big( T_u^2 - T_v^2 \big)\,dt.
@@ -371,7 +371,7 @@ $I(\zeta_c)$ \mbox{diverges} at $\zeta \to 0^\pm$: we need \textit{holographic r
 
 \item \textbf{Torus:} {modular invariance} \& sparseness of the ``light'' spectrum at large $c$ $\leadsto$ universal form:
 	\begin{equation*}\small
-	\hspace{-2em}
+	\hspace{-2.3em}
 		\log   Z_{T\bar T}(\mu)  \approx \left\{ \begin{aligned}
 		& {-\frac{1}{2}}\,(\beta_L + \beta_R)\, RE_{\text{vac}}(\mu),  &\beta_L \beta_R > 1, \\
 		& {-2 \pi^2 \bigg(\frac{1}{\beta_L} + \frac{1}{\beta_R}\bigg)  RE_{\text{vac}}\bigg(\frac{4\pi^2}{\beta_L \beta_R} \mu \bigg)},  &\beta_L\beta_R < 1. %\\[2ex]
@@ -402,7 +402,7 @@ Trace relation: \mbox{$
 $} and the flow equation \eqref{TTbardef} 
 admit the general \mbox{solution} with a $\mu$-\textit{independent} integration constant $a$:
 	\begin{equation*}\small
-	\hspace{-1.3em}
+	\hspace{-1.6em}
 		\log Z_{\TTbar}(\mu, a) = \tfrac{c}{3} \log \Big[\tfrac{R}{a}   \Big(1+\sqrt{1-\tfrac{c \mu }{3  R^2}}\, \Big) \Big] - \tfrac{R^2}{\mu}  \sqrt{1-\tfrac{c \mu }{3 R^2}} + \tfrac{R^2}{\mu}. %\label{Zsol}
 	\end{equation*}
 	\begin{itemize}%[noitemsep]
@@ -410,7 +410,7 @@ admit the general \mbox{solution} with a $\mu$-\textit{independent} integration 
 		\textsl{\citeauthor{Donnelly:2018bef}}
 		\cite{Donnelly:2018bef}
 	}} \\
-	$a = \epsilon$: also a valid choice, where the the RG length scale $\epsilon$ is decoupled from $\mu$.
+	$a = \epsilon$: also a valid choice, where the RG length scale $\epsilon$ is decoupled from $\mu$.
 	
 	\item Enlarge the \textbf{space of \TTbar deformed theories:}\\
 	with \mbox{independent} parameters $(\mu,a)$.
@@ -462,7 +462,7 @@ admit the general \mbox{solution} with a $\mu$-\textit{independent} integration 
 \end{minipage}%
 \hfill%
 \begin{minipage}{.17\linewidth}
-\includegraphics[width=\linewidth]{img/inspire-qr.png}
+\includegraphics[width=\linewidth]{img/inspire-qr-cy.png}
 \end{minipage}%
 ~\mbox{}
 
